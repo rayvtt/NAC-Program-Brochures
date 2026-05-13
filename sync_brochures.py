@@ -62,9 +62,11 @@ BROCHURES = {
     'overview':    ('NAC-BROCHURES-OVERVIEW.html', 1914, 'brochures'),
     'newzealand':  ('newzealand-rbi_1 (3).html',    1944, 'chuong-trinh-new-zealand-rbi-dau-tu-di-tru'),
     'panama':      ('panama-rbi_.html',             1996, 'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien'),
-    'nph':         ('NAC-PROPERTY-HUB.html',        1999, 'property-hub'),
-    'index':       ('NAC-RESIDENCE-INDEX.html',     1800, 'nac-residence-index'),
     'malaysia':    ('malaysia-mm2h.html',            2024, 'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru'),
+    # 'nph' (property-hub) and 'index' (nac-residence-index) intentionally
+    # omitted — those tool pages are NOT managed by this repo. They live in
+    # WordPress directly. Re-adding them here would overwrite WP-side edits
+    # on every CI deploy.
 }
 
 # ── Color helpers ──────────────────────────────────────────────────────

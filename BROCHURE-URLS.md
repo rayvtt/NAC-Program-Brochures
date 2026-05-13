@@ -19,13 +19,18 @@ URL pattern: `https://nomadassetcollective.com/brochures/<slug>/` — each broch
 | 🇵🇦 Panama | `panama` | 1996 | https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/ |
 | 🇲🇾 Malaysia | `malaysia` | 2024 | https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/ |
 
-## Gateway + tool pages (top-level)
+## Gateway page (synced by this repo)
 
 | Page | Alias | Page ID | Live URL |
 |---|---|---|---|
 | Brochures overview (funnel entry, parent of all country brochures) | `overview` | 1914 | https://nomadassetcollective.com/brochures/ |
-| Residence comparison index | `index` | 1800 | https://nomadassetcollective.com/nac-residence-index/ |
-| Property hub *(lives in `nac---property-hub---listing-pdp` repo)* | `nph` | 1999 | https://nomadassetcollective.com/property-hub/ |
+
+## NOT synced by this repo (hand-managed in WP)
+
+| Page | Live URL |
+|---|---|
+| Residence comparison index | https://nomadassetcollective.com/nac-residence-index/ |
+| Property hub *(lives in `nac---property-hub---listing-pdp` repo)* | https://nomadassetcollective.com/property-hub/ |
 
 ---
 
