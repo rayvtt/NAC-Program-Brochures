@@ -26,9 +26,11 @@ Editing a price, paragraph, or tier → edit Notion → next deploy → all 12 b
 
 ---
 
-## Property catalogue (~55 fields per brochure)
+## Property catalogue (~95 fields per brochure — bilingual VI + EN)
 
-Notion property types map to (Title, Text, Number, Select, Status, URL, Date). "Text long" = Notion's Rich Text type used for paragraphs and JSON-encoded structured data. Default brochure language is Vietnamese; English fields can be added later in a phase-2 column set.
+Notion property types map to (Title, Text, Number, Select, Status, URL, Date). "Text long" = Notion's Rich Text type used for paragraphs and JSON-encoded structured data.
+
+**Bilingual columns:** every prose field has both `*_vi` and `*_en` columns. The brochure HTML's existing VI/EN toggle reads from `data-vi`/`data-en` attributes; the generator will emit both into the HTML. JSON-encoded structured fields (`s02_tiers`, `s03_timeline`, etc.) include both `*_vi` and `*_en` keys inside the JSON, so each tier/timeline-step has its bilingual content together.
 
 ### A. Identity (13 fields)
 

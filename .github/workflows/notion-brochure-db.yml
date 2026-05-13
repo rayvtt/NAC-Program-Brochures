@@ -1,0 +1,53 @@
+name: Notion brochure DB tools
+
+# Manual workflow for the brochures Notion database.
+# Two actions exposed:
+#   setup-schema   — add/update properties in the DB to match data/brochure_schema.py
+#   push-turkey    — POST the extracted Turkey payload as a new row in the DB
+#
+# Requires NOTION_KEY in repo secrets (the Notion integration token).
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: 'Which tool to run'
+        type: choice
+        required: true
+        default: 'setup-schema'
+        options:
+          - setup-schema
+          - push-turkey
+      dry_run:
+        description: 'Dry run only (preview; no writes)'
+        type: boolean
+        required: false
+        default: true
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run selected tool
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: |
+          DRY="${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}"
+          case "${{ github.event.inputs.action }}" in
+            setup-schema)
+              python tools/setup_brochure_db.py $DRY
+              ;;
+            push-turkey)
+              python tools/push_brochure.py turkey $DRY
+              ;;
+            *)
+              echo "Unknown action: ${{ github.event.inputs.action }}"
+              exit 1
+              ;;
+          esac
