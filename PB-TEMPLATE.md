@@ -76,6 +76,31 @@ APPLY_LISTINGS_OFFLINE=1 python tools/apply_listings.py
 ```
 Useful when iterating on CSS or for environments without network access.
 
+#### Selection rules (when a country has more candidates than cards)
+
+`data/listings.py` may list more than 2 URLs per country. The generator applies these rules to pick the 2 that actually render:
+
+| # of candidates | What renders |
+|---|---|
+| 0 | 2 placeholders |
+| 1 | 1 card + 1 placeholder |
+| 2 | both cards |
+| ≥3 | **Cheapest + one rotating card** (see below) |
+
+**Rule 1 — Anchor on cheapest.** With 3+ candidates, card 1 is always the cheapest (sorted by `data-notion="price_full"` parsed to a number).
+
+**Rule 2 — Rotate card 2 every 2 weeks.** Card 2 is picked from the remaining pool using a deterministic fortnight index (ISO year × 26 + ISO week ÷ 2). Bias: prefer a candidate whose `data-notion="hub_type"` differs from card 1's, so users see variety in property type. Within fortnight the selection is stable (no flicker between page loads); across fortnights it shifts.
+
+> ⚠️ The Rule 2 interpretation here is "cheapest stays, second card rotates by property type." If the desired behaviour is different (e.g. both cards rotate, or rotation by yield instead of property type), tell me and I'll adjust `select_pair()` in `tools/apply_listings.py`.
+
+**Rule 3 — "All eligible" link goes to a pre-filtered PH catalog.** The footnote link (and placeholder card link) lands on:
+```
+https://nomadassetcollective.com/property-hub/?program=<code>&country=<alias>
+```
+e.g. `?program=cbi&country=turkey`, `?program=rbi&country=portugal`. The country/program comes from the brochure's data file entry.
+
+> ⚠️ **PH-side gap:** as of this writing, the PH catalog (`/property-hub/`) is a pure client-side SPA that does NOT read URL params — clicking the link currently lands users on the unfiltered catalog. The params are harmless until then. Making them work is a cross-repo change in `rayvtt/nac---property-hub---listing-pdp` (~20 lines of JS to read `URLSearchParams` and pre-set filter state on init). Worth doing as a follow-up; the brochure already speaks the right URL.
+
 **To add the section to a brochure that doesn't have it yet (rolling out beyond turkey):**
 1. Manually add the CSS block (copy from `Brochures html/turkey-cbi_8.html` — search for `LIVE LISTINGS — Spotlight`)
 2. Manually add the TOC item between #02 and #03 (copy from turkey, search for `toc-item-spotlight`)

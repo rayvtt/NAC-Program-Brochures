@@ -16,6 +16,7 @@ current Notion data.
 
 No third-party deps — Python stdlib only.
 """
+import datetime
 import html as html_lib
 import os
 import re
@@ -95,6 +96,80 @@ def first_sentence(text, max_len=240):
     return cut + '…'
 
 
+def parse_price(price_str):
+    """'$572,300' → 572300; '$1.2M' → 1200000; '$400K' → 400000.
+
+    Returns None when the input doesn't parse. Used for cheapest/priciest sort.
+    """
+    if not price_str:
+        return None
+    s = price_str.strip().replace('$', '').replace(' ', '').replace(',', '')
+    mult = 1
+    if s.upper().endswith('M'):
+        s, mult = s[:-1], 1_000_000
+    elif s.upper().endswith('K'):
+        s, mult = s[:-1], 1_000
+    try:
+        return int(float(s) * mult)
+    except ValueError:
+        return None
+
+
+def fortnight_index(today=None):
+    """Deterministic 0..N index that increments every 2 weeks (ISO week / 2).
+
+    Used to seed Rule 2 rotation so the same listings show all fortnight,
+    different ones next fortnight.
+    """
+    today = today or datetime.date.today()
+    iso_year, iso_week, _ = today.isocalendar()
+    return iso_year * 26 + (iso_week // 2)
+
+
+def select_pair(fetched, fortnight=None):
+    """Apply Rule 1 + Rule 2 to a list of fetched listings.
+
+    Rule 1: when > 2 candidates, anchor on cheapest + priciest.
+    Rule 2: when > 2 candidates, every 2 weeks rotate which mid-priced
+            listing fills card 2 (so users see variety over time but the
+            cheapest anchor stays — TODO: confirm with user; current
+            interpretation = "card 1 = cheapest always, card 2 rotates
+            among priciest-and-above-median, biased to different hub_type
+            from card 1 when possible").
+    """
+    if len(fetched) <= 2:
+        return fetched
+
+    with_price = [(parse_price(f.get('price_full', '')) or 0, f) for f in fetched]
+    with_price.sort(key=lambda x: x[0])
+
+    cheapest = with_price[0][1]
+    # Card 2 pool = everything above the cheapest. Try to favour a different
+    # hub_type for variety.
+    pool = [f for _, f in with_price[1:]]
+    different_type = [f for f in pool if f.get('hub_type') and f.get('hub_type') != cheapest.get('hub_type')]
+    candidates = different_type or pool
+
+    # Deterministic rotation: pick from `candidates` based on fortnight index.
+    fortnight = fortnight if fortnight is not None else fortnight_index()
+    card2 = candidates[fortnight % len(candidates)]
+    return [cheapest, card2]
+
+
+def ph_catalog_url(program_code, country_alias):
+    """Build the 'see all listings' URL. Uses ?program=X&country=Y params.
+
+    NOTE: the PH catalog at /property-hub/ is currently a pure client-side
+    SPA — it does NOT yet read URL params, so the link lands on the catalog
+    unfiltered. Adding URL-param support to PH is a follow-up in the
+    property-hub repo. The params are harmless until then.
+    """
+    return (
+        'https://nomadassetcollective.com/property-hub/'
+        f'?program={program_code.lower()}&country={country_alias}'
+    )
+
+
 def render_card(fields, src_url, country):
     flag         = country['flag']
     country_vi   = country['country_vi']
@@ -139,14 +214,14 @@ def render_card(fields, src_url, country):
     )
 
 
-def render_placeholder(country_vi, program_code):
+def render_placeholder(country_vi, program_code, catalog_url):
     return (
         '        <article class="listing-card listing-card-placeholder">\n'
         '          <div class="listing-placeholder-content">\n'
         '            <div class="listing-placeholder-icon">+</div>\n'
         '            <div class="listing-placeholder-title">Đang Cập Nhật</div>\n'
         f'            <div class="listing-placeholder-sub">Thêm BĐS {country_vi} đủ điều kiện {program_code} sẽ được công bố tại đây trong thời gian tới.</div>\n'
-        '            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/" target="_blank" rel="noopener">Khám phá Property Hub →</a>\n'
+        f'            <a class="listing-placeholder-link" href="{catalog_url}" target="_blank" rel="noopener">Khám phá Property Hub →</a>\n'
         '          </div>\n'
         '        </article>'
     )
@@ -157,8 +232,9 @@ def render_section(alias, offline=False):
     program_code = country['program_code']
     country_vi   = country['country_vi']
 
-    cards = []
-    for url in country.get('urls', [])[:2]:
+    # Fetch all candidates, then apply Rule 1 + Rule 2 to pick max 2.
+    fetched = []
+    for url in country.get('urls', []):
         if offline:
             print(f'    · {alias}: offline mode, skipping fetch of {url}', file=sys.stderr)
             continue
@@ -166,10 +242,16 @@ def render_section(alias, offline=False):
         if err:
             print(f'    ! {alias}: {url} → {err}', file=sys.stderr)
             continue
-        cards.append(render_card(fields, url, country))
+        fields['_source_url'] = url
+        fetched.append(fields)
 
+    selected = select_pair(fetched)
+
+    fn_url = ph_catalog_url(program_code, alias)
+
+    cards = [render_card(f, f['_source_url'], country) for f in selected]
     while len(cards) < 2:
-        cards.append(render_placeholder(country_vi, program_code))
+        cards.append(render_placeholder(country_vi, program_code, fn_url))
 
     return (
         '    <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; stats fetched live from Property Hub) -->\n'
@@ -184,7 +266,7 @@ def render_section(alias, offline=False):
         '\n'
         '      <div class="listings-footnote">\n'
         f'        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện {program_code} {country_vi}.</span>\n'
-        f'        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện {program_code} →</a>\n'
+        f'        <a class="listings-fn-link" href="{fn_url}" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện {program_code} →</a>\n'
         '      </div>\n'
         '    </section>'
     )
