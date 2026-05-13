@@ -8,6 +8,11 @@ name: Sync brochures to WordPress
 #   3. Refresh the LISTINGS spotlight from Property Hub (apply_listings.py)
 #   4. Push the resulting HTML to WP via REST API (sync_brochures.py)
 #
+# Each step's output is captured into .diagnostics/last-run.md and
+# pushed to the `ci-diagnostics` branch on completion (always — even
+# if the run fails). That branch is readable by Claude via the GitHub
+# API without needing log access.
+#
 # Source of truth: Notion. The committed files in `Brochures html/` are
 # build snapshots — CI regenerates them on each deploy.
 
@@ -42,6 +47,9 @@ on:
         required: false
         default: false
 
+permissions:
+  contents: write     # needed to push diagnostic snapshot to ci-diagnostics branch
+
 concurrency:
   group: wp-sync
   cancel-in-progress: false
@@ -57,55 +65,105 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Init diagnostic log
+        run: |
+          mkdir -p .diagnostics
+          {
+            echo "# WP Sync run — $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            echo
+            echo "- Trigger: \`${{ github.event_name }}\` on \`${{ github.ref }}\`"
+            echo "- Commit: \`${{ github.sha }}\`"
+            echo "- Run: <https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}>"
+            echo
+          } > .diagnostics/last-run.md
+
       - name: Pull fresh brochure data from Notion
         if: github.event.inputs.skip_pull != 'true'
         env:
           NOTION_KEY: ${{ secrets.NOTION_KEY }}
         run: |
-          python tools/pull_from_notion.py
-          echo "---"
-          echo "Payload diff after Notion pull:"
-          git diff --stat data/ || true
+          {
+            echo "## Pull from Notion"
+            echo '```'
+            python tools/pull_from_notion.py
+            echo '```'
+            echo
+          } 2>&1 | tee -a .diagnostics/last-run.md
 
       - name: Build brochure HTML from payloads
         run: |
-          python tools/build_brochures.py --all
-          # Move generated HTML into the production location (overwrites the
-          # hand-edited snapshots in `Brochures html/`).
-          for f in build/*.html; do
-            cp "$f" "Brochures html/$(basename "$f")"
-          done
-          rm -rf build
-          echo "---"
-          echo "Brochure HTML files after build:"
-          git diff --stat 'Brochures html/' || true
+          {
+            echo "## Build brochures"
+            echo '```'
+            python tools/build_brochures.py --all
+            for f in build/*.html; do cp "$f" "Brochures html/$(basename "$f")"; done
+            rm -rf build
+            echo '```'
+            echo
+          } 2>&1 | tee -a .diagnostics/last-run.md
 
       - name: Refresh listings spotlight from Property Hub (live fetch)
         run: |
-          python tools/apply_listings.py
-          echo "---"
-          echo "Brochure HTML files after listings refresh:"
-          git diff --stat 'Brochures html/' || true
+          {
+            echo "## Refresh listings spotlight"
+            echo '```'
+            python tools/apply_listings.py
+            echo '```'
+            echo
+          } 2>&1 | tee -a .diagnostics/last-run.md
 
       - name: Sync to WordPress
         env:
           WP_USER: ${{ secrets.WP_USER }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
         run: |
-          # Decide target + dry-run based on trigger.
-          #   workflow_dispatch → use the dropdown inputs
-          #   push to main      → --all (real)
-          #   push to feature   → turkey only (real, end-to-end validation)
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            TARGET="${{ github.event.inputs.target || '--all' }}"
-            if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; else DRY=""; fi
-          elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
-            TARGET="--all"
-            DRY=""
+          {
+            echo "## Sync to WP"
+            echo '```'
+            # Decide target + dry-run based on trigger.
+            if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+              TARGET="${{ github.event.inputs.target || '--all' }}"
+              if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; else DRY=""; fi
+            elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
+              TARGET="--all"
+              DRY=""
+            else
+              TARGET="turkey"
+              DRY=""
+            fi
+            echo "Trigger: ${{ github.event_name }} on ${{ github.ref }}"
+            echo "Running: python sync_brochures.py $TARGET $DRY"
+            python sync_brochures.py $TARGET $DRY
+            echo '```'
+            echo
+          } 2>&1 | tee -a .diagnostics/last-run.md
+
+      - name: Save diagnostic snapshot to ci-diagnostics branch
+        if: always()
+        run: |
+          # Snapshot the file outside the worktree before switching branches
+          cp .diagnostics/last-run.md /tmp/last-run.md
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+          # Switch to ci-diagnostics (create as orphan on first run)
+          if git fetch origin ci-diagnostics 2>/dev/null; then
+            git checkout -B ci-diagnostics origin/ci-diagnostics
           else
-            TARGET="turkey"
-            DRY=""
+            git checkout --orphan ci-diagnostics
+            git rm -rf . > /dev/null 2>&1 || true
+            git clean -fdx > /dev/null 2>&1 || true
           fi
-          echo "Trigger: ${{ github.event_name }} on ${{ github.ref }}"
-          echo "Running: python sync_brochures.py $TARGET $DRY"
-          python sync_brochures.py $TARGET $DRY
+
+          mkdir -p .diagnostics
+          cp /tmp/last-run.md .diagnostics/last-run.md
+
+          # Also keep a per-run archive
+          ARCHIVE=".diagnostics/runs/${{ github.run_id }}.md"
+          mkdir -p .diagnostics/runs
+          cp /tmp/last-run.md "$ARCHIVE"
+
+          git add .diagnostics/
+          git commit -m "ci: diagnostic from run ${{ github.run_id }}" || echo "no changes"
+          git push origin ci-diagnostics
