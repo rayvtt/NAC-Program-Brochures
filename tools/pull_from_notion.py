@@ -60,9 +60,12 @@ def decode_property(prop):
 
 
 def alias_key_from_title(title):
-    """'🇹🇷 turkey' → 'turkey'. Falls back to the whole title if no space."""
+    """'🇹🇷 turkey' → 'turkey'. Falls back to the whole title if no space.
+    Always lowercased so Notion auto-capitalising the title (or a manual
+    edit with different case) doesn't desync from data/<alias>_payload.json."""
     parts = title.split(' ', 1)
-    return parts[1] if len(parts) == 2 else title
+    raw = parts[1] if len(parts) == 2 else title
+    return raw.strip().lower()
 
 
 def query_all_rows(token):
