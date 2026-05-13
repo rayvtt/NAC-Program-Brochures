@@ -1,0 +1,20 @@
+# Environment / secrets — never commit
+.env
+.env.*
+!.env.example
+
+# Generated brochure HTML (Phase 2 build_brochures.py output — preview only for now)
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

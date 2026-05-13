@@ -31,22 +31,7 @@ import urllib.error
 
 # ── Config ─────────────────────────────────────────────────────────────
 WP_BASE  = 'https://nomadassetcollective.com/wp-json/wp/v2'
-# Each brochure page renders an ACF field (the page template echoes this raw).
-# We write the full HTML into this field via the WP REST API (ACF must be
-# REST-exposed, which it is on nomadassetcollective.com).
-ACF_FIELD = 'raw_html_code'
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
-# Brochure HTML files live in this subfolder (reorganised 2026-05-07).
-# Tool-pages (NPH, Residence Index) sit in SCRIPT_DIR, so we look in both.
-BROCHURE_DIR = os.path.join(SCRIPT_DIR, 'Brochures html')
-
-def resolve_local(fname):
-    """Look for fname in Brochures html/ first, then in SCRIPT_DIR."""
-    primary = os.path.join(BROCHURE_DIR, fname)
-    if os.path.exists(primary):
-        return primary
-    fallback = os.path.join(SCRIPT_DIR, fname)
-    return fallback  # may not exist; caller checks os.path.exists()
 
 # alias → (local filename, WP page id, slug)
 BROCHURES = {
@@ -57,14 +42,11 @@ BROCHURES = {
     'uae':      ('uae-rbi_1_7.html',           1901, 'chuong-trinh-uae-golden-visa-2'),
     'uk':       ('uk-rbi_1 (2).html',          1932, 'chuong-trinh-uk-thuong-tru-visa-dau-tu-rbi'),
     'malta':    ('malta-rbi_1_3.html',         1924, 'chuong-trinh-malta-thuong-tru-nhan-rbi'),
-    'stkitts':  ('stkitts-nevis.html',         1921, 'chuong-trinh-si-kitts-nevis-quoc-tich'),
+    'stkitts':  ('stkitts-cbi_4.html',         1921, 'chuong-trinh-si-kitts-nevis-quoc-tich'),
     'thailand': ('thailand-rbi_1 (2).html',    1926, 'chuong-trinh-thai-lan-cu-tru-dai-han-ltr-rbi'),
-    'overview':    ('NAC-BROCHURES-OVERVIEW.html', 1914, 'brochures'),
-    'newzealand':  ('newzealand-rbi_1 (3).html',    1944, 'chuong-trinh-new-zealand-rbi-dau-tu-di-tru'),
-    'panama':      ('panama-rbi_.html',             1996, 'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien'),
-    'nph':         ('NAC-PROPERTY-HUB.html',        1999, 'property-hub'),
-    'index':       ('NAC-RESIDENCE-INDEX.html',     1800, 'nac-residence-index'),
-    'malaysia':    ('malaysia-mm2h.html',            2024, 'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru'),
+    'overview': ('NAC-BROCHURES-OVERVIEW.html', 1914, 'brochures'),
+    # 'newzealand' — not yet published to WP. When you publish it, add a row here:
+    # 'newzealand': ('newzealand-rbi_1 (3).html', <WP_PAGE_ID>, '<wp-slug>'),
 }
 
 # ── Color helpers ──────────────────────────────────────────────────────
@@ -77,14 +59,9 @@ def gray(s):   return _c(s, '90')
 
 # ── Auth + HTTP ────────────────────────────────────────────────────────
 def load_env():
-    # Env vars win (used by CI / GitHub Actions). Fall back to local .env file.
-    user = os.environ.get('WP_USER')
-    pwd  = os.environ.get('WP_APP_PASSWORD')
-    if user and pwd:
-        return user, pwd
     env_path = os.path.join(SCRIPT_DIR, '.env')
     if not os.path.exists(env_path):
-        sys.exit(red('❌ Missing credentials. Set WP_USER + WP_APP_PASSWORD env vars, or create a .env file. See header of this script for setup.'))
+        sys.exit(red('❌ Missing .env file. See header of this script for setup.'))
     creds = {}
     with open(env_path, encoding='utf-8') as f:
         for line in f:
@@ -125,7 +102,7 @@ def fetch_page_meta(page_id):
     return http('GET', f'{WP_BASE}/pages/{page_id}?_fields=id,slug,modified,title,link')
 
 def push_page_content(page_id, content, auth):
-    body = json.dumps({'acf': {ACF_FIELD: content}}, ensure_ascii=False)
+    body = json.dumps({'content': content}, ensure_ascii=False)
     return http('POST', f'{WP_BASE}/pages/{page_id}',
         headers={'Authorization': auth, 'Content-Type': 'application/json; charset=utf-8'},
         body=body)
@@ -137,7 +114,7 @@ def cmd_status():
     print(f'  {"alias":10s}  {"page":>5s}  {"local":>8s}  wp_modified')
     print(gray('─' * 70))
     for alias, (fname, pid, _) in BROCHURES.items():
-        local = resolve_local(fname)
+        local = os.path.join(SCRIPT_DIR, fname)
         size = (os.path.getsize(local) // 1024) if os.path.exists(local) else None
         size_str = f'{size}KB' if size else red('MISSING')
         status, meta = fetch_page_meta(pid)
@@ -154,7 +131,7 @@ def cmd_sync(alias, auth=None, dry_run=False):
         print(red(f'  unknown alias: {alias}'))
         return False
     fname, pid, _ = BROCHURES[alias]
-    local = resolve_local(fname)
+    local = os.path.join(SCRIPT_DIR, fname)
     if not os.path.exists(local):
         print(red(f'  ✗ {alias}: local file missing ({fname})'))
         return False
@@ -166,15 +143,7 @@ def cmd_sync(alias, auth=None, dry_run=False):
         return True
     status, data = push_page_content(pid, content, auth)
     if status == 200 and isinstance(data, dict) and data.get('id'):
-        # Verify ACF round-tripped — catches REST-exposure misconfig or
-        # WYSIWYG sanitisers silently stripping the HTML.
-        written = (data.get('acf') or {}).get(ACF_FIELD)
-        if written is None:
-            print(yellow(f'    ⚠ HTTP 200 but acf.{ACF_FIELD} missing from response — verify on live page'))
-        elif len(written) != len(content):
-            print(yellow(f'    ⚠ HTTP 200 but ACF length differs: sent {len(content)}, got {len(written)} — likely sanitiser stripped content'))
-        else:
-            print(green(f'    ✓ pushed · modified: {data.get("modified")}'))
+        print(green(f'    ✓ pushed · modified: {data.get("modified")}'))
         return True
     msg = data.get('message') if isinstance(data, dict) else str(data)
     code = data.get('code', '') if isinstance(data, dict) else ''
@@ -195,7 +164,6 @@ def cmd_sync_all(dry_run=False):
     msg = f'  done — {ok} ok, {fail} failed'
     print((green if fail == 0 else yellow)(msg))
     print()
-
 
 # ── Entry ──────────────────────────────────────────────────────────────
 def main():
