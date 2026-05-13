@@ -1,13 +1,24 @@
 name: Notion brochure DB tools
 
-# Manual workflow for the brochures Notion database.
-# Two actions exposed:
-#   setup-schema   — add/update properties in the DB to match data/brochure_schema.py
-#   push-turkey    — POST the extracted Turkey payload as a new row in the DB
+# Triggers:
+#   - push to the feature branch when data/.notion-run is touched
+#     → runs setup-schema THEN push-turkey (both real). Touch the
+#       marker file with a one-line note and push.
+#   - manual workflow_dispatch — pick a specific action with dry_run toggle.
 #
-# Requires NOTION_KEY in repo secrets (the Notion integration token).
+# Requires NOTION_KEY in repo secrets.
 
 on:
+  push:
+    branches:
+      - claude/add-nomad-brochures-68jHG
+      - main
+    paths:
+      - 'data/.notion-run'
+      - 'data/brochure_schema.py'
+      - 'data/turkey_payload.json'
+      - 'tools/setup_brochure_db.py'
+      - 'tools/push_brochure.py'
   workflow_dispatch:
     inputs:
       action:
@@ -18,11 +29,16 @@ on:
         options:
           - setup-schema
           - push-turkey
+          - both
       dry_run:
         description: 'Dry run only (preview; no writes)'
         type: boolean
         required: false
         default: true
+
+concurrency:
+  group: notion-brochure-db
+  cancel-in-progress: false
 
 jobs:
   run:
@@ -34,20 +50,30 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Run selected tool
+      - name: Decide what to do
+        id: plan
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "action=both"   >> $GITHUB_OUTPUT
+            echo "dry="           >> $GITHUB_OUTPUT
+          else
+            echo "action=${{ github.event.inputs.action }}" >> $GITHUB_OUTPUT
+            if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+              echo "dry=--dry-run" >> $GITHUB_OUTPUT
+            else
+              echo "dry="          >> $GITHUB_OUTPUT
+            fi
+          fi
+          echo "Will run: ${{ steps.plan.outputs.action }} (dry=${{ steps.plan.outputs.dry }})"
+
+      - name: Setup brochure DB schema
+        if: steps.plan.outputs.action == 'setup-schema' || steps.plan.outputs.action == 'both'
         env:
           NOTION_KEY: ${{ secrets.NOTION_KEY }}
-        run: |
-          DRY="${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}"
-          case "${{ github.event.inputs.action }}" in
-            setup-schema)
-              python tools/setup_brochure_db.py $DRY
-              ;;
-            push-turkey)
-              python tools/push_brochure.py turkey $DRY
-              ;;
-            *)
-              echo "Unknown action: ${{ github.event.inputs.action }}"
-              exit 1
-              ;;
-          esac
+        run: python tools/setup_brochure_db.py ${{ steps.plan.outputs.dry }}
+
+      - name: Push Turkey payload
+        if: steps.plan.outputs.action == 'push-turkey' || steps.plan.outputs.action == 'both'
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: python tools/push_brochure.py turkey ${{ steps.plan.outputs.dry }}

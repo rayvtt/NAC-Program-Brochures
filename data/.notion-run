@@ -1,0 +1,5 @@
+# Touch this file to fire .github/workflows/notion-brochure-db.yml
+# (push trigger). The workflow runs setup-schema + push-turkey
+# sequentially when this file changes. Idempotent on both ends.
+#
+# v1 — initial Turkey populate
