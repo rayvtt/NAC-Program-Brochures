@@ -903,6 +903,30 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 }
 .listing-placeholder-link:hover { text-decoration: underline; }
 
+/* Footnote in place of a button strip — varies the CTA rhythm */
+.listings-footnote {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--bg2);
+  border-radius: 9px;
+  border-left: 3px solid var(--country);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.listings-fn-text {
+  flex: 1 1 240px;
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.listings-fn-link {
+  font-size: 12px; font-weight: 700;
+  color: var(--country);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+.listings-fn-link:hover { text-decoration: underline; }
+
 @media (max-width: 720px) {
   .listings-grid { grid-template-columns: 1fr; gap: 16px; }
   .listing-stats { grid-template-columns: repeat(2, 1fr); }
@@ -1183,7 +1207,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <article class="listing-card">
           <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/w-suite-istanbul/" target="_blank" rel="noopener">
             <div class="listing-hero">
-              <img src="https://nomadassetcollective.com/wp-content/uploads/2026/05/w-suite-istanbul.webp" alt="W Suite Istanbul — căn hộ dịch vụ branded tại trung tâm Istanbul" loading="lazy">
+              <img src="https://nomadassetcollective.com/wp-content/uploads/2026/05/W1.webp" alt="W Suite Istanbul — căn hộ dịch vụ branded tại trung tâm Istanbul" loading="lazy">
               <div class="listing-badges">
                 <span class="listing-badge listing-badge-flag">🇹🇷 Istanbul</span>
                 <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện CBI</span>
@@ -1225,15 +1249,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <div class="listing-placeholder-icon">+</div>
             <div class="listing-placeholder-title">Đang Cập Nhật</div>
             <div class="listing-placeholder-sub">Thêm BĐS Thổ Nhĩ Kỳ đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/" target="_blank" rel="noopener">Xem tất cả BĐS →</a>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/" target="_blank" rel="noopener">Khám phá Property Hub →</a>
           </div>
         </article>
       </div>
 
-      <div class="cta-strip" style="margin-top:18px">
-        <span class="cta-strip-label">Quan tâm BĐS này?</span>
-        <a data-tip="Tư vấn" class="cta-btn cta-btn-primary" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">📅 <span class="cta-text">Tư Vấn Nhanh</span></a>
-        <a data-tip="WhatsApp" class="cta-btn cta-btn-wa" href="https://wa.me/447388646000" target="_blank">💬 <span class="cta-text">Nhắn Tin Trực Tiếp</span></a>
+      <div class="listings-footnote">
+        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện CBI →</a>
       </div>
     </section>
 
