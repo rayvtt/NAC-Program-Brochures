@@ -1,7 +1,7 @@
 # Brochure Notion Database — Schema Spec
 
 > **Database:** `[NAC - Program Brochures]`
-> **Notion DB ID:** `35f48ec25e8680d38b93d369c030d159`
+> **Notion DB ID:** `35f48ec25e8680f69c3dc5ad538e7ca8`
 > **Purpose:** Single source of truth for every program brochure's content. Generator script reads this DB and produces brochure HTML files.
 
 This mirrors the existing `[NAC - Property Listings]` pattern for property listings (one DB, one row per listing) — but for full program brochures.

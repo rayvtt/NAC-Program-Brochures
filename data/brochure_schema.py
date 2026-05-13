@@ -16,7 +16,7 @@ Renaming a property: Notion API can't rename — delete old + add new
 manually in the UI, then update SCHEMA.
 """
 
-NOTION_DB_ID = '35f48ec25e8680d38b93d369c030d159'
+NOTION_DB_ID = '35f48ec25e8680f69c3dc5ad538e7ca8'
 
 # Property name → Notion API type config.
 # Notion API docs: https://developers.notion.com/reference/property-object
