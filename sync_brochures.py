@@ -31,6 +31,10 @@ import urllib.error
 
 # ── Config ─────────────────────────────────────────────────────────────
 WP_BASE  = 'https://nomadassetcollective.com/wp-json/wp/v2'
+# Each brochure page renders an ACF field (the page template echoes this raw).
+# We write the full HTML into this field via the WP REST API (ACF must be
+# REST-exposed, which it is on nomadassetcollective.com).
+ACF_FIELD = 'raw_html_code'
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 # Brochure HTML files live in this subfolder (reorganised 2026-05-07).
 # Tool-pages (NPH, Residence Index) sit in SCRIPT_DIR, so we look in both.
@@ -121,7 +125,7 @@ def fetch_page_meta(page_id):
     return http('GET', f'{WP_BASE}/pages/{page_id}?_fields=id,slug,modified,title,link')
 
 def push_page_content(page_id, content, auth):
-    body = json.dumps({'content': content}, ensure_ascii=False)
+    body = json.dumps({'acf': {ACF_FIELD: content}}, ensure_ascii=False)
     return http('POST', f'{WP_BASE}/pages/{page_id}',
         headers={'Authorization': auth, 'Content-Type': 'application/json; charset=utf-8'},
         body=body)
@@ -162,7 +166,15 @@ def cmd_sync(alias, auth=None, dry_run=False):
         return True
     status, data = push_page_content(pid, content, auth)
     if status == 200 and isinstance(data, dict) and data.get('id'):
-        print(green(f'    ✓ pushed · modified: {data.get("modified")}'))
+        # Verify ACF round-tripped — catches REST-exposure misconfig or
+        # WYSIWYG sanitisers silently stripping the HTML.
+        written = (data.get('acf') or {}).get(ACF_FIELD)
+        if written is None:
+            print(yellow(f'    ⚠ HTTP 200 but acf.{ACF_FIELD} missing from response — verify on live page'))
+        elif len(written) != len(content):
+            print(yellow(f'    ⚠ HTTP 200 but ACF length differs: sent {len(content)}, got {len(written)} — likely sanitiser stripped content'))
+        else:
+            print(green(f'    ✓ pushed · modified: {data.get("modified")}'))
         return True
     msg = data.get('message') if isinstance(data, dict) else str(data)
     code = data.get('code', '') if isinstance(data, dict) else ''
