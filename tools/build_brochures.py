@@ -84,9 +84,9 @@ def render_hero(d):
       </div>
       <div class="hero-grid">
         <div>
-          <div class="hero-badge"><span class="dot"></span> {e(d.get("hero_badge_vi", ""))}</div>
+          <div class="hero-badge"><span class="dot"></span> {(d.get("hero_badge_vi", "") or "")}</div>
           <h1>{e(d.get("hero_title_top_vi", ""))}<br><em>{e(d.get("hero_title_em_vi", ""))}</em></h1>
-          <p class="hero-desc">{e(d.get("hero_desc_vi", ""))}</p>
+          <p class="hero-desc">{(d.get("hero_desc_vi", "") or "")}</p>
           <div class="hero-stats">
 {stat_html}
           </div>
@@ -121,7 +121,7 @@ def _ov_card(c):
     return (f'        <div class="ov-card"><div class="ov-icon">{e(c.get("icon",""))}</div>'
             f'<div class="ov-label">{e(c.get("label_vi",""))}</div>'
             f'<div class="ov-value">{e(c.get("value_vi",""))}</div>'
-            f'<div class="ov-note">{e(c.get("note_vi",""))}</div></div>')
+            f'<div class="ov-note">{c.get("note_vi","")}</div></div>')
 
 
 def _tier(t):
@@ -157,7 +157,7 @@ def _timeline_step(s):
 def _family_card(c):
     return (f'        <div class="fam-card"><div class="fam-icon">{e(c.get("icon",""))}</div>'
             f'<div><div class="fam-title">{e(c.get("title_vi",""))}</div>'
-            f'<div class="fam-note">{e(c.get("note_vi",""))}</div></div></div>')
+            f'<div class="fam-note">{c.get("note_vi","")}</div></div></div>')
 
 
 def _roadmap_step(s):
@@ -198,14 +198,14 @@ def render_overview(d):
         article_cta = (
             f'      <div class="article-cta">\n'
             f'        <div class="article-cta-icon">📖</div>\n'
-            f'        <div class="article-cta-text">{e(d["s01_article_cta_text_vi"])}</div>\n'
+            f'        <div class="article-cta-text">{(d["s01_article_cta_text_vi"] or "")}</div>\n'
             f'        <a class="article-cta-btn" href="{e(d.get("s01_article_cta_url",""))}" target="_blank">Đọc Ngay →</a>\n'
             f'      </div>'
         )
     return f'''    <section class="section" id="overview">
       <div class="sec-label">01 — Tổng Quan</div>
       <h2 class="sec-title">Chương Trình Tổng Quan</h2>
-      <p class="sec-sub">{e(d.get("s01_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s01_subtitle_vi", "") or "")}</p>
 
       <div class="overview-grid">
 {cards}
@@ -213,7 +213,7 @@ def render_overview(d):
 
       <div class="factcheck-box">
         <div class="fc-icon">🔍</div>
-        <div>{e(d.get("s01_factcheck_vi",""))}</div>
+        <div>{(d.get("s01_factcheck_vi", "") or "")}</div>
       </div>
 
       <div class="chart-box">
@@ -240,12 +240,12 @@ _INLINE_CTA_ACTION = '''      <div class="cta-strip">
 
 def render_investment(d):
     tiers = '\n'.join(_tier(t) for t in _parse_json_field(d, 's02_tiers'))
-    warning = _info_box(e(d.get('s02_warning_box_vi', '')), 'amber-box') if d.get('s02_warning_box_vi') else ''
-    nac_note = _info_box(e(d.get('s02_nac_note_vi', '')), 'green-box') if d.get('s02_nac_note_vi') else ''
+    warning = _info_box(d.get('s02_warning_box_vi', ''), 'amber-box') if d.get('s02_warning_box_vi') else ''
+    nac_note = _info_box(d.get('s02_nac_note_vi', ''), 'green-box') if d.get('s02_nac_note_vi') else ''
     return f'''    <section class="section" id="investment">
       <div class="sec-label">02 — Đầu Tư</div>
       <h2 class="sec-title">Các Mức Đầu Tư</h2>
-      <p class="sec-sub">{e(d.get("s02_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s02_subtitle_vi", "") or "")}</p>
 {warning}
       <div class="tier-list">
 {tiers}
@@ -260,7 +260,7 @@ def render_process(d):
     return f'''    <section class="section" id="process">
       <div class="sec-label">03 — Quy Trình</div>
       <h2 class="sec-title">Quy Trình & Thời Gian</h2>
-      <p class="sec-sub">{e(d.get("s03_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s03_subtitle_vi", "") or "")}</p>
 
       <div class="timeline">
 {steps}
@@ -270,11 +270,11 @@ def render_process(d):
 
 def render_family(d):
     cards = '\n'.join(_family_card(c) for c in _parse_json_field(d, 's04_family_cards'))
-    note = _info_box(e(d.get('s04_compare_note_vi', '')), '') if d.get('s04_compare_note_vi') else ''
+    note = _info_box(d.get('s04_compare_note_vi', ''), '') if d.get('s04_compare_note_vi') else ''
     return f'''    <section class="section" id="family">
       <div class="sec-label">04 — Gia Đình</div>
       <h2 class="sec-title">Gia Đình & Đối Tượng Thụ Hưởng</h2>
-      <p class="sec-sub">{e(d.get("s04_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s04_subtitle_vi", "") or "")}</p>
 
       <div class="family-grid">
 {cards}
@@ -287,14 +287,14 @@ def render_tax(d):
     cards = '\n'.join(_ov_card(c) for c in _parse_json_field(d, 's05_tax_cards'))
     boxes = []
     if d.get('s05_special_note_vi'):
-        boxes.append(_info_box(e(d['s05_special_note_vi']), 'gold-box'))
+        boxes.append(_info_box(d['s05_special_note_vi'], 'gold-box'))
     if d.get('s05_inheritance_note_vi'):
-        boxes.append(_info_box(e(d['s05_inheritance_note_vi']), ''))
+        boxes.append(_info_box(d['s05_inheritance_note_vi'], ''))
     boxes_html = '\n'.join(boxes)
     return f'''    <section class="section" id="tax">
       <div class="sec-label">05 — Thuế & Tài Chính</div>
       <h2 class="sec-title">Thuế & Lợi Thế Tài Chính</h2>
-      <p class="sec-sub">{e(d.get("s05_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s05_subtitle_vi", "") or "")}</p>
 
       <div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
 {cards}
@@ -307,15 +307,15 @@ def render_citizenship(d):
     steps = '\n'.join(_roadmap_step(s) for s in _parse_json_field(d, 's06_roadmap'))
     boxes = []
     if d.get('s06_dual_citizenship_note_vi'):
-        boxes.append(_info_box(e(d['s06_dual_citizenship_note_vi']), ''))
+        boxes.append(_info_box(d['s06_dual_citizenship_note_vi'], ''))
     boxes.append(f'      <div class="chart-box">\n        <div class="chart-title">So sánh tốc độ — {e(d.get("country_vi",""))} vs các chương trình hàng đầu (tháng)</div>\n        <canvas id="citizenshipChart" style="max-height:220px"></canvas>\n      </div>')
     if d.get('s06_nac_strategy_note_vi'):
-        boxes.append(_info_box(e(d['s06_nac_strategy_note_vi']), 'gold-box'))
+        boxes.append(_info_box(d['s06_nac_strategy_note_vi'], 'gold-box'))
     boxes_html = '\n'.join(boxes)
     return f'''    <section class="section" id="citizenship">
       <div class="sec-label">06 — Quốc Tịch</div>
       <h2 class="sec-title">Lộ Trình Đến Quốc Tịch</h2>
-      <p class="sec-sub">{e(d.get("s06_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s06_subtitle_vi", "") or "")}</p>
 
       <div class="road">
 {steps}
@@ -331,13 +331,13 @@ def render_compare(d):
     if d.get('s07_cta_text_vi'):
         cta = (f'      <div class="article-cta" style="margin-top:16px">\n'
                f'        <div class="article-cta-icon">⚖️</div>\n'
-               f'        <div class="article-cta-text">{e(d["s07_cta_text_vi"])}</div>\n'
+               f'        <div class="article-cta-text">{(d["s07_cta_text_vi"] or "")}</div>\n'
                f'        <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So <span class="cta-text">Sánh →</span></a>\n'
                f'      </div>')
     return f'''    <section class="section" id="compare">
       <div class="sec-label">07 — So Sánh</div>
       <h2 class="sec-title">So Sánh Chương Trình</h2>
-      <p class="sec-sub">{e(d.get("s07_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s07_subtitle_vi", "") or "")}</p>
 
       <div class="chart-box" style="margin-bottom:20px">
         <div class="chart-title">Điểm tổng hợp NAC — Top chương trình (2026)</div>
@@ -359,11 +359,11 @@ def render_compare(d):
 def render_proscons(d):
     pros = '\n'.join(f'            <li>{e(p.get("vi",""))}</li>' for p in _parse_json_field(d, 's08_pros'))
     cons = '\n'.join(f'            <li>{e(c.get("vi",""))}</li>' for c in _parse_json_field(d, 's08_cons'))
-    risk = _info_box(e(d.get('s08_risk_note_vi', '')), 'amber-box') if d.get('s08_risk_note_vi') else ''
+    risk = _info_box(d.get('s08_risk_note_vi', ''), 'amber-box') if d.get('s08_risk_note_vi') else ''
     return f'''    <section class="section" id="proscons">
       <div class="sec-label">08 — Ưu & Nhược</div>
       <h2 class="sec-title">Ưu & Nhược Điểm</h2>
-      <p class="sec-sub">{e(d.get("s08_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s08_subtitle_vi", "") or "")}</p>
       <div class="pros-cons">
         <div class="pros">
           <h4>✓ Ưu Điểm</h4>
@@ -385,11 +385,11 @@ def render_proscons(d):
 def render_nac(d):
     recommendation = ''
     if d.get('s09_recommendation_vi'):
-        recommendation = _info_box(e(d['s09_recommendation_vi']), '') + '\n'
+        recommendation = _info_box(d['s09_recommendation_vi'], '') + '\n'
     return f'''    <section class="section" id="nac">
       <div class="sec-label">09 — Nhận Định NAC</div>
       <h2 class="sec-title">Nhận Định & Khuyến Nghị</h2>
-      <p class="sec-sub">{e(d.get("s09_subtitle_vi",""))}</p>
+      <p class="sec-sub">{(d.get("s09_subtitle_vi", "") or "")}</p>
 
 {recommendation}
       <div class="chart-box" style="margin-bottom:20px">
@@ -398,8 +398,8 @@ def render_nac(d):
       </div>
 
       <div class="nac-box">
-        <h3>{e(d.get("s09_cta_heading_vi",""))}</h3>
-        <p>{e(d.get("s09_cta_body_vi",""))}</p>
+        <h3>{(d.get("s09_cta_heading_vi","") or "")}</h3>
+        <p>{(d.get("s09_cta_body_vi", "") or "")}</p>
         <div class="nac-btns">
           <a class="nac-btn" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">Đặt Lịch Tư Vấn Miễn Phí →</a>
           <a class="nac-btn-wa" href="https://wa.me/447388646000" target="_blank" title="WhatsApp NAC">💬</a>

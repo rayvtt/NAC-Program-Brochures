@@ -35,6 +35,36 @@ def text_only(s):
     return squash(s)
 
 
+# Tags we preserve in prose fields (info boxes, factcheck, article CTAs, etc.).
+# Everything else gets stripped. <a> is normalised to <a href="..." target="_blank">.
+_PROSE_ALLOWED_RE = re.compile(
+    r'</?(strong|em)>|<a\s[^>]*>|</a>',
+    re.IGNORECASE,
+)
+
+
+def prose_html(s):
+    """Strip all HTML except <strong>, <em>, and <a href=…>. Unescape entities."""
+    if not s:
+        return ''
+    stash = []
+
+    def keep(m):
+        tag = m.group(0)
+        if tag.lower().startswith('<a '):
+            href_m = re.search(r'href="([^"]+)"', tag)
+            href = html_lib.unescape(href_m.group(1)) if href_m else ''
+            tag = f'<a href="{href}" target="_blank">' if href else '<a>'
+        stash.append(tag)
+        return f'\0{len(stash) - 1}\0'
+
+    stashed   = _PROSE_ALLOWED_RE.sub(keep, s)
+    stripped  = re.sub(r'<[^>]+>', '', stashed)
+    restored  = re.sub(r'\0(\d+)\0', lambda m: stash[int(m.group(1))], stripped)
+    decoded   = html_lib.unescape(restored)
+    return re.sub(r'\s+', ' ', decoded).strip()
+
+
 def first_match(pattern, html, group=1, flags=re.DOTALL):
     m = re.search(pattern, html, flags)
     return m.group(group) if m else ''
@@ -80,13 +110,13 @@ def extract(alias):
     bc_links = re.findall(r'<a[^>]*>([^<]+)</a>', bc)
     payload['hero_breadcrumb_vi'] = squash(bc_links[1]) if len(bc_links) > 1 else ''
     payload['hero_breadcrumb_en'] = ''
-    payload['hero_badge_vi']   = text_only(first_match(r'<div class="hero-badge"[^>]*>(.*?)</div>', html))
+    payload['hero_badge_vi']   = prose_html(first_match(r'<div class="hero-badge"[^>]*>(.*?)</div>', html))
     payload['hero_badge_en']   = ''
     payload['hero_title_top_vi'] = squash(first_match(r'<h1>([^<]+)<br>', html))
     payload['hero_title_top_en'] = ''
     payload['hero_title_em_vi']  = squash(first_match(r'<em>([^<]+)</em></h1>', html))
     payload['hero_title_em_en']  = ''
-    payload['hero_desc_vi']      = text_only(first_match(r'<p class="hero-desc">(.*?)</p>', html))
+    payload['hero_desc_vi']      = prose_html(first_match(r'<p class="hero-desc">(.*?)</p>', html))
     payload['hero_desc_en']      = ''
 
     stats = []
@@ -111,7 +141,7 @@ def extract(alias):
 
     # ── Section 01 — Overview ──
     s01 = first_match(r'<section class="section" id="overview">(.*?)</section>', html)
-    payload['s01_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s01))
+    payload['s01_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s01))
     payload['s01_subtitle_en'] = ''
 
     ov_cards = []
@@ -129,20 +159,20 @@ def extract(alias):
             'note_vi':  html_lib.unescape(squash(note)),  'note_en': '',
         })
     payload['s01_ov_cards'] = json.dumps(ov_cards, ensure_ascii=False)
-    payload['s01_factcheck_vi']        = text_only(first_match(r'<div class="factcheck-box">.*?<div>(.*?)</div>\s*</div>', s01))
+    payload['s01_factcheck_vi']        = prose_html(first_match(r'<div class="factcheck-box">.*?<div>(.*?)</div>\s*</div>', s01))
     payload['s01_factcheck_en']        = ''
-    payload['s01_article_cta_text_vi'] = text_only(first_match(r'<div class="article-cta-text">(.*?)</div>', s01))
+    payload['s01_article_cta_text_vi'] = prose_html(first_match(r'<div class="article-cta-text">(.*?)</div>', s01))
     payload['s01_article_cta_text_en'] = ''
     payload['s01_article_cta_url']     = first_match(r'<a class="article-cta-btn" href="([^"]+)"', s01)
 
     # ── Section 02 — Investment ──
     s02 = first_match(r'<section class="section" id="investment">(.*?)</section>', html)
-    payload['s02_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s02))
+    payload['s02_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s02))
     payload['s02_subtitle_en'] = ''
     info_boxes = re.findall(r'<div class="info-box ([^"]*box)"[^>]*>.*?<div class="info-text">(.*?)</div>\s*</div>', s02, re.DOTALL)
-    payload['s02_warning_box_vi'] = next((text_only(t) for cls, t in info_boxes if 'amber' in cls), '')
+    payload['s02_warning_box_vi'] = next((prose_html(t) for cls, t in info_boxes if 'amber' in cls), '')
     payload['s02_warning_box_en'] = ''
-    payload['s02_nac_note_vi']    = next((text_only(t) for cls, t in info_boxes if 'green' in cls), '')
+    payload['s02_nac_note_vi']    = next((prose_html(t) for cls, t in info_boxes if 'green' in cls), '')
     payload['s02_nac_note_en']    = ''
 
     tiers = []
@@ -175,7 +205,7 @@ def extract(alias):
 
     # ── Section 03 — Process ──
     s03 = first_match(r'<section class="section" id="process">(.*?)</section>', html)
-    payload['s03_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s03))
+    payload['s03_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s03))
     payload['s03_subtitle_en'] = ''
     timeline = []
     for week, title, body in all_matches(
@@ -187,13 +217,13 @@ def extract(alias):
         timeline.append({
             'week_vi': squash(week), 'week_en': '',
             'title_vi': squash(title), 'title_en': '',
-            'body_vi': text_only(body), 'body_en': '',
+            'body_vi': prose_html(body), 'body_en': '',
         })
     payload['s03_timeline'] = json.dumps(timeline, ensure_ascii=False)
 
     # ── Section 04 — Family ──
     s04 = first_match(r'<section class="section" id="family">(.*?)</section>', html)
-    payload['s04_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s04))
+    payload['s04_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s04))
     payload['s04_subtitle_en'] = ''
     fam = []
     for icon, title, note in all_matches(
@@ -205,15 +235,15 @@ def extract(alias):
         fam.append({
             'icon': squash(icon),
             'title_vi': html_lib.unescape(squash(title)), 'title_en': '',
-            'note_vi': text_only(note), 'note_en': '',
+            'note_vi': prose_html(note), 'note_en': '',
         })
     payload['s04_family_cards']   = json.dumps(fam, ensure_ascii=False)
-    payload['s04_compare_note_vi'] = text_only(first_match(r'<div class="info-box">.*?<div class="info-text">(.*?)</div>\s*</div>', s04))
+    payload['s04_compare_note_vi'] = prose_html(first_match(r'<div class="info-box">.*?<div class="info-text">(.*?)</div>\s*</div>', s04))
     payload['s04_compare_note_en'] = ''
 
     # ── Section 05 — Tax ──
     s05 = first_match(r'<section class="section" id="tax">(.*?)</section>', html)
-    payload['s05_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s05))
+    payload['s05_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s05))
     payload['s05_subtitle_en'] = ''
     tax_cards = []
     for icon, label, value, note in all_matches(
@@ -231,14 +261,14 @@ def extract(alias):
         })
     payload['s05_tax_cards'] = json.dumps(tax_cards, ensure_ascii=False)
     s05_boxes = re.findall(r'<div class="info-box(?:\s+[^"]*)?"[^>]*>.*?<div class="info-text">(.*?)</div>\s*</div>', s05, re.DOTALL)
-    payload['s05_special_note_vi']     = text_only(s05_boxes[0]) if len(s05_boxes) > 0 else ''
+    payload['s05_special_note_vi']     = prose_html(s05_boxes[0]) if len(s05_boxes) > 0 else ''
     payload['s05_special_note_en']     = ''
-    payload['s05_inheritance_note_vi'] = text_only(s05_boxes[1]) if len(s05_boxes) > 1 else ''
+    payload['s05_inheritance_note_vi'] = prose_html(s05_boxes[1]) if len(s05_boxes) > 1 else ''
     payload['s05_inheritance_note_en'] = ''
 
     # ── Section 06 — Citizenship ──
     s06 = first_match(r'<section class="section" id="citizenship">(.*?)</section>', html)
-    payload['s06_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s06))
+    payload['s06_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s06))
     payload['s06_subtitle_en'] = ''
     roadmap = []
     for year, dot, label in all_matches(
@@ -254,19 +284,19 @@ def extract(alias):
         })
     payload['s06_roadmap'] = json.dumps(roadmap, ensure_ascii=False)
     s06_boxes = re.findall(r'<div class="info-box(?:\s+[^"]*)?"[^>]*>.*?<div class="info-text">(.*?)</div>\s*</div>', s06, re.DOTALL)
-    payload['s06_dual_citizenship_note_vi'] = text_only(s06_boxes[0]) if len(s06_boxes) > 0 else ''
+    payload['s06_dual_citizenship_note_vi'] = prose_html(s06_boxes[0]) if len(s06_boxes) > 0 else ''
     payload['s06_dual_citizenship_note_en'] = ''
-    payload['s06_nac_strategy_note_vi']     = text_only(s06_boxes[1]) if len(s06_boxes) > 1 else ''
+    payload['s06_nac_strategy_note_vi']     = prose_html(s06_boxes[1]) if len(s06_boxes) > 1 else ''
     payload['s06_nac_strategy_note_en']     = ''
 
     # ── Section 07 — Compare ──
     s07 = first_match(r'<section class="section" id="compare">(.*?)</section>', html)
-    payload['s07_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s07))
+    payload['s07_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s07))
     payload['s07_subtitle_en'] = ''
     compare_rows = []
     for row_html in re.findall(r'<tr(?:\s+class="highlight")?>(.*?)</tr>', s07, re.DOTALL):
         flag    = squash(first_match(r'<span class="comp-flag">([^<]+)</span>', row_html))
-        name    = text_only(first_match(r'<span class="comp-flag">[^<]+</span>\s*(.*?)</td>', row_html))
+        name    = prose_html(first_match(r'<span class="comp-flag">[^<]+</span>\s*(.*?)</td>', row_html))
         cells   = re.findall(r'<td[^>]*>(.*?)</td>', row_html, re.DOTALL)
         if len(cells) < 5 or not flag:
             continue
@@ -274,40 +304,40 @@ def extract(alias):
         compare_rows.append({
             'flag': flag,
             'name_vi': name, 'name_en': '',
-            'min_invest': text_only(cells[1]),
-            'type_vi': text_only(cells[2]), 'type_en': '',
-            'mobility_vi': text_only(cells[3]), 'mobility_en': '',
-            'time_vi': text_only(cells[4]), 'time_en': '',
+            'min_invest': prose_html(cells[1]),
+            'type_vi': prose_html(cells[2]), 'type_en': '',
+            'mobility_vi': prose_html(cells[3]), 'mobility_en': '',
+            'time_vi': prose_html(cells[4]), 'time_en': '',
             'score': int(score) if score else 0,
             'highlight': 'highlight' in row_html[:40],
         })
     payload['s07_compare_rows'] = json.dumps(compare_rows, ensure_ascii=False)
-    payload['s07_cta_text_vi']  = text_only(first_match(r'<div class="article-cta-text">(.*?)</div>', s07))
+    payload['s07_cta_text_vi']  = prose_html(first_match(r'<div class="article-cta-text">(.*?)</div>', s07))
     payload['s07_cta_text_en']  = ''
 
     # ── Section 08 — Pros / Cons ──
     s08 = first_match(r'<section class="section" id="proscons">(.*?)</section>', html)
-    payload['s08_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s08))
+    payload['s08_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s08))
     payload['s08_subtitle_en'] = ''
     pros = re.findall(r'<div class="pros">.*?<ul>(.*?)</ul>', s08, re.DOTALL)
     cons = re.findall(r'<div class="cons">.*?<ul>(.*?)</ul>', s08, re.DOTALL)
-    pros_items = [{'vi': text_only(li), 'en': ''} for li in re.findall(r'<li>(.*?)</li>', pros[0] if pros else '', re.DOTALL)]
-    cons_items = [{'vi': text_only(li), 'en': ''} for li in re.findall(r'<li>(.*?)</li>', cons[0] if cons else '', re.DOTALL)]
+    pros_items = [{'vi': prose_html(li), 'en': ''} for li in re.findall(r'<li>(.*?)</li>', pros[0] if pros else '', re.DOTALL)]
+    cons_items = [{'vi': prose_html(li), 'en': ''} for li in re.findall(r'<li>(.*?)</li>', cons[0] if cons else '', re.DOTALL)]
     payload['s08_pros'] = json.dumps(pros_items, ensure_ascii=False)
     payload['s08_cons'] = json.dumps(cons_items, ensure_ascii=False)
-    payload['s08_risk_note_vi'] = text_only(first_match(r'<div class="info-box amber-box">.*?<div class="info-text">(.*?)</div>', s08))
+    payload['s08_risk_note_vi'] = prose_html(first_match(r'<div class="info-box amber-box">.*?<div class="info-text">(.*?)</div>', s08))
     payload['s08_risk_note_en'] = ''
 
     # ── Section 09 — NAC ──
     s09 = first_match(r'<section class="section" id="nac">(.*?)</section>', html)
-    payload['s09_subtitle_vi'] = text_only(first_match(r'<p class="sec-sub">(.*?)</p>', s09))
+    payload['s09_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s09))
     payload['s09_subtitle_en'] = ''
     s09_first = first_match(r'<div class="info-box"[^>]*>.*?<div class="info-text">(.*?)</div>\s*</div>', s09)
-    payload['s09_recommendation_vi'] = text_only(s09_first)
+    payload['s09_recommendation_vi'] = prose_html(s09_first)
     payload['s09_recommendation_en'] = ''
     payload['s09_cta_heading_vi']    = squash(first_match(r'<div class="nac-box">\s*<h3>([^<]+)</h3>', s09))
     payload['s09_cta_heading_en']    = ''
-    payload['s09_cta_body_vi']       = text_only(first_match(r'<div class="nac-box">\s*<h3>[^<]+</h3>\s*<p>(.*?)</p>', s09))
+    payload['s09_cta_body_vi']       = prose_html(first_match(r'<div class="nac-box">\s*<h3>[^<]+</h3>\s*<p>(.*?)</p>', s09))
     payload['s09_cta_body_en']       = ''
 
     return payload
