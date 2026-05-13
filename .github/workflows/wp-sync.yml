@@ -2,11 +2,14 @@ name: Sync brochures to WordPress
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - claude/add-nomad-brochures-68jHG   # auto-validate against a single brochure (turkey)
     paths:
       - 'Brochures html/**'
       - 'NAC-RESIDENCE-INDEX.html'
       - 'sync_brochures.py'
+      - '.github/workflows/wp-sync.yml'
   workflow_dispatch:
     inputs:
       target:
@@ -39,7 +42,20 @@ jobs:
           WP_USER: ${{ secrets.WP_USER }}
           WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
         run: |
-          TARGET="${{ github.event.inputs.target || '--all' }}"
-          DRY="${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}"
+          # Decide target + dry-run based on trigger.
+          #   workflow_dispatch → use the dropdown inputs
+          #   push to main      → --all (real)
+          #   push to feature   → turkey only (real, so we validate the ACF write)
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            TARGET="${{ github.event.inputs.target || '--all' }}"
+            if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; else DRY=""; fi
+          elif [ "${{ github.ref }}" = "refs/heads/main" ]; then
+            TARGET="--all"
+            DRY=""
+          else
+            TARGET="turkey"
+            DRY=""
+          fi
+          echo "Trigger: ${{ github.event_name }} on ${{ github.ref }}"
           echo "Running: python sync_brochures.py $TARGET $DRY"
           python sync_brochures.py $TARGET $DRY
