@@ -119,6 +119,11 @@ def main():
         out_path = out_dir / f'{alias_key}_payload.json'
         new_json = json.dumps(payload, ensure_ascii=False, indent=2)
 
+        # Debug: surface a sentinel field for diagnosing pipeline gaps
+        badge = payload.get('hero_badge_vi', '')
+        badge_preview = badge[:80] + ('…' if len(badge) > 80 else '')
+        print(f'    hero_badge_vi: {badge_preview!r}')
+
         if out_path.exists():
             old_json = out_path.read_text(encoding='utf-8')
             if old_json == new_json:
