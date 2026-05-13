@@ -1,147 +1,120 @@
 # NAC Brochure → WordPress Sync — Setup Guide
 
-Push edits from local HTML files straight to WordPress in 1 command. No more copy-pasting into the WP editor, no Elementor/Gutenberg block fiddling.
+Brochure HTML is the source of truth in this git repo. Pushing to `main` automatically syncs all changed brochures to nomadassetcollective.com via the WordPress REST API.
+
+```
+edit brochure (Claude Code / locally / GitHub web)
+   → commit & push to main
+   → GitHub Action runs sync_brochures.py
+   → WP REST API receives the new HTML
+   → live site updates within ~30 seconds
+```
 
 ---
 
-## Prerequisites
+## One-time setup
 
-- **Python 3** installed (you can check by running `python --version` or `python3 --version` — needs ≥3.7).
-- Admin access to nomadassetcollective.com WP.
+### 1. Create a WordPress Application Password
 
----
+1. Go to https://nomadassetcollective.com/wp-admin/profile.php
+2. Scroll to **Application Passwords**.
+3. Name it `NAC Git Sync` → click **Add New Application Password**.
+4. **Copy the 24-char password immediately** (looks like `abcd efgh ijkl mnop qrst uvwx`; the spaces are part of it). WordPress shows it once.
 
-## One-time setup (~3 minutes)
+> Application Passwords are scoped to the REST API only — they can't log into wp-admin. Revoke anytime from the same page.
 
-### Step 1 — Create an Application Password in WordPress
+### 2. Add the credentials as GitHub repo Secrets
 
-1. Go to: https://nomadassetcollective.com/wp-admin/profile.php
-2. Scroll to the **Application Passwords** section near the bottom.
-3. Name it `NAC Sync` (or anything memorable).
-4. Click **Add New Application Password**.
-5. **Copy the 24-char password immediately** — looks like:
-   ```
-   abcd efgh ijkl mnop qrst uvwx
-   ```
-   The spaces are part of the password. WordPress shows it ONCE, so save it now.
+In this repo: **Settings → Secrets and variables → Actions → New repository secret**. Add two secrets:
 
-> 💡 An Application Password is scoped to the REST API only — it can't log into the admin UI. Safe to revoke anytime if you suspect a leak.
+| Name | Value |
+|---|---|
+| `WP_USER` | your WP username (e.g. `admin_web`) |
+| `WP_APP_PASSWORD` | the 24-char password from step 1 |
 
-### Step 2 — Create `.env` file
+These are encrypted at rest, only injected as env vars during the workflow run, never printed in logs.
 
-In this folder (`NAC-brochures-reviewed/`), create a file named `.env` with two lines:
+### 3. Verify the workflow
 
-```
-WP_USER=your-wp-username
-WP_APP_PASSWORD=abcd efgh ijkl mnop qrst uvwx
-```
-
-Replace `your-wp-username` with your actual WP username (the one you log into wp-admin with), and paste the App Password from Step 1.
-
-> ⚠️ **DO NOT commit `.env` to git or share it publicly.** Add `.env` to `.gitignore` if you have one.
-
-### Step 3 — Test connection (no changes pushed)
-
-```
-python sync_brochures.py
-```
-
-You should see a status table like:
-
-```
-NAC Brochure Sync — status
-──────────────────────────────────────────────────────────────────────
-  alias        page     local  wp_modified
-──────────────────────────────────────────────────────────────────────
-  portugal     1848     124KB  2026-05-06T12:34:00
-  greece       1827     119KB  2026-05-06T12:35:11
-  cyprus       1844     128KB  2026-05-06T12:36:22
-  turkey       1836     132KB  2026-05-06T15:57:16
-  uae          1901     115KB  2026-05-06T12:38:00
-  uk           1932     117KB  2026-05-06T12:39:11
-  malta        1924     130KB  2026-05-06T12:40:22
-  stkitts      1921     112KB  2026-05-06T12:41:33
-  thailand     1926     122KB  2026-05-06T12:42:44
-──────────────────────────────────────────────────────────────────────
-```
-
-If you see HTTP errors here, the .env credentials are wrong or the WP REST API isn't reachable from your network.
-
-### Step 4 — Dry-run a single brochure
-
-```
-python sync_brochures.py turkey --dry-run
-```
-
-This previews what would be pushed without actually changing WP. If output shows the right local file size, you're ready.
-
-### Step 5 — Push for real
-
-```
-python sync_brochures.py turkey
-```
-
-Output:
-```
-  turkey  page 1836  ←  turkey-cbi_8.html  (132KB)
-    ✓ pushed · modified: 2026-05-06T17:23:00
-```
-
-Refresh the live URL in your browser — you should see the updated content.
+After both secrets exist, go to **Actions → Sync brochures to WordPress → Run workflow** → set `dry_run` to **true** → Run. The job should print the list of brochures with sizes and "(dry-run — no PUT)" — no actual WP changes.
 
 ---
 
 ## Daily workflow
 
-1. Edit local HTML in `NAC-brochures-reviewed/` folder (in your editor of choice, or via Cowork/Claude Code).
-2. Save.
-3. Run `python sync_brochures.py <alias>` to push that one, or `python sync_brochures.py --all` to push everything.
+### Edit + push (the common path)
 
-Done. The brochure on WordPress reflects local within ~2 seconds.
+1. Edit any file under `Brochures html/`, `NAC-RESIDENCE-INDEX.html`, or `sync_brochures.py`.
+2. Commit, push to `main` (typically via PR merge — `main` is branch-protected).
+3. The **Sync brochures to WordPress** action triggers automatically and pushes every brochure to WP.
+
+Pushes to other branches do NOT sync to WP — they're for previewing. Sync only happens on `main`.
+
+### Push a single brochure manually
+
+Sometimes you want to retry one brochure without touching the rest:
+
+1. **Actions** tab → **Sync brochures to WordPress** → **Run workflow**.
+2. `target`: enter an alias (e.g. `turkey`, `portugal`, `overview`). Default `--all` pushes everything.
+3. `dry_run`: leave unchecked to push for real.
+4. Run.
+
+### Aliases
+
+The script's `BROCHURES` dict (in `sync_brochures.py`) maps short aliases to (filename, WP page ID, slug):
+
+| Alias | Brochure |
+|---|---|
+| `portugal` | Portugal Golden Visa |
+| `greece` | Greece Golden Visa |
+| `cyprus` | Cyprus PR |
+| `turkey` | Turkey CBI |
+| `uae` | UAE Golden Visa |
+| `uk` | UK Innovator Founder |
+| `malta` | Malta MPRP |
+| `stkitts` | St. Kitts & Nevis CBI |
+| `thailand` | Thailand LTR |
+| `newzealand` | New Zealand Active Investor Plus |
+| `panama` | Panama RBI |
+| `malaysia` | Malaysia MM2H |
+| `overview` | NAC-BROCHURES-OVERVIEW.html (the gateway) |
+| `index` | NAC-RESIDENCE-INDEX.html (comparison index) |
+| `nph` | NAC-PROPERTY-HUB.html (lives in the property hub repo) |
 
 ---
 
-## Common scenarios
+## Adding a new country brochure
 
-### "I added a new country brochure (e.g., Hungary). How do I include it?"
-
-1. Create the HTML file locally (e.g., `hungary-rbi.html`).
-2. Publish a new WP page with that HTML pasted in (one-time, via WP admin).
-3. Note the page ID (visible in the URL when editing: `post=12345`).
-4. Open `sync_brochures.py` → add to `BROCHURES` dict:
+1. Create the HTML locally or via Claude Code: `Brochures html/<country>-<program>.html`.
+2. In WP admin, create a new empty page and publish it. Note the page ID (in the edit URL: `post=NNNN`) and slug.
+3. Add to `sync_brochures.py` → `BROCHURES` dict:
    ```python
    'hungary': ('hungary-rbi.html', 12345, 'chuong-trinh-hungary-...'),
    ```
-5. Save script. Now `python sync_brochures.py hungary` works.
+4. Add a matching `openModal()` call in `Brochures html/NAC-BROCHURES-OVERVIEW.html` so the funnel routes leads correctly (the `PROGRAM` tag must match the brochure's `var PROGRAM` exactly).
+5. Commit & push to `main`. The new brochure syncs on the next run.
 
-### "I want to also sync NAC-BROCHURES-OVERVIEW.html"
+---
 
-1. Find that page's ID in WP.
-2. Add to `BROCHURES`:
-   ```python
-   'overview': ('NAC-BROCHURES-OVERVIEW.html', <page_id>, '<slug>'),
-   ```
+## Troubleshooting
 
-### "Sync fails with HTTP 401 — Unauthorized"
+### `HTTP 401 — rest_forbidden` / `Unauthorized`
+Wrong username or password, or the App Password was revoked. Recreate it in WP (step 1 above) and update the `WP_APP_PASSWORD` secret in GitHub.
 
-- Wrong username, wrong App Password, OR App Password got revoked.
-- Recreate the App Password in WP (Step 1) and update `.env`.
+### `HTTP 403 — rest_cannot_edit`
+The WP user lacks edit permission. Set the role to `Administrator` (single-site installs allow admins to post raw HTML).
 
-### "Sync fails with HTTP 403 — rest_cannot_edit"
+### HTML got stripped after sync
+WordPress's KSES filter is stripping tags. Ensure the user is `Administrator` on a single-site install. If still stripped, set `define('DISALLOW_UNFILTERED_HTML', false);` in `wp-config.php`, or install the **Disable Filtered HTML** plugin.
 
-- Your WP user doesn't have permission to edit pages. Make sure the user has `Administrator` or `Editor` role.
+### Action failed with `Missing credentials`
+The `WP_USER` and/or `WP_APP_PASSWORD` secret isn't set. Check **Settings → Secrets and variables → Actions**.
 
-### "Some HTML got stripped after sync"
+### A brochure didn't sync
+Check that its filename in `BROCHURES` matches the actual file in `Brochures html/`. Filenames with spaces or parens (e.g. `uk-rbi_1 (2).html`) must match character-for-character.
 
-- WordPress has KSES (HTML sanitizer) for non-admin roles. Make sure your user is `Administrator` — admins on single-site installs can post any HTML (including `<script>` and `<style>`).
-- If still stripped, install the **"Disable Filtered HTML"** plugin or set `define('DISALLOW_UNFILTERED_HTML', false);` in `wp-config.php`.
-
-### "I want to backup the live WP version before pushing"
-
-Add this command before the sync (one-liner):
-```
-curl -s 'https://nomadassetcollective.com/wp-json/wp/v2/pages/1836' > backup-turkey-$(date +%Y%m%d).json
-```
+### Need to test without touching WP
+Trigger the workflow manually with `dry_run: true`. The action will print what would be pushed and exit without calling the API.
 
 ---
 
@@ -149,13 +122,14 @@ curl -s 'https://nomadassetcollective.com/wp-json/wp/v2/pages/1836' > backup-tur
 
 | File | Purpose |
 |---|---|
-| `sync_brochures.py` | The sync script. Runs locally. |
-| `.env` | Your WP credentials (DO NOT share/commit). |
+| `sync_brochures.py` | The sync script. Runs in GitHub Actions (or locally with a `.env`). |
+| `.github/workflows/wp-sync.yml` | GitHub Action — runs on push to `main` or manual dispatch. |
+| `Brochures html/<brochure>.html` | Source of truth — edit these. |
+| `NAC-RESIDENCE-INDEX.html` | Comparison index page (lives in repo root, synced as `index`). |
 | `WP-SYNC-SETUP.md` | This file. |
-| `<brochure>.html` | Local source of truth — edit these. |
 
 ---
 
-## Going further
+## Local fallback (rarely needed)
 
-If you want full git-based versioning of brochures, just `git init` the folder, add `.env` to `.gitignore`, and you'll have rollbacks + diff history. Each `python sync_brochures.py --all` becomes "deploy from main".
+`sync_brochures.py` still supports running on a laptop with a local `.env` file (`WP_USER=... / WP_APP_PASSWORD=...`). The script checks env vars first, then `.env`. **Don't commit `.env`** — it's in `.gitignore`. This is a fallback only; the GitHub Action is the primary path.

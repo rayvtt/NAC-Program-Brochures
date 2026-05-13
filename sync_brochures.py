@@ -73,9 +73,14 @@ def gray(s):   return _c(s, '90')
 
 # ── Auth + HTTP ────────────────────────────────────────────────────────
 def load_env():
+    # Env vars win (used by CI / GitHub Actions). Fall back to local .env file.
+    user = os.environ.get('WP_USER')
+    pwd  = os.environ.get('WP_APP_PASSWORD')
+    if user and pwd:
+        return user, pwd
     env_path = os.path.join(SCRIPT_DIR, '.env')
     if not os.path.exists(env_path):
-        sys.exit(red('❌ Missing .env file. See header of this script for setup.'))
+        sys.exit(red('❌ Missing credentials. Set WP_USER + WP_APP_PASSWORD env vars, or create a .env file. See header of this script for setup.'))
     creds = {}
     with open(env_path, encoding='utf-8') as f:
         for line in f:

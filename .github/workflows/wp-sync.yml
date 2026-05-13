@@ -1,0 +1,45 @@
+name: Sync brochures to WordPress
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Brochures html/**'
+      - 'NAC-RESIDENCE-INDEX.html'
+      - 'sync_brochures.py'
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Alias to push (e.g. turkey, portugal) or --all'
+        required: false
+        default: '--all'
+      dry_run:
+        description: 'Dry run only (no PUT to WP)'
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: wp-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Sync to WordPress
+        env:
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          TARGET="${{ github.event.inputs.target || '--all' }}"
+          DRY="${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}"
+          echo "Running: python sync_brochures.py $TARGET $DRY"
+          python sync_brochures.py $TARGET $DRY
