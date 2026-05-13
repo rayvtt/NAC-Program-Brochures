@@ -22,6 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 from data.brochure_schema import SCHEMA, NOTION_NAMES, NOTION_DB_ID  # noqa: E402
+from data.brochure_identity import IDENTITY, alias_with_flag  # noqa: E402
 
 NOTION_VERSION = '2022-06-28'
 NOTION_BASE = 'https://api.notion.com/v1'
@@ -78,20 +79,23 @@ def field_to_notion(name, value, type_config):
     return {'rich_text': rich_text_chunks(str(value or ''))}  # fallback
 
 
-def find_existing_row(token, alias):
-    """Return page_id of existing row with this alias, or None."""
-    query = json.dumps({
-        'filter': {'property': NOTION_NAMES['alias'], 'title': {'equals': alias}},
-        'page_size': 1,
-    })
-    status, body = http(
-        'POST', f'{NOTION_BASE}/databases/{NOTION_DB_ID}/query', token=token, body=query,
-    )
-    if status != 200:
-        print(f'  ⚠ HTTP {status} querying DB: {body[:200]}', file=sys.stderr)
-        return None
-    results = json.loads(body).get('results', [])
-    return results[0]['id'] if results else None
+def find_existing_row(token, alias_title, alias_key):
+    """Find by new prefixed title first; fall back to bare alias for migration."""
+    for candidate in [alias_title, alias_key]:
+        query = json.dumps({
+            'filter': {'property': NOTION_NAMES['alias'], 'title': {'equals': candidate}},
+            'page_size': 1,
+        })
+        status, body = http(
+            'POST', f'{NOTION_BASE}/databases/{NOTION_DB_ID}/query', token=token, body=query,
+        )
+        if status != 200:
+            print(f'    ⚠ HTTP {status} querying DB: {body[:200]}', file=sys.stderr)
+            return None
+        results = json.loads(body).get('results', [])
+        if results:
+            return results[0]['id']
+    return None
 
 
 def main():
@@ -99,12 +103,23 @@ def main():
     flags = [a for a in sys.argv[1:] if a.startswith('--')]
     dry = '--dry-run' in flags
     if not args:
-        sys.exit('usage: push_brochure.py <alias> [--dry-run]')
-    alias = args[0]
+        sys.exit('usage: push_brochure.py <alias|--all> [--dry-run]')
 
+    aliases = list(IDENTITY.keys()) if args[0] == '--all' else [args[0]]
+
+    token = os.environ.get('NOTION_KEY')
+    if not token and not dry:
+        sys.exit('❌ NOTION_KEY env var missing.')
+
+    for alias in aliases:
+        push_one(alias, token, dry)
+
+
+def push_one(alias, token, dry):
     payload_path = ROOT / 'data' / f'{alias}_payload.json'
     if not payload_path.exists():
-        sys.exit(f'❌ {payload_path} not found. Run extract_{alias}.py first.')
+        print(f'  – {alias}: payload not found ({payload_path.name}); skipping')
+        return
     payload = json.loads(payload_path.read_text(encoding='utf-8'))
 
     properties = {}
@@ -114,33 +129,53 @@ def main():
         notion_name = NOTION_NAMES[tech_key]
         properties[notion_name] = field_to_notion(tech_key, payload[tech_key], type_config)
 
-    token = os.environ.get('NOTION_KEY')
-    if not token and not dry:
-        sys.exit('❌ NOTION_KEY env var missing.')
+    # Cover image (Notion page-level metadata, not a property)
+    cover_url = IDENTITY.get(alias, {}).get('cover')
+    cover = {'type': 'external', 'external': {'url': cover_url}} if cover_url else None
+
+    alias_title = alias_with_flag(alias)
 
     if dry:
-        body = {'parent': {'database_id': NOTION_DB_ID}, 'properties': properties}
-        print(json.dumps(body, ensure_ascii=False, indent=2)[:2000])
-        print('\n--dry-run — not pushing.')
+        body = {
+            'parent': {'database_id': NOTION_DB_ID},
+            'properties': properties,
+        }
+        if cover:
+            body['cover'] = cover
+        print(f'== {alias} → "{alias_title}" ==')
+        print(f'  cover: {cover_url}')
+        print(f'  properties: {len(properties)}')
         return
 
-    existing_id = find_existing_row(token, alias)
+    existing_id = find_existing_row(token, alias_title, alias)
 
     if existing_id:
-        print(f'Found existing row for "{alias}" ({existing_id}) — updating…')
-        body = json.dumps({'properties': properties}, ensure_ascii=False)
-        status, resp = http('PATCH', f'{NOTION_BASE}/pages/{existing_id}', token=token, body=body)
+        print(f'  ⤴ {alias_title}: existing row {existing_id} — updating')
+        body = {'properties': properties}
+        if cover:
+            body['cover'] = cover
+        status, resp = http(
+            'PATCH', f'{NOTION_BASE}/pages/{existing_id}',
+            token=token, body=json.dumps(body, ensure_ascii=False),
+        )
     else:
-        print(f'No existing row for "{alias}" — creating…')
-        body = json.dumps({'parent': {'database_id': NOTION_DB_ID}, 'properties': properties}, ensure_ascii=False)
-        status, resp = http('POST', f'{NOTION_BASE}/pages', token=token, body=body)
+        print(f'  + {alias_title}: creating new row')
+        body = {
+            'parent': {'database_id': NOTION_DB_ID},
+            'properties': properties,
+        }
+        if cover:
+            body['cover'] = cover
+        status, resp = http(
+            'POST', f'{NOTION_BASE}/pages',
+            token=token, body=json.dumps(body, ensure_ascii=False),
+        )
 
     if status == 200:
         page = json.loads(resp)
-        print(f'✓ row id: {page.get("id")}')
-        print(f'  url:    {page.get("url")}')
+        print(f'    ✓ {page.get("url", page.get("id"))}')
     else:
-        sys.exit(f'❌ HTTP {status}: {resp[:600]}')
+        print(f'    ❌ HTTP {status}: {resp[:400]}')
 
 
 if __name__ == '__main__':

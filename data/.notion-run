@@ -4,3 +4,4 @@
 #
 # v1 — initial Turkey populate
 # v2 — switch to human-friendly Notion names with circled-digit section icons, rename Name → alias
+# v3 — generalised extract for all 12 brochures, flag-prefixed alias, per-country Notion page cover
