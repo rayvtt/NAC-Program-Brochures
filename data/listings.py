@@ -1,43 +1,33 @@
-"""Per-country listing selection for the brochure spotlight section.
+"""Per-country mapping for the brochure spotlight section.
 
-Each country lists Property Hub URLs (max 2) that should appear in its
-brochure's Live Listings spotlight. Stats, images, descriptions are
-fetched LIVE from each Property Hub page at render time — those listings
-already expose structured `data-notion="<field>"` attributes (sourced
-from the upstream Notion CRM), so the brochure card always shows what
-PH currently says.
+All listing data now comes live from Notion via the public Property Hub
+worker endpoint:
+    https://nac-property-hub.ray-vtt.workers.dev/properties
 
-Edit this file when:
-  - A new listing should appear in a brochure (add its PH URL)
-  - A listing should rotate out (remove its URL)
+This file only maps each brochure alias to which Notion country it
+should filter on, and its program code (CBI / RBI / LTR). The generator
+takes care of:
+  - enumerating listings for that country
+  - applying Rule 1 (cheapest + priciest when > 2 candidates)
+  - applying Rule 2 (biweekly rotation, biased to different hub_type)
+  - fetching the PDP page for each selected listing (rich detail like
+    desc_vi, district, handover)
 
-Don't edit this file for:
-  - Price / yield / IRR / handover changes (live from PH)
-  - Image swaps (live from PH)
-  - Copy / description tweaks (live from PH — edit at the Notion source)
-
-Then run:  python tools/apply_listings.py
+To add curation overrides (e.g. force a specific NAC-XX to appear in a
+brochure), append a `pin` list of integer IDs.
 """
 
-# alias must match keys in sync_brochures.py BROCHURES.
-LISTINGS = {
-    'turkey': {
-        'flag':         '🇹🇷',
-        'country_vi':   'Thổ Nhĩ Kỳ',
-        'program_code': 'CBI',
-        'urls': [
-            'https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/w-suite-istanbul/',
-        ],
-    },
-    'portugal':   {'flag': '🇵🇹', 'country_vi': 'Bồ Đào Nha',      'program_code': 'RBI', 'urls': []},
-    'greece':     {'flag': '🇬🇷', 'country_vi': 'Hy Lạp',           'program_code': 'RBI', 'urls': []},
-    'cyprus':     {'flag': '🇨🇾', 'country_vi': 'Đảo Síp',          'program_code': 'RBI', 'urls': []},
-    'uae':        {'flag': '🇦🇪', 'country_vi': 'UAE',              'program_code': 'RBI', 'urls': []},
-    'uk':         {'flag': '🇬🇧', 'country_vi': 'Anh Quốc',         'program_code': 'RBI', 'urls': []},
-    'malta':      {'flag': '🇲🇹', 'country_vi': 'Malta',            'program_code': 'RBI', 'urls': []},
-    'stkitts':    {'flag': '🇰🇳', 'country_vi': 'St. Kitts & Nevis','program_code': 'CBI', 'urls': []},
-    'thailand':   {'flag': '🇹🇭', 'country_vi': 'Thái Lan',         'program_code': 'LTR', 'urls': []},
-    'newzealand': {'flag': '🇳🇿', 'country_vi': 'New Zealand',      'program_code': 'RBI', 'urls': []},
-    'panama':     {'flag': '🇵🇦', 'country_vi': 'Panama',           'program_code': 'RBI', 'urls': []},
-    'malaysia':   {'flag': '🇲🇾', 'country_vi': 'Malaysia',         'program_code': 'RBI', 'urls': []},
+COUNTRIES = {
+    'turkey':     {'notion_country': 'Thổ Nhĩ Kỳ',                 'program_code': 'CBI'},
+    'portugal':   {'notion_country': 'Bồ Đào Nha',                 'program_code': 'RBI'},
+    'greece':     {'notion_country': 'Hy Lạp',                     'program_code': 'RBI'},
+    'cyprus':     {'notion_country': 'Đảo Síp',                    'program_code': 'RBI'},
+    'uae':        {'notion_country': ['UAE', 'Dubai', 'Abu Dhabi'],'program_code': 'RBI'},
+    'uk':         {'notion_country': 'Anh Quốc',                   'program_code': 'RBI'},
+    'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI'},
+    'stkitts':    {'notion_country': 'St Kitts',                   'program_code': 'CBI'},
+    'thailand':   {'notion_country': 'Thái Lan',                   'program_code': 'LTR'},
+    'newzealand': {'notion_country': 'New Zealand',                'program_code': 'RBI'},
+    'panama':     {'notion_country': 'Panama',                     'program_code': 'RBI'},
+    'malaysia':   {'notion_country': 'Malaysia',                   'program_code': 'RBI'},
 }

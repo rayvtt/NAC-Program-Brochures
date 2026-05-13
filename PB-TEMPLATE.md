@@ -31,44 +31,45 @@ Never `sed`/find-replace across brochures. Never hand-tune one brochure to look 
 
 **What:** A "BĐS Đủ Điều Kiện — Đang Mở Bán" section between section #02 (Investment) and #03 (Process) on every program brochure. Shows up to 2 listing cards; empty slots get a "Đang Cập Nhật" placeholder.
 
-**Architecture:** Listings are **dynamically fetched** from Property Hub at deploy time. PH listing pages expose `data-notion="<field>"` attributes (price_full, yield_pct_unit, irr_pct_unit, desc_vi, hero_img via background-image, etc.) — these come from the upstream Notion CRM, so the brochure card always reflects what PH currently says.
+**Architecture:** Two-stage live fetch from the `[NAC - Property Listings]` Notion DB:
+1. **Enumeration** — single `GET https://nac-property-hub.ray-vtt.workers.dev/properties` returns all "Hub Status=Live" listings as JSON (price `entry`, `netYield`, `irr`, `country`, `listingUrl`, `hubType`, `program`, `img`, etc.).
+2. **Detail** — for each selected listing, fetch its PDP page once and parse `data-notion="<field>"` attributes for richer fields not exposed by the worker (`desc_vi`, `district`, `handover`, `tagline_vi`, `price_full`).
+
+**Why two stages:** enumeration must be cheap (no hardcoded URL lists), but detail copy lives only on the rendered PDP pages.
 
 **Artefacts:**
-- Data: `data/listings.py` — just URLs per country (which listings to show; max 2)
-- Generator: `tools/apply_listings.py` — fetches each PH URL, parses `data-notion` fields + hero bg-image + handover, renders the card
+- Data: `data/listings.py` — just the country-mapping table (alias → Notion country name(s) + program code). No URLs anywhere. No stats.
+- Generator: `tools/apply_listings.py` — fetches worker → filters by country → Rule 1+2 selection → fetches selected PDPs → renders cards.
 - Markers: `<!-- LISTINGS START -->` / `<!-- LISTINGS END -->` in each brochure
 - CSS: lives in each brochure's `<style>` block (~140 lines, **byte-for-byte identical across all brochures** — like the paywall CSS pattern). Don't drift them.
 - TOC entry: `<li class="toc-item toc-item-spotlight">` between items 02 and 03 — also identical text across brochures (Vietnamese is country-agnostic here: "BĐS đang mở bán").
 - CI: `.github/workflows/wp-sync.yml` runs `apply_listings.py` before `sync_brochures.py`, so every deploy re-fetches.
 
 **To add a listing for any country:**
-1. Make sure the listing exists in Property Hub first (PH owns the data — price, yield, image, copy, etc.).
-2. Open `data/listings.py`, append its URL to that country's `urls: []` (max 2):
-   ```python
-   'turkey': {
-       ...,
-       'urls': [
-           'https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/<slug>/',
-       ],
-   },
-   ```
-3. Run `python tools/apply_listings.py turkey` — fetches PH, re-renders the brochure HTML.
-4. `git diff` to inspect.
-5. Commit + push. The CI workflow will refetch on deploy (so even if PH changes between now and deploy, the live brochure will be current).
+1. Add it in Notion's `[NAC - Property Listings]` DB → set Hub Status = Live.
+2. **That's it.** Next deploy, `apply_listings.py` will pick it up from the worker's `/properties` response automatically. No code or data changes required.
 
-**Fields parsed from PH:**
-| Brochure field | PH source |
-|---|---|
-| `listing-ref` | `data-notion="property_id"` (e.g. NAC-79) |
-| Card title | `data-notion="property_name_vi"` (stripped after first em-dash) |
-| Tagline (kicker) | `data-notion="tagline_vi"` |
-| Description | `data-notion="desc_vi"` (first sentence) |
-| Location badge | `data-notion="district"` + country flag from data file |
-| Hero image | `background-image:url(...)` inside `.nac-hero-img` (`data-notion-bg="hero_img"`) |
-| Price | `data-notion="price_full"` |
-| Yield | `data-notion="yield_pct_unit"` |
-| IRR | `data-notion="irr_pct_unit"` |
-| Handover | `.nac-fact-val` adjacent to "Bàn Giao" label (no `data-notion` on this one) |
+**To change which listings show in a brochure:**
+- Most cases: just edit Notion (Hub Status, country, price). Rules 1+2 handle the rest.
+- If you want to pin a specific NAC-XX to a brochure (override the auto-selection), add a `pin: [79]` list to that country's entry in `data/listings.py` and update `apply_listings.py`'s `select_pair()` to honour pins (TODO when needed).
+
+**Field sources:**
+
+| Brochure field | Primary source | Fallback |
+|---|---|---|
+| `listing-ref` | PDP `data-notion="property_id"` | Worker `id` → `NAC-{id}` |
+| Card title | PDP `data-notion="property_name_vi"` (stripped after first em-dash) | Worker `name_vi` |
+| Tagline (kicker) | PDP `data-notion="tagline_vi"` | Worker `hubType` |
+| Description | PDP `data-notion="desc_vi"` (first sentence) | Worker `excerpt_vi` |
+| Location badge | PDP `data-notion="district"` + country | Worker `country` (flag + VI name) |
+| Flag emoji | First token of worker `country` (e.g. `🇹🇷`) | — |
+| Hero image | PDP `.nac-hero-img` background-image | Worker `img` |
+| Price | PDP `data-notion="price_full"` (e.g. `$572,300`) | Worker `entry` × 1000 → `$572K` |
+| Yield | PDP `data-notion="yield_pct_unit"` | Worker `netYield` formatted |
+| IRR | PDP `data-notion="irr_pct_unit"` | Worker `irr` formatted |
+| Handover | PDP `.nac-fact-val` adjacent to "Bàn Giao" label | `—` (not on worker) |
+
+The worker `/properties` response is the **enumeration source** (which listings exist for which country); the PDP fetch is the **detail source** (richer Vietnamese copy + handover + district that aren't surfaced by the worker today).
 
 **To run offline (skip fetch, all placeholders):**
 ```
