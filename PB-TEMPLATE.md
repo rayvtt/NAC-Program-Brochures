@@ -31,36 +31,50 @@ Never `sed`/find-replace across brochures. Never hand-tune one brochure to look 
 
 **What:** A "BĐS Đủ Điều Kiện — Đang Mở Bán" section between section #02 (Investment) and #03 (Process) on every program brochure. Shows up to 2 listing cards; empty slots get a "Đang Cập Nhật" placeholder.
 
+**Architecture:** Listings are **dynamically fetched** from Property Hub at deploy time. PH listing pages expose `data-notion="<field>"` attributes (price_full, yield_pct_unit, irr_pct_unit, desc_vi, hero_img via background-image, etc.) — these come from the upstream Notion CRM, so the brochure card always reflects what PH currently says.
+
 **Artefacts:**
-- Data: `data/listings.py`
-- Generator: `tools/apply_listings.py`
+- Data: `data/listings.py` — just URLs per country (which listings to show; max 2)
+- Generator: `tools/apply_listings.py` — fetches each PH URL, parses `data-notion` fields + hero bg-image + handover, renders the card
 - Markers: `<!-- LISTINGS START -->` / `<!-- LISTINGS END -->` in each brochure
 - CSS: lives in each brochure's `<style>` block (~140 lines, **byte-for-byte identical across all brochures** — like the paywall CSS pattern). Don't drift them.
 - TOC entry: `<li class="toc-item toc-item-spotlight">` between items 02 and 03 — also identical text across brochures (Vietnamese is country-agnostic here: "BĐS đang mở bán").
+- CI: `.github/workflows/wp-sync.yml` runs `apply_listings.py` before `sync_brochures.py`, so every deploy re-fetches.
 
 **To add a listing for any country:**
-1. Open `data/listings.py`
-2. Append to that country's `listings: []` array (max 2 entries per country):
+1. Make sure the listing exists in Property Hub first (PH owns the data — price, yield, image, copy, etc.).
+2. Open `data/listings.py`, append its URL to that country's `urls: []` (max 2):
    ```python
-   {
-       'ref':         'NAC-XX',
-       'url':         'https://nomadassetcollective.com/property-hub-bat-dong-san/<country>/<slug>/',
-       'image':       'https://nomadassetcollective.com/wp-content/uploads/.../hero.webp',
-       'image_alt':   'Short alt text',
-       'badge_city':  'City name',
-       'brand':       'W Hotels',
-       'brand_owner': 'Marriott International',
-       'name':        'Property Name',
-       'location':    '📍 District · Area · City, Country',
-       'price':       '$XXX,XXX',
-       'yield_pct':   'X.X%',
-       'irr_pct':     'XX.X%',
-       'handover':    'QX YYYY',
-       'desc':        'One-paragraph Vietnamese description (~1-2 lines).',
+   'turkey': {
+       ...,
+       'urls': [
+           'https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/<slug>/',
+       ],
    },
    ```
-3. Run `python tools/apply_listings.py`
-4. Commit + push. Done.
+3. Run `python tools/apply_listings.py turkey` — fetches PH, re-renders the brochure HTML.
+4. `git diff` to inspect.
+5. Commit + push. The CI workflow will refetch on deploy (so even if PH changes between now and deploy, the live brochure will be current).
+
+**Fields parsed from PH:**
+| Brochure field | PH source |
+|---|---|
+| `listing-ref` | `data-notion="property_id"` (e.g. NAC-79) |
+| Card title | `data-notion="property_name_vi"` (stripped after first em-dash) |
+| Tagline (kicker) | `data-notion="tagline_vi"` |
+| Description | `data-notion="desc_vi"` (first sentence) |
+| Location badge | `data-notion="district"` + country flag from data file |
+| Hero image | `background-image:url(...)` inside `.nac-hero-img` (`data-notion-bg="hero_img"`) |
+| Price | `data-notion="price_full"` |
+| Yield | `data-notion="yield_pct_unit"` |
+| IRR | `data-notion="irr_pct_unit"` |
+| Handover | `.nac-fact-val` adjacent to "Bàn Giao" label (no `data-notion` on this one) |
+
+**To run offline (skip fetch, all placeholders):**
+```
+APPLY_LISTINGS_OFFLINE=1 python tools/apply_listings.py
+```
+Useful when iterating on CSS or for environments without network access.
 
 **To add the section to a brochure that doesn't have it yet (rolling out beyond turkey):**
 1. Manually add the CSS block (copy from `Brochures html/turkey-cbi_8.html` — search for `LIVE LISTINGS — Spotlight`)

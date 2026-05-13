@@ -1,17 +1,27 @@
 #!/usr/bin/env python3
-"""Render the Live Listings spotlight section in every brochure from data/listings.py.
+"""Render the Live Listings spotlight section into every brochure.
+
+Stats / images / descriptions are fetched LIVE from each Property Hub
+listing page (data-notion="<field>" attributes — sourced from the
+upstream Notion CRM). Static config (which URLs each brochure shows)
+lives in data/listings.py.
 
 Run:
-    python tools/apply_listings.py
+    python tools/apply_listings.py            # all brochures
+    python tools/apply_listings.py turkey     # one
+    python tools/apply_listings.py --offline  # placeholders only, no fetch
 
-For each brochure with <!-- LISTINGS START --> ... <!-- LISTINGS END -->
-markers, the content between the markers is replaced with the rendered
-section. Brochures without markers are skipped (run with --add-markers
-to insert them, see README of PB-TEMPLATE.md).
+In CI: runs before sync_brochures.py so every deploy reflects the
+current Notion data.
 
 No third-party deps — Python stdlib only.
 """
-import os, re, sys
+import html as html_lib
+import os
+import re
+import sys
+import urllib.error
+import urllib.request
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -20,8 +30,6 @@ from data.listings import LISTINGS  # noqa: E402
 
 BROCHURE_DIR = ROOT / 'Brochures html'
 
-# alias → filename (mirrors sync_brochures.py BROCHURES). Kept here so this
-# script stays independent of sync_brochures.py (different concerns).
 ALIAS_FILE = {
     'portugal':   'portugal-gv.html',
     'greece':     'greece-rbi_1_2.html',
@@ -37,30 +45,91 @@ ALIAS_FILE = {
     'malaysia':   'malaysia-mm2h.html',
 }
 
+# Parse <foo data-notion="key">value</foo>. Multi-line desc fields use DOTALL.
+DATA_NOTION_RE = re.compile(r'data-notion="([\w_]+)"[^>]*>(.*?)</[a-zA-Z]', re.DOTALL)
+HERO_BG_RE = re.compile(
+    r'class="nac-hero-img"[^>]*background-image:url\([\'"]([^\'"]+)[\'"]'
+)
+HANDOVER_RE = re.compile(
+    r'Bàn Giao</span>(?:<span data-en="">[^<]*</span>)?</span>'
+    r'<span class="nac-fact-val">([^<]+)</span>'
+)
 
-def render_card(listing, flag, program_code):
+
+def fetch_listing(url, timeout=20):
+    try:
+        req = urllib.request.Request(url, headers={'User-Agent': 'NAC-apply-listings/1.0'})
+        with urllib.request.urlopen(req, timeout=timeout) as r:
+            doc = r.read().decode('utf-8', errors='replace')
+    except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError) as e:
+        return None, f'fetch failed: {e}'
+
+    fields = {m.group(1): m.group(2).strip() for m in DATA_NOTION_RE.finditer(doc)}
+
+    hero_m = HERO_BG_RE.search(doc)
+    if hero_m:
+        fields['hero_img'] = hero_m.group(1)
+
+    handover_m = HANDOVER_RE.search(doc)
+    if handover_m:
+        fields['handover'] = handover_m.group(1).replace(' (estimated)', '').strip()
+
+    return fields, None
+
+
+def short_name(full):
+    """Strip everything after the first em-dash or en-dash separator."""
+    return re.split(r'\s+[—\-–]\s+', full, maxsplit=1)[0].strip()
+
+
+def first_sentence(text, max_len=240):
+    """First sentence (up to max_len chars). Falls back to a clean truncate."""
+    if not text:
+        return ''
+    period = text.find('. ')
+    if 0 < period <= max_len:
+        return text[: period + 1]
+    if len(text) <= max_len:
+        return text
+    cut = text[:max_len].rsplit(' ', 1)[0]
+    return cut + '…'
+
+
+def render_card(fields, src_url, country):
+    flag         = country['flag']
+    country_vi   = country['country_vi']
+    program_code = country['program_code']
+
+    name = short_name(fields.get('property_name_vi') or fields.get('property_name_en', 'Property'))
+    desc = first_sentence(fields.get('desc_vi', ''))
+    tagline = fields.get('tagline_vi', '')
+    district = fields.get('district', '').strip()
+    location_parts = [p for p in [district, country_vi] if p]
+
+    e = html_lib.escape
+
     return (
         '        <article class="listing-card">\n'
-        f'          <a class="listing-card-link" href="{listing["url"]}" target="_blank" rel="noopener">\n'
+        f'          <a class="listing-card-link" href="{e(src_url)}" target="_blank" rel="noopener">\n'
         '            <div class="listing-hero">\n'
-        f'              <img src="{listing["image"]}" alt="{listing["image_alt"]}" loading="lazy">\n'
+        f'              <img src="{e(fields.get("hero_img", ""))}" alt="{e(name)}" loading="lazy">\n'
         '              <div class="listing-badges">\n'
-        f'                <span class="listing-badge listing-badge-flag">{flag} {listing["badge_city"]}</span>\n'
+        f'                <span class="listing-badge listing-badge-flag">{flag} {e(district or country_vi)}</span>\n'
         f'                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện {program_code}</span>\n'
         '              </div>\n'
-        f'              <div class="listing-ref">{listing["ref"]}</div>\n'
+        f'              <div class="listing-ref">{e(fields.get("property_id", ""))}</div>\n'
         '            </div>\n'
         '            <div class="listing-body">\n'
-        f'              <div class="listing-brand">Vận hành bởi <strong>{listing["brand"]}</strong> · {listing["brand_owner"]}</div>\n'
-        f'              <h3 class="listing-name">{listing["name"]}</h3>\n'
-        f'              <div class="listing-location">{listing["location"]}</div>\n'
+        f'              <div class="listing-tagline">{e(tagline)}</div>\n'
+        f'              <h3 class="listing-name">{e(name)}</h3>\n'
+        f'              <div class="listing-location">📍 {e(" · ".join(location_parts))}</div>\n'
         '              <div class="listing-stats">\n'
-        f'                <div class="listing-stat"><div class="listing-stat-val">{listing["price"]}</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>\n'
-        f'                <div class="listing-stat"><div class="listing-stat-val">{listing["yield_pct"]}</div><div class="listing-stat-lbl">Gross Yield</div></div>\n'
-        f'                <div class="listing-stat"><div class="listing-stat-val">{listing["irr_pct"]}</div><div class="listing-stat-lbl">5-Year IRR</div></div>\n'
-        f'                <div class="listing-stat"><div class="listing-stat-val">{listing["handover"]}</div><div class="listing-stat-lbl">Bàn Giao</div></div>\n'
+        f'                <div class="listing-stat"><div class="listing-stat-val">{e(fields.get("price_full", "—"))}</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>\n'
+        f'                <div class="listing-stat"><div class="listing-stat-val">{e(fields.get("yield_pct_unit", "—"))}</div><div class="listing-stat-lbl">Gross Yield</div></div>\n'
+        f'                <div class="listing-stat"><div class="listing-stat-val">{e(fields.get("irr_pct_unit", "—"))}</div><div class="listing-stat-lbl">5-Year IRR</div></div>\n'
+        f'                <div class="listing-stat"><div class="listing-stat-val">{e(fields.get("handover", "—"))}</div><div class="listing-stat-lbl">Bàn Giao</div></div>\n'
         '              </div>\n'
-        f'              <p class="listing-desc">{listing["desc"]}</p>\n'
+        f'              <p class="listing-desc">{e(desc)}</p>\n'
         '              <div class="listing-cta-row">\n'
         '                <span class="listing-cta-primary">Xem Chi Tiết →</span>\n'
         '              </div>\n'
@@ -83,19 +152,27 @@ def render_placeholder(country_vi, program_code):
     )
 
 
-def render_section(alias):
-    data = LISTINGS[alias]
-    flag         = data['flag']
-    country_vi   = data['country_vi']
-    program_code = data['program_code']
-    listings     = data['listings'][:2]   # max 2 cards
+def render_section(alias, offline=False):
+    country = LISTINGS[alias]
+    program_code = country['program_code']
+    country_vi   = country['country_vi']
 
-    cards = [render_card(l, flag, program_code) for l in listings]
+    cards = []
+    for url in country.get('urls', [])[:2]:
+        if offline:
+            print(f'    · {alias}: offline mode, skipping fetch of {url}', file=sys.stderr)
+            continue
+        fields, err = fetch_listing(url)
+        if err:
+            print(f'    ! {alias}: {url} → {err}', file=sys.stderr)
+            continue
+        cards.append(render_card(fields, url, country))
+
     while len(cards) < 2:
         cards.append(render_placeholder(country_vi, program_code))
 
     return (
-        '    <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py) -->\n'
+        '    <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; stats fetched live from Property Hub) -->\n'
         '    <section class="section section-spotlight" id="listings">\n'
         '      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>\n'
         f'      <h2 class="sec-title">BĐS Đủ Điều Kiện {program_code} — Đang Mở Bán</h2>\n'
@@ -119,7 +196,7 @@ MARKER_RE = re.compile(
 )
 
 
-def apply_one(alias):
+def apply_one(alias, offline=False):
     if alias not in LISTINGS:
         return None, 'no data'
     fname = ALIAS_FILE.get(alias)
@@ -129,27 +206,29 @@ def apply_one(alias):
     if not path.exists():
         return None, f'file not found ({fname})'
 
-    html = path.read_text(encoding='utf-8')
-    if not MARKER_RE.search(html):
+    doc = path.read_text(encoding='utf-8')
+    if not MARKER_RE.search(doc):
         return None, 'no LISTINGS markers (skipped)'
 
-    rendered = render_section(alias)
-    new_html = MARKER_RE.sub(
+    rendered = render_section(alias, offline=offline)
+    new_doc = MARKER_RE.sub(
         lambda m: m.group(1) + '\n' + rendered + '\n    ' + m.group(3).lstrip(),
-        html,
+        doc,
     )
 
-    if new_html == html:
-        return False, 'already up to date'
-    path.write_text(new_html, encoding='utf-8')
+    if new_doc == doc:
+        return False, 'no changes'
+    path.write_text(new_doc, encoding='utf-8')
     return True, 'updated'
 
 
 def main():
-    aliases = sys.argv[1:] or list(ALIAS_FILE.keys())
+    args = [a for a in sys.argv[1:] if a != '--offline']
+    offline = '--offline' in sys.argv[1:] or os.environ.get('APPLY_LISTINGS_OFFLINE') == '1'
+    aliases = args or list(ALIAS_FILE.keys())
     changed = 0
     for alias in aliases:
-        ok, msg = apply_one(alias)
+        ok, msg = apply_one(alias, offline=offline)
         marker = '✓' if ok else ('–' if ok is False else '·')
         print(f'  {marker} {alias:12s} {msg}')
         if ok:

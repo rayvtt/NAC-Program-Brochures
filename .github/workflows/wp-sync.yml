@@ -37,6 +37,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Refresh listings from Property Hub (live fetch)
+        run: |
+          python tools/apply_listings.py
+          echo "---"
+          echo "Brochure HTML files after listing refresh:"
+          git diff --stat 'Brochures html/' || true
+
       - name: Sync to WordPress
         env:
           WP_USER: ${{ secrets.WP_USER }}
