@@ -75,7 +75,10 @@ def extract(alias):
 
     # ── Hero ──
     payload['hero_bg_img'] = ''  # Most brochures use CSS gradient
-    payload['hero_breadcrumb_vi'] = squash(first_match(r'<span>([^<]+)</span>\s*</div>\s*<div class="hero-grid">', html))
+    # Breadcrumb: second <a> inside .breadcrumb (first is "NAC Index")
+    bc = first_match(r'<div class="breadcrumb">(.*?)</div>', html)
+    bc_links = re.findall(r'<a[^>]*>([^<]+)</a>', bc)
+    payload['hero_breadcrumb_vi'] = squash(bc_links[1]) if len(bc_links) > 1 else ''
     payload['hero_breadcrumb_en'] = ''
     payload['hero_badge_vi']   = text_only(first_match(r'<div class="hero-badge"[^>]*>(.*?)</div>', html))
     payload['hero_badge_en']   = ''
@@ -143,13 +146,21 @@ def extract(alias):
     payload['s02_nac_note_en']    = ''
 
     tiers = []
-    for tier_html in re.findall(r'<div class="tier(?: featured)?">(.*?)</div>\s*</div>', s02, re.DOTALL):
-        badge  = squash(first_match(r'<span class="tier-badge"[^>]*>([^<]+)</span>', tier_html))
-        amount = squash(first_match(r'<div class="tier-amount">([^<]+)</div>', tier_html))
-        name   = squash(first_match(r'<div class="tier-name">([^<]+)</div>', tier_html))
-        region = squash(first_match(r'<div class="tier-region">([^<]+)</div>', tier_html))
-        bar    = first_match(r'tier-bar-fill[^"]*"\s*style="[^"]*width:(\d+)%', tier_html)
-        tags_vi = [squash(t) for t in re.findall(r'<span class="ttag">([^<]+)</span>', tier_html)]
+    tier_list_html = first_match(r'<div class="tier-list">(.*)', s02)
+    # Split into tier chunks using each `<div class="tier"`/`<div class="tier featured"`
+    # marker as a delimiter; everything until the next marker (or end) is one tier.
+    matches = list(re.finditer(r'<div class="tier(\s+featured)?">', tier_list_html))
+    for i, m in enumerate(matches):
+        featured = bool(m.group(1))
+        start = m.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(tier_list_html)
+        chunk = tier_list_html[start:end]
+        badge  = squash(first_match(r'<span class="tier-badge"[^>]*>([^<]+)</span>', chunk))
+        amount = squash(first_match(r'<div class="tier-amount">([^<]+)</div>', chunk))
+        name   = squash(first_match(r'<div class="tier-name">([^<]+)</div>', chunk))
+        region = squash(first_match(r'<div class="tier-region">([^<]+)</div>', chunk))
+        bar    = first_match(r'tier-bar-fill[^"]*"\s*style="[^"]*width:(\d+)%', chunk)
+        tags_vi = [squash(t) for t in re.findall(r'<span class="ttag">([^<]+)</span>', chunk)]
         if amount or name:
             tiers.append({
                 'badge_vi': badge, 'badge_en': '',
@@ -157,11 +168,9 @@ def extract(alias):
                 'name_vi': name, 'name_en': '',
                 'region_vi': region, 'region_en': '',
                 'bar_pct': int(bar) if bar else 0,
-                'featured': False,
+                'featured': featured,
                 'tags_vi': tags_vi, 'tags_en': [],
             })
-    if tiers:
-        tiers[0]['featured'] = True
     payload['s02_tiers'] = json.dumps(tiers, ensure_ascii=False)
 
     # ── Section 03 — Process ──

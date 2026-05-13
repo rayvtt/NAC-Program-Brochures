@@ -3,6 +3,9 @@
 .env.*
 !.env.example
 
+# Generated brochure HTML (Phase 2 build_brochures.py output — preview only for now)
+build/
+
 # Python
 __pycache__/
 *.py[cod]
