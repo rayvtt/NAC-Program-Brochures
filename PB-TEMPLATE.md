@@ -1,6 +1,32 @@
 # PB Template — Program Brochure Template System
 
-Single source of truth for what every NAC program brochure must contain and how cross-brochure changes get made. **Never hand-edit a pattern in one brochure without templating it here first.**
+Single source of truth for what every NAC program brochure must contain and how cross-brochure changes get made.
+
+---
+
+## TL;DR — Current deploy chain (Notion-driven)
+
+```
+[NAC - Program Brochures] Notion DB                ← source of truth for prose, stats, scores
+            │
+            │  CI: .github/workflows/wp-sync.yml on push to main
+            ▼
+  tools/pull_from_notion.py                        ← Notion → data/<alias>_payload.json
+            ▼
+  tools/build_brochures.py                         ← payloads → Brochures html/<file>
+            ▼
+  tools/apply_listings.py                          ← injects live PH listings into spotlight
+            ▼
+  sync_brochures.py                                ← ACF push to WP page (raw_html_code)
+            ▼
+  https://nomadassetcollective.com/brochures/...   ← live site
+```
+
+**To change anything in a brochure: edit Notion. Commit + push (anything) triggers the rebuild. Live site updates ~30s after.**
+
+The committed files in `Brochures html/*.html` are snapshots — CI regenerates them on every deploy. Hand-editing them is futile; the next deploy wipes the changes.
+
+---
 
 ---
 

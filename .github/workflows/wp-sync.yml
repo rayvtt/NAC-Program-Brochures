@@ -1,13 +1,28 @@
 name: Sync brochures to WordPress
 
+# End-to-end deploy: Notion DB → payloads → HTML → WP.
+#
+#   1. Pull fresh brochure data from Notion ([NAC - Program Brochures])
+#   2. Render HTML from payloads (build_brochures.py overwrites
+#      Brochures html/<filename> with generated output)
+#   3. Refresh the LISTINGS spotlight from Property Hub (apply_listings.py)
+#   4. Push the resulting HTML to WP via REST API (sync_brochures.py)
+#
+# Source of truth: Notion. The committed files in `Brochures html/` are
+# build snapshots — CI regenerates them on each deploy.
+
 on:
   push:
     branches:
       - main
-      - claude/add-nomad-brochures-68jHG   # auto-validate against a single brochure (turkey)
+      - claude/add-nomad-brochures-68jHG   # auto-validate (turkey-only sync to live)
     paths:
       - 'Brochures html/**'
       - 'NAC-RESIDENCE-INDEX.html'
+      - 'data/**'
+      - 'tools/pull_from_notion.py'
+      - 'tools/build_brochures.py'
+      - 'tools/apply_listings.py'
       - 'sync_brochures.py'
       - '.github/workflows/wp-sync.yml'
   workflow_dispatch:
@@ -21,6 +36,11 @@ on:
         type: boolean
         required: false
         default: false
+      skip_pull:
+        description: 'Skip Notion pull (use payloads already in repo)'
+        type: boolean
+        required: false
+        default: false
 
 concurrency:
   group: wp-sync
@@ -29,7 +49,7 @@ concurrency:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
 
@@ -37,11 +57,34 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Refresh listings from Property Hub (live fetch)
+      - name: Pull fresh brochure data from Notion
+        if: github.event.inputs.skip_pull != 'true'
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: |
+          python tools/pull_from_notion.py
+          echo "---"
+          echo "Payload diff after Notion pull:"
+          git diff --stat data/ || true
+
+      - name: Build brochure HTML from payloads
+        run: |
+          python tools/build_brochures.py --all
+          # Move generated HTML into the production location (overwrites the
+          # hand-edited snapshots in `Brochures html/`).
+          for f in build/*.html; do
+            cp "$f" "Brochures html/$(basename "$f")"
+          done
+          rm -rf build
+          echo "---"
+          echo "Brochure HTML files after build:"
+          git diff --stat 'Brochures html/' || true
+
+      - name: Refresh listings spotlight from Property Hub (live fetch)
         run: |
           python tools/apply_listings.py
           echo "---"
-          echo "Brochure HTML files after listing refresh:"
+          echo "Brochure HTML files after listings refresh:"
           git diff --stat 'Brochures html/' || true
 
       - name: Sync to WordPress
@@ -52,7 +95,7 @@ jobs:
           # Decide target + dry-run based on trigger.
           #   workflow_dispatch → use the dropdown inputs
           #   push to main      → --all (real)
-          #   push to feature   → turkey only (real, so we validate the ACF write)
+          #   push to feature   → turkey only (real, end-to-end validation)
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             TARGET="${{ github.event.inputs.target || '--all' }}"
             if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then DRY="--dry-run"; else DRY=""; fi
