@@ -1,0 +1,34 @@
+name: Patch PH catalog (deeplink filter init)
+
+# Manual one-off workflow: injects URL-param init JS into the PH catalog
+# (WP page 1999, ACF raw_html_code) so brochure footnote links
+# (?program=cbi&country=turkey etc.) pre-filter the catalog on landing.
+# Idempotent — re-running it is safe.
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run only (preview the diff; don''t push)'
+        type: boolean
+        required: false
+        default: true
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Patch PH catalog
+        env:
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          DRY="${{ github.event.inputs.dry_run == 'true' && '--dry-run' || '' }}"
+          python tools/patch_ph_catalog.py $DRY
