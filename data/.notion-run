@@ -3,3 +3,4 @@
 # sequentially when this file changes. Idempotent on both ends.
 #
 # v1 — initial Turkey populate
+# v2 — switch to human-friendly Notion names with circled-digit section icons, rename Name → alias

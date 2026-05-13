@@ -21,7 +21,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from data.brochure_schema import SCHEMA, NOTION_DB_ID  # noqa: E402
+from data.brochure_schema import SCHEMA, NOTION_NAMES, NOTION_DB_ID  # noqa: E402
 
 NOTION_VERSION = '2022-06-28'
 NOTION_BASE = 'https://api.notion.com/v1'
@@ -81,7 +81,7 @@ def field_to_notion(name, value, type_config):
 def find_existing_row(token, alias):
     """Return page_id of existing row with this alias, or None."""
     query = json.dumps({
-        'filter': {'property': 'alias', 'title': {'equals': alias}},
+        'filter': {'property': NOTION_NAMES['alias'], 'title': {'equals': alias}},
         'page_size': 1,
     })
     status, body = http(
@@ -108,10 +108,11 @@ def main():
     payload = json.loads(payload_path.read_text(encoding='utf-8'))
 
     properties = {}
-    for name, type_config in SCHEMA.items():
-        if name not in payload:
+    for tech_key, type_config in SCHEMA.items():
+        if tech_key not in payload:
             continue
-        properties[name] = field_to_notion(name, payload[name], type_config)
+        notion_name = NOTION_NAMES[tech_key]
+        properties[notion_name] = field_to_notion(tech_key, payload[tech_key], type_config)
 
     token = os.environ.get('NOTION_KEY')
     if not token and not dry:

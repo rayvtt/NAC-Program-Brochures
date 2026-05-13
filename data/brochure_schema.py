@@ -18,6 +18,127 @@ manually in the UI, then update SCHEMA.
 
 NOTION_DB_ID = '35f48ec25e8680f69c3dc5ad538e7ca8'
 
+# ── Display names ──────────────────────────────────────────────────────
+# Technical key (Python / JSON) → Notion property display name.
+# Sections get a circled-digit prefix (①–⑨) for visual grouping; identity
+# / hero / scores use plain readable labels.
+NOTION_NAMES = {
+    # A. Identity
+    'alias':                'alias',
+    'country_vi':           'country (VI)',
+    'country_en':           'country (EN)',
+    'flag':                 'flag',
+    'program_code':         'program code',
+    'program_tag':          'program tag',
+    'program_vi':           'program (VI)',
+    'program_en':           'program (EN)',
+    'source_filename':      'source filename',
+    'wp_page_id':           'wp page id',
+    'wp_slug':              'wp slug',
+    'color_primary':        'color · primary',
+    'color_secondary':      'color · secondary',
+    'pb_status':            'status',
+
+    # B. Hero
+    'hero_bg_img':          'hero · bg img',
+    'hero_breadcrumb_vi':   'hero · breadcrumb (VI)',
+    'hero_breadcrumb_en':   'hero · breadcrumb (EN)',
+    'hero_badge_vi':        'hero · badge (VI)',
+    'hero_badge_en':        'hero · badge (EN)',
+    'hero_title_top_vi':    'hero · title top (VI)',
+    'hero_title_top_en':    'hero · title top (EN)',
+    'hero_title_em_vi':     'hero · title em (VI)',
+    'hero_title_em_en':     'hero · title em (EN)',
+    'hero_desc_vi':         'hero · desc (VI)',
+    'hero_desc_en':         'hero · desc (EN)',
+    'hero_stats':           'hero · stats (JSON)',
+
+    # NAC scores
+    'nac_score':            'NAC score',
+    'nac_score_label_vi':   'NAC score label (VI)',
+    'nac_score_label_en':   'NAC score label (EN)',
+    'score_invest':         'score · investment',
+    'score_speed':          'score · speed',
+    'score_lifestyle':      'score · lifestyle',
+    'score_passport':       'score · passport',
+    'score_tax':            'score · tax',
+    'score_citizenship':    'score · citizenship',
+
+    # Section 01 — Overview
+    's01_subtitle_vi':           '① subtitle (VI)',
+    's01_subtitle_en':           '① subtitle (EN)',
+    's01_ov_cards':              '① overview cards (JSON)',
+    's01_factcheck_vi':          '① factcheck (VI)',
+    's01_factcheck_en':          '① factcheck (EN)',
+    's01_article_cta_text_vi':   '① article CTA text (VI)',
+    's01_article_cta_text_en':   '① article CTA text (EN)',
+    's01_article_cta_url':       '① article CTA URL',
+
+    # Section 02 — Investment
+    's02_subtitle_vi':      '② subtitle (VI)',
+    's02_subtitle_en':      '② subtitle (EN)',
+    's02_warning_box_vi':   '② warning box (VI)',
+    's02_warning_box_en':   '② warning box (EN)',
+    's02_tiers':            '② tiers (JSON)',
+    's02_nac_note_vi':      '② NAC note (VI)',
+    's02_nac_note_en':      '② NAC note (EN)',
+
+    # Section 03 — Process
+    's03_subtitle_vi':      '③ subtitle (VI)',
+    's03_subtitle_en':      '③ subtitle (EN)',
+    's03_timeline':         '③ timeline (JSON)',
+
+    # Section 04 — Family (LOCKED)
+    's04_subtitle_vi':      '④ subtitle (VI)',
+    's04_subtitle_en':      '④ subtitle (EN)',
+    's04_family_cards':     '④ family cards (JSON)',
+    's04_compare_note_vi':  '④ compare note (VI)',
+    's04_compare_note_en':  '④ compare note (EN)',
+
+    # Section 05 — Tax (LOCKED)
+    's05_subtitle_vi':              '⑤ subtitle (VI)',
+    's05_subtitle_en':              '⑤ subtitle (EN)',
+    's05_tax_cards':                '⑤ tax cards (JSON)',
+    's05_special_note_vi':          '⑤ special note (VI)',
+    's05_special_note_en':          '⑤ special note (EN)',
+    's05_inheritance_note_vi':      '⑤ inheritance note (VI)',
+    's05_inheritance_note_en':      '⑤ inheritance note (EN)',
+
+    # Section 06 — Citizenship (LOCKED)
+    's06_subtitle_vi':                  '⑥ subtitle (VI)',
+    's06_subtitle_en':                  '⑥ subtitle (EN)',
+    's06_roadmap':                      '⑥ roadmap (JSON)',
+    's06_dual_citizenship_note_vi':     '⑥ dual citizenship note (VI)',
+    's06_dual_citizenship_note_en':     '⑥ dual citizenship note (EN)',
+    's06_nac_strategy_note_vi':         '⑥ NAC strategy note (VI)',
+    's06_nac_strategy_note_en':         '⑥ NAC strategy note (EN)',
+
+    # Section 07 — Compare (LOCKED)
+    's07_subtitle_vi':      '⑦ subtitle (VI)',
+    's07_subtitle_en':      '⑦ subtitle (EN)',
+    's07_compare_rows':     '⑦ compare rows (JSON)',
+    's07_cta_text_vi':      '⑦ CTA text (VI)',
+    's07_cta_text_en':      '⑦ CTA text (EN)',
+
+    # Section 08 — Pros / Cons (LOCKED)
+    's08_subtitle_vi':      '⑧ subtitle (VI)',
+    's08_subtitle_en':      '⑧ subtitle (EN)',
+    's08_pros':             '⑧ pros (JSON)',
+    's08_cons':             '⑧ cons (JSON)',
+    's08_risk_note_vi':     '⑧ risk note (VI)',
+    's08_risk_note_en':     '⑧ risk note (EN)',
+
+    # Section 09 — NAC verdict (LOCKED)
+    's09_subtitle_vi':           '⑨ subtitle (VI)',
+    's09_subtitle_en':           '⑨ subtitle (EN)',
+    's09_recommendation_vi':     '⑨ recommendation (VI)',
+    's09_recommendation_en':     '⑨ recommendation (EN)',
+    's09_cta_heading_vi':        '⑨ CTA heading (VI)',
+    's09_cta_heading_en':        '⑨ CTA heading (EN)',
+    's09_cta_body_vi':           '⑨ CTA body (VI)',
+    's09_cta_body_en':           '⑨ CTA body (EN)',
+}
+
 # Property name → Notion API type config.
 # Notion API docs: https://developers.notion.com/reference/property-object
 SCHEMA = {
@@ -146,6 +267,13 @@ SCHEMA = {
     's09_cta_body_vi':      {'rich_text': {}},
     's09_cta_body_en':      {'rich_text': {}},
 }
+
+# Sanity: every SCHEMA key has a display name and vice versa.
+assert set(SCHEMA.keys()) == set(NOTION_NAMES.keys()), (
+    f'NOTION_NAMES drift: missing {set(SCHEMA) - set(NOTION_NAMES)}, '
+    f'extra {set(NOTION_NAMES) - set(SCHEMA)}'
+)
+
 
 # Fields that hold JSON-encoded arrays (validated by check_brochure_payload.py)
 STRUCTURED_FIELDS = {

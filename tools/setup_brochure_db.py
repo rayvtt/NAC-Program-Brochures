@@ -1,26 +1,22 @@
 #!/usr/bin/env python3
 """Create / sync the [NAC - Program Brochures] Notion DB schema.
 
-Reads SCHEMA from data/brochure_schema.py, GETs the DB's current shape,
-PATCHes to add any missing properties. Idempotent: re-running is safe
-(properties that already match are left alone).
+Reads SCHEMA + NOTION_NAMES from data/brochure_schema.py. Does two
+things idempotently:
 
-Notion API will NOT:
-  - delete properties (you must do that manually in Notion UI)
-  - rename properties (must delete + add new)
-  - change a property's TYPE in-place (must delete + recreate)
+  1. RENAME the default title property to "alias" if it isn't already
+     (Notion auto-creates the title as "Name").
+  2. ADD any missing properties (per NOTION_NAMES display names).
 
-But it WILL:
-  - add new properties
-  - extend select options
-  - update existing rich_text / number / url / select stubs
+Won't delete properties — Notion API doesn't support that. Stale columns
+must be removed manually in the Notion UI.
 
 Required env vars (set as GitHub Action secrets):
-    NOTION_KEY              the Notion integration token (Bearer)
+    NOTION_KEY
 
 Run:
-    python tools/setup_brochure_db.py            # show diff + apply
-    python tools/setup_brochure_db.py --dry-run  # show diff only
+    python tools/setup_brochure_db.py
+    python tools/setup_brochure_db.py --dry-run
 """
 import json
 import os
@@ -31,7 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from data.brochure_schema import SCHEMA, NOTION_DB_ID  # noqa: E402
+from data.brochure_schema import SCHEMA, NOTION_NAMES, NOTION_DB_ID  # noqa: E402
 
 NOTION_VERSION = '2022-06-28'
 NOTION_BASE = 'https://api.notion.com/v1'
@@ -52,57 +48,64 @@ def http(method, url, *, token, body=None):
 
 def main():
     dry = '--dry-run' in sys.argv
-
     token = os.environ.get('NOTION_KEY')
     if not token:
-        sys.exit('❌ NOTION_KEY env var missing. Set it as a GitHub secret (or export locally).')
+        sys.exit('❌ NOTION_KEY env var missing.')
 
     print(f'GET database {NOTION_DB_ID}…')
     status, body = http('GET', f'{NOTION_BASE}/databases/{NOTION_DB_ID}', token=token)
     if status != 200:
         sys.exit(f'❌ HTTP {status} fetching DB: {body[:300]}')
     db = json.loads(body)
-    existing = db.get('properties', {})
+    existing = db.get('properties', {})  # name → property object
     print(f'  found {len(existing)} existing properties')
 
-    to_add = {}
-    title_prop_name = None
-    for name, prop in existing.items():
-        if prop.get('type') == 'title':
-            title_prop_name = name
+    # Build PATCH payload
+    patch_props = {}
 
-    for name, type_config in SCHEMA.items():
-        if name == 'alias' and title_prop_name and title_prop_name != 'alias':
-            # Notion's default title property is named "Name" until renamed.
-            # Rename via the rename-key trick: we'll add `alias` as a new
-            # field separately, OR rely on user to rename "Name" → "alias".
-            # We'll skip auto-renaming and warn instead.
-            print(f'  ⚠ existing title property is named "{title_prop_name}" — '
-                  f'rename it to "alias" in Notion UI for cleanest mapping.')
-            continue
-        if name in existing:
-            continue
-        # PATCH cannot add a title property — DB always has exactly one
+    # 1. Rename title property to "alias" if needed
+    title_current_name = next((n for n, p in existing.items() if p.get('type') == 'title'), None)
+    if title_current_name:
+        if title_current_name != NOTION_NAMES['alias']:
+            print(f'  rename title: "{title_current_name}" → "{NOTION_NAMES["alias"]}"')
+            patch_props[title_current_name] = {'name': NOTION_NAMES['alias']}
+    else:
+        print('  ⚠ no title property found — Notion DB must have one (this is unusual)')
+
+    # 2. Add missing non-title properties
+    existing_names_after = set(existing.keys()) - ({title_current_name} if title_current_name else set())
+    target_names = set(NOTION_NAMES.values()) - {NOTION_NAMES['alias']}   # alias handled via rename
+
+    to_add = []
+    for tech_key, type_config in SCHEMA.items():
+        notion_name = NOTION_NAMES[tech_key]
         if 'title' in type_config:
-            print(f'  · {name}: title (must exist in DB; skipping)')
+            continue  # handled via rename above
+        if notion_name in existing.keys():
             continue
-        to_add[name] = type_config
+        patch_props[notion_name] = type_config
+        to_add.append(notion_name)
 
-    if not to_add:
-        print('\n✓ All schema properties already present. Nothing to do.')
+    if not patch_props:
+        print('\n✓ Schema already up to date. Nothing to do.')
         return
 
-    print(f'\nWill add {len(to_add)} new properties:')
-    for name in to_add:
-        t = next(iter(to_add[name]))
-        print(f'  + {name:36s} ({t})')
+    print(f'\nPATCH summary:')
+    if title_current_name and title_current_name != NOTION_NAMES['alias']:
+        print(f'  · rename title → "{NOTION_NAMES["alias"]}"')
+    print(f'  · add {len(to_add)} new properties')
+    for n in to_add[:8]:
+        t = next(iter(patch_props[n]))
+        print(f'      + {n:42s} ({t})')
+    if len(to_add) > 8:
+        print(f'      … and {len(to_add) - 8} more')
 
     if dry:
         print('\n--dry-run — not applying.')
         return
 
     print(f'\nPATCH /databases/{NOTION_DB_ID}…')
-    payload = json.dumps({'properties': to_add}, ensure_ascii=False)
+    payload = json.dumps({'properties': patch_props}, ensure_ascii=False)
     status, body = http(
         'PATCH', f'{NOTION_BASE}/databases/{NOTION_DB_ID}', token=token, body=payload,
     )
@@ -110,12 +113,12 @@ def main():
         result = json.loads(body)
         final = result.get('properties', {})
         added = sum(1 for n in to_add if n in final)
-        print(f'✓ patched — {added}/{len(to_add)} properties added.')
+        print(f'✓ patched — {added}/{len(to_add)} new properties created.')
         missing = [n for n in to_add if n not in final]
         if missing:
-            print(f'⚠ Notion accepted PATCH but these props missing in response: {missing}')
+            print(f'⚠ missing in response: {missing}')
     else:
-        sys.exit(f'❌ HTTP {status} patching DB: {body[:500]}')
+        sys.exit(f'❌ HTTP {status}: {body[:600]}')
 
 
 if __name__ == '__main__':
