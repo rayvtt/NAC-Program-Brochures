@@ -28,6 +28,7 @@ import json
 import base64
 import urllib.request
 import urllib.error
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # ── Config ─────────────────────────────────────────────────────────────
 WP_BASE  = 'https://nomadassetcollective.com/wp-json/wp/v2'
@@ -62,9 +63,11 @@ BROCHURES = {
     'overview':    ('NAC-BROCHURES-OVERVIEW.html', 1914, 'brochures'),
     'newzealand':  ('newzealand-rbi_1 (3).html',    1944, 'chuong-trinh-new-zealand-rbi-dau-tu-di-tru'),
     'panama':      ('panama-rbi_.html',             1996, 'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien'),
-    'nph':         ('NAC-PROPERTY-HUB.html',        1999, 'property-hub'),
-    'index':       ('NAC-RESIDENCE-INDEX.html',     1800, 'nac-residence-index'),
     'malaysia':    ('malaysia-mm2h.html',            2024, 'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru'),
+    # 'nph' (property-hub) and 'index' (nac-residence-index) intentionally
+    # omitted — those tool pages are NOT managed by this repo. They live in
+    # WordPress directly. Re-adding them here would overwrite WP-side edits
+    # on every CI deploy.
 }
 
 # ── Color helpers ──────────────────────────────────────────────────────
@@ -185,12 +188,19 @@ def cmd_sync_all(dry_run=False):
     print(blue('\nNAC Brochure Sync — pushing all brochures'))
     print(gray('─' * 70))
     auth = None if dry_run else auth_header(*load_env())
+
+    def _sync(alias):
+        return alias, cmd_sync(alias, auth=auth, dry_run=dry_run)
+
     ok = fail = 0
-    for alias in BROCHURES:
-        if cmd_sync(alias, auth=auth, dry_run=dry_run):
-            ok += 1
-        else:
-            fail += 1
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        futures = {pool.submit(_sync, alias): alias for alias in BROCHURES}
+        for future in as_completed(futures):
+            _, success = future.result()
+            if success:
+                ok += 1
+            else:
+                fail += 1
     print(gray('─' * 70))
     msg = f'  done — {ok} ok, {fail} failed'
     print((green if fail == 0 else yellow)(msg))

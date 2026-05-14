@@ -6,3 +6,4 @@
 # v2 — switch to human-friendly Notion names with circled-digit section icons, rename Name → alias
 # v3 — generalised extract for all 12 brochures, flag-prefixed alias, per-country Notion page cover
 # v4 — preserve inline <strong>/<em>/<a href> in prose fields (extract via prose_html); stop escaping in render
+# v5 — repopulate all 12 rows (11 programs beyond turkey were missing from Notion DB)
