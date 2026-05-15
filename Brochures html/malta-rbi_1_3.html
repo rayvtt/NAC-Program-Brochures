@@ -218,11 +218,11 @@
 </script>
 
 <!-- ============================================================
-     FONTS — Be Vietnam Pro (body) + Playfair Display (headings)
+     FONTS — Spectral (body) + Playfair Display (headings) + Inter (UI)
      ============================================================ -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 
 <style>
@@ -262,7 +262,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; line-height: 1.65; }
+body { background: var(--bg); color: var(--text); font-family: 'Spectral', 'Inter', Georgia, serif; font-size: 15.5px; line-height: 1.72; letter-spacing: .002em; }
 
 /* ── PRINT / PDF ── */
 @media print {
@@ -515,7 +515,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 .article-cta-btn:hover { background: var(--country-lt2); }
 
 /* ── RADAR COMPARE TOGGLE ── */
-.radar-btn { font-family: 'Be Vietnam Pro', sans-serif; font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 20px; cursor: pointer; border: 1.5px solid var(--border2); background: #fff; color: var(--text3); transition: all .15s; white-space: nowrap; }
+.radar-btn { font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600; padding: 4px 11px; border-radius: 20px; cursor: pointer; border: 1.5px solid var(--border2); background: #fff; color: var(--text3); transition: all .15s; white-space: nowrap; }
 .radar-btn:hover { border-color: var(--country); color: var(--country); background: var(--country-lt); }
 .radar-btn.radar-btn-active { background: var(--country); color: #fff; border-color: var(--country); }
 
@@ -1150,7 +1150,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       0 10px 30px rgba(15,26,54,.10),
       0 0 0 1px rgba(15,26,54,.03),
       inset 0 1px 0 rgba(255,250,240,.95);
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
   .nac-tool {
     display:inline-flex; align-items:center; gap:0;
@@ -1191,6 +1191,25 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   body { padding-bottom: 80px; }
 }
 
+
+/* ── Body typography test (Spectral): keep UI on Inter, prose on Spectral ── */
+.nav, .toc, .float-toc-panel, .float-toc-btn,
+.nav-link, .nav-cta, .nav-sep, .lang-btn, .breadcrumb,
+.card-cta, button, input, select, textarea,
+.listing-badge, .listing-tagline, .listing-cta-primary, .listing-stat-lbl,
+.nac-tools, .nac-tool, .nac-tool-txt,
+.cta-btn, .cta-strip-label, .toc-num, .sec-label, .article-cta-btn,
+.tier-badge, .tag, .tl-week, .fam-icon, .ov-icon, .comp-flag, .road-year,
+.score-title, .score-label, .stat-lbl,
+.footer, .footer-t, .footer-update {
+  font-family: 'Inter', system-ui, sans-serif !important;
+}
+/* Generous reading rhythm for prose blocks */
+.hero-desc, .sec-sub, .info-text, .ov-note, .fam-note, .tl-body,
+.factcheck-box, .article-cta-text, .pros li, .cons li,
+.nac-box p, .comp-table td:first-child, .nhr-banner p {
+  line-height: 1.72;
+}
 </style>
 </head>
 <body>
@@ -2053,13 +2072,13 @@ const radarChart = new Chart(document.getElementById('radarChart'), {
       r: {
         min: 0, max: 10,
         ticks: { stepSize: 2, font: { size: 10 }, backdropColor: 'transparent' },
-        pointLabels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" }, color: '#374151' },
+        pointLabels: { font: { size: 11, family: "'Inter', sans-serif" }, color: '#374151' },
         grid: { color: 'rgba(0,0,0,0.08)' },
         angleLines: { color: 'rgba(0,0,0,0.08)' },
       }
     },
     plugins: {
-      legend: { display: true, position: 'bottom', labels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" }, boxWidth: 14, padding: 14 } }
+      legend: { display: true, position: 'bottom', labels: { font: { size: 11, family: "'Inter', sans-serif" }, boxWidth: 14, padding: 14 } }
     }
   }
 });
@@ -2128,7 +2147,7 @@ new Chart(document.getElementById('timelineChart'), {
     indexAxis: 'y',
     responsive: true,
     plugins: { legend: { display: false } },
-    scales: { x: { beginAtZero: true, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } }
+    scales: { x: { beginAtZero: true, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Inter', sans-serif" } } } }
   }
 });
 
@@ -2147,7 +2166,7 @@ new Chart(document.getElementById('taxChart'), {
   options: {
     responsive: true,
     plugins: { legend: { display: false } },
-    scales: { y: { beginAtZero: true, max: 55, ticks: { callback: v => v + '%', font: { size: 11 } } }, x: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } }
+    scales: { y: { beginAtZero: true, max: 55, ticks: { callback: v => v + '%', font: { size: 11 } } }, x: { ticks: { font: { size: 11, family: "'Inter', sans-serif" } } } }
   }
 });
 
@@ -2167,7 +2186,7 @@ new Chart(document.getElementById('compareChart'), {
     indexAxis: 'y',
     responsive: true,
     plugins: { legend: { display: false } },
-    scales: { x: { beginAtZero: true, max: 100, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } }
+    scales: { x: { beginAtZero: true, max: 100, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Inter', sans-serif" } } } }
   }
 });
 
@@ -2184,10 +2203,10 @@ new Chart(document.getElementById('strengthChart'), {
   },
   options: {
     responsive: true,
-    plugins: { legend: { position: 'top', labels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } },
+    plugins: { legend: { position: 'top', labels: { font: { size: 11, family: "'Inter', sans-serif" } } } },
     scales: {
       y: { beginAtZero: true, max: 10, ticks: { font: { size: 10 } } },
-      x: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } }
+      x: { ticks: { font: { size: 11, family: "'Inter', sans-serif" } } }
     }
   }
 });
