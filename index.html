@@ -31,6 +31,27 @@
   h1 { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; font-style: italic; color: var(--display); margin-top: 1.5rem; letter-spacing: -.005em; }
   .sub { font-family: var(--ff-mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: .5rem; }
 
+  /* Language toggle pill */
+  .lang-toggle {
+    display: inline-flex; align-items: center;
+    margin-top: 1.25rem;
+    padding: 3px;
+    background: rgba(15,26,54,.05);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--ff-mono);
+    font-size: .6rem; letter-spacing: .15em;
+  }
+  .lang-btn {
+    appearance: none; background: transparent; border: none; cursor: pointer;
+    padding: 5px 12px; border-radius: 999px;
+    color: var(--muted);
+    font-family: inherit; font-size: inherit; letter-spacing: inherit;
+    font-weight: 600;
+    transition: color .15s ease, background .15s ease;
+  }
+  .lang-btn.is-active { background: var(--display); color: #fff; }
+
   /* Instagram-style square tile grid */
   .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
   @media (max-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
@@ -72,149 +93,175 @@
         <span class="nac">NAC</span>
         <span class="tag">PROGRAM BROCHURES</span>
       </div>
-      <h1>Brochure Preview Index</h1>
-      <p class="sub">Preview ↗ GitHub · Live ↗ Nomad Site</p>
+      <h1 data-i18n data-vi="Bộ Sưu Tập Brochure" data-en="Brochure Preview Index">Bộ Sưu Tập Brochure</h1>
+      <p class="sub" data-i18n data-vi="Preview ↗ GitHub · Live ↗ Nomad Site" data-en="Preview ↗ GitHub · Live ↗ Nomad Site">Preview ↗ GitHub · Live ↗ Nomad Site</p>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="vi" type="button">VI</button>
+        <button class="lang-btn"           data-lang="en" type="button">EN</button>
+      </div>
     </header>
 
     <div class="grid">
       <div class="tile" data-alias="portugal">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/bat-dong-san-lisbon-2026-phan-tich-gia-theo-quan-va-co-hoi-dau-tu-cho-nguoi-xin-d7-visa-infographic-cover-8a5b2.jpg')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇵🇹 Bồ Đào Nha</span>
-          <span class="tile-name">Golden Visa</span>
+          <span class="tile-country"><span data-i18n data-vi="🇵🇹 Bồ Đào Nha" data-en="🇵🇹 Portugal">🇵🇹 Bồ Đào Nha</span></span>
+          <span class="tile-name" data-i18n data-vi="Golden Visa" data-en="Golden Visa">Golden Visa</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/portugal-gv.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-bo-dao-nha-golden-visa/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/portugal-gv.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-bo-dao-nha-golden-visa/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="greece">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/case-study-gia-dinh-doanh-nhan-tp-hcm-va-18-thang-chinh-phuc-thuong-tru-hy-lap-bai-hoc-thuc-te-tu-hanh-trinh-cover-a76ca.jpg')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇬🇷 Hy Lạp</span>
-          <span class="tile-name">Golden Visa</span>
+          <span class="tile-country"><span data-i18n data-vi="🇬🇷 Hy Lạp" data-en="🇬🇷 Greece">🇬🇷 Hy Lạp</span></span>
+          <span class="tile-name" data-i18n data-vi="Golden Visa" data-en="Golden Visa">Golden Visa</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/greece-rbi_1_2.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/residences-chuong-trinh-hy-lap-golden-visa/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/greece-rbi_1_2.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/residences-chuong-trinh-hy-lap-golden-visa/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="cyprus">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/sip.webp')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇨🇾 Đảo Síp</span>
-          <span class="tile-name">PR</span>
+          <span class="tile-country"><span data-i18n data-vi="🇨🇾 Đảo Síp" data-en="🇨🇾 Cyprus">🇨🇾 Đảo Síp</span></span>
+          <span class="tile-name" data-i18n data-vi="PR" data-en="PR">PR</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/cyprus-rbi_3_3.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-dao-sip-rbi-residence-by-investment/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/cyprus-rbi_3_3.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-dao-sip-rbi-residence-by-investment/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="turkey">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua-cover-8d1da.jpg')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇹🇷 Thổ Nhĩ Kỳ</span>
-          <span class="tile-name">CBI</span>
+          <span class="tile-country"><span data-i18n data-vi="🇹🇷 Thổ Nhĩ Kỳ" data-en="🇹🇷 Turkey">🇹🇷 Thổ Nhĩ Kỳ</span></span>
+          <span class="tile-name" data-i18n data-vi="CBI" data-en="CBI">CBI</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/turkey-cbi_8.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-tho-nhi-ky-cbi-citizenship-by-investment/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/turkey-cbi_8.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-tho-nhi-ky-cbi-citizenship-by-investment/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="uae">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/dubai.webp')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇦🇪 UAE</span>
-          <span class="tile-name">Golden Visa</span>
+          <span class="tile-country"><span data-i18n data-vi="🇦🇪 UAE" data-en="🇦🇪 United Arab Emirates">🇦🇪 UAE</span></span>
+          <span class="tile-name" data-i18n data-vi="Golden Visa" data-en="UAE Golden Visa">Golden Visa</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/uae-rbi_1_7.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-uae-golden-visa-2/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/uae-rbi_1_7.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-uae-golden-visa-2/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="uk">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/london-scaled.jpg')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇬🇧 Anh Quốc</span>
-          <span class="tile-name">Innovator Founder</span>
+          <span class="tile-country"><span data-i18n data-vi="🇬🇧 Anh Quốc" data-en="🇬🇧 United Kingdom">🇬🇧 Anh Quốc</span></span>
+          <span class="tile-name" data-i18n data-vi="Innovator Founder" data-en="UK Innovator Founder">Innovator Founder</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/uk-rbi_1%20%282%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-uk-thuong-tru-visa-dau-tu-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/uk-rbi_1%20%282%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-uk-thuong-tru-visa-dau-tu-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="malta">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/malta.webp')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇲🇹 Malta</span>
-          <span class="tile-name">MPRP</span>
+          <span class="tile-country"><span data-i18n data-vi="🇲🇹 Malta" data-en="🇲🇹 Malta">🇲🇹 Malta</span></span>
+          <span class="tile-name" data-i18n data-vi="MPRP" data-en="MPRP">MPRP</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/malta-rbi_1_3.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-malta-thuong-tru-nhan-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/malta-rbi_1_3.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-malta-thuong-tru-nhan-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="stkitts">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/stkitt.jpg')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇰🇳 St. Kitts &amp; Nevis</span>
-          <span class="tile-name">CBI</span>
+          <span class="tile-country"><span data-i18n data-vi="🇰🇳 St. Kitts &amp; Nevis" data-en="🇰🇳 St. Kitts &amp; Nevis">🇰🇳 St. Kitts &amp; Nevis</span></span>
+          <span class="tile-name" data-i18n data-vi="CBI" data-en="CBI">CBI</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/stkitts-nevis.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-si-kitts-nevis-quoc-tich/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/stkitts-nevis.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-si-kitts-nevis-quoc-tich/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="thailand">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/thailan.jpg')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇹🇭 Thái Lan</span>
-          <span class="tile-name">LTR</span>
+          <span class="tile-country"><span data-i18n data-vi="🇹🇭 Thái Lan" data-en="🇹🇭 Thailand">🇹🇭 Thái Lan</span></span>
+          <span class="tile-name" data-i18n data-vi="LTR" data-en="LTR">LTR</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/thailand-rbi_1%20%282%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-thai-lan-cu-tru-dai-han-ltr-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/thailand-rbi_1%20%282%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-thai-lan-cu-tru-dai-han-ltr-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="newzealand">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/newzea.jpg')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇳🇿 New Zealand</span>
-          <span class="tile-name">Active Investor Plus</span>
+          <span class="tile-country"><span data-i18n data-vi="🇳🇿 New Zealand" data-en="🇳🇿 New Zealand">🇳🇿 New Zealand</span></span>
+          <span class="tile-name" data-i18n data-vi="Active Investor Plus" data-en="Active Investor Plus">Active Investor Plus</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/newzealand-rbi_1%20%283%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-new-zealand-rbi-dau-tu-di-tru/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/newzealand-rbi_1%20%283%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-new-zealand-rbi-dau-tu-di-tru/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="panama">
         <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/panama.webp')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇵🇦 Panama</span>
-          <span class="tile-name">RBI</span>
+          <span class="tile-country"><span data-i18n data-vi="🇵🇦 Panama" data-en="🇵🇦 Panama">🇵🇦 Panama</span></span>
+          <span class="tile-name" data-i18n data-vi="RBI" data-en="RBI">RBI</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/panama-rbi_.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/panama-rbi_.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
       <div class="tile" data-alias="malaysia">
         <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&amp;q=85&amp;fit=crop')"></div>
         <div class="tile-info">
-          <span class="tile-country">🇲🇾 Malaysia</span>
-          <span class="tile-name">MM2H</span>
+          <span class="tile-country"><span data-i18n data-vi="🇲🇾 Malaysia" data-en="🇲🇾 Malaysia">🇲🇾 Malaysia</span></span>
+          <span class="tile-name" data-i18n data-vi="MM2H" data-en="MM2H">MM2H</span>
         </div>
         <div class="tile-btns">
-          <a href="./Brochures%20html/malaysia-mm2h.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
-          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+          <a href="./Brochures%20html/malaysia-mm2h.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener"><span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/" class="tile-btn tile-btn-live" target="_blank" rel="noopener"><span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>
         </div>
       </div>
     </div>
 
     <footer>
-      Built by <a href="https://nomadassetcollective.com" target="_blank">Nomad Asset Collective</a> ·
+      <span data-i18n data-vi="Xây dựng bởi" data-en="Built by">Built by</span>
+      <a href="https://nomadassetcollective.com" target="_blank">Nomad Asset Collective</a> ·
       <a href="https://github.com/rayvtt/NAC-Program-Brochures" target="_blank">repo</a>
     </footer>
   </div>
+  <script>
+  (function() {
+    var KEY = 'nac-preview-lang';
+    var defaultLang = (localStorage.getItem(KEY) === 'en') ? 'en' : 'vi';
+    function apply(lang) {
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {
+        var t = el.getAttribute('data-' + lang);
+        if (t != null) el.textContent = t;
+      });
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {
+        btn.classList.toggle('is-active', btn.dataset.lang === lang);
+      });
+      try { localStorage.setItem(KEY, lang); } catch (e) {}
+    }
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() { apply(btn.dataset.lang); });
+    });
+    apply(defaultLang);
+  })();
+  </script>
 </body>
 </html>
