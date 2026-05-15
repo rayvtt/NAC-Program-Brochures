@@ -3,13 +3,16 @@ name: Sync brochures to WordPress
 # End-to-end deploy: Notion DB → payloads → HTML → WP.
 #
 #   1. Pull fresh brochure data from Notion ([NAC - Program Brochures])
-#   2. Render HTML from payloads (build_brochures.py overwrites
-#      Brochures html/<filename> with generated output)
-#   3. Refresh the LISTINGS spotlight from Property Hub (apply_listings.py)
-#   4. Push the resulting HTML to WP via REST API (sync_brochures.py)
+#   2. Render HTML from payloads — TURKEY ONLY (build_brochures.py).
+#      Other 11 brochures use the hand-crafted HTML committed in
+#      `Brochures html/` (themes, charts, EN toggle, banners are
+#      country-specific and not yet covered by the build system).
+#   3. Refresh the LISTINGS spotlight from Property Hub on all 12
+#      (apply_listings.py only touches the LISTINGS START/END markers).
+#   4. Push the resulting HTML to WP via REST API (sync_brochures.py).
 #
-# Source of truth: Notion. The committed files in `Brochures html/` are
-# build snapshots — CI regenerates them on each deploy.
+# Source of truth: Notion for Turkey copy + Perplexity-autotranslated
+# EN fields; committed HTML files for the other 11 brochures.
 
 on:
   push:
@@ -67,17 +70,17 @@ jobs:
           echo "Payload diff after Notion pull:"
           git diff --stat data/ || true
 
-      - name: Build brochure HTML from payloads
+      - name: Build brochure HTML from payloads (TURKEY ONLY)
         run: |
-          python tools/build_brochures.py --all
-          # Move generated HTML into the production location (overwrites the
-          # hand-edited snapshots in `Brochures html/`).
-          for f in build/*.html; do
-            cp "$f" "Brochures html/$(basename "$f")"
-          done
+          # Only Turkey is Notion-driven for now. The other 11 brochures
+          # keep their hand-crafted HTML in Brochures html/ (country-
+          # specific themes, charts, banners, EN toggle). Re-adding them
+          # to the build needs build_brochures.py to handle those.
+          python tools/build_brochures.py turkey
+          cp build/turkey-cbi_8.html "Brochures html/turkey-cbi_8.html"
           rm -rf build
           echo "---"
-          echo "Brochure HTML files after build:"
+          echo "Brochure HTML files after build (turkey only):"
           git diff --stat 'Brochures html/' || true
 
       - name: Refresh listings spotlight from Property Hub (live fetch)
