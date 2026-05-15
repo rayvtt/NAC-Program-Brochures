@@ -12,3 +12,7 @@
 #      inner div wrapper, breadcrumb in <nav> or <div>, s09 fallback to
 #      nac-box <p> when no info-box. Improves VI field coverage from ~9 gap
 #      fields to 7 (the rest are genuine HTML omissions per-brochure).
+# v7 — re-PATCH all 12 rows. Previous push_brochure.py runs only managed to
+#      create 4 rows (turkey, panama, uae, malta); POSTs for the other 8 were
+#      silently failing. Those 8 have been manually created (3 full + 5 minimal
+#      via Notion MCP); this trigger PATCHes them with the full payload.
