@@ -6,7 +6,7 @@
 <title>Bồ Đào Nha Golden Visa — Cư Trú Châu Âu Qua Đầu Tư | NAC Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 /* ============================================================
@@ -43,7 +43,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; line-height: 1.65; }
+body { background: var(--bg); color: var(--text); font-family: 'Lora', 'Be Vietnam Pro', Georgia, serif; font-size: 15.5px; line-height: 1.72; letter-spacing: .002em; }
 
 /* ── PRINT / PDF ── */
 @media print {
@@ -923,6 +923,25 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   body { padding-bottom: 80px; }
 }
 
+
+/* ── Body typography test (Portugal-only): keep UI on sans, prose on Lora ── */
+.nav, .toc, .float-toc-panel, .float-toc-btn,
+.nav-link, .nav-cta, .nav-sep, .lang-btn, .breadcrumb,
+.card-cta, button, input, select, textarea,
+.listing-badge, .listing-tagline, .listing-cta-primary, .listing-stat-lbl,
+.nac-tools, .nac-tool, .nac-tool-txt,
+.cta-btn, .cta-strip-label, .toc-num, .sec-label, .article-cta-btn,
+.tier-badge, .tag, .tl-week, .fam-icon, .ov-icon, .comp-flag, .road-year,
+.score-title, .score-label, .stat-lbl,
+.footer, .footer-t, .footer-update {
+  font-family: 'Be Vietnam Pro', sans-serif !important;
+}
+/* Generous reading rhythm for prose blocks */
+.hero-desc, .sec-sub, .info-text, .ov-note, .fam-note, .tl-body,
+.factcheck-box, .article-cta-text, .pros li, .cons li,
+.nac-box p, .comp-table td:first-child, .nhr-banner p {
+  line-height: 1.72;
+}
 </style>
 </head>
 <body>
