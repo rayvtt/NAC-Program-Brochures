@@ -24,7 +24,7 @@ All canonical URLs and brand assets for Nomad Asset Collective. Reference for cr
 | Channel | URL |
 |---|---|
 | WhatsApp | https://wa.me/447388646000 |
-| Calendly (30 min) | https://calendly.com/ray-vtt/30min |
+| Google Meet - 30" Consultation	https://calendar.app.google/gnbtNBTBDKuHUasw7|
 
 ## Social media
 
