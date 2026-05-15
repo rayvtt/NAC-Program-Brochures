@@ -852,53 +852,68 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .listing-body { padding: 18px 18px 20px; }
 }
 
+
 /* ============================================================
-   MOBILE CTA BAR — sticky bottom bar (mobile only)
-   3 icon links: WhatsApp · Property Hub · Blog.
-   Auto-themes via var(--country) / var(--country-lt).
+   NAC TOOLS PILL — floating bottom-center pill (Nobu PDP style)
+   Mobile-only on brochures. Auto-collapses to icon-only; expands
+   on hover (desktop) or tap (touch). Dark glass + gold glow.
    ============================================================ */
-.nac-mobile-cta { display: none; }
+.nac-tools { display:none; }
 
 @media (max-width: 720px) {
-  .nac-mobile-cta {
-    display: flex;
-    position: fixed;
-    bottom: 0; left: 0; right: 0;
-    background: rgba(255,255,255,0.97);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-    border-top: 1px solid var(--border, #e5e7eb);
-    padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
-    justify-content: space-around;
-    align-items: center;
-    gap: 12px;
-    z-index: 90;
-    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+  .nac-tools {
+    position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
+    display:flex; align-items:center; gap:.25rem;
+    padding:.4rem .45rem;
+    background:rgba(12,12,16,.97);
+    backdrop-filter:blur(28px) saturate(160%);
+    -webkit-backdrop-filter:blur(28px) saturate(160%);
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:100px;
+    box-shadow:
+      0 12px 40px rgba(0,0,0,.65),
+      0 0 0 1px rgba(255,255,255,.05),
+      inset 0 1px 0 rgba(255,255,255,.1),
+      0 0 60px rgba(196,146,60,.18);
+    font-family: 'Be Vietnam Pro', sans-serif;
   }
-  .nac-mobile-cta a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 48px; height: 48px;
-    border-radius: 999px;
-    background: var(--country-lt, #f3f4f6);
-    color: var(--country, #1f2937);
-    text-decoration: none;
-    transition: transform 0.15s ease, background 0.15s ease, color 0.15s ease;
+  .nac-tool {
+    display:inline-flex; align-items:center; gap:0;
+    padding:.5rem .55rem;
+    border-radius:100px;
+    font-size:.72rem; font-weight:600;
+    color:#f4efdf;
+    text-decoration:none;
+    background:transparent; border:none; cursor:pointer;
+    white-space:nowrap;
+    transition:gap .28s cubic-bezier(.4,0,.2,1),
+               padding .28s cubic-bezier(.4,0,.2,1),
+               color .2s ease, background .2s ease;
   }
-  .nac-mobile-cta a:active {
-    transform: scale(0.94);
-    background: var(--country, #1f2937);
-    color: #fff;
+  .nac-tool svg { flex-shrink:0; display:block; }
+  .nac-tool-txt {
+    display:inline-block; max-width:0; opacity:0; overflow:hidden;
+    transform:translateX(-4px);
+    transition:max-width .28s cubic-bezier(.4,0,.2,1),
+               opacity .22s ease,
+               transform .28s cubic-bezier(.4,0,.2,1);
   }
-  .nac-mobile-cta a svg { width: 22px; height: 22px; display: block; }
-  .nac-mobile-cta a.cta-wa { background: #25D366; color: #fff; }
-  .nac-mobile-cta a.cta-wa:active { background: #1da851; color: #fff; }
+  .nac-tools.is-open .nac-tool { gap:.4rem; padding:.5rem .9rem; }
+  .nac-tools.is-open .nac-tool-txt { max-width:100px; opacity:1; transform:translateX(0); }
 
-  /* Keep the float-toc-btn visible above the new CTA bar. */
+  /* Color-coded buttons */
+  .nac-tool--wa    { color:#25D366; }
+  .nac-tool--wa:hover, .nac-tool--wa:active   { color:#3ee87b; background:rgba(37,211,102,.18); }
+  .nac-tool--hub   { color:#f5d07a; }
+  .nac-tool--hub:hover, .nac-tool--hub:active { color:#ffe49a; background:rgba(232,191,114,.18); }
+  .nac-tool--blog  { color:#e89a6a; }
+  .nac-tool--blog:hover, .nac-tool--blog:active { color:#ffb380; background:rgba(217,124,68,.20); }
+
+  /* Push float-toc-btn up so the pill doesn't crowd it */
   .float-toc-btn { bottom: 84px !important; }
 
-  /* Prevent the bar from covering page content on scroll-end. */
+  /* Give the body bottom breathing room so the last section doesn't
+     sit under the pill on scroll-end */
   body { padding-bottom: 80px; }
 }
 
@@ -2184,18 +2199,40 @@ function setLang(lang) {
 })();
 </script>
 
-<!-- MOBILE CTA BAR — sticky bottom on mobile only (PB template; installed by tools/install_mobile_cta.py) -->
-<div class="nac-mobile-cta" role="navigation" aria-label="Quick actions">
-  <a class="cta-wa" href="https://wa.me/447388646000" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp">
-    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.297-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0 0 20.464 3.488"/></svg>
+
+<!-- NAC TOOLS PILL — floating bottom CTA (mobile only; mirrors PH PDP style; installed by tools/install_mobile_cta.py) -->
+<div class="nac-tools">
+  <a href="https://wa.me/447388646000" target="_blank" rel="noopener" class="nac-tool nac-tool--wa" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true"><path d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.91-7.01zm-7.01 15.24h-.01a8.21 8.21 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.24 8.24 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.24-8.22 8.24zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.22.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.67-1.18.21-.58.21-1.07.14-1.18s-.21-.16-.46-.28z"/></svg>
+    <span class="nac-tool-txt">WhatsApp</span>
   </a>
-  <a href="https://nomadassetcollective.com/property-hub/" target="_blank" rel="noopener" aria-label="Property Hub" title="Property Hub">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9.5L12 3l9 6.5V21"/><path d="M9 21v-7h6v7"/><path d="M3 21h18"/></svg>
+  <a href="https://nomadassetcollective.com/property-hub/" target="_blank" rel="noopener" class="nac-tool nac-tool--hub" aria-label="Property Hub">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 17l6-6 4 4 8-8M14 7h7v7"/></svg>
+    <span class="nac-tool-txt">Property Hub</span>
   </a>
-  <a href="https://blog.nomadassetcollective.com/" target="_blank" rel="noopener" aria-label="Blog" title="Blog">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h12a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2z"/><path d="M18 6h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"/><line x1="8" y1="9"  x2="14" y2="9"/><line x1="8" y1="13" x2="14" y2="13"/><line x1="8" y1="17" x2="11" y2="17"/></svg>
+  <a href="https://blog.nomadassetcollective.com/" target="_blank" rel="noopener" class="nac-tool nac-tool--blog" aria-label="Blog">
+    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+    <span class="nac-tool-txt">Blog</span>
   </a>
 </div>
+<script>
+/* tap-to-expand for touch devices; hover-to-expand handled by CSS */
+(function(){
+  var el = document.querySelector('.nac-tools');
+  if (!el) return;
+  if (!window.matchMedia('(hover: none)').matches) return;
+  el.addEventListener('click', function(e){
+    if (!el.classList.contains('is-open')) {
+      e.preventDefault();
+      e.stopPropagation();
+      el.classList.add('is-open');
+    }
+  }, true);
+  document.addEventListener('click', function(e){
+    if (!el.contains(e.target)) el.classList.remove('is-open');
+  });
+})();
+</script>
 
 </body>
 </html>
