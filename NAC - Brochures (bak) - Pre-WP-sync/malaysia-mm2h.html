@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Malaysia My Second Home (MM2H) — Cư Trú Dài Hạn Qua Đầu Tư | NAC Consulting</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+/* ============================================================
+   NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v3
+   Country: Malaysia (Malaysia)
+   Color: #B8860B (Gold) + #0F6E6E (Deep Teal)
+   Program: MM2H — My Second Home (RBI)
+   ============================================================ */
+:root {
+  --bg: #ffffff;
+  --bg2: #faf8f3;
+  --bg3: #ede7d9;
+  --country:   #B8860B;
+  --country2:  #9a7009;
+  --country3:  #7a5907;
+  --country-lt:  #fdf6e3;
+  --country-lt2: #d4b44a;
+  --teal: #0F6E6E;
+  --teal-lt: #e6f5f5;
+  --gold: #B8860B;
+  --gold-lt: #fdf6e3;
+  --green: #1a7a4a;
+  --green-lt: #e6f7ee;
+  --red: #c81e1e;
+  --red-lt: #fde8e8;
+  --amber: #b45309;
+  --amber-lt: #fef3c7;
+  --text: #111827;
+  --text2: #374151;
+  --text3: #6b7280;
+  --text4: #9ca3af;
+  --border: #e5e7eb;
+  --border2: #d1d5db;
+  --r: 10px;
+  --sh:  0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
+  --sh2: 0 4px 16px rgba(0,0,0,.08), 0 2px 6px rgba(0,0,0,.04);
+  --sh3: 0 20px 60px rgba(0,0,0,.12), 0 8px 24px rgba(0,0,0,.06);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 68px; }
+body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; line-height: 1.65; }
+
+/* ── PRINT / PDF ── */
+@media print {
+  .nav, .toc, .nav-cta, .float-toc-btn, .float-toc-panel { display: none !important; }
+  .main { grid-template-columns: 1fr !important; padding: 20px !important; }
+  .hero { min-height: 200px !important; }
+  .hero-bg { filter: brightness(0.35) saturate(1) !important; }
+  body { font-size: 12px; }
+  .section { page-break-inside: avoid; margin-bottom: 32px; }
+  .nac-box { page-break-inside: avoid; }
+  a[href]::after { content: " (" attr(href) ")"; font-size: 10px; color: #999; }
+  .nav-cta-print { display: block !important; }
+  .comp-table { display: table !important; }
+  .comp-table-mobile-msg { display: none !important; }
+  .tax-table-wrap { display: block !important; }
+  .tax-table-mobile-msg { display: none !important; }
+  .nac-paywall-overlay { display: none !important; }
+  .nac-paywall-zone { filter: none !important; pointer-events: auto !important; }
+}
+.nav-cta-print { display: none; }
+
+/* ── NAV — mirrors NAC Index header ── */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: #ffffff;
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 1px 0 0 var(--border);
+}
+.nav-i {
+  max-width: 1300px; margin: 0 auto;
+  padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 56px;
+}
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { font-size: 13px; font-weight: 700; color: var(--text); letter-spacing: -.1px; line-height: 1.2; }
+.logo-sub  { font-size: 9px; color: var(--text4); font-weight: 400; letter-spacing: 1.4px; text-transform: uppercase; line-height: 1; }
+.nav-right { display: flex; align-items: center; gap: 6px; }
+.nav-link { font-size: 12px; font-weight: 600; color: var(--text3); text-decoration: none; padding: 5px 11px; border-radius: 7px; transition: all .15s; white-space: nowrap; }
+.nav-link:hover { background: var(--bg2); color: var(--text); }
+.nav-sep { color: var(--border2); font-size: 13px; margin: 0 1px; }
+.nav-cta {
+  background: #f97316; color: #fff;
+  border: none; padding: 8px 18px;
+  border-radius: 8px; font-size: 13px; font-weight: 700;
+  cursor: pointer; font-family: inherit;
+  text-decoration: none; transition: background .15s; white-space: nowrap;
+  letter-spacing: -.1px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.nav-cta:hover { background: #ea6c0a; }
+
+/* ── LANG TOGGLE ── */
+.lang-toggle { display: flex; align-items: center; gap: 0; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.lang-btn { background: none; border: none; padding: 5px 11px; font-size: 12px; font-weight: 700; color: var(--text3); cursor: pointer; font-family: inherit; transition: all .15s; letter-spacing: .5px; }
+.lang-btn:hover { color: var(--text); background: var(--bg3); }
+.lang-btn.lang-active { background: var(--country); color: #fff; }
+
+/* ── HERO ── */
+.hero { position: relative; border-bottom: 1px solid var(--border); overflow: hidden; min-height: 380px; }
+.hero-bg {
+  position: absolute; inset: 0;
+  background-image: url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1600&q=85&fit=crop');
+  background-size: cover; background-position: center 40%;
+  filter: brightness(0.44) saturate(1.1);
+  transform: scale(1.02); transition: transform 8s ease-out;
+}
+.hero-bg.loaded { transform: scale(1); }
+.hero-overlay {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, rgba(184,134,11,0.88) 0%, rgba(15,110,110,0.55) 60%, rgba(15,110,110,0.18) 100%),
+    linear-gradient(to top,   rgba(184,134,11,0.70) 0%, transparent 55%);
+}
+.hero-overlay::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--country), var(--teal), transparent);
+}
+.hero-content { position: relative; z-index: 2; padding: 52px 32px 48px; }
+.hero-i { max-width: 1300px; margin: 0 auto; }
+.breadcrumb { display: flex; align-items: center; gap: 6px; font-size: 12px; color: rgba(255,255,255,0.55); margin-bottom: 20px; }
+.breadcrumb a { color: rgba(255,255,255,0.8); text-decoration: none; font-weight: 500; }
+.breadcrumb a:hover { color: #fff; }
+.breadcrumb span { color: rgba(255,255,255,0.35); }
+.hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+.hero-badge { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.10); border: 1.5px solid rgba(255,255,255,0.25); backdrop-filter: blur(8px); padding: 5px 14px; border-radius: 20px; font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.9); margin-bottom: 16px; }
+.hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #d4b44a; display: inline-block; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4vw, 56px); font-weight: 700; line-height: 1.05; color: #fff; margin-bottom: 10px; text-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+.hero h1 em { font-style: italic; color: #d4b44a; }
+.hero-desc { color: rgba(255,255,255,0.82); font-size: 15px; line-height: 1.75; max-width: 560px; margin-bottom: 28px; }
+.hero-stats { display: flex; gap: 32px; flex-wrap: wrap; }
+.stat-num { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #fff; line-height: 1; text-shadow: 0 1px 8px rgba(0,0,0,0.3); }
+.stat-lbl  { font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: .8px; text-transform: uppercase; margin-top: 4px; }
+.stat-divider { width: 1px; background: rgba(255,255,255,0.2); align-self: stretch; }
+
+/* ── CTA STRIP ── */
+.cta-strip {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 14px 20px;
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  margin-bottom: 28px;
+}
+.cta-strip-label { font-size: 11px; font-weight: 700; color: var(--text3); letter-spacing: 1px; text-transform: uppercase; margin-right: 4px; }
+.cta-btn { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 600; padding: 6px 14px; border-radius: 7px; text-decoration: none; transition: all .15s; white-space: nowrap; }
+.cta-btn-primary { background: var(--country); color: #fff; }
+.cta-btn-primary:hover { background: var(--country2); }
+.cta-btn-outline { background: #fff; color: var(--country); border: 1.5px solid var(--country-lt2); }
+.cta-btn-outline:hover { background: var(--country-lt); border-color: var(--country); }
+.cta-btn-wa { background: #25D366; color: #fff; border: none; display: inline-flex; align-items: center; justify-content: center; }
+.cta-btn-wa svg { display: block; flex-shrink: 0; }
+.cta-btn-wa:hover { background: #1ebe5d; }
+
+/* ── SCORE CARD ── */
+.score-card { background: rgba(255,255,255,0.97); border: 1.5px solid rgba(255,255,255,0.6); border-radius: 16px; padding: 24px 28px; min-width: 280px; box-shadow: 0 8px 40px rgba(0,0,0,0.32), 0 2px 8px rgba(0,0,0,0.14); backdrop-filter: blur(12px); }
+.score-flag  { font-size: 48px; margin-bottom: 8px; }
+.score-title { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+.score-big   { font-family: 'Playfair Display', serif; font-size: 68px; font-weight: 700; color: var(--country); line-height: 1; }
+.score-denom { font-size: 22px; color: var(--text3); font-family: 'Playfair Display', serif; }
+.score-label { font-size: 12px; font-weight: 600; color: var(--country); background: var(--country-lt); padding: 3px 10px; border-radius: 20px; display: inline-block; margin-top: 6px; }
+/* ── STAR RATING ── */
+.star-row { display: flex; align-items: center; gap: 3px; margin-top: 8px; flex-wrap: wrap; }
+.star { width: 18px; height: 18px; flex-shrink: 0; }
+.star-full  { fill: var(--country); }
+.star-empty { fill: var(--bg3); stroke: var(--border2); stroke-width: 0.5; }
+.star-label { font-size: 11px; font-weight: 600; color: var(--country); background: var(--country-lt); padding: 2px 9px; border-radius: 20px; margin-left: 4px; white-space: nowrap; }
+.score-bars  { margin-top: 16px; display: flex; flex-direction: column; gap: 7px; }
+.sbar-row  { display: flex; align-items: center; gap: 8px; }
+.sbar-lbl  { font-size: 11px; color: var(--text3); min-width: 90px; }
+.sbar-track { flex: 1; background: var(--bg3); height: 5px; border-radius: 3px; overflow: hidden; }
+.sbar-fill  { height: 100%; border-radius: 3px; background: var(--country); transition: width .4s ease; }
+.sbar-val  { font-size: 11px; font-weight: 600; color: var(--text); min-width: 24px; text-align: right; }
+
+/* ── LAYOUT ── */
+.main { max-width: 1300px; margin: 0 auto; padding: 40px 32px 80px; display: grid; grid-template-columns: 220px 1fr; gap: 40px; }
+
+/* ── TOC SIDEBAR ── */
+.toc { position: sticky; top: 74px; height: fit-content; }
+.toc-title { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+.toc-list  { list-style: none; }
+.toc-item  { border-left: 2px solid var(--border); }
+.toc-item.active { border-color: var(--country); }
+.toc-item.is-locked .toc-link::after { content: ' 🔒'; font-size: 10px; }
+.toc-link  { display: block; padding: 7px 0 7px 14px; font-size: 12px; color: var(--text3); text-decoration: none; line-height: 1.4; transition: color .15s; }
+.toc-link:hover, .toc-item.active .toc-link { color: var(--country); font-weight: 600; }
+.toc-num   { font-family: 'Playfair Display', serif; font-size: 10px; color: var(--text4); margin-right: 4px; }
+.toc-cta-mini { margin-top: 20px; display: flex; flex-direction: column; gap: 6px; }
+.toc-cta-mini a { font-size: 11px; font-weight: 600; color: var(--country); text-decoration: none; padding: 6px 10px; background: var(--country-lt); border-radius: 7px; text-align: center; transition: background .15s; }
+.toc-cta-mini a:hover { background: var(--country-lt2); color: #fff; }
+
+/* ── CONTENT ── */
+.content { min-width: 0; }
+.section  { margin-bottom: 56px; scroll-margin-top: 74px; }
+.sec-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--country); margin-bottom: 10px; }
+.sec-title { font-family: 'Playfair Display', serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 700; color: var(--text); margin-bottom: 8px; line-height: 1.2; }
+.sec-sub   { font-size: 14px; color: var(--text3); margin-bottom: 24px; max-width: 640px; line-height: 1.6; }
+.divider   { border: none; border-top: 1px solid var(--border); margin: 0 0 40px; }
+
+/* ── OVERVIEW GRID ── */
+.overview-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 24px; }
+.ov-card  { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; }
+.ov-icon  { font-size: 24px; margin-bottom: 8px; }
+.ov-label { font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text3); margin-bottom: 4px; }
+.ov-value { font-size: 15px; font-weight: 700; color: var(--text); }
+.ov-note  { font-size: 11px; color: var(--text3); margin-top: 2px; }
+
+/* ── CHART BOX ── */
+.chart-box   { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 24px; margin-bottom: 20px; }
+.chart-title { font-size: 12px; font-weight: 700; color: var(--text2); margin-bottom: 16px; letter-spacing: -.1px; }
+
+/* ── INVESTMENT TIERS ── */
+.tier-list { display: flex; flex-direction: column; gap: 10px; }
+.tier { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 18px 20px; transition: border-color .15s; position: relative; overflow: hidden; }
+.tier:hover { border-color: var(--country-lt2); box-shadow: var(--sh); }
+.tier.featured { border-color: var(--country); background: var(--country-lt); }
+.tier.premium  { border-color: var(--teal); background: var(--teal-lt); }
+.tier-badge  { position: absolute; top: 14px; right: 14px; font-size: 10px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; padding: 3px 10px; border-radius: 20px; }
+.tier-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 12px; }
+.tier-amount { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 700; color: var(--country); line-height: 1; }
+.tier-amount.teal { color: var(--teal); }
+.tier-name   { font-size: 13px; font-weight: 700; color: var(--text); }
+.tier-region { font-size: 12px; color: var(--text3); margin-top: 2px; }
+.tier-bar-track { background: rgba(0,0,0,.06); height: 6px; border-radius: 3px; margin-bottom: 12px; overflow: hidden; }
+.tier-bar-fill  { height: 100%; border-radius: 3px; }
+.tier-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+.ttag { font-size: 11px; padding: 3px 9px; border-radius: 20px; font-weight: 500; background: var(--bg2); color: var(--text2); border: 1px solid var(--border); }
+
+/* ── INFO BOX ── */
+.info-box { background: var(--country-lt); border: 1px solid var(--country-lt2); border-radius: var(--r); padding: 16px 18px; display: flex; gap: 14px; margin-bottom: 20px; }
+.info-box.gold-box  { background: var(--gold-lt);  border-color: #e0c55a; }
+.info-box.green-box { background: var(--green-lt); border-color: #a0d9bb; }
+.info-box.amber-box { background: var(--amber-lt); border-color: #fcd34d; }
+.info-box.teal-box  { background: var(--teal-lt);  border-color: #6dbfbf; }
+.info-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+.info-text { font-size: 13.5px; color: var(--text2); line-height: 1.65; }
+
+/* ── FACTCHECK ── */
+.factcheck-box { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 14px 16px; display: flex; gap: 12px; margin-bottom: 20px; font-size: 12px; color: var(--text3); line-height: 1.6; }
+.fc-icon { font-size: 18px; flex-shrink: 0; }
+
+/* ── TIMELINE ── */
+.timeline { position: relative; padding-left: 28px; }
+.timeline::before { content: ''; position: absolute; left: 8px; top: 4px; bottom: 4px; width: 2px; background: linear-gradient(to bottom, var(--country), var(--teal), var(--border)); border-radius: 2px; }
+.tl-item { position: relative; margin-bottom: 24px; }
+.tl-item::before { content: ''; position: absolute; left: -24px; top: 6px; width: 10px; height: 10px; border-radius: 50%; background: var(--country); box-shadow: 0 0 0 2px var(--country-lt2); }
+.tl-week  { font-size: 10px; font-weight: 700; color: var(--country); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 4px; }
+.tl-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.tl-body  { font-size: 13px; color: var(--text3); line-height: 1.6; }
+
+/* ── ARTICLE CTA ── */
+.article-cta { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 16px 20px; display: flex; gap: 14px; align-items: center; margin-bottom: 20px; }
+.article-cta-icon { font-size: 24px; flex-shrink: 0; }
+.article-cta-text { font-size: 13px; color: var(--text2); line-height: 1.5; flex: 1; }
+.article-cta-text a { color: var(--country); font-weight: 600; }
+.article-cta-btn { font-size: 12px; font-weight: 700; color: var(--country); text-decoration: none; white-space: nowrap; padding: 6px 14px; border-radius: 7px; background: var(--country-lt); transition: background .15s; }
+.article-cta-btn:hover { background: var(--country-lt2); color: #fff; }
+
+/* ── FAMILY GRID ── */
+.family-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+.fam-card { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 16px; display: flex; gap: 14px; }
+.fam-icon { font-size: 28px; flex-shrink: 0; }
+.fam-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.fam-note  { font-size: 12px; color: var(--text3); line-height: 1.5; }
+
+/* ── TAX TABLE ── */
+.tax-table-wrap { overflow-x: auto; margin-bottom: 20px; }
+.tax-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.tax-table th { background: var(--country); color: #fff; padding: 10px 14px; text-align: left; font-weight: 600; font-size: 12px; letter-spacing: .3px; }
+.tax-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); }
+.tax-table tr:hover { background: var(--bg2); }
+.tax-table tr.highlight { background: var(--country-lt); }
+.tax-table-mobile-msg { display: none; font-size: 12px; color: var(--text3); text-align: center; padding: 16px; background: var(--bg2); border-radius: var(--r); margin-bottom: 20px; }
+
+/* ── ROADMAP ── */
+.road { display: flex; justify-content: space-between; gap: 8px; margin-bottom: 28px; position: relative; padding-top: 12px; }
+.road::before { content: ''; position: absolute; top: 32px; left: 10%; right: 10%; height: 2px; background: linear-gradient(to right, var(--country), var(--teal), var(--border)); }
+.road-step { text-align: center; flex: 1; position: relative; }
+.road-dot { width: 32px; height: 32px; border-radius: 50%; background: var(--country); color: #fff; font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; position: relative; z-index: 2; box-shadow: 0 0 0 3px var(--country-lt); }
+.road-year  { font-size: 10px; font-weight: 700; color: var(--country); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+.road-label { font-size: 11px; color: var(--text3); line-height: 1.4; max-width: 140px; margin: 0 auto; }
+
+/* ── COMPARISON TABLE ── */
+.comp-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+.comp-table th { background: var(--bg2); padding: 10px 12px; text-align: left; font-size: 11px; font-weight: 700; letter-spacing: .5px; text-transform: uppercase; color: var(--text3); border-bottom: 2px solid var(--border); }
+.comp-table td { padding: 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+.comp-table tr:hover { background: var(--bg2); }
+.comp-table tr.highlight { background: var(--country-lt); }
+.comp-flag { margin-right: 6px; }
+.tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 20px; letter-spacing: .5px; }
+.tag-blue  { background: #dbeafe; color: #1e40af; }
+.tag-green { background: #dcfce7; color: #166534; }
+.comp-bar { display: flex; align-items: center; gap: 8px; }
+.comp-track { flex: 1; background: var(--bg3); height: 6px; border-radius: 3px; overflow: hidden; }
+.comp-fill { height: 100%; border-radius: 3px; background: var(--country); }
+.comp-fill.top { background: var(--green); }
+.comp-fill.other { background: var(--teal); }
+.comp-score-num { font-size: 12px; font-weight: 700; color: var(--text); min-width: 20px; }
+.comp-table-mobile-msg { display: none; font-size: 12px; color: var(--text3); text-align: center; padding: 16px; background: var(--bg2); border-radius: var(--r); margin-bottom: 20px; }
+
+/* ── PROS CONS ── */
+.pros-cons { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.pros, .cons { border-radius: var(--r); padding: 20px; }
+.pros { background: var(--green-lt); border: 1px solid #a0d9bb; }
+.cons { background: var(--red-lt); border: 1px solid #f5a5a5; }
+.pros h4, .cons h4 { font-size: 14px; margin-bottom: 12px; }
+.pros li, .cons li { font-size: 13px; margin-bottom: 6px; margin-left: 16px; line-height: 1.5; }
+
+/* ── NAC BOX ── */
+.nac-box { background: linear-gradient(135deg, var(--country) 0%, var(--teal) 100%); border-radius: 16px; padding: 36px 32px; color: #fff; margin-bottom: 28px; text-align: center; }
+.nac-box h3 { font-family: 'Playfair Display', serif; font-size: 24px; margin-bottom: 12px; }
+.nac-box p  { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.85); max-width: 560px; margin: 0 auto 24px; }
+.nac-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.nac-btn { display: inline-flex; align-items: center; gap: 7px; background: #fff; color: var(--country); font-size: 14px; font-weight: 700; padding: 12px 28px; border-radius: 10px; text-decoration: none; transition: all .15s; }
+.nac-btn:hover { opacity: 0.9; }
+.nac-btn-wa { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.12); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 8px; text-decoration: none; transition: background .15s; }
+.nac-btn-wa:hover { background: rgba(255,255,255,0.2); }
+
+/* ── RADAR BTN ── */
+.radar-btn { font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 20px; border: 1.5px solid var(--border); background: #fff; color: var(--text3); cursor: pointer; font-family: inherit; transition: all .15s; }
+.radar-btn:hover { border-color: var(--country-lt2); color: var(--country); }
+.radar-btn-active { background: var(--country); color: #fff; border-color: var(--country); }
+
+/* ── FOOTER ── */
+.footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 24px 32px; text-align: center; }
+.footer-i { max-width: 1300px; margin: 0 auto; }
+.footer-t { font-size: 11px; color: var(--text3); line-height: 1.7; margin-bottom: 8px; }
+.footer-b { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: .5px; }
+.footer-b a { color: var(--text3); text-decoration: none; }
+.footer-b a:hover { color: var(--country); }
+.footer-update { font-size: 10px; color: var(--text4); margin-top: 4px; letter-spacing: .5px; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .main { grid-template-columns: 1fr; }
+  .toc  { display: none; }
+  .hero-grid { grid-template-columns: 1fr; }
+  .score-card { min-width: auto; }
+  .overview-grid { grid-template-columns: repeat(2, 1fr); }
+  .pros-cons { grid-template-columns: 1fr; }
+  .family-grid { grid-template-columns: 1fr; }
+  .nav-right .nav-link, .nav-right .nav-sep { display: none; }
+  .logo-text { display: none; }
+  .nav-cta .cta-text { display: none; }
+  .comp-table { display: none; }
+  .comp-table-mobile-msg { display: block; }
+  .tax-table-wrap { display: none; }
+  .tax-table-mobile-msg { display: block; }
+}
+@media (max-width: 600px) {
+  .hero-content { padding: 36px 20px 32px; }
+  .main { padding: 32px 20px 60px; }
+  .hero-stats { gap: 20px; }
+  .overview-grid { grid-template-columns: 1fr 1fr; }
+  .cta-strip { gap: 6px; }
+}
+
+/* ── FLOATING TOC (mobile) ── */
+.float-toc-btn { display: none; }
+@media (max-width: 900px) {
+  .cta-strip { padding: 10px 14px; gap: 6px; flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .cta-strip-label { display: none; }
+  .cta-btn { padding: 8px 11px; gap: 0; font-size: 14px; position: relative; }
+  .cta-btn .cta-text { display: none; }
+  .cta-btn-wa { width: 36px; height: 36px; padding: 0; border-radius: 8px; }
+  .cta-btn-wa svg { width: 18px; height: 18px; margin: 0; }
+  .float-toc-btn {
+    display: flex; position: fixed; top: 72px; right: 14px; z-index: 300;
+    background: var(--country); color: #fff; border: none; border-radius: 10px;
+    width: 42px; height: 42px; align-items: center; justify-content: center;
+    cursor: pointer; box-shadow: 0 4px 16px rgba(0,0,0,0.22); font-size: 18px;
+    -webkit-tap-highlight-color: transparent; transition: background .15s;
+  }
+  .float-toc-btn:hover { background: var(--country2); }
+  .float-toc-panel {
+    position: fixed; top: 72px; right: 14px; z-index: 299;
+    background: #fff; border: 1px solid var(--border); border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(0,0,0,0.16); width: 230px;
+    padding: 14px 0 10px; display: none; flex-direction: column;
+  }
+  .float-toc-panel.open { display: flex; animation: ftoc-in .18s ease; }
+  @keyframes ftoc-in {
+    from { opacity: 0; transform: translateY(-6px) scale(.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  .float-toc-panel-header { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text3); padding: 0 16px 10px; border-bottom: 1px solid var(--border); margin-bottom: 4px; }
+  .float-toc-panel a { display: block; padding: 7px 16px; font-size: 12px; color: var(--text2); text-decoration: none; }
+  .float-toc-panel a:hover { background: var(--bg2); color: var(--country); }
+  .float-toc-panel-ctas { display: flex; gap: 6px; padding: 10px 16px 4px; border-top: 1px solid var(--border); margin-top: 4px; }
+  .float-toc-panel-ctas a { display: inline-flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; padding: 6px 12px; border-radius: 7px; background: var(--country-lt); color: var(--country); text-decoration: none; }
+  .float-toc-panel-ctas a:hover { background: var(--country-lt2); color: #fff; }
+}
+@media (min-width: 901px) {
+  .float-toc-btn, .float-toc-panel { display: none !important; }
+}
+
+/* ============================================================
+   NAC PAYWALL — Lock sections 4+ behind email-capture form
+   ============================================================ */
+.nac-paywall-wrap { position: relative; }
+.nac-paywall-zone { transition: filter .3s; }
+.nac-paywall-zone.locked { filter: blur(6px) saturate(0.4); pointer-events: none; user-select: none; }
+.nac-paywall-overlay {
+  display: none; position: absolute; top: 0; left: 0; right: 0; z-index: 50;
+  padding-top: 60px; padding-bottom: 60px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.98) 40%, #fff 100%);
+  justify-content: center; align-items: flex-start;
+}
+.nac-paywall-overlay.active { display: flex; }
+.nac-paywall-card {
+  background: #fff; border: 1.5px solid var(--border); border-radius: 16px;
+  box-shadow: var(--sh3); padding: 36px 32px; max-width: 420px; width: 100%; text-align: center;
+}
+.nac-paywall-card h3 { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); margin-bottom: 8px; }
+.nac-paywall-card p  { font-size: 13px; color: var(--text3); margin-bottom: 20px; line-height: 1.6; }
+.nac-paywall-card .pw-email { width: 100%; padding: 10px 14px; border: 1.5px solid var(--border); border-radius: 8px; font-size: 14px; font-family: inherit; margin-bottom: 10px; display: none; }
+.nac-paywall-card .pw-email.show { display: block; }
+.nac-paywall-card .pw-btns { display: flex; gap: 10px; justify-content: center; }
+.pw-btn {
+  flex: 1; padding: 11px 0; border: none; border-radius: 8px;
+  font-size: 14px; font-weight: 700; cursor: pointer; font-family: inherit; transition: all .15s;
+}
+.pw-btn-yes { background: var(--country); color: #fff; }
+.pw-btn-yes:hover { background: var(--country2); }
+.pw-btn-no { background: var(--bg2); color: var(--text3); border: 1.5px solid var(--border); }
+.pw-btn-no:hover { background: var(--bg3); }
+.pw-status { font-size: 12px; color: var(--green); margin-top: 12px; display: none; }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <a class="logo" href="https://nomadassetcollective.com" target="_blank">
+      <div class="logo-mark">
+        <img src="https://nomadassetcollective.com/wp-content/uploads/2026/02/OTG-Passport-Icons-2-1024x1024.jpg" alt="NAC" style="width:32px;height:32px;object-fit:cover;border-radius:7px;">
+      </div>
+      <div class="logo-text-wrap">
+        <div class="logo-text">Nomad Asset Collective</div>
+        <div class="logo-sub">NAC BROCHURE 2026</div>
+      </div>
+    </a>
+    <div class="nav-right">
+      <a class="nav-link" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Index</a>
+      <span class="nav-sep">·</span>
+      <a class="nav-link" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh</a>
+      <span class="nav-sep">·</span>
+      <a class="nav-link" href="https://blog.nomadassetcollective.com/" target="_blank">Blog</a>
+      <div class="lang-toggle">
+        <button class="lang-btn lang-active" onclick="setLang('vi')" id="btn-vi">VI</button>
+        <button class="lang-btn" onclick="setLang('en')" id="btn-en">EN</button>
+      </div>
+      <a class="nav-cta" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">
+📝 <span class="cta-text">Tư Vấn Ngay</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- FLOATING TOC (mobile) -->
+<button class="float-toc-btn" id="floatTocBtn" aria-label="Mục lục">☰</button>
+<div class="float-toc-panel" id="floatTocPanel">
+  <div class="float-toc-panel-header">Mục Lục</div>
+  <a href="#overview"    onclick="closeFToc()">01 · Tổng quan chương trình</a>
+  <a href="#investment"  onclick="closeFToc()">02 · Các mức đầu tư</a>
+  <a href="#process"     onclick="closeFToc()">03 · Quy trình &amp; thời gian</a>
+  <a href="#nac-paywall" onclick="closeFToc()">04 · Gia đình &amp; thụ hưởng 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()">05 · Thuế &amp; tài chính 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()">06 · Lộ trình quốc tịch 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()">07 · So sánh chương trình 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()">08 · Ưu &amp; nhược điểm 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()">09 · Nhận định của NAC 🔒</a>
+  <div class="float-toc-panel-ctas">
+    <a href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">📅 Tư Vấn</a>
+    <a href="https://wa.me/447388646000" target="_blank" style="display:inline-flex;align-items:center;justify-content:center;gap:0;background:#25D366;color:#fff;"><svg viewBox="0 0 24 24" style="width:16px;height:16px;fill:#fff;display:block;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-i">
+      <div class="breadcrumb">
+        <a href="https://nomadassetcollective.com" target="_blank">Trang Chủ</a>
+        <span>›</span>
+        <a href="https://nomadassetcollective.com/brochures/" target="_blank">Chương Trình Quyền Cư Trú</a>
+        <span>›</span>
+        <span>Malaysia</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge"><span class="dot"></span> Cư Trú Dài Hạn · RBI · MM2H</div>
+          <h1>My Second Home<br><em>Malaysia</em></h1>
+          <p class="hero-desc">Chương trình cư trú dài hạn hàng đầu Đông Nam Á — hệ thống 4 bậc (Silver/Gold/Platinum/SEZ) với visa 5–20 năm, hộ chiếu Malaysia xếp hạng 6 thế giới (183 quốc gia visa-free), chi phí sinh hoạt cực thấp, y tế đẳng cấp quốc tế và miễn thuế thu nhập nước ngoài. MM2H là lựa chọn chiến lược cho nhà đầu tư Việt muốn đa dạng hóa tài sản BĐS Đông Nam Á.</p>
+          <div class="hero-stats">
+            <div>
+              <div class="stat-num">$150K+</div>
+              <div class="stat-lbl">Ký quỹ tối thiểu</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div>
+              <div class="stat-num">3–6 tháng</div>
+              <div class="stat-lbl">Cấp visa</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div>
+              <div class="stat-num">5–20 năm</div>
+              <div class="stat-lbl">Visa gia hạn</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div>
+              <div class="stat-num">#6</div>
+              <div class="stat-lbl">Hộ chiếu thế giới</div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="score-card">
+            <div class="score-flag">🇲🇾</div>
+            <div class="score-title">Thang Điểm NAC (INDEX)</div>
+            <div>
+              <span class="score-big">73</span>
+              <span class="score-denom">/100</span>
+            </div>
+            <div class="star-row">
+              <svg class="star" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7" class="star-full"/></svg>
+              <svg class="star" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7" class="star-full"/></svg>
+              <svg class="star" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7" class="star-full"/></svg>
+              <svg class="star" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                <defs><linearGradient id="half-my" x1="0" x2="1" y1="0" y2="0"><stop offset="60%" stop-color="#B8860B"/><stop offset="60%" stop-color="transparent"/></linearGradient></defs>
+                <polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7" class="star-empty"/>
+                <polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7" fill="url(#half-my)"/>
+              </svg>
+              <svg class="star" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><polygon points="10,1 12.9,7 19.5,7.6 14.5,12 16.2,18.5 10,15 3.8,18.5 5.5,12 0.5,7.6 7.1,7" class="star-empty"/></svg>
+              <span class="star-label">Tốt – BĐS &amp; Chi Phí Sống Hấp Dẫn</span>
+            </div>
+            <div class="score-bars">
+              <div class="sbar-row"><span class="sbar-lbl">Đầu tư</span><div class="sbar-track"><div class="sbar-fill" style="width:72%"></div></div><span class="sbar-val">7.2</span></div>
+              <div class="sbar-row"><span class="sbar-lbl">Tốc độ</span><div class="sbar-track"><div class="sbar-fill" style="width:70%"></div></div><span class="sbar-val">7.0</span></div>
+              <div class="sbar-row"><span class="sbar-lbl">Chất lượng sống</span><div class="sbar-track"><div class="sbar-fill" style="width:82%"></div></div><span class="sbar-val">8.2</span></div>
+              <div class="sbar-row"><span class="sbar-lbl">Hộ chiếu</span><div class="sbar-track"><div class="sbar-fill" style="width:50%"></div></div><span class="sbar-val">5.0</span></div>
+              <div class="sbar-row"><span class="sbar-lbl">Thuế</span><div class="sbar-track"><div class="sbar-fill" style="width:88%"></div></div><span class="sbar-val">8.8</span></div>
+              <div class="sbar-row"><span class="sbar-lbl">Quốc tịch</span><div class="sbar-track"><div class="sbar-fill" style="width:30%"></div></div><span class="sbar-val">3.0</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAIN LAYOUT -->
+<div class="main">
+  <aside class="toc">
+    <div class="toc-title">Mục Lục</div>
+    <ul class="toc-list" id="toc">
+      <li class="toc-item active"><a class="toc-link" href="#overview"><span class="toc-num">01 </span>Tổng quan chương trình</a></li>
+      <li class="toc-item"><a class="toc-link" href="#investment"><span class="toc-num">02 </span>Các mức đầu tư</a></li>
+      <li class="toc-item"><a class="toc-link" href="#process"><span class="toc-num">03 </span>Quy trình &amp; thời gian</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">04 </span>Gia đình &amp; thụ hưởng</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">05 </span>Thuế &amp; tài chính</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">06 </span>Lộ trình quốc tịch</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">07 </span>So sánh chương trình</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">08 </span>Ưu &amp; nhược điểm</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">09 </span>Nhận định của NAC</a></li>
+    </ul>
+    <div class="toc-cta-mini">
+      <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">⚖️ <span class="cta-text">So Sánh Chương Trình</span></a>
+      <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">📊 NAC Index</a>
+      <a href="https://wa.me/447388646000" target="_blank">💬 WhatsApp</a>
+      <a href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">📅 Tư Vấn Miễn Phí</a>
+    </div>
+  </aside>
+
+  <div class="content">
+
+    <!-- 01 OVERVIEW -->
+    <section class="section" id="overview">
+      <div class="sec-label">01 — Tổng Quan</div>
+      <h2 class="sec-title">Chương Trình Tổng Quan</h2>
+      <p class="sec-sub">Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người nước ngoài muốn sống, đầu tư hoặc nghỉ hưu tại Malaysia. Hệ thống 4 bậc (Silver/Gold/Platinum/SEZ) với yêu cầu ký quỹ + BĐS bắt buộc, hộ chiếu Malaysia xếp hạng 6 thế giới (183 quốc gia visa-free), chi phí sinh hoạt chỉ bằng 1/3 Singapore và miễn thuế thu nhập nước ngoài — đây là lựa chọn hấp dẫn nhất Đông Nam Á.</p>
+
+      <div class="overview-grid">
+        <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Cư Trú Dài Hạn</div><div class="ov-note">My Second Home (MM2H / RBI)</div></div>
+        <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Tái cấu trúc</div><div class="ov-value">Tháng 7/2024</div><div class="ov-note">4 bậc mới — MOTAC quản lý</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Vị trí địa chính trị</div><div class="ov-value">ASEAN · Đông Nam Á</div><div class="ov-note">Trung tâm kinh tế ĐNA</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Cư trú bắt buộc</div><div class="ov-value">90 ngày/năm (dưới 50 tuổi)</div><div class="ov-note">Trên 50 tuổi: không yêu cầu</div></div>
+        <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn visa</div><div class="ov-value">5–20 năm (gia hạn)</div><div class="ov-note">Silver 5 · Gold 15 · Platinum 20</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con đến 34 + bố mẹ</div><div class="ov-note">Phạm vi rộng nhất khu vực</div></div>
+        <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">3–6 tháng</div><div class="ov-note">Qua đại lý MM2H có giấy phép</div></div>
+        <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập tối đa</div><div class="ov-value">26% (nội địa)</div><div class="ov-note">Thu nhập nước ngoài: miễn thuế đến 2026</div></div>
+        <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">183 quốc gia visa-free</div><div class="ov-note">Hộ chiếu MY hạng 6 Henley 2026</div></div>
+      </div>
+
+      <div class="factcheck-box">
+        <div class="fc-icon">🔍</div>
+        <div><strong>Nguồn dữ liệu:</strong> MOTAC Malaysia · mm2h.gov.my · Henley Passport Index 2026 · LHDN (Cơ quan Thuế Malaysia) · Budget 2026. Số liệu có thể thay đổi — liên hệ NAC để xác nhận trước khi quyết định.</div>
+      </div>
+
+      <div class="chart-box">
+        <div class="chart-title">Phân tích điểm 6 tiêu chí NAC — Malaysia MM2H</div>
+        <canvas id="radarChart" style="max-height:300px"></canvas>
+      </div>
+
+      <div class="chart-box">
+        <div class="chart-title">Thời gian cấp cư trú — Malaysia vs các chương trình hàng đầu (tháng)</div>
+        <canvas id="timelineChart" style="max-height:220px"></canvas>
+      </div>
+
+      <div class="article-cta">
+        <div class="article-cta-icon">📖</div>
+        <div class="article-cta-text">Đọc thêm phân tích chuyên sâu: <a href="https://blog.nomadassetcollective.com/" target="_blank">Chiến lược đầu tư BĐS Malaysia cho nhà đầu tư Việt 2026</a></div>
+        <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Đọc Ngay →</a>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 02 INVESTMENT -->
+    <section class="section" id="investment">
+      <div class="sec-label">02 — Đầu Tư</div>
+      <h2 class="sec-title">Các Mức Đầu Tư</h2>
+      <p class="sec-sub">MM2H 2026 yêu cầu hai thành phần bắt buộc: ký quỹ cố định tại ngân hàng Malaysia + mua BĐS trong vòng 12 tháng sau khi visa được phê duyệt. Mức đầu tư phụ thuộc vào bậc chọn — từ $150K (Silver) đến $1M+ (Platinum). BĐS không được bán trong 10 năm.</p>
+
+      <div class="info-box amber-box">
+        <div class="info-icon">⚠️</div>
+        <div class="info-text"><strong>Lưu ý quan trọng 2026:</strong> Kể từ tháng 7/2024, mua BĐS là BẮT BUỘC cho tất cả các bậc MM2H (trước đây chỉ là tùy chọn). Hợp đồng mua bán (SPA) phải được ký trong vòng 12 tháng kể từ ngày visa được đóng dấu. BĐS phải giữ tối thiểu 10 năm — bán sớm sẽ bị thu hồi visa. Nộp hồ sơ bắt buộc qua đại lý MM2H có giấy phép (không nhận hồ sơ tự nộp).</div>
+      </div>
+
+      <div class="tier-list">
+        <div class="tier featured">
+          <span class="tier-badge" style="background:var(--country);color:#fff;">Phổ Biến Nhất</span>
+          <div class="tier-header"><div>
+            <div class="tier-amount">$150K + RM 600K</div>
+            <div class="tier-name">Silver — Ký quỹ + BĐS bắt buộc</div>
+            <div class="tier-region">Visa 5 năm · Gia hạn không giới hạn</div>
+          </div></div>
+          <div class="tier-bar-track"><div class="tier-bar-fill" style="background:var(--country);width:30%"></div></div>
+          <div class="tier-tags">
+            <span class="ttag">Ký quỹ USD 150,000</span><span class="ttag">BĐS tối thiểu RM 600,000</span><span class="ttag">Không được phép làm việc</span><span class="ttag">Rút 50% ký quỹ sau mua BĐS</span>
+          </div>
+        </div>
+
+        <div class="tier">
+          <span class="tier-badge" style="background:var(--teal);color:#fff;">Cân Bằng</span>
+          <div class="tier-header"><div>
+            <div class="tier-amount teal">$500K + RM 1M</div>
+            <div class="tier-name">Gold — 15 năm visa + đầu tư BĐS lớn hơn</div>
+            <div class="tier-region">Visa 15 năm · Gia hạn mỗi 5 năm</div>
+          </div></div>
+          <div class="tier-bar-track"><div class="tier-bar-fill" style="background:var(--teal);width:50%"></div></div>
+          <div class="tier-tags">
+            <span class="ttag">Ký quỹ USD 500,000</span><span class="ttag">BĐS tối thiểu RM 1,000,000</span><span class="ttag">Không được phép làm việc</span><span class="ttag">Lãi suất ký quỹ ~3–4%/năm</span>
+          </div>
+        </div>
+
+        <div class="tier premium">
+          <span class="tier-badge" style="background:var(--teal);color:#fff;">Cao Cấp</span>
+          <div class="tier-header"><div>
+            <div class="tier-amount teal">$1M + RM 2M</div>
+            <div class="tier-name">Platinum — 20 năm + quyền kinh doanh</div>
+            <div class="tier-region">Visa 20 năm · Được làm giám đốc công ty</div>
+          </div></div>
+          <div class="tier-bar-track"><div class="tier-bar-fill" style="background:var(--green);width:75%"></div></div>
+          <div class="tier-tags">
+            <span class="ttag">Ký quỹ USD 1,000,000</span><span class="ttag">BĐS tối thiểu RM 2,000,000</span><span class="ttag">Được phép kinh doanh &amp; làm giám đốc</span><span class="ttag">Thuê người giúp việc nước ngoài</span>
+          </div>
+        </div>
+
+        <div class="tier">
+          <span class="tier-badge" style="background:#374151;color:#fff;">SEZ Forest City</span>
+          <div class="tier-header"><div>
+            <div class="tier-amount">$65K / $32K (50+)</div>
+            <div class="tier-name">SEZ — Forest City Johor · Ngưỡng thấp nhất</div>
+            <div class="tier-region">Visa 10 năm · Chỉ áp dụng tại Forest City</div>
+          </div></div>
+          <div class="tier-bar-track"><div class="tier-bar-fill" style="background:var(--text3);width:20%"></div></div>
+          <div class="tier-tags">
+            <span class="ttag">Ký quỹ $65K (21–49) / $32K (50+)</span><span class="ttag">BĐS từ RM 600K (Forest City)</span><span class="ttag">Mua từ developer trực tiếp</span><span class="ttag">Gần Singapore</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box green-box">
+        <div class="info-icon">💡</div>
+        <div class="info-text"><strong>Chiến lược NAC cho nhà đầu tư Việt:</strong> Silver MM2H ($150K ký quỹ + RM 600K BĐS) là điểm khởi đầu tốt nhất — tổng ngân sách ~$280K–$350K. BĐS tại KL/Penang/Johor có tỷ suất cho thuê 4–6% và tiềm năng tăng giá. Sau 1 năm, rút 50% ký quỹ ($75K) cho chi phí BĐS/y tế/giáo dục. Kết hợp MM2H + UAE Golden Visa để có cả ASEAN lẫn Trung Đông.</div>
+      </div>
+
+      <div class="cta-strip" style="margin-top:8px">
+        <span class="cta-strip-label">Tìm hiểu thêm:</span>
+        <a data-tip="So Sánh" class="cta-btn cta-btn-outline" href="https://nomadassetcollective.com/so-sanh/" target="_blank">⚖️ <span class="cta-text">So Sánh Với Thái Lan LTR</span></a>
+        <a class="cta-btn cta-btn-primary" data-tip="Tư Vấn" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">📅 <span class="cta-text">Tư Vấn Ngay</span></a>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 03 PROCESS -->
+    <section class="section" id="process">
+      <div class="sec-label">03 — Quy Trình</div>
+      <h2 class="sec-title">Quy Trình &amp; Thời Gian</h2>
+      <p class="sec-sub">Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất 3–6 tháng, sau đó có thêm 12 tháng để hoàn tất mua BĐS bắt buộc.</p>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-week">Tháng 1</div>
+          <div class="tl-title">Chọn bậc MM2H &amp; đại lý có giấy phép</div>
+          <div class="tl-body">Đánh giá ngân sách, mục tiêu cư trú và chọn bậc phù hợp (Silver/Gold/Platinum/SEZ). Chọn đại lý MM2H đã đăng ký với MOTAC theo Đạo luật Du lịch 1992 (Act 482). Phí đại lý: RM 40,000 (Silver/SEZ) đến RM 70,000 (Platinum). Chuẩn bị hộ chiếu (còn hạn ≥18 tháng), lý lịch tư pháp, sao kê ngân hàng.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Tháng 1–2</div>
+          <div class="tl-title">Chuẩn bị &amp; nộp hồ sơ</div>
+          <div class="tl-body">Đại lý MM2H chuẩn bị bộ hồ sơ hoàn chỉnh: chứng minh tài chính (sao kê 3–6 tháng, xác nhận tài sản thanh khoản), hộ chiếu, lý lịch tư pháp từ nước gốc (dịch và công chứng), ảnh hộ chiếu, giấy chứng nhận kết hôn/sinh (nếu có người phụ thuộc). Nộp hồ sơ trực tuyến qua cổng MOTAC.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">Tháng 2–5</div>
+          <div class="tl-title">MOTAC xét duyệt &amp; phê duyệt có điều kiện</div>
+          <div class="tl-body">MOTAC và Cục Xuất nhập cảnh Malaysia đánh giá hồ sơ — thời gian xử lý: 60–120 ngày. Nếu được phê duyệt có điều kiện, nhà đầu tư nhận thư phê duyệt kèm hướng dẫn: đến Malaysia, mở tài khoản ngân hàng, gửi ký quỹ, khám sức khỏe, mua bảo hiểm y tế (tối thiểu RM 80,000 bảo hiểm).</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-week">✓ Tháng 5–6</div>
+          <div class="tl-title">Nhận visa MM2H &amp; bắt đầu mua BĐS</div>
+          <div class="tl-body">Hoàn tất ký quỹ tại ngân hàng Malaysia, khám sức khỏe, mua bảo hiểm → visa MM2H được đóng dấu vào hộ chiếu. Có 12 tháng để ký SPA mua BĐS bắt buộc (riêng SEZ: 3–6 tháng). BĐS phải đạt ngưỡng tối thiểu của bậc MM2H VÀ ngưỡng tối thiểu của bang cho người nước ngoài (lấy mức cao hơn). Trả phí tham gia: RM 1,000 (Silver/SEZ) / RM 3,000 (Gold) / RM 200,000 (Platinum).</div>
+        </div>
+      </div>
+
+      <div class="info-box gold-box">
+        <div class="info-icon">⚡</div>
+        <div class="info-text"><strong>Lưu ý quan trọng:</strong> MM2H yêu cầu cư trú 90 ngày/năm cho người dưới 50 tuổi. Trên 50 tuổi (và một số bậc): không yêu cầu cư trú tối thiểu. Đây là điểm khác biệt lớn so với Thái Lan LTR (cũng yêu cầu cư trú) nhưng linh hoạt hơn UK (180 ngày). Nếu ưu tiên linh hoạt tối đa, cân nhắc UAE Golden Visa (không yêu cầu cư trú).</div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- === PAYWALL BEGINS === -->
+    <div class="nac-paywall-wrap" id="nac-paywall">
+      <div class="nac-paywall-overlay active" id="pwOverlay">
+        <div class="nac-paywall-card" id="pwCard">
+          <h3>Đọc trọn bộ Brochure Malaysia MM2H?</h3>
+          <p>Mở khóa 6 phần tiếp theo: Gia đình, Thuế, Lộ trình quốc tịch, So sánh, Ưu/nhược điểm và Nhận định chiến lược của NAC.</p>
+          <input type="email" class="pw-email" id="pwEmail" placeholder="Email của bạn">
+          <div class="pw-btns">
+            <button class="pw-btn pw-btn-yes" id="pwYes">Có</button>
+            <button class="pw-btn pw-btn-no" id="pwNo">Để sau</button>
+          </div>
+          <div class="pw-status" id="pwStatus"></div>
+        </div>
+      </div>
+      <div class="nac-paywall-zone locked" id="pwZone">
+
+    <!-- 04 FAMILY -->
+    <section class="section" id="family">
+      <div class="sec-label">04 — Gia Đình</div>
+      <h2 class="sec-title">Gia Đình &amp; Đối Tượng Thụ Hưởng</h2>
+      <p class="sec-sub">MM2H có phạm vi người phụ thuộc rộng nhất trong khu vực — bao gồm vợ/chồng, con chưa kết hôn đến 34 tuổi, con tàn tật (không giới hạn tuổi), và bố mẹ/bố mẹ vợ/chồng (Platinum). Không phí thêm cho người phụ thuộc.</p>
+
+      <div class="family-grid">
+        <div class="fam-card">
+          <div class="fam-icon">💑</div>
+          <div>
+            <div class="fam-title">Vợ/Chồng Hợp Pháp</div>
+            <div class="fam-note">Đi kèm visa MM2H. Quyền cư trú đồng thời. Không giới hạn giới tính. Silver/Gold: không được phép làm việc. Platinum: quyền kinh doanh.</div>
+          </div>
+        </div>
+        <div class="fam-card">
+          <div class="fam-icon">👦</div>
+          <div>
+            <div class="fam-title">Con Dưới 34 Tuổi</div>
+            <div class="fam-note">Con chưa kết hôn, chưa đi làm tại Malaysia, đến 34 tuổi. Con tàn tật: không giới hạn tuổi. Được hưởng giáo dục quốc tế tại Malaysia.</div>
+          </div>
+        </div>
+        <div class="fam-card">
+          <div class="fam-icon">👴</div>
+          <div>
+            <div class="fam-title">Bố Mẹ / Bố Mẹ Vợ/Chồng</div>
+            <div class="fam-note">Platinum: có thể bảo lãnh bố mẹ hai bên. Gold/Silver: cần xác nhận với đại lý. Đây là lợi thế hiếm có — hầu hết chương trình châu Âu không hỗ trợ.</div>
+          </div>
+        </div>
+        <div class="fam-card">
+          <div class="fam-icon">🎓</div>
+          <div>
+            <div class="fam-title">Giáo Dục Con Cái</div>
+            <div class="fam-note">Trường quốc tế tại KL, Penang, Johor: $5K–$25K/năm (chương trình British, IB, American). Rẻ hơn đáng kể so với Singapore/HK. Đại học top Malaysia: UM, UKM — học phí cực thấp cho cư dân.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-box teal-box">
+        <div class="info-icon">✅</div>
+        <div class="info-text"><strong>So sánh với Hy Lạp/Bồ Đào Nha:</strong> MM2H bảo lãnh con đến 34 tuổi (Hy Lạp: 21, Bồ Đào Nha: 26 nếu phụ thuộc tài chính). Bố mẹ hai bên cũng có thể đi kèm (Platinum). Đây là phạm vi gia đình rộng nhất trong tất cả chương trình NAC đánh giá — lý tưởng cho gia đình đa thế hệ Việt Nam.</div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 05 TAX -->
+    <section class="section" id="tax">
+      <div class="sec-label">05 — Thuế &amp; Tài Chính</div>
+      <h2 class="sec-title">Thuế &amp; Tài Chính</h2>
+      <p class="sec-sub">Malaysia áp dụng hệ thống thuế lãnh thổ — chỉ đánh thuế thu nhập phát sinh tại Malaysia. Thu nhập từ nước ngoài chuyển vào Malaysia được miễn thuế đến hết 31/12/2026. Không có thuế thừa kế, thuế tài sản ròng hoặc thuế quà tặng.</p>
+
+      <div class="tax-table-wrap">
+        <table class="tax-table">
+          <thead>
+            <tr><th>Loại thuế</th><th>Mức thuế MY 2026</th><th>Điều kiện</th><th>So với VN</th></tr>
+          </thead>
+          <tbody>
+            <tr class="highlight"><td>Thuế thu nhập cá nhân</td><td><strong>0–26%</strong></td><td>0% (đến RM 5K) · Lũy tiến đến 26% (trên RM 2M)</td><td>VN: 5–35%</td></tr>
+            <tr><td>Thu nhập nước ngoài</td><td><strong>0% (miễn thuế)</strong></td><td>Miễn đến 31/12/2026 — có thể gia hạn</td><td>VN: đánh thuế toàn cầu</td></tr>
+            <tr><td>Thuế lãi vốn (BĐS)</td><td><strong>0–30%</strong></td><td>30% (≤5 năm) · 10% (>5 năm) cho NR</td><td>VN: 2% trên giá bán</td></tr>
+            <tr><td>Thuế thừa kế</td><td><strong>0%</strong></td><td>Không có thuế thừa kế tại Malaysia</td><td>VN: Không có</td></tr>
+            <tr><td>Thuế doanh nghiệp</td><td><strong>24%</strong></td><td>SME: 15% (≤RM 150K) · 17% (RM 150K–600K)</td><td>VN: 20%</td></tr>
+            <tr><td>SST (Sales & Services Tax)</td><td><strong>6–8%</strong></td><td>Thay thế GST từ 2018 · 8% dịch vụ · 6% hàng hóa</td><td>VN: 10% VAT</td></tr>
+            <tr><td>Stamp Duty — BĐS (MY)</td><td><strong>1–4%</strong></td><td>1% (≤RM 100K) · 2% (RM 100–500K) · 3% (RM 500K–1M) · 4% (>RM 1M)</td><td>VN: 0.5% phí trước bạ</td></tr>
+            <tr><td>Stamp Duty — NR (2026)</td><td><strong>8%</strong></td><td>Tăng từ 4% lên 8% cho người nước ngoài từ 1/1/2026</td><td>VN: Không áp dụng</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tax-table-mobile-msg">📊 Xem thông tin hoàn chỉnh trên desktop / web view</div>
+
+      <div class="info-box green-box">
+        <div class="info-icon">💰</div>
+        <div class="info-text"><strong>Lợi thế thuế lớn nhất:</strong> Malaysia miễn thuế thu nhập nước ngoài cho cư dân đến hết 2026 (có khả năng gia hạn đến 2036 theo đề xuất). Đối với nhà đầu tư Việt có thu nhập từ kinh doanh/cổ tức/cho thuê tại VN hoặc nước thứ ba, đây là lợi thế cực lớn. Kết hợp MM2H Malaysia (0% thuế ngoại) + UAE (0% thuế tổng) = bộ đôi tối ưu thuế hoàn hảo.</div>
+      </div>
+
+      <div class="chart-box">
+        <div class="chart-title">So sánh thuế thu nhập cá nhân tối đa — Malaysia vs các quốc gia cạnh tranh (%)</div>
+        <canvas id="taxChart" style="max-height:260px"></canvas>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 06 CITIZENSHIP PATH -->
+    <section class="section" id="citizenship">
+      <div class="sec-label">06 — Lộ Trình</div>
+      <h2 class="sec-title">Lộ Trình Quốc Tịch</h2>
+      <p class="sec-sub">MM2H KHÔNG cung cấp lộ trình trực tiếp đến quốc tịch hoặc thường trú nhân (PR) Malaysia. Đây là chương trình cư trú dài hạn có thể gia hạn vô thời hạn, nhưng không phải con đường nhập tịch. PR Malaysia phải nộp hồ sơ riêng biệt, và quá trình cực kỳ chọn lọc.</p>
+
+      <div class="road">
+        <div class="road-step">
+          <div class="road-year">Năm 0</div>
+          <div class="road-dot">1</div>
+          <div class="road-label">Nhận visa MM2H (5–20 năm tùy bậc)</div>
+        </div>
+        <div class="road-step">
+          <div class="road-year">Mỗi 5 năm</div>
+          <div class="road-dot">2</div>
+          <div class="road-label">Gia hạn visa — không giới hạn số lần</div>
+        </div>
+        <div class="road-step">
+          <div class="road-year">Không xác định</div>
+          <div class="road-dot">?</div>
+          <div class="road-label">PR — hồ sơ riêng, cực kỳ chọn lọc</div>
+        </div>
+        <div class="road-step">
+          <div class="road-year">Khó</div>
+          <div class="road-dot">★</div>
+          <div class="road-label">Quốc tịch — rất hiếm cho NĐT nước ngoài</div>
+        </div>
+      </div>
+
+      <div class="info-box amber-box">
+        <div class="info-icon">⚠️</div>
+        <div class="info-text"><strong>So sánh lộ trình:</strong> UK Innovator: quốc tịch sau 4 năm. Bồ Đào Nha GV: quốc tịch EU sau 5 năm. Thổ Nhĩ Kỳ CBI: quốc tịch ngay lập tức. Malaysia MM2H: KHÔNG có lộ trình quốc tịch. Nếu quốc tịch thứ hai là mục tiêu, MM2H không phải lựa chọn đúng — nhưng nếu mục tiêu là cư trú dài hạn, BĐS đầu tư, chi phí sống thấp và miễn thuế ngoại, MM2H xuất sắc.</div>
+      </div>
+
+      <div class="cta-strip">
+        <span class="cta-strip-label">Bước tiếp theo:</span>
+        <a class="cta-btn cta-btn-primary" data-tip="Đặt Lịch" href="https://calendly.com/ray-vtt/30min" target="_blank">📅 <span class="cta-text">Đặt 30" Tư Vấn</span></a>
+        <a data-tip="So Sánh" class="cta-btn cta-btn-outline" href="https://nomadassetcollective.com/so-sanh/" target="_blank">⚖️ <span class="cta-text">So Sánh Chiến Lược</span></a>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 07 COMPARE -->
+    <section class="section" id="compare">
+      <div class="sec-label">07 — So Sánh</div>
+      <h2 class="sec-title">So Sánh Chương Trình</h2>
+      <p class="sec-sub">Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" style="color:var(--country);font-weight:600;">NAC Residence Index →</a></p>
+
+      <div class="chart-box" style="margin-bottom:20px">
+        <div class="chart-title">Điểm tổng hợp NAC — Top chương trình (2026)</div>
+        <canvas id="compareChart" style="max-height:260px"></canvas>
+      </div>
+
+      <table class="comp-table">
+        <thead>
+          <tr><th>Chương trình</th><th>Đầu tư tối thiểu</th><th>Loại</th><th>Di chuyển</th><th>Thời gian</th><th>Điểm NAC</th></tr>
+        </thead>
+        <tbody>
+          <tr class="highlight">
+            <td><span class="comp-flag">🇲🇾</span> Malaysia MM2H</td><td>$150K + RM 600K</td><td><span class="tag tag-blue">Cư Trú</span></td><td>183 visa-free</td><td>3–6 tháng</td>
+            <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill" style="width:73%"></div></div><span class="comp-score-num">73</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="comp-flag">🇵🇹</span> Bồ Đào Nha GV</td><td>€250K (quỹ)</td><td><span class="tag tag-blue">Cư Trú</span></td><td>Schengen 26</td><td>12–18 tháng</td>
+            <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill top" style="width:88%"></div></div><span class="comp-score-num">88</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="comp-flag">🇦🇪</span> UAE Golden Visa</td><td>AED 2M (~$545K)</td><td><span class="tag tag-blue">Cư Trú</span></td><td>190 visa-free</td><td>1–3 tháng</td>
+            <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:79%"></div></div><span class="comp-score-num">79</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="comp-flag">🇬🇷</span> Hy Lạp GV</td><td>€250K–€800K</td><td><span class="tag tag-blue">Cư Trú</span></td><td>Schengen 26</td><td>6–12 tháng</td>
+            <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:78%"></div></div><span class="comp-score-num">78</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="comp-flag">🇹🇷</span> Thổ Nhĩ Kỳ CBI</td><td>$400K (BĐS)</td><td><span class="tag tag-green">Quốc Tịch</span></td><td>110+ visa-free</td><td>3–6 tháng</td>
+            <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:74%"></div></div><span class="comp-score-num">74</span></div></td>
+          </tr>
+          <tr>
+            <td><span class="comp-flag">🇬🇧</span> UK Innovator</td><td>£50K+ (vốn KD)</td><td><span class="tag tag-blue">Cư Trú</span></td><td>182 visa-free</td><td>3–6 tháng</td>
+            <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:72%"></div></div><span class="comp-score-num">72</span></div></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="comp-table-mobile-msg">📊 Xem thông tin hoàn chỉnh trên desktop / web view</div>
+
+      <div class="article-cta" style="margin-top:16px">
+        <div class="article-cta-icon">⚖️</div>
+        <div class="article-cta-text">Chưa quyết định được? <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">Công cụ So Sánh NAC</a> giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline.</div>
+        <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh →</a>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 08 PROS CONS -->
+    <section class="section" id="proscons">
+      <div class="sec-label">08 — Ưu &amp; Nhược</div>
+      <h2 class="sec-title">Ưu &amp; Nhược Điểm</h2>
+      <p class="sec-sub">Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Malaysia MM2H trong năm 2026.</p>
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Ưu Điểm</h4>
+          <ul>
+            <li>Miễn thuế thu nhập nước ngoài — đến 2026 (có thể gia hạn)</li>
+            <li>Không có thuế thừa kế, thuế tài sản ròng, thuế quà tặng</li>
+            <li>Chi phí sinh hoạt cực thấp — 1/3 Singapore, 1/4 London</li>
+            <li>Y tế đẳng cấp quốc tế, giá cực rẻ (top 5 y tế du lịch thế giới)</li>
+            <li>Bảo lãnh gia đình rộng nhất: con đến 34 tuổi + bố mẹ</li>
+            <li>BĐS sở hữu hoàn toàn + tỷ suất cho thuê 4–6%</li>
+            <li>Hộ chiếu MY hạng 6 thế giới (183 visa-free)</li>
+            <li>Gần Việt Nam — bay 2.5 giờ từ HCMC</li>
+            <li>Visa gia hạn không giới hạn — cư trú vĩnh viễn trên thực tế</li>
+            <li>Trường quốc tế giá rẻ, chất lượng cao (IB, British curriculum)</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Nhược Điểm</h4>
+          <ul>
+            <li>KHÔNG có lộ trình quốc tịch/PR trực tiếp</li>
+            <li>Ký quỹ bị khóa — lãi suất thấp (3–4%)</li>
+            <li>BĐS bắt buộc + khóa 10 năm — thiếu thanh khoản</li>
+            <li>Silver/Gold: KHÔNG được phép làm việc hoặc kinh doanh</li>
+            <li>Stamp Duty cho NR tăng lên 8% từ 2026</li>
+            <li>Phải nộp qua đại lý — phí RM 40K–70K</li>
+            <li>Dưới 50 tuổi: phải cư trú 90 ngày/năm</li>
+            <li>Ngưỡng đầu tư tăng mạnh so với trước 2022</li>
+            <li>Hệ thống hành chính có thể chậm &amp; thay đổi thường xuyên</li>
+            <li>Hạn chế quyền sở hữu BĐS theo bang</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-box amber-box">
+        <div class="info-icon">⚠️</div>
+        <div class="info-text"><strong>Rủi ro BĐS Malaysia:</strong> Stamp Duty cho người nước ngoài tăng từ 4% lên 8% kể từ 1/1/2026 — tăng đáng kể chi phí đầu vào. Một số bang (Johor, Selangor, Penang, KL) có ngưỡng tối thiểu cao hơn ngưỡng MM2H. BĐS bị khóa 10 năm — bán sớm mất visa. Cần luật sư BĐS Malaysia ngay từ đầu.</div>
+      </div>
+    </section>
+
+    <hr class="divider">
+
+    <!-- 09 NAC ASSESSMENT -->
+    <section class="section" id="nac">
+      <div class="sec-label">09 — Nhận Định NAC</div>
+      <h2 class="sec-title">Nhận Định &amp; Khuyến Nghị</h2>
+      <p class="sec-sub">Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.</p>
+
+      <div class="chart-box">
+        <div class="chart-title">Phân tích điểm mạnh — Malaysia vs các chương trình cạnh tranh (2026)</div>
+        <canvas id="strengthChart" style="max-height:280px"></canvas>
+      </div>
+
+      <div class="info-box">
+        <div class="info-icon">🎯</div>
+        <div class="info-text"><strong>Malaysia MM2H phù hợp nhất với:</strong> Nhà đầu tư Việt muốn đa dạng hóa BĐS Đông Nam Á với ngân sách $250K–$500K, gia đình đa thế hệ (vợ/chồng + con lớn + bố mẹ), ưu tiên chi phí sinh hoạt thấp và y tế/giáo dục tốt, có thu nhập nước ngoài muốn tối ưu thuế, KHÔNG cần quốc tịch thứ hai mà cần "base thứ hai" an toàn gần Việt Nam.</div>
+      </div>
+
+      <div class="nac-box">
+        <h3>Sẵn sàng khám phá Malaysia?</h3>
+        <p>Đội ngũ NAC Consulting có kinh nghiệm tư vấn Malaysia MM2H cho nhà đầu tư HNWI Việt Nam, với mạng lưới đại lý MM2H có giấy phép, luật sư BĐS và ngân hàng tại KL, Penang và Johor. Chúng tôi hỗ trợ toàn bộ quy trình — từ chọn bậc, chuẩn bị hồ sơ đến mua BĐS. Đọc thêm tại <a href="https://blog.nomadassetcollective.com/" target="_blank" style="color:rgba(255,255,255,0.9);font-weight:700;">blog.nomadassetcollective.com</a></p>
+        <div class="nac-btns">
+          <a class="nac-btn" href="https://calendly.com/ray-vtt/30min" target="_blank">📅 Đặt 30"→</a>
+          <a class="nac-btn-wa" href="https://wa.me/447388646000" target="_blank">
+            <svg viewBox="0 0 24 24" style="width:15px;height:15px;fill:#fff;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          </a>
+          <a class="nac-btn" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;border:1.5px solid rgba(255,255,255,0.3);">📝</a>
+        </div>
+      </div>
+    </section>
+
+      </div><!-- /.nac-paywall-zone -->
+    </div><!-- /.nac-paywall-wrap -->
+
+  </div><!-- end .content -->
+</div><!-- end .main -->
+
+<footer class="footer">
+  <div class="footer-i">
+    <div class="footer-t">© 2026 NAC Consulting — Nomad Asset Collective. Thông tin trong tài liệu này chỉ mang tính tham khảo và có thể thay đổi theo chính sách của Chính phủ Malaysia. Vui lòng liên hệ đội ngũ tư vấn NAC để cập nhật thông tin mới nhất trước khi đưa ra quyết định đầu tư. Không phải tư vấn pháp lý hay tài chính.</div>
+    <div class="footer-b"><a href="https://nomadassetcollective.com" target="_blank">nomadassetcollective.com</a> · <a href="https://blog.nomadassetcollective.com/" target="_blank">Blog</a> · <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Index</a> · <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh</a></div>
+    <div class="footer-update">Cập nhật lần cuối: Q2/2026 · Dữ liệu: MOTAC · mm2h.gov.my · LHDN · Henley Passport Index 2026</div>
+  </div>
+</footer>
+
+<script>
+// ── FLOATING TOC (mobile) ──
+const floatBtn = document.getElementById('floatTocBtn');
+const floatPanel = document.getElementById('floatTocPanel');
+if (floatBtn && floatPanel) {
+  floatBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    floatPanel.classList.toggle('open');
+  });
+  document.addEventListener('click', (e) => {
+    if (!floatPanel.contains(e.target) && e.target !== floatBtn) {
+      floatPanel.classList.remove('open');
+    }
+  });
+}
+function closeFToc() {
+  if (floatPanel) floatPanel.classList.remove('open');
+}
+
+// ── HERO BG LOAD ──
+const heroBg = document.getElementById('heroBg');
+if (heroBg) {
+  const img = new Image();
+  img.onload = () => heroBg.classList.add('loaded');
+  img.src = 'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1600&q=85&fit=crop';
+}
+
+// ── CHARTS ──
+const gold = 'rgba(184,134,11,0.85)';
+const teal = 'rgba(15,110,110,0.85)';
+
+// Radar data
+const radarPrograms = {
+  malaysia: { label: 'Malaysia MM2H', data: [7.2, 7.0, 8.2, 5.0, 8.8, 3.0], color: '184,134,11' },
+  portugal: { label: 'Bồ Đào Nha GV', data: [8.8, 4.5, 8.5, 9.2, 7.5, 8.8], color: '123,45,62' },
+  turkey:   { label: 'Thổ Nhĩ Kỳ CBI', data: [7.8, 9.5, 6.8, 5.5, 8.0, 9.8], color: '139,26,26' },
+  uae:      { label: 'UAE GV', data: [7.2, 8.8, 8.2, 4.5, 9.7, 3.0], color: '138,105,20' },
+  greece:   { label: 'Hy Lạp GV', data: [7.0, 6.0, 7.5, 8.5, 6.5, 6.0], color: '29,79,138' },
+  thailand: { label: 'Thái Lan LTR', data: [6.5, 7.0, 8.5, 3.5, 9.0, 2.0], color: '100,50,120' },
+};
+let radarCompare1 = 'uae';
+let radarCompare2 = 'thailand';
+
+function makeRadarDataset(key, alpha, alpha2) {
+  const p = radarPrograms[key];
+  return {
+    label: p.label,
+    data: p.data,
+    backgroundColor: `rgba(${p.color},${alpha})`,
+    borderColor: `rgba(${p.color},${alpha2})`,
+    borderWidth: key === 'malaysia' ? 2.5 : 1.8,
+    borderDash: key === 'malaysia' ? [] : [5,3],
+    pointBackgroundColor: `rgba(${p.color},1)`,
+    pointRadius: key === 'malaysia' ? 5 : 4,
+    pointHoverRadius: 6,
+  };
+}
+
+const radarChart = new Chart(document.getElementById('radarChart'), {
+  type: 'radar',
+  data: {
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    datasets: [
+      makeRadarDataset('malaysia', 0.18, 1),
+      makeRadarDataset(radarCompare1, 0.10, 0.75),
+      makeRadarDataset(radarCompare2, 0.10, 0.75),
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      r: {
+        min: 0, max: 10,
+        ticks: { stepSize: 2, font: { size: 10 }, backdropColor: 'transparent' },
+        pointLabels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" }, color: '#374151' },
+        grid: { color: 'rgba(0,0,0,0.08)' },
+        angleLines: { color: 'rgba(0,0,0,0.08)' },
+      }
+    },
+    plugins: {
+      legend: { display: true, position: 'bottom', labels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" }, boxWidth: 14, padding: 14 } }
+    }
+  }
+});
+
+function updateRadar() {
+  radarChart.data.datasets = [
+    makeRadarDataset('malaysia', 0.18, 1),
+    makeRadarDataset(radarCompare1, 0.10, 0.75),
+    makeRadarDataset(radarCompare2, 0.10, 0.75),
+  ];
+  radarChart.update();
+  document.querySelectorAll('.radar-btn').forEach(btn => {
+    const slot = btn.dataset.slot;
+    const key  = btn.dataset.key;
+    const active = (slot === '1' && key === radarCompare1) || (slot === '2' && key === radarCompare2);
+    btn.classList.toggle('radar-btn-active', active);
+  });
+}
+
+(function buildRadarToggles() {
+  const box = document.getElementById('radarChart').closest('.chart-box');
+  const opts = Object.entries(radarPrograms).filter(([k]) => k !== 'malaysia');
+  const wrap = document.createElement('div');
+  wrap.style.cssText = 'margin-top:14px;display:flex;flex-direction:column;gap:8px;';
+  [1, 2].forEach(slot => {
+    const row = document.createElement('div');
+    row.style.cssText = 'display:flex;align-items:center;gap:6px;flex-wrap:wrap;';
+    const lbl = document.createElement('span');
+    lbl.style.cssText = 'font-size:11px;font-weight:700;color:#6b7280;letter-spacing:.5px;text-transform:uppercase;min-width:72px;';
+    lbl.textContent = 'So sánh ' + slot + ':';
+    row.appendChild(lbl);
+    opts.forEach(([key, prog]) => {
+      const btn = document.createElement('button');
+      btn.className = 'radar-btn';
+      btn.dataset.slot = String(slot);
+      btn.dataset.key  = key;
+      btn.textContent  = prog.label;
+      const isActive = (slot === 1 && key === radarCompare1) || (slot === 2 && key === radarCompare2);
+      if (isActive) btn.classList.add('radar-btn-active');
+      btn.addEventListener('click', () => {
+        if (slot === 1) radarCompare1 = key;
+        else            radarCompare2 = key;
+        updateRadar();
+      });
+      row.appendChild(btn);
+    });
+    wrap.appendChild(row);
+  });
+  box.appendChild(wrap);
+})();
+
+// Timeline chart
+new Chart(document.getElementById('timelineChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Thổ Nhĩ Kỳ CBI', 'UAE GV', 'Malaysia MM2H', 'UK Innovator', 'Hy Lạp GV', 'Bồ Đào Nha GV'],
+    datasets: [{
+      label: 'Tháng đến cư trú/quốc tịch',
+      data: [4.5, 2, 4.5, 4.5, 9, 15],
+      backgroundColor: ['rgba(139,26,26,0.7)', 'rgba(138,105,20,0.7)', gold, 'rgba(1,101,187,0.7)', 'rgba(29,79,138,0.7)', 'rgba(100,50,100,0.7)'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } }
+  }
+});
+
+// Tax chart
+new Chart(document.getElementById('taxChart'), {
+  type: 'bar',
+  data: {
+    labels: ['UAE', 'Malaysia (ngoại)', 'Singapore', 'Hồng Kông', 'Malaysia (nội)', 'Việt Nam', 'UK'],
+    datasets: [{
+      label: 'Thuế thu nhập cá nhân tối đa (%)',
+      data: [0, 0, 22, 17, 26, 35, 45],
+      backgroundColor: ['rgba(138,105,20,0.6)', gold, 'rgba(29,79,138,0.5)', 'rgba(29,79,138,0.4)', 'rgba(184,134,11,0.5)', 'rgba(200,60,60,0.6)', 'rgba(1,101,187,0.6)'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, max: 55, ticks: { callback: v => v + '%', font: { size: 11 } } }, x: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } }
+  }
+});
+
+// Compare chart
+new Chart(document.getElementById('compareChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Bồ Đào Nha GV', 'UAE GV', 'Hy Lạp GV', 'Thổ Nhĩ Kỳ CBI', 'Malaysia MM2H', 'UK Innovator'],
+    datasets: [{
+      label: 'Điểm NAC /100',
+      data: [88, 79, 78, 74, 73, 72],
+      backgroundColor: ['rgba(26,122,74,0.8)', 'rgba(138,105,20,0.6)', 'rgba(29,79,138,0.55)', 'rgba(139,26,26,0.55)', gold, 'rgba(1,101,187,0.55)'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true,
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true, max: 100, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } }
+  }
+});
+
+// Strength chart (grouped bar)
+new Chart(document.getElementById('strengthChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Tốc độ', 'Thuế', 'Chất lượng sống', 'Đầu tư', 'Di chuyển', 'Lộ trình QT'],
+    datasets: [
+      { label: 'Malaysia MM2H', data: [7.0, 8.8, 8.2, 7.2, 5.0, 3.0], backgroundColor: gold, borderRadius: 4 },
+      { label: 'UAE GV', data: [8.8, 9.7, 8.2, 7.2, 4.5, 3.0], backgroundColor: 'rgba(138,105,20,0.5)', borderRadius: 4 },
+      { label: 'Thái Lan LTR', data: [7.0, 9.0, 8.5, 6.5, 3.5, 2.0], backgroundColor: teal, borderRadius: 4 },
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: { legend: { position: 'top', labels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } },
+    scales: {
+      y: { beginAtZero: true, max: 10, ticks: { font: { size: 10 } } },
+      x: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } }
+    }
+  }
+});
+
+// ── LANGUAGE TOGGLE ──
+let currentLang = 'vi';
+
+const heroStats = {
+  vi: { nums: ['$150K+', '3–6 tháng', '5–20 năm', '#6'], lbls: ['Ký quỹ tối thiểu', 'Cấp visa', 'Visa gia hạn', 'Hộ chiếu thế giới'] },
+  en: { nums: ['$150K+', '3–6 months', '5–20 years', '#6'], lbls: ['Min. deposit', 'Visa issued', 'Renewable visa', 'Passport rank'] }
+};
+
+const heroText = {
+  vi: {
+    title: 'My Second Home<br><em>Malaysia</em>',
+    desc: 'Chương trình cư trú dài hạn hàng đầu Đông Nam Á — hệ thống 4 bậc (Silver/Gold/Platinum/SEZ) với visa 5–20 năm, hộ chiếu Malaysia xếp hạng 6 thế giới (183 quốc gia visa-free), chi phí sinh hoạt cực thấp, y tế đẳng cấp quốc tế và miễn thuế thu nhập nước ngoài. MM2H là lựa chọn chiến lược cho nhà đầu tư Việt muốn đa dạng hóa tài sản BĐS Đông Nam Á.'
+  },
+  en: {
+    title: 'My Second Home<br><em>Malaysia</em>',
+    desc: "Southeast Asia's premier long-term residency program — 4-tier system (Silver/Gold/Platinum/SEZ) with 5–20 year visas, Malaysian passport ranked 6th globally (183 visa-free destinations), ultra-low cost of living, world-class healthcare and foreign income tax exemption. MM2H is the strategic choice for Vietnamese investors seeking ASEAN property diversification."
+  }
+};
+
+const VI_STRINGS = [
+  'Cư Trú Dài Hạn · RBI · MM2H','Ký quỹ tối thiểu','Cấp visa','Visa gia hạn','Hộ chiếu thế giới',
+  'Thang Điểm NAC (INDEX)','Tốt – BĐS &amp; Chi Phí Sống Hấp Dẫn','Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch',
+  'Mục Lục','Tổng quan chương trình','Các mức đầu tư','Quy trình & thời gian','Gia đình & thụ hưởng','Thuế & tài chính','Lộ trình quốc tịch','So sánh chương trình','Ưu & nhược điểm','Nhận định của NAC',
+  'So Sánh Chương Trình','NAC Index','WhatsApp','Tư Vấn Miễn Phí',
+  '01 — Tổng Quan','02 — Đầu Tư','03 — Quy Trình','04 — Gia Đình','05 — Thuế & Tài Chính','06 — Lộ Trình','07 — So Sánh','08 — Ưu & Nhược','09 — Nhận Định NAC',
+  'Chương Trình Tổng Quan','Các Mức Đầu Tư','Quy Trình & Thời Gian','Gia Đình & Đối Tượng Thụ Hưởng','Thuế & Tài Chính','Lộ Trình Quốc Tịch','So Sánh Chương Trình','Ưu & Nhược Điểm','Nhận Định & Khuyến Nghị',
+  '01 · Tổng quan chương trình','02 · Các mức đầu tư','03 · Quy trình & thời gian','04 · Gia đình & thụ hưởng','05 · Thuế & tài chính','06 · Lộ trình quốc tịch','07 · So sánh chương trình','08 · Ưu & nhược điểm','09 · Nhận định của NAC',
+  'Trang Chủ','Chương Trình Quyền Cư Trú','Malaysia',
+  'Loại chương trình','Cư Trú Dài Hạn','My Second Home (MM2H / RBI)','Tái cấu trúc','Tháng 7/2024','4 bậc mới — MOTAC quản lý','Vị trí địa chính trị','ASEAN · Đông Nam Á','Trung tâm kinh tế ĐNA','Cư trú bắt buộc','90 ngày/năm (dưới 50 tuổi)','Trên 50 tuổi: không yêu cầu','Thời hạn visa','5–20 năm (gia hạn)','Silver 5 · Gold 15 · Platinum 20','Gia đình','Vợ/chồng + con đến 34 + bố mẹ','Phạm vi rộng nhất khu vực','Thời gian xử lý','3–6 tháng','Qua đại lý MM2H có giấy phép','Thuế thu nhập tối đa','26% (nội địa)','Thu nhập nước ngoài: miễn thuế đến 2026','Tiếp cận','183 quốc gia visa-free','Hộ chiếu MY hạng 6 Henley 2026',
+  'Phổ Biến Nhất','Cân Bằng','Cao Cấp','SEZ Forest City',
+  'Đọc Ngay →','So Sánh →',
+  'Tư Vấn Ngay','So Sánh Với Thái Lan LTR',
+  'Đặt 30" Tư Vấn','So Sánh Chiến Lược',
+  '✓ Ưu Điểm','✗ Nhược Điểm',
+  'Sẵn sàng khám phá Malaysia?',
+  'Tư Vấn Nhanh',
+  'Chương Trình Quyền Cư Trú',
+  'Cập nhật lần cuối: Q2/2026 · Dữ liệu: MOTAC · mm2h.gov.my · LHDN · Henley Passport Index 2026'
+];
+
+const EN_STRINGS = [
+  'Long-Term Residency · RBI · MM2H','Min. deposit','Visa issued','Renewable visa','Passport rank',
+  'NAC Score (INDEX)','Good – Property &amp; Cost of Living','Investment','Speed','Quality of Life','Passport','Tax','Citizenship',
+  'Contents','Program Overview','Investment Routes','Process & Timeline','Family & Dependants','Tax & Finance','Path to Citizenship','Program Comparison','Pros & Cons','NAC Assessment',
+  'Compare Programs','NAC Index','WhatsApp','Free Consultation',
+  '01 — Overview','02 — Investment','03 — Process','04 — Family','05 — Tax & Finance','06 — Citizenship','07 — Comparison','08 — Pros & Cons','09 — NAC Assessment',
+  'Program Overview','Investment Routes','Process & Timeline','Family & Dependants','Tax & Finance','Path to Citizenship','Program Comparison','Pros & Cons','Assessment & Recommendations',
+  '01 · Program Overview','02 · Investment Routes','03 · Process & Timeline','04 · Family & Dependants','05 · Tax & Finance','06 · Path to Citizenship','07 · Program Comparison','08 · Pros & Cons','09 · NAC Assessment',
+  'Home','Residency Programs','Malaysia',
+  'Program Type','Long-Term Residency','My Second Home (MM2H / RBI)','Restructured','July 2024','4 new tiers — MOTAC managed','Geopolitical Position','ASEAN · Southeast Asia','Regional economic hub','Residency Required','90 days/year (under 50)','Over 50: no minimum','Visa Duration','5–20 years (renewable)','Silver 5 · Gold 15 · Platinum 20','Family','Spouse + children up to 34 + parents','Broadest family scope in region','Processing Time','3–6 months','Via licensed MM2H agent','Max. Income Tax','26% (domestic)','Foreign income: tax-exempt until 2026','Mobility','183 visa-free destinations','MY passport rank 6 Henley 2026',
+  'Most Popular','Balanced','Premium','SEZ Forest City',
+  'Read Now →','Compare →',
+  'Consult Now','Compare with Thailand LTR',
+  'Book 30" Consultation','Compare Strategy',
+  '✓ Pros','✗ Cons',
+  'Ready to explore Malaysia?',
+  'Quick Consult',
+  'Residency Programs',
+  'Last updated: Q2/2026 · Data: MOTAC · mm2h.gov.my · LHDN · Henley Passport Index 2026'
+];
+
+function setLang(lang) {
+  currentLang = lang;
+  document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
+  document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
+  document.documentElement.lang = lang;
+
+  const h1 = document.querySelector('.hero h1');
+  if (h1) h1.innerHTML = heroText[lang].title;
+  const desc = document.querySelector('.hero-desc');
+  if (desc) desc.textContent = heroText[lang].desc;
+
+  const s = heroStats[lang];
+  document.querySelectorAll('.stat-num').forEach((el,i) => { if(s.nums[i]) el.textContent = s.nums[i]; });
+  document.querySelectorAll('.stat-lbl').forEach((el,i) => { if(s.lbls[i]) el.textContent = s.lbls[i]; });
+
+  const sbarLbls = document.querySelectorAll('.sbar-lbl');
+  const sbarEn = ['Investment','Speed','Quality of Life','Passport','Tax','Citizenship'];
+  const sbarVi = ['Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch'];
+  sbarLbls.forEach((el,i) => { el.textContent = lang === 'en' ? sbarEn[i] : sbarVi[i]; });
+
+  const src = lang === 'en' ? VI_STRINGS : EN_STRINGS;
+  const dst = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const selectors = [
+    '.sec-sub','.sec-label','.sec-title',
+    '.ov-label','.ov-value','.ov-note',
+    '.tl-week','.tl-title','.tl-body',
+    '.tier-name','.tier-region','.ttag','.tier-badge',
+    '.fam-title','.fam-note',
+    '.info-text','.factcheck-box > div',
+    '.chart-title','.toc-link','.toc-title',
+    '.hero-badge','.article-cta-text','.article-cta-btn',
+    '.road-label','.road-year',
+    'th','td',
+    '.pros h4','.cons h4','.pros li','.cons li',
+    '.nac-box h3','.nac-box p',
+    '.score-label','.score-title',
+    '.footer-t','.footer-update',
+    '.float-toc-panel a','.float-toc-panel-header',
+    '.breadcrumb','.toc-cta-mini a','.cta-strip-label',
+    '.nac-btn','.comp-table-mobile-msg',
+  ];
+  document.querySelectorAll(selectors.join(',')).forEach(el => {
+    let content = el.innerHTML;
+    let changed = false;
+    src.forEach((str, i) => {
+      if (content.includes(str)) {
+        content = content.split(str).join(dst[i]);
+        changed = true;
+      }
+    });
+    if (changed) el.innerHTML = content;
+  });
+}
+</script>
+
+<!-- ── PAYWALL JS ── -->
+<script>
+(function() {
+  var PROGRAM        = 'RBI · Malaysia';
+  var PROGRAM_VI     = 'Malaysia MM2H';
+  var SOURCE_FILE    = 'malaysia-mm2h.html';
+  var WORKER_URL     = 'https://nac-notion-proxy.ray-vtt.workers.dev/';
+  var NOTION_DB      = '2fe48ec25e8680efa3a3fb8113cf6657';
+  var COL_WANTS_FULL = 'Lấy Brochure Hoàn Chỉnh ?';
+
+  var overlay = document.getElementById('pwOverlay');
+  var zone    = document.getElementById('pwZone');
+  var card    = document.getElementById('pwCard');
+  var btnYes  = document.getElementById('pwYes');
+  var btnNo   = document.getElementById('pwNo');
+  var emailIn = document.getElementById('pwEmail');
+  var status  = document.getElementById('pwStatus');
+
+  var params  = new URLSearchParams(window.location.search);
+  var leadId  = params.get('lead');
+  var state   = 'ask'; // ask | email | done
+
+  function unlock() {
+    zone.classList.remove('locked');
+    overlay.classList.remove('active');
+    document.querySelectorAll('.toc-item.is-locked').forEach(function(li) {
+      li.classList.remove('is-locked');
+      var a = li.querySelector('.toc-link');
+      if (a) {
+        var slug = a.textContent.trim().match(/^\d+/);
+        var anchors = { '04':'#family','05':'#tax','06':'#citizenship','07':'#compare','08':'#proscons','09':'#nac' };
+        if (slug && anchors[slug[0]]) a.href = anchors[slug[0]];
+      }
+    });
+    document.querySelectorAll('.float-toc-panel a').forEach(function(a) {
+      var t = a.textContent.trim();
+      if (t.includes('🔒')) {
+        a.textContent = t.replace(' 🔒','');
+        var n = t.match(/^\d+/);
+        var anchors = { '04':'#family','05':'#tax','06':'#citizenship','07':'#compare','08':'#proscons','09':'#nac' };
+        if (n && anchors[n[0]]) a.href = anchors[n[0]];
+      }
+    });
+  }
+
+  btnNo.addEventListener('click', function() { unlock(); });
+
+  btnYes.addEventListener('click', function() {
+    if (state === 'ask') {
+      if (leadId) {
+        trackYes(leadId);
+      } else {
+        state = 'email';
+        emailIn.classList.add('show');
+        btnYes.textContent = 'Gửi';
+      }
+    } else if (state === 'email') {
+      var email = emailIn.value.trim();
+      if (!email || !email.includes('@')) { emailIn.style.borderColor = '#c81e1e'; return; }
+      coldCreate(email);
+    }
+  });
+
+  function trackYes(pid) {
+    status.style.display = 'block';
+    status.textContent = '⏳ Đang xử lý…';
+    fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        _meta: { action: 'update', page_id: pid },
+        properties: {}
+      })
+    }).then(function(r) { return r.json(); }).then(function(d) {
+      // patch multi-select
+      return fetch(WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          _meta: { action: 'update', page_id: pid },
+          properties: {
+            [COL_WANTS_FULL]: { multi_select: [{ name: PROGRAM }] }
+          }
+        })
+      });
+    }).then(function() {
+      status.textContent = '📨 Đã nhận yêu cầu của bạn';
+      state = 'done';
+      setTimeout(unlock, 1200);
+    }).catch(function() {
+      status.innerHTML = '⚠️ Lỗi kết nối — <a href="mailto:ray@nomadassetcollective.com?subject=Brochure+' + PROGRAM_VI + '">gửi email</a>';
+      setTimeout(unlock, 2000);
+    });
+  }
+
+  function coldCreate(email) {
+    status.style.display = 'block';
+    status.textContent = '⏳ Đang xử lý…';
+    var now = new Date().toISOString().split('T')[0];
+    fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        parent: { database_id: NOTION_DB },
+        properties: {
+          'Tên khách hàng': { title: [{ text: { content: email.split('@')[0] } }] },
+          'Email': { email: email },
+          'Nguồn lead': { select: { name: 'Lấy Brochures' } },
+          'Status': { select: { name: '🆕 Mới' } },
+          'Ngày liên hệ': { date: { start: now } },
+          'Chương trình quan tâm': { multi_select: [{ name: PROGRAM }] },
+          [COL_WANTS_FULL]: { multi_select: [{ name: PROGRAM }] },
+          'Ghi chú': { rich_text: [{ text: { content: 'Cold brochure unlock — ' + SOURCE_FILE } }] }
+        }
+      })
+    }).then(function(r) { return r.json(); }).then(function() {
+      status.textContent = '📨 Đã nhận yêu cầu của bạn';
+      state = 'done';
+      setTimeout(unlock, 1200);
+    }).catch(function() {
+      status.innerHTML = '⚠️ Lỗi kết nối — <a href="mailto:ray@nomadassetcollective.com?subject=Brochure+' + PROGRAM_VI + '&body=Email:+' + email + '">gửi email</a>';
+      setTimeout(unlock, 2000);
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
