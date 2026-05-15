@@ -67,15 +67,20 @@ def extract_photos():
     return photos
 
 
+def _strip_country_prefix(program, country):
+    """Trim the country name from the front of the program name if it duplicates."""
+    if program.startswith(country + ' '):
+        return program[len(country) + 1:]
+    return program
+
+
 def render_tile(alias, photos):
     d = IDENTITY[alias]
     flag = d['flag']
     country_vi = d['country_vi']
-    program_vi = d['program_vi']
-    # Remove the country prefix from program name if it duplicates country_vi
-    name = program_vi
-    if name.startswith(country_vi + ' '):
-        name = name[len(country_vi) + 1:]
+    country_en = d['country_en']
+    name_vi = _strip_country_prefix(d['program_vi'], country_vi)
+    name_en = _strip_country_prefix(d['program_en'], country_en)
     photo = photos.get(alias, d.get('cover', ''))
     preview_path = f"./Brochures%20html/{quote(d['source_filename'])}"
     live_url = f"{LIVE_BASE}/{d['wp_slug']}/"
@@ -83,12 +88,17 @@ def render_tile(alias, photos):
         f'      <div class="tile" data-alias="{alias}">\n'
         f'        <div class="tile-img" style="background-image:url(\'{html.escape(photo)}\')"></div>\n'
         f'        <div class="tile-info">\n'
-        f'          <span class="tile-country">{flag} {html.escape(country_vi)}</span>\n'
-        f'          <span class="tile-name">{html.escape(name)}</span>\n'
+        f'          <span class="tile-country">'
+        f'<span data-i18n data-vi="{html.escape(flag)} {html.escape(country_vi)}" data-en="{html.escape(flag)} {html.escape(country_en)}">'
+        f'{flag} {html.escape(country_vi)}'
+        f'</span></span>\n'
+        f'          <span class="tile-name" data-i18n data-vi="{html.escape(name_vi)}" data-en="{html.escape(name_en)}">{html.escape(name_vi)}</span>\n'
         f'        </div>\n'
         f'        <div class="tile-btns">\n'
-        f'          <a href="{preview_path}" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>\n'
-        f'          <a href="{html.escape(live_url)}" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>\n'
+        f'          <a href="{preview_path}" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">'
+        f'<span data-i18n data-vi="Preview ↗" data-en="Preview ↗">Preview ↗</span></a>\n'
+        f'          <a href="{html.escape(live_url)}" class="tile-btn tile-btn-live" target="_blank" rel="noopener">'
+        f'<span data-i18n data-vi="Live ↗" data-en="Live ↗">Live ↗</span></a>\n'
         f'        </div>\n'
         f'      </div>'
     )
@@ -133,6 +143,27 @@ def render_page():
   h1 {{ font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; font-style: italic; color: var(--display); margin-top: 1.5rem; letter-spacing: -.005em; }}
   .sub {{ font-family: var(--ff-mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: .5rem; }}
 
+  /* Language toggle pill */
+  .lang-toggle {{
+    display: inline-flex; align-items: center;
+    margin-top: 1.25rem;
+    padding: 3px;
+    background: rgba(15,26,54,.05);
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    font-family: var(--ff-mono);
+    font-size: .6rem; letter-spacing: .15em;
+  }}
+  .lang-btn {{
+    appearance: none; background: transparent; border: none; cursor: pointer;
+    padding: 5px 12px; border-radius: 999px;
+    color: var(--muted);
+    font-family: inherit; font-size: inherit; letter-spacing: inherit;
+    font-weight: 600;
+    transition: color .15s ease, background .15s ease;
+  }}
+  .lang-btn.is-active {{ background: var(--display); color: #fff; }}
+
   /* Instagram-style square tile grid */
   .grid {{ display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }}
   @media (max-width: 600px) {{ .grid {{ grid-template-columns: repeat(2, 1fr); }} }}
@@ -174,8 +205,12 @@ def render_page():
         <span class="nac">NAC</span>
         <span class="tag">PROGRAM BROCHURES</span>
       </div>
-      <h1>Brochure Preview Index</h1>
-      <p class="sub">Preview ↗ GitHub · Live ↗ Nomad Site</p>
+      <h1 data-i18n data-vi="Bộ Sưu Tập Brochure" data-en="Brochure Preview Index">Bộ Sưu Tập Brochure</h1>
+      <p class="sub" data-i18n data-vi="Preview ↗ GitHub · Live ↗ Nomad Site" data-en="Preview ↗ GitHub · Live ↗ Nomad Site">Preview ↗ GitHub · Live ↗ Nomad Site</p>
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button class="lang-btn is-active" data-lang="vi" type="button">VI</button>
+        <button class="lang-btn"           data-lang="en" type="button">EN</button>
+      </div>
     </header>
 
     <div class="grid">
@@ -183,10 +218,32 @@ def render_page():
     </div>
 
     <footer>
-      Built by <a href="https://nomadassetcollective.com" target="_blank">Nomad Asset Collective</a> ·
+      <span data-i18n data-vi="Xây dựng bởi" data-en="Built by">Built by</span>
+      <a href="https://nomadassetcollective.com" target="_blank">Nomad Asset Collective</a> ·
       <a href="https://github.com/rayvtt/NAC-Program-Brochures" target="_blank">repo</a>
     </footer>
   </div>
+  <script>
+  (function() {{
+    var KEY = 'nac-preview-lang';
+    var defaultLang = (localStorage.getItem(KEY) === 'en') ? 'en' : 'vi';
+    function apply(lang) {{
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(function(el) {{
+        var t = el.getAttribute('data-' + lang);
+        if (t != null) el.textContent = t;
+      }});
+      document.querySelectorAll('.lang-btn').forEach(function(btn) {{
+        btn.classList.toggle('is-active', btn.dataset.lang === lang);
+      }});
+      try {{ localStorage.setItem(KEY, lang); }} catch (e) {{}}
+    }}
+    document.querySelectorAll('.lang-btn').forEach(function(btn) {{
+      btn.addEventListener('click', function() {{ apply(btn.dataset.lang); }});
+    }});
+    apply(defaultLang);
+  }})();
+  </script>
 </body>
 </html>
 '''
