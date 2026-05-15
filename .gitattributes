@@ -1,0 +1,12 @@
+# Normalize text files to LF so tools that rewrite files (apply_listings.py,
+# install_listings.py, sync_brochures.py) produce clean diffs regardless of
+# the editor's line-ending preference.
+* text=auto eol=lf
+
+# Treat binary blobs as binary.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.pdf binary

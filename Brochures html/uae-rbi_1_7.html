@@ -731,6 +731,207 @@ body.nac-paywall-unlocked .nac-paywall-zone * { pointer-events: auto !important;
 body.nac-paywall-unlocked .nac-paywall-overlay { display: none !important; }
 body.nac-paywall-unlocked .toc-item.is-locked .toc-link::after { content: none !important; }
 body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); font-weight: 500; }
+/* ============================================================
+   LIVE LISTINGS — Spotlight section between #02 and #03
+   Reusable across all program brochures (PB template).
+   ============================================================ */
+.toc-item-spotlight { border-left-color: var(--country); background: linear-gradient(90deg, var(--country-lt) 0%, transparent 80%); }
+.toc-item-spotlight .toc-num { color: var(--country); font-size: 11px; }
+.toc-item-spotlight .toc-link { color: var(--text2); font-weight: 600; }
+.toc-item-spotlight:hover .toc-link, .toc-item-spotlight.active .toc-link { color: var(--country); }
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 20px;
+  margin-top: 4px;
+}
+.listing-card {
+  background: var(--bg);
+  border: 1px solid var(--bg3);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  position: relative;
+}
+.listing-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px -10px rgba(0,0,0,0.18);
+  border-color: var(--country);
+}
+.listing-card-link { display: block; text-decoration: none; color: inherit; }
+
+.listing-hero {
+  position: relative;
+  aspect-ratio: 16/10;
+  overflow: hidden;
+  background: var(--bg3);
+}
+.listing-hero img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform .5s ease;
+  display: block;
+}
+.listing-card:hover .listing-hero img { transform: scale(1.04); }
+
+.listing-badges {
+  position: absolute;
+  top: 14px; left: 14px;
+  display: flex; gap: 6px; flex-wrap: wrap;
+  z-index: 2;
+}
+.listing-badge {
+  font-size: 10px; font-weight: 700; letter-spacing: 0.3px;
+  padding: 5px 10px; border-radius: 6px;
+  background: rgba(255,255,255,0.95);
+  color: var(--text); white-space: nowrap;
+  -webkit-backdrop-filter: blur(8px);
+          backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.listing-badge-eligible { background: var(--country); color: #fff; }
+
+.listing-ref {
+  position: absolute;
+  top: 14px; right: 14px;
+  font-size: 10px; font-weight: 600;
+  padding: 4px 9px; border-radius: 4px;
+  background: rgba(0,0,0,0.55); color: #fff;
+  letter-spacing: 0.6px;
+  -webkit-backdrop-filter: blur(6px);
+          backdrop-filter: blur(6px);
+  z-index: 2;
+}
+
+.listing-body { padding: 22px 24px 24px; }
+.listing-tagline {
+  font-size: 12.5px; color: var(--country);
+  font-style: italic;
+  margin-bottom: 6px; line-height: 1.4;
+  letter-spacing: 0.1px;
+}
+.listing-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--text);
+  margin: 0 0 6px 0; line-height: 1.2;
+}
+.listing-location {
+  font-size: 13px; color: var(--text3);
+  margin-bottom: 18px;
+}
+.listing-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--bg3);
+  border-radius: 9px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+.listing-stat {
+  background: var(--bg2);
+  padding: 11px 6px;
+  text-align: center;
+}
+.listing-stat-val {
+  font-family: 'Playfair Display', serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--country); line-height: 1.1;
+}
+.listing-stat-lbl {
+  font-size: 9.5px; color: var(--text3);
+  letter-spacing: 0.6px; text-transform: uppercase;
+  margin-top: 5px;
+}
+.listing-desc {
+  font-size: 13px; color: var(--text2);
+  line-height: 1.6;
+  margin: 0 0 18px 0;
+}
+.listing-cta-row { display: flex; align-items: center; gap: 10px; }
+.listing-cta-primary {
+  flex: 1;
+  display: inline-block;
+  background: var(--country);
+  color: #fff;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.2px;
+  padding: 11px 14px;
+  border-radius: 7px;
+  text-align: center;
+  transition: background .15s;
+}
+.listing-card:hover .listing-cta-primary { background: var(--country2); }
+
+.listing-card-placeholder {
+  background: linear-gradient(135deg, var(--bg2) 0%, var(--bg3) 100%);
+  border: 1.5px dashed var(--text4);
+  display: flex; align-items: center; justify-content: center;
+  min-height: 360px;
+}
+.listing-card-placeholder:hover {
+  transform: none; box-shadow: none;
+  border-color: var(--country);
+}
+.listing-placeholder-content { text-align: center; padding: 30px; max-width: 280px; }
+.listing-placeholder-icon {
+  font-size: 30px; color: var(--text4);
+  font-weight: 300;
+  width: 56px; height: 56px;
+  margin: 0 auto 14px;
+  border: 1.5px dashed var(--text4);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  line-height: 1;
+}
+.listing-placeholder-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 700;
+  color: var(--text2);
+  margin-bottom: 8px;
+}
+.listing-placeholder-sub {
+  font-size: 12px; color: var(--text3);
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.listing-placeholder-link {
+  font-size: 12px; font-weight: 600;
+  color: var(--country);
+  text-decoration: none;
+}
+.listing-placeholder-link:hover { text-decoration: underline; }
+
+/* Footnote in place of a button strip — varies the CTA rhythm */
+.listings-footnote {
+  margin-top: 18px;
+  padding: 14px 18px;
+  background: var(--bg2);
+  border-radius: 9px;
+  border-left: 3px solid var(--country);
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+}
+.listings-fn-text {
+  flex: 1 1 240px;
+  font-size: 12.5px;
+  color: var(--text2);
+  line-height: 1.5;
+}
+.listings-fn-link {
+  font-size: 12px; font-weight: 700;
+  color: var(--country);
+  text-decoration: none;
+  white-space: nowrap;
+  letter-spacing: 0.2px;
+}
+.listings-fn-link:hover { text-decoration: underline; }
+
+@media (max-width: 720px) {
+  .listings-grid { grid-template-columns: 1fr; gap: 16px; }
+  .listing-stats { grid-template-columns: repeat(2, 1fr); }
+  .listing-name { font-size: 19px; }
+  .listing-body { padding: 18px 18px 20px; }
+}
 </style>
 </head>
 <body>
@@ -865,6 +1066,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <ul class="toc-list" id="toc">
       <li class="toc-item active"><a class="toc-link" href="#overview"><span class="toc-num">01 </span>Tổng quan chương trình</a></li>
       <li class="toc-item"><a class="toc-link" href="#investment"><span class="toc-num">02 </span>Các mức đầu tư</a></li>
+      <li class="toc-item toc-item-spotlight"><a class="toc-link" href="#listings"><span class="toc-num">★ </span>BĐS đang mở bán</a></li>
       <li class="toc-item"><a class="toc-link" href="#process"><span class="toc-num">03 </span>Quy trình &amp; thời gian</a></li>
       <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">04 </span>Gia đình &amp; thụ hưởng</a></li>
       <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">05 </span>Thuế &amp; tài chính</a></li>
@@ -1001,6 +1203,79 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <a class="cta-btn cta-btn-primary" data-tip="Tư Vấn" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">📅 <span class="cta-text">Tư Vấn Ngay</span></a>
       </div>
     </section>
+
+    <hr class="divider">
+
+    <!-- LISTINGS START -->
+    <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
+    <section class="section section-spotlight" id="listings">
+      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title">BĐS Đủ Điều Kiện RBI — Đang Mở Bán</h2>
+      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Dubai và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+
+      <div class="listings-grid">
+        <article class="listing-card">
+          <a class="listing-card-link" href="" target="_blank" rel="noopener">
+            <div class="listing-hero">
+              <img src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=800&amp;q=80" alt="Emaar Beachfront Residences" loading="lazy">
+              <div class="listing-badges">
+                <span class="listing-badge listing-badge-flag">🇦🇪 Dubai</span>
+                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện RBI</span>
+              </div>
+              <div class="listing-ref">NAC-14</div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-tagline">Branded Residences</div>
+              <h3 class="listing-name">Emaar Beachfront Residences</h3>
+              <div class="listing-location">📍 Dubai</div>
+              <div class="listing-stats">
+                <div class="listing-stat"><div class="listing-stat-val">$480K</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">7.2%</div><div class="listing-stat-lbl">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">14.8%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl">Bàn Giao</div></div>
+              </div>
+              <p class="listing-desc">Mặt tiền biển nhân tạo Dubai Harbour.</p>
+              <div class="listing-cta-row">
+                <span class="listing-cta-primary">Xem Chi Tiết →</span>
+              </div>
+            </div>
+          </a>
+        </article>
+        <article class="listing-card">
+          <a class="listing-card-link" href="" target="_blank" rel="noopener">
+            <div class="listing-hero">
+              <img src="https://images.unsplash.com/photo-1597659840241-37e2b9c2f55f?w=800&amp;q=80" alt="Saadiyat Island Residences" loading="lazy">
+              <div class="listing-badges">
+                <span class="listing-badge listing-badge-flag">🇦🇪 Abu Dhabi</span>
+                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện RBI</span>
+              </div>
+              <div class="listing-ref">NAC-48</div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-tagline">Condo</div>
+              <h3 class="listing-name">Saadiyat Island Residences</h3>
+              <div class="listing-location">📍 Abu Dhabi</div>
+              <div class="listing-stats">
+                <div class="listing-stat"><div class="listing-stat-val">$430K</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">7.3%</div><div class="listing-stat-lbl">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">15.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl">Bàn Giao</div></div>
+              </div>
+              <p class="listing-desc">Căn hộ tại Saadiyat Island, trung tâm văn hóa Abu Dhabi.</p>
+              <div class="listing-cta-row">
+                <span class="listing-cta-primary">Xem Chi Tiết →</span>
+              </div>
+            </div>
+          </a>
+        </article>
+      </div>
+
+      <div class="listings-footnote">
+        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Dubai.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=uae" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện RBI →</a>
+      </div>
+    </section>
+    <!-- LISTINGS END -->
 
     <hr class="divider">
 

@@ -1,33 +1,29 @@
 name: Sync brochures to WordPress
 
-# End-to-end deploy: Notion DB → payloads → HTML → WP.
+# Deploy pipeline: refresh listings → push HTML to WP.
 #
-#   1. Pull fresh brochure data from Notion ([NAC - Program Brochures])
-#   2. Render HTML from payloads (build_brochures.py overwrites
-#      Brochures html/<filename> with generated output)
-#   3. Refresh the LISTINGS spotlight from Property Hub (apply_listings.py)
-#   4. Push the resulting HTML to WP via REST API (sync_brochures.py)
+#   1. Refresh the LISTINGS spotlight from Property Hub (apply_listings.py)
+#      — pulls live property data from the Notion-backed worker and
+#      re-renders the spotlight section between #02 and #03 in each brochure.
+#   2. Push the resulting HTML to WP via REST API (sync_brochures.py).
+#
+# Source of truth for everything OTHER than listings is the committed HTML
+# in `Brochures html/`. The Notion → HTML build pipeline (pull_from_notion +
+# build_brochures) is intentionally disabled — hand-edits to the HTML files
+# are authoritative; a Notion-driven rebuild would clobber them.
 #
 # Each step's output is captured into .diagnostics/last-run.md and
 # pushed to the `ci-diagnostics` branch on completion (always — even
-# if the run fails). That branch is readable by Claude via the GitHub
-# API without needing log access.
-#
-# Source of truth: Notion. The committed files in `Brochures html/` are
-# build snapshots — CI regenerates them on each deploy.
+# if the run fails). That branch is readable without log access.
 
 on:
   push:
     branches:
       - main
-      - claude/add-nomad-brochures-68jHG   # auto-validate (turkey-only sync to live)
     paths:
       - 'Brochures html/**'
-      - 'NAC-RESIDENCE-INDEX.html'
-      - 'data/**'
-      - 'tools/pull_from_notion.py'
-      - 'tools/build_brochures.py'
       - 'tools/apply_listings.py'
+      - 'data/listings.py'
       - 'sync_brochures.py'
       - '.github/workflows/wp-sync.yml'
   workflow_dispatch:
@@ -41,8 +37,8 @@ on:
         type: boolean
         required: false
         default: false
-      skip_pull:
-        description: 'Skip Notion pull (use payloads already in repo)'
+      skip_listings:
+        description: 'Skip apply_listings refresh (push HTML as-is)'
         type: boolean
         required: false
         default: false
@@ -77,32 +73,8 @@ jobs:
             echo
           } > .diagnostics/last-run.md
 
-      - name: Pull fresh brochure data from Notion
-        if: github.event.inputs.skip_pull != 'true'
-        env:
-          NOTION_KEY: ${{ secrets.NOTION_KEY }}
-        run: |
-          {
-            echo "## Pull from Notion"
-            echo '```'
-            python tools/pull_from_notion.py
-            echo '```'
-            echo
-          } 2>&1 | tee -a .diagnostics/last-run.md
-
-      - name: Build brochure HTML from payloads
-        run: |
-          {
-            echo "## Build brochures"
-            echo '```'
-            python tools/build_brochures.py --all
-            for f in build/*.html; do cp "$f" "Brochures html/$(basename "$f")"; done
-            rm -rf build
-            echo '```'
-            echo
-          } 2>&1 | tee -a .diagnostics/last-run.md
-
       - name: Refresh listings spotlight from Property Hub (live fetch)
+        if: github.event.inputs.skip_listings != 'true'
         run: |
           {
             echo "## Refresh listings spotlight"
