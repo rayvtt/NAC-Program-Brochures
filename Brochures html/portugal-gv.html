@@ -6,7 +6,7 @@
 <title>Bồ Đào Nha Golden Visa — Cư Trú Châu Âu Qua Đầu Tư | NAC Consulting</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <style>
 /* ============================================================
@@ -43,7 +43,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-body { background: var(--bg); color: var(--text); font-family: 'Lora', 'Be Vietnam Pro', Georgia, serif; font-size: 15.5px; line-height: 1.72; letter-spacing: .002em; }
+body { background: var(--bg); color: var(--text); font-family: 'Lora', 'Inter', Georgia, serif; font-size: 15.5px; line-height: 1.72; letter-spacing: .002em; }
 
 /* ── PRINT / PDF ── */
 @media print {
@@ -884,7 +884,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       0 10px 30px rgba(15,26,54,.10),
       0 0 0 1px rgba(15,26,54,.03),
       inset 0 1px 0 rgba(255,250,240,.95);
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   .nac-tool {
     display:inline-flex; align-items:center; gap:0;
@@ -936,7 +936,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .tier-badge, .tag, .tl-week, .fam-icon, .ov-icon, .comp-flag, .road-year,
 .score-title, .score-label, .stat-lbl,
 .footer, .footer-t, .footer-update {
-  font-family: 'Be Vietnam Pro', sans-serif !important;
+  font-family: 'Inter', system-ui, sans-serif !important;
 }
 /* Generous reading rhythm for prose blocks */
 .hero-desc, .sec-sub, .info-text, .ov-note, .fam-note, .tl-body,
@@ -1753,7 +1753,7 @@ new Chart(radarCtx, {
         min: 0, max: 10,
         ticks: { stepSize: 2, font: { size: 10 }, color: '#9ca3af' },
         grid: { color: '#e5e7eb' },
-        pointLabels: { font: { size: 11, family: 'Be Vietnam Pro' }, color: '#374151' }
+        pointLabels: { font: { size: 11, family: 'Inter' }, color: '#374151' }
       }
     }
   }
@@ -1800,7 +1800,7 @@ new Chart(matrixCtx, {
   options: {
     responsive: true,
     plugins: {
-      legend: { position: 'bottom', labels: { font: { size: 11, family: 'Be Vietnam Pro' }, padding: 16, boxWidth: 12 } },
+      legend: { position: 'bottom', labels: { font: { size: 11, family: 'Inter' }, padding: 16, boxWidth: 12 } },
       tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}  Tốc độ: ${ctx.parsed.x}  Hộ chiếu: ${ctx.parsed.y}` } }
     },
     scales: {
