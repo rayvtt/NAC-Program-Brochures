@@ -1,19 +1,23 @@
 #!/usr/bin/env python3
 """One-off patcher: install Live Listings spotlight infra into brochures.
 
-Copies (idempotently) into each non-turkey brochure:
+Copies (idempotently) into each brochure:
   1. Listings CSS block — extracted from turkey-cbi_8.html, inserted before </style>
   2. Desktop TOC entry (toc-item-spotlight) — between #investment and #process
   3. <!-- LISTINGS START --><!-- LISTINGS END --> markers + surrounding <hr>
      — between section 02 and section 03
+  4. Mobile float-toc-panel entry — between the #investment and #process anchors
+
+Turkey is included so the mobile-toc entry can be added to it too;
+steps 1-3 are no-ops on Turkey because it's the canonical source.
 
 After patching, run `python tools/apply_listings.py` to fill the markers
 with live data from the Property Hub worker.
 
-Idempotent: skips files that already contain LISTINGS markers.
+Idempotent: each step is independently guarded — re-running is safe.
 
 Run:
-    python tools/install_listings.py             # patch all 11 non-turkey brochures
+    python tools/install_listings.py             # patch all 12 brochures
     python tools/install_listings.py portugal    # patch one (by alias)
 """
 import re
@@ -24,11 +28,12 @@ ROOT = Path(__file__).resolve().parent.parent
 BROCHURE_DIR = ROOT / 'Brochures html'
 TURKEY = BROCHURE_DIR / 'turkey-cbi_8.html'
 
-# alias → filename. Mirrors sync_brochures.py BROCHURES dict, minus turkey.
+# alias → filename. Mirrors sync_brochures.py BROCHURES dict.
 TARGETS = {
     'portugal':   'portugal-gv.html',
     'greece':     'greece-rbi_1_2.html',
     'cyprus':     'cyprus-rbi_3_3.html',
+    'turkey':     'turkey-cbi_8.html',
     'uae':        'uae-rbi_1_7.html',
     'uk':         'uk-rbi_1 (2).html',
     'malta':      'malta-rbi_1_3.html',
@@ -66,6 +71,15 @@ TOC_ANCHOR_RE = re.compile(
 
 PROCESS_BOUNDARY_RE = re.compile(
     r'(<hr class="divider">\n\n)(    <!-- 03 PROCESS -->)'
+)
+
+# Mobile float-toc-panel anchor — insert listings entry between the
+# #investment item and the #process item. The onclick handler varies
+# between brochures (closeFToc() in most, inline DOM call in some), so
+# capture it and reuse so the new entry matches local style.
+MOBILE_TOC_RE = re.compile(
+    r'(<a href="#investment"(\s+onclick="[^"]*")>[^<]*</a>\n)'
+    r'(\s*)(<a href="#process"\s+onclick="[^"]*">)'
 )
 
 
@@ -109,6 +123,22 @@ def patch_one(path, listings_css):
             return None, 'section 02→03 boundary not found'
         doc = PROCESS_BOUNDARY_RE.sub(r'\1' + MARKERS_BLOCK + r'\2', doc, count=1)
         did.append('markers')
+
+    # 4. Mobile float-toc-panel entry — between #investment and #process.
+    # Check for the mobile-specific form (href + onclick), not the
+    # desktop TOC link which also targets #listings.
+    mobile_already = re.search(
+        r'<a href="#listings"[^>]*onclick=', doc
+    )
+    if not mobile_already:
+        m = MOBILE_TOC_RE.search(doc)
+        if m:
+            onclick_attr = m.group(2)   # e.g. ' onclick="closeFToc()"'
+            indent       = m.group(3)
+            entry = (f'{indent}<a href="#listings"{onclick_attr}>'
+                     f'★ BĐS đang mở bán</a>\n')
+            doc = MOBILE_TOC_RE.sub(r'\1' + entry + r'\4', doc, count=1)
+            did.append('mobile-toc')
 
     if doc == original:
         return False, 'already fully patched'
