@@ -7,3 +7,8 @@
 # v3 — generalised extract for all 12 brochures, flag-prefixed alias, per-country Notion page cover
 # v4 — preserve inline <strong>/<em>/<a href> in prose fields (extract via prose_html); stop escaping in render
 # v5 — repopulate all 12 rows (11 programs beyond turkey were missing from Notion DB)
+# v6 — extractor fixes: hero_bg_img (CSS + inline), nac_score_label (.star-label
+#      fallback), info-box class variants (green/amber/gold), fam-card without
+#      inner div wrapper, breadcrumb in <nav> or <div>, s09 fallback to
+#      nac-box <p> when no info-box. Improves VI field coverage from ~9 gap
+#      fields to 7 (the rest are genuine HTML omissions per-brochure).

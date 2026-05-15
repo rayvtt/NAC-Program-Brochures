@@ -104,11 +104,25 @@ def extract(alias):
     payload['color_secondary'] = first_match(r'--country2:\s*(#[0-9a-fA-F]+)', html) or '#111827'
 
     # ── Hero ──
-    payload['hero_bg_img'] = ''  # Most brochures use CSS gradient
-    # Breadcrumb: second <a> inside .breadcrumb (first is "NAC Index")
-    bc = first_match(r'<div class="breadcrumb">(.*?)</div>', html)
+    # Hero bg image: extracted from inline style on .hero-bg div, OR the
+    # CSS rule `.hero-bg { background-image: url('...') }` near the top.
+    hero_bg = first_match(
+        r'<div class="hero-bg"[^>]*style="[^"]*background-image:url\([\'"]([^\'"]+)[\'"]',
+        html,
+    )
+    if not hero_bg:
+        hero_bg = first_match(
+            r'\.hero-bg\s*\{[^}]*background-image:\s*url\([\'"]([^\'"]+)[\'"]',
+            html,
+        )
+    payload['hero_bg_img'] = hero_bg or ''
+    # Breadcrumb: second <a> inside .breadcrumb (first is "NAC Index").
+    # Older brochures use <div class="breadcrumb">; newer use <nav>.
+    bc = first_match(r'<(?:div|nav) class="breadcrumb">(.*?)</(?:div|nav)>', html)
     bc_links = re.findall(r'<a[^>]*>([^<]+)</a>', bc)
-    payload['hero_breadcrumb_vi'] = squash(bc_links[1]) if len(bc_links) > 1 else ''
+    payload['hero_breadcrumb_vi'] = squash(bc_links[1]) if len(bc_links) > 1 else (
+        squash(bc_links[0]) if bc_links else ''
+    )
     payload['hero_breadcrumb_en'] = ''
     payload['hero_badge_vi']   = prose_html(first_match(r'<div class="hero-badge"[^>]*>(.*?)</div>', html))
     payload['hero_badge_en']   = ''
@@ -126,7 +140,12 @@ def extract(alias):
 
     # NAC scores
     payload['nac_score']          = int(first_match(r'<span class="score-big">(\d+)</span>', html) or 0)
-    payload['nac_score_label_vi'] = squash(first_match(r'<div class="score-label">([^<]+)</div>', html))
+    # Two label patterns: older `.score-label`, newer `.star-label`.
+    score_lbl = (
+        first_match(r'<div class="score-label">([^<]+)</div>', html)
+        or first_match(r'<span class="star-label">([^<]+)</span>', html)
+    )
+    payload['nac_score_label_vi'] = squash(score_lbl)
     payload['nac_score_label_en'] = ''
 
     def sub_score(lbl):
@@ -226,8 +245,11 @@ def extract(alias):
     payload['s04_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s04))
     payload['s04_subtitle_en'] = ''
     fam = []
+    # Two markup variants:
+    #   (a) fam-icon → wrapper <div> → fam-title → fam-note (turkey-style)
+    #   (b) fam-icon → fam-title → fam-note (portugal/cyprus-style)
     for icon, title, note in all_matches(
-        r'<div class="fam-icon">([^<]+)</div>\s*<div>\s*'
+        r'<div class="fam-icon">([^<]+)</div>\s*(?:<div>\s*)?'
         r'<div class="fam-title">([^<]+)</div>\s*'
         r'<div class="fam-note">(.*?)</div>',
         s04,
@@ -238,7 +260,7 @@ def extract(alias):
             'note_vi': prose_html(note), 'note_en': '',
         })
     payload['s04_family_cards']   = json.dumps(fam, ensure_ascii=False)
-    payload['s04_compare_note_vi'] = prose_html(first_match(r'<div class="info-box">.*?<div class="info-text">(.*?)</div>\s*</div>', s04))
+    payload['s04_compare_note_vi'] = prose_html(first_match(r'<div class="info-box[^"]*"[^>]*>.*?<div class="info-text">(.*?)</div>\s*</div>', s04))
     payload['s04_compare_note_en'] = ''
 
     # ── Section 05 — Tax ──
@@ -332,7 +354,10 @@ def extract(alias):
     s09 = first_match(r'<section class="section" id="nac">(.*?)</section>', html)
     payload['s09_subtitle_vi'] = prose_html(first_match(r'<p class="sec-sub">(.*?)</p>', s09))
     payload['s09_subtitle_en'] = ''
-    s09_first = first_match(r'<div class="info-box"[^>]*>.*?<div class="info-text">(.*?)</div>\s*</div>', s09)
+    s09_first = first_match(r'<div class="info-box[^"]*"[^>]*>.*?<div class="info-text">(.*?)</div>\s*</div>', s09)
+    if not s09_first:
+        # Fallback (cyprus-style): no info-box; use the first <p> inside .nac-box
+        s09_first = first_match(r'<div class="nac-box">.*?<p>(.*?)</p>', s09)
     payload['s09_recommendation_vi'] = prose_html(s09_first)
     payload['s09_recommendation_en'] = ''
     payload['s09_cta_heading_vi']    = squash(first_match(r'<div class="nac-box">\s*<h3>([^<]+)</h3>', s09))
