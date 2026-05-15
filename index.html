@@ -3,152 +3,218 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NAC Brochures — Preview Index</title>
-<meta name="description" content="Preview index for all NAC Program Brochures. Each entry links to the GitHub-Pages preview and the live WordPress version.">
+<title>NAC Brochures — Program Preview Index</title>
+<meta name="description" content="Preview index for all 12 NAC Program Brochures — RBI, CBI, LTR. Each tile links to a GitHub-Pages preview and the live WordPress page.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --bg: #faf6eb;
-    --fg: #14181f;
-    --muted: #6b7280;
-    --rule: rgba(20,24,31,0.08);
-    --accent: #c4922c;
+    --bg: #fafaf7; --surface: #fff; --display: #0f1a36; --text: #14181f;
+    --muted: #6b7280; --gold: #c4922c; --orange: #d97c44;
+    --line: rgba(15,26,54,.08);
+    --ff-display: 'Cormorant Garamond', serif;
+    --ff-body: 'Inter', -apple-system, sans-serif;
+    --ff-mono: 'JetBrains Mono', monospace;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    background: var(--bg); color: var(--fg);
-    font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    font-size: 16px; line-height: 1.55;
+  body {
+    font-family: var(--ff-body); background: var(--bg); color: var(--text);
+    min-height: 100vh; padding: 3rem 1.5rem 5rem;
   }
-  body { padding: 56px 24px 80px; }
-  main { max-width: 760px; margin: 0 auto; }
-  h1 {
-    font-size: 28px; font-weight: 700; letter-spacing: -0.01em;
-    margin-bottom: 8px;
+  .wrap { max-width: 960px; margin: 0 auto; }
+  header { text-align: center; margin-bottom: 3rem; }
+  .mark { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; }
+  .mark .the { font-family: var(--ff-display); font-size: .78rem; letter-spacing: .32em; color: var(--muted); }
+  .mark .nac { font-family: var(--ff-display); font-size: 2.3rem; font-weight: 500; letter-spacing: .32em; color: var(--display); margin: .15rem 0 .2rem; padding-left: .32em; }
+  .mark .tag { font-family: var(--ff-display); font-size: .72rem; letter-spacing: .38em; color: var(--gold); font-weight: 500; padding-left: .38em; }
+  h1 { font-family: var(--ff-display); font-size: 1.6rem; font-weight: 400; font-style: italic; color: var(--display); margin-top: 1.5rem; letter-spacing: -.005em; }
+  .sub { font-family: var(--ff-mono); font-size: .7rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); margin-top: .5rem; }
+
+  /* Instagram-style square tile grid */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; }
+  @media (max-width: 600px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+
+  .tile { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--display); cursor: pointer; }
+  .tile-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .5s ease; }
+  .tile:hover .tile-img { transform: scale(1.06); }
+  .tile::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(5,8,20,.88) 0%, rgba(5,8,20,.35) 55%, rgba(5,8,20,.05) 100%);
+    pointer-events: none;
   }
-  .sub {
-    color: var(--muted); font-size: 14px;
-    margin-bottom: 36px;
+
+  .tile-info { position: absolute; bottom: 3.2rem; left: 1rem; right: 1rem; z-index: 1; }
+  .tile-country { display: block; font-family: var(--ff-mono); font-size: .58rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-bottom: .35rem; }
+  .tile-name { display: block; font-family: var(--ff-display); font-size: 1.15rem; font-weight: 500; color: #fff; line-height: 1.2; }
+
+  .tile-btns { position: absolute; bottom: .75rem; left: 1rem; right: 1rem; z-index: 1; display: flex; gap: .4rem; }
+  .tile-btn {
+    flex: 1; text-align: center; padding: .32rem .4rem;
+    border-radius: 6px; font-family: var(--ff-mono);
+    font-size: .58rem; letter-spacing: .06em;
+    text-decoration: none; text-transform: uppercase;
+    font-weight: 500; transition: opacity .15s ease; white-space: nowrap;
   }
-  ul.rows { list-style: none; }
-  li.row {
-    display: flex; align-items: center; gap: 14px;
-    padding: 14px 0;
-    border-bottom: 1px solid var(--rule);
-  }
-  .flag { font-size: 22px; line-height: 1; flex-shrink: 0; width: 28px; text-align: center; }
-  .title { flex: 1; font-weight: 500; font-size: 15px; }
-  .link {
-    font-size: 13px; font-weight: 600;
-    text-decoration: none;
-    padding: 6px 10px; border-radius: 6px;
-    transition: background 0.15s ease, color 0.15s ease;
-    white-space: nowrap;
-  }
-  .link.preview { color: var(--accent); }
-  .link.preview:hover { background: rgba(196,146,60,0.12); }
-  .link.live    { color: var(--fg); }
-  .link.live:hover    { background: rgba(20,24,31,0.06); }
-  footer {
-    margin-top: 48px;
-    font-size: 12px; color: var(--muted);
-    text-align: center;
-  }
-  footer a { color: var(--accent); text-decoration: none; }
-  @media (max-width: 540px) {
-    body { padding: 32px 16px 60px; }
-    h1 { font-size: 22px; }
-    li.row { flex-wrap: wrap; gap: 8px; }
-    .title { flex-basis: calc(100% - 42px); font-size: 14px; }
-    .link { font-size: 12px; padding: 5px 8px; }
-  }
+  .tile-btn:hover { opacity: .82; }
+  .tile-btn-preview { background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.22); color: #fff; }
+  .tile-btn-live { background: var(--gold); border: 1px solid var(--gold); color: #fff; }
+
+  footer { text-align: center; margin-top: 2rem; font-family: var(--ff-mono); font-size: .65rem; color: var(--muted); letter-spacing: .08em; }
+  footer a { color: var(--orange); text-decoration: none; }
 </style>
 </head>
 <body>
-<main>
-  <h1>NAC Brochures — Preview Index</h1>
-  <p class="sub">12 country brochures. <em>Preview</em> opens the GitHub-Pages copy; <em>Live</em> opens the production WordPress page.</p>
+  <div class="wrap">
+    <header>
+      <div class="mark">
+        <span class="the">THE</span>
+        <span class="nac">NAC</span>
+        <span class="tag">PROGRAM BROCHURES</span>
+      </div>
+      <h1>Brochure Preview Index</h1>
+      <p class="sub">Preview ↗ GitHub · Live ↗ Nomad Site</p>
+    </header>
 
-  <ul class="rows">
-    <li class="row">
-      <span class="flag">🇵🇹</span>
-      <span class="title">Bồ Đào Nha Golden Visa</span>
-      <a class="link preview" href="./Brochures%20html/portugal-gv.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-bo-dao-nha-golden-visa/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇬🇷</span>
-      <span class="title">Hy Lạp Golden Visa</span>
-      <a class="link preview" href="./Brochures%20html/greece-rbi_1_2.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/residences-chuong-trinh-hy-lap-golden-visa/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇨🇾</span>
-      <span class="title">Đảo Síp PR</span>
-      <a class="link preview" href="./Brochures%20html/cyprus-rbi_3_3.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-dao-sip-rbi-residence-by-investment/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇹🇷</span>
-      <span class="title">Thổ Nhĩ Kỳ CBI</span>
-      <a class="link preview" href="./Brochures%20html/turkey-cbi_8.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-tho-nhi-ky-cbi-citizenship-by-investment/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇦🇪</span>
-      <span class="title">UAE Golden Visa</span>
-      <a class="link preview" href="./Brochures%20html/uae-rbi_1_7.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-uae-golden-visa-2/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇬🇧</span>
-      <span class="title">Anh Quốc Innovator Founder</span>
-      <a class="link preview" href="./Brochures%20html/uk-rbi_1%20%282%29.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-uk-thuong-tru-visa-dau-tu-rbi/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇲🇹</span>
-      <span class="title">Malta MPRP</span>
-      <a class="link preview" href="./Brochures%20html/malta-rbi_1_3.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-malta-thuong-tru-nhan-rbi/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇰🇳</span>
-      <span class="title">St. Kitts &amp; Nevis CBI</span>
-      <a class="link preview" href="./Brochures%20html/stkitts-nevis.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-si-kitts-nevis-quoc-tich/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇹🇭</span>
-      <span class="title">Thái Lan LTR</span>
-      <a class="link preview" href="./Brochures%20html/thailand-rbi_1%20%282%29.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-thai-lan-cu-tru-dai-han-ltr-rbi/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇳🇿</span>
-      <span class="title">New Zealand Active Investor Plus</span>
-      <a class="link preview" href="./Brochures%20html/newzealand-rbi_1%20%283%29.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-new-zealand-rbi-dau-tu-di-tru/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇵🇦</span>
-      <span class="title">Panama RBI</span>
-      <a class="link preview" href="./Brochures%20html/panama-rbi_.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-    <li class="row">
-      <span class="flag">🇲🇾</span>
-      <span class="title">Malaysia MM2H</span>
-      <a class="link preview" href="./Brochures%20html/malaysia-mm2h.html" target="_blank" rel="noopener">Preview ↗</a>
-      <a class="link live"    href="https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/" target="_blank" rel="noopener">Live ↗</a>
-    </li>
-  </ul>
+    <div class="grid">
+      <div class="tile" data-alias="portugal">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/bat-dong-san-lisbon-2026-phan-tich-gia-theo-quan-va-co-hoi-dau-tu-cho-nguoi-xin-d7-visa-infographic-cover-8a5b2.jpg')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇵🇹 Bồ Đào Nha</span>
+          <span class="tile-name">Golden Visa</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/portugal-gv.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-bo-dao-nha-golden-visa/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="greece">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/case-study-gia-dinh-doanh-nhan-tp-hcm-va-18-thang-chinh-phuc-thuong-tru-hy-lap-bai-hoc-thuc-te-tu-hanh-trinh-cover-a76ca.jpg')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇬🇷 Hy Lạp</span>
+          <span class="tile-name">Golden Visa</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/greece-rbi_1_2.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/residences-chuong-trinh-hy-lap-golden-visa/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="cyprus">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/sip.webp')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇨🇾 Đảo Síp</span>
+          <span class="tile-name">PR</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/cyprus-rbi_3_3.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-dao-sip-rbi-residence-by-investment/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="turkey">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua-cover-8d1da.jpg')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇹🇷 Thổ Nhĩ Kỳ</span>
+          <span class="tile-name">CBI</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/turkey-cbi_8.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-tho-nhi-ky-cbi-citizenship-by-investment/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="uae">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/dubai.webp')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇦🇪 UAE</span>
+          <span class="tile-name">Golden Visa</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/uae-rbi_1_7.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-uae-golden-visa-2/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="uk">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/london-scaled.jpg')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇬🇧 Anh Quốc</span>
+          <span class="tile-name">Innovator Founder</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/uk-rbi_1%20%282%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-uk-thuong-tru-visa-dau-tu-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="malta">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/malta.webp')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇲🇹 Malta</span>
+          <span class="tile-name">MPRP</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/malta-rbi_1_3.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-malta-thuong-tru-nhan-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="stkitts">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/stkitt.jpg')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇰🇳 St. Kitts &amp; Nevis</span>
+          <span class="tile-name">CBI</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/stkitts-nevis.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-si-kitts-nevis-quoc-tich/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="thailand">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/thailan.jpg')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇹🇭 Thái Lan</span>
+          <span class="tile-name">LTR</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/thailand-rbi_1%20%282%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-thai-lan-cu-tru-dai-han-ltr-rbi/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="newzealand">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/newzea.jpg')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇳🇿 New Zealand</span>
+          <span class="tile-name">Active Investor Plus</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/newzealand-rbi_1%20%283%29.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-new-zealand-rbi-dau-tu-di-tru/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="panama">
+        <div class="tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/panama.webp')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇵🇦 Panama</span>
+          <span class="tile-name">RBI</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/panama-rbi_.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+      <div class="tile" data-alias="malaysia">
+        <div class="tile-img" style="background-image:url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&amp;q=85&amp;fit=crop')"></div>
+        <div class="tile-info">
+          <span class="tile-country">🇲🇾 Malaysia</span>
+          <span class="tile-name">MM2H</span>
+        </div>
+        <div class="tile-btns">
+          <a href="./Brochures%20html/malaysia-mm2h.html" class="tile-btn tile-btn-preview" target="_blank" rel="noopener">Preview ↗</a>
+          <a href="https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/" class="tile-btn tile-btn-live" target="_blank" rel="noopener">Live ↗</a>
+        </div>
+      </div>
+    </div>
 
-  <footer>
-    Nomad Asset Collective ·
-    <a href="https://github.com/rayvtt/NAC-Program-Brochures" target="_blank" rel="noopener">repo</a> ·
-    <a href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener">brochures gateway</a>
-  </footer>
-</main>
+    <footer>
+      Built by <a href="https://nomadassetcollective.com" target="_blank">Nomad Asset Collective</a> ·
+      <a href="https://github.com/rayvtt/NAC-Program-Brochures" target="_blank">repo</a>
+    </footer>
+  </div>
 </body>
 </html>
