@@ -206,6 +206,21 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 .chart-box   { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 24px; margin-bottom: 20px; }
 .chart-title { font-size: 12px; font-weight: 700; color: var(--text2); margin-bottom: 16px; letter-spacing: -.1px; }
 
+/* Collapsible chart wrapper (matrix chart on mobile). Always open on
+   desktop; tap-to-expand on mobile via a <details> element. */
+.chart-collapse { width: 100%; }
+.chart-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; }
+.chart-collapse > summary::-webkit-details-marker { display: none; }
+.chart-collapse > summary .chart-title { margin-bottom: 16px; }
+.chart-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .chart-collapse > summary { cursor: pointer; user-select: none; }
+  .chart-collapse > summary .chart-title { margin-bottom: 0; }
+  .chart-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .chart-collapse[open] .chart-collapse-icon { transform: rotate(180deg); }
+  .chart-collapse[open] > summary .chart-title { margin-bottom: 14px; }
+}
+
 /* ── INVESTMENT TIERS ── */
 .tier-list { display: flex; flex-direction: column; gap: 10px; }
 .tier { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 18px 20px; transition: border-color .15s; position: relative; overflow: hidden; }
@@ -420,6 +435,34 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   opacity: 0;
   animation: nacIndexGlobeIn 1.4s ease 0.2s forwards;
 }
+/* 12 KPI icon pills lifted from the NAC Residence Index hero —
+   desktop only, sits below the title on the left half of the banner. */
+.nac-index-pills {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 12px;
+  max-width: 50%;
+}
+.nac-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: rgba(255,255,255,0.85);
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(20,15,80,0.06);
+  transition: transform .15s ease, background .15s ease;
+}
+.nac-pill:hover {
+  background: #fff;
+  transform: translateY(-1px);
+}
+.nac-pill svg { display: block; }
 @keyframes nacIndexGlobeIn {
   from { opacity: 0; transform: translateY(-50%) scale(0.92); }
   to   { opacity: 1; transform: translateY(-50%) scale(1); }
@@ -443,6 +486,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
+  /* Hide the KPI pills on mobile — the spinning globe already carries
+     the story; the pills are dead weight on small screens. */
+  .nac-index-pills { display: none; }
 }
 
 /* ── FOOTER ── */
@@ -1268,8 +1314,8 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <div class="toc-cta-mini">
       <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">⚖️ <span class="cta-text">So Sánh Chương Trình</span></a>
       <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">📊 <span class="cta-text">NAC Index</span></a>
-      <a href="https://wa.me/447388646000" target="_blank" title="WhatsApp NAC">💬 WhatsApp</a>
-      <a href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank">📅 Tư Vấn Miễn Phí</a>
+      <a href="https://wa.me/447388646000" target="_blank" title="WhatsApp NAC" style="display:inline-flex;align-items:center;gap:6px;background:#25D366;color:#fff !important;padding:6px 12px;border-radius:7px;text-decoration:none;font-weight:600;font-size:12px;"><svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:#fff;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp</a>
+      <a href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank">📅 Tư Vấn Miễn Phí</a>
     </div>
   </aside>
 
@@ -1727,6 +1773,23 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <canvas class="nac-index-globe" id="nacIndexGlobe"></canvas>
           <span class="article-cta-kicker" data-vi="Công cụ phân tích" data-en="Analysis tool">Công cụ phân tích</span>
           <h3 class="article-cta-title" data-vi="NAC Residence Index — So Sánh 21 Chương Trình" data-en="NAC Residence Index — Compare 21 Programs">NAC Residence Index — So Sánh 21 Chương Trình</h3>
+          <!-- 12 KPI pills lifted from the NAC Residence Index page —
+               icon-only chips below the title, spanning the left half of
+               the banner so the globe still breathes on the right. -->
+          <div class="nac-index-pills" aria-hidden="true">
+            <span class="nac-pill" style="color:#1800ad" title="Sức mạnh hộ chiếu / Passport"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="1.5" width="11" height="13" rx="1.5"/><circle cx="8" cy="7" r="2"/><path d="M5 13c0-1.657 1.343-2.5 3-2.5s3 .843 3 2.5"/><path d="M5 4h6"/></svg></span>
+            <span class="nac-pill" style="color:#16a34a" title="Tối ưu thuế / Tax"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.5"/><path d="M5.5 8h5M8 5.5v5"/></svg></span>
+            <span class="nac-pill" style="color:#6d28d9" title="Giáo dục / Education"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2L1.5 5.5 8 9l6.5-3.5L8 2z"/><path d="M4.5 7.5V12c0 0 1.5 1.5 3.5 1.5s3.5-1.5 3.5-1.5V7.5"/></svg></span>
+            <span class="nac-pill" style="color:#dc2626" title="Y tế / Healthcare"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 14s-6-4-6-8a4 4 0 0 1 6-3.46A4 4 0 0 1 14 6c0 4-6 8-6 8z"/><path d="M6 7h4M8 5v4"/></svg></span>
+            <span class="nac-pill" style="color:#0369a1" title="An ninh / Safety"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5l5.5 2.5v4c0 3-2.5 5.5-5.5 6.5C5 13.5 2.5 11 2.5 8V4L8 1.5z"/><path d="M5.5 8l1.5 1.5 3-3"/></svg></span>
+            <span class="nac-pill" style="color:#b45309" title="Đầu tư / Investment"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1.5,11 5.5,7 8.5,9.5 14.5,4"/><polyline points="11,4 14.5,4 14.5,7.5"/></svg></span>
+            <span class="nac-pill" style="color:#d97706" title="Tốc độ / Speed"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5A6.5 6.5 0 1 1 1.5 8"/><path d="M8 5v3.5l2.5 1.5"/></svg></span>
+            <span class="nac-pill" style="color:#059669" title="Gia đình / Family"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="3.5" r="1.8"/><circle cx="11" cy="3.5" r="1.8"/><circle cx="8" cy="8" r="1.5"/><path d="M2 14v-1A3 3 0 0 1 5.5 10M14 14v-1A3 3 0 0 0 10.5 10M5.5 14v-1A2.5 2.5 0 0 1 8 11 2.5 2.5 0 0 1 10.5 13v1"/></svg></span>
+            <span class="nac-pill" style="color:#0891b2" title="Chất lượng sống / Lifestyle"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="9" r="5"/><path d="M8 4V2M5.5 2.8L8 4l2.5-1.2M8 9V7"/></svg></span>
+            <span class="nac-pill" style="color:#64748b" title="Chi phí sinh hoạt / Cost"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1.5" y="4.5" width="13" height="9" rx="1.5"/><path d="M5 4.5V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1.5"/><circle cx="8" cy="9" r="1.5"/></svg></span>
+            <span class="nac-pill" style="color:#1800ad" title="Quốc tịch / Citizenship"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14V6l5-4.5L13 6v8"/><path d="M6 14v-4h4v4"/><path d="M1.5 14h13"/></svg></span>
+            <span class="nac-pill" style="color:#dc2626" title="Kinh doanh / Business"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7c0-1 4-1 4 0"/><path d="M2 7l1.5-4h9L14 7"/><path d="M2 7v7h12V7"/><path d="M6 10h4"/></svg></span>
+          </div>
         </a>
         <div class="article-cta-body">
           <p class="article-cta-desc" data-vi="Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất." data-en="Auto-ranking tailored to your family's criteria — pick the KPIs that matter, get the best-fit program.">Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất.</p>
@@ -1793,9 +1856,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         </div>
       </div>
 
-      <div class="chart-box" style="margin-bottom:20px">
-        <div class="chart-title" data-vi="Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)" data-en="Value Matrix — Speed vs Passport Strength (Top 6 programs)">Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)</div>
-        <canvas id="matrixChart" style="max-height:260px"></canvas>
+      <div class="chart-box chart-box-collapsible" style="margin-bottom:20px">
+        <details id="matrixCollapse" class="chart-collapse" open>
+          <summary class="chart-collapse-summary">
+            <span class="chart-title" data-vi="Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)" data-en="Value Matrix — Speed vs Passport Strength (Top 6 programs)">Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)</span>
+            <span class="chart-collapse-icon" aria-hidden="true">▾</span>
+          </summary>
+          <canvas id="matrixChart" style="max-height:260px"></canvas>
+        </details>
       </div>
 
       <div class="nac-box">
@@ -1987,6 +2055,24 @@ function buildCharts(lang) {
 }
 
 buildCharts('vi');
+
+// Matrix chart: collapsed by default on mobile (it rendered awkwardly at
+// the bottom of the section). Tap to expand. Chart.js needs a manual
+// resize() after the canvas becomes visible.
+(function () {
+  const det = document.getElementById('matrixCollapse');
+  if (!det) return;
+  const mq = window.matchMedia('(max-width: 600px)');
+  const sync = () => { if (mq.matches) det.removeAttribute('open'); else det.setAttribute('open',''); };
+  sync();
+  mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+  det.addEventListener('toggle', () => {
+    if (det.open && chartInstances.matrix) {
+      // Defer one frame so the canvas has its real size
+      requestAnimationFrame(() => chartInstances.matrix.resize());
+    }
+  });
+})();
 
 // TOC Active Highlight
 const sections = document.querySelectorAll('.section');
@@ -2303,9 +2389,27 @@ document.addEventListener('touchstart', e => {
     if(Math.random()<0.010) spawnPlane();
     requestAnimationFrame(animate);
   }
-  function init(){ resize(); animate(); }
+  function init(){
+    resize();
+    // If the canvas hasn't been laid out yet (font loading, paywall blur,
+    // section hidden behind a transition), retry on the next animation
+    // frame instead of giving up. That's the race that caused the globe
+    // to be invisible on some loads.
+    if (W === 0 || H === 0) {
+      requestAnimationFrame(init);
+      return;
+    }
+    animate();
+  }
   window.addEventListener('resize',()=>{ resize(); draw(rot); });
-  setTimeout(init, 80);
+  // React to dynamic resize too (paywall unlock, lazy image flow,
+  // orientation change). ResizeObserver fires after the canvas has
+  // its real dimensions, so the globe shows reliably on the first paint.
+  if (typeof ResizeObserver !== 'undefined') {
+    const ro = new ResizeObserver(() => { resize(); });
+    ro.observe(canvas);
+  }
+  requestAnimationFrame(init);
 })();
 </script>
 
