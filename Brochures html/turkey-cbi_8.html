@@ -387,6 +387,37 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   .article-cta-btn { align-self: flex-end; }
 }
 
+/* ── NAC INDEX banner variant — animated globe canvas behind title ── */
+.nac-index-banner {
+  background: radial-gradient(ellipse at 70% 50%, #2d0a5c 0%, #1a0f5c 45%, #0a0e2c 100%);
+  min-height: 230px;
+  overflow: hidden;
+}
+.nac-index-banner::after {
+  /* Lighter overlay — globe should breathe through */
+  background: linear-gradient(to top, rgba(5,8,20,.7) 0%, rgba(5,8,20,.15) 55%, rgba(5,8,20,0) 100%);
+}
+.nac-index-globe {
+  position: absolute;
+  right: -6%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  animation: nacIndexGlobeIn 1.4s ease 0.2s forwards;
+}
+@keyframes nacIndexGlobeIn {
+  from { opacity: 0; transform: translateY(-50%) scale(0.92); }
+  to   { opacity: 1; transform: translateY(-50%) scale(1); }
+}
+@media (max-width: 600px) {
+  .nac-index-banner { min-height: 200px; }
+  .nac-index-globe { width: 240px; height: 240px; right: -28%; opacity: .85; }
+}
+
 /* ── FOOTER ── */
 .footer   { background: var(--bg2); border-top: 1px solid var(--border); padding: 24px 32px; }
 .footer-i { max-width: 1300px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 6px; }
@@ -1353,23 +1384,23 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
               <img src="https://nomadassetcollective.com/wp-content/uploads/2026/05/W6-scaled.jpg" alt="W Suites Istanbul" loading="lazy">
               <div class="listing-badges">
                 <span class="listing-badge listing-badge-flag">🇹🇷 Şişli / Levent (New CBD)</span>
-                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện CBI</span>
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện CBI" data-en="✓ CBI Eligible">✓ Đủ điều kiện CBI</span>
               </div>
               <div class="listing-ref">NAC-79</div>
             </div>
             <div class="listing-body">
-              <div class="listing-tagline">Căn hộ khách sạn 5 sao — lợi nhuận theo pool quản lý</div>
+              <div class="listing-tagline" data-vi="Căn hộ khách sạn 5 sao — lợi nhuận theo pool quản lý" data-en="5-star hotel residence — managed-pool returns">Căn hộ khách sạn 5 sao — lợi nhuận theo pool quản lý</div>
               <h3 class="listing-name">W Suites Istanbul</h3>
-              <div class="listing-location">📍 Şişli / Levent (New CBD) · Thổ Nhĩ Kỳ</div>
+              <div class="listing-location" data-vi="📍 Şişli / Levent (New CBD) · Thổ Nhĩ Kỳ" data-en="📍 Şişli / Levent (New CBD) · Türkiye">📍 Şişli / Levent (New CBD) · Thổ Nhĩ Kỳ</div>
               <div class="listing-stats">
-                <div class="listing-stat"><div class="listing-stat-val">$572,300</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">11.0%</div><div class="listing-stat-lbl">Gross Yield</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">20.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">Q4 2026</div><div class="listing-stat-lbl">Bàn Giao</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">$572,300</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">11.0%</div><div class="listing-stat-lbl" data-vi="Gross Yield" data-en="Gross Yield">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">20.0%</div><div class="listing-stat-lbl" data-vi="5-Year IRR" data-en="5-Year IRR">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">Q4 2026</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
               </div>
-              <p class="listing-desc">W Suite Istanbul là dự án căn hộ khách sạn 5 sao 120 căn tại CBD mới của thành phố, gần hành lang kinh doanh Şişli / Levent, phát triển bởi Fer Yapı và vận hành theo nền tảng quản lý thương hiệu W Hotel.</p>
+              <p class="listing-desc" data-vi="W Suite Istanbul là dự án căn hộ khách sạn 5 sao 120 căn tại CBD mới của thành phố, gần hành lang kinh doanh Şişli / Levent, phát triển bởi Fer Yapı và vận hành theo nền tảng quản lý thương hiệu W Hotel." data-en="W Suites Istanbul is a 120-unit 5-star hotel residence in the city's new CBD, near the Şişli / Levent business corridor, developed by Fer Yapı and operated under the W Hotel brand management platform.">W Suite Istanbul là dự án căn hộ khách sạn 5 sao 120 căn tại CBD mới của thành phố, gần hành lang kinh doanh Şişli / Levent, phát triển bởi Fer Yapı và vận hành theo nền tảng quản lý thương hiệu W Hotel.</p>
               <div class="listing-cta-row">
-                <span class="listing-cta-primary">Xem Chi Tiết →</span>
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
               </div>
             </div>
           </a>
@@ -1377,16 +1408,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <article class="listing-card listing-card-placeholder">
           <div class="listing-placeholder-content">
             <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Thổ Nhĩ Kỳ đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=turkey" target="_blank" rel="noopener">Khám phá Property Hub →</a>
+            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
+            <div class="listing-placeholder-sub" data-vi="Thêm BĐS Thổ Nhĩ Kỳ đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới." data-en="More CBI-eligible Türkiye properties will be announced here soon.">Thêm BĐS Thổ Nhĩ Kỳ đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới.</div>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=turkey" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
           </div>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=turkey" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện CBI →</a>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Türkiye CBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=turkey" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện CBI →" data-en="All CBI-eligible properties →">Tất cả BĐS đủ điều kiện CBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -1665,13 +1696,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </table>
 
       <div class="article-cta" style="margin-top:16px">
-        <a class="article-cta-banner" href="https://nomadassetcollective.com/so-sanh/" target="_blank" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80')">
-          <span class="article-cta-kicker" data-vi="Công cụ" data-en="Tool">Công cụ</span>
-          <h3 class="article-cta-title" data-vi="Công Cụ So Sánh NAC — Tìm chương trình phù hợp" data-en="NAC Comparison Tool — Find the right program">Công Cụ So Sánh NAC — Tìm chương trình phù hợp</h3>
+        <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
+          <canvas class="nac-index-globe" id="nacIndexGlobe"></canvas>
+          <span class="article-cta-kicker" data-vi="Công cụ phân tích" data-en="Analysis tool">Công cụ phân tích</span>
+          <h3 class="article-cta-title" data-vi="NAC Residence Index — So Sánh 21 Chương Trình" data-en="NAC Residence Index — Compare 21 Programs">NAC Residence Index — So Sánh 21 Chương Trình</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc" data-vi="Chưa quyết định được? Công cụ giúp bạn chọn chương trình theo ngân sách, mục tiêu gia đình và timeline." data-en="Can't decide? The tool helps you choose the right program based on budget, family goals and timeline.">Chưa quyết định được? Công cụ giúp bạn chọn chương trình theo ngân sách, mục tiêu gia đình và timeline.</p>
-          <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank" data-vi="So Sánh →" data-en="Compare →">So Sánh →</a>
+          <p class="article-cta-desc" data-vi="Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất." data-en="Auto-ranking tailored to your family's criteria — pick the KPIs that matter, get the best-fit program.">Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất.</p>
+          <a class="article-cta-btn" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" data-vi="Xem Index →" data-en="View Index →">Xem Index →</a>
         </div>
       </div>
     </section>
@@ -1779,111 +1811,155 @@ window.addEventListener('load', () => {
   if (bg) setTimeout(() => bg.classList.add('loaded'), 100);
 });
 
-// RADAR
-new Chart(document.getElementById('radarChart').getContext('2d'), {
-  type: 'radar',
-  data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
-    datasets: [
-      {
-        label: 'Thổ Nhĩ Kỳ CBI',
-        data: [7.8, 9.5, 6.8, 5.5, 8.0, 9.8],
-        fill: true,
-        backgroundColor: 'rgba(139,26,26,0.13)',
-        borderColor: '#8B1A1A',
-        pointBackgroundColor: '#8B1A1A',
-        pointBorderColor: '#fff',
-        borderWidth: 2, pointRadius: 5
-      },
-      {
-        label: 'Hy Lạp GV (tham chiếu)',
-        data: [7.2, 7.0, 9.0, 8.8, 6.5, 6.2],
-        fill: true,
-        backgroundColor: 'rgba(13,94,175,0.06)',
-        borderColor: 'rgba(13,94,175,0.4)',
-        pointBackgroundColor: 'rgba(13,94,175,0.5)',
-        pointBorderColor: '#fff',
-        borderWidth: 1.5, pointRadius: 4,
-        borderDash: [5, 3]
-      }
-    ]
+// ── Chart bilingual labels ──
+// Keep chart instances + the labels for each language so we can destroy
+// and rebuild on language toggle (Chart.js caches some text in canvas,
+// so a full rebuild is the cleanest path).
+const CHART_LBLS = {
+  vi: {
+    radarAxes: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
+    radarTurkey: 'Thổ Nhĩ Kỳ CBI',
+    radarGreece: 'Hy Lạp GV (tham chiếu)',
+    speedCountries: ['🇹🇷 Thổ Nhĩ Kỳ CBI', '🇦🇪 UAE GV', '🇬🇷 Hy Lạp GV', '🇪🇸 Tây Ban Nha GV', '🇵🇹 Bồ Đào Nha GV', '🇲🇹 Malta QT'],
+    speedDataset: 'Tháng xử lý trung bình',
+    speedTooltip: c => ` ${c.raw} tháng trung bình`,
+    compareCountries: ['🇲🇹 Malta', '🇵🇹 Bồ Đào Nha', '🇦🇪 UAE', '🇬🇷 Hy Lạp', '🇪🇸 Tây Ban Nha', '🇹🇷 Thổ Nhĩ Kỳ'],
+    compareDataset: 'Điểm NAC',
+    compareTooltip: c => ` Điểm NAC: ${c.raw}/100`,
+    matrixSeries: ['🇹🇷 Thổ Nhĩ Kỳ', '🇲🇹 Malta', '🇬🇷 Hy Lạp', '🇵🇹 Bồ Đào Nha', '🇦🇪 UAE', '🇪🇸 Tây Ban Nha'],
+    matrixXTitle: 'Tốc độ xử lý (cao = nhanh hơn)',
+    matrixYTitle: 'Sức mạnh hộ chiếu / tự do di chuyển'
   },
-  options: {
-    responsive: true,
-    plugins: { legend: { position: 'bottom', labels: { font: { family: "'Be Vietnam Pro'", size: 11 }, boxWidth: 12, padding: 14 } } },
-    scales: { r: { min: 0, max: 10, ticks: { stepSize: 2, font: { family: "'Be Vietnam Pro'", size: 10 }, color: '#9ca3af' }, pointLabels: { font: { family: "'Be Vietnam Pro'", size: 11, weight: '600' }, color: '#374151' }, grid: { color: 'rgba(0,0,0,.06)' }, angleLines: { color: 'rgba(0,0,0,.06)' } } }
+  en: {
+    radarAxes: ['Investment', 'Speed', 'Quality of Life', 'Passport', 'Tax', 'Citizenship'],
+    radarTurkey: 'Türkiye CBI',
+    radarGreece: 'Greece GV (benchmark)',
+    speedCountries: ['🇹🇷 Türkiye CBI', '🇦🇪 UAE GV', '🇬🇷 Greece GV', '🇪🇸 Spain GV', '🇵🇹 Portugal GV', '🇲🇹 Malta CIT'],
+    speedDataset: 'Average processing months',
+    speedTooltip: c => ` ${c.raw} months average`,
+    compareCountries: ['🇲🇹 Malta', '🇵🇹 Portugal', '🇦🇪 UAE', '🇬🇷 Greece', '🇪🇸 Spain', '🇹🇷 Türkiye'],
+    compareDataset: 'NAC Score',
+    compareTooltip: c => ` NAC Score: ${c.raw}/100`,
+    matrixSeries: ['🇹🇷 Türkiye', '🇲🇹 Malta', '🇬🇷 Greece', '🇵🇹 Portugal', '🇦🇪 UAE', '🇪🇸 Spain'],
+    matrixXTitle: 'Processing speed (higher = faster)',
+    matrixYTitle: 'Passport strength / mobility'
   }
-});
+};
 
-// CITIZENSHIP SPEED BAR
-new Chart(document.getElementById('citizenshipChart').getContext('2d'), {
-  type: 'bar',
-  data: {
-    labels: ['🇹🇷 Thổ Nhĩ Kỳ CBI', '🇦🇪 UAE GV', '🇬🇷 Hy Lạp GV', '🇪🇸 Tây Ban Nha GV', '🇵🇹 Bồ Đào Nha GV', '🇲🇹 Malta QT'],
-    datasets: [{
-      label: 'Tháng xử lý trung bình',
-      data: [4.5, 2, 9, 9, 15, 24],
-      backgroundColor: ['#8B1A1A','#9ca3af','#9ca3af','#9ca3af','#9ca3af','#9ca3af'],
-      borderRadius: 6
-    }]
-  },
-  options: {
-    indexAxis: 'y', responsive: true,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` ${c.raw} tháng trung bình` } } },
-    scales: {
-      x: { grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: "'Be Vietnam Pro'", size: 11 } } },
-      y: { grid: { display: false }, ticks: { font: { family: "'Be Vietnam Pro'", size: 12 } } }
-    }
-  }
-});
+const chartFontFamily = "'Be Vietnam Pro'";
+let chartInstances = { radar: null, citizenship: null, compare: null, matrix: null };
 
-// COMPARE BAR
-new Chart(document.getElementById('compareChart').getContext('2d'), {
-  type: 'bar',
-  data: {
-    labels: ['🇲🇹 Malta', '🇵🇹 Bồ Đào Nha', '🇦🇪 UAE', '🇬🇷 Hy Lạp', '🇪🇸 Tây Ban Nha', '🇹🇷 Thổ Nhĩ Kỳ'],
-    datasets: [{
-      label: 'Điểm NAC',
-      data: [91, 88, 79, 78, 75, 74],
-      backgroundColor: ['#1a7a4a','#1a7a4a','#9ca3af','#9ca3af','#9ca3af','#8B1A1A'],
-      borderRadius: 6
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false }, tooltip: { callbacks: { label: c => ` Điểm NAC: ${c.raw}/100` } } },
-    scales: {
-      y: { min: 60, max: 100, grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: "'Be Vietnam Pro'", size: 11 } } },
-      x: { grid: { display: false }, ticks: { font: { family: "'Be Vietnam Pro'", size: 11 } } }
-    }
-  }
-});
+function buildCharts(lang) {
+  const L = CHART_LBLS[lang] || CHART_LBLS.vi;
 
-// MATRIX BUBBLE — Tốc độ (x) vs Sức mạnh hộ chiếu (y)
-new Chart(document.getElementById('matrixChart').getContext('2d'), {
-  type: 'bubble',
-  data: {
-    datasets: [
-      { label: '🇹🇷 Thổ Nhĩ Kỳ', data: [{ x: 9.5, y: 5.5, r: 14 }], backgroundColor: 'rgba(139,26,26,0.8)',  borderColor: '#8B1A1A', borderWidth: 2 },
-      { label: '🇲🇹 Malta',        data: [{ x: 6,   y: 9.2, r: 14 }], backgroundColor: 'rgba(26,122,74,0.75)', borderColor: '#1a7a4a', borderWidth: 2 },
-      { label: '🇬🇷 Hy Lạp',       data: [{ x: 7,   y: 8.8, r: 13 }], backgroundColor: 'rgba(13,94,175,0.65)', borderColor: '#0d5eaf', borderWidth: 1.5 },
-      { label: '🇵🇹 Bồ Đào Nha',   data: [{ x: 5,   y: 8.5, r: 13 }], backgroundColor: 'rgba(26,122,74,0.45)', borderColor: '#1a7a4a', borderWidth: 1.5 },
-      { label: '🇦🇪 UAE',           data: [{ x: 9,   y: 6.2, r: 10 }], backgroundColor: 'rgba(156,163,175,0.6)', borderColor: '#9ca3af', borderWidth: 1.5 },
-      { label: '🇪🇸 Tây Ban Nha',   data: [{ x: 7,   y: 7.5, r: 10 }], backgroundColor: 'rgba(181,131,10,0.55)', borderColor: '#b5830a', borderWidth: 1.5 },
-    ]
-  },
-  options: {
-    responsive: true,
-    plugins: {
-      legend: { position: 'bottom', labels: { font: { family: "'Be Vietnam Pro'", size: 11 }, boxWidth: 12, padding: 14 } },
-      tooltip: { callbacks: { label: c => `${c.dataset.label}` } }
+  // Destroy any existing instances before rebuilding (Chart.js caches
+  // labels in the canvas; .update() doesn't reliably refresh axis text).
+  Object.values(chartInstances).forEach(c => { if (c) c.destroy(); });
+
+  chartInstances.radar = new Chart(document.getElementById('radarChart').getContext('2d'), {
+    type: 'radar',
+    data: {
+      labels: L.radarAxes,
+      datasets: [
+        {
+          label: L.radarTurkey,
+          data: [7.8, 9.5, 6.8, 5.5, 8.0, 9.8],
+          fill: true,
+          backgroundColor: 'rgba(139,26,26,0.13)',
+          borderColor: '#8B1A1A',
+          pointBackgroundColor: '#8B1A1A',
+          pointBorderColor: '#fff',
+          borderWidth: 2, pointRadius: 5
+        },
+        {
+          label: L.radarGreece,
+          data: [7.2, 7.0, 9.0, 8.8, 6.5, 6.2],
+          fill: true,
+          backgroundColor: 'rgba(13,94,175,0.06)',
+          borderColor: 'rgba(13,94,175,0.4)',
+          pointBackgroundColor: 'rgba(13,94,175,0.5)',
+          pointBorderColor: '#fff',
+          borderWidth: 1.5, pointRadius: 4,
+          borderDash: [5, 3]
+        }
+      ]
     },
-    scales: {
-      x: { min: 0, max: 12, title: { display: true, text: 'Tốc độ xử lý (cao = nhanh hơn)', font: { family: "'Be Vietnam Pro'", size: 11 } }, grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: "'Be Vietnam Pro'", size: 10 } } },
-      y: { min: 0, max: 12, title: { display: true, text: 'Sức mạnh hộ chiếu / tự do di chuyển', font: { family: "'Be Vietnam Pro'", size: 11 } }, grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: "'Be Vietnam Pro'", size: 10 } } }
+    options: {
+      responsive: true,
+      plugins: { legend: { position: 'bottom', labels: { font: { family: chartFontFamily, size: 11 }, boxWidth: 12, padding: 14 } } },
+      scales: { r: { min: 0, max: 10, ticks: { stepSize: 2, font: { family: chartFontFamily, size: 10 }, color: '#9ca3af' }, pointLabels: { font: { family: chartFontFamily, size: 11, weight: '600' }, color: '#374151' }, grid: { color: 'rgba(0,0,0,.06)' }, angleLines: { color: 'rgba(0,0,0,.06)' } } }
     }
-  }
-});
+  });
+
+  chartInstances.citizenship = new Chart(document.getElementById('citizenshipChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: L.speedCountries,
+      datasets: [{
+        label: L.speedDataset,
+        data: [4.5, 2, 9, 9, 15, 24],
+        backgroundColor: ['#8B1A1A','#9ca3af','#9ca3af','#9ca3af','#9ca3af','#9ca3af'],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: L.speedTooltip } } },
+      scales: {
+        x: { grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: chartFontFamily, size: 11 } } },
+        y: { grid: { display: false }, ticks: { font: { family: chartFontFamily, size: 12 } } }
+      }
+    }
+  });
+
+  chartInstances.compare = new Chart(document.getElementById('compareChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: L.compareCountries,
+      datasets: [{
+        label: L.compareDataset,
+        data: [91, 88, 79, 78, 75, 74],
+        backgroundColor: ['#1a7a4a','#1a7a4a','#9ca3af','#9ca3af','#9ca3af','#8B1A1A'],
+        borderRadius: 6
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: { legend: { display: false }, tooltip: { callbacks: { label: L.compareTooltip } } },
+      scales: {
+        y: { min: 60, max: 100, grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: chartFontFamily, size: 11 } } },
+        x: { grid: { display: false }, ticks: { font: { family: chartFontFamily, size: 11 } } }
+      }
+    }
+  });
+
+  chartInstances.matrix = new Chart(document.getElementById('matrixChart').getContext('2d'), {
+    type: 'bubble',
+    data: {
+      datasets: [
+        { label: L.matrixSeries[0], data: [{ x: 9.5, y: 5.5, r: 14 }], backgroundColor: 'rgba(139,26,26,0.8)',  borderColor: '#8B1A1A', borderWidth: 2 },
+        { label: L.matrixSeries[1], data: [{ x: 6,   y: 9.2, r: 14 }], backgroundColor: 'rgba(26,122,74,0.75)', borderColor: '#1a7a4a', borderWidth: 2 },
+        { label: L.matrixSeries[2], data: [{ x: 7,   y: 8.8, r: 13 }], backgroundColor: 'rgba(13,94,175,0.65)', borderColor: '#0d5eaf', borderWidth: 1.5 },
+        { label: L.matrixSeries[3], data: [{ x: 5,   y: 8.5, r: 13 }], backgroundColor: 'rgba(26,122,74,0.45)', borderColor: '#1a7a4a', borderWidth: 1.5 },
+        { label: L.matrixSeries[4], data: [{ x: 9,   y: 6.2, r: 10 }], backgroundColor: 'rgba(156,163,175,0.6)', borderColor: '#9ca3af', borderWidth: 1.5 },
+        { label: L.matrixSeries[5], data: [{ x: 7,   y: 7.5, r: 10 }], backgroundColor: 'rgba(181,131,10,0.55)', borderColor: '#b5830a', borderWidth: 1.5 },
+      ]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { position: 'bottom', labels: { font: { family: chartFontFamily, size: 11 }, boxWidth: 12, padding: 14 } },
+        tooltip: { callbacks: { label: c => `${c.dataset.label}` } }
+      },
+      scales: {
+        x: { min: 0, max: 12, title: { display: true, text: L.matrixXTitle, font: { family: chartFontFamily, size: 11 } }, grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: chartFontFamily, size: 10 } } },
+        y: { min: 0, max: 12, title: { display: true, text: L.matrixYTitle, font: { family: chartFontFamily, size: 11 } }, grid: { color: 'rgba(0,0,0,.04)' }, ticks: { font: { family: chartFontFamily, size: 10 } } }
+      }
+    }
+  });
+}
+
+buildCharts('vi');
 
 // TOC Active Highlight
 const sections = document.querySelectorAll('.section');
@@ -1932,6 +2008,279 @@ document.addEventListener('touchstart', e => {
 }, { passive: true });
 </script>
 
+
+<script>
+// ── NAC INDEX animated globe (banner CTA in §07) ──
+// Self-contained canvas globe with rotating sphere, city dots, NAC arc paths
+// and tiny airplanes flying along the arcs. Lifted from the NAC Residence
+// Index page hero and scoped to the brochure CTA card.
+(function(){
+  const canvas = document.getElementById('nacIndexGlobe');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, cx, cy, R;
+  let rot = 0, currentSpeed = 0.10, targetSpeed = 0.10;
+  let pulseT = 0;
+  let planes = [];
+
+  const CITIES = [
+    [48.85,  2.35,  '#f97316', 1.3, 'Paris'],
+    [51.5,  -0.12,  '#1800ad', 1.3, 'London'],
+    [40.71, -74.0,  '#f97316', 1.4, 'New York'],
+    [35.68, 139.69, '#a855f7', 1.2, 'Tokyo'],
+    [1.28,  103.82, '#1800ad', 1.8, 'Singapore'],
+    [-33.87,151.2,  '#10b981', 1.1, 'Sydney'],
+    [25.2,   55.27, '#f59e0b', 1.8, 'Dubai'],
+    [41.01,  28.96, '#10b981', 1.3, 'Istanbul'],
+    [48.2,   16.37, '#1800ad', 1.2, 'Vienna'],
+    [37.57, 126.97, '#10b981', 1.1, 'Seoul'],
+    [13.75, 100.5,  '#f59e0b', 1.2, 'Bangkok'],
+    [3.14,  101.69, '#10b981', 1.2, 'KL'],
+    [10.82, 106.63, '#f97316', 2.0, 'Ho Chi Minh'],
+    [21.03, 105.83, '#f97316', 1.2, 'Hanoi'],
+    [39.92, 116.38, '#a855f7', 1.2, 'Beijing'],
+    [25.2,  121.56, '#a855f7', 1.1, 'Taipei'],
+    [28.61,  77.21, '#10b981', 1.1, 'Delhi'],
+    [24.68,  46.72, '#f59e0b', 1.2, 'Riyadh'],
+    [-23.55,-46.63, '#a855f7', 1.1, 'São Paulo'],
+    [37.77,-122.4,  '#1800ad', 1.1, 'San Francisco'],
+    [38.72,  -9.14, '#1800ad', 1.4, 'Lisbon'],
+    [37.98,  23.73, '#1800ad', 1.3, 'Athens'],
+    [35.9,   14.51, '#1800ad', 1.1, 'Malta'],
+    [-36.87,174.76, '#10b981', 1.1, 'Auckland'],
+    [35.69,  33.02, '#a855f7', 1.1, 'Nicosia'],
+    [47.5,   19.04, '#1800ad', 1.2, 'Budapest'],
+    [43.65, -79.38, '#10b981', 1.0, 'Toronto'],
+  ];
+  const ARC_PAIRS = [
+    [12,4],[12,6],[12,20],[12,21],[12,2],
+    [12,7],[12,10],[12,11],[4,6],[4,1],[6,0],[20,0],[21,7],[25,8]
+  ];
+
+  function resize() {
+    const dpr = Math.min(window.devicePixelRatio||1, 2);
+    W = canvas.offsetWidth; H = canvas.offsetHeight;
+    canvas.width  = W*dpr; canvas.height = H*dpr;
+    ctx.setTransform(1,0,0,1,0,0);
+    ctx.scale(dpr, dpr);
+    cx = W/2; cy = H/2;
+    R  = Math.min(W,H) * 0.41;
+  }
+  function project(lat, lng, rotation) {
+    const phi   = (90-lat)*Math.PI/180;
+    const theta = (lng+rotation)*Math.PI/180;
+    const x = R*Math.sin(phi)*Math.cos(theta);
+    const y = R*Math.cos(phi);
+    const z = R*Math.sin(phi)*Math.sin(theta);
+    return { x:cx+x, y:cy-y, z, visible: z > -R*0.05 };
+  }
+  function hexToRgb(hex) {
+    return [parseInt(hex.slice(1,3),16),parseInt(hex.slice(3,5),16),parseInt(hex.slice(5,7),16)];
+  }
+  function arcCP(a, b) {
+    const mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
+    const dx=mx-cx, dy=my-cy;
+    const d=Math.sqrt(dx*dx+dy*dy)||1;
+    const lift=R*0.20;
+    return { x:mx+(dx/d)*lift, y:my+(dy/d)*lift };
+  }
+  function bezierPoint(a, cp, b, t) {
+    return {
+      x:(1-t)*(1-t)*a.x + 2*(1-t)*t*cp.x + t*t*b.x,
+      y:(1-t)*(1-t)*a.y + 2*(1-t)*t*cp.y + t*t*b.y,
+    };
+  }
+  function spawnPlane() {
+    const pair = ARC_PAIRS[Math.floor(Math.random()*ARC_PAIRS.length)];
+    const reversed = Math.random() > 0.5;
+    planes.push({
+      pair: reversed ? [pair[1],pair[0]] : [pair[0],pair[1]],
+      t: 0,
+      speed: 0.0025 + Math.random()*0.0025,
+      trail: []
+    });
+  }
+  function drawAirplane(x, y, angle, color, alpha) {
+    ctx.save();
+    ctx.translate(x, y); ctx.rotate(angle);
+    ctx.globalAlpha = alpha;
+    const s = 4.5;
+    const [rv,gv,bv] = hexToRgb(color);
+    const glow = ctx.createRadialGradient(0,0,0,0,0,s*2.8);
+    glow.addColorStop(0, `rgba(${rv},${gv},${bv},0.30)`);
+    glow.addColorStop(1, `rgba(${rv},${gv},${bv},0)`);
+    ctx.beginPath(); ctx.arc(0,0,s*2.8,0,Math.PI*2);
+    ctx.fillStyle=glow; ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,0.95)';
+    ctx.strokeStyle = color; ctx.lineWidth = 0.4;
+    ctx.beginPath();
+    ctx.moveTo( s*1.1,  0); ctx.lineTo(-s*0.9,  s*0.28);
+    ctx.lineTo(-s*0.55, 0); ctx.lineTo(-s*0.9, -s*0.28);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo( s*0.1,  0); ctx.lineTo(-s*0.25,  s*0.9); ctx.lineTo(-s*0.55,  s*0.18);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo( s*0.1,  0); ctx.lineTo(-s*0.25, -s*0.9); ctx.lineTo(-s*0.55, -s*0.18);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(-s*0.55,  0); ctx.lineTo(-s*0.88,  s*0.42); ctx.lineTo(-s*0.88,  0);
+    ctx.closePath(); ctx.fill(); ctx.stroke();
+    ctx.globalAlpha = 1; ctx.restore();
+  }
+  function drawPlanes(projected) {
+    planes = planes.filter(p => p.t <= 1.05);
+    planes.forEach(p => {
+      p.t += p.speed;
+      const [ai,bi] = p.pair;
+      const a = projected[ai], b = projected[bi];
+      if (!a||!b||!a.visible||!b.visible||a.z<0||b.z<0) return;
+      const cp = arcCP(a,b);
+      const pos = bezierPoint(a,cp,b,Math.min(p.t,1));
+      p.trail.push({...pos});
+      if (p.trail.length > 22) p.trail.shift();
+      if (p.trail.length > 2) {
+        const col = CITIES[ai][2];
+        const [rv,gv,bv]=hexToRgb(col);
+        ctx.beginPath();
+        ctx.moveTo(p.trail[0].x, p.trail[0].y);
+        for (let i=1;i<p.trail.length;i++) ctx.lineTo(p.trail[i].x,p.trail[i].y);
+        const grad = ctx.createLinearGradient(
+          p.trail[0].x,p.trail[0].y,
+          p.trail[p.trail.length-1].x,p.trail[p.trail.length-1].y
+        );
+        grad.addColorStop(0, `rgba(${rv},${gv},${bv},0)`);
+        grad.addColorStop(1, `rgba(${rv},${gv},${bv},0.55)`);
+        ctx.setLineDash([2,3]);
+        ctx.strokeStyle = grad; ctx.lineWidth = 0.8;
+        ctx.stroke(); ctx.setLineDash([]);
+      }
+      if (p.t <= 1) {
+        const dt = 0.02;
+        const posAhead = bezierPoint(a,cp,b,Math.min(p.t+dt,1));
+        const angle = Math.atan2(posAhead.y-pos.y, posAhead.x-pos.x);
+        const col = CITIES[ai][2];
+        const fade = Math.sin(Math.min(p.t,1-p.t)*10 * Math.PI/2);
+        const alpha = Math.min(Math.max(fade,0),1) * 0.92;
+        drawAirplane(pos.x, pos.y, angle, col, alpha);
+      }
+    });
+  }
+  function draw(r) {
+    ctx.clearRect(0, 0, W, H);
+    pulseT += 0.018;
+    // Lat rings — brighter on dark bg
+    [-60,-45,-30,-15,0,15,30,45,60].forEach(lat => {
+      const phi=(90-lat)*Math.PI/180;
+      const ry=R*Math.cos(phi), rx=R*Math.sin(phi);
+      if(rx<2) return;
+      const isEq = lat===0;
+      ctx.beginPath();
+      ctx.ellipse(cx, cy-ry, rx, rx*0.13, 0, 0, Math.PI*2);
+      ctx.strokeStyle = isEq ? 'rgba(249,165,82,0.55)' : 'rgba(180,170,255,0.28)';
+      ctx.lineWidth   = isEq ? 0.9 : 0.5;
+      ctx.stroke();
+    });
+    // Meridians
+    for(let i=0;i<12;i++){
+      const lng=(i/12)*360;
+      ctx.beginPath();
+      let first=true;
+      for(let lat=-88;lat<=88;lat+=3){
+        const pt=project(lat,lng,r);
+        if(!pt.visible){first=true;continue;}
+        if(first){ctx.moveTo(pt.x,pt.y);first=false;}
+        else ctx.lineTo(pt.x,pt.y);
+      }
+      ctx.strokeStyle='rgba(180,170,255,0.22)';
+      ctx.lineWidth=0.5; ctx.stroke();
+    }
+    // Globe border
+    ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+    ctx.strokeStyle='rgba(200,190,255,0.4)'; ctx.lineWidth=0.8; ctx.stroke();
+    // Project + sort cities
+    const projected = CITIES.map(([lat,lng,color,sm,label])=>({
+      ...project(lat,lng,r), color, sm, label
+    })).sort((a,b)=>a.z-b.z);
+    // Faint connection web
+    const vis = projected.filter(p=>p.visible&&p.z>R*0.05);
+    for(let i=0;i<vis.length;i++){
+      for(let j=i+1;j<vis.length;j++){
+        const a=vis[i],b=vis[j];
+        const dist=Math.hypot(a.x-b.x,a.y-b.y);
+        if(dist>R*0.42) continue;
+        const depth=((a.z+b.z)/(2*R)+0.5);
+        const alpha=0.022*depth*(1-dist/(R*0.42));
+        const [rv,gv,bv]=hexToRgb(a.color);
+        ctx.beginPath(); ctx.moveTo(a.x,a.y);
+        const mx=(a.x+b.x)/2-(b.y-a.y)*0.07;
+        const my=(a.y+b.y)/2+(b.x-a.x)*0.07;
+        ctx.quadraticCurveTo(mx,my,b.x,b.y);
+        ctx.strokeStyle=`rgba(${rv},${gv},${bv},${alpha})`;
+        ctx.lineWidth=0.5; ctx.stroke();
+      }
+    }
+    // NAC arcs
+    ARC_PAIRS.forEach(([ai,bi])=>{
+      const a=projected[ai],b=projected[bi];
+      if(!a||!b||!a.visible||!b.visible||a.z<0||b.z<0) return;
+      const depth=Math.min((a.z+b.z)/(2*R)+0.3,0.65);
+      if(depth<0.06) return;
+      const cp=arcCP(a,b);
+      const col=CITIES[ai][2];
+      const [rv,gv,bv]=hexToRgb(col);
+      const grad=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
+      grad.addColorStop(0,  `rgba(${rv},${gv},${bv},${depth*0.20})`);
+      grad.addColorStop(0.5,`rgba(${rv},${gv},${bv},${depth*0.45})`);
+      grad.addColorStop(1,  `rgba(${rv},${gv},${bv},${depth*0.20})`);
+      ctx.beginPath();
+      ctx.moveTo(a.x,a.y);
+      ctx.quadraticCurveTo(cp.x,cp.y,b.x,b.y);
+      ctx.strokeStyle=grad; ctx.lineWidth=0.7; ctx.stroke();
+    });
+    drawPlanes(projected);
+    // City dots
+    projected.forEach((pt,idx)=>{
+      if(!pt.visible) return;
+      const depth=(pt.z+R)/(2*R);
+      const pulse = idx===12 ? 1+0.20*Math.sin(pulseT*2.5) : 1;
+      const size  = (1.5+depth*2.6)*pt.sm*pulse;
+      const alpha = 0.4+depth*0.6;
+      const [rv,gv,bv]=hexToRgb(pt.color);
+      [[6.5,0.06],[3.5,0.14],[2,0.25]].forEach(([mult,ga])=>{
+        const gg=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,size*mult);
+        gg.addColorStop(0,`rgba(${rv},${gv},${bv},${ga*alpha})`);
+        gg.addColorStop(1,`rgba(${rv},${gv},${bv},0)`);
+        ctx.beginPath(); ctx.arc(pt.x,pt.y,size*mult,0,Math.PI*2);
+        ctx.fillStyle=gg; ctx.fill();
+      });
+      const core=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,size);
+      core.addColorStop(0,  `rgba(255,255,255,${Math.min(alpha*0.95,0.95)})`);
+      core.addColorStop(0.35,`rgba(${rv},${gv},${bv},${alpha})`);
+      core.addColorStop(1,  `rgba(${rv},${gv},${bv},${alpha*0.5})`);
+      ctx.beginPath(); ctx.arc(pt.x,pt.y,size,0,Math.PI*2);
+      ctx.fillStyle=core; ctx.fill();
+      if(idx===12&&depth>0.3){
+        const rippleR=size*(2.5+1.5*((pulseT*0.7)%1));
+        const rippleA=0.45*(1-(pulseT*0.7)%1)*depth;
+        ctx.beginPath(); ctx.arc(pt.x,pt.y,rippleR,0,Math.PI*2);
+        ctx.strokeStyle=`rgba(${rv},${gv},${bv},${rippleA})`;
+        ctx.lineWidth=1; ctx.stroke();
+      }
+    });
+  }
+  function animate() {
+    currentSpeed+=(targetSpeed-currentSpeed)*0.04;
+    rot=(rot+currentSpeed)%360;
+    draw(rot);
+    if(Math.random()<0.010) spawnPlane();
+    requestAnimationFrame(animate);
+  }
+  function init(){ resize(); animate(); }
+  window.addEventListener('resize',()=>{ resize(); draw(rot); });
+  setTimeout(init, 80);
+})();
+</script>
 
 
 <script>
@@ -2070,6 +2419,12 @@ function setLang(lang) {
   document.querySelectorAll('.toc-num').forEach((el, i) => {
     // keep as-is, numbers don't change
   });
+
+  // Rebuild charts with localised labels (Chart.js caches axis text in
+  // canvas, so destroy + recreate is the cleanest path).
+  if (typeof buildCharts === 'function') {
+    try { buildCharts(lang); } catch (e) { console.warn('Chart rebuild failed:', e); }
+  }
 }
 </script>
 
