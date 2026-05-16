@@ -151,18 +151,29 @@ TRANSLATOR_BLOCK = f"""
     insts.forEach(c => {{ try {{ applyLang(c, lang); }} catch (e) {{}} }});
   }}
 
-  // Wrap setLang so the translator runs after every toggle.
-  if (typeof setLang === 'function') {{
-    const original = setLang;
-    window.setLang = function (lang) {{
-      original.apply(this, arguments);
-      translateAll();
-    }};
+  // Run the translator on every VI/EN button click — non-invasive,
+  // doesn't wrap setLang (which can be fragile across browsers and
+  // can break the inline onclick→original-setLang flow). A microtask
+  // delay lets the original setLang run first.
+  function attach() {{
+    ['btn-vi', 'btn-en'].forEach(function (id) {{
+      const b = document.getElementById(id);
+      if (!b || b._nacChartTrAttached) return;
+      b._nacChartTrAttached = true;
+      b.addEventListener('click', function () {{
+        // Defer so the original setLang's DOM swap completes first
+        setTimeout(translateAll, 0);
+      }});
+    }});
   }}
-  // Also run once on load in case the page started in EN (sticky lang)
+
   if (document.readyState === 'loading') {{
-    document.addEventListener('DOMContentLoaded', translateAll);
+    document.addEventListener('DOMContentLoaded', function () {{
+      attach();
+      setTimeout(translateAll, 300);  // initial pass (sticky lang)
+    }});
   }} else {{
+    attach();
     setTimeout(translateAll, 300);
   }}
 }})();
