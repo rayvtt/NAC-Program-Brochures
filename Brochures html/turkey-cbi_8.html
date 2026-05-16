@@ -308,14 +308,84 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 .nac-btn-wa { display: inline-flex; align-items: center; gap: 7px; background: rgba(255,255,255,0.12); color: #fff; border: 1.5px solid rgba(255,255,255,0.3); font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 8px; text-decoration: none; transition: background .15s; }
 .nac-btn-wa:hover { background: rgba(255,255,255,0.2); }
 
-/* ── INLINE ARTICLE CTA ── */
-.article-cta { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--country); border-radius: 0 var(--r) var(--r) 0; margin-bottom: 24px; }
-.article-cta-icon { font-size: 18px; flex-shrink: 0; }
-.article-cta-text { font-size: 12.5px; color: var(--text2); flex: 1; line-height: 1.5; }
-.article-cta-text a { color: var(--country); font-weight: 700; text-decoration: none; }
-.article-cta-text a:hover { text-decoration: underline; }
-.article-cta-btn { font-size: 11px; font-weight: 700; color: var(--country); text-decoration: none; padding: 5px 12px; background: var(--country-lt); border-radius: 6px; white-space: nowrap; transition: background .15s; }
-.article-cta-btn:hover { background: var(--country-lt2); }
+/* ── ARTICLE CTA — Banner card (cover image + headline + CTA) ── */
+.article-cta {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.article-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(0,0,0,0.14);
+  border-color: var(--country);
+}
+.article-cta-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  min-height: 168px;
+  padding: 18px 22px;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-decoration: none;
+}
+.article-cta-banner::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,8,20,.78) 0%, rgba(5,8,20,.32) 55%, rgba(5,8,20,.05) 100%);
+  pointer-events: none;
+}
+.article-cta-kicker {
+  position: relative; z-index: 1;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 8px;
+}
+.article-cta-title {
+  position: relative; z-index: 1;
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700; line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,.4);
+  margin: 0;
+}
+.article-cta-body {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 22px 16px;
+}
+.article-cta-desc {
+  flex: 1;
+  font-size: 12.5px; line-height: 1.55;
+  color: var(--text2);
+  margin: 0;
+}
+.article-cta-btn {
+  flex-shrink: 0;
+  font-size: 11px; font-weight: 700;
+  color: var(--country); text-decoration: none;
+  padding: 7px 14px;
+  background: var(--country-lt);
+  border-radius: 7px;
+  white-space: nowrap;
+  transition: background .15s, transform .15s;
+}
+.article-cta-btn:hover { background: var(--country-lt2); transform: translateX(2px); }
+
+@media (max-width: 600px) {
+  .article-cta-banner { min-height: 140px; padding: 14px 16px; }
+  .article-cta-title { font-size: 17px; }
+  .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
+  .article-cta-btn { align-self: flex-end; }
+}
 
 /* ── FOOTER ── */
 .footer   { background: var(--bg2); border-top: 1px solid var(--border); padding: 24px 32px; }
@@ -1176,9 +1246,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <div class="article-cta-icon">📖</div>
-        <div class="article-cta-text" data-vi="Đọc thêm phân tích chuyên sâu: &lt;a href=&quot;https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/&quot; target=&quot;_blank&quot;&gt;Hy Lạp vs Thổ Nhĩ Kỳ 2026: So Sánh Toàn Diện Hai Chương Trình&lt;/a&gt; — Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt." data-en="Read more in-depth analysis: &lt;a href=&quot;https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/&quot; target=&quot;_blank&quot;&gt;Greece vs Turkey 2026: A Comprehensive Comparison&lt;/a&gt; — Insights from the NAC team after 5+ years of processing applications for Vietnamese families.">Đọc thêm phân tích chuyên sâu: <a href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank">Hy Lạp vs Thổ Nhĩ Kỳ 2026: So Sánh Toàn Diện Hai Chương Trình</a> — Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</div>
-        <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank" data-vi="Đọc Ngay →" data-en="Read Now →">Đọc Ngay →</a>
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua-cover-8d1da.jpg')">
+          <span class="article-cta-kicker" data-vi="Bài viết đề xuất" data-en="Featured analysis">Bài viết đề xuất</span>
+          <h3 class="article-cta-title" data-vi="Hy Lạp vs Thổ Nhĩ Kỳ 2026: So Sánh Toàn Diện Hai Chương Trình" data-en="Greece vs Turkey 2026: A Comprehensive Comparison">Hy Lạp vs Thổ Nhĩ Kỳ 2026: So Sánh Toàn Diện Hai Chương Trình</h3>
+        </a>
+        <div class="article-cta-body">
+          <p class="article-cta-desc" data-vi="Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt." data-en="Insights from the NAC team after 5+ years processing applications for Vietnamese families.">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank" data-vi="Đọc Ngay →" data-en="Read Now →">Đọc Ngay →</a>
+        </div>
       </div>
     </section>
 
@@ -1358,9 +1433,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <div class="article-cta-icon">📖</div>
-        <div class="article-cta-text" data-vi="Xem hướng dẫn chi tiết: &lt;a href=&quot;https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/&quot; target=&quot;_blank&quot;&gt;Hy Lạp vs Thổ Nhĩ Kỳ 2026: Dữ Liệu BĐS, ROI Và Chiến Lược Chọn Lựa&lt;/a&gt;" data-en="See the detailed guide: &lt;a href=&quot;https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/&quot; target=&quot;_blank&quot;&gt;Greece vs Turkey 2026: Real Estate Data, ROI and Selection Strategy&lt;/a&gt;">Xem hướng dẫn chi tiết: <a href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank">Hy Lạp vs Thổ Nhĩ Kỳ 2026: Dữ Liệu BĐS, ROI Và Chiến Lược Chọn Lựa</a></div>
-        <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank" data-vi="Xem →" data-en="View →">Xem →</a>
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua-cover-8d1da.jpg')">
+          <span class="article-cta-kicker" data-vi="Hướng dẫn chi tiết" data-en="Detailed guide">Hướng dẫn chi tiết</span>
+          <h3 class="article-cta-title" data-vi="Hy Lạp vs Thổ Nhĩ Kỳ 2026: Dữ Liệu BĐS, ROI Và Chiến Lược" data-en="Greece vs Turkey 2026: Real Estate Data, ROI and Strategy">Hy Lạp vs Thổ Nhĩ Kỳ 2026: Dữ Liệu BĐS, ROI Và Chiến Lược</h3>
+        </a>
+        <div class="article-cta-body">
+          <p class="article-cta-desc" data-vi="Phân tích thị trường BĐS Istanbul vs Athens, chỉ số ROI bằng USD và khung quyết định đầu tư." data-en="Istanbul vs Athens real estate analysis, USD-denominated ROI metrics, and the investment decision framework.">Phân tích thị trường BĐS Istanbul vs Athens, chỉ số ROI bằng USD và khung quyết định đầu tư.</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank" data-vi="Xem →" data-en="View →">Xem →</a>
+        </div>
       </div>
     </section>
 
@@ -1585,9 +1665,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </table>
 
       <div class="article-cta" style="margin-top:16px">
-        <div class="article-cta-icon">⚖️</div>
-        <div class="article-cta-text" data-vi="Chưa quyết định được? &lt;a href=&quot;https://nomadassetcollective.com/so-sanh/&quot; target=&quot;_blank&quot;&gt;Công cụ So Sánh NAC&lt;/a&gt; giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline." data-en="Can't decide? The &lt;a href=&quot;https://nomadassetcollective.com/so-sanh/&quot; target=&quot;_blank&quot;&gt;NAC Comparison Tool&lt;/a&gt; helps you choose the right program based on budget, family goals and timeline.">Chưa quyết định được? <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">Công cụ So Sánh NAC</a> giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline.</div>
-        <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank" data-vi="So &lt;span class=&quot;cta-text&quot;&gt;Sánh →&lt;/span&gt;" data-en="Compare →">So <span class="cta-text">Sánh →</span></a>
+        <a class="article-cta-banner" href="https://nomadassetcollective.com/so-sanh/" target="_blank" style="background-image:url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&q=80')">
+          <span class="article-cta-kicker" data-vi="Công cụ" data-en="Tool">Công cụ</span>
+          <h3 class="article-cta-title" data-vi="Công Cụ So Sánh NAC — Tìm chương trình phù hợp" data-en="NAC Comparison Tool — Find the right program">Công Cụ So Sánh NAC — Tìm chương trình phù hợp</h3>
+        </a>
+        <div class="article-cta-body">
+          <p class="article-cta-desc" data-vi="Chưa quyết định được? Công cụ giúp bạn chọn chương trình theo ngân sách, mục tiêu gia đình và timeline." data-en="Can't decide? The tool helps you choose the right program based on budget, family goals and timeline.">Chưa quyết định được? Công cụ giúp bạn chọn chương trình theo ngân sách, mục tiêu gia đình và timeline.</p>
+          <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank" data-vi="So Sánh →" data-en="Compare →">So Sánh →</a>
+        </div>
       </div>
     </section>
 
