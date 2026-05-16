@@ -230,6 +230,21 @@ body { background: var(--bg); color: var(--text); font-family: 'Lora', 'Inter', 
 .chart-box   { background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 24px; margin-bottom: 20px; }
 .chart-title { font-size: 12px; font-weight: 700; color: var(--text2); margin-bottom: 16px; letter-spacing: -.1px; }
 
+/* Collapsible chart wrapper (matrix chart on mobile). Always open on
+   desktop; tap-to-expand on mobile via a <details> element. */
+.chart-collapse { width: 100%; }
+.chart-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; }
+.chart-collapse > summary::-webkit-details-marker { display: none; }
+.chart-collapse > summary .chart-title { margin-bottom: 16px; }
+.chart-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .chart-collapse > summary { cursor: pointer; user-select: none; }
+  .chart-collapse > summary .chart-title { margin-bottom: 0; }
+  .chart-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .chart-collapse[open] .chart-collapse-icon { transform: rotate(180deg); }
+  .chart-collapse[open] > summary .chart-title { margin-bottom: 14px; }
+}
+
 /* ── INVESTMENT TIERS ── */
 .tier-list { display: flex; flex-direction: column; gap: 10px; }
 .tier { background: #fff; border: 1.5px solid var(--border); border-radius: var(--r); padding: 18px 20px; transition: border-color .15s; position: relative; overflow: hidden; }
@@ -341,9 +356,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Lora', 'Inter', 
 .nac-btn-wa:hover { background: rgba(255,255,255,0.2); }
 
 /* ── ARTICLE CTA ── */
-.article-cta { background: var(--bg2); border: 1px solid var(--border); border-left: 3px solid var(--country); border-radius: var(--r); padding: 14px 18px; display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
-.article-cta-icon { font-size: 20px; flex-shrink: 0; }
-.article-cta-text { font-size: 13px; color: var(--text2); flex: 1; line-height: 1.5; }
 .article-cta-text a { color: var(--country); font-weight: 600; text-decoration: none; }
 .article-cta-text a:hover { text-decoration: underline; }
 .article-cta-btn { font-size: 12px; font-weight: 700; color: var(--country); text-decoration: none; white-space: nowrap; padding: 7px 14px; border-radius: 7px; border: 1.5px solid var(--country-lt2); background: #fff; transition: all .15s; }
@@ -1094,6 +1106,88 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .nac-index-pills-mobile { display: none; }
 
 
+
+
+/* ── ARTICLE CTA — Banner card (cover image + headline + CTA) ──
+   Migrated from text-only layout via migrate_article_cta_banner.py */
+/* ── ARTICLE CTA — Banner card (cover image + headline + CTA) ── */
+.article-cta {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.article-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -12px rgba(0,0,0,0.14);
+  border-color: var(--country);
+}
+.article-cta-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  min-height: 168px;
+  padding: 18px 22px;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  text-decoration: none;
+}
+.article-cta-banner::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,8,20,.78) 0%, rgba(5,8,20,.32) 55%, rgba(5,8,20,.05) 100%);
+  pointer-events: none;
+}
+.article-cta-kicker {
+  position: relative; z-index: 1;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 2.5px; text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  margin-bottom: 8px;
+}
+.article-cta-title {
+  position: relative; z-index: 1;
+  font-family: 'Playfair Display', serif;
+  font-size: 19px; font-weight: 700; line-height: 1.25;
+  color: #fff;
+  text-shadow: 0 1px 8px rgba(0,0,0,.4);
+  margin: 0;
+}
+.article-cta-body {
+  display: flex; align-items: center; gap: 16px;
+  padding: 14px 22px 16px;
+}
+.article-cta-desc {
+  flex: 1;
+  font-size: 12.5px; line-height: 1.55;
+  color: var(--text2);
+  margin: 0;
+}
+.article-cta-btn {
+  flex-shrink: 0;
+  font-size: 11px; font-weight: 700;
+  color: var(--country); text-decoration: none;
+  padding: 7px 14px;
+  background: var(--country-lt);
+  border-radius: 7px;
+  white-space: nowrap;
+  transition: background .15s, transform .15s;
+}
+.article-cta-btn:hover { background: var(--country-lt2); transform: translateX(2px); }
+
+@media (max-width: 600px) {
+  .article-cta-banner { min-height: 140px; padding: 14px 16px; }
+  .article-cta-title { font-size: 17px; }
+  .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
+  .article-cta-btn { align-self: flex-end; }
+}
 </style>
 </head>
 <body>
@@ -1250,9 +1344,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <div class="article-cta-icon">📖</div>
-        <div class="article-cta-text">Đọc thêm phân tích chuyên sâu: <a href="https://blog.nomadassetcollective.com/" target="_blank">Bồ Đào Nha Golden Visa 2026: Hướng Dẫn Toàn Diện Sau Cải Cách</a> — Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</div>
-        <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Đọc Ngay →</a>
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
+          <span class="article-cta-kicker">Bài viết đề xuất</span>
+          <h3 class="article-cta-title">Bồ Đào Nha Golden Visa 2026: Hướng Dẫn Toàn Diện Sau Cải Cách</h3>
+        </a>
+        <div class="article-cta-body">
+          <p class="article-cta-desc">— Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Đọc Ngay →</a>
+        </div>
       </div>
     </section>
 
@@ -1413,9 +1512,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <div class="article-cta-icon">📖</div>
-        <div class="article-cta-text">Xem hướng dẫn chi tiết: <a href="https://blog.nomadassetcollective.com/" target="_blank">Quy Trình Golden Visa Bồ Đào Nha 2026: Từng Bước Thực Tế Cho Nhà Đầu Tư Việt</a></div>
-        <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Xem →</a>
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
+          <span class="article-cta-kicker">Hướng dẫn chi tiết</span>
+          <h3 class="article-cta-title">Quy Trình Golden Visa Bồ Đào Nha 2026: Từng Bước Thực Tế Cho Nhà Đầu Tư Việt</h3>
+        </a>
+        <div class="article-cta-body">
+          <p class="article-cta-desc">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Xem →</a>
+        </div>
       </div>
     </section>
 
@@ -1620,9 +1724,14 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <div class="article-cta-icon">💰</div>
-        <div class="article-cta-text">Tìm hiểu thêm: <a href="https://blog.nomadassetcollective.com/" target="_blank">Chế Độ NHR Bồ Đào Nha 2026: Tối Ưu Thuế Cho Nhà Đầu Tư Việt Sống Tại EU</a></div>
-        <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Đọc →</a>
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
+          <span class="article-cta-kicker">Phân tích NAC</span>
+          <h3 class="article-cta-title">Chế Độ NHR Bồ Đào Nha 2026: Tối Ưu Thuế Cho Nhà Đầu Tư Việt Sống Tại EU</h3>
+        </a>
+        <div class="article-cta-body">
+          <p class="article-cta-desc">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Đọc →</a>
+        </div>
       </div>
     </section>
 
@@ -1837,8 +1946,13 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
       <div class="comp-table-wrap">
       <div class="chart-box" style="margin-bottom:20px">
-        <div class="chart-title">Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)</div>
-        <canvas id="matrixChart" style="max-height:280px"></canvas>
+        <details id="matrixCollapse" class="chart-collapse" open>
+          <summary class="chart-collapse-summary">
+            <span class="chart-title">Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)</span>
+            <span class="chart-collapse-icon" aria-hidden="true">▾</span>
+          </summary>
+          <canvas id="matrixChart"></canvas>
+        </details>
       </div>
       </div>
       <div class="mobile-table-note">📊 Xem thông tin hoàn chỉnh trên desktop / web view</div>
@@ -1993,7 +2107,7 @@ new Chart(tlCtx, {
 
 // Bubble / Matrix chart — Speed vs Passport Strength
 const matrixCtx = document.getElementById('matrixChart').getContext('2d');
-new Chart(matrixCtx, {
+const matrixChartInstance = new Chart(matrixCtx, {
   type: 'bubble',
   data: {
     datasets: [
@@ -2007,6 +2121,9 @@ new Chart(matrixCtx, {
   },
   options: {
     responsive: true,
+    // Square on mobile so bubbles spread across the plot area; 2:1 desktop.
+    maintainAspectRatio: true,
+    aspectRatio: window.matchMedia('(max-width: 600px)').matches ? 1 : 2,
     plugins: {
       legend: { position: 'bottom', labels: { font: { size: 11, family: 'Inter' }, padding: 16, boxWidth: 12 } },
       tooltip: { callbacks: { label: ctx => ` ${ctx.dataset.label}  Tốc độ: ${ctx.parsed.x}  Hộ chiếu: ${ctx.parsed.y}` } }
@@ -2017,6 +2134,22 @@ new Chart(matrixCtx, {
     }
   }
 });
+
+// Matrix chart: collapsed by default on mobile; resize on expand.
+(function () {
+  const det = document.getElementById('matrixCollapse');
+  if (!det) return;
+  const mq = window.matchMedia('(max-width: 600px)');
+  const sync = () => { if (mq.matches) det.removeAttribute('open'); else det.setAttribute('open',''); };
+  sync();
+  mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
+  det.addEventListener('toggle', () => {
+    if (det.open && matrixChartInstance) {
+      requestAnimationFrame(() => matrixChartInstance.resize());
+    }
+  });
+})();
+
 new Chart(cmpCtx, {
   type: 'bar',
   data: {
