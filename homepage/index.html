@@ -1,0 +1,2029 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nomad Asset Collective — Pioneering a global living standard</title>
+<meta name="description" content="Strategic investment migration · 12 country programs · NAC Residence Index · curated branded-residence portfolio. RBI · CBI · LTR · iQi Global · IMC-certified.">
+<meta property="og:title" content="Nomad Asset Collective">
+<meta property="og:description" content="Pioneering a global living standard. 12 country programs · NAC Residence Index · curated property portfolio.">
+<meta property="og:image" content="https://nomadassetcollective.com/wp-content/uploads/2026/05/OTG-Passport-Icons-4.png">
+<link rel="icon" type="image/png" href="https://nomadassetcollective.com/wp-content/uploads/2026/05/OTG-Passport-Icons-4.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =====================================================================
+   NAC HOMEPAGE — Editorial / Premium / Magazine-scroll
+   Inherits design tokens from turkey-cbi_8.html + NAC Residence Index
+   ===================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Surfaces */
+  --bg:           #fafaf7;
+  --bg-warm:      #f5f0e6;
+  --bg-cream:     #faf5e8;
+  --bg-dark:      #0a1428;
+  --bg-deep:      #050b1a;
+  --surface:      #ffffff;
+  --glass:        rgba(255,255,255,.7);
+  --cream-glass:  rgba(250,245,232,.94);
+
+  /* Ink */
+  --display:      #0f1a36;
+  --text:         #14181f;
+  --text-soft:    #2b3245;
+  --muted:        #6b7280;
+  --muted-soft:   #94a0b3;
+  --line:         rgba(15,26,54,.08);
+  --line-strong:  rgba(15,26,54,.14);
+
+  /* Brand accents */
+  --gold:         #c4922c;
+  --gold-soft:    #d9b063;
+  --orange:       #d97c44;
+  --purple:       #5b3aa8;
+  --purple-soft:  #f0eeff;
+  --green:        #1eb955;
+  --green-wa:     #25D366;
+  --indigo:       #1800ad;
+
+  /* Type */
+  --ff-display:   'Cormorant Garamond', 'Times New Roman', serif;
+  --ff-body:      'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ff-mono:      'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+  /* Motion */
+  --ease:         cubic-bezier(.2,.7,.2,1);
+}
+
+html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: var(--ff-body);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ---------- Typography primitives ---------- */
+.eyebrow {
+  display: inline-block;
+  font-family: var(--ff-mono);
+  font-size: .68rem;
+  letter-spacing: .26em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+.eyebrow-muted { color: var(--muted); }
+.eyebrow-light { color: rgba(255,255,255,.6); }
+
+.display {
+  font-family: var(--ff-display);
+  font-weight: 500;
+  line-height: 1.06;
+  letter-spacing: -.012em;
+  color: var(--display);
+}
+.display em { font-style: italic; font-weight: 400; color: var(--gold); }
+
+/* ---------- Layout primitives ---------- */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 1.5rem; }
+.wrap-narrow { max-width: 920px; margin: 0 auto; padding: 0 1.5rem; }
+
+section { padding: 6rem 0; position: relative; }
+@media (max-width: 720px) { section { padding: 4rem 0; } }
+
+.section-head { text-align: center; margin-bottom: 3.5rem; }
+.section-head .eyebrow { margin-bottom: 1rem; }
+.section-head h2 { font-size: clamp(2.1rem, 4.2vw, 3.2rem); }
+.section-head .lede {
+  margin-top: 1rem; max-width: 640px;
+  margin-left: auto; margin-right: auto;
+  color: var(--text-soft); font-size: 1.05rem;
+}
+
+/* ============================================================
+   NAV — sticky, condenses on scroll
+   ============================================================ */
+.nav {
+  position: fixed; inset: 0 0 auto 0; z-index: 100;
+  padding: 1rem 1.5rem;
+  background: rgba(250,250,247,0);
+  border-bottom: 1px solid transparent;
+  transition: background .35s var(--ease), padding .35s var(--ease), border-color .35s var(--ease), backdrop-filter .35s var(--ease);
+}
+.nav.is-scrolled {
+  background: rgba(250,250,247,.82);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  padding: .55rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner {
+  max-width: 1240px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+}
+.nav-mark {
+  display: inline-flex; align-items: baseline; gap: .55rem;
+  font-family: var(--ff-display); color: var(--display);
+  letter-spacing: .22em; font-weight: 500;
+}
+.nav-mark .mark-the { font-size: .58rem; letter-spacing: .32em; color: var(--muted); }
+.nav-mark .mark-nac { font-size: 1.15rem; }
+.nav-mark .mark-tag { font-size: .55rem; letter-spacing: .3em; color: var(--gold); }
+
+.nav-links {
+  display: flex; gap: 1.85rem; align-items: center;
+  font-size: .82rem; font-weight: 500;
+}
+.nav-links a {
+  position: relative;
+  color: var(--text-soft);
+  transition: color .2s var(--ease);
+}
+.nav-links a:hover { color: var(--display); }
+.nav-links a::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: -6px; height: 1px;
+  background: var(--gold); transform: scaleX(0); transform-origin: left;
+  transition: transform .35s var(--ease);
+}
+.nav-links a:hover::after { transform: scaleX(1); }
+
+.nav-tools { display: flex; gap: .55rem; align-items: center; }
+
+.lang-pill {
+  display: inline-flex; padding: 3px;
+  background: rgba(15,26,54,.06); border: 1px solid var(--line);
+  border-radius: 999px; font-family: var(--ff-mono);
+  font-size: .58rem; letter-spacing: .14em; font-weight: 600;
+}
+.lang-pill button {
+  appearance: none; background: transparent; border: 0;
+  padding: 5px 11px; border-radius: 999px;
+  color: var(--muted); font-family: inherit; font-size: inherit;
+  letter-spacing: inherit; font-weight: inherit;
+  transition: background .15s, color .15s;
+}
+.lang-pill button.is-active { background: var(--display); color: #fff; }
+
+.nav-btn {
+  display: inline-flex; align-items: center; gap: .4rem;
+  padding: .55rem .95rem; border-radius: 999px;
+  font-size: .78rem; font-weight: 500;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+}
+.nav-btn:hover { transform: translateY(-1px); }
+.nav-btn-wa {
+  background: var(--green-wa); color: #fff;
+}
+.nav-btn-wa svg { width: 14px; height: 14px; fill: currentColor; }
+.nav-btn-book {
+  background: var(--display); color: #fff;
+}
+.nav-btn-book:hover { background: #1a2748; box-shadow: 0 8px 20px -8px rgba(15,26,54,.4); }
+
+.nav-burger {
+  display: none; background: transparent; border: 0; padding: .3rem;
+  color: var(--display);
+}
+.nav-burger svg { width: 22px; height: 22px; }
+
+@media (max-width: 1000px) {
+  .nav-links { display: none; }
+  .nav-burger { display: inline-flex; }
+}
+@media (max-width: 640px) {
+  .nav-btn-wa span, .nav-btn-book span { display: none; }
+  .nav-btn { padding: .55rem .65rem; }
+}
+
+/* ============================================================
+   HERO — split: editorial copy + animated globe
+   ============================================================ */
+.hero {
+  min-height: 100vh; min-height: 100svh;
+  padding: 9rem 0 5rem;
+  background:
+    radial-gradient(ellipse at 80% 20%, rgba(196,146,44,.10) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 80%, rgba(91,58,168,.08) 0%, transparent 55%),
+    linear-gradient(180deg, #faf8f3 0%, #fafaf7 100%);
+  display: flex; align-items: center;
+  position: relative; overflow: hidden;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 3rem;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .hero { padding: 8rem 0 4rem; min-height: auto; }
+}
+
+.hero-copy { max-width: 580px; }
+.hero-copy .eyebrow { margin-bottom: 1.25rem; }
+.hero h1 {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(2.6rem, 5.6vw, 4.4rem); line-height: 1.04;
+  letter-spacing: -.018em; color: var(--display);
+  margin-bottom: 1.4rem;
+}
+.hero h1 em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--orange) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-lede {
+  font-size: 1.1rem; line-height: 1.6;
+  color: var(--text-soft);
+  margin-bottom: 2rem;
+  max-width: 520px;
+}
+
+.hero-ctas { display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.cta {
+  display: inline-flex; align-items: center; gap: .55rem;
+  padding: .95rem 1.5rem; border-radius: 999px;
+  font-size: .9rem; font-weight: 500; letter-spacing: .01em;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease), background .2s var(--ease);
+}
+.cta:hover { transform: translateY(-2px); }
+.cta-primary {
+  background: var(--display); color: #fff;
+  box-shadow: 0 14px 30px -14px rgba(15,26,54,.45);
+}
+.cta-primary:hover { background: #182646; box-shadow: 0 20px 40px -14px rgba(15,26,54,.5); }
+.cta-secondary {
+  background: transparent; color: var(--display);
+  border: 1px solid var(--line-strong);
+}
+.cta-secondary:hover { border-color: var(--display); background: rgba(15,26,54,.03); }
+.cta svg { width: 16px; height: 16px; }
+
+.hero-kpis {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: .8rem;
+  padding: 1.25rem;
+  background: var(--cream-glass);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(196,146,44,.18);
+  border-radius: 14px;
+}
+.hero-kpi { text-align: left; }
+.hero-kpi .v {
+  font-family: var(--ff-display); font-size: 1.6rem; font-weight: 500;
+  color: var(--display); line-height: 1; display: block;
+}
+.hero-kpi .v em { font-style: italic; color: var(--gold); font-weight: 400; }
+.hero-kpi .l {
+  font-family: var(--ff-mono); font-size: .55rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--muted);
+  margin-top: .4rem;
+}
+@media (max-width: 600px) {
+  .hero-kpis { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+  .hero-kpi .v { font-size: 1.35rem; }
+}
+
+/* Globe pane */
+.hero-globe-wrap {
+  position: relative;
+  aspect-ratio: 1; max-width: 540px; margin: 0 auto;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(91,58,168,.12) 0%, transparent 60%),
+    linear-gradient(135deg, rgba(240,238,255,.45) 0%, rgba(248,247,255,.25) 50%, rgba(238,243,255,.45) 100%);
+  border-radius: 50%;
+  border: 1px solid rgba(91,58,168,.12);
+}
+.hero-globe { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-globe-ring {
+  position: absolute; inset: -18px; border: 1px dashed rgba(91,58,168,.22);
+  border-radius: 50%; animation: spin 60s linear infinite;
+}
+.hero-globe-tag {
+  position: absolute; top: 12%; right: -10%;
+  background: var(--cream-glass);
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(196,146,44,.22);
+  border-radius: 12px; padding: .7rem .95rem;
+  font-family: var(--ff-mono); font-size: .68rem;
+  display: flex; flex-direction: column; gap: .15rem;
+  box-shadow: 0 14px 30px -14px rgba(15,26,54,.18);
+}
+.hero-globe-tag b { font-family: var(--ff-display); font-size: 1.4rem; color: var(--display); font-weight: 500; line-height: 1; }
+.hero-globe-tag span { color: var(--muted); letter-spacing: .12em; text-transform: uppercase; font-size: .55rem; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@media (max-width: 900px) {
+  .hero-globe-wrap { max-width: 340px; }
+  .hero-globe-tag { top: 2%; right: 0; }
+}
+
+/* ============================================================
+   TRUST STRIP
+   ============================================================ */
+.trust {
+  padding: 3.5rem 0;
+  background: var(--bg);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.trust-inner {
+  display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center;
+}
+.trust-label {
+  font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--muted);
+  max-width: 180px; line-height: 1.5;
+}
+.trust-row {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.5rem;
+  align-items: center;
+}
+.trust-item { text-align: center; }
+.trust-item .n {
+  font-family: var(--ff-display); font-size: 2.2rem; font-weight: 500;
+  color: var(--display); line-height: 1;
+}
+.trust-item .n em { color: var(--gold); font-style: italic; font-weight: 400; }
+.trust-item .t {
+  font-family: var(--ff-mono); font-size: .58rem; letter-spacing: .15em;
+  text-transform: uppercase; color: var(--muted); margin-top: .45rem;
+}
+@media (max-width: 900px) {
+  .trust-inner { grid-template-columns: 1fr; gap: 1.5rem; text-align: center; }
+  .trust-label { max-width: none; margin: 0 auto; }
+  .trust-row { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+}
+
+/* ============================================================
+   §01 — BROCHURES (12-card magazine grid)
+   ============================================================ */
+.brochures { background: var(--bg); }
+.brochure-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+}
+@media (max-width: 800px) { .brochure-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .brochure-grid { grid-template-columns: 1fr; } }
+
+.brochure-tile {
+  position: relative; aspect-ratio: 4/5; overflow: hidden;
+  background: var(--display); cursor: pointer;
+  transition: transform .4s var(--ease);
+}
+.brochure-tile-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .7s var(--ease);
+}
+.brochure-tile:hover .brochure-tile-img { transform: scale(1.07); }
+.brochure-tile::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,8,20,.92) 0%, rgba(5,8,20,.35) 55%, rgba(5,8,20,.05) 100%);
+  pointer-events: none;
+}
+.brochure-tile-score {
+  position: absolute; top: .85rem; right: .85rem; z-index: 2;
+  background: var(--cream-glass);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-radius: 999px; padding: .3rem .65rem;
+  font-family: var(--ff-mono); font-size: .58rem;
+  font-weight: 600; color: var(--display);
+  border: 1px solid rgba(196,146,44,.28);
+  letter-spacing: .04em;
+}
+.brochure-tile-score span { color: var(--gold); }
+.brochure-tile-meta {
+  position: absolute; bottom: 3.6rem; left: 1rem; right: 1rem; z-index: 1;
+}
+.brochure-tile-country {
+  display: block; font-family: var(--ff-mono);
+  font-size: .58rem; letter-spacing: .14em;
+  text-transform: uppercase; color: rgba(255,255,255,.78);
+  margin-bottom: .35rem;
+}
+.brochure-tile-name {
+  display: block; font-family: var(--ff-display);
+  font-size: 1.35rem; font-weight: 500; color: #fff; line-height: 1.15;
+}
+.brochure-tile-type {
+  display: inline-block; margin-top: .4rem;
+  font-family: var(--ff-mono); font-size: .52rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold-soft);
+  padding: .15rem .5rem; border: 1px solid rgba(217,176,99,.4);
+  border-radius: 4px;
+}
+.brochure-tile-cta {
+  position: absolute; bottom: .9rem; left: 1rem; right: 1rem;
+  z-index: 1;
+  display: flex; align-items: center; justify-content: space-between;
+  font-family: var(--ff-mono); font-size: .62rem;
+  color: #fff; letter-spacing: .12em; text-transform: uppercase;
+}
+.brochure-tile-cta .arrow {
+  display: inline-flex; width: 28px; height: 28px;
+  align-items: center; justify-content: center;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 50%;
+  transition: background .2s var(--ease), transform .2s var(--ease);
+}
+.brochure-tile:hover .arrow { background: var(--gold); border-color: var(--gold); transform: translateX(4px); }
+
+.brochures-foot {
+  margin-top: 2.5rem; text-align: center;
+}
+.brochures-foot a {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-family: var(--ff-mono); font-size: .72rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--display); font-weight: 600;
+  border-bottom: 1px solid var(--gold); padding-bottom: .3rem;
+}
+
+/* ============================================================
+   §02 — NAC RESIDENCE INDEX SPOTLIGHT
+   (full-width banner with globe + 12 KPI pills)
+   ============================================================ */
+.nac-index-section {
+  background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
+}
+.nac-index-banner {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 2rem;
+  padding: 3rem;
+  background: rgba(255,255,255,.55);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(91,58,168,.16);
+  border-radius: 24px;
+  position: relative; overflow: hidden;
+}
+.nac-index-banner .eyebrow { color: var(--purple); margin-bottom: .8rem; }
+.nac-index-banner h2 {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.08;
+  color: #1a0f5c; letter-spacing: -.012em;
+  margin-bottom: 1rem;
+}
+.nac-index-banner h2 em { color: var(--purple); font-style: italic; font-weight: 400; }
+.nac-index-banner .desc {
+  color: #36275c; font-size: 1rem; line-height: 1.65;
+  margin-bottom: 1.5rem; max-width: 480px;
+}
+.nac-index-pills {
+  display: grid; grid-template-columns: repeat(6, auto); gap: .55rem;
+  margin: 1rem 0 1.5rem; justify-content: start;
+}
+.nac-pill {
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(91,58,168,.14);
+  border-radius: 9px;
+  transition: transform .2s var(--ease), box-shadow .2s var(--ease);
+  cursor: default;
+}
+.nac-pill:hover { transform: translateY(-2px); box-shadow: 0 8px 16px -8px rgba(91,58,168,.3); }
+.nac-pill svg { width: 18px; height: 18px; }
+
+.nac-index-cta-row { display: flex; gap: .7rem; flex-wrap: wrap; }
+.nac-index-cta-row .cta-primary {
+  background: var(--purple); box-shadow: 0 14px 30px -14px rgba(91,58,168,.55);
+}
+.nac-index-cta-row .cta-primary:hover { background: #4a2f8e; }
+.nac-index-cta-row .cta-secondary {
+  border-color: rgba(91,58,168,.3); color: var(--purple);
+}
+
+.nac-index-globe-pane {
+  position: relative; min-height: 320px;
+  display: flex; align-items: center; justify-content: center;
+}
+.nac-index-globe { width: 100%; max-width: 340px; aspect-ratio: 1; }
+
+@media (max-width: 800px) {
+  .nac-index-banner {
+    grid-template-columns: 1fr;
+    padding: 2rem 1.5rem;
+  }
+  .nac-index-pills { grid-template-columns: repeat(6, auto); }
+  .nac-index-globe { max-width: 240px; }
+}
+
+/* ============================================================
+   §03 — PROPERTY HUB SPOTLIGHT (live listings)
+   ============================================================ */
+.property-hub { background: var(--bg-warm); }
+.listings-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem;
+}
+@media (max-width: 900px) { .listings-grid { grid-template-columns: 1fr; } }
+
+.listing-card {
+  background: var(--surface);
+  border-radius: 18px; overflow: hidden;
+  border: 1px solid var(--line);
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  display: flex; flex-direction: column;
+}
+.listing-card:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -20px rgba(15,26,54,.18); }
+.listing-cover {
+  aspect-ratio: 4/3; background-size: cover; background-position: center;
+  position: relative;
+}
+.listing-badge {
+  position: absolute; top: 1rem; left: 1rem;
+  background: var(--cream-glass);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  padding: .3rem .65rem; border-radius: 999px;
+  font-family: var(--ff-mono); font-size: .55rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--display); font-weight: 600;
+  border: 1px solid rgba(196,146,44,.3);
+}
+.listing-badge.hot { background: rgba(217,124,68,.92); color: #fff; border-color: transparent; }
+.listing-score {
+  position: absolute; bottom: 1rem; right: 1rem;
+  background: var(--display); color: #fff;
+  width: 52px; height: 52px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: var(--ff-display); font-weight: 500;
+  border: 2px solid var(--gold);
+}
+.listing-score .s { font-size: 1.1rem; line-height: 1; color: var(--gold); }
+.listing-score .o { font-family: var(--ff-mono); font-size: .48rem; letter-spacing: .1em; color: rgba(255,255,255,.65); }
+
+.listing-body { padding: 1.4rem; display: flex; flex-direction: column; gap: .8rem; flex: 1; }
+.listing-loc {
+  font-family: var(--ff-mono); font-size: .58rem;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--muted);
+}
+.listing-name {
+  font-family: var(--ff-display); font-size: 1.4rem; font-weight: 500;
+  color: var(--display); line-height: 1.15;
+}
+.listing-tag {
+  font-size: .85rem; color: var(--text-soft); line-height: 1.5;
+}
+.listing-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: .55rem;
+  padding-top: .8rem; border-top: 1px solid var(--line);
+  margin-top: auto;
+}
+.listing-stat .v {
+  font-family: var(--ff-display); font-size: 1.2rem;
+  color: var(--display); font-weight: 500; line-height: 1;
+}
+.listing-stat .v em { color: var(--gold); font-style: italic; font-weight: 400; }
+.listing-stat .l {
+  font-family: var(--ff-mono); font-size: .5rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--muted); margin-top: .3rem;
+}
+.listing-cta {
+  display: inline-flex; align-items: center; justify-content: space-between;
+  margin-top: .5rem; padding-top: .8rem; border-top: 1px solid var(--line);
+  font-family: var(--ff-mono); font-size: .62rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--display); font-weight: 600;
+}
+.listing-cta .arrow {
+  display: inline-flex; width: 24px; height: 24px;
+  align-items: center; justify-content: center;
+  background: var(--bg-warm); border-radius: 50%;
+  transition: background .2s var(--ease), transform .2s var(--ease);
+}
+.listing-card:hover .arrow { background: var(--gold); color: #fff; transform: translateX(3px); }
+
+/* ============================================================
+   §04 — NAC TIMES (editorial article cards)
+   ============================================================ */
+.nac-times { background: var(--bg); }
+.times-grid {
+  display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 1.25rem;
+}
+@media (max-width: 900px) {
+  .times-grid { grid-template-columns: 1fr; }
+}
+
+.article-card {
+  position: relative; overflow: hidden;
+  border-radius: 16px;
+  background: var(--display);
+  aspect-ratio: 4/5;
+  transition: transform .35s var(--ease);
+}
+.article-card.feature { aspect-ratio: 3/4; grid-row: span 2; }
+@media (max-width: 900px) { .article-card.feature { aspect-ratio: 4/5; grid-row: auto; } }
+
+.article-card-img {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .7s var(--ease);
+}
+.article-card:hover .article-card-img { transform: scale(1.06); }
+.article-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(5,8,20,.94) 0%, rgba(5,8,20,.4) 55%, rgba(5,8,20,.05) 100%);
+}
+.article-card-body {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.5rem; z-index: 1; color: #fff;
+}
+.article-card-cat {
+  display: inline-block;
+  font-family: var(--ff-mono); font-size: .55rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold-soft);
+  margin-bottom: .8rem;
+  padding: .25rem .55rem; border: 1px solid rgba(217,176,99,.4);
+  border-radius: 4px;
+}
+.article-card-title {
+  font-family: var(--ff-display); font-size: 1.4rem; font-weight: 500;
+  line-height: 1.2; margin-bottom: .55rem;
+}
+.article-card.feature .article-card-title { font-size: 1.85rem; }
+.article-card-meta {
+  display: flex; gap: .8rem; align-items: center;
+  font-family: var(--ff-mono); font-size: .58rem; letter-spacing: .1em;
+  color: rgba(255,255,255,.6);
+}
+
+.times-cats {
+  display: flex; gap: .55rem; flex-wrap: wrap; justify-content: center;
+  margin: 2rem 0 0;
+}
+.times-cats a {
+  font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--text-soft);
+  padding: .55rem 1rem; border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: background .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.times-cats a:hover { background: var(--display); color: #fff; border-color: var(--display); }
+
+/* ============================================================
+   §05 — PROCESS (5-step horizontal stepper)
+   ============================================================ */
+.process {
+  background: var(--bg-dark);
+  color: rgba(255,255,255,.92);
+}
+.process .section-head h2 { color: #fff; }
+.process .section-head h2 em { color: var(--gold-soft); }
+.process .section-head .lede { color: rgba(255,255,255,.6); }
+.process .eyebrow { color: var(--gold-soft); }
+
+.steps {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.25rem;
+  position: relative;
+}
+.steps::before {
+  content: ''; position: absolute; top: 28px; left: 5%; right: 5%;
+  height: 1px;
+  background: linear-gradient(to right, transparent 0%, rgba(196,146,44,.4) 20%, rgba(196,146,44,.4) 80%, transparent 100%);
+}
+@media (max-width: 900px) {
+  .steps { grid-template-columns: 1fr; }
+  .steps::before { display: none; }
+}
+
+.step { position: relative; text-align: center; }
+.step-num {
+  width: 56px; height: 56px; margin: 0 auto 1rem;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-dark); color: var(--gold-soft);
+  border: 1px solid rgba(196,146,44,.4);
+  border-radius: 50%;
+  font-family: var(--ff-display); font-size: 1.4rem; font-weight: 500;
+  position: relative; z-index: 1;
+}
+.step-time {
+  font-family: var(--ff-mono); font-size: .58rem; letter-spacing: .16em;
+  text-transform: uppercase; color: var(--gold-soft); margin-bottom: .5rem;
+}
+.step-title {
+  font-family: var(--ff-display); font-size: 1.2rem; font-weight: 500;
+  color: #fff; margin-bottom: .6rem;
+}
+.step-body { font-size: .85rem; color: rgba(255,255,255,.65); line-height: 1.55; max-width: 220px; margin: 0 auto; }
+
+/* ============================================================
+   §06 — FOUNDER BLOCK (Ray Vũ — editorial spread)
+   ============================================================ */
+.founder {
+  background: var(--bg-cream);
+  position: relative;
+}
+.founder-spread {
+  display: grid; grid-template-columns: .9fr 1.1fr; gap: 3.5rem;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .founder-spread { grid-template-columns: 1fr; gap: 2rem; text-align: center; }
+}
+
+.founder-portrait {
+  aspect-ratio: 4/5;
+  background-size: cover; background-position: center top;
+  background-color: #ddd;
+  border-radius: 18px;
+  position: relative;
+  background-image: linear-gradient(135deg, #2b3245 0%, #0f1a36 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(255,255,255,.4);
+  font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .2em;
+}
+.founder-portrait .ribbon {
+  position: absolute; top: 1rem; left: 1rem;
+  background: var(--gold); color: #fff;
+  padding: .35rem .75rem; border-radius: 4px;
+  font-family: var(--ff-mono); font-size: .55rem; letter-spacing: .16em;
+  text-transform: uppercase; font-weight: 600;
+}
+
+.founder-copy .eyebrow { margin-bottom: 1rem; }
+.founder h2 {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1;
+  color: var(--display); letter-spacing: -.012em;
+  margin-bottom: 1.5rem;
+}
+.founder h2 em { color: var(--gold); font-style: italic; font-weight: 400; }
+.founder .manifesto {
+  font-family: var(--ff-display); font-style: italic;
+  font-size: 1.25rem; line-height: 1.55; color: var(--text-soft);
+  margin-bottom: 1.5rem;
+  border-left: 2px solid var(--gold); padding-left: 1.25rem;
+}
+.founder-signoff {
+  display: flex; align-items: center; gap: .8rem;
+  margin-bottom: 2rem;
+  font-family: var(--ff-mono); font-size: .68rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+}
+.founder-signoff .name {
+  font-family: var(--ff-display); font-size: 1.1rem; color: var(--display);
+  text-transform: none; letter-spacing: 0;
+}
+.founder-badges {
+  display: flex; gap: 1.2rem; flex-wrap: wrap;
+  padding-top: 1.5rem; border-top: 1px solid var(--line);
+  margin-bottom: 2rem;
+}
+@media (max-width: 900px) { .founder-badges { justify-content: center; } }
+.founder-badge {
+  font-family: var(--ff-mono); font-size: .58rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  display: flex; flex-direction: column; gap: .25rem;
+}
+.founder-badge b {
+  font-family: var(--ff-display); font-size: 1rem; color: var(--display);
+  letter-spacing: 0; text-transform: none; font-weight: 500;
+}
+.founder-cta-row { display: flex; gap: .7rem; flex-wrap: wrap; }
+@media (max-width: 900px) { .founder-cta-row { justify-content: center; } }
+
+/* ============================================================
+   §07 — TOOLS STRIP
+   ============================================================ */
+.tools { background: var(--bg); }
+.tools-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;
+}
+@media (max-width: 900px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 500px) { .tools-grid { grid-template-columns: 1fr; } }
+
+.tool-card {
+  display: flex; flex-direction: column;
+  padding: 1.75rem;
+  background: var(--surface); border: 1px solid var(--line);
+  border-radius: 16px;
+  transition: transform .25s var(--ease), border-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.tool-card:hover {
+  transform: translateY(-4px); border-color: var(--gold);
+  box-shadow: 0 20px 40px -20px rgba(196,146,44,.25);
+}
+.tool-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  display: inline-flex; align-items: center; justify-content: center;
+  background: rgba(196,146,44,.1); color: var(--gold);
+  margin-bottom: 1rem;
+}
+.tool-icon svg { width: 22px; height: 22px; }
+.tool-card[data-tone="purple"] .tool-icon { background: rgba(91,58,168,.1); color: var(--purple); }
+.tool-card[data-tone="orange"] .tool-icon { background: rgba(217,124,68,.1); color: var(--orange); }
+.tool-card[data-tone="green"]  .tool-icon { background: rgba(30,185,85,.1); color: var(--green); }
+
+.tool-name {
+  font-family: var(--ff-display); font-size: 1.3rem; font-weight: 500;
+  color: var(--display); margin-bottom: .35rem;
+}
+.tool-desc {
+  font-size: .85rem; color: var(--text-soft); line-height: 1.55;
+  margin-bottom: 1.25rem; flex: 1;
+}
+.tool-link {
+  display: inline-flex; align-items: center; gap: .35rem;
+  font-family: var(--ff-mono); font-size: .62rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--display);
+  font-weight: 600;
+}
+
+/* ============================================================
+   §08 — SOCIAL PROOF (Instagram + quote)
+   ============================================================ */
+.social-proof {
+  background: linear-gradient(180deg, var(--bg) 0%, var(--bg-warm) 100%);
+}
+.proof-grid {
+  display: grid; grid-template-columns: 1fr 1.4fr; gap: 2.5rem; align-items: center;
+}
+@media (max-width: 900px) { .proof-grid { grid-template-columns: 1fr; } }
+
+.proof-quote {
+  padding: 2rem;
+  background: var(--cream-glass);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(196,146,44,.18);
+  border-radius: 18px;
+}
+.proof-quote .qmark {
+  font-family: var(--ff-display); font-size: 3.5rem; line-height: .8; color: var(--gold);
+  font-style: italic;
+}
+.proof-quote blockquote {
+  font-family: var(--ff-display); font-style: italic;
+  font-size: 1.3rem; line-height: 1.5; color: var(--display);
+  margin: .5rem 0 1.25rem;
+}
+.proof-quote cite {
+  font-style: normal; font-family: var(--ff-mono); font-size: .65rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+  display: block; line-height: 1.6;
+}
+.proof-quote cite b {
+  font-family: var(--ff-display); font-size: 1rem; color: var(--display);
+  letter-spacing: 0; text-transform: none; font-weight: 500; display: block;
+}
+
+.proof-ig-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px;
+}
+.proof-ig-tile {
+  aspect-ratio: 1; background-size: cover; background-position: center;
+  background-color: var(--display);
+  position: relative;
+  transition: transform .35s var(--ease);
+}
+.proof-ig-tile:hover { transform: scale(1.03); z-index: 2; }
+.proof-ig-tile::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(91,58,168,.0) 60%, rgba(91,58,168,.55) 100%);
+  opacity: 0; transition: opacity .25s var(--ease);
+}
+.proof-ig-tile:hover::after { opacity: 1; }
+
+.proof-ig-foot {
+  margin-top: 1rem; text-align: center;
+}
+.proof-ig-foot a {
+  display: inline-flex; align-items: center; gap: .45rem;
+  font-family: var(--ff-mono); font-size: .65rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--display);
+}
+
+/* ============================================================
+   FINAL CTA BAND
+   ============================================================ */
+.final-cta {
+  background:
+    radial-gradient(ellipse at 70% 30%, rgba(196,146,44,.18) 0%, transparent 50%),
+    linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-deep) 100%);
+  color: #fff;
+  text-align: center;
+}
+.final-cta .eyebrow { color: var(--gold-soft); margin-bottom: 1rem; }
+.final-cta h2 {
+  font-family: var(--ff-display); font-weight: 500;
+  font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.06;
+  letter-spacing: -.015em; color: #fff;
+  margin-bottom: 1rem;
+}
+.final-cta h2 em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(135deg, var(--gold-soft) 0%, var(--orange) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+.final-cta .lede {
+  color: rgba(255,255,255,.7); max-width: 580px; margin: 0 auto 2rem;
+  font-size: 1.05rem;
+}
+.final-cta-row {
+  display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap;
+}
+.final-cta .cta-primary {
+  background: var(--gold); color: var(--display); font-weight: 600;
+  box-shadow: 0 14px 30px -14px rgba(196,146,44,.5);
+}
+.final-cta .cta-primary:hover { background: var(--gold-soft); }
+.final-cta .cta-secondary {
+  border-color: rgba(255,255,255,.2); color: #fff;
+}
+.final-cta .cta-secondary:hover { border-color: #fff; background: rgba(255,255,255,.05); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer.footer {
+  background: var(--bg-deep); color: rgba(255,255,255,.7);
+  padding: 4rem 0 2rem;
+  font-size: .88rem;
+}
+.footer-grid {
+  display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 3rem;
+  margin-bottom: 3rem;
+}
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+}
+@media (max-width: 560px) { .footer-grid { grid-template-columns: 1fr; } }
+
+.footer-brand .nav-mark { color: #fff; }
+.footer-brand .nav-mark .mark-the { color: rgba(255,255,255,.4); }
+.footer-brand .nav-mark .mark-nac { color: #fff; }
+.footer-brand .nav-mark .mark-tag { color: var(--gold-soft); }
+.footer-brand p {
+  margin-top: 1.25rem; color: rgba(255,255,255,.55);
+  font-size: .85rem; line-height: 1.6; max-width: 320px;
+}
+.footer-socials {
+  display: flex; gap: .55rem; margin-top: 1.25rem;
+}
+.footer-socials a {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: rgba(255,255,255,.06);
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .2s, transform .2s;
+}
+.footer-socials a:hover { background: var(--gold); transform: translateY(-2px); }
+.footer-socials svg { width: 16px; height: 16px; fill: #fff; }
+
+.footer-col h4 {
+  font-family: var(--ff-mono); font-size: .62rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--gold-soft);
+  font-weight: 500; margin-bottom: 1.1rem;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.footer-col a { color: rgba(255,255,255,.7); transition: color .2s; }
+.footer-col a:hover { color: #fff; }
+
+.footer-bottom {
+  display: flex; justify-content: space-between; gap: 1rem;
+  padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.08);
+  font-family: var(--ff-mono); font-size: .62rem;
+  letter-spacing: .12em; color: rgba(255,255,255,.4);
+  flex-wrap: wrap;
+}
+.footer-bottom a { color: rgba(255,255,255,.6); }
+.footer-bottom a:hover { color: var(--gold-soft); }
+
+/* ============================================================
+   REVEAL ANIMATION
+   ============================================================ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.reveal.is-in { opacity: 1; transform: translateY(0); }
+
+/* ============================================================
+   MOBILE FLOATING CTA (mirrors brochure pattern)
+   ============================================================ */
+.mobile-cta {
+  display: none;
+  position: fixed; bottom: 1rem; left: 1rem; right: 1rem; z-index: 90;
+  background: var(--cream-glass);
+  backdrop-filter: blur(22px); -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(196,146,44,.22);
+  border-radius: 999px;
+  padding: .5rem; gap: .35rem;
+  box-shadow: 0 20px 40px -20px rgba(15,26,54,.3);
+  justify-content: space-around;
+}
+.mobile-cta a {
+  flex: 1; padding: .55rem .4rem;
+  display: flex; align-items: center; justify-content: center; gap: .3rem;
+  font-family: var(--ff-mono); font-size: .55rem; letter-spacing: .08em;
+  text-transform: uppercase; font-weight: 600;
+  border-radius: 999px;
+  color: var(--display);
+}
+.mobile-cta svg { width: 14px; height: 14px; }
+.mobile-cta .mc-cal { color: var(--purple); }
+.mobile-cta .mc-wa { color: var(--green); }
+.mobile-cta .mc-idx { color: var(--gold); }
+.mobile-cta .mc-cmp { color: var(--orange); }
+@media (max-width: 720px) { .mobile-cta { display: flex; } }
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     NAV
+============================================================ -->
+<nav class="nav" id="topNav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-mark" aria-label="Nomad Asset Collective">
+      <span class="mark-the">THE</span>
+      <span class="mark-nac">NAC</span>
+      <span class="mark-tag">COLLECTIVE</span>
+    </a>
+    <div class="nav-links">
+      <a href="#brochures" data-vi="Brochures" data-en="Brochures">Brochures</a>
+      <a href="#nac-index" data-vi="NAC Index" data-en="NAC Index">NAC Index</a>
+      <a href="#property-hub" data-vi="Property Hub" data-en="Property Hub">Property Hub</a>
+      <a href="#nac-times" data-vi="NAC Times" data-en="NAC Times">NAC Times</a>
+      <a href="#tools" data-vi="Công Cụ" data-en="Tools">Công Cụ</a>
+    </div>
+    <div class="nav-tools">
+      <div class="lang-pill" role="group" aria-label="Language">
+        <button data-lang="vi" class="is-active" type="button">VI</button>
+        <button data-lang="en" type="button">EN</button>
+      </div>
+      <a class="nav-btn nav-btn-wa" href="https://wa.me/447388646000" target="_blank" rel="noopener" aria-label="WhatsApp">
+        <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        <span data-vi="WhatsApp" data-en="WhatsApp">WhatsApp</span>
+      </a>
+      <a class="nav-btn nav-btn-book" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span data-vi="Đặt 30''" data-en="Book 30'">Đặt 30''</span>
+      </a>
+      <button class="nav-burger" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO
+============================================================ -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy reveal">
+      <span class="eyebrow" data-vi="Đầu Tư Di Trú Chiến Lược · 2026" data-en="Strategic Investment Migration · 2026">Đầu Tư Di Trú Chiến Lược · 2026</span>
+      <h1 data-vi="Tiên phong một <em>tiêu chuẩn sống</em> toàn cầu." data-en="Pioneering a <em>global living</em> standard.">Tiên phong một <em>tiêu chuẩn sống</em> toàn cầu.</h1>
+      <p class="hero-lede" data-vi="Cố vấn đầu tư di trú độc lập cho thế hệ HNW Việt Nam — kết nối quyền cư trú, bất động sản thương hiệu, và lối sống toàn cầu trên 12 chương trình quốc gia." data-en="Independent investment-migration advisory for the next-generation Vietnamese HNW — connecting residency rights, branded real estate, and global lifestyle across 12 country programs.">Cố vấn đầu tư di trú độc lập cho thế hệ HNW Việt Nam — kết nối quyền cư trú, bất động sản thương hiệu, và lối sống toàn cầu trên 12 chương trình quốc gia.</p>
+
+      <div class="hero-ctas">
+        <a class="cta cta-primary" href="#brochures">
+          <span data-vi="Lấy NAC Brochures" data-en="Get NAC Brochures">Lấy NAC Brochures</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a class="cta cta-secondary" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+          <span data-vi="Tư Vấn 30'' với Ray" data-en="Book 30' with Ray">Tư Vấn 30'' với Ray</span>
+        </a>
+      </div>
+
+      <div class="hero-kpis">
+        <div class="hero-kpi"><span class="v">12</span><span class="l" data-vi="Chương Trình" data-en="Programs">Chương Trình</span></div>
+        <div class="hero-kpi"><span class="v">47</span><span class="l" data-vi="BĐS Curated" data-en="Curated Listings">BĐS Curated</span></div>
+        <div class="hero-kpi"><span class="v"><em>100+</em></span><span class="l" data-vi="Case Đã Đóng" data-en="Cases Closed">Case Đã Đóng</span></div>
+        <div class="hero-kpi"><span class="v"><em>50+</em></span><span class="l" data-vi="Thị Trường iQi" data-en="iQi Markets">Thị Trường iQi</span></div>
+      </div>
+    </div>
+
+    <div class="hero-globe-wrap reveal">
+      <div class="hero-globe-ring"></div>
+      <canvas class="hero-globe" id="heroGlobe"></canvas>
+      <div class="hero-globe-tag">
+        <span data-vi="NAC Residence Index" data-en="NAC Residence Index">NAC Residence Index</span>
+        <b>40+</b>
+        <span data-vi="Quốc Gia Xếp Hạng" data-en="Countries Ranked">Quốc Gia Xếp Hạng</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============================================================
+     TRUST STRIP
+============================================================ -->
+<section class="trust" style="padding-top:3rem; padding-bottom:3rem;">
+  <div class="wrap trust-inner">
+    <div class="trust-label" data-vi="Được tin tưởng bởi các đối tác và tổ chức hàng đầu" data-en="Trusted by leading partners and institutions">Được tin tưởng bởi các đối tác và tổ chức hàng đầu</div>
+    <div class="trust-row">
+      <div class="trust-item"><div class="n">IMC</div><div class="t" data-vi="Certified Expert" data-en="Certified Expert">Certified Expert</div></div>
+      <div class="trust-item"><div class="n">iQi</div><div class="t" data-vi="Exclusive Partner" data-en="Exclusive Partner">Exclusive Partner</div></div>
+      <div class="trust-item"><div class="n">RICS</div><div class="t" data-vi="Định Giá BĐS" data-en="Property Valuation">Định Giá BĐS</div></div>
+      <div class="trust-item"><div class="n">UN PRI</div><div class="t" data-vi="Khung ESG" data-en="ESG Framework">Khung ESG</div></div>
+      <div class="trust-item"><div class="n">AML/KYC</div><div class="t" data-vi="Tuân Thủ Tuyệt Đối" data-en="Full Compliance">Tuân Thủ Tuyệt Đối</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §01 — BROCHURES
+============================================================ -->
+<section class="brochures" id="brochures">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">§ 01 · <span data-vi="Bộ Sưu Tập" data-en="The Collection">Bộ Sưu Tập</span></span>
+      <h2 class="display" data-vi="12 Chương Trình. <em>Một Tiêu Chuẩn</em>." data-en="12 Programs. <em>One Standard</em>.">12 Chương Trình. <em>Một Tiêu Chuẩn</em>.</h2>
+      <p class="lede" data-vi="Mỗi brochure là một báo cáo chiến lược độc lập — phân tích quyền lợi, chi phí, timeline và NAC Score cho từng chương trình RBI · CBI · LTR." data-en="Each brochure is a self-contained strategic report — analysing rights, costs, timeline and NAC Score for every RBI · CBI · LTR program.">Mỗi brochure là một báo cáo chiến lược độc lập — phân tích quyền lợi, chi phí, timeline và NAC Score cho từng chương trình RBI · CBI · LTR.</p>
+    </div>
+
+    <div class="brochure-grid reveal">
+      <!-- Turkey -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-tho-nhi-ky-cbi-citizenship-by-investment/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua-cover-8d1da.jpg')"></div>
+        <span class="brochure-tile-score">NAC <span>84</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇹🇷 Thổ Nhĩ Kỳ" data-en="🇹🇷 Türkiye">🇹🇷 Thổ Nhĩ Kỳ</span>
+          <span class="brochure-tile-name" data-vi="Citizenship by Investment" data-en="Citizenship by Investment">Citizenship by Investment</span>
+          <span class="brochure-tile-type">CBI · $400K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Portugal -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-bo-dao-nha-golden-visa/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/bat-dong-san-lisbon-2026-phan-tich-gia-theo-quan-va-co-hoi-dau-tu-cho-nguoi-xin-d7-visa-infographic-cover-8a5b2.jpg')"></div>
+        <span class="brochure-tile-score">NAC <span>82</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇵🇹 Bồ Đào Nha" data-en="🇵🇹 Portugal">🇵🇹 Bồ Đào Nha</span>
+          <span class="brochure-tile-name" data-vi="Golden Visa" data-en="Golden Visa">Golden Visa</span>
+          <span class="brochure-tile-type">RBI · €500K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Greece -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/residences-chuong-trinh-hy-lap-golden-visa/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/case-study-gia-dinh-doanh-nhan-tp-hcm-va-18-thang-chinh-phuc-thuong-tru-hy-lap-bai-hoc-thuc-te-tu-hanh-trinh-cover-a76ca.jpg')"></div>
+        <span class="brochure-tile-score">NAC <span>79</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇬🇷 Hy Lạp" data-en="🇬🇷 Greece">🇬🇷 Hy Lạp</span>
+          <span class="brochure-tile-name" data-vi="Golden Visa" data-en="Golden Visa">Golden Visa</span>
+          <span class="brochure-tile-type">RBI · €250K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Cyprus -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-dao-sip-rbi-residence-by-investment/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/sip.webp')"></div>
+        <span class="brochure-tile-score">NAC <span>78</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇨🇾 Đảo Síp" data-en="🇨🇾 Cyprus">🇨🇾 Đảo Síp</span>
+          <span class="brochure-tile-name" data-vi="Permanent Residency" data-en="Permanent Residency">Permanent Residency</span>
+          <span class="brochure-tile-type">RBI · €300K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- UAE -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-uae-golden-visa-2/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/dubai.webp')"></div>
+        <span class="brochure-tile-score">NAC <span>86</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇦🇪 UAE" data-en="🇦🇪 UAE">🇦🇪 UAE</span>
+          <span class="brochure-tile-name" data-vi="Golden Visa" data-en="Golden Visa">Golden Visa</span>
+          <span class="brochure-tile-type">RBI · AED 2M+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- UK -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-uk-thuong-tru-visa-dau-tu-rbi/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/london-scaled.jpg')"></div>
+        <span class="brochure-tile-score">NAC <span>83</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇬🇧 Anh Quốc" data-en="🇬🇧 United Kingdom">🇬🇧 Anh Quốc</span>
+          <span class="brochure-tile-name" data-vi="Innovator Founder" data-en="Innovator Founder">Innovator Founder</span>
+          <span class="brochure-tile-type">RBI · £50K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Malta -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-malta-thuong-tru-nhan-rbi/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/malta.webp')"></div>
+        <span class="brochure-tile-score">NAC <span>80</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇲🇹 Malta" data-en="🇲🇹 Malta">🇲🇹 Malta</span>
+          <span class="brochure-tile-name" data-vi="MPRP" data-en="MPRP">MPRP</span>
+          <span class="brochure-tile-type">RBI · €150K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- St Kitts -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-si-kitts-nevis-quoc-tich/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/stkitt.jpg')"></div>
+        <span class="brochure-tile-score">NAC <span>81</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇰🇳 St. Kitts &amp; Nevis" data-en="🇰🇳 St. Kitts &amp; Nevis">🇰🇳 St. Kitts &amp; Nevis</span>
+          <span class="brochure-tile-name" data-vi="Citizenship by Investment" data-en="Citizenship by Investment">Citizenship by Investment</span>
+          <span class="brochure-tile-type">CBI · $250K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Thailand -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-thai-lan-cu-tru-dai-han-ltr-rbi/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/thailan.jpg')"></div>
+        <span class="brochure-tile-score">NAC <span>77</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇹🇭 Thái Lan" data-en="🇹🇭 Thailand">🇹🇭 Thái Lan</span>
+          <span class="brochure-tile-name" data-vi="Long-Term Resident" data-en="Long-Term Resident">Long-Term Resident</span>
+          <span class="brochure-tile-type">LTR · $80K/yr</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- New Zealand -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-new-zealand-rbi-dau-tu-di-tru/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/newzea.jpg')"></div>
+        <span class="brochure-tile-score">NAC <span>85</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇳🇿 New Zealand" data-en="🇳🇿 New Zealand">🇳🇿 New Zealand</span>
+          <span class="brochure-tile-name" data-vi="Active Investor Plus" data-en="Active Investor Plus">Active Investor Plus</span>
+          <span class="brochure-tile-type">RBI · NZ$5M+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Panama -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/panama.webp')"></div>
+        <span class="brochure-tile-score">NAC <span>74</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇵🇦 Panama" data-en="🇵🇦 Panama">🇵🇦 Panama</span>
+          <span class="brochure-tile-name" data-vi="Friendly Nations Visa" data-en="Friendly Nations Visa">Friendly Nations Visa</span>
+          <span class="brochure-tile-type">RBI · $200K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+      <!-- Malaysia -->
+      <a class="brochure-tile" href="https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/" target="_blank" rel="noopener">
+        <div class="brochure-tile-img" style="background-image:url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=600&amp;q=85&amp;fit=crop')"></div>
+        <span class="brochure-tile-score">NAC <span>76</span></span>
+        <div class="brochure-tile-meta">
+          <span class="brochure-tile-country" data-vi="🇲🇾 Malaysia" data-en="🇲🇾 Malaysia">🇲🇾 Malaysia</span>
+          <span class="brochure-tile-name" data-vi="MM2H" data-en="MM2H">MM2H</span>
+          <span class="brochure-tile-type">LTR · RM 500K+</span>
+        </div>
+        <div class="brochure-tile-cta">
+          <span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span>
+          <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="brochures-foot reveal">
+      <a href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener">
+        <span data-vi="Xem Toàn Bộ Brochures Gateway" data-en="View Full Brochures Gateway">Xem Toàn Bộ Brochures Gateway</span> ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §02 — NAC RESIDENCE INDEX
+============================================================ -->
+<section class="nac-index-section" id="nac-index">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--purple)">§ 02 · <span data-vi="Phương Pháp Luận NAC" data-en="The NAC Methodology">Phương Pháp Luận NAC</span></span>
+      <h2 class="display" data-vi="Một <em>chỉ số</em> để so sánh tất cả." data-en="One <em>index</em> to compare them all.">Một <em>chỉ số</em> để so sánh tất cả.</h2>
+    </div>
+
+    <div class="nac-index-banner reveal">
+      <div class="nac-index-text">
+        <span class="eyebrow" data-vi="NAC Residence Index · 2026" data-en="NAC Residence Index · 2026">NAC Residence Index · 2026</span>
+        <h2 data-vi="40+ quốc gia. <em>12 tiêu chí</em>. 1 bảng xếp hạng minh bạch." data-en="40+ countries. <em>12 criteria</em>. One transparent ranking.">40+ quốc gia. <em>12 tiêu chí</em>. 1 bảng xếp hạng minh bạch.</h2>
+        <p class="desc" data-vi="Chọn các KPI quan trọng với gia đình bạn — bảng xếp hạng tự động cập nhật. Từ hộ chiếu, thuế, giáo dục đến chi phí sinh hoạt và tốc độ xử lý." data-en="Pick the KPIs that matter to your family — the ranking auto-updates. From passport, tax and education to cost of living and processing speed.">Chọn các KPI quan trọng với gia đình bạn — bảng xếp hạng tự động cập nhật. Từ hộ chiếu, thuế, giáo dục đến chi phí sinh hoạt và tốc độ xử lý.</p>
+
+        <div class="nac-index-pills">
+          <span class="nac-pill" style="color:#1800ad" title="Passport"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="11" r="3"/></svg></span>
+          <span class="nac-pill" style="color:#16a34a" title="Tax"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 1 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/></svg></span>
+          <span class="nac-pill" style="color:#5b3aa8" title="Education"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10L12 4 2 10l10 6 10-6zM6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+          <span class="nac-pill" style="color:#dc2626" title="Healthcare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8.5C21 13 12 21 12 21S3 13 3 8.5a5.5 5.5 0 0 1 11-1 5.5 5.5 0 0 1 7 1z"/></svg></span>
+          <span class="nac-pill" style="color:#0891b2" title="Safety"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l9 4v6c0 5-3.5 9.5-9 10-5.5-.5-9-5-9-10V6l9-4z"/></svg></span>
+          <span class="nac-pill" style="color:#c4922c" title="Investment"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8M17 7h4v4"/></svg></span>
+          <span class="nac-pill" style="color:#d97c44" title="Speed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <span class="nac-pill" style="color:#7c3aed" title="Family"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/><circle cx="10" cy="7" r="4"/></svg></span>
+          <span class="nac-pill" style="color:#ea580c" title="Lifestyle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 22c1-7 5-12 10-12s9 5 10 12M12 2v6"/></svg></span>
+          <span class="nac-pill" style="color:#0ea5e9" title="Cost"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <span class="nac-pill" style="color:#65a30d" title="Citizenship"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg></span>
+          <span class="nac-pill" style="color:#be185d" title="Business"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></span>
+        </div>
+
+        <div class="nac-index-cta-row">
+          <a class="cta cta-primary" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener">
+            <span data-vi="Khám Phá Index" data-en="Explore the Index">Khám Phá Index</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a class="cta cta-secondary" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener">
+            <span data-vi="So Sánh CBI/RBI" data-en="Compare CBI/RBI">So Sánh CBI/RBI</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="nac-index-globe-pane">
+        <canvas class="nac-index-globe" id="indexGlobe"></canvas>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §03 — PROPERTY HUB
+============================================================ -->
+<section class="property-hub" id="property-hub">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">§ 03 · <span data-vi="Property Hub · Live Listings" data-en="Property Hub · Live Listings">Property Hub · Live Listings</span></span>
+      <h2 class="display" data-vi="<em>47 Bất Động Sản</em> được tuyển chọn." data-en="<em>47 Properties</em>, curated.">‎<em>47 Bất Động Sản</em> được tuyển chọn.</h2>
+      <p class="lede" data-vi="Branded residences và đầu tư yield cao tại các thị trường visa-eligible. Yield trung bình 3.8–8.5%. Mỗi tài sản chấm điểm NAC độc lập." data-en="Branded residences and high-yield investments in visa-eligible markets. Average yield 3.8–8.5%. Each asset NAC-scored independently.">Branded residences và đầu tư yield cao tại các thị trường visa-eligible. Yield trung bình 3.8–8.5%. Mỗi tài sản chấm điểm NAC độc lập.</p>
+    </div>
+
+    <div class="listings-grid reveal">
+      <!-- Nobu Da Nang -->
+      <a class="listing-card" href="https://nomadassetcollective.com/property-hub-bat-dong-san/vietnam/nobu-dn/" target="_blank" rel="noopener">
+        <div class="listing-cover" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/thailan.jpg')">
+          <span class="listing-badge hot">🔥 Hot</span>
+          <div class="listing-score"><span class="s">81</span><span class="o">/100</span></div>
+        </div>
+        <div class="listing-body">
+          <span class="listing-loc" data-vi="🇻🇳 Mỹ Khê, Đà Nẵng" data-en="🇻🇳 My Khe, Da Nang">🇻🇳 Mỹ Khê, Đà Nẵng</span>
+          <h3 class="listing-name">Nobu Residences Da Nang</h3>
+          <p class="listing-tag" data-vi="Căn hộ branded 43 tầng do Nobu Hospitality vận hành. Yield Year-1 cam kết." data-en="43-floor branded residences operated by Nobu Hospitality. Guaranteed Year-1 yield.">Căn hộ branded 43 tầng do Nobu Hospitality vận hành. Yield Year-1 cam kết.</p>
+          <div class="listing-stats">
+            <div class="listing-stat"><span class="v">$360K</span><span class="l" data-vi="Vào Lệnh" data-en="Entry">Vào Lệnh</span></div>
+            <div class="listing-stat"><span class="v"><em>13.8%</em></span><span class="l" data-vi="IRR 5y" data-en="IRR 5y">IRR 5y</span></div>
+            <div class="listing-stat"><span class="v">6.0%</span><span class="l" data-vi="Yield" data-en="Yield">Yield</span></div>
+          </div>
+          <div class="listing-cta">
+            <span data-vi="Xem Chi Tiết" data-en="View Details">Xem Chi Tiết</span>
+            <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Greece -->
+      <a class="listing-card" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener">
+        <div class="listing-cover" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/case-study-gia-dinh-doanh-nhan-tp-hcm-va-18-thang-chinh-phuc-thuong-tru-hy-lap-bai-hoc-thuc-te-tu-hanh-trinh-cover-a76ca.jpg')">
+          <span class="listing-badge" data-vi="Đủ Visa · €250K" data-en="Visa-Eligible · €250K">Đủ Visa · €250K</span>
+          <div class="listing-score"><span class="s">79</span><span class="o">/100</span></div>
+        </div>
+        <div class="listing-body">
+          <span class="listing-loc" data-vi="🇬🇷 Athens Riviera, Hy Lạp" data-en="🇬🇷 Athens Riviera, Greece">🇬🇷 Athens Riviera, Hy Lạp</span>
+          <h3 class="listing-name">Riviera Tower Residences</h3>
+          <p class="listing-tag" data-vi="Căn hộ ven biển đạt ngưỡng Golden Visa. Cho thuê ngắn hạn được phê duyệt." data-en="Coastal apartments meeting Golden Visa threshold. Short-let approved.">Căn hộ ven biển đạt ngưỡng Golden Visa. Cho thuê ngắn hạn được phê duyệt.</p>
+          <div class="listing-stats">
+            <div class="listing-stat"><span class="v">€295K</span><span class="l" data-vi="Vào Lệnh" data-en="Entry">Vào Lệnh</span></div>
+            <div class="listing-stat"><span class="v">9.4%</span><span class="l" data-vi="IRR 5y" data-en="IRR 5y">IRR 5y</span></div>
+            <div class="listing-stat"><span class="v">5.2%</span><span class="l" data-vi="Yield" data-en="Yield">Yield</span></div>
+          </div>
+          <div class="listing-cta">
+            <span data-vi="Xem Chi Tiết" data-en="View Details">Xem Chi Tiết</span>
+            <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+
+      <!-- Dubai -->
+      <a class="listing-card" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener">
+        <div class="listing-cover" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/dubai.webp')">
+          <span class="listing-badge" data-vi="Hotel-Branded" data-en="Hotel-Branded">Hotel-Branded</span>
+          <div class="listing-score"><span class="s">86</span><span class="o">/100</span></div>
+        </div>
+        <div class="listing-body">
+          <span class="listing-loc" data-vi="🇦🇪 Downtown Dubai" data-en="🇦🇪 Downtown Dubai">🇦🇪 Downtown Dubai</span>
+          <h3 class="listing-name">Address Residences DT</h3>
+          <p class="listing-tag" data-vi="Branded residence của Emaar, đủ điều kiện Golden Visa AED 2M. Không thuế thu nhập." data-en="Emaar branded residence, AED 2M Golden Visa eligible. Zero income tax.">Branded residence của Emaar, đủ điều kiện Golden Visa AED 2M. Không thuế thu nhập.</p>
+          <div class="listing-stats">
+            <div class="listing-stat"><span class="v">$580K</span><span class="l" data-vi="Vào Lệnh" data-en="Entry">Vào Lệnh</span></div>
+            <div class="listing-stat"><span class="v"><em>15.2%</em></span><span class="l" data-vi="IRR 5y" data-en="IRR 5y">IRR 5y</span></div>
+            <div class="listing-stat"><span class="v">7.1%</span><span class="l" data-vi="Yield" data-en="Yield">Yield</span></div>
+          </div>
+          <div class="listing-cta">
+            <span data-vi="Xem Chi Tiết" data-en="View Details">Xem Chi Tiết</span>
+            <span class="arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 5l7 7-7 7"/></svg></span>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="brochures-foot reveal" style="margin-top:2.5rem;">
+      <a href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener">
+        <span data-vi="Browse 47 Properties" data-en="Browse 47 Properties">Browse 47 Properties</span> ↗
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §04 — NAC TIMES
+============================================================ -->
+<section class="nac-times" id="nac-times">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">§ 04 · <span data-vi="NAC Times · Editorial" data-en="NAC Times · Editorial">NAC Times · Editorial</span></span>
+      <h2 class="display" data-vi="Góc nhìn chiến lược cho <em>nhà đầu tư Việt</em>." data-en="Strategic perspective for the <em>Vietnamese investor</em>.">Góc nhìn chiến lược cho <em>nhà đầu tư Việt</em>.</h2>
+    </div>
+
+    <div class="times-grid reveal">
+      <!-- Feature -->
+      <a class="article-card feature" href="https://blog.nomadassetcollective.com" target="_blank" rel="noopener">
+        <div class="article-card-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua-cover-8d1da.jpg')"></div>
+        <div class="article-card-body">
+          <span class="article-card-cat" data-vi="So Sánh" data-en="Compare">So Sánh</span>
+          <h3 class="article-card-title" data-vi="Hy Lạp vs Thổ Nhĩ Kỳ 2026 — So sánh toàn diện hai chương trình đầu tư di trú" data-en="Greece vs Turkey 2026 — Comprehensive comparison of two investment-migration programs">Hy Lạp vs Thổ Nhĩ Kỳ 2026 — So sánh toàn diện hai chương trình đầu tư di trú</h3>
+          <div class="article-card-meta"><span>📖 12 <span data-vi="phút" data-en="min">phút</span></span><span>Q2/2026</span></div>
+        </div>
+      </a>
+      <!-- Card 2 -->
+      <a class="article-card" href="https://blog.nomadassetcollective.com" target="_blank" rel="noopener">
+        <div class="article-card-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/case-study-gia-dinh-doanh-nhan-tp-hcm-va-18-thang-chinh-phuc-thuong-tru-hy-lap-bai-hoc-thuc-te-tu-hanh-trinh-cover-a76ca.jpg')"></div>
+        <div class="article-card-body">
+          <span class="article-card-cat" data-vi="Case Study" data-en="Case Study">Case Study</span>
+          <h3 class="article-card-title" data-vi="Gia đình doanh nhân TP.HCM và 18 tháng chinh phục thường trú Hy Lạp" data-en="A HCMC business family's 18-month Greece PR journey">Gia đình doanh nhân TP.HCM và 18 tháng chinh phục thường trú Hy Lạp</h3>
+          <div class="article-card-meta"><span>📖 9 <span data-vi="phút" data-en="min">phút</span></span></div>
+        </div>
+      </a>
+      <!-- Card 3 -->
+      <a class="article-card" href="https://blog.nomadassetcollective.com" target="_blank" rel="noopener">
+        <div class="article-card-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/bat-dong-san-lisbon-2026-phan-tich-gia-theo-quan-va-co-hoi-dau-tu-cho-nguoi-xin-d7-visa-infographic-cover-8a5b2.jpg')"></div>
+        <div class="article-card-body">
+          <span class="article-card-cat" data-vi="Phân Tích" data-en="Analysis">Phân Tích</span>
+          <h3 class="article-card-title" data-vi="BĐS Lisbon 2026 — Phân tích giá theo quận cho người xin D7" data-en="Lisbon real estate 2026 — D7 visa price-by-district analysis">BĐS Lisbon 2026 — Phân tích giá theo quận cho người xin D7</h3>
+          <div class="article-card-meta"><span>📖 11 <span data-vi="phút" data-en="min">phút</span></span></div>
+        </div>
+      </a>
+      <!-- Card 4 -->
+      <a class="article-card" href="https://blog.nomadassetcollective.com" target="_blank" rel="noopener">
+        <div class="article-card-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/dubai.webp')"></div>
+        <div class="article-card-body">
+          <span class="article-card-cat" data-vi="Góc Nhìn NAC" data-en="NAC Perspective">Góc Nhìn NAC</span>
+          <h3 class="article-card-title" data-vi="UAE vs Greece — Hai con đường, hai triết lý sống" data-en="UAE vs Greece — Two paths, two lifestyles">UAE vs Greece — Hai con đường, hai triết lý sống</h3>
+          <div class="article-card-meta"><span>📖 8 <span data-vi="phút" data-en="min">phút</span></span></div>
+        </div>
+      </a>
+      <!-- Card 5 -->
+      <a class="article-card" href="https://blog.nomadassetcollective.com" target="_blank" rel="noopener">
+        <div class="article-card-img" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/stkitt.jpg')"></div>
+        <div class="article-card-body">
+          <span class="article-card-cat" data-vi="Cập Nhật" data-en="Update">Cập Nhật</span>
+          <h3 class="article-card-title" data-vi="So sánh hộ chiếu Caribbean 2026" data-en="Caribbean passports compared, 2026">So sánh hộ chiếu Caribbean 2026</h3>
+          <div class="article-card-meta"><span>📖 7 <span data-vi="phút" data-en="min">phút</span></span></div>
+        </div>
+      </a>
+    </div>
+
+    <div class="times-cats reveal">
+      <a href="https://blog.nomadassetcollective.com" target="_blank" data-vi="Tất Cả Bài" data-en="All Articles">Tất Cả Bài</a>
+      <a href="https://blog.nomadassetcollective.com" target="_blank" data-vi="So Sánh" data-en="Compare">So Sánh</a>
+      <a href="https://blog.nomadassetcollective.com" target="_blank" data-vi="Góc Nhìn NAC" data-en="NAC Perspective">Góc Nhìn NAC</a>
+      <a href="https://blog.nomadassetcollective.com" target="_blank" data-vi="Phân Tích" data-en="Analysis">Phân Tích</a>
+      <a href="https://blog.nomadassetcollective.com" target="_blank" data-vi="Case Study" data-en="Case Study">Case Study</a>
+      <a href="https://blog.nomadassetcollective.com" target="_blank" data-vi="Infographic" data-en="Infographic">Infographic</a>
+      <a href="https://blog.nomadassetcollective.com" target="_blank" data-vi="Cập Nhật" data-en="Updates">Cập Nhật</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §05 — PROCESS
+============================================================ -->
+<section class="process" id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">§ 05 · <span data-vi="Quy Trình NAC" data-en="The NAC Process">Quy Trình NAC</span></span>
+      <h2 class="display" data-vi="Từ thẩm định đến <em>hộ chiếu mới</em>. Minh bạch từng tuần." data-en="From assessment to <em>new passport</em>. Transparent week by week.">Từ thẩm định đến <em>hộ chiếu mới</em>. Minh bạch từng tuần.</h2>
+    </div>
+
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-time" data-vi="Ngày 1" data-en="Day 1">Ngày 1</div>
+        <div class="step-title" data-vi="Thẩm Định Sơ Bộ" data-en="Preliminary Assessment">Thẩm Định Sơ Bộ</div>
+        <p class="step-body" data-vi="Tư vấn 30'' với Ray — đánh giá hồ sơ, mục tiêu gia đình, gợi ý chương trình phù hợp." data-en="30-min consultation with Ray — profile review, family goals, programme shortlist.">Tư vấn 30'' với Ray — đánh giá hồ sơ, mục tiêu gia đình, gợi ý chương trình phù hợp.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-time" data-vi="2–4 tuần" data-en="2–4 weeks">2–4 tuần</div>
+        <div class="step-title" data-vi="Chuẩn Bị Hồ Sơ" data-en="Document Preparation">Chuẩn Bị Hồ Sơ</div>
+        <p class="step-body" data-vi="Apostille, dịch thuật, AML/KYC. Đội ngũ NAC phối hợp luật sư địa phương cho từng quốc gia." data-en="Apostille, translations, AML/KYC. NAC team coordinates with local counsel in each country.">Apostille, dịch thuật, AML/KYC. Đội ngũ NAC phối hợp luật sư địa phương cho từng quốc gia.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-time" data-vi="2–6 tháng" data-en="2–6 months">2–6 tháng</div>
+        <div class="step-title" data-vi="Thẩm Định Quốc Gia" data-en="Due Diligence">Thẩm Định Quốc Gia</div>
+        <p class="step-body" data-vi="Chính phủ quốc gia tiếp nhận tiến hành due diligence độc lập. NAC theo dõi, cập nhật trạng thái." data-en="The receiving government runs independent due diligence. NAC tracks status and reports back.">Chính phủ quốc gia tiếp nhận tiến hành due diligence độc lập. NAC theo dõi, cập nhật trạng thái.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-time" data-vi="≤ 3 tháng" data-en="≤ 3 months">≤ 3 tháng</div>
+        <div class="step-title" data-vi="Đầu Tư & Thực Hiện" data-en="Investment & Execution">Đầu Tư & Thực Hiện</div>
+        <p class="step-body" data-vi="Chuyển vốn vào escrow, ký hợp đồng BĐS, hoàn tất nghĩa vụ chương trình." data-en="Funds to escrow, real-estate contracts signed, programme obligations completed.">Chuyển vốn vào escrow, ký hợp đồng BĐS, hoàn tất nghĩa vụ chương trình.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-time" data-vi="4+ tuần" data-en="4+ weeks">4+ tuần</div>
+        <div class="step-title" data-vi="Cấp Phép & Hộ Chiếu" data-en="Approval & Passport">Cấp Phép & Hộ Chiếu</div>
+        <p class="step-body" data-vi="Nhận thẻ cư trú hoặc hộ chiếu. NAC tiếp tục hỗ trợ định cư, mở tài khoản, đăng ký trường học." data-en="Receive residency card or passport. NAC continues to support settlement, banking, schooling.">Nhận thẻ cư trú hoặc hộ chiếu. NAC tiếp tục hỗ trợ định cư, mở tài khoản, đăng ký trường học.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §06 — FOUNDER (Ray Vũ)
+============================================================ -->
+<section class="founder" id="founder">
+  <div class="wrap">
+    <div class="founder-spread reveal">
+      <div class="founder-portrait">
+        <span class="ribbon">IMC Certified Expert</span>
+        <span data-vi="Ảnh: Ray Vũ — Founder, NAC" data-en="Photo: Ray Vu — Founder, NAC">Ảnh: Ray Vũ — Founder, NAC</span>
+      </div>
+      <div class="founder-copy">
+        <span class="eyebrow">§ 06 · <span data-vi="Người Đồng Hành" data-en="The Founder">Người Đồng Hành</span></span>
+        <h2 data-vi="Tôi là <em>Ray Vũ</em>. Tôi xây dựng NAC cho gia đình của bạn." data-en="I'm <em>Ray Vũ</em>. I built NAC for your family.">Tôi là <em>Ray Vũ</em>. Tôi xây dựng NAC cho gia đình của bạn.</h2>
+        <p class="manifesto" data-vi="“Đầu tư di trú không phải là mua một tấm hộ chiếu — đó là kiến tạo một tiêu chuẩn sống mới cho ba thế hệ. Tôi cam kết tư vấn độc lập, minh bạch về chi phí, và đặt lợi ích gia đình bạn lên trên hoa hồng.”" data-en="“Investment migration isn't about buying a passport — it's about engineering a new living standard for three generations. I commit to independent advice, transparent costs, and putting your family's interest above any commission.”">“Đầu tư di trú không phải là mua một tấm hộ chiếu — đó là kiến tạo một tiêu chuẩn sống mới cho ba thế hệ. Tôi cam kết tư vấn độc lập, minh bạch về chi phí, và đặt lợi ích gia đình bạn lên trên hoa hồng.”</p>
+        <div class="founder-signoff">
+          <div>
+            <div class="name">Ray Vũ</div>
+            <span data-vi="Founder · IMCET Certified" data-en="Founder · IMCET Certified">Founder · IMCET Certified</span>
+          </div>
+        </div>
+        <div class="founder-badges">
+          <div class="founder-badge"><b>IMC</b><span data-vi="Investment Migration Council" data-en="Investment Migration Council">Investment Migration Council</span></div>
+          <div class="founder-badge"><b>iQi Global</b><span data-vi="Đối Tác Phân Phối" data-en="Distribution Partner">Đối Tác Phân Phối</span></div>
+          <div class="founder-badge"><b>100+</b><span data-vi="Hồ Sơ Đã Đóng" data-en="Cases Closed">Hồ Sơ Đã Đóng</span></div>
+          <div class="founder-badge"><b>50+</b><span data-vi="Thị Trường Toàn Cầu" data-en="Global Markets">Thị Trường Toàn Cầu</span></div>
+        </div>
+        <div class="founder-cta-row">
+          <a class="cta cta-primary" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+            <span data-vi="Đặt 30'' với Ray" data-en="Book 30' with Ray">Đặt 30'' với Ray</span>
+          </a>
+          <a class="cta cta-secondary" href="https://wa.me/447388646000" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+            <span data-vi="Nhắn WhatsApp" data-en="WhatsApp Ray">Nhắn WhatsApp</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §07 — TOOLS
+============================================================ -->
+<section class="tools" id="tools">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">§ 07 · <span data-vi="Công Cụ NAC" data-en="The NAC Toolkit">Công Cụ NAC</span></span>
+      <h2 class="display" data-vi="Bốn công cụ. <em>Một quyết định</em> sáng suốt." data-en="Four tools. <em>One sharp</em> decision.">Bốn công cụ. <em>Một quyết định</em> sáng suốt.</h2>
+    </div>
+
+    <div class="tools-grid reveal">
+      <a class="tool-card" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+        </div>
+        <h3 class="tool-name">NAC Residence Index</h3>
+        <p class="tool-desc" data-vi="Xếp hạng 40+ chương trình thường trú & quốc tịch theo 12 KPI tuỳ chỉnh." data-en="Rank 40+ residency &amp; citizenship programs by 12 customisable KPIs.">Xếp hạng 40+ chương trình thường trú & quốc tịch theo 12 KPI tuỳ chỉnh.</p>
+        <span class="tool-link"><span data-vi="Xem Chỉ Số" data-en="Open Index">Xem Chỉ Số</span> →</span>
+      </a>
+
+      <a class="tool-card" data-tone="orange" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h6l3-3 3 3h6M3 18h18M6 14l-3-4h6zM18 14l-3-4h6z"/></svg>
+        </div>
+        <h3 class="tool-name" data-vi="So Sánh CBI/RBI" data-en="Compare CBI/RBI">So Sánh CBI/RBI</h3>
+        <p class="tool-desc" data-vi="Chọn tối đa 8 chương trình, so sánh chi phí — timeline — quyền lợi cạnh nhau." data-en="Pick up to 8 programs, compare cost — timeline — benefits side by side.">Chọn tối đa 8 chương trình, so sánh chi phí — timeline — quyền lợi cạnh nhau.</p>
+        <span class="tool-link"><span data-vi="So Sánh Ngay" data-en="Open Compare">So Sánh Ngay</span> →</span>
+      </a>
+
+      <a class="tool-card" data-tone="purple" href="https://nomadassetcollective.com/tu-van-nhanh" target="_blank" rel="noopener">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-9 8.5 8.5 8.5 0 0 1-7.6-4.7L3 21l5.7-1.4a8.38 8.38 0 0 1-.7-3.6 8.5 8.5 0 0 1 8.5-8.5c1 0 2 .2 2.8.5"/></svg>
+        </div>
+        <h3 class="tool-name" data-vi="Tư Vấn Nhanh" data-en="Quick Advisor">Tư Vấn Nhanh</h3>
+        <p class="tool-desc" data-vi="Bài quiz 60 giây — NAC gợi ý chương trình phù hợp nhất cho hồ sơ của bạn." data-en="60-second quiz — NAC recommends the best-fit programs for your profile.">Bài quiz 60 giây — NAC gợi ý chương trình phù hợp nhất cho hồ sơ của bạn.</p>
+        <span class="tool-link"><span data-vi="Bắt Đầu" data-en="Start Quiz">Bắt Đầu</span> →</span>
+      </a>
+
+      <a class="tool-card" data-tone="green" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener">
+        <div class="tool-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9M5 10v10h14V10"/></svg>
+        </div>
+        <h3 class="tool-name">Property Hub</h3>
+        <p class="tool-desc" data-vi="47 BĐS đủ điều kiện visa với ROI Simulator, IRR/yield, NAC Score độc lập." data-en="47 visa-eligible properties with ROI Simulator, IRR/yield, independent NAC Score.">47 BĐS đủ điều kiện visa với ROI Simulator, IRR/yield, NAC Score độc lập.</p>
+        <span class="tool-link"><span data-vi="Khám Phá" data-en="Browse Hub">Khám Phá</span> →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     §08 — SOCIAL PROOF
+============================================================ -->
+<section class="social-proof">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">§ 08 · <span data-vi="Cộng Đồng NAC" data-en="The Community">Cộng Đồng NAC</span></span>
+      <h2 class="display" data-vi="Hơn <em>100+</em> gia đình. Một cộng đồng toàn cầu." data-en="More than <em>100+</em> families. A global community.">Hơn <em>100+</em> gia đình. Một cộng đồng toàn cầu.</h2>
+    </div>
+
+    <div class="proof-grid reveal">
+      <div class="proof-quote">
+        <div class="qmark">"</div>
+        <blockquote data-vi="Ray và đội ngũ NAC giúp gia đình tôi định cư Hy Lạp trong 18 tháng — minh bạch từng khoản phí, không một bất ngờ. Brochure của họ là tài liệu chiến lược nghiêm túc, không phải brochure quảng cáo." data-en="Ray and the NAC team got our family settled in Greece in 18 months — every fee transparent, no surprises. Their brochures read like serious strategy papers, not marketing decks.">Ray và đội ngũ NAC giúp gia đình tôi định cư Hy Lạp trong 18 tháng — minh bạch từng khoản phí, không một bất ngờ. Brochure của họ là tài liệu chiến lược nghiêm túc, không phải brochure quảng cáo.</blockquote>
+        <cite>
+          <b>P. Nguyễn</b>
+          <span data-vi="Doanh nhân · TP.HCM → Athens" data-en="Entrepreneur · HCMC → Athens">Doanh nhân · TP.HCM → Athens</span>
+        </cite>
+      </div>
+
+      <div>
+        <div class="proof-ig-grid">
+          <a class="proof-ig-tile" href="https://instagram.com/nac.global" target="_blank" rel="noopener" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/dubai.webp')"></a>
+          <a class="proof-ig-tile" href="https://instagram.com/nac.global" target="_blank" rel="noopener" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/sip.webp')"></a>
+          <a class="proof-ig-tile" href="https://instagram.com/nac.global" target="_blank" rel="noopener" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/london-scaled.jpg')"></a>
+          <a class="proof-ig-tile" href="https://instagram.com/nac.global" target="_blank" rel="noopener" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/stkitt.jpg')"></a>
+          <a class="proof-ig-tile" href="https://instagram.com/nac.global" target="_blank" rel="noopener" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/thailan.jpg')"></a>
+          <a class="proof-ig-tile" href="https://instagram.com/nac.global" target="_blank" rel="noopener" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/panama.webp')"></a>
+        </div>
+        <div class="proof-ig-foot">
+          <a href="https://instagram.com/nac.global" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 0 0-2.13 1.38A5.86 5.86 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.86 5.86 0 0 0 1.38 2.13 5.86 5.86 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 0 0 2.13-1.38 5.86 5.86 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.13A5.86 5.86 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+            <span data-vi="Theo Dõi @nac.global" data-en="Follow @nac.global">Theo Dõi @nac.global</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FINAL CTA
+============================================================ -->
+<section class="final-cta">
+  <div class="wrap-narrow">
+    <span class="eyebrow" data-vi="Bước Tiếp Theo" data-en="The Next Move">Bước Tiếp Theo</span>
+    <h2 data-vi="Bắt đầu với một <em>cuộc trò chuyện</em> 30 phút." data-en="Begin with a single <em>30-minute</em> conversation.">Bắt đầu với một <em>cuộc trò chuyện</em> 30 phút.</h2>
+    <p class="lede" data-vi="Không cam kết, không bán hàng. Ray sẽ lắng nghe mục tiêu của bạn, gợi ý 2–3 chương trình phù hợp nhất, và gửi brochure chi tiết qua email." data-en="No commitment, no pitch. Ray listens to your goals, recommends 2–3 best-fit programs, and emails the detailed brochures.">Không cam kết, không bán hàng. Ray sẽ lắng nghe mục tiêu của bạn, gợi ý 2–3 chương trình phù hợp nhất, và gửi brochure chi tiết qua email.</p>
+    <div class="final-cta-row">
+      <a class="cta cta-primary" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+        <span data-vi="Đặt Tư Vấn Miễn Phí" data-en="Book a Free Consultation">Đặt Tư Vấn Miễn Phí</span>
+      </a>
+      <a class="cta cta-secondary" href="https://wa.me/447388646000" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+        <span>WhatsApp Ray</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="nav-mark">
+          <span class="mark-the">THE</span>
+          <span class="mark-nac">NAC</span>
+          <span class="mark-tag">COLLECTIVE</span>
+        </span>
+        <p data-vi="Cố vấn đầu tư di trú độc lập. IMC certified. Đối tác phân phối exclusive của iQi Global tại 50+ thị trường." data-en="Independent investment-migration advisory. IMC certified. Exclusive distribution partner of iQi Global across 50+ markets.">Cố vấn đầu tư di trú độc lập. IMC certified. Đối tác phân phối exclusive của iQi Global tại 50+ thị trường.</p>
+        <div class="footer-socials">
+          <a href="https://instagram.com/nac.global" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.86 5.86 0 0 0-2.13 1.38A5.86 5.86 0 0 0 .63 4.14c-.3.76-.5 1.64-.56 2.91C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.86 5.86 0 0 0 1.38 2.13 5.86 5.86 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.86 5.86 0 0 0 2.13-1.38 5.86 5.86 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.86 5.86 0 0 0-1.38-2.13A5.86 5.86 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61582793351453" target="_blank" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M24 12.07A12 12 0 1 0 10.13 24v-8.44h-3v-3.5h3v-2.67c0-3 1.79-4.66 4.53-4.66 1.31 0 2.69.23 2.69.23v3h-1.52c-1.5 0-1.96.92-1.96 1.87v2.23h3.34l-.53 3.5h-2.8V24A12 12 0 0 0 24 12.07z"/></svg></a>
+          <a href="https://threads.net/@nac.global" target="_blank" aria-label="Threads"><svg viewBox="0 0 24 24"><path d="M17.5 11.6c-.1-.05-.2-.1-.3-.15-.2-3.8-2.3-5.97-5.8-6h-.05c-2.1 0-3.85.9-4.93 2.53l1.93 1.33c.8-1.22 2.07-1.48 3-1.48h.04c1.16.01 2.04.34 2.6.99.41.47.69 1.13.82 1.95-.99-.17-2.05-.22-3.19-.16-3.2.18-5.26 2.06-5.12 4.66.07 1.32.73 2.46 1.86 3.2.95.63 2.18.94 3.46.87 1.69-.1 3.02-.74 3.95-1.91.7-.88 1.15-2.03 1.35-3.46.81.5 1.41 1.14 1.74 1.92.56 1.32.59 3.48-1.17 5.24-1.55 1.54-3.41 2.21-6.22 2.23-3.12-.02-5.48-1.02-7.02-2.97C2.97 18.59 2.2 16.06 2.16 12.5c.04-3.56.81-6.09 2.29-7.97 1.54-1.95 3.9-2.95 7.02-2.97 3.14.02 5.55 1.02 7.16 2.98.79.97 1.39 2.18 1.79 3.6l2.07-.55c-.48-1.74-1.24-3.24-2.26-4.49C18.18 1.06 15.21-.02 11.46 0h-.02C7.7.02 4.79 1.1 2.79 3.21.92 5.21-.04 7.97 0 12.34c.04 4.18 1 6.94 2.79 8.95 2 2.11 4.91 3.2 8.65 3.22h.02c3.33-.02 5.67-.91 7.6-2.86 2.53-2.55 2.45-5.74 1.62-7.7-.6-1.4-1.74-2.54-3.18-3.34zm-6.22 5.42c-1.42.08-2.9-.56-2.97-1.92-.05-1.01.71-2.14 3.06-2.27.27-.02.53-.02.79-.02.85 0 1.65.08 2.38.24-.27 3.4-1.86 3.91-3.26 3.97z"/></svg></a>
+          <a href="https://tiktok.com/@nomadassetcollective" target="_blank" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.84-.1z"/></svg></a>
+          <a href="https://wa.me/447388646000" target="_blank" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-vi="Khám Phá" data-en="Explore">Khám Phá</h4>
+        <ul>
+          <li><a href="https://nomadassetcollective.com/brochures/" data-vi="Brochures Gateway" data-en="Brochures Gateway">Brochures Gateway</a></li>
+          <li><a href="https://nomadassetcollective.com/nac-residence-index/" data-vi="NAC Residence Index" data-en="NAC Residence Index">NAC Residence Index</a></li>
+          <li><a href="https://nomadassetcollective.com/property-hub-bat-dong-san/" data-vi="Property Hub" data-en="Property Hub">Property Hub</a></li>
+          <li><a href="https://blog.nomadassetcollective.com" data-vi="NAC Times Blog" data-en="NAC Times Blog">NAC Times Blog</a></li>
+          <li><a href="https://nomadassetcollective.com/so-sanh" data-vi="So Sánh" data-en="Compare">So Sánh</a></li>
+          <li><a href="https://nomadassetcollective.com/tu-van-nhanh" data-vi="Tư Vấn Nhanh" data-en="Quick Advisor">Tư Vấn Nhanh</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-vi="Bài Đọc" data-en="Reading">Bài Đọc</h4>
+        <ul>
+          <li><a href="https://blog.nomadassetcollective.com" data-vi="So Sánh Chương Trình" data-en="Program Comparisons">So Sánh Chương Trình</a></li>
+          <li><a href="https://blog.nomadassetcollective.com" data-vi="Phân Tích Thị Trường" data-en="Market Analysis">Phân Tích Thị Trường</a></li>
+          <li><a href="https://blog.nomadassetcollective.com" data-vi="Case Study" data-en="Case Study">Case Study</a></li>
+          <li><a href="https://blog.nomadassetcollective.com" data-vi="Góc Nhìn NAC" data-en="NAC Perspective">Góc Nhìn NAC</a></li>
+          <li><a href="https://blog.nomadassetcollective.com" data-vi="Infographic" data-en="Infographic">Infographic</a></li>
+          <li><a href="https://blog.nomadassetcollective.com" data-vi="Cập Nhật Chính Sách" data-en="Policy Updates">Cập Nhật Chính Sách</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 data-vi="Liên Hệ" data-en="Contact">Liên Hệ</h4>
+        <ul>
+          <li><a href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" data-vi="Đặt 30'' với Ray" data-en="Book 30' with Ray">Đặt 30'' với Ray</a></li>
+          <li><a href="https://wa.me/447388646000" target="_blank">WhatsApp +44 7388 646000</a></li>
+          <li><a href="tel:+84919199330">+84 919 199 330</a></li>
+          <li><a href="mailto:hello@nomadassetcollective.com">hello@nomadassetcollective.com</a></li>
+          <li><a href="https://maps.google.com/?q=Sonatus+15B+Le+Thanh+Ton+HCM" target="_blank" data-vi="Sonatus · 15B Lê Thánh Tôn · TP.HCM" data-en="Sonatus · 15B Le Thanh Ton · HCMC">Sonatus · 15B Lê Thánh Tôn · TP.HCM</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 Nomad Asset Collective · <span data-vi="Mọi quyền được bảo lưu" data-en="All rights reserved">Mọi quyền được bảo lưu</span></div>
+      <div><span data-vi="Thiết kế bởi" data-en="Crafted by">Thiết kế bởi</span> <a href="https://nomadassetcollective.com" target="_blank">NAC Studio</a></div>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================
+     MOBILE FLOATING CTA
+============================================================ -->
+<div class="mobile-cta">
+  <a class="mc-cal" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+    <span data-vi="Tư Vấn 30''" data-en="Book 30'">Tư Vấn 30''</span>
+  </a>
+  <a class="mc-wa" href="https://wa.me/447388646000" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.2-.2.3-.8 1-1 1.2-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.7.1-.1.3-.4.5-.5.2-.2.2-.3.3-.5.1-.2.1-.4 0-.5-.1-.2-.7-1.6-.9-2.2-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.2-1.2 2.9 0 1.7 1.2 3.4 1.4 3.6.2.2 2.4 3.6 5.8 5 .8.3 1.4.5 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.8-.7 2.1-1.4.3-.7.3-1.3.2-1.4-.1-.1-.3-.2-.5-.3zM12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.5 1.3 4.9L2 22l5.3-1.4c1.4.8 3 1.2 4.7 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2z"/></svg>
+    <span>WhatsApp</span>
+  </a>
+  <a class="mc-idx" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+    <span>Index</span>
+  </a>
+  <a class="mc-cmp" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h6l3-3 3 3h6M3 18h18"/></svg>
+    <span data-vi="So Sánh" data-en="Compare">So Sánh</span>
+  </a>
+</div>
+
+<!-- ============================================================
+     SCRIPTS
+     WP-safety: addEventListener bind (no inline onclick),
+                Unicode curly quotes inside JS strings,
+                no \" escapes in script content.
+============================================================ -->
+<script>
+(function(){
+  // ---------------- Sticky nav condense ----------------
+  var nav = document.getElementById('topNav');
+  function onScroll(){
+    if (window.scrollY > 32) nav.classList.add('is-scrolled');
+    else nav.classList.remove('is-scrolled');
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // ---------------- Bilingual engine ----------------
+  var KEY = 'nac-lang';
+  var stored = null;
+  try { stored = localStorage.getItem(KEY); } catch(e){}
+  var lang = (stored === 'en') ? 'en' : 'vi';
+
+  function applyLang(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-vi], [data-en]').forEach(function(el){
+      var t = el.getAttribute('data-' + l);
+      if (t != null) el.innerHTML = t;
+    });
+    document.querySelectorAll('.lang-pill button').forEach(function(b){
+      b.classList.toggle('is-active', b.getAttribute('data-lang') === l);
+    });
+    try { localStorage.setItem(KEY, l); } catch(e){}
+  }
+  document.querySelectorAll('.lang-pill button').forEach(function(b){
+    b.addEventListener('click', function(){ applyLang(b.getAttribute('data-lang')); });
+  });
+  applyLang(lang);
+
+  // ---------------- Reveal on scroll ----------------
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-in'); });
+  }
+})();
+</script>
+
+<!-- Globe canvas (hero + NAC Index banner) -->
+<script>
+(function(){
+  // Wireframe globe with rotating meridians + lat rings + city dots + NAC arcs.
+  // Simplified from the Turkey brochure §07 banner globe.
+  function makeGlobe(canvas, opts){
+    if (!canvas) return;
+    opts = opts || {};
+    var ctx = canvas.getContext('2d');
+    var W = 0, H = 0, R = 0, cx = 0, cy = 0, dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rotation = 0;
+    var hue = opts.hue || 'navy';
+    var palette = (hue === 'purple')
+      ? { line: 'rgba(91,58,168,.30)', lineSoft: 'rgba(91,58,168,.15)', dotA: '#5b3aa8', dotB: '#c4922c', dotC: '#1eb955', dotD: '#1800ad', arc: 'rgba(91,58,168,.45)', hcm: '#d97c44' }
+      : { line: 'rgba(15,26,54,.30)', lineSoft: 'rgba(15,26,54,.13)', dotA: '#c4922c', dotB: '#5b3aa8', dotC: '#1eb955', dotD: '#1800ad', arc: 'rgba(196,146,44,.45)', hcm: '#d97c44' };
+
+    // City coords (lat, lon) — selected NAC hubs
+    var CITIES = [
+      { lat:  10.77, lon: 106.70, c: 'hcm' },                       // HCM
+      { lat:  41.01, lon:  28.97, c: 'A' },                         // Istanbul
+      { lat:  37.98, lon:  23.72, c: 'A' },                         // Athens
+      { lat:  38.71, lon: -9.14,  c: 'A' },                         // Lisbon
+      { lat:  35.17, lon:  33.36, c: 'A' },                         // Nicosia
+      { lat:  35.90, lon:  14.51, c: 'A' },                         // Valletta
+      { lat:  25.20, lon:  55.27, c: 'B' },                         // Dubai
+      { lat:  51.51, lon:  -0.13, c: 'B' },                         // London
+      { lat:  13.74, lon: 100.52, c: 'C' },                         // Bangkok
+      { lat:   3.14, lon: 101.69, c: 'C' },                         // KL
+      { lat:  -41.29, lon: 174.78, c: 'D' },                        // Wellington
+      { lat:   8.98, lon: -79.51, c: 'D' },                         // Panama City
+      { lat:  17.30, lon: -62.72, c: 'D' },                         // St Kitts
+      { lat:  16.07, lon: 108.22, c: 'hcm' }                        // Da Nang (Nobu)
+    ];
+    var ARCS = [ [0,1],[0,2],[0,3],[0,4],[0,5],[0,6],[0,7],[0,8],[0,9],[0,10],[0,11],[0,12],[0,13],[1,2] ];
+
+    function resize(){
+      var rect = canvas.getBoundingClientRect();
+      W = Math.max(1, rect.width); H = Math.max(1, rect.height);
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      R = Math.min(W, H) * 0.42; cx = W/2; cy = H/2;
+    }
+    function project(lat, lon){
+      var phi = (lat) * Math.PI/180;
+      var theta = (lon + rotation) * Math.PI/180;
+      var x = Math.cos(phi) * Math.sin(theta);
+      var y = -Math.sin(phi);
+      var z = Math.cos(phi) * Math.cos(theta);
+      return { x: cx + R * x, y: cy + R * y, z: z };
+    }
+    function colorFor(c){
+      if (c === 'hcm') return palette.hcm;
+      if (c === 'A') return palette.dotA;
+      if (c === 'B') return palette.dotB;
+      if (c === 'C') return palette.dotC;
+      return palette.dotD;
+    }
+
+    function draw(){
+      ctx.clearRect(0,0,W,H);
+
+      // Lat rings
+      ctx.strokeStyle = palette.lineSoft; ctx.lineWidth = 0.8;
+      for (var i = -60; i <= 60; i += 30){
+        var phi = i * Math.PI/180;
+        var ry = R * Math.sin(phi);
+        var rx = R * Math.cos(phi);
+        ctx.beginPath();
+        ctx.ellipse(cx, cy - ry*0, rx, Math.abs(rx)*0.32, 0, 0, Math.PI*2);
+        ctx.stroke();
+        // Shift centre vertically for sphere illusion
+        var path = new Path2D();
+        path.ellipse(cx, cy + ry, rx, 1, 0, 0, Math.PI*2);
+      }
+
+      // Meridians (rotating)
+      ctx.strokeStyle = palette.line; ctx.lineWidth = 0.7;
+      for (var m = 0; m < 6; m++){
+        ctx.beginPath();
+        var prev = null;
+        for (var p = -90; p <= 90; p += 5){
+          var pt = project(p, m*30);
+          if (pt.z < -0.05) { prev = null; continue; }
+          if (prev) { ctx.moveTo(prev.x, prev.y); ctx.lineTo(pt.x, pt.y); }
+          prev = pt;
+        }
+        ctx.stroke();
+      }
+
+      // Equator
+      ctx.beginPath();
+      var prevE = null;
+      for (var e = 0; e < 360; e += 4){
+        var pe = project(0, e);
+        if (pe.z < -0.05) { prevE = null; continue; }
+        if (prevE) { ctx.moveTo(prevE.x, prevE.y); ctx.lineTo(pe.x, pe.y); }
+        prevE = pe;
+      }
+      ctx.stroke();
+
+      // Outer sphere ring
+      ctx.strokeStyle = palette.line; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI*2); ctx.stroke();
+
+      // Arcs (NAC hub network)
+      ctx.strokeStyle = palette.arc; ctx.lineWidth = 0.9;
+      ARCS.forEach(function(arc){
+        var a = CITIES[arc[0]], b = CITIES[arc[1]];
+        var pa = project(a.lat, a.lon), pb = project(b.lat, b.lon);
+        if (pa.z < 0 || pb.z < 0) return;
+        var mx = (pa.x + pb.x)/2, my = (pa.y + pb.y)/2;
+        var dx = pb.x - pa.x, dy = pb.y - pa.y;
+        var dist = Math.sqrt(dx*dx + dy*dy);
+        var lift = Math.min(R * 0.55, dist * 0.5);
+        var nx = -dy/dist, ny = dx/dist;
+        var ctrlX = mx + nx * lift * 0.4;
+        var ctrlY = my + ny * lift * 0.4 - lift * 0.2;
+        ctx.beginPath();
+        ctx.moveTo(pa.x, pa.y);
+        ctx.quadraticCurveTo(ctrlX, ctrlY, pb.x, pb.y);
+        ctx.stroke();
+      });
+
+      // City dots
+      CITIES.forEach(function(c){
+        var p = project(c.lat, c.lon);
+        if (p.z < -0.05) return;
+        var r = (c.c === 'hcm') ? 4 : 2.6;
+        ctx.fillStyle = colorFor(c.c);
+        ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, Math.PI*2); ctx.fill();
+        if (c.c === 'hcm'){
+          // pulse
+          var t = (Date.now() % 1800) / 1800;
+          ctx.globalAlpha = 1 - t;
+          ctx.beginPath(); ctx.arc(p.x, p.y, r + 4 + t*8, 0, Math.PI*2); ctx.fillStyle = palette.hcm; ctx.fill();
+          ctx.globalAlpha = 1;
+        }
+      });
+
+      rotation += 0.18;
+      requestAnimationFrame(draw);
+    }
+
+    function start(){
+      resize();
+      if (W === 0 || H === 0) { requestAnimationFrame(start); return; }
+      requestAnimationFrame(draw);
+    }
+    if (typeof ResizeObserver !== 'undefined') {
+      new ResizeObserver(function(){ resize(); }).observe(canvas);
+    }
+    window.addEventListener('resize', resize);
+    start();
+  }
+
+  makeGlobe(document.getElementById('heroGlobe'),  { hue: 'navy' });
+  makeGlobe(document.getElementById('indexGlobe'), { hue: 'purple' });
+})();
+</script>
+
+</body>
+</html>
