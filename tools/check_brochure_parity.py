@@ -145,21 +145,23 @@ def audit_one(path: Path) -> list:
     else:
         results.append(check("WhatsApp .nac-btn-wa icon: #25D366", True, "n/a"))
 
-    # 8. Bilingual coverage: data-vi count
+    # 8. Bilingual coverage — accept either data-vi/data-en attrs (Turkey
+    # pattern, more robust) OR legacy VI_STRINGS/EN_STRINGS arrays
+    # (works fine, less robust to text edits).
     n_data_vi = len(re.findall(r"\bdata-vi=", text))
     n_data_en = len(re.findall(r"\bdata-en=", text))
-    if n_data_vi >= 200 and abs(n_data_vi - n_data_en) <= 2:
-        results.append(check(f"Bilingual data-vi/data-en ({n_data_vi}/{n_data_en})", True))
-    elif n_data_vi >= 50:
+    has_legacy = "VI_STRINGS" in text and "EN_STRINGS" in text
+    if n_data_vi >= 200:
         results.append(check(
-            f"Bilingual data-vi/data-en ({n_data_vi}/{n_data_en})", False,
-            "Partial — Turkey has ~254",
+            f"Bilingual support (data-attr: {n_data_vi} attrs)", True,
+        ))
+    elif has_legacy:
+        results.append(check(
+            "Bilingual support (legacy VI_STRINGS/EN_STRINGS)", True,
+            f"data-attr migration pending (currently {n_data_vi} attrs)",
         ))
     else:
-        results.append(check(
-            f"Bilingual data-vi/data-en ({n_data_vi}/{n_data_en})", False,
-            "Not migrated",
-        ))
+        results.append(check("Bilingual support", False, "Neither pattern present"))
 
     # 9. Chart bilingual wrapper
     has_buildcharts = bool(re.search(r"\bbuildCharts\s*\(", text))

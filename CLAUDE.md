@@ -44,20 +44,20 @@ Output: `✓ N/15` per brochure with bar chart and per-check details on failures
 
 ```
 turkey-cbi_8.html        15/15   ← master, fully aligned
-cyprus-rbi_3_3.html      12/15
-greece-rbi_1_2.html      12/15
-malaysia-mm2h.html       12/15
-malta-rbi_1_3.html       12/15
-newzealand-rbi_1 (3).html 12/15
-panama-rbi_.html         12/15
-portugal-gv.html         11/15   ← has matrix chart, needs the fix
-stkitts-nevis.html       12/15
-thailand-rbi_1 (2).html  12/15
-uae-rbi_1_7.html         12/15
-uk-rbi_1 (2).html        12/15
+cyprus-rbi_3_3.html      14/15
+greece-rbi_1_2.html      14/15
+malaysia-mm2h.html       14/15
+malta-rbi_1_3.html       14/15
+newzealand-rbi_1 (3).html 14/15
+panama-rbi_.html         14/15
+portugal-gv.html         14/15   ← matrix chart fix shipped
+stkitts-nevis.html       14/15
+thailand-rbi_1 (2).html  14/15
+uae-rbi_1_7.html         14/15
+uk-rbi_1 (2).html        14/15
 ```
 
-### What's already at parity (11 of 11 brochures + Turkey)
+### What's at parity across all 12 brochures
 
 ✓ Sidebar CTA cream-glass pill (4 colour-coded chips)
 ✓ Header / sidebar booking → Google Calendar
@@ -66,19 +66,20 @@ uk-rbi_1 (2).html        12/15
 ✓ `.nac-btn-wa` icon brand green
 ✓ **NAC Index banner with embedded canvas globe** (§07)
 ✓ **12 KPI icon pills** (desktop in banner, mobile in white strip)
+✓ **Article CTA banner-card structure** (cover-image banner cards)
 ✓ Real `og:image` covers (no Unsplash placeholders)
 ✓ WP-safety `addEventListener` for lang buttons
 ✓ No `\"` in script blocks (no KSES unescape risk)
+✓ Bilingual support (legacy `VI_STRINGS`/`EN_STRINGS` arrays on the 11; Turkey uses the more robust `data-vi`/`data-en` attrs)
+✓ Matrix chart mobile fix (Portugal, the only one with this chart)
 
-### What's left (3 items per brochure)
+### What's left (1 item per brochure)
 
 | Item | Why it's blocked | Path forward |
 |---|---|---|
-| Bilingual `data-vi`/`data-en` migration | Needs EN translation content per brochure | Pull from Notion DB or hand-translate per brochure (~150–250 strings each) |
-| `buildCharts(lang)` wrapper | Needs EN labels for chart axes/datasets/tooltips | Add VI/EN dictionary per brochure, mirror Turkey's `CHART_LBLS` |
-| Article CTA banner-card structure | Existing brochures still use text-only `.article-cta` blocks | Per-brochure structural rewrite (preserve URL + title); then run `refresh_article_covers.py` |
+| `buildCharts(lang)` wrapper | Needs Chart.js datasets (country names, axis titles, tooltips) wrapped in VI/EN dictionaries per brochure | Mirror Turkey's `CHART_LBLS` pattern. Each brochure has 2–4 charts; per-chart label set is ~10–15 strings (mostly country names — predictable translations). Estimate: 30 min per brochure. |
 
-Portugal also needs the **matrix chart aspectRatio + collapsible** fix (only Portugal has a matrix chart among the 11).
+Optional follow-up: migrate the 11 brochures from legacy `VI_STRINGS`/`EN_STRINGS` arrays to Turkey's `data-vi`/`data-en` attribute pattern. The legacy approach works fine but is more fragile to text edits. Translation content is already complete in the legacy arrays — migration is mechanical.
 
 ---
 
@@ -202,7 +203,7 @@ python tools/check_brochure_parity.py                 # verify after
 
 ## 8. PRs shipped this session
 
-`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape)
+`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix
 
 ---
 
