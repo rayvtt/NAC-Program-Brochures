@@ -1044,17 +1044,17 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 <!-- FLOATING TOC (mobile) -->
 <button class="float-toc-btn" id="floatTocBtn" aria-label="Mục lục">☰</button>
 <div class="float-toc-panel" id="floatTocPanel">
-  <div class="float-toc-panel-header">Mục Lục</div>
-  <a href="#overview"    onclick="closeFToc()">01 · Tổng quan chương trình</a>
-  <a href="#investment"  onclick="closeFToc()">02 · Các mức đầu tư</a>
-  <a href="#listings"    onclick="closeFToc()">★ BĐS đang mở bán</a>
-  <a href="#process"     onclick="closeFToc()">03 · Quy trình &amp; thời gian</a>
-  <a href="#nac-paywall" onclick="closeFToc()">04 · Gia đình &amp; thụ hưởng 🔒</a>
-  <a href="#nac-paywall" onclick="closeFToc()">05 · Thuế &amp; tài chính 🔒</a>
-  <a href="#nac-paywall" onclick="closeFToc()">06 · Lộ trình quốc tịch 🔒</a>
-  <a href="#nac-paywall" onclick="closeFToc()">07 · So sánh chương trình 🔒</a>
-  <a href="#nac-paywall" onclick="closeFToc()">08 · Ưu &amp; nhược điểm 🔒</a>
-  <a href="#nac-paywall" onclick="closeFToc()">09 · Nhận định của NAC 🔒</a>
+  <div class="float-toc-panel-header" data-vi="Mục Lục" data-en="Contents">Mục Lục</div>
+  <a href="#overview"    onclick="closeFToc()" data-vi="01 · Tổng quan chương trình" data-en="01 · Program overview">01 · Tổng quan chương trình</a>
+  <a href="#investment"  onclick="closeFToc()" data-vi="02 · Các mức đầu tư" data-en="02 · Investment routes">02 · Các mức đầu tư</a>
+  <a href="#listings"    onclick="closeFToc()" data-vi="★ BĐS đang mở bán" data-en="★ Properties for sale">★ BĐS đang mở bán</a>
+  <a href="#process"     onclick="closeFToc()" data-vi="03 · Quy trình &amp; thời gian" data-en="03 · Process &amp; timeline">03 · Quy trình &amp; thời gian</a>
+  <a href="#nac-paywall" onclick="closeFToc()" data-vi="04 · Gia đình &amp; thụ hưởng 🔒" data-en="04 · Family &amp; beneficiaries 🔒">04 · Gia đình &amp; thụ hưởng 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()" data-vi="05 · Thuế &amp; tài chính 🔒" data-en="05 · Tax &amp; finance 🔒">05 · Thuế &amp; tài chính 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()" data-vi="06 · Lộ trình quốc tịch 🔒" data-en="06 · Citizenship pathway 🔒">06 · Lộ trình quốc tịch 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()" data-vi="07 · So sánh chương trình 🔒" data-en="07 · Program comparison 🔒">07 · So sánh chương trình 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()" data-vi="08 · Ưu &amp; nhược điểm 🔒" data-en="08 · Pros &amp; cons 🔒">08 · Ưu &amp; nhược điểm 🔒</a>
+  <a href="#nac-paywall" onclick="closeFToc()" data-vi="09 · Nhận định của NAC 🔒" data-en="09 · NAC assessment 🔒">09 · Nhận định của NAC 🔒</a>
 </div>
 
 <!-- HERO -->
@@ -1124,18 +1124,18 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 <!-- MAIN LAYOUT -->
 <div class="main">
   <aside class="toc">
-    <div class="toc-title">Mục Lục</div>
+    <div class="toc-title" data-vi="Mục Lục" data-en="Contents">Mục Lục</div>
     <ul class="toc-list" id="toc">
-      <li class="toc-item active"><a class="toc-link" href="#overview"><span class="toc-num">01 </span>Tổng quan chương trình</a></li>
-      <li class="toc-item"><a class="toc-link" href="#investment"><span class="toc-num">02 </span>Các mức đầu tư</a></li>
-      <li class="toc-item toc-item-spotlight"><a class="toc-link" href="#listings"><span class="toc-num">★ </span>BĐS đang mở bán</a></li>
-      <li class="toc-item"><a class="toc-link" href="#process"><span class="toc-num">03 </span>Quy trình & thời gian</a></li>
-      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">04 </span>Gia đình & thụ hưởng</a></li>
-      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">05 </span>Thuế & tài chính</a></li>
-      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">06 </span>Lộ trình quốc tịch</a></li>
-      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">07 </span>So sánh chương trình</a></li>
-      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">08 </span>Ưu & nhược điểm</a></li>
-      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall"><span class="toc-num">09 </span>Nhận định của NAC</a></li>
+      <li class="toc-item active"><a class="toc-link" href="#overview" data-vi="&lt;span class=&quot;toc-num&quot;&gt;01 &lt;/span&gt;Tổng quan chương trình" data-en="&lt;span class=&quot;toc-num&quot;&gt;01 &lt;/span&gt;Program overview"><span class="toc-num">01 </span>Tổng quan chương trình</a></li>
+      <li class="toc-item"><a class="toc-link" href="#investment" data-vi="&lt;span class=&quot;toc-num&quot;&gt;02 &lt;/span&gt;Các mức đầu tư" data-en="&lt;span class=&quot;toc-num&quot;&gt;02 &lt;/span&gt;Investment routes"><span class="toc-num">02 </span>Các mức đầu tư</a></li>
+      <li class="toc-item toc-item-spotlight"><a class="toc-link" href="#listings" data-vi="&lt;span class=&quot;toc-num&quot;&gt;★ &lt;/span&gt;BĐS đang mở bán" data-en="&lt;span class=&quot;toc-num&quot;&gt;★ &lt;/span&gt;Properties for sale"><span class="toc-num">★ </span>BĐS đang mở bán</a></li>
+      <li class="toc-item"><a class="toc-link" href="#process" data-vi="&lt;span class=&quot;toc-num&quot;&gt;03 &lt;/span&gt;Quy trình &amp; thời gian" data-en="&lt;span class=&quot;toc-num&quot;&gt;03 &lt;/span&gt;Process &amp; timeline"><span class="toc-num">03 </span>Quy trình & thời gian</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;04 &lt;/span&gt;Gia đình &amp; thụ hưởng" data-en="&lt;span class=&quot;toc-num&quot;&gt;04 &lt;/span&gt;Family &amp; beneficiaries"><span class="toc-num">04 </span>Gia đình & thụ hưởng</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;05 &lt;/span&gt;Thuế &amp; tài chính" data-en="&lt;span class=&quot;toc-num&quot;&gt;05 &lt;/span&gt;Tax &amp; finance"><span class="toc-num">05 </span>Thuế & tài chính</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;06 &lt;/span&gt;Lộ trình quốc tịch" data-en="&lt;span class=&quot;toc-num&quot;&gt;06 &lt;/span&gt;Citizenship pathway"><span class="toc-num">06 </span>Lộ trình quốc tịch</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;07 &lt;/span&gt;So sánh chương trình" data-en="&lt;span class=&quot;toc-num&quot;&gt;07 &lt;/span&gt;Program comparison"><span class="toc-num">07 </span>So sánh chương trình</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;08 &lt;/span&gt;Ưu &amp; nhược điểm" data-en="&lt;span class=&quot;toc-num&quot;&gt;08 &lt;/span&gt;Pros &amp; cons"><span class="toc-num">08 </span>Ưu & nhược điểm</a></li>
+      <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;09 &lt;/span&gt;Nhận định của NAC" data-en="&lt;span class=&quot;toc-num&quot;&gt;09 &lt;/span&gt;NAC assessment"><span class="toc-num">09 </span>Nhận định của NAC</a></li>
     </ul>
     <div class="toc-cta-mini">
       <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">⚖️ <span class="cta-text">So Sánh Chương Trình</span></a>
@@ -1149,9 +1149,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 01 OVERVIEW -->
     <section class="section" id="overview">
-      <div class="sec-label">01 — Tổng Quan</div>
-      <h2 class="sec-title">Chương Trình Tổng Quan</h2>
-      <p class="sec-sub">Turkey Citizenship by Investment (CBI) — ra mắt năm 2017, cải cách năm 2018 — là chương trình quốc tịch qua đầu tư phổ biến nhất trong tầm ngắm của nhà đầu tư Đông Nam Á. Tốc độ, chi phí và tính thực dụng là ba yếu tố khiến chương trình này nổi bật.</p>
+      <div class="sec-label" data-vi="01 — Tổng Quan" data-en="01 — Overview">01 — Tổng Quan</div>
+      <h2 class="sec-title" data-vi="Chương Trình Tổng Quan" data-en="Program Overview">Chương Trình Tổng Quan</h2>
+      <p class="sec-sub" data-vi="Turkey Citizenship by Investment (CBI) — ra mắt năm 2017, cải cách năm 2018 — là chương trình quốc tịch qua đầu tư phổ biến nhất trong tầm ngắm của nhà đầu tư Đông Nam Á. Tốc độ, chi phí và tính thực dụng là ba yếu tố khiến chương trình này nổi bật." data-en="Turkey Citizenship by Investment (CBI) — launched in 2017, reformed in 2018 — is the most popular citizenship-by-investment program on the radar of Southeast Asian investors. Speed, cost, and practicality are the three factors that make this program stand out.">Turkey Citizenship by Investment (CBI) — ra mắt năm 2017, cải cách năm 2018 — là chương trình quốc tịch qua đầu tư phổ biến nhất trong tầm ngắm của nhà đầu tư Đông Nam Á. Tốc độ, chi phí và tính thực dụng là ba yếu tố khiến chương trình này nổi bật.</p>
 
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Quốc Tịch Trực Tiếp</div><div class="ov-note">Không phải cư trú trước</div></div>
@@ -1186,9 +1186,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 02 INVESTMENT -->
     <section class="section" id="investment">
-      <div class="sec-label">02 — Đầu Tư</div>
-      <h2 class="sec-title">Các Mức Đầu Tư</h2>
-      <p class="sec-sub">Thổ Nhĩ Kỳ cung cấp 4 hình thức đầu tư để đủ điều kiện, trong đó bất động sản là phổ biến nhất và được 90%+ nhà đầu tư lựa chọn. Ngưỡng $400,000 hiện là cố định từ 2022.</p>
+      <div class="sec-label" data-vi="02 — Đầu Tư" data-en="02 — Investment">02 — Đầu Tư</div>
+      <h2 class="sec-title" data-vi="Các Mức Đầu Tư" data-en="Investment Routes">Các Mức Đầu Tư</h2>
+      <p class="sec-sub" data-vi="Thổ Nhĩ Kỳ cung cấp 4 hình thức đầu tư để đủ điều kiện, trong đó bất động sản là phổ biến nhất và được 90%+ nhà đầu tư lựa chọn. Ngưỡng $400,000 hiện là cố định từ 2022." data-en="Turkey offers 4 forms of investment to qualify, of which real estate is the most popular and chosen by 90%+ of investors. The $400,000 threshold has been fixed since 2022.">Thổ Nhĩ Kỳ cung cấp 4 hình thức đầu tư để đủ điều kiện, trong đó bất động sản là phổ biến nhất và được 90%+ nhà đầu tư lựa chọn. Ngưỡng $400,000 hiện là cố định từ 2022.</p>
 
       <div class="info-box amber-box">
         <div class="info-icon">⚠️</div>
@@ -1267,9 +1267,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- LISTINGS START -->
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
-      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title">BĐS Đủ Điều Kiện CBI — Đang Mở Bán</h2>
-      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện CBI — Đang Mở Bán" data-en="CBI-Eligible Properties — Now Available">BĐS Đủ Điều Kiện CBI — Đang Mở Bán</h2>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Turkey CBI application and ready to transact. You don't need to hunt — we've curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
         <article class="listing-card">
@@ -1320,9 +1320,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 03 PROCESS -->
     <section class="section" id="process">
-      <div class="sec-label">03 — Quy Trình</div>
-      <h2 class="sec-title">Quy Trình & Thời Gian</h2>
-      <p class="sec-sub">Đây là quy trình nhanh nhất thế giới trong nhóm CBI — từ ký hợp đồng BĐS đến cầm hộ chiếu chỉ mất 3–6 tháng, không cần đặt chân đến Thổ Nhĩ Kỳ nhiều lần.</p>
+      <div class="sec-label" data-vi="03 — Quy Trình" data-en="03 — Process">03 — Quy Trình</div>
+      <h2 class="sec-title" data-vi="Quy Trình &amp; Thời Gian" data-en="Process &amp; Timeline">Quy Trình & Thời Gian</h2>
+      <p class="sec-sub" data-vi="Đây là quy trình nhanh nhất thế giới trong nhóm CBI — từ ký hợp đồng BĐS đến cầm hộ chiếu chỉ mất 3–6 tháng, không cần đặt chân đến Thổ Nhĩ Kỳ nhiều lần." data-en="This is the world's fastest process in the CBI category — from signing the real estate contract to holding the passport takes just 3–6 months, without needing to travel to Turkey multiple times.">Đây là quy trình nhanh nhất thế giới trong nhóm CBI — từ ký hợp đồng BĐS đến cầm hộ chiếu chỉ mất 3–6 tháng, không cần đặt chân đến Thổ Nhĩ Kỳ nhiều lần.</p>
 
       <div class="timeline">
         <div class="tl-item">
@@ -1452,9 +1452,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 04 FAMILY -->
     <section class="section" id="family">
-      <div class="sec-label">04 — Gia Đình</div>
-      <h2 class="sec-title">Gia Đình & Đối Tượng Thụ Hưởng</h2>
-      <p class="sec-sub">Thổ Nhĩ Kỳ bảo lãnh gia đình hạt nhân — đơn giản và rõ ràng. So với Hy Lạp, phạm vi bảo lãnh hẹp hơn, nhưng tốc độ bù lại.</p>
+      <div class="sec-label" data-vi="04 — Gia Đình" data-en="04 — Family">04 — Gia Đình</div>
+      <h2 class="sec-title" data-vi="Gia Đình &amp; Đối Tượng Thụ Hưởng" data-en="Family &amp; Eligible Beneficiaries">Gia Đình & Đối Tượng Thụ Hưởng</h2>
+      <p class="sec-sub" data-vi="Thổ Nhĩ Kỳ bảo lãnh gia đình hạt nhân — đơn giản và rõ ràng. So với Hy Lạp, phạm vi bảo lãnh hẹp hơn, nhưng tốc độ bù lại." data-en="Turkey covers the nuclear family — simple and straightforward. Compared to Greece, the scope of coverage is narrower, but the speed compensates.">Thổ Nhĩ Kỳ bảo lãnh gia đình hạt nhân — đơn giản và rõ ràng. So với Hy Lạp, phạm vi bảo lãnh hẹp hơn, nhưng tốc độ bù lại.</p>
 
       <div class="family-grid">
         <div class="fam-card"><div class="fam-icon">💍</div><div><div class="fam-title">Vợ / Chồng hợp pháp</div><div class="fam-note">Nhận quốc tịch cùng lúc. Hôn nhân phải được đăng ký hợp lệ và được công nhận tại Thổ Nhĩ Kỳ.</div></div></div>
@@ -1473,9 +1473,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 05 TAX -->
     <section class="section" id="tax">
-      <div class="sec-label">05 — Thuế & Tài Chính</div>
-      <h2 class="sec-title">Thuế & Lợi Thế Tài Chính</h2>
-      <p class="sec-sub">Thổ Nhĩ Kỳ áp dụng hệ thống thuế theo nguyên tắc cư trú — nhà đầu tư nước ngoài không sống tại Thổ Nhĩ Kỳ hầu như không phát sinh nghĩa vụ thuế tại đây.</p>
+      <div class="sec-label" data-vi="05 — Thuế &amp; Tài Chính" data-en="05 — Tax &amp; Finance">05 — Thuế & Tài Chính</div>
+      <h2 class="sec-title" data-vi="Thuế &amp; Lợi Thế Tài Chính" data-en="Tax &amp; Financial Advantages">Thuế & Lợi Thế Tài Chính</h2>
+      <p class="sec-sub" data-vi="Thổ Nhĩ Kỳ áp dụng hệ thống thuế theo nguyên tắc cư trú — nhà đầu tư nước ngoài không sống tại Thổ Nhĩ Kỳ hầu như không phát sinh nghĩa vụ thuế tại đây." data-en="Turkey applies a residency-based tax system — foreign investors not living in Turkey rarely incur tax obligations there.">Thổ Nhĩ Kỳ áp dụng hệ thống thuế theo nguyên tắc cư trú — nhà đầu tư nước ngoài không sống tại Thổ Nhĩ Kỳ hầu như không phát sinh nghĩa vụ thuế tại đây.</p>
 
       <div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
         <div class="ov-card"><div class="ov-icon">📊</div><div class="ov-label">Thuế thu nhập cá nhân</div><div class="ov-value">15%–40%</div><div class="ov-note">Chỉ khi cư trú >183 ngày/năm</div></div>
@@ -1501,9 +1501,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 06 CITIZENSHIP -->
     <section class="section" id="citizenship">
-      <div class="sec-label">06 — Quốc Tịch</div>
-      <h2 class="sec-title">Lộ Trình Đến Quốc Tịch</h2>
-      <p class="sec-sub">Thổ Nhĩ Kỳ là một trong số ít quốc gia cấp quốc tịch <em>trực tiếp qua đầu tư</em> — không qua giai đoạn cư trú trước. Đây chính là lợi thế cốt lõi của chương trình.</p>
+      <div class="sec-label" data-vi="06 — Quốc Tịch" data-en="06 — Citizenship">06 — Quốc Tịch</div>
+      <h2 class="sec-title" data-vi="Lộ Trình Đến Quốc Tịch" data-en="Path to Citizenship">Lộ Trình Đến Quốc Tịch</h2>
+      <p class="sec-sub" data-vi="Thổ Nhĩ Kỳ là một trong số ít quốc gia cấp quốc tịch &lt;em&gt;trực tiếp qua đầu tư&lt;/em&gt; — không qua giai đoạn cư trú trước. Đây chính là lợi thế cốt lõi của chương trình." data-en="Turkey is one of the few countries that grants citizenship &lt;em&gt;directly through investment&lt;/em&gt; — without a prior residency phase. This is the core advantage of the program.">Thổ Nhĩ Kỳ là một trong số ít quốc gia cấp quốc tịch <em>trực tiếp qua đầu tư</em> — không qua giai đoạn cư trú trước. Đây chính là lợi thế cốt lõi của chương trình.</p>
 
       <div class="road">
         <div class="road-step"><div class="road-year">Tuần 1</div><div class="road-dot">1</div><div class="road-label">Ký HĐ mua BĐS & chuyển khoản</div></div>
@@ -1543,9 +1543,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 07 COMPARE -->
     <section class="section" id="compare">
-      <div class="sec-label">07 — So Sánh</div>
-      <h2 class="sec-title">So Sánh Chương Trình</h2>
-      <p class="sec-sub">Vị trí của Turkey CBI trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" style="color:var(--country);font-weight:600;">NAC Residence Index →</a></p>
+      <div class="sec-label" data-vi="07 — So Sánh" data-en="07 — Comparison">07 — So Sánh</div>
+      <h2 class="sec-title" data-vi="So Sánh Chương Trình" data-en="Program Comparison">So Sánh Chương Trình</h2>
+      <p class="sec-sub" data-vi="Vị trí của Turkey CBI trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại &lt;a href=&quot;https://nomadassetcollective.com/nac-residence-index/&quot; target=&quot;_blank&quot; style=&quot;color:var(--country);font-weight:600;&quot;&gt;NAC Residence Index →&lt;/a&gt;" data-en="Turkey CBI's position in the overall landscape. See the full rankings at &lt;a href=&quot;https://nomadassetcollective.com/nac-residence-index/&quot; target=&quot;_blank&quot; style=&quot;color:var(--country);font-weight:600;&quot;&gt;NAC Residence Index →&lt;/a&gt;">Vị trí của Turkey CBI trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" style="color:var(--country);font-weight:600;">NAC Residence Index →</a></p>
 
       <div class="chart-box" style="margin-bottom:20px">
         <div class="chart-title">Điểm tổng hợp NAC — Top chương trình (2026)</div>
@@ -1595,9 +1595,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 08 PROS CONS -->
     <section class="section" id="proscons">
-      <div class="sec-label">08 — Ưu & Nhược</div>
-      <h2 class="sec-title">Ưu & Nhược Điểm</h2>
-      <p class="sec-sub">Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Turkey CBI trong năm 2026.</p>
+      <div class="sec-label" data-vi="08 — Ưu &amp; Nhược" data-en="08 — Pros &amp; Cons">08 — Ưu & Nhược</div>
+      <h2 class="sec-title" data-vi="Ưu &amp; Nhược Điểm" data-en="Pros &amp; Cons">Ưu & Nhược Điểm</h2>
+      <p class="sec-sub" data-vi="Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Turkey CBI trong năm 2026." data-en="An objective assessment for Vietnamese HNWI investors considering Turkey CBI in 2026.">Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Turkey CBI trong năm 2026.</p>
       <div class="pros-cons">
         <div class="pros">
           <h4>✓ Ưu Điểm</h4>
@@ -1638,9 +1638,9 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
     <!-- 09 NAC -->
     <section class="section" id="nac">
-      <div class="sec-label">09 — Nhận Định NAC</div>
-      <h2 class="sec-title">Nhận Định & Khuyến Nghị</h2>
-      <p class="sec-sub">Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.</p>
+      <div class="sec-label" data-vi="09 — Nhận Định NAC" data-en="09 — NAC Assessment">09 — Nhận Định NAC</div>
+      <h2 class="sec-title" data-vi="Nhận Định &amp; Khuyến Nghị" data-en="Assessment &amp; Recommendation">Nhận Định &amp; Khuyến Nghị</h2>
+      <p class="sec-sub" data-vi="Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026." data-en="In-depth analysis from the NAC Consulting team for Vietnamese HNWI investors — updated Q2/2026.">Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.</p>
 
       <div class="info-box" style="margin-bottom:20px">
         <div class="info-icon">🎯</div>
