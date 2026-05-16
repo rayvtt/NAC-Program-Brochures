@@ -139,3 +139,26 @@ The output must contain:
 - [ ] `<div class="nac-paywall-wrap" id="nac-paywall">` wrapping sections 04–09
 - [ ] 6 TOC items with `class="toc-item is-locked"` and `href="#nac-paywall"`
 - [ ] All 9 section slugs present and in order
+
+---
+
+## Replicating Turkey design to other brochures
+
+`TURKEY-TEMPLATE.md` is the canonical reference — the design system Turkey ships with (bilingual engine, NAC Index banner with animated globe, sidebar CTA pill, refined header pill, magazine-style article CTAs, Google Calendar booking routing). When asked to bring another brochure up to parity, **read `TURKEY-TEMPLATE.md` first**, then run the appropriate `tools/` scripts in order:
+
+```bash
+# Cold replication on a single brochure (e.g. portugal)
+python tools/rewire_cta_links.py portugal       # Header pill + Calendly → Google + WhatsApp emoji → SVG
+python tools/refine_sidebar_cta.py portugal     # Cream-glass sidebar CTA pill (4 colour-coded chips)
+python tools/refine_nac_btn.py portugal         # Footer "Book" CTA → Google + WhatsApp icon green
+python tools/refresh_article_covers.py portugal # Pull article cover from og:image
+```
+
+Each script is **idempotent** — safe to re-run. Run with no argument to apply to all 12 brochures at once.
+
+These four scripts cover ~70% of the Turkey parity work. Remaining items (hand-edit per brochure, lifting blocks directly from `turkey-cbi_8.html`):
+
+- Bilingual `data-vi`/`data-en` migration for sections 01–09 + listings
+- Chart `buildCharts(lang)` wrapper with VI/EN label dictionaries
+- NAC Index banner with embedded canvas globe + 12 KPI pills in §07
+- Matrix chart `aspectRatio` mobile fix

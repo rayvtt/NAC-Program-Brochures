@@ -1915,7 +1915,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <span class="chart-title" data-vi="Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)" data-en="Value Matrix — Speed vs Passport Strength (Top 6 programs)">Ma trận giá trị — Tốc độ vs Sức mạnh hộ chiếu (Top 6 chương trình)</span>
             <span class="chart-collapse-icon" aria-hidden="true">▾</span>
           </summary>
-          <canvas id="matrixChart" style="max-height:260px"></canvas>
+          <canvas id="matrixChart"></canvas>
         </details>
       </div>
 
@@ -2095,6 +2095,11 @@ function buildCharts(lang) {
     },
     options: {
       responsive: true,
+      // Square aspect ratio on mobile (<600px) so the bubble plot has
+      // equal X/Y weighting — Chart.js's default 2:1 squished the Y axis
+      // and bunched all 6 country bubbles into one cluster.
+      maintainAspectRatio: true,
+      aspectRatio: window.matchMedia('(max-width: 600px)').matches ? 1 : 2,
       plugins: {
         legend: { position: 'bottom', labels: { font: { family: chartFontFamily, size: 11 }, boxWidth: 12, padding: 14 } },
         tooltip: { callbacks: { label: c => `${c.dataset.label}` } }
@@ -2111,12 +2116,23 @@ buildCharts('vi');
 
 // Matrix chart: collapsed by default on mobile (it rendered awkwardly at
 // the bottom of the section). Tap to expand. Chart.js needs a manual
-// resize() after the canvas becomes visible.
+// resize() after the canvas becomes visible. Also rebuilds all charts
+// when crossing the 600px breakpoint so the bubble plot picks up its
+// square aspect ratio on mobile and reverts to 2:1 on desktop.
 (function () {
   const det = document.getElementById('matrixCollapse');
   if (!det) return;
   const mq = window.matchMedia('(max-width: 600px)');
-  const sync = () => { if (mq.matches) det.removeAttribute('open'); else det.setAttribute('open',''); };
+  const sync = () => {
+    if (mq.matches) det.removeAttribute('open'); else det.setAttribute('open','');
+    // Re-create with the right aspectRatio for the new viewport.
+    // currentLang is declared later in the bilingual engine, so guard
+    // against ReferenceError on first call.
+    try {
+      const lang = (typeof currentLang !== 'undefined') ? currentLang : 'vi';
+      if (typeof buildCharts === 'function') buildCharts(lang);
+    } catch (e) { /* charts will be built later */ }
+  };
   sync();
   mq.addEventListener ? mq.addEventListener('change', sync) : mq.addListener(sync);
   det.addEventListener('toggle', () => {
