@@ -1056,7 +1056,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    Light lavender gradient mirrors the NAC Residence Index page hero. */
 .nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 300px;
+  min-height: 340px;
   overflow: hidden;
 }
 .nac-index-banner::after {
@@ -1118,21 +1118,28 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   to   { opacity: 1; transform: translateY(-50%) scale(1); }
 }
 @media (max-width: 600px) {
-  .nac-index-banner { min-height: 280px; }
-  /* Centre the globe on mobile — text overlays it. Looks dynamic. */
+  /* Mobile: stack globe at top, text below — no overlap. */
+  .nac-index-banner {
+    min-height: 460px;
+    padding-top: 280px;
+    justify-content: flex-end;
+  }
   .nac-index-globe {
     width: 280px;
     height: 280px;
     left: 50%;
     right: auto;
-    transform: translate(-50%, -50%);
-    opacity: .85;
+    top: 0;
+    transform: translateX(-50%);
+    opacity: .9;
     animation: nacIndexGlobeInMobile 1.4s ease 0.2s forwards;
   }
   @keyframes nacIndexGlobeInMobile {
-    from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
-    to   { opacity: .85; transform: translate(-50%, -50%) scale(1); }
+    from { opacity: 0; transform: translateX(-50%) scale(0.92); }
+    to   { opacity: .9;  transform: translateX(-50%) scale(1); }
   }
+  .nac-index-banner .article-cta-kicker,
+  .nac-index-banner .article-cta-title { position: relative; z-index: 2; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
