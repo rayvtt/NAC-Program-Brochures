@@ -163,9 +163,15 @@ def audit_one(path: Path) -> list:
     else:
         results.append(check("Bilingual support", False, "Neither pattern present"))
 
-    # 9. Chart bilingual wrapper
+    # 9. Chart bilingual — either Turkey's buildCharts(lang) wrapper
+    # OR the post-setLang chart translator helper (works with legacy
+    # bilingual brochures without rewriting their chart code).
     has_buildcharts = bool(re.search(r"\bbuildCharts\s*\(", text))
-    results.append(check("Chart bilingual buildCharts(lang) wrapper", has_buildcharts))
+    has_translator = "// ── NAC chart translator" in text
+    results.append(check(
+        "Chart bilingual (buildCharts or translator)",
+        has_buildcharts or has_translator,
+    ))
 
     # 10. Matrix chart mobile aspectRatio
     has_matrix_mobile = "max-width: 600px" in text and "aspectRatio" in text and "matrixCollapse" in text

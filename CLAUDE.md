@@ -43,19 +43,21 @@ Output: `✓ N/15` per brochure with bar chart and per-check details on failures
 ## 2. Current state (post-session)
 
 ```
-turkey-cbi_8.html        15/15   ← master, fully aligned
-cyprus-rbi_3_3.html      14/15
-greece-rbi_1_2.html      14/15
-malaysia-mm2h.html       14/15
-malta-rbi_1_3.html       14/15
-newzealand-rbi_1 (3).html 14/15
-panama-rbi_.html         14/15
-portugal-gv.html         14/15   ← matrix chart fix shipped
-stkitts-nevis.html       14/15
-thailand-rbi_1 (2).html  14/15
-uae-rbi_1_7.html         14/15
-uk-rbi_1 (2).html        14/15
+turkey-cbi_8.html        15/15  ✓
+cyprus-rbi_3_3.html      15/15  ✓
+greece-rbi_1_2.html      15/15  ✓
+malaysia-mm2h.html       15/15  ✓
+malta-rbi_1_3.html       15/15  ✓
+newzealand-rbi_1 (3).html 15/15 ✓
+panama-rbi_.html         15/15  ✓
+portugal-gv.html         15/15  ✓
+stkitts-nevis.html       15/15  ✓
+thailand-rbi_1 (2).html  15/15  ✓
+uae-rbi_1_7.html         15/15  ✓
+uk-rbi_1 (2).html        15/15  ✓
 ```
+
+**🎉 All 12 brochures at full Turkey parity.**
 
 ### What's at parity across all 12 brochures
 
@@ -73,13 +75,20 @@ uk-rbi_1 (2).html        14/15
 ✓ Bilingual support (legacy `VI_STRINGS`/`EN_STRINGS` arrays on the 11; Turkey uses the more robust `data-vi`/`data-en` attrs)
 ✓ Matrix chart mobile fix (Portugal, the only one with this chart)
 
-### What's left (1 item per brochure)
+### What's left
 
-| Item | Why it's blocked | Path forward |
-|---|---|---|
-| `buildCharts(lang)` wrapper | Needs Chart.js datasets (country names, axis titles, tooltips) wrapped in VI/EN dictionaries per brochure | Mirror Turkey's `CHART_LBLS` pattern. Each brochure has 2–4 charts; per-chart label set is ~10–15 strings (mostly country names — predictable translations). Estimate: 30 min per brochure. |
+Nothing critical. The 11 non-Turkey brochures still use the legacy `VI_STRINGS`/`EN_STRINGS` string-replace pattern instead of Turkey's newer `data-vi`/`data-en` attribute pattern. Both work; data-attr is just more robust to text edits. Translation content is already complete in the legacy arrays — future migration to data-attr is mechanical.
 
-Optional follow-up: migrate the 11 brochures from legacy `VI_STRINGS`/`EN_STRINGS` arrays to Turkey's `data-vi`/`data-en` attribute pattern. The legacy approach works fine but is more fragile to text edits. Translation content is already complete in the legacy arrays — migration is mechanical.
+### How chart bilingual works on the 11
+
+Turkey uses `buildCharts(lang)` that destroys and recreates charts on toggle. The 11 others use a lighter-weight approach injected by `tools/add_chart_translator.py`:
+
+- Walks `Chart.instances` (Chart.js v4 global)
+- Snapshots original VI labels on first run
+- Translates dataset labels / axis titles / chart labels using a shared VI→EN dictionary (countries + common axis terms)
+- Wraps existing `setLang()` so it runs automatically on every toggle
+
+This avoids rewriting each brochure's chart code while still flipping country names from "Thổ Nhĩ Kỳ" → "Türkiye" etc. when EN is clicked.
 
 ---
 
@@ -89,10 +98,12 @@ Optional follow-up: migrate the 11 brochures from legacy `VI_STRINGS`/`EN_STRING
 tools/
 ├── check_brochure_parity.py     ← the workloop; audit any brochure against Turkey
 ├── install_nac_index_banner.py  ← inject NAC Index banner + globe + 12 KPI pills + WP-safety
+├── migrate_article_cta_banner.py ← text-only .article-cta → cover-banner card structure
 ├── refresh_article_covers.py    ← pull og:image for every article-cta-banner
 ├── refine_sidebar_cta.py        ← cream-glass sidebar pill with 4 colour-coded chips
 ├── refine_nac_btn.py            ← footer Book CTA → Google + WhatsApp icon green
-└── rewire_cta_links.py          ← Calendly → Google + header pill → Google + WhatsApp emoji → SVG
+├── rewire_cta_links.py          ← Calendly → Google + header pill → Google + WhatsApp emoji → SVG
+└── add_chart_translator.py      ← post-setLang chart label translator (VI ↔ EN dictionary)
 ```
 
 Run with no argument to apply to all 11 (Turkey is the source-of-truth, skipped). Run with `<alias>` to target one. All scripts print counts and second-run reports `0` if no upstream change.
