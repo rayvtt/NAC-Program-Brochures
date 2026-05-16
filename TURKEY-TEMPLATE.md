@@ -152,9 +152,31 @@ Below the title, left half of banner, **desktop only**:
 Each pill: 30×30, white-glass background, hover lifts. Icons lifted from the NAC Index hero (passport, tax, education, healthcare, safety, investment, speed, family, lifestyle, cost, citizenship, business).
 
 ### Mobile
-- Pills hidden
+- Pills hidden inside the banner (a separate mobile pill strip sits on the white body strip below)
 - Description paragraph hidden
-- Globe centred (`left: 50%; transform: translate(-50%, -50%)`), text overlays it
+- Banner uses **CSS Grid** (`display: grid; grid-template-rows: 240px auto auto`) so the globe gets its own deterministic 240px slot at the top and the kicker + title flow below in their own rows — no overlap, no clipping, regardless of viewport quirks
+- Globe canvas is **240×240** on mobile (was 300px until v2; downsized to hug the banner more tightly per design feedback)
+- `.nac-index-banner::after { display: none; }` on mobile — the gradient overlay was visual noise on top of the stacked layout
+
+```css
+@media (max-width: 600px) {
+  .nac-index-banner {
+    display: grid !important;
+    grid-template-rows: 240px auto auto;
+    padding: 0 !important;
+  }
+  .nac-index-globe {
+    position: relative !important;
+    grid-row: 1;
+    width: 240px !important;
+    height: 240px !important;
+    transform: none !important;
+    margin: 0 auto;
+  }
+  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; }
+  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+}
+```
 
 ---
 
