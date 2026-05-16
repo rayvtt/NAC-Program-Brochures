@@ -203,11 +203,49 @@ This is a one-way door (going to Notion-driven) — but we can stage it:
 
 ---
 
+## Bilingual columns (resolved — Q2/2026)
+
+Open question #1 (`*_en` parallel columns) is **resolved**: every prose field has both `*_vi` and `*_en` columns. The brochure HTML uses a `data-vi`/`data-en` attribute pattern (one `setLang(lang)` function swaps `innerHTML` per the active attribute). JSON-encoded structured fields (`s02_tiers`, `s03_timeline`, etc.) carry both languages inside the JSON.
+
+See **`TURKEY-TEMPLATE.md`** for the canonical bilingual pattern.
+
+Currently the Notion DB has EN content filled for all 12 brochures; HTML migration is complete for Turkey (~254 attributes), pending for the other 11.
+
+---
+
+## Article CTA cover URLs — not stored in Notion
+
+Article CTA cards (§02, §07 in the template) now use a **magazine-style cover banner**. The cover image URL is not a Notion field — instead it's pulled at build time from each article's `og:image` meta tag via:
+
+```bash
+python tools/refresh_article_covers.py             # all brochures
+python tools/refresh_article_covers.py turkey      # one brochure
+```
+
+The Notion DB stores only `*_article_cta_url` (the article URL). The script crawls each URL, extracts `og:image`, and writes it into the HTML as the inline `background-image`. Idempotent — re-runs that find no upstream change are no-ops.
+
+This avoids the need for a `*_article_cover` field per CTA in Notion and keeps article cover assets canonical to the blog post.
+
+---
+
+## Booking CTA URLs (resolved)
+
+Header pill (`📅 Tư Vấn Miễn Phí`) and footer "Book a Free Consultation" CTAs both route to the Google Calendar 30-min slot picker:
+
+```
+https://calendar.app.google/gnbtNBTBDKuHUasw7
+```
+
+Body / mid-section CTAs (`Tư Vấn Ngay`, `Tư Vấn Chiến Lược`) remain on `https://nomadassetcollective.com/tu-van-nhanh/` for soft-funnel leads.
+
+URL migration is handled by `tools/rewire_cta_links.py` (idempotent) — no Notion field needed.
+
+---
+
 ## Open questions
 
-1. **Bilingual fields:** schema currently `*_vi` only. Add parallel `*_en` columns now (cleaner) or phase 2 (less typing today)?
-2. **Notion integration access:** the brochures DB (`35f48ec25e86…`) needs the `nac-notion-proxy` Worker's integration shared with it. Verify in Notion → DB → Connections → add the `NAC Notion Proxy` integration.
-3. **Property creation:** create the ~55 properties manually in Notion UI, or have me drive it via the Notion API (`PATCH /databases/{id}`)?
-4. **JSON validation:** want a `tools/check_brochure_payload.py` linter that warns on malformed JSON in `s02_tiers` etc. before push?
+1. **Notion integration access:** the brochures DB (`35f48ec25e86…`) needs the `nac-notion-proxy` Worker's integration shared with it. Verify in Notion → DB → Connections → add the `NAC Notion Proxy` integration.
+2. **Property creation:** create the ~55 properties manually in Notion UI, or have me drive it via the Notion API (`PATCH /databases/{id}`)?
+3. **JSON validation:** want a `tools/check_brochure_payload.py` linter that warns on malformed JSON in `s02_tiers` etc. before push?
 
 Tell me your preferences on these, and I'll execute Phase 1 (extraction script + Turkey populate).
