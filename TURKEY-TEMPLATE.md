@@ -305,7 +305,39 @@ Brochures html/turkey-cbi_8.html
 
 ---
 
-## 11. Open follow-ups
+## 11. WordPress gotchas (live page only — preview is fine)
+
+WP's sanitiser silently mangles inline JS in two ways. Both bit us during EN-toggle rollout; document them so they don't bite again.
+
+### Inline `onclick=""` attributes get stripped
+
+WordPress KSES strips inline event handlers when content is saved to ACF `raw_html_code` for XSS protection. Buttons that rely on `onclick="setLang('en')"` will appear in the HTML but the attribute is gone on live.
+
+**Fix:** bind via `addEventListener` instead of (or in addition to) inline `onclick`. See the IIFE at the bottom of the bilingual engine script in `turkey-cbi_8.html`.
+
+### Backslash-escaped quotes inside JS strings get unescaped
+
+WP rewrites `\"foo\"` → `"foo"` inside `<script>` content. This breaks every string literal that contains an escaped quote. The bilingual engine's `VI_STRINGS` / `EN_STRINGS` arrays both hit this with `\"bàn đạp\"` and `\"springboard\"` — making the entire script a syntax error on live, so `setLang` is never defined and the EN toggle dies silently.
+
+**Fix:** use Unicode curly quotes `“…”` (U+201C / U+201D) inside JS strings instead of `\"…\"`. They're typographically identical for users and survive WP intact.
+
+**Never use** `\"` inside `<script>` content destined for WP. If you need literal straight quotes, use:
+- `"` (Unicode escape — also survives WP), or
+- swap outer string to single quotes: `'he said "hi"'`
+
+### Verification recipe
+
+```bash
+# After sync, fetch the live page and run JS through node:
+curl -s "<live-url>" > /tmp/live.html
+python3 -c "import re; html=open('/tmp/live.html').read(); print(re.findall(r'<script[^>]*>(.*?)</script>', html, re.DOTALL)[4])" \
+  | node --check -
+# If you get a SyntaxError, WP has mangled something — diff the live script #4 against the local file.
+```
+
+---
+
+## 12. Open follow-ups
 
 Not yet rolled out from Turkey to the other 11:
 - Bilingual data-vi/data-en migration (sections 01-09 + listings)
