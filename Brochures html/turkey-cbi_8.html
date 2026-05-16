@@ -387,15 +387,26 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   .article-cta-btn { align-self: flex-end; }
 }
 
-/* ── NAC INDEX banner variant — animated globe canvas behind title ── */
+/* ── NAC INDEX banner variant — animated globe canvas behind title ──
+   Light lavender gradient mirrors the NAC Residence Index page hero. */
 .nac-index-banner {
-  background: radial-gradient(ellipse at 70% 50%, #2d0a5c 0%, #1a0f5c 45%, #0a0e2c 100%);
+  background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
   min-height: 230px;
   overflow: hidden;
 }
 .nac-index-banner::after {
-  /* Lighter overlay — globe should breathe through */
-  background: linear-gradient(to top, rgba(5,8,20,.7) 0%, rgba(5,8,20,.15) 55%, rgba(5,8,20,0) 100%);
+  /* Soft top-to-bottom fade so the title sits cleanly above the globe.
+     Uses the same lavender as the bg so the corners stay airy. */
+  background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
+}
+/* Default text is white — flip to dark since we're on a light background */
+.nac-index-banner .article-cta-kicker {
+  color: #5b3aa8;
+  text-shadow: 0 1px 6px rgba(255,255,255,.7);
+}
+.nac-index-banner .article-cta-title {
+  color: #1a0f5c;
+  text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
 .nac-index-globe {
   position: absolute;
@@ -414,8 +425,24 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   to   { opacity: 1; transform: translateY(-50%) scale(1); }
 }
 @media (max-width: 600px) {
-  .nac-index-banner { min-height: 200px; }
-  .nac-index-globe { width: 240px; height: 240px; right: -28%; opacity: .85; }
+  .nac-index-banner { min-height: 230px; }
+  /* Centre the globe on mobile — text overlays it. Looks dynamic. */
+  .nac-index-globe {
+    width: 280px;
+    height: 280px;
+    left: 50%;
+    right: auto;
+    transform: translate(-50%, -50%);
+    opacity: .85;
+    animation: nacIndexGlobeInMobile 1.4s ease 0.2s forwards;
+  }
+  @keyframes nacIndexGlobeInMobile {
+    from { opacity: 0; transform: translate(-50%, -50%) scale(0.92); }
+    to   { opacity: .85; transform: translate(-50%, -50%) scale(1); }
+  }
+  /* Hide the description paragraph on mobile — title + button is enough */
+  .nac-index-cta .article-cta-desc { display: none; }
+  .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
 }
 
 /* ── FOOTER ── */
@@ -1695,7 +1722,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         </tbody>
       </table>
 
-      <div class="article-cta" style="margin-top:16px">
+      <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
           <canvas class="nac-index-globe" id="nacIndexGlobe"></canvas>
           <span class="article-cta-kicker" data-vi="Công cụ phân tích" data-en="Analysis tool">Công cụ phân tích</span>
@@ -2169,7 +2196,7 @@ document.addEventListener('touchstart', e => {
   function draw(r) {
     ctx.clearRect(0, 0, W, H);
     pulseT += 0.018;
-    // Lat rings — brighter on dark bg
+    // Lat rings — tuned for light lavender bg (matches NAC Index hero)
     [-60,-45,-30,-15,0,15,30,45,60].forEach(lat => {
       const phi=(90-lat)*Math.PI/180;
       const ry=R*Math.cos(phi), rx=R*Math.sin(phi);
@@ -2177,7 +2204,7 @@ document.addEventListener('touchstart', e => {
       const isEq = lat===0;
       ctx.beginPath();
       ctx.ellipse(cx, cy-ry, rx, rx*0.13, 0, 0, Math.PI*2);
-      ctx.strokeStyle = isEq ? 'rgba(249,165,82,0.55)' : 'rgba(180,170,255,0.28)';
+      ctx.strokeStyle = isEq ? 'rgba(249,115,22,0.20)' : 'rgba(24,0,173,0.12)';
       ctx.lineWidth   = isEq ? 0.9 : 0.5;
       ctx.stroke();
     });
@@ -2192,12 +2219,12 @@ document.addEventListener('touchstart', e => {
         if(first){ctx.moveTo(pt.x,pt.y);first=false;}
         else ctx.lineTo(pt.x,pt.y);
       }
-      ctx.strokeStyle='rgba(180,170,255,0.22)';
+      ctx.strokeStyle='rgba(24,0,173,0.08)';
       ctx.lineWidth=0.5; ctx.stroke();
     }
     // Globe border
     ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
-    ctx.strokeStyle='rgba(200,190,255,0.4)'; ctx.lineWidth=0.8; ctx.stroke();
+    ctx.strokeStyle='rgba(24,0,173,0.20)'; ctx.lineWidth=0.8; ctx.stroke();
     // Project + sort cities
     const projected = CITIES.map(([lat,lng,color,sm,label])=>({
       ...project(lat,lng,r), color, sm, label
@@ -2210,7 +2237,7 @@ document.addEventListener('touchstart', e => {
         const dist=Math.hypot(a.x-b.x,a.y-b.y);
         if(dist>R*0.42) continue;
         const depth=((a.z+b.z)/(2*R)+0.5);
-        const alpha=0.022*depth*(1-dist/(R*0.42));
+        const alpha=0.016*depth*(1-dist/(R*0.42));
         const [rv,gv,bv]=hexToRgb(a.color);
         ctx.beginPath(); ctx.moveTo(a.x,a.y);
         const mx=(a.x+b.x)/2-(b.y-a.y)*0.07;
@@ -2230,9 +2257,9 @@ document.addEventListener('touchstart', e => {
       const col=CITIES[ai][2];
       const [rv,gv,bv]=hexToRgb(col);
       const grad=ctx.createLinearGradient(a.x,a.y,b.x,b.y);
-      grad.addColorStop(0,  `rgba(${rv},${gv},${bv},${depth*0.20})`);
-      grad.addColorStop(0.5,`rgba(${rv},${gv},${bv},${depth*0.45})`);
-      grad.addColorStop(1,  `rgba(${rv},${gv},${bv},${depth*0.20})`);
+      grad.addColorStop(0,  `rgba(${rv},${gv},${bv},${depth*0.15})`);
+      grad.addColorStop(0.5,`rgba(${rv},${gv},${bv},${depth*0.30})`);
+      grad.addColorStop(1,  `rgba(${rv},${gv},${bv},${depth*0.15})`);
       ctx.beginPath();
       ctx.moveTo(a.x,a.y);
       ctx.quadraticCurveTo(cp.x,cp.y,b.x,b.y);
@@ -2245,9 +2272,9 @@ document.addEventListener('touchstart', e => {
       const depth=(pt.z+R)/(2*R);
       const pulse = idx===12 ? 1+0.20*Math.sin(pulseT*2.5) : 1;
       const size  = (1.5+depth*2.6)*pt.sm*pulse;
-      const alpha = 0.4+depth*0.6;
+      const alpha = 0.3+depth*0.7;
       const [rv,gv,bv]=hexToRgb(pt.color);
-      [[6.5,0.06],[3.5,0.14],[2,0.25]].forEach(([mult,ga])=>{
+      [[6.5,0.05],[3.5,0.12],[2,0.22]].forEach(([mult,ga])=>{
         const gg=ctx.createRadialGradient(pt.x,pt.y,0,pt.x,pt.y,size*mult);
         gg.addColorStop(0,`rgba(${rv},${gv},${bv},${ga*alpha})`);
         gg.addColorStop(1,`rgba(${rv},${gv},${bv},0)`);
@@ -2262,7 +2289,7 @@ document.addEventListener('touchstart', e => {
       ctx.fillStyle=core; ctx.fill();
       if(idx===12&&depth>0.3){
         const rippleR=size*(2.5+1.5*((pulseT*0.7)%1));
-        const rippleA=0.45*(1-(pulseT*0.7)%1)*depth;
+        const rippleA=0.35*(1-(pulseT*0.7)%1)*depth;
         ctx.beginPath(); ctx.arc(pt.x,pt.y,rippleR,0,Math.PI*2);
         ctx.strokeStyle=`rgba(${rv},${gv},${bv},${rippleA})`;
         ctx.lineWidth=1; ctx.stroke();
