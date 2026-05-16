@@ -3002,5 +3002,141 @@ function toggleRoad(step) {
 })();
 </script>
 
+
+<script>
+
+// ── NAC chart translator ─────────────────────────────────
+// Translates Chart.js dataset labels / axis titles / tooltip strings
+// after setLang() runs. The 11 non-Turkey brochures use legacy
+// string-replace bilingual for DOM text but charts hold their labels
+// in JS config — this helper walks Chart.instances and swaps them too.
+(function () {
+  if (typeof Chart === 'undefined') return;
+  // Use curly quotes inside strings — WP's KSES unescapes backslash-quote.
+  const CHART_VI_EN = {
+    // Country names with flags (most common in chart labels)
+    '🇹🇷 Thổ Nhĩ Kỳ CBI': '🇹🇷 Türkiye CBI',
+    '🇹🇷 Thổ Nhĩ Kỳ': '🇹🇷 Türkiye',
+    '🇬🇷 Hy Lạp GV': '🇬🇷 Greece GV',
+    '🇬🇷 Hy Lạp': '🇬🇷 Greece',
+    '🇵🇹 Bồ Đào Nha GV': '🇵🇹 Portugal GV',
+    '🇵🇹 Bồ Đào Nha': '🇵🇹 Portugal',
+    '🇪🇸 Tây Ban Nha GV': '🇪🇸 Spain GV',
+    '🇪🇸 Tây Ban Nha': '🇪🇸 Spain',
+    '🇦🇪 UAE GV': '🇦🇪 UAE GV',
+    '🇦🇪 UAE': '🇦🇪 UAE',
+    '🇲🇹 Malta QT': '🇲🇹 Malta CIT',
+    '🇲🇹 Malta': '🇲🇹 Malta',
+    '🇰🇳 St Kitts CBI': '🇰🇳 St Kitts CBI',
+    '🇰🇳 St Kitts': '🇰🇳 St Kitts',
+    '🇨🇾 Đảo Síp': '🇨🇾 Cyprus',
+    '🇨🇾 Síp': '🇨🇾 Cyprus',
+    '🇹🇭 Thái Lan': '🇹🇭 Thailand',
+    '🇳🇿 New Zealand': '🇳🇿 New Zealand',
+    '🇵🇦 Panama': '🇵🇦 Panama',
+    '🇲🇾 Malaysia': '🇲🇾 Malaysia',
+    '🇬🇧 Anh Quốc': '🇬🇧 United Kingdom',
+    '🇬🇧 Anh': '🇬🇧 UK',
+    // Country names without flags
+    'Thổ Nhĩ Kỳ': 'Türkiye',
+    'Hy Lạp': 'Greece',
+    'Bồ Đào Nha': 'Portugal',
+    'Tây Ban Nha': 'Spain',
+    'Đảo Síp': 'Cyprus',
+    'Thái Lan': 'Thailand',
+    'Anh Quốc': 'United Kingdom',
+    // Reference suffixes
+    ' (tham chiếu)': ' (benchmark)',
+    // Radar axes
+    'Đầu tư': 'Investment',
+    'Tốc độ': 'Speed',
+    'Chất lượng sống': 'Quality of Life',
+    'Hộ chiếu': 'Passport',
+    'Thuế': 'Tax',
+    'Quốc tịch': 'Citizenship',
+    // Axis titles
+    'Tốc độ xử lý (cao = nhanh hơn)': 'Processing speed (higher = faster)',
+    'Sức mạnh hộ chiếu / tự do di chuyển': 'Passport strength / mobility',
+    'Sức mạnh hộ chiếu / Tự do di chuyển': 'Passport strength / Mobility',
+    'Sức mạnh hộ chiếu': 'Passport strength',
+    // Dataset labels
+    'Điểm NAC': 'NAC Score',
+    'Điểm tổng hợp NAC': 'NAC Composite Score',
+    'Tháng xử lý trung bình': 'Average processing months',
+    'Tháng xử lý': 'Processing months',
+  };
+
+  const keysByLen = Object.keys(CHART_VI_EN).sort((a, b) => b.length - a.length);
+
+  function translate(s) {
+    if (typeof s !== 'string' || !s) return s;
+    let out = s;
+    for (const k of keysByLen) {
+      if (out.indexOf(k) !== -1) out = out.split(k).join(CHART_VI_EN[k]);
+    }
+    return out;
+  }
+
+  function snapshot(chart) {
+    if (chart._nacOrig) return;
+    chart._nacOrig = {
+      labels: chart.data.labels ? chart.data.labels.slice() : null,
+      datasetLabels: chart.data.datasets.map(d => d.label),
+      scales: {},
+    };
+    if (chart.options && chart.options.scales) {
+      for (const ax of ['x', 'y', 'r']) {
+        const sc = chart.options.scales[ax];
+        if (sc && sc.title && sc.title.text) {
+          chart._nacOrig.scales[ax] = sc.title.text;
+        }
+      }
+    }
+  }
+
+  function applyLang(chart, lang) {
+    snapshot(chart);
+    const tr = lang === 'en' ? translate : (s => s);
+    if (chart._nacOrig.labels) {
+      chart.data.labels = chart._nacOrig.labels.map(tr);
+    }
+    chart.data.datasets.forEach((d, i) => {
+      const orig = chart._nacOrig.datasetLabels[i];
+      if (orig) d.label = tr(orig);
+    });
+    if (chart.options && chart.options.scales) {
+      for (const ax of ['x', 'y', 'r']) {
+        const sc = chart.options.scales[ax];
+        const orig = chart._nacOrig.scales[ax];
+        if (sc && sc.title && orig) sc.title.text = tr(orig);
+      }
+    }
+    chart.update();
+  }
+
+  function translateAll() {
+    const lang = (typeof currentLang === 'string') ? currentLang : 'vi';
+    const insts = (Chart.instances && typeof Chart.instances === 'object')
+      ? Object.values(Chart.instances) : [];
+    insts.forEach(c => { try { applyLang(c, lang); } catch (e) {} });
+  }
+
+  // Wrap setLang so the translator runs after every toggle.
+  if (typeof setLang === 'function') {
+    const original = setLang;
+    window.setLang = function (lang) {
+      original.apply(this, arguments);
+      translateAll();
+    };
+  }
+  // Also run once on load in case the page started in EN (sticky lang)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', translateAll);
+  } else {
+    setTimeout(translateAll, 300);
+  }
+})();
+
+</script>
 </body>
 </html>
