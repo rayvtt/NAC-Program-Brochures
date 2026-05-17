@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-05-17T10:43:15.379284Z",
+  "generated_at": "2026-05-17T11:45:37.088862Z",
   "reports": [
     {
       "alias": "portugal",
       "html_file": "portugal-gv.html",
       "visible_vn_strings": 129,
-      "translated": 103,
-      "gap": 26,
+      "translated": 106,
+      "gap": 23,
       "skip": 0,
-      "coverage_pct": 79.8,
+      "coverage_pct": 82.2,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm",
@@ -16,10 +16,6 @@
         },
         {
           "text": "Cải cách 2023 — Quan trọng: Kể từ 07/10/2023, đầu tư BĐS nhà ở không còn đủ điều kiện cho Golden Visa. Quỹ đầu tư đã đượ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nhận định NAC: Quỹ €250K là lộ trình tối ưu cho đa số nhà đầu tư Việt — đơn giản, không cần quản lý tài sản trực tiếp, v",
           "reason": "no_en_available"
         },
         {
@@ -49,10 +45,14 @@
         {
           "text": "NAC Score 88/100 — Xem đầy đủ tại NAC Residence Index →",
           "reason": "no_en_available"
+        },
+        {
+          "text": "R&D công nhận",
+          "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 229,
-      "en_array_size": 229,
+      "vi_array_size": 300,
+      "en_array_size": 300,
       "data_attr_pairs": 14,
       "notion_en_fields": 28
     },
@@ -60,10 +60,10 @@
       "alias": "greece",
       "html_file": "greece-rbi_1_2.html",
       "visible_vn_strings": 127,
-      "translated": 85,
-      "gap": 42,
+      "translated": 82,
+      "gap": 45,
       "skip": 0,
-      "coverage_pct": 66.9,
+      "coverage_pct": 64.6,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c",
@@ -115,10 +115,10 @@
       "alias": "cyprus",
       "html_file": "cyprus-rbi_3_3.html",
       "visible_vn_strings": 129,
-      "translated": 78,
-      "gap": 51,
+      "translated": 74,
+      "gap": 55,
       "skip": 0,
-      "coverage_pct": 60.5,
+      "coverage_pct": 57.4,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — ",
@@ -170,10 +170,10 @@
       "alias": "turkey",
       "html_file": "turkey-cbi_8.html",
       "visible_vn_strings": 140,
-      "translated": 129,
-      "gap": 11,
+      "translated": 127,
+      "gap": 13,
       "skip": 0,
-      "coverage_pct": 92.1,
+      "coverage_pct": 90.7,
       "gap_samples": [
         {
           "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
@@ -208,11 +208,11 @@
           "reason": "no_en_available"
         },
         {
-          "text": "05 Thuế & tài chính",
+          "text": "03 Quy trình & thời gian",
           "reason": "no_en_available"
         },
         {
-          "text": "08 Ưu & nhược điểm",
+          "text": "04 Gia đình & thụ hưởng",
           "reason": "no_en_available"
         }
       ],
@@ -225,10 +225,10 @@
       "alias": "uae",
       "html_file": "uae-rbi_1_7.html",
       "visible_vn_strings": 127,
-      "translated": 31,
-      "gap": 96,
+      "translated": 29,
+      "gap": 98,
       "skip": 0,
-      "coverage_pct": 24.4,
+      "coverage_pct": 22.8,
       "gap_samples": [
         {
           "text": "UAE Golden Visa — ra mắt năm 2019, mở rộng năm 2022 — là chương trình cư trú dài hạn 10 năm của Các Tiểu Vương Quốc Ả Rậ",
@@ -280,10 +280,10 @@
       "alias": "uk",
       "html_file": "uk-rbi_1 (2).html",
       "visible_vn_strings": 125,
-      "translated": 97,
-      "gap": 28,
+      "translated": 92,
+      "gap": 33,
       "skip": 0,
-      "coverage_pct": 77.6,
+      "coverage_pct": 73.6,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Anh Quốc và sẵn sàng giao dịch. Bạn không cần săn tìm —",
@@ -335,10 +335,10 @@
       "alias": "malta",
       "html_file": "malta-rbi_1_3.html",
       "visible_vn_strings": 116,
-      "translated": 30,
-      "gap": 86,
+      "translated": 28,
+      "gap": 88,
       "skip": 0,
-      "coverage_pct": 25.9,
+      "coverage_pct": 24.1,
       "gap_samples": [
         {
           "text": "Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất ch",
@@ -390,14 +390,30 @@
       "alias": "stkitts",
       "html_file": "stkitts-nevis.html",
       "visible_vn_strings": 124,
-      "translated": 75,
-      "gap": 49,
+      "translated": 62,
+      "gap": 62,
       "skip": 0,
-      "coverage_pct": 60.5,
+      "coverage_pct": 50.0,
       "gap_samples": [
+        {
+          "text": "St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh ",
+          "reason": "notion_has_en_not_injected"
+        },
+        {
+          "text": "St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền Vững (SISC) — không hoàn lại nhưng nhanh",
+          "reason": "notion_has_en_not_injected"
+        },
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St Kitts và sẵn sàng giao dịch. Bạn không cần săn tìm —",
           "reason": "no_en_available"
+        },
+        {
+          "text": "St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Lightning Process (ALP) — 45–60 ngày với phí ",
+          "reason": "notion_has_en_not_injected"
+        },
+        {
+          "text": "St Kitts & Nevis có chính sách bảo lãnh gia đình rộng rãi nhất trong nhóm Caribbean CBI — bao gồm vợ/chồng, con, cha mẹ,",
+          "reason": "notion_has_en_not_injected"
         },
         {
           "text": "St Kitts & Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lã",
@@ -408,31 +424,15 @@
           "reason": "text_drift_vs_notion"
         },
         {
-          "text": "Cập nhật quan trọng 2023–2026: St Kitts & Nevis đã tăng mức đóng góp SGF từ $150K lên $250K (đơn độc) vào tháng 6/2023. ",
-          "reason": "text_drift_vs_notion"
+          "text": "So sánh St Kitts & Nevis với các chương trình Caribbean CBI khác và một số chương trình châu Âu — theo góc nhìn của nhà ",
+          "reason": "notion_has_en_not_injected"
         },
         {
-          "text": "Nhận định NAC: Với gia đình 2 người lớn và 2 trẻ em, tổng chi phí SGF thực tế khoảng $350K–$380K sau khi cộng phí chính ",
-          "reason": "no_en_available"
+          "text": "Đánh giá khách quan của NAC dành cho nhà đầu tư HNWI người Việt đang cân nhắc St Kitts & Nevis CBI trong năm 2026.",
+          "reason": "notion_has_en_not_injected"
         },
         {
-          "text": "Lợi thế ALP: Accelerated Lightning Process (ALP) là quy trình nhanh nhất trong nhóm Caribbean CBI — 45–60 ngày so với 3–",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "So sánh với Caribbean: Antigua & Barbuda cho phép bao gồm cha mẹ từ 58 tuổi. Grenada từ 55 tuổi. St Kitts từ 55 tuổi — đ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lưu ý quan trọng về thuế: Việt Nam áp dụng chế độ thuế theo quốc tịch ( không theo nơi cư trú). Công dân Việt Nam vẫn có",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Hộ chiếu SKN mở được những cửa nào? Miễn thị thực UK (VISA-FREE — duy nhất trong Caribbean Big 5!), EU Schengen 26 nước,",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Giữ quốc tịch sau khi bán BĐS: Nếu chọn con đường BĐS, nhà đầu tư phải giữ tài sản ít nhất 7 năm. Bán sớm có thể dẫn đến",
+          "text": "Thành viên Commonwealth & OECS",
           "reason": "no_en_available"
         }
       ],
@@ -445,10 +445,10 @@
       "alias": "thailand",
       "html_file": "thailand-rbi_1 (2).html",
       "visible_vn_strings": 118,
-      "translated": 44,
-      "gap": 74,
+      "translated": 42,
+      "gap": 76,
       "skip": 0,
-      "coverage_pct": 37.3,
+      "coverage_pct": 35.6,
       "gap_samples": [
         {
           "text": "Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương trình cư trú dài hạn 10 năm (5+5) dành ",
@@ -500,10 +500,10 @@
       "alias": "newzealand",
       "html_file": "newzealand-rbi_1 (3).html",
       "visible_vn_strings": 119,
-      "translated": 40,
-      "gap": 79,
+      "translated": 37,
+      "gap": 82,
       "skip": 0,
-      "coverage_pct": 33.6,
+      "coverage_pct": 31.1,
       "gap_samples": [
         {
           "text": "New Zealand Active Investor Plus Visa — ra mắt năm 2022, cải cách lớn tháng 4/2025 — là chương trình cư trú đầu tư cho n",
@@ -555,10 +555,10 @@
       "alias": "panama",
       "html_file": "panama-rbi_.html",
       "visible_vn_strings": 123,
-      "translated": 75,
-      "gap": 48,
+      "translated": 73,
+      "gap": 50,
       "skip": 0,
-      "coverage_pct": 61.0,
+      "coverage_pct": 59.3,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — c",
@@ -610,10 +610,10 @@
       "alias": "malaysia",
       "html_file": "malaysia-mm2h.html",
       "visible_vn_strings": 122,
-      "translated": 40,
-      "gap": 82,
+      "translated": 38,
+      "gap": 84,
       "skip": 0,
-      "coverage_pct": 32.8,
+      "coverage_pct": 31.1,
       "gap_samples": [
         {
           "text": "Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người",

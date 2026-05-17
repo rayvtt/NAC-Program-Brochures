@@ -2,21 +2,21 @@
 [1mEN Translation Coverage Report[0m
 [90m──────────────────────────────────────────────────────────────────────[0m
 
-[1mportugal[0m  [33m 79.8%[0m (103 translated / 26 gap / 0 skip of 129 VN strings)
-  [90mVI_STRINGS=229  EN_STRINGS=229  data-attr pairs=14  Notion EN fields=28[0m
+[1mportugal[0m  [33m 82.2%[0m (106 translated / 23 gap / 0 skip of 129 VN strings)
+  [90mVI_STRINGS=300  EN_STRINGS=300  data-attr pairs=14  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm
       [90mreason: text_drift_vs_notion[0m
     [31m•[0m Cải cách 2023 — Quan trọng: Kể từ 07/10/2023, đầu tư BĐS nhà ở không còn đủ điều kiện cho Golden Visa. Quỹ đầu tư đã đượ
       [90mreason: no_en_available[0m
-    [31m•[0m Nhận định NAC: Quỹ €250K là lộ trình tối ưu cho đa số nhà đầu tư Việt — đơn giản, không cần quản lý tài sản trực tiếp, v
-      [90mreason: no_en_available[0m
     [33m•[0m Lợi thế quan trọng: Trong khi chờ ARI Card, nhà đầu tư và gia đình có thể đăng ký visa Schengen ngắn hạn qua đại sứ quán
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Ưu điểm nổi bật vs. các chương trình khác: Bồ Đào Nha là chương trình duy nhất trong Top EU bảo lãnh cả bố mẹ hai bên và
       [90mreason: text_drift_vs_notion[0m
+    [33m•[0m NHR 2.0 vs NHR 1.0: Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 th
+      [90mreason: text_drift_vs_notion[0m
 
-[1mgreece[0m  [31m 66.9%[0m (85 translated / 42 gap / 0 skip of 127 VN strings)
+[1mgreece[0m  [31m 64.6%[0m (82 translated / 45 gap / 0 skip of 127 VN strings)
   [90mVI_STRINGS=200  EN_STRINGS=200  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c
@@ -30,7 +30,7 @@
     [33m•[0m Nhận định NAC — Đường €250K: Đây là lựa chọn chiến lược nhất — cho phép sở hữu BĐS ngay tại Athens với ngưỡng thấp nhất 
       [90mreason: text_drift_vs_notion[0m
 
-[1mcyprus[0m  [31m 60.5%[0m (78 translated / 51 gap / 0 skip of 129 VN strings)
+[1mcyprus[0m  [31m 57.4%[0m (74 translated / 55 gap / 0 skip of 129 VN strings)
   [90mVI_STRINGS=157  EN_STRINGS=157  data-attr pairs=6  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — 
@@ -44,7 +44,7 @@
     [31m•[0m EU · Đông Địa Trung Hải
       [90mreason: no_en_available[0m
 
-[1mturkey[0m  [33m 92.1%[0m (129 translated / 11 gap / 0 skip of 140 VN strings)
+[1mturkey[0m  [33m 90.7%[0m (127 translated / 13 gap / 0 skip of 140 VN strings)
   [90mVI_STRINGS=247  EN_STRINGS=247  data-attr pairs=243  Notion EN fields=29[0m
   [33mTop gaps:[0m
     [31m•[0m 183 ngày/năm" data-en="Only if resident >183 days/year">Chỉ khi cư trú >183 ngày/năm
@@ -58,7 +58,7 @@
     [31m•[0m Đã nhận yêu cầu của bạn
       [90mreason: no_en_available[0m
 
-[1muae[0m  [31m 24.4%[0m (31 translated / 96 gap / 0 skip of 127 VN strings)
+[1muae[0m  [31m 22.8%[0m (29 translated / 98 gap / 0 skip of 127 VN strings)
   [90mVI_STRINGS=129  EN_STRINGS=129  data-attr pairs=10  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m UAE Golden Visa — ra mắt năm 2019, mở rộng năm 2022 — là chương trình cư trú dài hạn 10 năm của Các Tiểu Vương Quốc Ả Rậ
@@ -72,7 +72,7 @@
     [33m•[0m UAE Golden Visa có phạm vi bảo lãnh gia đình linh hoạt — bao gồm vợ/chồng và các con phụ thuộc. Gói Nhà Đầu Tư Chiến Lượ
       [90mreason: text_drift_vs_notion[0m
 
-[1muk[0m  [33m 77.6%[0m (97 translated / 28 gap / 0 skip of 125 VN strings)
+[1muk[0m  [33m 73.6%[0m (92 translated / 33 gap / 0 skip of 125 VN strings)
   [90mVI_STRINGS=214  EN_STRINGS=214  data-attr pairs=6  Notion EN fields=31[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Anh Quốc và sẵn sàng giao dịch. Bạn không cần săn tìm —
@@ -86,7 +86,7 @@
     [33m•[0m Chiến lược NAC cho nhà đầu tư Việt: Kết hợp Innovator Founder Visa (£50K–£100K vốn kinh doanh) + Đầu tư BĐS song song (£
       [90mreason: text_drift_vs_notion[0m
 
-[1mmalta[0m  [31m 25.9%[0m (30 translated / 86 gap / 0 skip of 116 VN strings)
+[1mmalta[0m  [31m 24.1%[0m (28 translated / 88 gap / 0 skip of 116 VN strings)
   [90mVI_STRINGS=130  EN_STRINGS=130  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất ch
@@ -100,21 +100,21 @@
     [33m•[0m Malta áp dụng chế độ Non-Domiciled (Remittance Basis) — hệ thống thuế hấp dẫn nhất châu Âu cho HNWI quốc tế: thu nhập nư
       [90mreason: text_drift_vs_notion[0m
 
-[1mstkitts[0m  [31m 60.5%[0m (75 translated / 49 gap / 0 skip of 124 VN strings)
+[1mstkitts[0m  [31m 50.0%[0m (62 translated / 62 gap / 0 skip of 124 VN strings)
   [90mVI_STRINGS=208  EN_STRINGS=208  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
+    [33m•[0m St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh 
+      [90mreason: notion_has_en_not_injected[0m
+    [33m•[0m St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền Vững (SISC) — không hoàn lại nhưng nhanh
+      [90mreason: notion_has_en_not_injected[0m
     [31m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St Kitts và sẵn sàng giao dịch. Bạn không cần săn tìm —
       [90mreason: no_en_available[0m
-    [33m•[0m St Kitts & Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lã
-      [90mreason: text_drift_vs_notion[0m
-    [33m•[0m Khác với các chương trình RBI (cư trú đầu tư), St Kitts & Nevis CBI cấp quốc tịch trực tiếp — không qua giai đoạn cư trú
-      [90mreason: text_drift_vs_notion[0m
-    [33m•[0m Cập nhật quan trọng 2023–2026: St Kitts & Nevis đã tăng mức đóng góp SGF từ $150K lên $250K (đơn độc) vào tháng 6/2023. 
-      [90mreason: text_drift_vs_notion[0m
-    [31m•[0m Nhận định NAC: Với gia đình 2 người lớn và 2 trẻ em, tổng chi phí SGF thực tế khoảng $350K–$380K sau khi cộng phí chính 
-      [90mreason: no_en_available[0m
+    [33m•[0m St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Lightning Process (ALP) — 45–60 ngày với phí 
+      [90mreason: notion_has_en_not_injected[0m
+    [33m•[0m St Kitts & Nevis có chính sách bảo lãnh gia đình rộng rãi nhất trong nhóm Caribbean CBI — bao gồm vợ/chồng, con, cha mẹ,
+      [90mreason: notion_has_en_not_injected[0m
 
-[1mthailand[0m  [31m 37.3%[0m (44 translated / 74 gap / 0 skip of 118 VN strings)
+[1mthailand[0m  [31m 35.6%[0m (42 translated / 76 gap / 0 skip of 118 VN strings)
   [90mVI_STRINGS=202  EN_STRINGS=202  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương trình cư trú dài hạn 10 năm (5+5) dành 
@@ -128,7 +128,7 @@
     [33m•[0m LTR Visa cho phép bảo lãnh vợ/chồng và tối đa 4 con dưới 20 tuổi. Phạm vi hẹp hơn Hy Lạp (bảo lãnh bố mẹ) nhưng đủ cho g
       [90mreason: text_drift_vs_notion[0m
 
-[1mnewzealand[0m  [31m 33.6%[0m (40 translated / 79 gap / 0 skip of 119 VN strings)
+[1mnewzealand[0m  [31m 31.1%[0m (37 translated / 82 gap / 0 skip of 119 VN strings)
   [90mVI_STRINGS=183  EN_STRINGS=183  data-attr pairs=6  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m New Zealand Active Investor Plus Visa — ra mắt năm 2022, cải cách lớn tháng 4/2025 — là chương trình cư trú đầu tư cho n
@@ -142,7 +142,7 @@
     [33m•[0m Active Investor Plus Visa cho phép bảo lãnh vợ/chồng (hoặc đối tác) và con phụ thuộc đến 24 tuổi (chưa kết hôn, phụ thuộ
       [90mreason: text_drift_vs_notion[0m
 
-[1mpanama[0m  [31m 61.0%[0m (75 translated / 48 gap / 0 skip of 123 VN strings)
+[1mpanama[0m  [31m 59.3%[0m (73 translated / 50 gap / 0 skip of 123 VN strings)
   [90mVI_STRINGS=231  EN_STRINGS=231  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — c
@@ -156,7 +156,7 @@
     [31m•[0m Hub tài chính & thương mại quốc tế
       [90mreason: no_en_available[0m
 
-[1mmalaysia[0m  [31m 32.8%[0m (40 translated / 82 gap / 0 skip of 122 VN strings)
+[1mmalaysia[0m  [31m 31.1%[0m (38 translated / 84 gap / 0 skip of 122 VN strings)
   [90mVI_STRINGS=190  EN_STRINGS=190  data-attr pairs=6  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người
@@ -171,6 +171,6 @@
       [90mreason: no_en_available[0m
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  avg 54.4%  ·  [32m0 ≥95%[0m  ·  [33m3 70-94%[0m  ·  [31m9 <70%[0m
+[1mSummary:[0m  avg 51.9%  ·  [32m0 ≥95%[0m  ·  [33m3 70-94%[0m  ·  [31m9 <70%[0m
 
   → JSON report: .diagnostics/en-coverage.json
