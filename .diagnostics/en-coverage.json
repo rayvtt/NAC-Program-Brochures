@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-05-17T09:20:00.059841Z",
+  "generated_at": "2026-05-17T10:43:15.379284Z",
   "reports": [
     {
       "alias": "portugal",
       "html_file": "portugal-gv.html",
       "visible_vn_strings": 129,
-      "translated": 102,
-      "gap": 27,
+      "translated": 103,
+      "gap": 26,
       "skip": 0,
-      "coverage_pct": 79.1,
+      "coverage_pct": 79.8,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm",
@@ -51,9 +51,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 221,
-      "en_array_size": 224,
-      "data_attr_pairs": 10,
+      "vi_array_size": 229,
+      "en_array_size": 229,
+      "data_attr_pairs": 14,
       "notion_en_fields": 28
     },
     {
@@ -106,8 +106,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 193,
-      "en_array_size": 198,
+      "vi_array_size": 200,
+      "en_array_size": 200,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
@@ -115,15 +115,11 @@
       "alias": "cyprus",
       "html_file": "cyprus-rbi_3_3.html",
       "visible_vn_strings": 129,
-      "translated": 46,
-      "gap": 83,
+      "translated": 78,
+      "gap": 51,
       "skip": 0,
-      "coverage_pct": 35.7,
+      "coverage_pct": 60.5,
       "gap_samples": [
-        {
-          "text": "Cyprus Permanent Residency Programme (CPRP) — còn gọi là \"Category F\" hay \"Fast Track\" — là chương trình cư trú vĩnh viễ",
-          "reason": "notion_has_en_not_injected"
-        },
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — ",
           "reason": "text_drift_vs_notion"
@@ -157,12 +153,16 @@
           "reason": "no_en_available"
         },
         {
-          "text": "2–3 tháng",
-          "reason": "text_drift_vs_notion"
+          "text": "Tự do trong Síp",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "EU Member — không phải quốc tịch",
+          "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 151,
-      "en_array_size": 153,
+      "vi_array_size": 157,
+      "en_array_size": 157,
       "data_attr_pairs": 6,
       "notion_en_fields": 28
     },
@@ -170,14 +170,18 @@
       "alias": "turkey",
       "html_file": "turkey-cbi_8.html",
       "visible_vn_strings": 140,
-      "translated": 130,
-      "gap": 10,
+      "translated": 129,
+      "gap": 11,
       "skip": 0,
-      "coverage_pct": 92.9,
+      "coverage_pct": 92.1,
       "gap_samples": [
         {
           "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
           "reason": "no_en_available"
+        },
+        {
+          "text": "Chiến lược tối ưu NAC: Sử dụng hộ chiếu Thổ Nhĩ Kỳ như “bàn đạp” — miễn visa Nhật Bản, Hàn Quốc, Singapore và nhiều nước",
+          "reason": "text_drift_vs_notion"
         },
         {
           "text": "Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?",
@@ -210,14 +214,10 @@
         {
           "text": "08 Ưu & nhược điểm",
           "reason": "no_en_available"
-        },
-        {
-          "text": "09 Nhận định của NAC",
-          "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 246,
-      "en_array_size": 250,
+      "vi_array_size": 247,
+      "en_array_size": 247,
       "data_attr_pairs": 243,
       "notion_en_fields": 29
     },
@@ -271,7 +271,7 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 128,
+      "vi_array_size": 129,
       "en_array_size": 129,
       "data_attr_pairs": 10,
       "notion_en_fields": 30
@@ -326,8 +326,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 208,
-      "en_array_size": 212,
+      "vi_array_size": 214,
+      "en_array_size": 214,
       "data_attr_pairs": 6,
       "notion_en_fields": 31
     },
@@ -381,7 +381,7 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 128,
+      "vi_array_size": 130,
       "en_array_size": 130,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
@@ -436,8 +436,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 203,
-      "en_array_size": 207,
+      "vi_array_size": 208,
+      "en_array_size": 208,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
@@ -491,8 +491,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 196,
-      "en_array_size": 199,
+      "vi_array_size": 202,
+      "en_array_size": 202,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
@@ -546,7 +546,7 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 181,
+      "vi_array_size": 183,
       "en_array_size": 183,
       "data_attr_pairs": 6,
       "notion_en_fields": 28
@@ -601,8 +601,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 230,
-      "en_array_size": 233,
+      "vi_array_size": 231,
+      "en_array_size": 231,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
@@ -656,7 +656,7 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 188,
+      "vi_array_size": 190,
       "en_array_size": 190,
       "data_attr_pairs": 6,
       "notion_en_fields": 28
