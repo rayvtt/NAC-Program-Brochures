@@ -1,8 +1,0 @@
-# Touch this file to fire .github/workflows/notion-brochure-db.yml
-# (push trigger). The workflow runs setup-schema + push-turkey
-# sequentially when this file changes. Idempotent on both ends.
-#
-# v1 — initial Turkey populate
-# v2 — switch to human-friendly Notion names with circled-digit section icons, rename Name → alias
-# v3 — generalised extract for all 12 brochures, flag-prefixed alias, per-country Notion page cover
-# v4 — preserve inline <strong>/<em>/<a href> in prose fields (extract via prose_html); stop escaping in render

@@ -81,14 +81,14 @@ Nothing critical. The 11 non-Turkey brochures still use the legacy `VI_STRINGS`/
 
 ### How chart bilingual works on the 11
 
-Turkey uses `buildCharts(lang)` that destroys and recreates charts on toggle. The 11 others use a lighter-weight approach injected by `tools/add_chart_translator.py`:
+Turkey uses `buildCharts(lang)` that destroys and recreates charts on toggle. The 11 others use a lighter-weight approach (a post-`setLang` translator script that was injected into each brochure's HTML during initial replication):
 
 - Walks `Chart.instances` (Chart.js v4 global)
 - Snapshots original VI labels on first run
 - Translates dataset labels / axis titles / chart labels using a shared VI→EN dictionary (countries + common axis terms)
-- Wraps existing `setLang()` so it runs automatically on every toggle
+- Attaches a click listener to `#btn-vi` / `#btn-en` that re-runs the translation on every toggle
 
-This avoids rewriting each brochure's chart code while still flipping country names from "Thổ Nhĩ Kỳ" → "Türkiye" etc. when EN is clicked.
+This avoids rewriting each brochure's chart code while still flipping country names from "Thổ Nhĩ Kỳ" → "Türkiye" etc. when EN is clicked. The translator is checked by `daily_en_audit.py` (check #3).
 
 ---
 
@@ -96,17 +96,30 @@ This avoids rewriting each brochure's chart code while still flipping country na
 
 ```
 tools/
-├── check_brochure_parity.py     ← the workloop; audit any brochure against Turkey
-├── install_nac_index_banner.py  ← inject NAC Index banner + globe + 12 KPI pills + WP-safety
-├── migrate_article_cta_banner.py ← text-only .article-cta → cover-banner card structure
-├── refresh_article_covers.py    ← pull og:image for every article-cta-banner
-├── refine_sidebar_cta.py        ← cream-glass sidebar pill with 4 colour-coded chips
-├── refine_nac_btn.py            ← footer Book CTA → Google + WhatsApp icon green
-├── rewire_cta_links.py          ← Calendly → Google + header pill → Google + WhatsApp emoji → SVG
-└── add_chart_translator.py      ← post-setLang chart label translator (VI ↔ EN dictionary)
+├── check_brochure_parity.py            ← audit any brochure against Turkey (15 checks)
+├── check_en_translation_coverage.py    ← static EN coverage on local HTML
+├── check_live_en_coverage.py           ← fetch live WP, run coverage
+├── daily_en_audit.py                   ← daily 3-check: toggle / sections / charts
+├── check_brochure_payload.py           ← JSON schema validator for data/*_payload.json
+├── pull_from_notion.py                 ← Notion → data/<alias>_payload.json
+├── inject_notion_en_to_html.py         ← payload → VI_STRINGS/EN_STRINGS in HTML
+├── refresh_article_covers.py           ← pull og:image for every article-cta-banner
+├── apply_listings.py                   ← refresh Live Listings spotlight from Property Hub
+├── build_preview_index.py              ← regenerate index.html for GitHub Pages preview
+└── patch_ph_catalog.py                 ← Property Hub catalog patcher
 ```
 
-Run with no argument to apply to all 11 (Turkey is the source-of-truth, skipped). Run with `<alias>` to target one. All scripts print counts and second-run reports `0` if no upstream change.
+Run with no argument to apply to all 12 (or all relevant). Run with `<alias>` to target one. All scripts print counts and second-run reports `0` if no upstream change.
+
+### Workflows
+
+```
+.github/workflows/
+├── pull-notion.yml         ← cron */10 — Notion → HTML → coverage → WP push → live snapshot
+├── daily-en-audit.yml      ← cron daily 02:00 UTC — toggle/sections/charts → GitHub Issue
+├── wp-sync.yml             ← on push to main — apply_listings + sync_brochures to WP
+└── patch-ph-catalog.yml    ← manual dispatch — Property Hub catalog patches
+```
 
 ---
 
@@ -118,7 +131,7 @@ WP's content sanitiser mangles inline JS in two non-obvious ways. Both bit us th
 
 KSES strips inline event handlers when content is saved to ACF `raw_html_code` (XSS protection). Buttons that rely on `onclick="setLang('en')"` appear intact in source but the attribute is gone on live.
 
-**Fix:** bind via `addEventListener` (see `install_nac_index_banner.py` and Turkey's bilingual engine).
+**Fix:** bind via `addEventListener` (already present in every brochure's bilingual engine + verified by `daily_en_audit.py` check #1).
 
 ### Trap 2: Backslash-escaped quotes inside `<script>` get unescaped
 
@@ -164,7 +177,8 @@ edit brochure (or run tooling)
 ```
 [NAC Brochures DB]    Notion (35f48ec25e8680f69c3dc5ad538e7ca8)
     │
-    └─→ pulled to local HTML (manually for now; future: build_brochures.py)
+    └─→ pulled into data/*_payload.json by tools/pull_from_notion.py
+        (cron every 10 min via .github/workflows/pull-notion.yml)
         │
         └─→ Brochures html/<file>.html  ← source of truth
             │
@@ -182,26 +196,35 @@ WP-sync setup: `WP-SYNC-SETUP.md`. Notion schema: `BROCHURE-NOTION-SCHEMA.md`.
 
 ## 7. Quick recipes
 
-### Audit + fix everything you can
+### Status / audit
 
 ```bash
-python tools/check_brochure_parity.py                 # see current state
-python tools/rewire_cta_links.py                      # CTAs to Google Calendar
-python tools/refine_sidebar_cta.py                    # sidebar pill
-python tools/refine_nac_btn.py                        # NAC footer + WhatsApp green
-python tools/install_nac_index_banner.py              # NAC Index banner + globe + pills
-python tools/refresh_article_covers.py                # cover images
-python tools/check_brochure_parity.py                 # verify after
+python tools/check_brochure_parity.py                 # structural parity vs Turkey (15 checks)
+python tools/check_en_translation_coverage.py         # local EN coverage report
+python tools/check_live_en_coverage.py                # fetch live, run coverage
+python tools/daily_en_audit.py                        # 3-check audit (toggle / sections / charts)
+python tools/check_brochure_payload.py data/turkey_payload.json  # validate one payload
 ```
+
+### Manual Notion → live (force a sync now)
+
+```bash
+python tools/pull_from_notion.py             # refresh data/*_payload.json
+python tools/inject_notion_en_to_html.py     # merge into VI_STRINGS / EN_STRINGS
+python tools/refresh_article_covers.py       # pull article og:images
+python sync_brochures.py --all               # push to WordPress
+```
+
+This is what the `pull-notion.yml` cron does automatically every 10 minutes.
 
 ### Bring one brochure to full Turkey parity (when EN translations are ready)
 
-1. Run the structural scripts above on that brochure
-2. Lift the bilingual data-vi/data-en attrs from Notion → patch each section by hand or via a custom slice script
-3. Lift the `buildCharts(lang)` wrapper and chart label dicts from Turkey
-4. Add `addEventListener` bind block (auto-installed by `install_nac_index_banner.py`)
-5. Replace any `\"` in scripts with `"` U+201C / U+201D
-6. Run `python tools/check_brochure_parity.py <alias>` — should show 15/15
+The auto-sync covers most of it. Manual fallback steps:
+
+1. Ensure the brochure has the structural parity (cron handles this — see `check_brochure_parity.py` for 15-check audit)
+2. Add EN translations in Notion (the `*_en` fields per section). The next cron tick picks them up.
+3. If text drift exists between Notion VI and HTML DOM (flagged by `check_en_translation_coverage.py`), align either side
+4. Run `python tools/check_brochure_parity.py <alias>` and `python tools/daily_en_audit.py <alias>` — both should pass
 
 ### Watch out for
 
