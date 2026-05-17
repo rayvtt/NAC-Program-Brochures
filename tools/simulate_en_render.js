@@ -66,6 +66,10 @@ function buildSetlangBundle(html) {
     /(const\s+EN_STRINGS\s*=\s*\[[\s\S]+?\]\s*;)/,
     /(const\s+heroText\s*=\s*\{[\s\S]+?\}\s*;)/,
     /(const\s+heroStats\s*=\s*\{[\s\S]+?\}\s*;)/,
+    // Optional module-level score-bar label arrays (some brochures
+    // declare these once outside setLang and reference them inside)
+    /(const\s+sbarVi\s*=\s*\[[\s\S]+?\]\s*;)/,
+    /(const\s+sbarEn\s*=\s*\[[\s\S]+?\]\s*;)/,
     /(function\s+setLang[\s\S]+?\n\}\s*\n)/,
   ];
   const parts = ['var currentLang = "vi";'];
