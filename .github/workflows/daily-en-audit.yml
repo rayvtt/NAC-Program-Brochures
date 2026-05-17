@@ -48,14 +48,17 @@ jobs:
           echo "audit_status=$?" >> $GITHUB_OUTPUT
           set -e
 
-      - name: Commit audit report
+      - name: Regenerate sheet tracker (after audit data is fresh)
+        run: python tools/generate_sheet_tracker.py
+
+      - name: Commit audit report + tracker
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add .diagnostics/ || true
           if ! git diff --cached --quiet; then
             PASS=$(python -c "import json; r=json.load(open('.diagnostics/daily-en-audit.json')); print(f\"{r['pass_count']}/{r['total']}\")")
-            git commit -m "Daily EN audit ($PASS passing)"
+            git commit -m "Daily EN audit ($PASS passing) + sheet tracker refresh"
             git push origin main
           fi
 
