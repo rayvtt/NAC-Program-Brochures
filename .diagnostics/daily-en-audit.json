@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-17T16:32:45.911538+00:00",
-  "source": "local",
+  "generated_at": "2026-05-17T11:14:43.411809+00:00",
+  "source": "live",
   "pass_count": 1,
-  "total": 2,
+  "total": 1,
   "reports": [
     {
-      "alias": "turkey",
-      "all_pass": false,
+      "alias": "portugal",
+      "all_pass": true,
       "toggle": {
         "pass": true,
         "issues": []
@@ -31,15 +31,15 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 22,
+            "translated": 27,
             "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 22,
+            "translated": 23,
             "fixable_gap": 0,
             "acceptable_gap": 1,
             "gap": 1,
@@ -55,23 +55,23 @@
             "coverage_pct": 100
           },
           "process": {
-            "translated": 15,
+            "translated": 14,
             "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
+            "acceptable_gap": 4,
+            "gap": 4,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "family": {
-            "translated": 10,
+            "translated": 13,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 18,
+            "translated": 3,
             "fixable_gap": 0,
             "acceptable_gap": 1,
             "gap": 1,
@@ -79,18 +79,18 @@
             "coverage_pct": 100.0
           },
           "citizenship": {
-            "translated": 2,
+            "translated": 3,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "compare": {
-            "translated": 1,
+            "translated": 2,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -103,23 +103,28 @@
             "coverage_pct": 100.0
           },
           "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
+            "translated": 3,
+            "fixable_gap": 1,
             "acceptable_gap": 0,
-            "gap": 0,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 75.0
           }
         },
         "low_sections": [],
-        "notion_gaps": []
+        "notion_gaps": [
+          {
+            "section": "nac",
+            "text": "Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa Bồ Đào Nha, với mạng lưới luật sư, tư vấ"
+          }
+        ]
       },
       "overview_ok": true,
       "charts": {
         "pass": true,
         "has_charts": true,
-        "has_buildcharts": true,
-        "has_translator": false,
+        "has_buildcharts": false,
+        "has_translator": true,
         "issues": []
       },
       "globe_sizing": {
@@ -139,175 +144,8 @@
         "has_charts": true,
         "canvases": [
           "radarChart",
-          "citizenshipChart",
-          "compareChart",
+          "timelineChart",
           "matrixChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "19 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 19,
-        "samples": [
-          {
-            "text": "🔒 Còn 6 phần chuyên sâu"
-          },
-          {
-            "text": "Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?"
-          },
-          {
-            "text": "Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
-          },
-          {
-            "text": "Có, gửi cho tôi →"
-          },
-          {
-            "text": "Để sau"
-          }
-        ]
-      }
-    },
-    {
-      "alias": "cyprus",
-      "all_pass": true,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 7,
-            "gap": 7,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 7,
-            "gap": 7,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 14,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 23,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 2,
-        "pdp_count": 2,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
         ],
         "issues": []
       },
