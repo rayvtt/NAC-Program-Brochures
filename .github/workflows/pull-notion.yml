@@ -1,11 +1,17 @@
-name: Pull brochure data from Notion
+name: Pull brochure data from Notion (auto-sync)
 
-# Pulls all brochure rows from Notion → data/<alias>_payload.json,
-# then commits any changes. Run manually via workflow_dispatch.
+# Auto-sync pipeline:
+#   1. Pull all brochure rows from Notion → data/<alias>_payload.json
+#   2. Inject bilingual content into Brochures html/* (legacy VI_STRINGS/EN_STRINGS arrays)
+#   3. Commit both to main — wp-sync.yml then auto-deploys HTML to WordPress
 #
-# Requires NOTION_KEY in repo secrets (already configured).
+# Runs every 10 minutes via cron, plus manual workflow_dispatch.
+# Requires NOTION_KEY in repo secrets.
 
 on:
+  schedule:
+    # Every 10 minutes
+    - cron: '*/10 * * * *'
   workflow_dispatch:
     inputs:
       dry_run:
@@ -22,9 +28,9 @@ permissions:
   contents: write
 
 jobs:
-  pull:
+  sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
         with:
@@ -35,7 +41,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Pull from Notion
+      - name: Pull payloads from Notion
         env:
           NOTION_KEY: ${{ secrets.NOTION_KEY }}
         run: |
@@ -45,15 +51,29 @@ jobs:
             python tools/pull_from_notion.py
           fi
 
-      - name: Commit changes
-        if: inputs.dry_run != true
+      - name: Inject EN content into brochure HTML
+        if: inputs.dry_run != 'true'
+        run: python tools/inject_notion_en_to_html.py
+
+      - name: Inject EN content (dry-run preview)
+        if: inputs.dry_run == 'true'
+        run: python tools/inject_notion_en_to_html.py --dry-run
+
+      - name: Commit refreshed payloads + HTML
+        if: inputs.dry_run != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*_payload.json || true
+          git add data/*_payload.json "Brochures html/"*.html || true
           if git diff --cached --quiet; then
-            echo "No payload changes to commit."
+            echo "No changes — Notion content already in sync."
           else
-            git commit -m "Pull fresh brochure data from Notion"
+            git commit -m "Auto-sync brochure content from Notion
+
+            Pulled fresh payloads + injected EN content into legacy
+            VI_STRINGS / EN_STRINGS arrays across all 12 brochures.
+            The wp-sync workflow will deploy these HTML changes to
+            WordPress on next push."
             git push origin main
+            echo "Pushed — wp-sync.yml will deploy to WordPress within ~30s."
           fi
