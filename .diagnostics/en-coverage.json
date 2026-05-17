@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-17T14:12:36.429602Z",
+  "generated_at": "2026-05-17T15:18:25.255393Z",
   "reports": [
     {
       "alias": "portugal",
@@ -60,10 +60,10 @@
       "alias": "greece",
       "html_file": "greece-rbi_1_2.html",
       "visible_vn_strings": 127,
-      "translated": 82,
-      "gap": 45,
+      "translated": 94,
+      "gap": 33,
       "skip": 0,
-      "coverage_pct": 64.6,
+      "coverage_pct": 74.0,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c",
@@ -72,10 +72,6 @@
         {
           "text": "Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
           "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "2013 (cải cách 2024)",
-          "reason": "no_en_available"
         },
         {
           "text": "Thay đổi quan trọng — Luật 5100/2024 (hiệu lực 09/2024): Ngưỡng cũ €250K cho BĐS nhà ở thông thường đã hết hiệu lực hoàn",
@@ -104,10 +100,14 @@
         {
           "text": "Yêu cầu nhập tịch — hiểu đúng để lập kế hoạch: Thứ nhất, 7 năm cư trú thực tế nghĩa là bạn phải thực sự sống tại Hy Lạp ",
           "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Chiến lược kết hợp tối ưu: Hy Lạp Golden Visa (EU Schengen + BĐS) + Thổ Nhĩ Kỳ CBI (quốc tịch thứ 2 nhanh trong 3–6 thán",
+          "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 200,
-      "en_array_size": 200,
+      "vi_array_size": 316,
+      "en_array_size": 316,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },

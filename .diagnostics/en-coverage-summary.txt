@@ -16,18 +16,18 @@
     [33m•[0m NHR 2.0 vs NHR 1.0: Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 th
       [90mreason: text_drift_vs_notion[0m
 
-[1mgreece[0m  [31m 64.6%[0m (82 translated / 45 gap / 0 skip of 127 VN strings)
-  [90mVI_STRINGS=200  EN_STRINGS=200  data-attr pairs=6  Notion EN fields=30[0m
+[1mgreece[0m  [33m 74.0%[0m (94 translated / 33 gap / 0 skip of 127 VN strings)
+  [90mVI_STRINGS=316  EN_STRINGS=316  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →
       [90mreason: text_drift_vs_notion[0m
-    [31m•[0m 2013 (cải cách 2024)
-      [90mreason: no_en_available[0m
     [33m•[0m Thay đổi quan trọng — Luật 5100/2024 (hiệu lực 09/2024): Ngưỡng cũ €250K cho BĐS nhà ở thông thường đã hết hiệu lực hoàn
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Nhận định NAC — Đường €250K: Đây là lựa chọn chiến lược nhất — cho phép sở hữu BĐS ngay tại Athens với ngưỡng thấp nhất 
+      [90mreason: text_drift_vs_notion[0m
+    [33m•[0m Cải thiện xử lý 2025–2026: Hy Lạp đã đầu tư mạnh vào hệ thống Digital Residency Portal từ 2025, giảm thời gian xử lý từ 
       [90mreason: text_drift_vs_notion[0m
 
 [1mcyprus[0m  [31m 57.4%[0m (74 translated / 55 gap / 0 skip of 129 VN strings)
@@ -171,6 +171,6 @@
       [90mreason: no_en_available[0m
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  avg 51.9%  ·  [32m0 ≥95%[0m  ·  [33m3 70-94%[0m  ·  [31m9 <70%[0m
+[1mSummary:[0m  avg 52.7%  ·  [32m0 ≥95%[0m  ·  [33m4 70-94%[0m  ·  [31m8 <70%[0m
 
   → JSON report: .diagnostics/en-coverage.json
