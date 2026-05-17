@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-05-17T15:45:38.104393+00:00",
-  "source": "local",
-  "pass_count": 2,
-  "total": 2,
+  "generated_at": "2026-05-17T11:14:43.411809+00:00",
+  "source": "live",
+  "pass_count": 1,
+  "total": 1,
   "reports": [
     {
       "alias": "portugal",
@@ -71,10 +71,10 @@
             "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 4,
+            "translated": 3,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -146,155 +146,6 @@
           "radarChart",
           "timelineChart",
           "matrixChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
-      }
-    },
-    {
-      "alias": "greece",
-      "all_pass": true,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 27,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 7,
-            "fixable_gap": 0,
-            "acceptable_gap": 11,
-            "gap": 11,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 20,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 3,
-        "pdp_count": 3,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
         ],
         "issues": []
       },
