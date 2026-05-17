@@ -1,11 +1,586 @@
 {
-  "generated_at": "2026-05-17T10:22:22.336595+00:00",
+  "generated_at": "2026-05-17T10:31:56.169483+00:00",
   "source": "local",
-  "pass_count": 0,
-  "total": 1,
+  "pass_count": 4,
+  "total": 12,
   "reports": [
     {
       "alias": "portugal",
+      "all_pass": true,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 26,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 23,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 16,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 13,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "citizenship": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 19,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 3,
+            "fixable_gap": 1,
+            "acceptable_gap": 0,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 75.0
+          }
+        },
+        "low_sections": [],
+        "notion_gaps": [
+          {
+            "section": "nac",
+            "text": "Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa Bồ Đào Nha, với mạng lưới luật sư, tư vấ"
+          }
+        ]
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 1,
+        "pdp_count": 1,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "matrixChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "greece",
+      "all_pass": true,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 26,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 24,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 17,
+            "gap": 17,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 10,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "citizenship": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 21,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 4,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 3,
+        "pdp_count": 3,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "cyprus",
+      "all_pass": false,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {
+          "hero": {
+            "translated": 4,
+            "fixable_gap": 0,
+            "acceptable_gap": 6,
+            "gap": 6,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 27,
+            "gap": 27,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 21,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 16,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 10,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "citizenship": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 23,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": false,
+        "total_article_ctas": 4,
+        "pdp_count": 3,
+        "bare_homepage_count": 1,
+        "issues": [
+          "1 article CTA(s) point to blog homepage instead of a specific PDP"
+        ]
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "turkey",
+      "all_pass": true,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 22,
+            "fixable_gap": 0,
+            "acceptable_gap": 6,
+            "gap": 6,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 23,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 17,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 10,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 18,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "citizenship": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 19,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 4,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": true,
+        "has_translator": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 1,
+        "pdp_count": 1,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "citizenshipChart",
+          "compareChart",
+          "matrixChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "uae",
       "all_pass": false,
       "toggle": {
         "pass": true,
@@ -16,127 +591,407 @@
         "per_section": {
           "hero": {
             "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
             "gap": 0,
             "skip": 0,
             "coverage_pct": 100
           },
           "footer": {
             "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 24,
+            "fixable_gap": 0,
+            "acceptable_gap": 4,
+            "gap": 4,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 0,
+            "fixable_gap": 2,
+            "acceptable_gap": 23,
+            "gap": 25,
+            "skip": 0,
+            "coverage_pct": 0.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 15,
+            "gap": 15,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "family": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 10,
+            "gap": 10,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "tax": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "citizenship": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "compare": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "proscons": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 21,
+            "gap": 21,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "nac": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [
+          "investment"
+        ],
+        "notion_gaps": [
+          {
+            "section": "investment",
+            "text": "UAE Golden Visa cung cấp nhiều hình thức đủ điều kiện — bất động sản là phổ biến nhất. AED 2 triệu (~45,000) là ngưỡng t"
+          },
+          {
+            "section": "investment",
+            "text": "Nhận định NAC: Dubai Marina, Downtown Dubai, Palm Jumeirah và Dubai Hills Estate là các khu vực BĐS được nhà đầu tư nước"
+          }
+        ]
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 2,
+        "pdp_count": 2,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "uk",
+      "all_pass": false,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
             "gap": 0,
             "skip": 0,
             "coverage_pct": 100
           },
           "overview": {
             "translated": 26,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
             "gap": 1,
             "skip": 0,
-            "coverage_pct": 96.3
+            "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 21,
-            "gap": 3,
+            "translated": 22,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 87.5
+            "coverage_pct": 100.0
           },
           "listings": {
             "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
             "gap": 1,
             "skip": 0,
-            "coverage_pct": 0.0
+            "coverage_pct": 100
           },
           "process": {
-            "translated": 16,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 88.9
-          },
-          "family": {
             "translated": 13,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
             "gap": 1,
             "skip": 0,
-            "coverage_pct": 92.9
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 10,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 1,
-            "gap": 3,
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
-            "coverage_pct": 25.0
+            "coverage_pct": 100.0
           },
           "citizenship": {
-            "translated": 1,
-            "gap": 2,
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
-            "coverage_pct": 33.3
+            "coverage_pct": 100.0
           },
           "compare": {
             "translated": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 50.0
-          },
-          "proscons": {
-            "translated": 18,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 94.7
-          },
-          "nac": {
-            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
             "gap": 2,
             "skip": 0,
-            "coverage_pct": 50.0
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 22,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": false,
+        "total_article_ctas": 2,
+        "pdp_count": 1,
+        "bare_homepage_count": 1,
+        "issues": [
+          "1 article CTA(s) point to blog homepage instead of a specific PDP"
+        ]
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "malta",
+      "all_pass": false,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": false,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 23,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 15,
+            "gap": 15,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 0,
+            "fixable_gap": 1,
+            "acceptable_gap": 14,
+            "gap": 15,
+            "skip": 0,
+            "coverage_pct": 0.0
+          },
+          "family": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 11,
+            "gap": 11,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "tax": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "citizenship": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 4,
+            "gap": 4,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "compare": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "proscons": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 19,
+            "gap": 19,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "nac": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100.0
           }
         },
         "low_sections": [
-          "tax",
-          "citizenship",
-          "nac"
+          "process"
         ],
         "notion_gaps": [
           {
-            "section": "overview",
-            "text": "Bồ Đào Nha Golden Visa 2026: Hướng Dẫn Toàn Diện Sau Cải Cách",
-            "notion_en_available": true
-          },
-          {
-            "section": "listings",
-            "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm",
-            "notion_en_available": true
-          },
-          {
             "section": "process",
-            "text": "Lợi thế quan trọng: Trong khi chờ ARI Card, nhà đầu tư và gia đình có thể đăng ký visa Schengen ngắn hạn qua đại sứ quán",
-            "notion_en_available": true
-          },
-          {
-            "section": "family",
-            "text": "Ưu điểm nổi bật vs. các chương trình khác: Bồ Đào Nha là chương trình duy nhất trong Top EU bảo lãnh cả bố mẹ hai bên và",
-            "notion_en_available": true
-          },
-          {
-            "section": "tax",
-            "text": "NHR 2.0 vs NHR 1.0: Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 th",
-            "notion_en_available": true
-          },
-          {
-            "section": "citizenship",
-            "text": "Yêu cầu xin quốc tịch sau 5 năm: • Hoàn thành 5 năm cư trú hợp lệ (với 7–14 ngày/năm tại Bồ Đào Nha) • Đạt trình độ tiến",
-            "notion_en_available": true
-          },
-          {
-            "section": "citizenship",
-            "text": "Chiến lược tối ưu NAC: Hộ chiếu Bồ Đào Nha mở ra toàn bộ EU — quyền sống, làm việc và học tập ở 27 nước EU + Schengen + ",
-            "notion_en_available": true
-          },
-          {
-            "section": "proscons",
-            "text": "Rủi ro chính sách: Bồ Đào Nha đã cải cách chương trình 3 lần từ 2012. Mặc dù khó có thể bãi bỏ hoàn toàn, nhưng tiếp tục",
-            "notion_en_available": true
-          },
-          {
-            "section": "nac",
-            "text": "Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa Bồ Đào Nha, với mạng lưới luật sư, tư vấ",
-            "notion_en_available": true
+            "text": "MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi"
           }
         ]
       },
@@ -155,25 +1010,796 @@
       },
       "article_urls": {
         "pass": false,
-        "total_article_ctas": 1,
-        "pdp_count": 0,
+        "total_article_ctas": 3,
+        "pdp_count": 2,
         "bare_homepage_count": 1,
         "issues": [
           "1 article CTA(s) point to blog homepage instead of a specific PDP"
         ]
       },
       "chart_rendering": {
-        "pass": false,
+        "pass": true,
         "has_charts": true,
-        "canvases": {
-          "radarChart": true,
-          "citizenshipChart": false,
-          "compareChart": false,
-          "matrixChart": true
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "stkitts",
+      "all_pass": false,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": false,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 23,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 20,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 11,
+            "fixable_gap": 0,
+            "acceptable_gap": 6,
+            "gap": 6,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 6,
+            "fixable_gap": 0,
+            "acceptable_gap": 4,
+            "gap": 4,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 0,
+            "fixable_gap": 1,
+            "acceptable_gap": 2,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 0.0
+          },
+          "citizenship": {
+            "translated": 1,
+            "fixable_gap": 1,
+            "acceptable_gap": 1,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 50.0
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 10,
+            "fixable_gap": 0,
+            "acceptable_gap": 12,
+            "gap": 12,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
         },
-        "issues": [
-          "Missing chart canvases: citizenshipChart, compareChart"
+        "low_sections": [
+          "tax",
+          "citizenship"
+        ],
+        "notion_gaps": [
+          {
+            "section": "tax",
+            "text": "St Kitts & Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lã"
+          },
+          {
+            "section": "citizenship",
+            "text": "Khác với các chương trình RBI (cư trú đầu tư), St Kitts & Nevis CBI cấp quốc tịch trực tiếp — không qua giai đoạn cư trú"
+          }
         ]
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 3,
+        "pdp_count": 3,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "thailand",
+      "all_pass": false,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": false,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 25,
+            "fixable_gap": 1,
+            "acceptable_gap": 2,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 96.2
+          },
+          "investment": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 15,
+            "gap": 15,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 5,
+            "fixable_gap": 0,
+            "acceptable_gap": 9,
+            "gap": 9,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 1,
+            "fixable_gap": 1,
+            "acceptable_gap": 8,
+            "gap": 9,
+            "skip": 0,
+            "coverage_pct": 50.0
+          },
+          "tax": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "citizenship": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 3,
+            "fixable_gap": 0,
+            "acceptable_gap": 17,
+            "gap": 17,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [
+          "family"
+        ],
+        "notion_gaps": [
+          {
+            "section": "overview",
+            "text": "Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương trình cư trú dài hạn 10 năm (5+5) dành "
+          },
+          {
+            "section": "family",
+            "text": "LTR Visa cho phép bảo lãnh vợ/chồng và tối đa 4 con dưới 20 tuổi. Phạm vi hẹp hơn Hy Lạp (bảo lãnh bố mẹ) nhưng đủ cho g"
+          }
+        ]
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": false,
+        "total_article_ctas": 2,
+        "pdp_count": 1,
+        "bare_homepage_count": 1,
+        "issues": [
+          "1 article CTA(s) point to blog homepage instead of a specific PDP"
+        ]
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "newzealand",
+      "all_pass": false,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 23,
+            "fixable_gap": 1,
+            "acceptable_gap": 1,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 95.8
+          },
+          "investment": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 19,
+            "gap": 19,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 4,
+            "fixable_gap": 0,
+            "acceptable_gap": 10,
+            "gap": 10,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 8,
+            "gap": 8,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "citizenship": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "compare": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "proscons": {
+            "translated": 3,
+            "fixable_gap": 1,
+            "acceptable_gap": 18,
+            "gap": 19,
+            "skip": 0,
+            "coverage_pct": 75.0
+          },
+          "nac": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [],
+        "notion_gaps": [
+          {
+            "section": "overview",
+            "text": "New Zealand Active Investor Plus Visa — ra mắt năm 2022, cải cách lớn tháng 4/2025 — là chương trình cư trú đầu tư cho n"
+          },
+          {
+            "section": "proscons",
+            "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc NZ Active Investor Plus Visa trong năm 2026."
+          }
+        ]
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": false,
+        "total_article_ctas": 2,
+        "pdp_count": 1,
+        "bare_homepage_count": 1,
+        "issues": [
+          "1 article CTA(s) point to blog homepage instead of a specific PDP"
+        ]
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "panama",
+      "all_pass": true,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 20,
+            "fixable_gap": 0,
+            "acceptable_gap": 6,
+            "gap": 6,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "investment": {
+            "translated": 22,
+            "fixable_gap": 0,
+            "acceptable_gap": 5,
+            "gap": 5,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 4,
+            "fixable_gap": 0,
+            "acceptable_gap": 10,
+            "gap": 10,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "family": {
+            "translated": 4,
+            "fixable_gap": 0,
+            "acceptable_gap": 6,
+            "gap": 6,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "citizenship": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 18,
+            "fixable_gap": 0,
+            "acceptable_gap": 4,
+            "gap": 4,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "nac": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
+      }
+    },
+    {
+      "alias": "malaysia",
+      "all_pass": false,
+      "toggle": {
+        "pass": true,
+        "issues": []
+      },
+      "sections": {
+        "pass": false,
+        "per_section": {
+          "hero": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "footer": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "overview": {
+            "translated": 25,
+            "fixable_gap": 1,
+            "acceptable_gap": 1,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 96.2
+          },
+          "investment": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 26,
+            "gap": 26,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "process": {
+            "translated": 4,
+            "fixable_gap": 1,
+            "acceptable_gap": 9,
+            "gap": 10,
+            "skip": 0,
+            "coverage_pct": 80.0
+          },
+          "family": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 9,
+            "gap": 9,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "citizenship": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 100
+          },
+          "compare": {
+            "translated": 0,
+            "fixable_gap": 1,
+            "acceptable_gap": 2,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 0.0
+          },
+          "proscons": {
+            "translated": 3,
+            "fixable_gap": 1,
+            "acceptable_gap": 18,
+            "gap": 19,
+            "skip": 0,
+            "coverage_pct": 75.0
+          },
+          "nac": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
+            "skip": 0,
+            "coverage_pct": 100.0
+          }
+        },
+        "low_sections": [
+          "compare"
+        ],
+        "notion_gaps": [
+          {
+            "section": "overview",
+            "text": "Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người"
+          },
+          {
+            "section": "process",
+            "text": "Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất "
+          },
+          {
+            "section": "compare",
+            "text": "Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →"
+          },
+          {
+            "section": "proscons",
+            "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Malaysia MM2H trong năm 2026."
+          }
+        ]
+      },
+      "overview_ok": true,
+      "charts": {
+        "pass": true,
+        "has_charts": true,
+        "has_buildcharts": false,
+        "has_translator": true,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": true,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": false,
+        "total_article_ctas": 2,
+        "pdp_count": 1,
+        "bare_homepage_count": 1,
+        "issues": [
+          "1 article CTA(s) point to blog homepage instead of a specific PDP"
+        ]
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": true,
+        "canvases": [
+          "radarChart",
+          "timelineChart",
+          "taxChart",
+          "compareChart",
+          "strengthChart"
+        ],
+        "issues": []
       }
     }
   ]
