@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-05-17T15:54:08.104710+00:00",
-  "source": "local",
+  "generated_at": "2026-05-17T11:14:43.411809+00:00",
+  "source": "live",
   "pass_count": 1,
   "total": 1,
   "reports": [
     {
-      "alias": "cyprus",
+      "alias": "portugal",
       "all_pass": true,
       "toggle": {
         "pass": true,
@@ -15,12 +15,12 @@
         "pass": true,
         "per_section": {
           "hero": {
-            "translated": 3,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 7,
-            "gap": 7,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "footer": {
             "translated": 0,
@@ -31,15 +31,15 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 22,
+            "translated": 27,
             "fixable_gap": 0,
-            "acceptable_gap": 7,
-            "gap": 7,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 22,
+            "translated": 23,
             "fixable_gap": 0,
             "acceptable_gap": 1,
             "gap": 1,
@@ -57,21 +57,21 @@
           "process": {
             "translated": 14,
             "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
+            "acceptable_gap": 4,
+            "gap": 4,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "family": {
-            "translated": 10,
+            "translated": 13,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 2,
+            "translated": 3,
             "fixable_gap": 0,
             "acceptable_gap": 1,
             "gap": 1,
@@ -87,7 +87,7 @@
             "coverage_pct": 100.0
           },
           "compare": {
-            "translated": 3,
+            "translated": 2,
             "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
@@ -95,7 +95,7 @@
             "coverage_pct": 100.0
           },
           "proscons": {
-            "translated": 23,
+            "translated": 19,
             "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
@@ -103,16 +103,21 @@
             "coverage_pct": 100.0
           },
           "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
+            "translated": 3,
+            "fixable_gap": 1,
             "acceptable_gap": 0,
-            "gap": 0,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 75.0
           }
         },
         "low_sections": [],
-        "notion_gaps": []
+        "notion_gaps": [
+          {
+            "section": "nac",
+            "text": "Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa Bồ Đào Nha, với mạng lưới luật sư, tư vấ"
+          }
+        ]
       },
       "overview_ok": true,
       "charts": {
@@ -129,8 +134,8 @@
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 4,
-        "pdp_count": 4,
+        "total_article_ctas": 1,
+        "pdp_count": 1,
         "bare_homepage_count": 0,
         "issues": []
       },
@@ -139,9 +144,8 @@
         "has_charts": true,
         "canvases": [
           "radarChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
+          "timelineChart",
+          "matrixChart"
         ],
         "issues": []
       },
