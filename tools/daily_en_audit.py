@@ -403,6 +403,34 @@ def fetch_live(alias: str) -> Path:
     return tmp
 
 
+def check_en_render(alias: str, html: str) -> dict:
+    """Check #8 — simulate setLang('en') against the page and report
+    any visible Vietnamese text that remains. This is the truth test
+    for whether the EN toggle actually displays English to users.
+    """
+    try:
+        from simulate_en_render import apply_setlang_en, find_vn_remnants
+    except ImportError:
+        return {'pass': False, 'issues': ['simulate_en_render import failed'],
+                'remnant_count': 0, 'samples': []}
+    try:
+        after = apply_setlang_en(html)
+        remnants = find_vn_remnants(after)
+    except Exception as e:
+        return {'pass': False, 'issues': [f'simulator error: {e}'],
+                'remnant_count': 0, 'samples': []}
+
+    if not remnants:
+        return {'pass': True, 'issues': [], 'remnant_count': 0, 'samples': []}
+
+    return {
+        'pass': False,
+        'issues': [f"{len(remnants)} Vietnamese remnants after EN click"],
+        'remnant_count': len(remnants),
+        'samples': [{'text': r['text'][:120]} for r in remnants[:5]],
+    }
+
+
 def audit_brochure(alias: str, html_path: Path, payload_path: Path | None) -> dict:
     html = html_path.read_text(encoding='utf-8')
     payload = json.loads(payload_path.read_text()) if (payload_path and payload_path.exists()) else None
@@ -413,6 +441,7 @@ def audit_brochure(alias: str, html_path: Path, payload_path: Path | None) -> di
     globe_sizing = check_globe_sizing(html)
     article_urls = check_article_urls(html)
     chart_rendering = check_chart_rendering(html)
+    en_render = check_en_render(alias, html)
 
     # §01 specifically — even stricter than general section coverage
     overview_ok = sections['per_section'].get('overview', {}).get('coverage_pct', 0) >= 70
@@ -421,6 +450,7 @@ def audit_brochure(alias: str, html_path: Path, payload_path: Path | None) -> di
         toggle['pass'] and sections['pass'] and charts['pass']
         and globe_sizing['pass'] and article_urls['pass']
         and chart_rendering['pass'] and overview_ok
+        and en_render['pass']
     )
     return {
         'alias': alias,
@@ -432,6 +462,7 @@ def audit_brochure(alias: str, html_path: Path, payload_path: Path | None) -> di
         'globe_sizing': globe_sizing,
         'article_urls': article_urls,
         'chart_rendering': chart_rendering,
+        'en_render': en_render,
     }
 
 
@@ -466,6 +497,15 @@ def print_report(rpt: dict):
     if cr.get('has_charts'):
         print(f"  7. Chart render:  {icon(cr['pass'])} "
               + (f"{RED}{'; '.join(cr['issues'])}{RESET}" if cr['issues'] else f"{GRAY}all canvases + mobile aspectRatio{RESET}"))
+    # #8 EN render — does clicking EN actually show English?
+    er = rpt.get('en_render', {})
+    if er:
+        msg = (f"{RED}{er['remnant_count']} VN remnants{RESET}"
+               if not er.get('pass') else f"{GRAY}no VN remnants on EN click{RESET}")
+        print(f"  8. EN displays:   {icon(er.get('pass'))} {msg}")
+        if er.get('samples'):
+            for s in er['samples'][:3]:
+                print(f"     {GRAY}· {s['text'][:80]}{RESET}")
     # Section gaps detail
     sect = rpt['sections']
     if sect['low_sections']:

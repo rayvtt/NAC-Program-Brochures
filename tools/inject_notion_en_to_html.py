@@ -185,49 +185,65 @@ VI_RE = re.compile(r'(const\s+VI_STRINGS\s*=\s*)(\[[\s\S]+?\])(\s*;)')
 EN_RE = re.compile(r'(const\s+EN_STRINGS\s*=\s*)(\[[\s\S]+?\])(\s*;)')
 
 
-def parse_array_literal(s: str) -> list[str]:
-    """Parse a JS array literal of strings (single or double quoted)."""
-    # Match each quoted string. Handles escaped quotes via simple state machine.
-    out = []
-    i = 0
-    n = len(s)
-    while i < n:
-        c = s[i]
-        if c in ('"', "'"):
-            quote = c
-            i += 1
-            start = i
-            buf = []
-            while i < n:
-                if s[i] == '\\' and i + 1 < n:
-                    buf.append(s[i:i+2])
-                    i += 2
-                    continue
-                if s[i] == quote:
-                    break
-                buf.append(s[i])
-                i += 1
-            text = ''.join(buf)
-            # Reverse JS escapes for matching
-            text = text.replace('\\"', '"').replace("\\'", "'").replace('\\\\', '\\')
-            out.append(text)
-        i += 1
-    return out
+# Re-use the coverage tool's parser so both tools agree byte-for-byte on
+# what each JS array entry decodes to. Critical: it also decodes
+# `\uXXXX` escapes, which the previous local copy of this function did
+# not — entries like `<a href="...>` were left half-decoded and
+# round-tripped back into the HTML as `\\u0022`, breaking the live JS.
+from check_en_translation_coverage import _parse_array_literal as parse_array_literal  # noqa: E402
 
 
-def js_escape_string(s: str, quote: str = '"') -> str:
-    """Escape a string for embedding in a JS literal with the given quote.
+def to_innerhtml_form(s: str) -> str:
+    """Encode raw text the way the browser stores it in `innerHTML`.
 
-    Embedded " is encoded as \\u0022 — survives WordPress KSES intact
-    (which unescapes \\\" → \") and decodes to literal \" at JS parse
-    time, so it matches the DOM's straight quotes for string-replace.
-    Embedded ' similarly encoded as \\u0027 when outer quote is single.
+    `setLang('en')` is `el.innerHTML.split(VI[i]).join(EN[i])`. The browser
+    always serializes `&` as `&amp;`, `<` as `&lt;`, `>` as `&gt;` when
+    you read `innerHTML`. So a VI entry containing a raw `&` will never
+    match the DOM — we must store the entity form instead.
+
+    Only encode bare `&`/`<`/`>` — don't double-encode an already-encoded
+    `&amp;` or break embedded HTML tags. The simplest rule: only encode
+    `&` that isn't already the start of an existing entity, then leave
+    `<` / `>` alone (they're legitimate HTML markup in many entries).
     """
-    s = s.replace('\\', '\\\\')
-    if quote == '"':
-        s = s.replace('"', '\\u0022')
-    else:
-        s = s.replace("'", '\\u0027')
+    return re.sub(r'&(?![a-zA-Z0-9#]+;)', '&amp;', s)
+
+
+def js_escape_string(s: str, quote: str | None = None) -> str:
+    """Embed text in a JS string literal that survives WordPress KSES.
+
+    KSES (the WP HTML sanitiser applied to ACF `raw_html_code`) strips
+    bare backslashes inside `<script>` content — `\\"` becomes `"`,
+    `\\u0022` becomes `u0022`. That breaks any JS escape sequence.
+
+    The safe shape: pick a quote character the content doesn't contain,
+    so no escape is needed at all:
+      content has `"` only → use `'…'`
+      content has `'` only → use `"…"`
+      content has neither → use `"…"` (default)
+      content has both    → use `"…"` and replace `'` with `’`
+                            (typographically correct; matches DOM if
+                            the source HTML also uses the curly quote).
+    """
+    s = to_innerhtml_form(s)
+    has_dq = '"' in s
+    has_sq = "'" in s
+    if quote is None:
+        if has_dq and not has_sq:
+            quote = "'"
+        elif has_sq and not has_dq:
+            quote = '"'
+        elif has_sq and has_dq:
+            # Both present — switch inner `'` to typographic right-single-quote
+            # so we can safely wrap in double quotes. Brochure DOM already uses
+            # `’` widely for prose; this is a non-breaking substitution.
+            s = s.replace("'", '’')
+            quote = '"'
+        else:
+            quote = '"'
+    # Escape only `\` and the chosen quote character (both rare given the
+    # selection above; this is just defensive).
+    s = s.replace('\\', '\\\\').replace(quote, '\\' + quote)
     return quote + s + quote
 
 
@@ -285,17 +301,20 @@ def format_array(items: list[str], indent: str = '  ') -> str:
     return '\n'.join(lines)
 
 
-def process_brochure(alias: str, html_path: Path, payload_path: Path, dry_run: bool = False) -> dict:
-    out = {'pairs_extracted': 0, 'added': 0, 'updated': 0}
+def process_brochure(alias: str, html_path: Path, payload_path: Path, dry_run: bool = False,
+                     reformat: bool = False) -> dict:
+    out = {'pairs_extracted': 0, 'added': 0, 'updated': 0, 'reformatted': False}
     if not html_path.exists():
         print(f'  ✗ {alias}: HTML missing ({html_path.name})')
         return out
-    if not payload_path.exists():
+    if not payload_path.exists() and not reformat:
         print(f'  ✗ {alias}: payload missing ({payload_path.name})')
         return out
 
-    payload = json.loads(payload_path.read_text(encoding='utf-8'))
-    pairs = extract_pairs(payload)
+    pairs = []
+    if payload_path.exists():
+        payload = json.loads(payload_path.read_text(encoding='utf-8'))
+        pairs = extract_pairs(payload)
     out['pairs_extracted'] = len(pairs)
 
     html = html_path.read_text(encoding='utf-8')
@@ -313,13 +332,22 @@ def process_brochure(alias: str, html_path: Path, payload_path: Path, dry_run: b
     out['added'] = added
     out['updated'] = updated
 
-    if added == 0 and updated == 0:
+    # Always format through the current js_escape_string. If the
+    # formatted output differs from what's in the file (e.g. an old
+    # `"` form vs. the current single-quoted form), the rewrite
+    # below propagates the encoding fix to the brochure HTML.
+    vi_block = format_array(new_vi)
+    en_block = format_array(new_en)
+
+    needs_reformat = (vi_block != vi_m.group(2) or en_block != en_m.group(2))
+
+    if added == 0 and updated == 0 and not needs_reformat:
         print(f'  · {alias}: {len(pairs)} pairs from Notion · already in sync')
         return out
 
-    # Format updated arrays
-    vi_block = format_array(new_vi)
-    en_block = format_array(new_en)
+    if needs_reformat and added == 0 and updated == 0:
+        out['reformatted'] = True
+        print(f'  ↻ {alias}: reformatting arrays (encoding fix only)')
 
     # Rebuild HTML with replaced arrays (do EN first so positions don't shift)
     html_new = html
@@ -329,7 +357,8 @@ def process_brochure(alias: str, html_path: Path, payload_path: Path, dry_run: b
     if vi_m2:
         html_new = html_new[:vi_m2.start(2)] + vi_block + html_new[vi_m2.end(2):]
 
-    print(f'  ✓ {alias}: +{added} new, ~{updated} updated (total VI items: {len(new_vi)})')
+    if added or updated:
+        print(f'  ✓ {alias}: +{added} new, ~{updated} updated (total VI items: {len(new_vi)})')
 
     if not dry_run:
         html_path.write_text(html_new, encoding='utf-8')
@@ -347,7 +376,7 @@ def main() -> int:
     print(f"\nInjecting Notion EN content into brochure VI_STRINGS / EN_STRINGS arrays")
     print(f"{'─' * 70}")
 
-    totals = {'added': 0, 'updated': 0, 'pairs_extracted': 0}
+    totals = {'added': 0, 'updated': 0, 'pairs_extracted': 0, 'reformatted': 0}
     for alias in aliases:
         if alias not in ALIAS_TO_FILENAME:
             print(f'  ? unknown alias: {alias}')
@@ -357,7 +386,8 @@ def main() -> int:
         payload_path = DATA_DIR / f'{alias}_payload.json'
         c = process_brochure(alias, html_path, payload_path, dry_run=dry_run)
         for k, v in c.items():
-            totals[k] += v
+            if k in totals:
+                totals[k] += int(v) if isinstance(v, bool) else v
 
     mode = 'dry-run' if dry_run else 'applied'
     print(f"\n{'─' * 70}")
