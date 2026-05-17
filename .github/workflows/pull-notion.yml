@@ -59,19 +59,32 @@ jobs:
         if: inputs.dry_run == 'true'
         run: python tools/inject_notion_en_to_html.py --dry-run
 
-      - name: Commit refreshed payloads + HTML
+      - name: Verify EN translation coverage
+        run: |
+          # Run the coverage check, capture summary into .diagnostics/
+          mkdir -p .diagnostics
+          python tools/check_en_translation_coverage.py | tee .diagnostics/en-coverage-summary.txt
+          # Non-zero exit means some brochure < 70% — log it but don't fail the run
+          # (we want the commit to land even if coverage is partial)
+
+      - name: Commit refreshed payloads + HTML + coverage report
         if: inputs.dry_run != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*_payload.json "Brochures html/"*.html || true
+          git add data/*_payload.json "Brochures html/"*.html .diagnostics/ || true
           if git diff --cached --quiet; then
             echo "No changes — Notion content already in sync."
           else
-            git commit -m "Auto-sync brochure content from Notion
+            # Pull current coverage stats for the commit message
+            AVG=$(python -c "import json; r=json.load(open('.diagnostics/en-coverage.json'))['reports']; print(f\"{sum(b['coverage_pct'] for b in r)/len(r):.1f}%\")")
+            git commit -m "Auto-sync brochure content from Notion (EN coverage: $AVG)
 
             Pulled fresh payloads + injected EN content into legacy
-            VI_STRINGS / EN_STRINGS arrays across all 12 brochures.
+            VI_STRINGS / EN_STRINGS arrays. Coverage report written
+            to .diagnostics/en-coverage.json — see per-brochure
+            translated/gap/skip counts.
+
             The wp-sync workflow will deploy these HTML changes to
             WordPress on next push."
             git push origin main

@@ -1,0 +1,665 @@
+{
+  "generated_at": "2026-05-17T07:59:17.635565Z",
+  "reports": [
+    {
+      "alias": "portugal",
+      "html_file": "portugal-gv.html",
+      "visible_vn_strings": 129,
+      "translated": 69,
+      "gap": 60,
+      "skip": 0,
+      "coverage_pct": 53.5,
+      "gap_samples": [
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Cải cách 2023 — Quan trọng: Kể từ 07/10/2023, đầu tư BĐS nhà ở không còn đủ điều kiện cho Golden Visa. Quỹ đầu tư đã đượ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Nhận định NAC: Quỹ €250K là lộ trình tối ưu cho đa số nhà đầu tư Việt — đơn giản, không cần quản lý tài sản trực tiếp, v",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Lợi thế quan trọng: Trong khi chờ ARI Card, nhà đầu tư và gia đình có thể đăng ký visa Schengen ngắn hạn qua đại sứ quán",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Ưu điểm nổi bật vs. các chương trình khác: Bồ Đào Nha là chương trình duy nhất trong Top EU bảo lãnh cả bố mẹ hai bên và",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "NHR 2.0 vs NHR 1.0: Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 th",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Yêu cầu xin quốc tịch sau 5 năm: • Hoàn thành 5 năm cư trú hợp lệ (với 7–14 ngày/năm tại Bồ Đào Nha) • Đạt trình độ tiến",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Chiến lược tối ưu NAC: Hộ chiếu Bồ Đào Nha mở ra toàn bộ EU — quyền sống, làm việc và học tập ở 27 nước EU + Schengen + ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Rủi ro chính sách: Bồ Đào Nha đã cải cách chương trình 3 lần từ 2012. Mặc dù khó có thể bãi bỏ hoàn toàn, nhưng tiếp tục",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "NAC Score 88/100 — Xem đầy đủ tại NAC Residence Index →",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 152,
+      "en_array_size": 152,
+      "data_attr_pairs": 10,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "greece",
+      "html_file": "greece-rbi_1_2.html",
+      "visible_vn_strings": 127,
+      "translated": 30,
+      "gap": 97,
+      "skip": 0,
+      "coverage_pct": 23.6,
+      "gap_samples": [
+        {
+          "text": "Hy Lạp Golden Visa — ra mắt năm 2013, cải cách lớn năm 2024 — là chương trình cư trú đầu tư cuối cùng tại EU cho phép mu",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Từ tháng 9/2024, Hy Lạp áp dụng mô hình 3 tầng đầu tư theo vùng địa lý và loại BĐS. Đường €250K vẫn tồn tại cho BĐS chuy",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Quy trình Hy Lạp Golden Visa qua BĐS thường mất 3–6 tháng. Hầu hết các bước có thể thực hiện từ xa qua Giấy Ủy Quyền (Po",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Điểm mạnh nổi bật nhất của Hy Lạp Golden Visa: bảo lãnh bố mẹ của cả hai bên (nhà đầu tư và vợ/chồng) mà không cần tăng ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Hy Lạp có hệ thống thuế lũy tiến với mức cao nhất 44%, nhưng cung cấp nhiều chế độ ưu đãi đặc biệt cho nhà đầu tư nước n",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Hy Lạp cho phép nhập tịch qua cư trú thực tế sau 7 năm — dẫn đến hộ chiếu EU với 186 quốc gia miễn visa (top 8 thế giới)",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Hy Lạp Golden Visa trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 99,
+      "en_array_size": 99,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "cyprus",
+      "html_file": "cyprus-rbi_3_3.html",
+      "visible_vn_strings": 129,
+      "translated": 5,
+      "gap": 124,
+      "skip": 0,
+      "coverage_pct": 3.9,
+      "gap_samples": [
+        {
+          "text": "Cyprus Permanent Residency Programme (CPRP) — còn gọi là \"Category F\" hay \"Fast Track\" — là chương trình cư trú vĩnh viễ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Cyprus PR cung cấp 3 hình thức đầu tư chính để đủ điều kiện. Bất động sản là lựa chọn phổ biến nhất và trực tiếp nhất — ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Cyprus PR là quy trình nhanh nhất trong nhóm EU PR — từ ký hợp đồng BĐS đến cầm thẻ cư trú vĩnh viễn chỉ mất 2–3 tháng. ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Cyprus PR bảo lãnh gia đình hạt nhân mở rộng — vợ/chồng và con cái. Kể từ cải cách 5/2023, bố mẹ hai phía không còn được",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Cyprus là một trong những hệ thống thuế ưu việt nhất EU — đặc biệt với chế độ Non-Dom (Non-Domiciled) cho phép miễn hoàn",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Lộ trình từ Thẻ PR đến Quốc Tịch Cyprus — một trong những hộ chiếu EU mạnh nhất với quyền sống, làm việc tại 27 quốc gia",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của Cyprus PR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Cyprus PR trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu từ đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 34,
+      "en_array_size": 34,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "turkey",
+      "html_file": "turkey-cbi_8.html",
+      "visible_vn_strings": 140,
+      "translated": 130,
+      "gap": 10,
+      "skip": 0,
+      "coverage_pct": 92.9,
+      "gap_samples": [
+        {
+          "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Gửi tới email nào?",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đã nhận yêu cầu của bạn",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "OK, để sau cũng được",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "/* ============================================================ NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v2 Country: Tu",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "02 Các mức đầu tư",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "05 Thuế & tài chính",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "08 Ưu & nhược điểm",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "09 Nhận định của NAC",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 211,
+      "en_array_size": 213,
+      "data_attr_pairs": 243,
+      "notion_en_fields": 7
+    },
+    {
+      "alias": "uae",
+      "html_file": "uae-rbi_1_7.html",
+      "visible_vn_strings": 127,
+      "translated": 30,
+      "gap": 97,
+      "skip": 0,
+      "coverage_pct": 23.6,
+      "gap_samples": [
+        {
+          "text": "UAE Golden Visa — ra mắt năm 2019, mở rộng năm 2022 — là chương trình cư trú dài hạn 10 năm của Các Tiểu Vương Quốc Ả Rậ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UAE Golden Visa cung cấp nhiều hình thức đủ điều kiện — bất động sản là phổ biến nhất. AED 2 triệu (~45,000) là ngưỡng t",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Dubai và sẵn sàng giao dịch. Bạn không cần săn tìm — ch",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Quy trình UAE Golden Visa qua BĐS được thiết kế để có thể hoàn thành trong 1–3 tháng. Hầu hết các bước có thể thực hiện ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UAE Golden Visa có phạm vi bảo lãnh gia đình linh hoạt — bao gồm vợ/chồng và các con phụ thuộc. Gói Nhà Đầu Tư Chiến Lượ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UAE là một trong những môi trường thuế thân thiện nhất thế giới — không thuế thu nhập cá nhân, không thuế lãi vốn, không",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UAE không có chương trình nhập tịch thông thường qua đầu tư — quốc tịch UAE được cấp theo quyết định của Chính phủ cho c",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của UAE Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc UAE Golden Visa trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 99,
+      "en_array_size": 99,
+      "data_attr_pairs": 10,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "uk",
+      "html_file": "uk-rbi_1 (2).html",
+      "visible_vn_strings": 125,
+      "translated": 30,
+      "gap": 95,
+      "skip": 0,
+      "coverage_pct": 24.0,
+      "gap_samples": [
+        {
+          "text": "UK Innovator Founder Visa — thay thế Innovator Visa và Start-up Visa từ tháng 4/2023 — là chương trình cư trú kinh doanh",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UK Innovator Founder Visa không có ngưỡng đầu tư cố định bắt buộc — thay vào đó, nhà đầu tư cần chứng minh đủ vốn để tri",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Anh Quốc và sẵn sàng giao dịch. Bạn không cần săn tìm —",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Quy trình Innovator Founder Visa yêu cầu phê duyệt từ tổ chức bảo trợ được Bộ Nội Vụ UK cấp phép trước khi nộp hồ sơ vis",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Innovator Founder Visa cho phép bảo lãnh vợ/chồng và con dưới 18 tuổi. Người phụ thuộc được quyền làm việc và học tập tạ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UK có hệ thống thuế phức tạp nhưng minh bạch — thuế thu nhập lũy tiến đến 45%, thuế lãi vốn BĐS 18–24%, và SDLT (Stamp D",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UK Innovator Founder Visa cung cấp một trong những lộ trình quốc tịch nhanh nhất hệ thống UK: ILR sau 3 năm, quốc tịch A",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của UK Innovator Founder Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc UK Innovator Founder Visa trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 100,
+      "en_array_size": 100,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "malta",
+      "html_file": "malta-rbi_1_3.html",
+      "visible_vn_strings": 116,
+      "translated": 28,
+      "gap": 88,
+      "skip": 0,
+      "coverage_pct": 24.1,
+      "gap_samples": [
+        {
+          "text": "Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất ch",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "MPRP yêu cầu đồng thời 4 nghĩa vụ tài chính. Tổng vốn phụ thuộc vào lộ trình BĐS bạn chọn — Thuê (linh hoạt, vốn thấp) h",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malta và sẵn sàng giao dịch. Bạn không cần săn tìm — ch",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Malta MPRP là chương trình EU duy nhất cho phép bao gồm tới 4 thế hệ trong cùng một hồ sơ — đây là lợi thế cạnh tranh kh",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Malta áp dụng chế độ Non-Domiciled (Remittance Basis) — hệ thống thuế hấp dẫn nhất châu Âu cho HNWI quốc tế: thu nhập nư",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Cập nhật quan trọng: Chương trình CBI cũ của Malta (MEIN) đã đóng vào tháng 4/2025 sau phán quyết của Tòa Công Lý EU. Hi",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của Malta MPRP trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Malta MPRP trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 99,
+      "en_array_size": 99,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "stkitts",
+      "html_file": "stkitts-nevis.html",
+      "visible_vn_strings": 124,
+      "translated": 26,
+      "gap": 98,
+      "skip": 0,
+      "coverage_pct": 21.0,
+      "gap_samples": [
+        {
+          "text": "St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền Vững (SISC) — không hoàn lại nhưng nhanh",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St Kitts và sẵn sàng giao dịch. Bạn không cần săn tìm —",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Lightning Process (ALP) — 45–60 ngày với phí ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "St Kitts & Nevis có chính sách bảo lãnh gia đình rộng rãi nhất trong nhóm Caribbean CBI — bao gồm vợ/chồng, con, cha mẹ,",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "St Kitts & Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lã",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Khác với các chương trình RBI (cư trú đầu tư), St Kitts & Nevis CBI cấp quốc tịch trực tiếp — không qua giai đoạn cư trú",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "So sánh St Kitts & Nevis với các chương trình Caribbean CBI khác và một số chương trình châu Âu — theo góc nhìn của nhà ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan của NAC dành cho nhà đầu tư HNWI người Việt đang cân nhắc St Kitts & Nevis CBI trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 97,
+      "en_array_size": 97,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "thailand",
+      "html_file": "thailand-rbi_1 (2).html",
+      "visible_vn_strings": 118,
+      "translated": 30,
+      "gap": 88,
+      "skip": 0,
+      "coverage_pct": 25.4,
+      "gap_samples": [
+        {
+          "text": "Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương trình cư trú dài hạn 10 năm (5+5) dành ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Thái Lan LTR Visa có 4 diện xét duyệt — \"Wealthy Global Citizen\" (nhà đầu tư BĐS) là phổ biến nhất với nhà đầu tư Việt. ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ LTR Thái Lan và sẵn sàng giao dịch. Bạn không cần săn tìm —",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "LTR Visa được xử lý qua BOI (Board of Investment) — không qua Sở Di Trú thông thường. Toàn bộ quy trình mất khoảng 1–2 t",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "LTR Visa cho phép bảo lãnh vợ/chồng và tối đa 4 con dưới 20 tuổi. Phạm vi hẹp hơn Hy Lạp (bảo lãnh bố mẹ) nhưng đủ cho g",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Thái Lan áp dụng thuế lũy tiến 0–35% — nhưng LTR Visa mang lại ưu đãi thuế đặc biệt: chuyên gia được hưởng thuế 17% cố đ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Thái Lan không có chương trình citizenship-by-investment. Nhập tịch Thái yêu cầu cư trú liên tục nhiều năm, thông thạo t",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của Thái Lan LTR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Thái Lan LTR Visa trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 99,
+      "en_array_size": 99,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "newzealand",
+      "html_file": "newzealand-rbi_1 (3).html",
+      "visible_vn_strings": 119,
+      "translated": 28,
+      "gap": 91,
+      "skip": 0,
+      "coverage_pct": 23.5,
+      "gap_samples": [
+        {
+          "text": "New Zealand Active Investor Plus Visa — ra mắt năm 2022, cải cách lớn tháng 4/2025 — là chương trình cư trú đầu tư cho n",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Active Investor Plus Visa có 2 hạng mục đầu tư chính: Growth (tập trung vào đầu tư tăng trưởng, rủi ro cao) và Balanced ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI New Zealand và sẵn sàng giao dịch. Bạn không cần săn tì",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Quy trình Active Investor Plus Visa yêu cầu chứng minh nguồn vốn hợp pháp, kiểm tra an ninh toàn diện, và cam kết đầu tư",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Active Investor Plus Visa cho phép bảo lãnh vợ/chồng (hoặc đối tác) và con phụ thuộc đến 24 tuổi (chưa kết hôn, phụ thuộ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "NZ có hệ thống thuế đơn giản và minh bạch — thuế thu nhập lũy tiến 10.5–39%, KHÔNG thuế lãi vốn (CGT), thuế doanh nghiệp",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Nhà đầu tư có thể nộp đơn quốc tịch NZ sau 5 năm cư trú (ít nhất 1,350 ngày trong 5 năm, tối thiểu 240 ngày/năm). Quốc t",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của NZ Active Investor Plus Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc NZ Active Investor Plus Visa trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 99,
+      "en_array_size": 99,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "panama",
+      "html_file": "panama-rbi_.html",
+      "visible_vn_strings": 123,
+      "translated": 43,
+      "gap": 80,
+      "skip": 0,
+      "coverage_pct": 35.0,
+      "gap_samples": [
+        {
+          "text": "Panama cung cấp hai lộ trình cư trú đầu tư chính: Qualified Investor Visa (Golden Visa) — cư trú vĩnh viễn tức thì từ $3",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Panama cung cấp nhiều lộ trình đầu tư linh hoạt — từ BĐS $300K (Golden Visa/QIV) đến tiền gửi ngân hàng $200K (Friendly ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — c",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Qualified Investor Visa xử lý từ 30 ngày theo luật, thực tế thường mất 45–90 ngày tùy hồ sơ — vẫn là một trong những chư",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Panama cho phép bảo lãnh gia đình mở rộng — bao gồm vợ/chồng, con cái, và đặc biệt bố mẹ phụ thuộc — một lợi thế hiếm th",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Panama áp dụng hệ thống thuế lãnh thổ — chỉ đánh thuế thu nhập phát sinh tại Panama. Thu nhập từ nước ngoài (đầu tư, cổ ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Panama không có chương trình quốc tịch trực tiếp qua đầu tư — nhưng cư dân vĩnh viễn đủ điều kiện nộp đơn nhập tịch sau ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của Panama Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Panama Golden Visa trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 202,
+      "en_array_size": 203,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    },
+    {
+      "alias": "malaysia",
+      "html_file": "malaysia-mm2h.html",
+      "visible_vn_strings": 122,
+      "translated": 30,
+      "gap": 92,
+      "skip": 0,
+      "coverage_pct": 24.6,
+      "gap_samples": [
+        {
+          "text": "Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "MM2H 2026 yêu cầu hai thành phần bắt buộc: ký quỹ cố định tại ngân hàng Malaysia + mua BĐS trong vòng 12 tháng sau khi v",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malaysia và sẵn sàng giao dịch. Bạn không cần săn tìm —",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "MM2H có phạm vi người phụ thuộc rộng nhất trong khu vực — bao gồm vợ/chồng, con chưa kết hôn đến 34 tuổi, con tàn tật (k",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Malaysia áp dụng hệ thống thuế lãnh thổ — chỉ đánh thuế thu nhập phát sinh tại Malaysia. Thu nhập từ nước ngoài chuyển v",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "MM2H KHÔNG cung cấp lộ trình trực tiếp đến quốc tịch hoặc thường trú nhân (PR) Malaysia. Đây là chương trình cư trú dài ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Malaysia MM2H trong năm 2026.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 100,
+      "en_array_size": 100,
+      "data_attr_pairs": 6,
+      "notion_en_fields": 2
+    }
+  ]
+}
