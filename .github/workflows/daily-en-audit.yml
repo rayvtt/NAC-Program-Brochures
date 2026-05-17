@@ -38,6 +38,13 @@ jobs:
         with:
           python-version: '3.11'
 
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install jsdom (used by check #8 — EN-render simulator)
+        run: npm install --no-save jsdom
+
       - name: Run audit on live brochures
         id: audit
         run: |
