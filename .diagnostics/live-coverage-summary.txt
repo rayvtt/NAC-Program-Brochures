@@ -1,0 +1,19 @@
+
+[1mLive EN Translation Coverage Report[0m
+[90m──────────────────────────────────────────────────────────────────────[0m
+  [1mportugal    [0m [33m 79.8%[0m [90m(103 translated / 26 gap)[0m [90m(in sync)[0m
+  [1mgreece      [0m [31m 66.9%[0m [90m(85 translated / 42 gap)[0m [90m(in sync)[0m
+  [1mcyprus      [0m [31m 60.5%[0m [90m(78 translated / 51 gap)[0m [90m(in sync)[0m
+  [1mturkey      [0m [33m 92.1%[0m [90m(129 translated / 11 gap)[0m [90m(in sync)[0m
+  [1muae         [0m [31m 24.4%[0m [90m(31 translated / 96 gap)[0m [90m(in sync)[0m
+  [1muk          [0m [33m 77.6%[0m [90m(97 translated / 28 gap)[0m [90m(in sync)[0m
+  [1mmalta       [0m [31m 25.9%[0m [90m(30 translated / 86 gap)[0m [90m(in sync)[0m
+  [1mstkitts     [0m [31m 60.5%[0m [90m(75 translated / 49 gap)[0m [90m(in sync)[0m
+  [1mthailand    [0m [31m 37.3%[0m [90m(44 translated / 74 gap)[0m [90m(in sync)[0m
+  [1mnewzealand  [0m [31m 33.6%[0m [90m(40 translated / 79 gap)[0m [90m(in sync)[0m
+  [1mpanama      [0m [31m 61.0%[0m [90m(75 translated / 48 gap)[0m [90m(in sync)[0m
+  [1mmalaysia    [0m [31m 32.8%[0m [90m(40 translated / 82 gap)[0m [90m(in sync)[0m
+
+[90m──────────────────────────────────────────────────────────────────────[0m
+[1mSummary:[0m  avg 54.4%  ·  [32m0 ≥95%[0m  ·  [33m3 70-94%[0m  ·  [31m9 <70%[0m
+  → JSON report: .diagnostics/live-en-coverage.json
