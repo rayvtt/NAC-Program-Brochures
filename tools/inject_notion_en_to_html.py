@@ -216,14 +216,18 @@ def parse_array_literal(s: str) -> list[str]:
 
 
 def js_escape_string(s: str, quote: str = '"') -> str:
-    """Escape a string for embedding in a JS literal with the given quote."""
+    """Escape a string for embedding in a JS literal with the given quote.
+
+    Embedded " is encoded as \\u0022 — survives WordPress KSES intact
+    (which unescapes \\\" → \") and decodes to literal \" at JS parse
+    time, so it matches the DOM's straight quotes for string-replace.
+    Embedded ' similarly encoded as \\u0027 when outer quote is single.
+    """
     s = s.replace('\\', '\\\\')
-    # Use unicode curly quotes if there's a literal " — DON'T use \"
-    # because WordPress KSES unescapes it (documented WP gotcha).
     if quote == '"':
-        s = s.replace('"', '”')   # right double quote
+        s = s.replace('"', '\\u0022')
     else:
-        s = s.replace("'", '’')   # right single quote
+        s = s.replace("'", '\\u0027')
     return quote + s + quote
 
 

@@ -117,12 +117,49 @@ def is_skippable(s: str) -> bool:
     return False
 
 
+_UNICODE_ESC = re.compile(r'\\u([0-9a-fA-F]{4})')
+
+
+def _parse_array_literal(s: str) -> list:
+    """State-machine parse of a JS array literal of strings. Correctly
+    handles inner quotes inside HTML attributes (e.g. `<a href="x">`)
+    by only treating the OUTER quote char as a terminator. Decodes
+    standard JS string escapes including \\uXXXX so the parsed text
+    matches what the browser sees."""
+    out = []
+    i = 0
+    n = len(s)
+    while i < n:
+        c = s[i]
+        if c in ('"', "'"):
+            quote = c
+            i += 1
+            buf = []
+            while i < n:
+                if s[i] == '\\' and i + 1 < n:
+                    buf.append(s[i:i+2])
+                    i += 2
+                    continue
+                if s[i] == quote:
+                    break
+                buf.append(s[i])
+                i += 1
+            text = ''.join(buf)
+            # JS escape decode (order matters: \uXXXX before \" so the
+            # backslash in \u isn't consumed by \"/\')
+            text = _UNICODE_ESC.sub(lambda m: chr(int(m.group(1), 16)), text)
+            text = text.replace('\\"', '"').replace("\\'", "'").replace('\\\\', '\\')
+            out.append(text)
+        i += 1
+    return out
+
+
 def parse_vi_en_arrays(html: str) -> tuple[list, list]:
     """Extract VI_STRINGS / EN_STRINGS arrays from brochure HTML."""
     vi_m = re.search(r'(?:const|let|var)\s+VI_STRINGS\s*=\s*(\[[\s\S]+?\])\s*;', html)
     en_m = re.search(r'(?:const|let|var)\s+EN_STRINGS\s*=\s*(\[[\s\S]+?\])\s*;', html)
-    vi_items = re.findall(r"['\"]((?:[^'\"\\]|\\.)+)['\"]", vi_m.group(1)) if vi_m else []
-    en_items = re.findall(r"['\"]((?:[^'\"\\]|\\.)+)['\"]", en_m.group(1)) if en_m else []
+    vi_items = _parse_array_literal(vi_m.group(1)) if vi_m else []
+    en_items = _parse_array_literal(en_m.group(1)) if en_m else []
     return vi_items, en_items
 
 

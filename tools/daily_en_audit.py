@@ -45,6 +45,7 @@ from check_en_translation_coverage import (
     is_vietnamese,
     is_skippable,
     extract_visible_text,
+    parse_vi_en_arrays,  # uses the corrected state-machine parser
 )
 from check_live_en_coverage import LIVE_SLUG, LIVE_BASE, UA
 
@@ -137,13 +138,28 @@ def check_sections(html: str, payload: dict | None) -> dict:
     """Per-section translation coverage. Flag Notion-has-EN vs no-EN."""
     sections = split_html_by_sections(html)
 
-    # Build vi→en map from VI_STRINGS / EN_STRINGS
-    vi_m = re.search(r'(?:const|let|var)\s+VI_STRINGS\s*=\s*(\[[\s\S]+?\])\s*;', html)
-    en_m = re.search(r'(?:const|let|var)\s+EN_STRINGS\s*=\s*(\[[\s\S]+?\])\s*;', html)
-    vi_items = re.findall(r"['\"]((?:[^'\"\\]|\\.)+)['\"]", vi_m.group(1)) if vi_m else []
-    en_items = re.findall(r"['\"]((?:[^'\"\\]|\\.)+)['\"]", en_m.group(1)) if en_m else []
-    vi_to_en = {v.strip(): (en_items[i].strip() if i < len(en_items) else '')
-                for i, v in enumerate(vi_items)}
+    # Build vi→en map from VI_STRINGS / EN_STRINGS (use the corrected
+    # state-machine parser, not the regex — regex breaks on inner quotes
+    # inside HTML attributes and produces misaligned pairs).
+    def _normalize_quotes(t):
+        """Tolerate ”/" and ’/' differences between array + DOM."""
+        return t.replace('”', '"').replace('“', '"').replace('’', "'").replace('‘', "'")
+
+    vi_items, en_items = parse_vi_en_arrays(html)
+    vi_to_en = {}
+    for i, v in enumerate(vi_items):
+        en = en_items[i].strip() if i < len(en_items) else ''
+        if not en: continue
+        # Tag-rich version (matches HTML innerHTML at click time)
+        for variant in {v.strip(), _normalize_quotes(v.strip())}:
+            vi_to_en[variant] = en
+        # Plain-text version (matches DOM text extracted by audit)
+        plain_v = re.sub(r'<[^>]+>', '', v).strip()
+        if plain_v:
+            plain_e = re.sub(r'<[^>]+>', '', en).strip()
+            for variant in {plain_v, _normalize_quotes(plain_v)}:
+                if variant not in vi_to_en:
+                    vi_to_en[variant] = plain_e
 
     # Notion EN map
     notion_vi_to_en = {}
@@ -156,12 +172,12 @@ def check_sections(html: str, payload: dict | None) -> dict:
                 notion_vi_to_en[str(vi).strip()] = str(v).strip()
 
     per_section = {}
-    notion_gaps = []  # Strings where Notion has EN but brochure doesn't
+    notion_gaps = []  # Real gaps — Notion has EN but brochure doesn't
 
     for sid, snippet in sections.items():
         if not snippet: continue
         visible = extract_visible_text(snippet)
-        translated = gap = skip = 0
+        translated = fixable_gap = acceptable_gap = skip = 0
         for text in visible:
             if not is_vietnamese(text): continue
             if is_skippable(text):
@@ -179,28 +195,51 @@ def check_sections(html: str, payload: dict | None) -> dict:
             if partial:
                 translated += 1
                 continue
-            gap += 1
-            # Is the gap solvable via Notion?
+            # Is the gap solvable via Notion?  Require substantial
+            # overlap (≥60% of shorter string) to avoid false positives
+            # like "Bồ Đào Nha" matching every Portugal sentence.
+            has_notion_en = False
             for nvi, nen in notion_vi_to_en.items():
-                if text in nvi or nvi in text:
-                    notion_gaps.append({'section': sid, 'text': text[:120], 'notion_en_available': True})
+                shorter = min(len(text), len(nvi))
+                if shorter < 30:
+                    continue
+                # Find common prefix length
+                common = 0
+                for a, b in zip(text, nvi):
+                    if a == b: common += 1
+                    else: break
+                if common >= shorter * 0.6:
+                    has_notion_en = True
+                    notion_gaps.append({'section': sid, 'text': text[:120]})
                     break
+            if has_notion_en:
+                fixable_gap += 1
+            else:
+                # User: "It's OK if EN is not in Notion either" — acceptable
+                acceptable_gap += 1
 
-        coverage = (translated / (translated + gap) * 100) if (translated + gap) else 100
+        total_translatable = translated + fixable_gap  # acceptable_gap excluded
+        coverage = (translated / total_translatable * 100) if total_translatable else 100
         per_section[sid] = {
-            'translated': translated, 'gap': gap, 'skip': skip,
+            'translated': translated,
+            'fixable_gap': fixable_gap,
+            'acceptable_gap': acceptable_gap,
+            'gap': fixable_gap + acceptable_gap,  # for backward compat
+            'skip': skip,
             'coverage_pct': round(coverage, 1),
         }
 
-    # Sections below threshold
+    # A section "fails" only if it has FIXABLE gaps with Notion EN content
+    # available. Sections with only "acceptable" gaps (Notion is also
+    # empty for that string) pass — per user spec.
     low_sections = {sid: stats for sid, stats in per_section.items()
-                    if stats['coverage_pct'] < 70 and (stats['translated'] + stats['gap']) >= 3}
+                    if stats['fixable_gap'] > 0 and stats['coverage_pct'] < 70}
 
     return {
         'pass': len(low_sections) == 0,
         'per_section': per_section,
         'low_sections': list(low_sections.keys()),
-        'notion_gaps': notion_gaps[:20],  # top 20 with Notion EN ready
+        'notion_gaps': notion_gaps[:20],
     }
 
 
@@ -322,22 +361,18 @@ def check_article_urls(html: str) -> dict:
 
 # ── Check 7: Charts render dimensions ─────────────────────────────────
 def check_chart_rendering(html: str) -> dict:
-    """Ensure all 4 chart canvases exist and matrix has the mobile aspectRatio swap."""
+    """Ensure brochure has its chart canvases + matrix has the mobile
+    aspectRatio swap. Brochure-specific: not every brochure uses
+    Turkey's exact set of 4 charts (e.g. Portugal has timelineChart
+    instead of citizenshipChart + compareChart). We just check that
+    every <canvas id="*Chart"> in the page is properly wired."""
     issues = []
-    expected_canvases = ['radarChart', 'citizenshipChart', 'compareChart', 'matrixChart']
-    present = {c: f'id="{c}"' in html for c in expected_canvases}
-    missing = [c for c, p in present.items() if not p]
-
-    has_any = any(present.values())
-    if not has_any:
+    canvases = re.findall(r'<canvas\s+id="(\w*Chart)"', html)
+    if not canvases:
         return {'pass': True, 'has_charts': False, 'issues': []}
 
-    if missing:
-        issues.append(f'Missing chart canvases: {", ".join(missing)}')
-
     # Matrix should have aspectRatio swap for mobile
-    if present.get('matrixChart'):
-        # Check for aspectRatio: 1 on mobile (Turkey pattern: matchMedia('(max-width: 600px)').matches ? 1 : 2)
+    if 'matrixChart' in canvases:
         if 'aspectRatio' not in html or "matchMedia('(max-width: 600px)')" not in html:
             issues.append('matrixChart missing mobile aspectRatio: 1 swap')
 
@@ -349,7 +384,7 @@ def check_chart_rendering(html: str) -> dict:
     return {
         'pass': len(issues) == 0,
         'has_charts': True,
-        'canvases': present,
+        'canvases': canvases,
         'issues': issues,
     }
 
