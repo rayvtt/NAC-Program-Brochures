@@ -240,6 +240,120 @@ def check_charts(html: str) -> dict:
     }
 
 
+# ── Check 4 & 5: NAC INDEX banner sizing ──────────────────────────────
+def check_globe_sizing(html: str) -> dict:
+    """Verify globe banner has correct dimensions on mobile + desktop.
+
+    Mobile: CSS Grid 240px globe row + auto kicker + auto title (Turkey pattern)
+    Desktop: banner min-height ≥ 360px (30px breathing room each side of 300px globe)
+    """
+    issues = []
+    has_globe = 'id="nacIndexGlobe"' in html or 'nac-index-banner' in html
+    if not has_globe:
+        return {'pass': True, 'has_globe': False, 'issues': []}
+
+    # Mobile spec: CSS Grid with 240px row
+    if 'grid-template-rows: 240px auto auto' not in html:
+        issues.append('Mobile globe layout missing CSS Grid (grid-template-rows: 240px auto auto)')
+
+    # Desktop spec: banner min-height ≥ 360px (300px globe + 30px each side)
+    desktop_m = re.search(
+        r'\.nac-index-banner\s*\{[^}]*?min-height:\s*(\d+)px[^}]*?\}',
+        html
+    )
+    if desktop_m:
+        mh = int(desktop_m.group(1))
+        if mh < 360:
+            issues.append(f'Desktop banner min-height: {mh}px (need ≥ 360px for 30px breathing room)')
+    else:
+        issues.append('Could not find desktop .nac-index-banner min-height rule')
+
+    return {
+        'pass': len(issues) == 0,
+        'has_globe': True,
+        'issues': issues,
+    }
+
+
+# ── Check 6: Article URLs point to specific blog PDPs ─────────────────
+def check_article_urls(html: str) -> dict:
+    """Article CTA banners should link to specific blog posts (PDPs),
+    not the bare blog homepage. Exception: cards explicitly tagged with
+    the generic "Đọc thêm phân tích trên Blog NAC" copy (the dedup
+    fallback) are expected to point at blog homepage."""
+    issues = []
+    bare_homepage_count = 0
+    pdp_count = 0
+    total = 0
+
+    # Walk every article-cta-banner anchor
+    for m in re.finditer(
+        r'<a class="article-cta-banner[^"]*"\s+href="([^"]+)"[^>]*>([\s\S]*?)</a>',
+        html
+    ):
+        href = m.group(1)
+        inner = m.group(2)
+        # Skip NAC Index banners — they're not article PDPs
+        if 'nac-residence-index' in href:
+            continue
+        # Skip generic blog cards (dedup output)
+        if 'Đọc thêm phân tích trên Blog NAC' in inner or 'More analysis on the NAC Blog' in inner:
+            continue
+        total += 1
+        # PDP = a URL with a slug-y path, not just / or /blog/
+        # Bare homepage: blog.nomadassetcollective.com/ or blog.nomadassetcollective.com
+        bare_pat = re.compile(r'https?://blog\.nomadassetcollective\.com/?$', re.IGNORECASE)
+        if bare_pat.match(href):
+            bare_homepage_count += 1
+        else:
+            pdp_count += 1
+
+    if bare_homepage_count > 0:
+        issues.append(f'{bare_homepage_count} article CTA(s) point to blog homepage instead of a specific PDP')
+
+    return {
+        'pass': len(issues) == 0,
+        'total_article_ctas': total,
+        'pdp_count': pdp_count,
+        'bare_homepage_count': bare_homepage_count,
+        'issues': issues,
+    }
+
+
+# ── Check 7: Charts render dimensions ─────────────────────────────────
+def check_chart_rendering(html: str) -> dict:
+    """Ensure all 4 chart canvases exist and matrix has the mobile aspectRatio swap."""
+    issues = []
+    expected_canvases = ['radarChart', 'citizenshipChart', 'compareChart', 'matrixChart']
+    present = {c: f'id="{c}"' in html for c in expected_canvases}
+    missing = [c for c, p in present.items() if not p]
+
+    has_any = any(present.values())
+    if not has_any:
+        return {'pass': True, 'has_charts': False, 'issues': []}
+
+    if missing:
+        issues.append(f'Missing chart canvases: {", ".join(missing)}')
+
+    # Matrix should have aspectRatio swap for mobile
+    if present.get('matrixChart'):
+        # Check for aspectRatio: 1 on mobile (Turkey pattern: matchMedia('(max-width: 600px)').matches ? 1 : 2)
+        if 'aspectRatio' not in html or "matchMedia('(max-width: 600px)')" not in html:
+            issues.append('matrixChart missing mobile aspectRatio: 1 swap')
+
+    # No chart should have max-height < 200px (too cramped)
+    for m in re.finditer(r'id="(\w+Chart)"[^>]*style="[^"]*max-height:\s*(\d+)', html):
+        if int(m.group(2)) < 200:
+            issues.append(f'{m.group(1)} has max-height: {m.group(2)}px (cramped)')
+
+    return {
+        'pass': len(issues) == 0,
+        'has_charts': True,
+        'canvases': present,
+        'issues': issues,
+    }
+
+
 # ── Orchestration ─────────────────────────────────────────────────────
 def fetch_live(alias: str) -> Path:
     slug = LIVE_SLUG.get(alias)
@@ -261,36 +375,70 @@ def audit_brochure(alias: str, html_path: Path, payload_path: Path | None) -> di
     toggle = check_toggle(html)
     sections = check_sections(html, payload)
     charts = check_charts(html)
+    globe_sizing = check_globe_sizing(html)
+    article_urls = check_article_urls(html)
+    chart_rendering = check_chart_rendering(html)
 
-    all_pass = toggle['pass'] and sections['pass'] and charts['pass']
+    # §01 specifically — even stricter than general section coverage
+    overview_ok = sections['per_section'].get('overview', {}).get('coverage_pct', 0) >= 70
+
+    all_pass = (
+        toggle['pass'] and sections['pass'] and charts['pass']
+        and globe_sizing['pass'] and article_urls['pass']
+        and chart_rendering['pass'] and overview_ok
+    )
     return {
         'alias': alias,
         'all_pass': all_pass,
         'toggle': toggle,
         'sections': sections,
+        'overview_ok': overview_ok,
         'charts': charts,
+        'globe_sizing': globe_sizing,
+        'article_urls': article_urls,
+        'chart_rendering': chart_rendering,
     }
 
 
 def print_report(rpt: dict):
     icon = lambda ok: f"{GREEN}✓{RESET}" if ok else f"{RED}✗{RESET}"
     print(f"\n{BOLD}{rpt['alias']}{RESET}  {icon(rpt['all_pass'])}")
-    print(f"  Toggle:   {icon(rpt['toggle']['pass'])} "
+    # #1 Toggle
+    print(f"  1. Toggle:        {icon(rpt['toggle']['pass'])} "
           + (f"{RED}{'; '.join(rpt['toggle']['issues'])}{RESET}" if rpt['toggle']['issues'] else ''))
-    sect = rpt['sections']
-    print(f"  Sections: {icon(sect['pass'])} "
-          + (f"{YELLOW}low coverage in: {', '.join(sect['low_sections'])}{RESET}" if sect['low_sections'] else 'all ≥70%'))
+    # #2 Charts EN
     ch = rpt['charts']
     if ch.get('has_charts'):
-        print(f"  Charts:   {icon(ch['pass'])} "
+        print(f"  2. Charts EN:     {icon(ch['pass'])} "
               + (f"{RED}{'; '.join(ch['issues'])}{RESET}" if ch['issues'] else
                  (f"{GRAY}buildCharts wrapper{RESET}" if ch['has_buildcharts'] else f"{GRAY}translator helper{RESET}")))
     else:
-        print(f"  Charts:   {GRAY}n/a (no charts){RESET}")
+        print(f"  2. Charts EN:     {GRAY}n/a (no charts){RESET}")
+    # #3 Overview section
+    print(f"  3. §01 Overview:  {icon(rpt['overview_ok'])} "
+          + (f"{YELLOW}coverage too low{RESET}" if not rpt['overview_ok'] else ''))
+    # #4 + #5 Globe sizing
+    gs = rpt['globe_sizing']
+    if gs.get('has_globe'):
+        print(f"  4-5. Globe size:  {icon(gs['pass'])} "
+              + (f"{RED}{'; '.join(gs['issues'])}{RESET}" if gs['issues'] else f"{GRAY}mobile + desktop OK{RESET}"))
+    # #6 Article URLs
+    au = rpt['article_urls']
+    print(f"  6. Article URLs:  {icon(au['pass'])} "
+          + (f"{RED}{'; '.join(au['issues'])}{RESET}" if au['issues'] else f"{GRAY}{au['pdp_count']}/{au['total_article_ctas']} → PDP{RESET}"))
+    # #7 Chart rendering
+    cr = rpt['chart_rendering']
+    if cr.get('has_charts'):
+        print(f"  7. Chart render:  {icon(cr['pass'])} "
+              + (f"{RED}{'; '.join(cr['issues'])}{RESET}" if cr['issues'] else f"{GRAY}all canvases + mobile aspectRatio{RESET}"))
+    # Section gaps detail
+    sect = rpt['sections']
+    if sect['low_sections']:
+        print(f"     {YELLOW}low sections: {', '.join(sect['low_sections'])}{RESET}")
     if sect['notion_gaps']:
-        print(f"  {YELLOW}Notion has EN for {len(sect['notion_gaps'])} gaps (sample):{RESET}")
+        print(f"     {YELLOW}Notion has EN for {len(sect['notion_gaps'])} gaps (sample):{RESET}")
         for g in sect['notion_gaps'][:3]:
-            print(f"    [{g['section']}] {g['text'][:90]}")
+            print(f"       [{g['section']}] {g['text'][:80]}")
 
 
 def main() -> int:
