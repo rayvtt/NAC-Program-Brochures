@@ -75,6 +75,7 @@ jobs:
           git add data/*_payload.json "Brochures html/"*.html .diagnostics/ || true
           if git diff --cached --quiet; then
             echo "No changes — Notion content already in sync."
+            echo "SKIP_WP_SYNC=true" >> $GITHUB_ENV
           else
             # Pull current coverage stats for the commit message
             AVG=$(python -c "import json; r=json.load(open('.diagnostics/en-coverage.json'))['reports']; print(f\"{sum(b['coverage_pct'] for b in r)/len(r):.1f}%\")")
@@ -83,10 +84,36 @@ jobs:
             Pulled fresh payloads + injected EN content into legacy
             VI_STRINGS / EN_STRINGS arrays. Coverage report written
             to .diagnostics/en-coverage.json — see per-brochure
-            translated/gap/skip counts.
-
-            The wp-sync workflow will deploy these HTML changes to
-            WordPress on next push."
+            translated/gap/skip counts."
             git push origin main
-            echo "Pushed — wp-sync.yml will deploy to WordPress within ~30s."
+            echo "Pushed to main."
+            echo "SKIP_WP_SYNC=false" >> $GITHUB_ENV
+          fi
+
+      # WORKFLOW-CHAIN WORKAROUND:
+      # Commits made by GITHUB_TOKEN don't trigger other workflows, so
+      # wp-sync.yml won't fire on the commit above. We inline the WP
+      # sync here so the auto-sync pipeline actually reaches WordPress.
+      - name: Push to WordPress (inline — workflow-chain limitation)
+        if: inputs.dry_run != 'true' && env.SKIP_WP_SYNC != 'true'
+        env:
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          python sync_brochures.py --all
+          echo "Brochures synced to WordPress."
+
+      - name: Verify live coverage post-sync
+        if: inputs.dry_run != 'true' && env.SKIP_WP_SYNC != 'true'
+        run: |
+          # Brief delay so WP cache propagates before we hit it
+          sleep 30
+          python tools/check_live_en_coverage.py | tee -a .diagnostics/live-coverage-summary.txt || true
+          # Re-commit only the live coverage artefact (separate commit so
+          # the message clearly distinguishes pre/post-sync state)
+          git add .diagnostics/live-en-coverage.json .diagnostics/live-coverage-summary.txt || true
+          if ! git diff --cached --quiet; then
+            LIVE_AVG=$(python -c "import json; r=json.load(open('.diagnostics/live-en-coverage.json'))['reports']; print(f\"{sum(b['coverage_pct'] for b in r)/len(r):.1f}%\")")
+            git commit -m "Live EN coverage snapshot: $LIVE_AVG"
+            git push origin main || true
           fi
