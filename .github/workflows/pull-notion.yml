@@ -117,3 +117,13 @@ jobs:
             git commit -m "Live EN coverage snapshot: $LIVE_AVG"
             git push origin main || true
           fi
+
+      - name: Regenerate sheet tracker (TSV for Google Sheets A28:J39)
+        if: inputs.dry_run != 'true' && env.SKIP_WP_SYNC != 'true'
+        run: |
+          python tools/generate_sheet_tracker.py
+          git add .diagnostics/sheet-tracker.tsv .diagnostics/sheet-tracker.md .diagnostics/sheet-tracker-header.tsv || true
+          if ! git diff --cached --quiet; then
+            git commit -m "Update sheet tracker (paste-ready for backlink tab A28:J39)"
+            git push origin main || true
+          fi
