@@ -1,0 +1,153 @@
+name: Daily EN audit (live brochures)
+
+# Daily health check on live WordPress pages:
+#   1. EN toggle wired correctly (setLang defined, buttons bound, arrays populated, no KSES traps)
+#   2. Every brochure section has EN coverage (where possible)
+#   3. Charts have a bilingual mechanism (buildCharts wrapper OR post-setLang translator)
+#
+# When any check fails, opens (or updates) a GitHub Issue with the
+# concrete details — surfaces at issues so it pings via GitHub mobile
+# notifications and email.
+#
+# Runs once per day at 02:00 UTC (09:00 ICT — early Vietnam morning).
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch: {}
+
+concurrency:
+  group: daily-en-audit
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run audit on live brochures
+        id: audit
+        run: |
+          # The audit returns non-zero if any brochure fails — capture that
+          # but don't fail the workflow yet; we want to open an issue first.
+          set +e
+          python tools/daily_en_audit.py | tee .diagnostics/daily-en-audit-summary.txt
+          echo "audit_status=$?" >> $GITHUB_OUTPUT
+          set -e
+
+      - name: Commit audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .diagnostics/ || true
+          if ! git diff --cached --quiet; then
+            PASS=$(python -c "import json; r=json.load(open('.diagnostics/daily-en-audit.json')); print(f\"{r['pass_count']}/{r['total']}\")")
+            git commit -m "Daily EN audit ($PASS passing)"
+            git push origin main
+          fi
+
+      - name: Close any open audit issues if all passing
+        if: steps.audit.outputs.audit_status == '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue list --label en-audit --state open --json number --limit 10 | \
+            python3 -c "import sys, json; print('\n'.join(str(i['number']) for i in json.load(sys.stdin)))" | \
+            while read num; do
+              [ -z "$num" ] && continue
+              gh issue close "$num" --comment "All 12 brochures passing today's EN audit ✅"
+            done
+
+      - name: Open / update issue on failures
+        if: steps.audit.outputs.audit_status != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Build issue body from JSON
+          python <<'PY'
+          import json, os, subprocess
+          rpt = json.load(open('.diagnostics/daily-en-audit.json'))
+          today = rpt['generated_at'][:10]
+          body = [f"## Daily EN audit — {today}", ""]
+          body.append(f"**{rpt['pass_count']}/{rpt['total']}** brochures fully passing.")
+          body.append("")
+
+          for r in rpt['reports']:
+              if r['all_pass']: continue
+              alias = r['alias']
+              body.append(f"### 🇽🇽 `{alias}`")
+              body.append("")
+              t = r['toggle']
+              if not t['pass']:
+                  body.append("**Toggle issues:**")
+                  for i in t['issues']: body.append(f"- {i}")
+                  body.append("")
+              s = r['sections']
+              if not s['pass']:
+                  body.append(f"**Section gaps:** `{', '.join(s['low_sections'])}`")
+                  if s['notion_gaps']:
+                      body.append("")
+                      body.append("<details><summary>Notion has EN for these (auto-fix candidates)</summary>")
+                      body.append("")
+                      for g in s['notion_gaps'][:10]:
+                          body.append(f"- _{g['section']}_: {g['text']}")
+                      body.append("")
+                      body.append("</details>")
+                  body.append("")
+              c = r['charts']
+              if c.get('has_charts') and not c['pass']:
+                  body.append("**Chart issues:**")
+                  for i in c['issues']: body.append(f"- {i}")
+                  body.append("")
+
+          body.append("---")
+          body.append("")
+          body.append("This issue is auto-managed by `.github/workflows/daily-en-audit.yml`. "
+                       "It updates daily — close it once fixes land.")
+
+          issue_body = "\n".join(body)
+          # Save body to file (multiline-friendly for the gh API call)
+          with open('/tmp/issue-body.md', 'w') as f: f.write(issue_body)
+
+          # Look for existing open issue with our title
+          title_today = f"EN audit failures — {today}"
+          # Find any existing open issue with our label
+          existing = subprocess.run(
+              ['gh', 'issue', 'list', '--label', 'en-audit', '--state', 'open',
+               '--json', 'number,title', '--limit', '5'],
+              capture_output=True, text=True
+          )
+          if existing.returncode == 0 and existing.stdout.strip():
+              issues = json.loads(existing.stdout)
+          else:
+              issues = []
+
+          if issues:
+              # Update the most recent open issue
+              num = issues[0]['number']
+              subprocess.run(['gh', 'issue', 'comment', str(num), '--body-file', '/tmp/issue-body.md'])
+              subprocess.run(['gh', 'issue', 'edit', str(num), '--title', f'EN audit failures — {today}'])
+              print(f"Updated issue #{num}")
+          else:
+              # Create new issue
+              subprocess.run([
+                  'gh', 'issue', 'create',
+                  '--title', f'EN audit failures — {today}',
+                  '--label', 'en-audit',
+                  '--body-file', '/tmp/issue-body.md',
+              ])
+              print("Created new issue")
+          PY
