@@ -1,14 +1,14 @@
 {
-  "generated_at": "2026-05-17T11:45:37.088862Z",
+  "generated_at": "2026-05-17T12:41:28.634498Z",
   "reports": [
     {
       "alias": "portugal",
       "html_file": "portugal-gv.html",
       "visible_vn_strings": 129,
-      "translated": 106,
-      "gap": 23,
+      "translated": 107,
+      "gap": 22,
       "skip": 0,
-      "coverage_pct": 82.2,
+      "coverage_pct": 82.9,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm",
@@ -51,8 +51,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 300,
-      "en_array_size": 300,
+      "vi_array_size": 331,
+      "en_array_size": 331,
       "data_attr_pairs": 14,
       "notion_en_fields": 28
     },

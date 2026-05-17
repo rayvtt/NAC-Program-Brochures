@@ -2,8 +2,8 @@
 [1mEN Translation Coverage Report[0m
 [90m──────────────────────────────────────────────────────────────────────[0m
 
-[1mportugal[0m  [33m 82.2%[0m (106 translated / 23 gap / 0 skip of 129 VN strings)
-  [90mVI_STRINGS=300  EN_STRINGS=300  data-attr pairs=14  Notion EN fields=28[0m
+[1mportugal[0m  [33m 82.9%[0m (107 translated / 22 gap / 0 skip of 129 VN strings)
+  [90mVI_STRINGS=331  EN_STRINGS=331  data-attr pairs=14  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm
       [90mreason: text_drift_vs_notion[0m
