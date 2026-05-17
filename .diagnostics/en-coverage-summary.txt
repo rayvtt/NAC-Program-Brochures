@@ -16,7 +16,7 @@
     [33m•[0m NHR 2.0 vs NHR 1.0: Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 th
       [90mreason: text_drift_vs_notion[0m
 
-[1mgreece[0m  [33m 74.0%[0m (94 translated / 33 gap / 0 skip of 127 VN strings)
+[1mgreece[0m  [33m 73.8%[0m (93 translated / 33 gap / 0 skip of 126 VN strings)
   [90mVI_STRINGS=316  EN_STRINGS=316  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c
@@ -30,8 +30,8 @@
     [33m•[0m Cải thiện xử lý 2025–2026: Hy Lạp đã đầu tư mạnh vào hệ thống Digital Residency Portal từ 2025, giảm thời gian xử lý từ 
       [90mreason: text_drift_vs_notion[0m
 
-[1mcyprus[0m  [31m 57.4%[0m (74 translated / 55 gap / 0 skip of 129 VN strings)
-  [90mVI_STRINGS=157  EN_STRINGS=157  data-attr pairs=6  Notion EN fields=28[0m
+[1mcyprus[0m  [33m 80.3%[0m (102 translated / 25 gap / 0 skip of 127 VN strings)
+  [90mVI_STRINGS=287  EN_STRINGS=287  data-attr pairs=6  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — 
       [90mreason: text_drift_vs_notion[0m
@@ -39,9 +39,9 @@
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Cư Trú Vĩnh Viễn
       [90mreason: text_drift_vs_notion[0m
-    [31m•[0m 2009 (cải cách 2021)
-      [90mreason: no_en_available[0m
-    [31m•[0m EU · Đông Địa Trung Hải
+    [33m•[0m Không
+      [90mreason: text_drift_vs_notion[0m
+    [31m•[0m Loại chương trình
       [90mreason: no_en_available[0m
 
 [1mturkey[0m  [33m 90.7%[0m (127 translated / 13 gap / 0 skip of 140 VN strings)
@@ -58,7 +58,7 @@
     [31m•[0m Đã nhận yêu cầu của bạn
       [90mreason: no_en_available[0m
 
-[1muae[0m  [31m 22.8%[0m (29 translated / 98 gap / 0 skip of 127 VN strings)
+[1muae[0m  [31m 23.0%[0m (29 translated / 97 gap / 0 skip of 126 VN strings)
   [90mVI_STRINGS=129  EN_STRINGS=129  data-attr pairs=10  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m UAE Golden Visa — ra mắt năm 2019, mở rộng năm 2022 — là chương trình cư trú dài hạn 10 năm của Các Tiểu Vương Quốc Ả Rậ
@@ -72,7 +72,7 @@
     [33m•[0m UAE Golden Visa có phạm vi bảo lãnh gia đình linh hoạt — bao gồm vợ/chồng và các con phụ thuộc. Gói Nhà Đầu Tư Chiến Lượ
       [90mreason: text_drift_vs_notion[0m
 
-[1muk[0m  [33m 73.6%[0m (92 translated / 33 gap / 0 skip of 125 VN strings)
+[1muk[0m  [33m 74.2%[0m (92 translated / 32 gap / 0 skip of 124 VN strings)
   [90mVI_STRINGS=214  EN_STRINGS=214  data-attr pairs=6  Notion EN fields=31[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Anh Quốc và sẵn sàng giao dịch. Bạn không cần săn tìm —
@@ -86,7 +86,7 @@
     [33m•[0m Chiến lược NAC cho nhà đầu tư Việt: Kết hợp Innovator Founder Visa (£50K–£100K vốn kinh doanh) + Đầu tư BĐS song song (£
       [90mreason: text_drift_vs_notion[0m
 
-[1mmalta[0m  [31m 24.1%[0m (28 translated / 88 gap / 0 skip of 116 VN strings)
+[1mmalta[0m  [31m 24.3%[0m (28 translated / 87 gap / 0 skip of 115 VN strings)
   [90mVI_STRINGS=130  EN_STRINGS=130  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất ch
@@ -100,7 +100,7 @@
     [33m•[0m Malta áp dụng chế độ Non-Domiciled (Remittance Basis) — hệ thống thuế hấp dẫn nhất châu Âu cho HNWI quốc tế: thu nhập nư
       [90mreason: text_drift_vs_notion[0m
 
-[1mstkitts[0m  [31m 50.0%[0m (62 translated / 62 gap / 0 skip of 124 VN strings)
+[1mstkitts[0m  [31m 50.4%[0m (62 translated / 61 gap / 0 skip of 123 VN strings)
   [90mVI_STRINGS=208  EN_STRINGS=208  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh 
@@ -114,7 +114,7 @@
     [33m•[0m St Kitts & Nevis có chính sách bảo lãnh gia đình rộng rãi nhất trong nhóm Caribbean CBI — bao gồm vợ/chồng, con, cha mẹ,
       [90mreason: notion_has_en_not_injected[0m
 
-[1mthailand[0m  [31m 35.6%[0m (42 translated / 76 gap / 0 skip of 118 VN strings)
+[1mthailand[0m  [31m 35.9%[0m (42 translated / 75 gap / 0 skip of 117 VN strings)
   [90mVI_STRINGS=202  EN_STRINGS=202  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương trình cư trú dài hạn 10 năm (5+5) dành 
@@ -128,7 +128,7 @@
     [33m•[0m LTR Visa cho phép bảo lãnh vợ/chồng và tối đa 4 con dưới 20 tuổi. Phạm vi hẹp hơn Hy Lạp (bảo lãnh bố mẹ) nhưng đủ cho g
       [90mreason: text_drift_vs_notion[0m
 
-[1mnewzealand[0m  [31m 31.1%[0m (37 translated / 82 gap / 0 skip of 119 VN strings)
+[1mnewzealand[0m  [31m 31.4%[0m (37 translated / 81 gap / 0 skip of 118 VN strings)
   [90mVI_STRINGS=183  EN_STRINGS=183  data-attr pairs=6  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m New Zealand Active Investor Plus Visa — ra mắt năm 2022, cải cách lớn tháng 4/2025 — là chương trình cư trú đầu tư cho n
@@ -156,7 +156,7 @@
     [31m•[0m Hub tài chính & thương mại quốc tế
       [90mreason: no_en_available[0m
 
-[1mmalaysia[0m  [31m 31.1%[0m (38 translated / 84 gap / 0 skip of 122 VN strings)
+[1mmalaysia[0m  [31m 31.4%[0m (38 translated / 83 gap / 0 skip of 121 VN strings)
   [90mVI_STRINGS=190  EN_STRINGS=190  data-attr pairs=6  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người
@@ -171,6 +171,6 @@
       [90mreason: no_en_available[0m
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  avg 52.7%  ·  [32m0 ≥95%[0m  ·  [33m4 70-94%[0m  ·  [31m8 <70%[0m
+[1mSummary:[0m  avg 54.8%  ·  [32m0 ≥95%[0m  ·  [33m5 70-94%[0m  ·  [31m7 <70%[0m
 
   → JSON report: .diagnostics/en-coverage.json

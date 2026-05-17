@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-17T15:18:25.255393Z",
+  "generated_at": "2026-05-17T16:15:32.491394Z",
   "reports": [
     {
       "alias": "portugal",
@@ -59,11 +59,11 @@
     {
       "alias": "greece",
       "html_file": "greece-rbi_1_2.html",
-      "visible_vn_strings": 127,
-      "translated": 94,
+      "visible_vn_strings": 126,
+      "translated": 93,
       "gap": 33,
       "skip": 0,
-      "coverage_pct": 74.0,
+      "coverage_pct": 73.8,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c",
@@ -114,11 +114,11 @@
     {
       "alias": "cyprus",
       "html_file": "cyprus-rbi_3_3.html",
-      "visible_vn_strings": 129,
-      "translated": 74,
-      "gap": 55,
+      "visible_vn_strings": 127,
+      "translated": 102,
+      "gap": 25,
       "skip": 0,
-      "coverage_pct": 57.4,
+      "coverage_pct": 80.3,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — ",
@@ -133,36 +133,36 @@
           "reason": "text_drift_vs_notion"
         },
         {
-          "text": "2009 (cải cách 2021)",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "EU · Đông Địa Trung Hải",
-          "reason": "no_en_available"
-        },
-        {
           "text": "Không",
           "reason": "text_drift_vs_notion"
         },
         {
-          "text": "PR Vĩnh Viễn",
+          "text": "Loại chương trình",
           "reason": "no_en_available"
         },
         {
-          "text": "Vợ/chồng + Con + Bố mẹ",
+          "text": "Loại thẻ",
           "reason": "no_en_available"
         },
         {
-          "text": "Tự do trong Síp",
+          "text": "Thời gian xử lý",
           "reason": "no_en_available"
         },
         {
-          "text": "EU Member — không phải quốc tịch",
+          "text": "Lưu ý quan trọng 2025–2026: Kể từ cải cách 2021, Chương trình CBI (Citizenship by Investment) của Síp đã bị đóng cửa hoà",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Nhận định NAC: Limassol là thị trường BĐS sôi động nhất Síp — được mệnh danh \"Monaco của Địa Trung Hải\". Tỷ suất cho thu",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Lợi thế đặc biệt: Cyprus PR xử lý hồ sơ trong 2–3 tháng — nhanh gấp 3–6 lần so với Hy Lạp. Cả gia đình bắt buộc nhập cản",
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 157,
-      "en_array_size": 157,
+      "vi_array_size": 287,
+      "en_array_size": 287,
       "data_attr_pairs": 6,
       "notion_en_fields": 28
     },
@@ -224,11 +224,11 @@
     {
       "alias": "uae",
       "html_file": "uae-rbi_1_7.html",
-      "visible_vn_strings": 127,
+      "visible_vn_strings": 126,
       "translated": 29,
-      "gap": 98,
+      "gap": 97,
       "skip": 0,
-      "coverage_pct": 22.8,
+      "coverage_pct": 23.0,
       "gap_samples": [
         {
           "text": "UAE Golden Visa — ra mắt năm 2019, mở rộng năm 2022 — là chương trình cư trú dài hạn 10 năm của Các Tiểu Vương Quốc Ả Rậ",
@@ -279,11 +279,11 @@
     {
       "alias": "uk",
       "html_file": "uk-rbi_1 (2).html",
-      "visible_vn_strings": 125,
+      "visible_vn_strings": 124,
       "translated": 92,
-      "gap": 33,
+      "gap": 32,
       "skip": 0,
-      "coverage_pct": 73.6,
+      "coverage_pct": 74.2,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Anh Quốc và sẵn sàng giao dịch. Bạn không cần săn tìm —",
@@ -334,11 +334,11 @@
     {
       "alias": "malta",
       "html_file": "malta-rbi_1_3.html",
-      "visible_vn_strings": 116,
+      "visible_vn_strings": 115,
       "translated": 28,
-      "gap": 88,
+      "gap": 87,
       "skip": 0,
-      "coverage_pct": 24.1,
+      "coverage_pct": 24.3,
       "gap_samples": [
         {
           "text": "Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất ch",
@@ -389,11 +389,11 @@
     {
       "alias": "stkitts",
       "html_file": "stkitts-nevis.html",
-      "visible_vn_strings": 124,
+      "visible_vn_strings": 123,
       "translated": 62,
-      "gap": 62,
+      "gap": 61,
       "skip": 0,
-      "coverage_pct": 50.0,
+      "coverage_pct": 50.4,
       "gap_samples": [
         {
           "text": "St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh ",
@@ -444,11 +444,11 @@
     {
       "alias": "thailand",
       "html_file": "thailand-rbi_1 (2).html",
-      "visible_vn_strings": 118,
+      "visible_vn_strings": 117,
       "translated": 42,
-      "gap": 76,
+      "gap": 75,
       "skip": 0,
-      "coverage_pct": 35.6,
+      "coverage_pct": 35.9,
       "gap_samples": [
         {
           "text": "Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương trình cư trú dài hạn 10 năm (5+5) dành ",
@@ -499,11 +499,11 @@
     {
       "alias": "newzealand",
       "html_file": "newzealand-rbi_1 (3).html",
-      "visible_vn_strings": 119,
+      "visible_vn_strings": 118,
       "translated": 37,
-      "gap": 82,
+      "gap": 81,
       "skip": 0,
-      "coverage_pct": 31.1,
+      "coverage_pct": 31.4,
       "gap_samples": [
         {
           "text": "New Zealand Active Investor Plus Visa — ra mắt năm 2022, cải cách lớn tháng 4/2025 — là chương trình cư trú đầu tư cho n",
@@ -609,11 +609,11 @@
     {
       "alias": "malaysia",
       "html_file": "malaysia-mm2h.html",
-      "visible_vn_strings": 122,
+      "visible_vn_strings": 121,
       "translated": 38,
-      "gap": 84,
+      "gap": 83,
       "skip": 0,
-      "coverage_pct": 31.1,
+      "coverage_pct": 31.4,
       "gap_samples": [
         {
           "text": "Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người",
