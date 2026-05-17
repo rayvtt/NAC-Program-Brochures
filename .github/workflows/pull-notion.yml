@@ -1,0 +1,59 @@
+name: Pull brochure data from Notion
+
+# Pulls all brochure rows from Notion → data/<alias>_payload.json,
+# then commits any changes. Run manually via workflow_dispatch.
+#
+# Requires NOTION_KEY in repo secrets (already configured).
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run only (show diff, no write/commit)'
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: pull-notion
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  pull:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pull from Notion
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: |
+          if [ "${{ inputs.dry_run }}" = "true" ]; then
+            python tools/pull_from_notion.py --dry-run
+          else
+            python tools/pull_from_notion.py
+          fi
+
+      - name: Commit changes
+        if: inputs.dry_run != true
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/*_payload.json || true
+          if git diff --cached --quiet; then
+            echo "No payload changes to commit."
+          else
+            git commit -m "Pull fresh brochure data from Notion"
+            git push origin main
+          fi
