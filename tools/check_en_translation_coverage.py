@@ -215,12 +215,28 @@ def check_translation_coverage(alias: str, html_path: Path, payload_path: Path |
         if partial_match:
             translated += 1
             continue
-        # 4. Notion has EN content for this text (gap = inject not run yet)
+        # 4. Notion has EN content for this exact text (gap = inject not run yet)
         if text in notion_pairs:
             gap_samples.append({'text': text[:120], 'reason': 'notion_has_en_not_injected'})
             gap += 1
             continue
-        # 5. Else, no EN available anywhere
+        # 5. Drift: Notion has a similar VI/EN pair (>60% prefix overlap) but
+        # text doesn't match exactly — drift between HTML and Notion content
+        text_lower = text.lower()
+        text_prefix = text_lower[:max(40, len(text_lower) // 3)]
+        drift_match = False
+        for notion_vi in notion_pairs:
+            notion_lower = notion_vi.lower()
+            # Match if first 40 chars overlap significantly
+            if (text_prefix in notion_lower or notion_lower[:max(40, len(notion_lower) // 3)] in text_lower):
+                # Common opening words = drift candidate
+                drift_match = True
+                break
+        if drift_match:
+            gap_samples.append({'text': text[:120], 'reason': 'text_drift_vs_notion'})
+            gap += 1
+            continue
+        # 6. Else, no EN available anywhere
         gap_samples.append({'text': text[:120], 'reason': 'no_en_available'})
         gap += 1
 
