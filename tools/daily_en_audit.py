@@ -407,26 +407,58 @@ def check_en_render(alias: str, html: str) -> dict:
     """Check #8 — simulate setLang('en') against the page and report
     any visible Vietnamese text that remains. This is the truth test
     for whether the EN toggle actually displays English to users.
+
+    Uses the Node-based jsdom simulator (tools/simulate_en_render.js).
+    The earlier Python/BeautifulSoup version normalized whitespace
+    differently from a real browser and silently reported pass when
+    the live page actually left 40+ Vietnamese strings — never trust
+    that simulator again.
     """
-    try:
-        from simulate_en_render import apply_setlang_en, find_vn_remnants
-    except ImportError:
-        return {'pass': False, 'issues': ['simulate_en_render import failed'],
+    import shutil, subprocess, tempfile
+    if not shutil.which('node'):
+        return {'pass': False, 'issues': ['node not installed'],
                 'remnant_count': 0, 'samples': []}
+
+    js_path = ROOT / 'tools' / 'simulate_en_render.js'
+    if not js_path.exists():
+        return {'pass': False, 'issues': ['simulate_en_render.js missing'],
+                'remnant_count': 0, 'samples': []}
+
+    # The simulator reads from a file path or URL. Write the HTML to
+    # a tempfile so we can audit live + local html the same way.
+    with tempfile.NamedTemporaryFile('w', suffix='.html', delete=False, encoding='utf-8') as f:
+        f.write(html)
+        tmp = f.name
     try:
-        after = apply_setlang_en(html)
-        remnants = find_vn_remnants(after)
-    except Exception as e:
+        r = subprocess.run(
+            ['node', str(js_path), tmp, '--json'],
+            capture_output=True, text=True, timeout=60,
+        )
+    except (subprocess.TimeoutExpired, OSError) as e:
         return {'pass': False, 'issues': [f'simulator error: {e}'],
                 'remnant_count': 0, 'samples': []}
+    finally:
+        try: Path(tmp).unlink()
+        except OSError: pass
 
-    if not remnants:
+    try:
+        out = json.loads(r.stdout) if r.stdout.strip() else {}
+    except json.JSONDecodeError:
+        return {'pass': False, 'issues': [f'simulator non-JSON output: {r.stdout[:200]}'],
+                'remnant_count': 0, 'samples': []}
+
+    if out.get('error'):
+        return {'pass': False, 'issues': [f'simulator error: {out["error"]}'],
+                'remnant_count': 0, 'samples': []}
+
+    if out.get('pass'):
         return {'pass': True, 'issues': [], 'remnant_count': 0, 'samples': []}
 
+    remnants = out.get('remnants', [])
     return {
         'pass': False,
-        'issues': [f"{len(remnants)} Vietnamese remnants after EN click"],
-        'remnant_count': len(remnants),
+        'issues': [f"{out.get('remnant_count', len(remnants))} Vietnamese remnants after EN click"],
+        'remnant_count': out.get('remnant_count', len(remnants)),
         'samples': [{'text': r['text'][:120]} for r in remnants[:5]],
     }
 

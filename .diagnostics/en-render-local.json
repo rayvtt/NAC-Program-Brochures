@@ -1,0 +1,16 @@
+{
+  "source": "local",
+  "reports": [
+    {
+      "alias": "portugal",
+      "source": "local",
+      "url": "file:///home/user/NAC-Program-Brochures/Brochures html/portugal-gv.html",
+      "pass": true,
+      "remnant_count": 0,
+      "vi_array_size": 300,
+      "en_array_size": 300,
+      "setlang_selector": ".sec-sub, .sec-label, .sec-title, .ov-label, .ov-value, .ov-note, .tl-week, .tl-title, .tl-body, .tier-name, .tier-region, .ttag, .tier-badge, .fam-title, .fam-note, .info-text, .factcheck-box > div, .chart-title, .toc-link, .toc-title, .hero-badge, .article-cta-text, .article-cta-btn, .road-label, .road-year, .comp-table th, .comp-table td, .pros h4, .cons h4, .pros li, .cons li, .nac-box h3, .nac-box p, .score-title, .score-label, .stat-lbl, .footer-t, .footer-update, .float-toc-panel a, .float-toc-panel-header, .breadcrumb span, .breadcrumb a, .nhr-banner h3, .nhr-banner p, .nhr-tag, .toc-cta-mini a, .cta-strip-label, .cta-text, .mobile-table-note",
+      "remnants": []
+    }
+  ]
+}

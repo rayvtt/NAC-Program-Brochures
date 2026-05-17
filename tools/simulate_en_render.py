@@ -1,29 +1,13 @@
-"""Simulate setLang('en') on a live brochure and report Vietnamese remnants.
+"""DEPRECATED — use `tools/simulate_en_render.js` instead.
 
-The static coverage check (`check_en_translation_coverage.py`) verifies
-arrays are populated and DOM text has a translation entry. That isn't
-enough: it doesn't actually replay the in-browser string-replace logic,
-so a phrase that's in VI_STRINGS but doesn't match a DOM element
-(whitespace drift, missing selector, KSES mangling) is still counted as
-"covered" even though the user sees Vietnamese on EN click.
+This BeautifulSoup-based simulator normalizes whitespace and entities
+differently from a real browser. On Portugal, it reported 0 VN remnants
+while the actual browser (verified via jsdom) left 40+ Vietnamese
+strings visible. The Node tool (`tools/simulate_en_render.js`) uses a
+real DOM and is the source of truth.
 
-This tool fetches the live page, parses VI/EN arrays out of the live
-HTML, re-applies setLang('en')'s exact `innerHTML.split(s).join(dst)`
-logic to every matching element, then extracts all visible text and
-flags anything that still contains Vietnamese diacritics.
-
-What it catches that the static check doesn't:
-  • DOM strings that aren't in any VI_STRINGS entry (silent fall-through)
-  • DOM strings that ARE in an entry but the entry's EN slot is empty
-  • Whitespace / curly-quote / NBSP drift between DOM and arrays
-  • Selectors absent from setLang's target list (visible but never swapped)
-  • WP/KSES mangling that breaks string equality on the live page only
-
-Run:
-    python tools/simulate_en_render.py portugal           # one alias
-    python tools/simulate_en_render.py                    # all 12
-    python tools/simulate_en_render.py --local portugal   # use local HTML
-    python tools/simulate_en_render.py --json             # JSON only
+This file is kept only as a fallback for environments without Node, and
+is no longer wired into the daily audit. Do not trust its results.
 """
 from __future__ import annotations
 
