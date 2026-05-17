@@ -235,10 +235,13 @@ def js_escape_string(s: str, quote: str | None = None) -> str:
             quote = '"'
         elif has_sq and has_dq:
             # Both present — switch inner `'` to typographic right-single-quote
-            # so we can safely wrap in double quotes. Brochure DOM already uses
-            # `’` widely for prose; this is a non-breaking substitution.
+            # (’), then wrap in SINGLE-quoted JS literal. The `"` in <a href="…">
+            # then sits literal inside `'…'` with no escape needed — which is
+            # crucial because WordPress KSES strips any `\"` inside <script>
+            # tags. Picking `"` as the outer + `\"` escape would re-introduce
+            # the original "Mhmm. Mhmm. English" patchy-toggle bug on live.
             s = s.replace("'", '’')
-            quote = '"'
+            quote = "'"
         else:
             quote = '"'
     # Escape only `\` and the chosen quote character (both rare given the
