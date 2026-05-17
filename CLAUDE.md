@@ -115,10 +115,25 @@ Run with no argument to apply to all 12 (or all relevant). Run with `<alias>` to
 
 ```
 .github/workflows/
-├── pull-notion.yml         ← cron */10 — Notion → HTML → coverage → WP push → live snapshot
-├── daily-en-audit.yml      ← cron daily 02:00 UTC — toggle/sections/charts → GitHub Issue
-├── wp-sync.yml             ← on push to main — apply_listings + sync_brochures to WP
-└── patch-ph-catalog.yml    ← manual dispatch — Property Hub catalog patches
+├── pull-notion.yml             ← cron */10 — Notion → HTML → coverage → WP push → live snapshot
+├── daily-en-audit.yml          ← cron daily 02:00 UTC — toggle/sections/charts → GitHub Issue
+├── intel-daily.yml             ← cron daily 03:00 UTC — scrape policy/pricing/community per country
+├── intel-weekly-digest.yml     ← cron Mon 04:00 UTC — rollup → GitHub Issue with checkbox tasks
+├── intel-apply.yml             ← on issue edit — ticked boxes → PATCH Notion + payload
+├── wp-sync.yml                 ← on push to main — apply_listings + sync_brochures to WP
+└── patch-ph-catalog.yml        ← manual dispatch — Property Hub catalog patches
+```
+
+### Weekly investment-migration intel (Notion auto-updates)
+
+See [`INTEL-PIPELINE.md`](./INTEL-PIPELINE.md). Daily sweep of policy / pricing / Reddit / industry press for the 12 countries → weekly digest GitHub Issue with `- [ ]` checkboxes per proposed Notion update → ticking a box auto-PATCHes Notion + the payload JSON → next pull-notion cycle pushes to live WP. WhatsApp delivery is documented as a follow-up (needs Twilio / Meta Cloud API).
+
+```
+tools/
+├── intel_sources.py    ← per-country sources (official, agency, industry press, Reddit terms)
+├── intel_gather.py     ← daily scraper → .diagnostics/weekly-intel/<date>/<alias>.json
+├── intel_digest.py     ← weekly aggregator → issue markdown with machine-readable trailers
+└── intel_apply.py      ← parses [x] checkboxes from issue body → PATCH Notion DB
 ```
 
 ---

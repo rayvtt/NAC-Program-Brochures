@@ -1,0 +1,83 @@
+name: Apply checked intel boxes to Notion
+
+# Fires whenever an `intel-weekly`-labelled issue is edited. Reads the
+# issue body, finds every `- [x]` checkbox with an <!-- intel:... -->
+# trailer, mutates the affected `data/<alias>_payload.json`, PATCHes the
+# matching Notion DB row, then commits + comments back on the issue with
+# a summary. The 10-min pull-notion workflow then propagates to live WP.
+#
+# Safety: only operates on issues with the `intel-weekly` label. Skips
+# duplicate runs by tagging the issue with `intel-applied:<sha>` via
+# hidden HTML comment in the body.
+
+on:
+  issues:
+    types: [edited]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: intel-apply-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  apply:
+    if: contains(github.event.issue.labels.*.name, 'intel-weekly')
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Save issue body
+        run: |
+          mkdir -p /tmp/intel
+          cat <<'__BODY_EOF__' > /tmp/intel/issue.md
+          ${{ github.event.issue.body }}
+          __BODY_EOF__
+          wc -l /tmp/intel/issue.md
+
+      - name: Apply checked boxes
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: |
+          python tools/intel_apply.py \
+            --body-file=/tmp/intel/issue.md \
+            --summary-file=/tmp/intel/summary.md
+
+      - name: Commit payload changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/*_payload.json || true
+          if git diff --cached --quiet; then
+            echo "No payload changes to commit."
+          else
+            git commit -m "intel-apply: payload updates from issue #${{ github.event.issue.number }}"
+            git push origin main
+          fi
+
+      - name: Comment apply summary on the issue
+        if: always()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            let summary = '_(apply step did not produce a summary)_';
+            try {
+              summary = fs.readFileSync('/tmp/intel/summary.md', 'utf8');
+            } catch (_) {}
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: summary,
+            });

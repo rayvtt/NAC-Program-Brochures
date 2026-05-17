@@ -1,0 +1,107 @@
+name: Weekly intel digest → GitHub Issue
+
+# Mondays 04:00 UTC: aggregate the last 7 days of intel snapshots into a
+# single Markdown digest with checkbox tasks per proposed Notion update.
+# Open (or update) one issue per week labelled `intel-weekly`. Editors
+# tick boxes → the intel-apply workflow PATCHes Notion.
+
+on:
+  schedule:
+    - cron: '0 4 * * 1'        # Monday 04:00 UTC
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Window in days (default 7)'
+        required: false
+        default: '7'
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Compose digest
+        run: |
+          mkdir -p .diagnostics/weekly-intel
+          DAYS="${{ inputs.days }}"
+          DAYS="${DAYS:-7}"
+          python tools/intel_digest.py --days=$DAYS --out=.diagnostics/weekly-intel/DIGEST.md
+          echo "---"
+          head -40 .diagnostics/weekly-intel/DIGEST.md
+
+      - name: Open or update weekly digest issue
+        uses: actions/github-script@v7
+        env:
+          DAYS: ${{ inputs.days || '7' }}
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('.diagnostics/weekly-intel/DIGEST.md', 'utf8');
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `📰 Weekly intel digest · ${today}`;
+            const label = 'intel-weekly';
+
+            // Ensure label exists
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: label,
+              });
+            } catch (e) {
+              if (e.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label,
+                  color: '5b3aa8',
+                  description: 'Weekly investment-migration intel digest',
+                });
+              }
+            }
+
+            // Look for an open issue from the same ISO week — update it
+            // rather than spamming a new one if the cron retries.
+            const isoWeek = (d) => {
+              const t = new Date(d.getTime());
+              t.setUTCHours(0,0,0,0);
+              t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7));
+              const ys = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+              return `${t.getUTCFullYear()}-W${String(Math.ceil(((t - ys) / 86400000 + 1) / 7)).padStart(2,'0')}`;
+            };
+            const wk = isoWeek(new Date());
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              labels: label, state: 'open', per_page: 20,
+            });
+            const existing = open.data.find(i => i.title.includes(wk) || i.title.includes(today));
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+                title: `📰 Weekly intel digest · ${today} (${wk})`,
+              });
+              core.notice(`Updated issue #${existing.number}`);
+            } else {
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: `📰 Weekly intel digest · ${today} (${wk})`,
+                body,
+                labels: [label],
+              });
+              core.notice(`Opened issue #${created.data.number}`);
+            }
