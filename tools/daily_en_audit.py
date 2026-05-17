@@ -284,8 +284,9 @@ def check_globe_sizing(html: str) -> dict:
     """Verify globe banner has correct dimensions on mobile + desktop.
 
     Mobile: CSS Grid 240px globe row + auto kicker + auto title (Turkey pattern)
-    Desktop: banner min-height 360px — 30px breathing room each side of the
-             300px globe. Globe sits at right: -6% (slight overflow off the right
+    Desktop: banner min-height 300px — fits the 300px globe exactly, no
+             extra vertical space. Globe sits at right: -6% (slight overflow
+             for watermark feel). Turkey canonical — don't change.
              edge for a watermark feel). Matches Turkey's canonical spec.
     """
     issues = []
@@ -297,15 +298,15 @@ def check_globe_sizing(html: str) -> dict:
     if 'grid-template-rows: 240px auto auto' not in html:
         issues.append('Mobile globe layout missing CSS Grid (grid-template-rows: 240px auto auto)')
 
-    # Desktop spec: banner min-height 360px (300px globe + 30px each side) — Turkey canonical
+    # Desktop spec: banner min-height 300px (fit-the-globe) — Turkey canonical
     desktop_m = re.search(
         r'\.nac-index-banner\s*\{[^}]*?min-height:\s*(\d+)px[^}]*?\}',
         html
     )
     if desktop_m:
         mh = int(desktop_m.group(1))
-        if mh != 360:
-            issues.append(f'Desktop banner min-height: {mh}px (spec: 360px to match Turkey)')
+        if mh != 300:
+            issues.append(f'Desktop banner min-height: {mh}px (spec: 300px to fit globe — Turkey canonical)')
     else:
         issues.append('Could not find desktop .nac-index-banner min-height rule')
 
