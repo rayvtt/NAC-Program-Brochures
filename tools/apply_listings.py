@@ -185,7 +185,15 @@ def render_card(prop, pdp, country_cfg):
     location_parts = [p for p in [district, country_clean] if p]
 
     # Stats — prefer PDP price_full (e.g. "$572,300"); fall back to worker entry × 1000.
-    price = pdp.get('price_full') or (f"${prop['entry']}K" if prop.get('entry') else '—')
+    # Currency normalisation: per-country currency from data/listings.py — if the PDP price
+    # came in with $ but the country uses € (EU programs), swap the symbol so Malta/Cyprus/
+    # Portugal/Greece show € not $. PDP-side data entry is the canonical fix; this is a
+    # safety net while listings are still in mixed currencies.
+    currency = country_cfg.get('currency', '$')
+    price_raw = pdp.get('price_full') or (f"{currency}{prop['entry']}K" if prop.get('entry') else '—')
+    if currency != '$' and price_raw and price_raw != '—':
+        price_raw = price_raw.replace('$', currency)
+    price = price_raw
     y = pdp.get('yield_pct_unit') or (f"{prop['netYield']:.1f}%" if prop.get('netYield') else '—')
     irr = pdp.get('irr_pct_unit') or (f"{prop['irr']:.1f}%" if prop.get('irr') else '—')
     handover = pdp.get('handover') or '—'
