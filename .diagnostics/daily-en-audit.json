@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-18T13:46:42.387330+00:00",
+  "generated_at": "2026-05-18T14:21:25.012951+00:00",
   "source": "local",
-  "pass_count": 0,
+  "pass_count": 1,
   "total": 1,
   "reports": [
     {
-      "alias": "malaysia",
-      "all_pass": false,
+      "alias": "newzealand",
+      "all_pass": true,
       "toggle": {
         "pass": true,
         "issues": []
       },
       "sections": {
-        "pass": false,
+        "pass": true,
         "per_section": {
           "hero": {
             "translated": 0,
@@ -31,18 +31,18 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 27,
+            "translated": 24,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 23,
+            "translated": 15,
             "fixable_gap": 0,
-            "acceptable_gap": 4,
-            "gap": 4,
+            "acceptable_gap": 6,
+            "gap": 6,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -55,18 +55,18 @@
             "coverage_pct": 100.0
           },
           "process": {
-            "translated": 8,
-            "fixable_gap": 1,
-            "acceptable_gap": 5,
-            "gap": 6,
+            "translated": 12,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
-            "coverage_pct": 88.9
+            "coverage_pct": 100.0
           },
           "family": {
-            "translated": 5,
+            "translated": 8,
             "fixable_gap": 0,
-            "acceptable_gap": 5,
-            "gap": 5,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -81,24 +81,24 @@
           "citizenship": {
             "translated": 2,
             "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "compare": {
+            "translated": 2,
+            "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
-          "compare": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 0,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 50.0
-          },
           "proscons": {
-            "translated": 16,
+            "translated": 12,
             "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
+            "acceptable_gap": 10,
+            "gap": 10,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -111,19 +111,8 @@
             "coverage_pct": 100.0
           }
         },
-        "low_sections": [
-          "compare"
-        ],
-        "notion_gaps": [
-          {
-            "section": "process",
-            "text": "Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất "
-          },
-          {
-            "section": "compare",
-            "text": "Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →"
-          }
-        ]
+        "low_sections": [],
+        "notion_gaps": []
       },
       "overview_ok": true,
       "charts": {
