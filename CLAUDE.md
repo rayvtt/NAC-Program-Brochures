@@ -298,7 +298,9 @@ python tools/daily_en_audit.py <alias> --local
 | Cyprus | ✓ | 8/8, verified live |
 | UAE | ✓ | 8/8 locally; live has minor CTA/chart bleed per user (acceptable) |
 | UK | ✓ | 7/8 locally (only #6 is Notion data gap — `s01_article_cta_url` empty); 308 VI/EN pairs; user confirmed ~95% live then mop-up via #76 closed the rest |
-| Remaining 7 | not yet audited via jsdom | malaysia, malta, newzealand, panama, stkitts, thailand, turkey |
+| Malta | ✓ | 8/8, verified live (Trap 3 fixed at root in injector via PR #80) |
+| St Kitts | ✓ | 8/8 locally; 141 VI/EN pairs added (155 → 0 VN remnants); setLang upgraded to Cyprus reference (desc-length sort + Pass 2 universal walker); 3 low-coverage sections flagged in Notion but those are VI/HTML text-drift, not user-visible remnants |
+| Remaining 5 | not yet audited via jsdom | malaysia, newzealand, panama, thailand, turkey |
 
 ### Simulator regex gotcha (fixed in #76)
 
