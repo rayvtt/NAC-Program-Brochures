@@ -8,6 +8,18 @@ rewrites the inline ``background-image`` to point at that URL.
 Banners that carry the ``nac-index-banner`` class are skipped — they paint
 a canvas globe, not a static image.
 
+**Bare-homepage fallback (added Q2/2026):** any banner whose ``href`` is
+the bare blog homepage (``https://blog.nomadassetcollective.com/`` —
+typically a placeholder when Notion has no specific URL for that CTA yet)
+is rewritten to a real, randomised article PDP picked from the NAC blog
+categories (Góc Nhìn NAC + Phân Tích). The pick is deterministic per
+``(alias, fortnight)`` so the same brochure shows the same article for a
+2-week window and then rotates. See ``tools/pick_random_blog_article.py``.
+
+The fallback runs BEFORE the og:image refresh in the same pass, so the
+new href flows straight into the cover-update step in the same script
+invocation.
+
 Run:
     python tools/refresh_article_covers.py             # all brochures
     python tools/refresh_article_covers.py turkey      # one brochure
@@ -17,6 +29,7 @@ Designed to be idempotent: re-running with no upstream changes is a no-op.
 """
 from __future__ import annotations
 
+import html as html_lib
 import re
 import sys
 import urllib.error
@@ -25,6 +38,17 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BROCHURES_DIR = ROOT / "Brochures html"
+
+sys.path.insert(0, str(ROOT / "tools"))
+from pick_random_blog_article import pick as pick_random_article  # noqa: E402
+
+# Hrefs we treat as "no real article" placeholders that should be backfilled
+# with a random PDP. The trailing slash variant is what the page template
+# typically renders; the no-slash variant is included defensively.
+HOMEPAGE_HREFS = {
+    "https://blog.nomadassetcollective.com/",
+    "https://blog.nomadassetcollective.com",
+}
 
 UA = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 13_5) AppleWebKit/605.1.15 "
@@ -36,8 +60,24 @@ BANNER_RE = re.compile(
     r'<a\s+class="article-cta-banner([^"]*)"\s+([^>]*?)>',
     re.IGNORECASE,
 )
+# Match the full banner block including the inner h3.article-cta-title we may
+# need to rewrite during a homepage→random-PDP swap. Non-greedy so each
+# banner block stays distinct.
+FULL_BANNER_RE = re.compile(
+    r'<a\s+class="article-cta-banner([^"]*)"\s+([^>]*?)>'
+    r'(\s*<span class="article-cta-kicker"[^>]*>[\s\S]*?</span>\s*)?'
+    r'(<h3 class="article-cta-title"[^>]*>)([\s\S]*?)(</h3>)'
+    r'([\s\S]*?</a>)',
+    re.IGNORECASE,
+)
 HREF_RE = re.compile(r'href="([^"]+)"', re.IGNORECASE)
 BG_RE = re.compile(r'background-image\s*:\s*url\(\s*([\'"])(.*?)\1\s*\)', re.IGNORECASE)
+# .article-cta-btn — the read-more button that sits next to the banner; we
+# rewrite its href to match the banner whenever we backfill a random PDP.
+CTA_BTN_RE = re.compile(
+    r'(<a\s+class="article-cta-btn"\s+href=")([^"]+)("[^>]*>)',
+    re.IGNORECASE,
+)
 
 # og:image / twitter:image extraction — tolerant of attribute order
 OG_RES = [
@@ -74,11 +114,114 @@ def fetch_og_image(url: str) -> str | None:
     return None
 
 
+# Map filename prefix → brochure alias. Mirrors sync_brochures.py / apply_listings.py.
+_ALIAS_BY_PREFIX = {
+    "turkey": "turkey", "portugal": "portugal", "greece": "greece",
+    "cyprus": "cyprus", "uae": "uae", "uk": "uk", "malta": "malta",
+    "stkitts": "stkitts", "thailand": "thailand", "newzealand": "newzealand",
+    "panama": "panama", "malaysia": "malaysia",
+}
+
+
+def alias_for(path: Path) -> str | None:
+    name = path.name.lower()
+    for prefix, alias in _ALIAS_BY_PREFIX.items():
+        if name.startswith(prefix):
+            return alias
+    return None
+
+
+def backfill_homepage_banners(text: str, alias: str | None) -> tuple[str, int]:
+    """Walk every article-cta-banner block. For any banner whose href is the
+    bare blog homepage (placeholder), substitute a random NAC-blog PDP +
+    rewrite the inner h3 title to match. The neighbouring article-cta-btn
+    (the "Read Now →" button) is also rewired to the same URL.
+
+    Returns ``(new_text, swapped_count)``. ``swapped_count == 0`` is a no-op.
+    """
+    if not text:
+        return text, 0
+
+    # First pass: identify all banner blocks that need swapping.
+    swap_jobs: list[tuple[re.Match, dict]] = []
+    chosen_article: dict | None = None  # cache one pick per (alias, run)
+    for m in FULL_BANNER_RE.finditer(text):
+        class_extra = m.group(1)
+        attrs = m.group(2)
+        if "nac-index-banner" in class_extra:
+            continue
+        href_m = HREF_RE.search(attrs)
+        if not href_m:
+            continue
+        if href_m.group(1) not in HOMEPAGE_HREFS:
+            continue
+        if chosen_article is None:
+            chosen_article = pick_random_article(alias)
+            if not chosen_article:
+                print("    ! random-article fallback: pick failed, skipping swaps")
+                return text, 0
+        swap_jobs.append((m, chosen_article))
+
+    if not swap_jobs:
+        return text, 0
+
+    # Build edits in reverse to keep offsets stable.
+    edits: list[tuple[int, int, str]] = []
+    for m, article in swap_jobs:
+        new_href = article["url"]
+        new_title_text = article["title"] or "Đọc thêm phân tích trên Blog NAC"
+
+        # Edit 1: swap href in the banner's attrs group (group 2).
+        attrs = m.group(2)
+        href_m = HREF_RE.search(attrs)
+        href_start = m.start(2) + href_m.start(1)
+        href_end = m.start(2) + href_m.end(1)
+        edits.append((href_start, href_end, new_href))
+
+        # Edit 2: swap inner h3 title text (group 5 = title innerHTML).
+        title_start = m.start(5)
+        title_end = m.end(5)
+        # HTML-escape the new title — picker already unescapes from og:title
+        safe = html_lib.escape(new_title_text, quote=False)
+        edits.append((title_start, title_end, safe))
+
+        print(f"    ✓ random-article fallback ({alias or '?'}):")
+        print(f"      url:   {new_href}")
+        print(f"      title: {new_title_text}")
+
+    new_text = text
+    for start, end, repl in sorted(edits, key=lambda e: -e[0]):
+        new_text = new_text[:start] + repl + new_text[end:]
+
+    # Edit pass 3: any .article-cta-btn that still points at the bare
+    # homepage gets rewired to the same new article URL. We can do this
+    # globally because there's at most one chosen_article per file in this
+    # run, and the btns we want to swap are exactly the ones that pointed
+    # at the placeholder.
+    if chosen_article:
+        def btn_sub(b: re.Match) -> str:
+            cur = b.group(2)
+            if cur in HOMEPAGE_HREFS:
+                return f'{b.group(1)}{chosen_article["url"]}{b.group(3)}'
+            return b.group(0)
+        new_text = CTA_BTN_RE.sub(btn_sub, new_text)
+
+    return new_text, len(swap_jobs)
+
+
 def process_file(path: Path, dry_run: bool = False) -> tuple[int, int]:
     """Return ``(updated, unchanged)`` count for ``path``."""
     print(f"\n→ {path.name}")
     text = path.read_text(encoding="utf-8")
     original = text
+
+    # Pass 0 — backfill any bare-homepage article CTAs with a random PDP from
+    # the NAC blog categories (Góc Nhìn NAC + Phân Tích). Deterministic per
+    # (alias, fortnight); fires only when the placeholder is still present.
+    alias = alias_for(path)
+    text, swapped = backfill_homepage_banners(text, alias)
+    if swapped:
+        print(f"  ↺ backfilled {swapped} bare-homepage banner(s) with random PDPs")
 
     updated = 0
     unchanged = 0
