@@ -99,7 +99,10 @@ tools/
 ├── check_brochure_parity.py            ← audit any brochure against Turkey (15 checks)
 ├── check_en_translation_coverage.py    ← static EN coverage on local HTML
 ├── check_live_en_coverage.py           ← fetch live WP, run coverage
-├── daily_en_audit.py                   ← daily 3-check: toggle / sections / charts
+├── daily_en_audit.py                   ← daily 8-check audit (incl. jsdom EN-render)
+├── simulate_en_render.js               ← jsdom truth: setLang('en') in real DOM, count VN remnants
+├── simulate_en_render.py               ← DEPRECATED (BS4 normalizes differently from browser, lies about remnants)
+├── add_translation_pairs.py            ← inject manual {vi: en} pairs into VI_STRINGS/EN_STRINGS
 ├── check_brochure_payload.py           ← JSON schema validator for data/*_payload.json
 ├── pull_from_notion.py                 ← Notion → data/<alias>_payload.json
 ├── inject_notion_en_to_html.py         ← payload → VI_STRINGS/EN_STRINGS in HTML
@@ -141,6 +144,14 @@ WP rewrites `\"foo\"` → `"foo"` inside `<script>` content, terminating the str
 
 **Never use `\"` in `<script>` content destined for WP.**
 
+### Trap 3: Multi-line string literals inside VI_STRINGS / EN_STRINGS arrays
+
+A literal newline inside `"..."` is a SyntaxError. UAE shipped with one — a bullet-point list typed verbatim into a `"..."` string. Because the bilingual engine, the chart constructors, and the score-bar translator all live in the same `<script>` block, the parse error silently killed EN toggle, all 5 charts, and the score bars on live.
+
+**Fix:** join to a single line with `\n` escapes (or `\\n` if it'll round-trip through Notion). Verified by the parity check #15 (`node --check` on every `<script>` block).
+
+**If a brochure's audit shows EN toggle + charts both broken at once, look for a multi-line string literal first — it's almost always the cause.**
+
 ### Verification recipe
 
 ```bash
@@ -153,7 +164,7 @@ print(scripts[4])  # bilingual engine is usually script #4
 # If SyntaxError → WP has mangled something. Diff against local.
 ```
 
-The parity check (#1 and #2) catches both cases.
+The parity check (#1, #2, #15) catches all three traps.
 
 ---
 
@@ -226,6 +237,43 @@ The auto-sync covers most of it. Manual fallback steps:
 3. If text drift exists between Notion VI and HTML DOM (flagged by `check_en_translation_coverage.py`), align either side
 4. Run `python tools/check_brochure_parity.py <alias>` and `python tools/daily_en_audit.py <alias>` — both should pass
 
+### Per-brochure EN audit loop (the Portugal → Greece → Cyprus → UAE workflow)
+
+When a brochure's live EN toggle is patchy or charts are missing, this is the loop:
+
+```bash
+# 1. Truth — what does a real browser actually see on EN click?
+node tools/simulate_en_render.js "Brochures html/<file>.html"
+node tools/simulate_en_render.js "https://nomadassetcollective.com/brochures/<slug>/"
+```
+
+If eval fails → look for a syntax error in the bilingual engine (Trap 3 above).
+If many VN remnants → run setLang upgrade + add translation pairs:
+
+```bash
+# 2. Make sure setLang has descending-length sort + Pass 2 universal walker
+#    (Cyprus is the reference — copy its setLang body if needed)
+
+# 3. For each remaining VN remnant, write a {vi: en} pair using the
+#    ORIGINAL DOM text (not the post-replacement form the simulator shows).
+#    DOM has "Hy Lạp", simulator shows "Greece" — use "Hy Lạp" as the key.
+echo '{ "<original VI from DOM>": "<EN translation>" }' > /tmp/pairs.json
+python tools/add_translation_pairs.py <alias> /tmp/pairs.json
+
+# 4. Re-simulate. Iterate until 0 remnants.
+node tools/simulate_en_render.js "Brochures html/<file>.html"
+
+# 5. Verify all 8 audit checks pass
+python tools/daily_en_audit.py <alias> --local
+
+# 6. Commit → PR → squash-merge → wp-sync fires → verify on live
+```
+
+**Gotchas learned:**
+- WordPress sanitiser strips `$` followed by digits in some contexts. If your translation key uses `$500K`, the DOM might have `00K` — match the DOM-corrupted form.
+- Short pairs like `"UAE"→"United Arab Emirates"` or `"Đầu tư"→"Investment"` cause partial replacements inside longer Vietnamese sentences. The descending-length sort + adding the full-sentence pair fixes this. Or change the short pair to a no-op (`"UAE"→"UAE"`).
+- `innerHTML` returns `&amp;` for `&` in attribute and text content. Your translation key has to match the encoded form for elements where Pass 1 reads `innerHTML`.
+
 ### Watch out for
 
 - **Inline `onclick=""`** anywhere you want JS to run on WP
@@ -237,7 +285,17 @@ The auto-sync covers most of it. Manual fallback steps:
 
 ## 8. PRs shipped this session
 
-`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix · `#45` parity check recognizes legacy bilingual · `#46` chart translator → all 12 at 15/15 · `#47` non-invasive chart translator + bigger globe banner · `#48` dedupe duplicate article CTA URLs · `#49` globe mobile stack layout · `#50` globe CSS Grid bulletproof · `#51` tighten globe banner fit
+`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix · `#45` parity check recognizes legacy bilingual · `#46` chart translator → all 12 at 15/15 · `#47` non-invasive chart translator + bigger globe banner · `#48` dedupe duplicate article CTA URLs · `#49` globe mobile stack layout · `#50` globe CSS Grid bulletproof · `#51` tighten globe banner fit · `#72` NAC Index banner specificity (300px lock across all 12) · `#73` UAE multi-line string SyntaxError + 147 EN pairs (charts + toggle restored)
+
+## 8a. Per-brochure EN audit progress (jsdom-verified, 0 VN remnants)
+
+| Brochure | Status | Notes |
+|---|---|---|
+| Portugal | partial | live still shows VN remnants (user accepted, deprioritised) |
+| Greece | ✓ | ~95% per user; minor bleed in chart legends + tax table |
+| Cyprus | ✓ | 8/8, verified live |
+| UAE | ✓ | 8/8 locally; live has minor CTA/chart bleed per user (acceptable) |
+| Remaining 8 | not yet audited via jsdom | malaysia, malta, newzealand, panama, stkitts, thailand, turkey, uk |
 
 ---
 
