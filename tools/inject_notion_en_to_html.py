@@ -257,9 +257,17 @@ def js_escape_string(s: str, quote: str | None = None) -> str:
             quote = "'"
         else:
             quote = '"'
-    # Escape only `\` and the chosen quote character (both rare given the
-    # selection above; this is just defensive).
-    s = s.replace('\\', '\\\\').replace(quote, '\\' + quote)
+    # Escape `\`, control whitespace, and the chosen quote character. The
+    # control-whitespace escape is what prevents Trap 3 (multi-line string
+    # literals from Notion bullet-list fields landing as raw newlines
+    # inside the JS array → SyntaxError → silent EN-toggle + chart death).
+    # KSES leaves `\n` / `\r` / `\t` alone inside <script>, unlike `\"`,
+    # so these escape sequences are safe on WordPress.
+    s = (s.replace('\\', '\\\\')
+          .replace('\n', '\\n')
+          .replace('\r', '\\r')
+          .replace('\t', '\\t')
+          .replace(quote, '\\' + quote))
     return quote + s + quote
 
 

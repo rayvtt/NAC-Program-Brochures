@@ -148,9 +148,11 @@ WP rewrites `\"foo\"` → `"foo"` inside `<script>` content, terminating the str
 
 A literal newline inside `"..."` is a SyntaxError. UAE shipped with one — a bullet-point list typed verbatim into a `"..."` string. Because the bilingual engine, the chart constructors, and the score-bar translator all live in the same `<script>` block, the parse error silently killed EN toggle, all 5 charts, and the score bars on live.
 
-**Fix:** join to a single line with `\n` escapes (or `\\n` if it'll round-trip through Notion). Verified by the parity check #15 (`node --check` on every `<script>` block).
+**Fix (HTML):** join to a single line with `\n` escapes. Verified by the parity check #15 (`node --check` on every `<script>` block).
 
-**If a brochure's audit shows EN toggle + charts both broken at once, look for a multi-line string literal first — it's almost always the cause.**
+**Fix (root cause, May 2026):** `tools/inject_notion_en_to_html.py`'s `js_escape_string` now also escapes literal `\n` / `\r` / `\t` as JS escape sequences before wrapping in quotes — so a Notion bullet-list field with embedded newlines lands as `"…\n…\n…"` in the array, not as a raw multi-line literal. KSES does NOT strip `\n` inside `<script>` (only `\"`), so this is safe on WordPress. If this regresses, the smoke test is: after running the injector, every brochure's parity check #15 must pass.
+
+**If a brochure's audit shows EN toggle + charts both broken at once, look for a multi-line string literal first — it's almost always the cause.** This bit us on Malta + UAE + Panama in May 2026 when a new Notion bullet-list field hit all 3 in a single cron tick.
 
 ### Verification recipe
 
