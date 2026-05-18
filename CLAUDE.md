@@ -285,7 +285,7 @@ python tools/daily_en_audit.py <alias> --local
 
 ## 8. PRs shipped this session
 
-`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix · `#45` parity check recognizes legacy bilingual · `#46` chart translator → all 12 at 15/15 · `#47` non-invasive chart translator + bigger globe banner · `#48` dedupe duplicate article CTA URLs · `#49` globe mobile stack layout · `#50` globe CSS Grid bulletproof · `#51` tighten globe banner fit · `#72` NAC Index banner specificity (300px lock across all 12) · `#73` UAE multi-line string SyntaxError + 147 EN pairs (charts + toggle restored)
+`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix · `#45` parity check recognizes legacy bilingual · `#46` chart translator → all 12 at 15/15 · `#47` non-invasive chart translator + bigger globe banner · `#48` dedupe duplicate article CTA URLs · `#49` globe mobile stack layout · `#50` globe CSS Grid bulletproof · `#51` tighten globe banner fit · `#72` NAC Index banner specificity (300px lock across all 12) · `#73` UAE multi-line string SyntaxError + 147 EN pairs (charts + toggle restored) · `#75` UK setLang upgrade + 87 EN pairs + chart translator (0 VN remnants) · `#76` UK mop-up bleeds (So Sánh CTA + tax cells) + widened simulator regex
 
 ## 8a. Per-brochure EN audit progress (jsdom-verified, 0 VN remnants)
 
@@ -295,7 +295,12 @@ python tools/daily_en_audit.py <alias> --local
 | Greece | ✓ | ~95% per user; minor bleed in chart legends + tax table |
 | Cyprus | ✓ | 8/8, verified live |
 | UAE | ✓ | 8/8 locally; live has minor CTA/chart bleed per user (acceptable) |
-| Remaining 8 | not yet audited via jsdom | malaysia, malta, newzealand, panama, stkitts, thailand, turkey, uk |
+| UK | ✓ | 7/8 locally (only #6 is Notion data gap — `s01_article_cta_url` empty); 308 VI/EN pairs; user confirmed ~95% live then mop-up via #76 closed the rest |
+| Remaining 7 | not yet audited via jsdom | malaysia, malta, newzealand, panama, stkitts, thailand, turkey |
+
+### Simulator regex gotcha (fixed in #76)
+
+The jsdom simulator's `VN_UNIQUE` regex used to match only "uniquely Vietnamese" diacritics (`ạ ậ ặ ế ề ể ễ ệ` etc.) and silently skipped common single-mark vowels (`á à ã ạ ó ò ô è í ú ý`). Strings like "So Sánh UK vs Hy Lạp" and "VN: 2% trên giá bán" passed the audit while leaving visible VN on the live page. The widened regex in `#76` covers all Vietnamese diacritics — earlier "verified" brochures (Greece, Cyprus, UAE) may have latent bleeds that the next daily-en-audit run will surface. False positives on Spanish/Portuguese names are still filtered via the `ALLOWED` set + 2-word minimum.
 
 ---
 

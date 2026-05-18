@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-05-18T07:39:55.262589+00:00",
+  "generated_at": "2026-05-18T08:00:43.984504+00:00",
   "source": "local",
   "pass_count": 0,
   "total": 1,
   "reports": [
     {
-      "alias": "uk",
+      "alias": "malta",
       "all_pass": false,
       "toggle": {
         "pass": true,
@@ -31,7 +31,7 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 27,
+            "translated": 26,
             "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
@@ -39,10 +39,10 @@
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 23,
+            "translated": 15,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -55,34 +55,34 @@
             "coverage_pct": 100.0
           },
           "process": {
-            "translated": 11,
+            "translated": 13,
+            "fixable_gap": 1,
+            "acceptable_gap": 1,
+            "gap": 2,
+            "skip": 0,
+            "coverage_pct": 92.9
+          },
+          "family": {
+            "translated": 8,
             "fixable_gap": 0,
             "acceptable_gap": 3,
             "gap": 3,
             "skip": 0,
             "coverage_pct": 100.0
           },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
           "tax": {
-            "translated": 3,
+            "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "citizenship": {
-            "translated": 2,
+            "translated": 4,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -95,10 +95,10 @@
             "coverage_pct": 100.0
           },
           "proscons": {
-            "translated": 23,
+            "translated": 17,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -112,7 +112,12 @@
           }
         },
         "low_sections": [],
-        "notion_gaps": []
+        "notion_gaps": [
+          {
+            "section": "process",
+            "text": "MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi"
+          }
+        ]
       },
       "overview_ok": true,
       "charts": {
@@ -129,8 +134,8 @@
       },
       "article_urls": {
         "pass": false,
-        "total_article_ctas": 1,
-        "pdp_count": 0,
+        "total_article_ctas": 2,
+        "pdp_count": 1,
         "bare_homepage_count": 1,
         "issues": [
           "1 article CTA(s) point to blog homepage instead of a specific PDP"
