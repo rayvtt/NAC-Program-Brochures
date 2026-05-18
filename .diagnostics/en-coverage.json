@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T05:41:16.915685Z",
+  "generated_at": "2026-05-18T09:00:07.004469Z",
   "reports": [
     {
       "alias": "portugal",
@@ -225,54 +225,54 @@
       "alias": "uae",
       "html_file": "uae-rbi_1_7.html",
       "visible_vn_strings": 126,
-      "translated": 29,
-      "gap": 97,
+      "translated": 115,
+      "gap": 11,
       "skip": 0,
-      "coverage_pct": 23.0,
+      "coverage_pct": 91.3,
       "gap_samples": [
         {
-          "text": "UAE Golden Visa — ra mắt năm 2019, mở rộng năm 2022 — là chương trình cư trú dài hạn 10 năm của Các Tiểu Vương Quốc Ả Rậ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "UAE Golden Visa cung cấp nhiều hình thức đủ điều kiện — bất động sản là phổ biến nhất. AED 2 triệu (~45,000) là ngưỡng t",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Dubai và sẵn sàng giao dịch. Bạn không cần săn tìm — ch",
+          "text": "Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)",
           "reason": "no_en_available"
         },
         {
-          "text": "Quy trình UAE Golden Visa qua BĐS được thiết kế để có thể hoàn thành trong 1–3 tháng. Hầu hết các bước có thể thực hiện ",
+          "text": "Lợi thế thuế đặc biệt: Nhà đầu tư Việt cư trú tại UAE (hơn 183 ngày/năm) có thể xem xét chuyển đổi tư cách cư trú thuế s",
           "reason": "text_drift_vs_notion"
         },
         {
-          "text": "UAE Golden Visa có phạm vi bảo lãnh gia đình linh hoạt — bao gồm vợ/chồng và các con phụ thuộc. Gói Nhà Đầu Tư Chiến Lượ",
+          "text": "Dubai, Abu Dhabi, Sharjah & các tiểu vương quốc",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đăng ký tại Cơ Quan Đất Đai (DLD) & nhận Title Deed",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "/* ============================================================ NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v3 Country: UA",
           "reason": "text_drift_vs_notion"
         },
         {
-          "text": "UAE là một trong những môi trường thuế thân thiện nhất thế giới — không thuế thu nhập cá nhân, không thuế lãi vốn, không",
-          "reason": "text_drift_vs_notion"
+          "text": "02 Các mức đầu tư",
+          "reason": "no_en_available"
         },
         {
-          "text": "UAE không có chương trình nhập tịch thông thường qua đầu tư — quốc tịch UAE được cấp theo quyết định của Chính phủ cho c",
-          "reason": "text_drift_vs_notion"
+          "text": "03 Quy trình & thời gian",
+          "reason": "no_en_available"
         },
         {
-          "text": "Vị trí của UAE Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
+          "text": "04 Gia đình & thụ hưởng",
+          "reason": "no_en_available"
         },
         {
-          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc UAE Golden Visa trong năm 2026.",
-          "reason": "text_drift_vs_notion"
+          "text": "05 Thuế & tài chính",
+          "reason": "no_en_available"
         },
         {
-          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "text": "08 Ưu & nhược điểm",
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 129,
-      "en_array_size": 129,
+      "vi_array_size": 343,
+      "en_array_size": 343,
       "data_attr_pairs": 10,
       "notion_en_fields": 30
     },
@@ -280,23 +280,11 @@
       "alias": "uk",
       "html_file": "uk-rbi_1 (2).html",
       "visible_vn_strings": 124,
-      "translated": 92,
-      "gap": 32,
+      "translated": 106,
+      "gap": 18,
       "skip": 0,
-      "coverage_pct": 74.2,
+      "coverage_pct": 85.5,
       "gap_samples": [
-        {
-          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Anh Quốc và sẵn sàng giao dịch. Bạn không cần săn tìm —",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Vị trí của UK Innovator Founder Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
-          "reason": "no_en_available"
-        },
         {
           "text": "Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the",
           "reason": "no_en_available"
@@ -304,10 +292,6 @@
         {
           "text": "Chiến lược NAC cho nhà đầu tư Việt: Kết hợp Innovator Founder Visa (£50K–£100K vốn kinh doanh) + Đầu tư BĐS song song (£",
           "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lưu ý quan trọng: UK yêu cầu cư trú liên tục — nhà đầu tư không được vắng mặt quá 180 ngày trong bất kỳ 12 tháng nào để ",
-          "reason": "no_en_available"
         },
         {
           "text": "So sánh với Hy Lạp/Bồ Đào Nha: Greece Golden Visa bảo lãnh bố mẹ cả hai bên mà không tăng mức đầu tư. Bồ Đào Nha cũng bả",
@@ -324,10 +308,26 @@
         {
           "text": "Lộ trình ILR 3 năm — lợi thế hiếm có: Hầu hết visa làm việc UK đang đề xuất tăng lên 10 năm cho ILR (từ 2026). Innovator",
           "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Rủi ro BĐS UK cho nhà đầu tư nước ngoài: Phụ thu SDLT tổng cộng 7% (5% BĐS thứ 2 + 2% phụ thu người nước ngoài) làm tăng",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "UK Innovator Founder phù hợp nhất với: Doanh nhân Việt có ý tưởng kinh doanh thực sự muốn mở rộng ra thị trường UK/quốc ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Xây dựng kế hoạch kinh doanh & chọn tổ chức bảo trợ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Nộp hồ sơ phê duyệt & nhận thư bảo trợ",
+          "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 214,
-      "en_array_size": 214,
+      "vi_array_size": 308,
+      "en_array_size": 308,
       "data_attr_pairs": 6,
       "notion_en_fields": 31
     },
@@ -335,19 +335,11 @@
       "alias": "malta",
       "html_file": "malta-rbi_1_3.html",
       "visible_vn_strings": 115,
-      "translated": 28,
-      "gap": 87,
+      "translated": 98,
+      "gap": 17,
       "skip": 0,
-      "coverage_pct": 24.3,
+      "coverage_pct": 85.2,
       "gap_samples": [
-        {
-          "text": "Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất ch",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malta và sẵn sàng giao dịch. Bạn không cần săn tìm — ch",
-          "reason": "text_drift_vs_notion"
-        },
         {
           "text": "MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi",
           "reason": "text_drift_vs_notion"
@@ -361,28 +353,36 @@
           "reason": "text_drift_vs_notion"
         },
         {
-          "text": "Cập nhật quan trọng: Chương trình CBI cũ của Malta (MEIN) đã đóng vào tháng 4/2025 sau phán quyết của Tòa Công Lý EU. Hi",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Vị trí của Malta MPRP trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Malta MPRP trong năm 2026.",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+          "text": "Bắt buộc chứng minh tài sản: Ngoài các khoản trên, bạn phải chứng minh sở hữu tổng tài sản ít nhất €500,000 — trong đó c",
           "reason": "no_en_available"
         },
         {
-          "text": "2021 (cập nhật 7/2025)",
+          "text": "So sánh với Bồ Đào Nha & Hy Lạp: Bồ Đào Nha GV chỉ bao gồm vợ/chồng, con phụ thuộc và bố mẹ trên 65 tuổi (cần chứng minh",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Lợi thế thuế độc đáo Malta: Khác với UK (đã cải tổ chế độ non-dom 2025) hoặc các nước remittance khác, Malta không có \"d",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Xác định rõ mục tiêu trước khi nộp: MPRP cho EU PR vĩnh viễn + Schengen ngay, nhưng không dẫn tự động đến hộ chiếu Malta",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Due Diligence sơ bộ & Chuẩn bị hồ sơ",
           "reason": "no_en_available"
+        },
+        {
+          "text": "Vợ/Chồng & Đối Tác Lâu Dài",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "{ \"@context\": \"https://schema.org\", \"@graph\": [ { \"@type\": \"Article\", \"@id\": \"https://blog.nomadassetcollective.com/malt",
+          "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 130,
-      "en_array_size": 130,
+      "vi_array_size": 369,
+      "en_array_size": 369,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
