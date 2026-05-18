@@ -47,6 +47,7 @@ LIVE_SLUG = {
     'newzealand': 'chuong-trinh-new-zealand-rbi-dau-tu-di-tru',
     'panama':     'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien',
     'malaysia':   'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru',
+    'antigua':    'chuong-trinh-antigua-barbuda-cbi',
 }
 LIVE_BASE = 'https://nomadassetcollective.com/brochures'
 
