@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-05-18T09:02:04.646413+00:00",
+  "generated_at": "2026-05-18T12:39:42.887466+00:00",
   "source": "live WordPress fetched HTML",
   "reports": [
     {
       "alias": "portugal",
       "html_file": "live_portugal.html",
       "visible_vn_strings": 129,
-      "translated": 107,
-      "gap": 22,
+      "translated": 106,
+      "gap": 23,
       "skip": 0,
-      "coverage_pct": 82.9,
+      "coverage_pct": 82.2,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm",
@@ -52,9 +52,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 331,
-      "en_array_size": 331,
-      "data_attr_pairs": 14,
+      "vi_array_size": 332,
+      "en_array_size": 332,
+      "data_attr_pairs": 13,
       "notion_en_fields": 28
     },
     {
@@ -107,9 +107,9 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 316,
-      "en_array_size": 316,
-      "data_attr_pairs": 6,
+      "vi_array_size": 317,
+      "en_array_size": 317,
+      "data_attr_pairs": 7,
       "notion_en_fields": 30
     },
     {
@@ -162,19 +162,19 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 287,
-      "en_array_size": 287,
-      "data_attr_pairs": 6,
+      "vi_array_size": 288,
+      "en_array_size": 288,
+      "data_attr_pairs": 7,
       "notion_en_fields": 28
     },
     {
       "alias": "turkey",
       "html_file": "live_turkey.html",
-      "visible_vn_strings": 140,
-      "translated": 127,
+      "visible_vn_strings": 139,
+      "translated": 126,
       "gap": 13,
       "skip": 0,
-      "coverage_pct": 90.7,
+      "coverage_pct": 90.6,
       "gap_samples": [
         {
           "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
@@ -219,17 +219,17 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 243,
+      "data_attr_pairs": 242,
       "notion_en_fields": 29
     },
     {
       "alias": "uae",
       "html_file": "live_uae.html",
       "visible_vn_strings": 126,
-      "translated": 115,
-      "gap": 11,
+      "translated": 114,
+      "gap": 12,
       "skip": 0,
-      "coverage_pct": 91.3,
+      "coverage_pct": 90.5,
       "gap_samples": [
         {
           "text": "Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)",
@@ -246,6 +246,10 @@
         {
           "text": "Đăng ký tại Cơ Quan Đất Đai (DLD) & nhận Title Deed",
           "reason": "no_en_available"
+        },
+        {
+          "text": "Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Cư Trú D7 Cho Nhà Đầu Tư Việt",
+          "reason": "text_drift_vs_notion"
         },
         {
           "text": "/* ============================================================ NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v3 Country: UA",
@@ -266,14 +270,10 @@
         {
           "text": "05 Thuế & tài chính",
           "reason": "no_en_available"
-        },
-        {
-          "text": "08 Ưu & nhược điểm",
-          "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 343,
-      "en_array_size": 343,
+      "vi_array_size": 345,
+      "en_array_size": 345,
       "data_attr_pairs": 10,
       "notion_en_fields": 30
     },
@@ -281,10 +281,10 @@
       "alias": "uk",
       "html_file": "live_uk.html",
       "visible_vn_strings": 124,
-      "translated": 106,
-      "gap": 18,
+      "translated": 105,
+      "gap": 19,
       "skip": 0,
-      "coverage_pct": 85.5,
+      "coverage_pct": 84.7,
       "gap_samples": [
         {
           "text": "Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the",
@@ -327,9 +327,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 308,
-      "en_array_size": 308,
-      "data_attr_pairs": 6,
+      "vi_array_size": 309,
+      "en_array_size": 309,
+      "data_attr_pairs": 7,
       "notion_en_fields": 31
     },
     {
@@ -382,19 +382,19 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 369,
-      "en_array_size": 369,
-      "data_attr_pairs": 6,
+      "vi_array_size": 371,
+      "en_array_size": 371,
+      "data_attr_pairs": 7,
       "notion_en_fields": 30
     },
     {
       "alias": "stkitts",
       "html_file": "live_stkitts.html",
       "visible_vn_strings": 123,
-      "translated": 62,
-      "gap": 61,
+      "translated": 94,
+      "gap": 29,
       "skip": 0,
-      "coverage_pct": 50.4,
+      "coverage_pct": 76.4,
       "gap_samples": [
         {
           "text": "St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh ",
@@ -403,10 +403,6 @@
         {
           "text": "St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền Vững (SISC) — không hoàn lại nhưng nhanh",
           "reason": "notion_has_en_not_injected"
-        },
-        {
-          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St Kitts và sẵn sàng giao dịch. Bạn không cần săn tìm —",
-          "reason": "no_en_available"
         },
         {
           "text": "St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Lightning Process (ALP) — 45–60 ngày với phí ",
@@ -435,66 +431,70 @@
         {
           "text": "Thành viên Commonwealth & OECS",
           "reason": "no_en_available"
+        },
+        {
+          "text": "Cập nhật quan trọng 2023–2026: St Kitts & Nevis đã tăng mức đóng góp SGF từ $150K lên $250K (đơn độc) vào tháng 6/2023. ",
+          "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 208,
-      "en_array_size": 208,
-      "data_attr_pairs": 6,
+      "vi_array_size": 350,
+      "en_array_size": 350,
+      "data_attr_pairs": 7,
       "notion_en_fields": 30
     },
     {
       "alias": "thailand",
       "html_file": "live_thailand.html",
       "visible_vn_strings": 117,
-      "translated": 42,
-      "gap": 75,
+      "translated": 106,
+      "gap": 11,
       "skip": 0,
-      "coverage_pct": 35.9,
+      "coverage_pct": 90.6,
       "gap_samples": [
         {
-          "text": "Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương trình cư trú dài hạn 10 năm (5+5) dành ",
+          "text": "Ưu đãi thuế LTR đặc biệt: Người giữ LTR Visa được miễn khai thuế trên thu nhập nước ngoài chuyển vào Thái Lan. Đây là lợ",
           "reason": "text_drift_vs_notion"
         },
         {
-          "text": "Thái Lan LTR Visa có 4 diện xét duyệt — \"Wealthy Global Citizen\" (nhà đầu tư BĐS) là phổ biến nhất với nhà đầu tư Việt. ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ LTR Thái Lan và sẵn sàng giao dịch. Bạn không cần săn tìm —",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "LTR Visa được xử lý qua BOI (Board of Investment) — không qua Sở Di Trú thông thường. Toàn bộ quy trình mất khoảng 1–2 t",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "LTR Visa cho phép bảo lãnh vợ/chồng và tối đa 4 con dưới 20 tuổi. Phạm vi hẹp hơn Hy Lạp (bảo lãnh bố mẹ) nhưng đủ cho g",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Thái Lan áp dụng thuế lũy tiến 0–35% — nhưng LTR Visa mang lại ưu đãi thuế đặc biệt: chuyên gia được hưởng thuế 17% cố đ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Thái Lan không có chương trình citizenship-by-investment. Nhập tịch Thái yêu cầu cư trú liên tục nhiều năm, thông thạo t",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Vị trí của Thái Lan LTR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "9/2022 (mở rộng 2/2025)",
+          "text": "Chuẩn bị hồ sơ & đầu tư đủ điều kiện",
           "reason": "no_en_available"
         },
         {
-          "text": "Cập nhật 2/2025: BOI đã bỏ yêu cầu thu nhập cá nhân ฿2.8M/năm cho diện Wealthy Global Citizen. Chỉ cần ฿35M tài sản + ฿1",
+          "text": "Hẹn tại TIESC — Sinh trắc học & cấp visa",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Hoàn tất — Bắt đầu cư trú Thái Lan",
           "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "/* ============================================================ NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v3 Country: Th",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "02 Các mức đầu tư",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "03 Quy trình & thời gian",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "04 Gia đình & thụ hưởng",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "05 Thuế & tài chính",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "08 Ưu & nhược điểm",
+          "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 202,
-      "en_array_size": 202,
-      "data_attr_pairs": 6,
+      "vi_array_size": 400,
+      "en_array_size": 400,
+      "data_attr_pairs": 7,
       "notion_en_fields": 30
     },
     {
@@ -547,46 +547,22 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 183,
-      "en_array_size": 183,
-      "data_attr_pairs": 6,
+      "vi_array_size": 184,
+      "en_array_size": 184,
+      "data_attr_pairs": 7,
       "notion_en_fields": 28
     },
     {
       "alias": "panama",
       "html_file": "live_panama.html",
       "visible_vn_strings": 123,
-      "translated": 73,
-      "gap": 50,
+      "translated": 100,
+      "gap": 23,
       "skip": 0,
-      "coverage_pct": 59.3,
+      "coverage_pct": 81.3,
       "gap_samples": [
         {
-          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — c",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Qualified Investor Visa xử lý từ 30 ngày theo luật, thực tế thường mất 45–90 ngày tùy hồ sơ — vẫn là một trong những chư",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Panama không có chương trình quốc tịch trực tiếp qua đầu tư — nhưng cư dân vĩnh viễn đủ điều kiện nộp đơn nhập tịch sau ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Không — rất tối thiểu",
-          "reason": "no_en_available"
-        },
-        {
           "text": "Hub tài chính & thương mại quốc tế",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chỉ cần nhập cảnh 1 lần mỗi 2 năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Hệ thống thuế lãnh thổ — chỉ đánh thuế cho thu nhập trong nước",
           "reason": "no_en_available"
         },
         {
@@ -598,12 +574,36 @@
           "reason": "no_en_available"
         },
         {
-          "text": "Cảnh báo deadline 2026: Ngưỡng đầu tư BĐS $300,000 (vốn tự có — equity, không bao gồm phần vay thế chấp) cho Qualified I",
+          "text": "Chiến lược NAC cho nhà đầu tư Việt: Ưu tiên QIV BĐS $300K (vốn tự có — equity) trước deadline 10/2026 — mua căn hộ cho t",
           "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Lưu ý nhập tịch: Yêu cầu gồm tiếng Tây Ban Nha (phỏng vấn), thi kiến thức lịch sử/địa lý Panama, chứng minh gắn bó thực ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "50+ quốc gia đủ điều kiện (US, EU, UK, JP, KR...) · ⚠️ VN không đủ điều kiện",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "PR tức thì — từ 30 ngày",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Lựa chọn phương thức đầu tư & chuẩn bị hồ sơ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Hoàn tất đầu tư & nộp hồ sơ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Xét duyệt & nhận thẻ tạm thời",
+          "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 231,
-      "en_array_size": 231,
+      "vi_array_size": 362,
+      "en_array_size": 362,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
@@ -657,9 +657,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 190,
-      "en_array_size": 190,
-      "data_attr_pairs": 6,
+      "vi_array_size": 191,
+      "en_array_size": 191,
+      "data_attr_pairs": 7,
       "notion_en_fields": 28
     }
   ]
