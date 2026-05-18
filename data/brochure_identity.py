@@ -167,6 +167,19 @@ IDENTITY = {
         'wp_slug':         'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru',
         'cover':           'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1500&q=80',  # KL Twin Towers
     },
+    'antigua': {
+        'flag':            '🇦🇬',
+        'country_vi':      'Antigua & Barbuda',
+        'country_en':      'Antigua & Barbuda',
+        'program_code':    'CBI',
+        'program_tag':     'CBI · Antigua & Barbuda',
+        'program_vi':      'Antigua & Barbuda CBI',
+        'program_en':      'Antigua & Barbuda CBI',
+        'source_filename': 'antigua-cbi.html',
+        'wp_page_id':      2158,
+        'wp_slug':         'chuong-trinh-antigua-barbuda-cbi',
+        'cover':           'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1500&q=80',  # Caribbean coastline
+    },
 }
 
 
