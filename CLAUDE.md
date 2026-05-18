@@ -301,8 +301,9 @@ python tools/daily_en_audit.py <alias> --local
 | Malta | ✓ | 8/8, verified live (Trap 3 fixed at root in injector via PR #80) |
 | St Kitts | ✓ | 8/8 locally; 141 VI/EN pairs added (155 → 0 VN remnants); setLang upgraded to Cyprus reference (desc-length sort + Pass 2 universal walker); 3 low-coverage sections flagged in Notion but those are VI/HTML text-drift, not user-visible remnants |
 | Thailand | ✓ | 8/8 fully passing locally (no section gaps); 197 VI/EN pairs added (182 → 0 VN remnants in 4 rounds); setLang upgraded; included EN translation for the random article title pushed by PR #79's fallback |
-| Panama | ✓ | 7/8 locally (#8 fails on simulator false positives only — 142 → 9 in 5 rounds, all 9 are Spanish proper nouns: Migración / Cédula / Santa María / Pacífico / Colón that pass through the VN-diacritic regex). 129 VI/EN pairs added; setLang upgraded. 0 actual Vietnamese remnants. |
-| Remaining 3 | not yet audited via jsdom | malaysia, newzealand, turkey |
+| Panama | ✓ | 7/8 locally — Panama needed an extra round (PR #86) after user spotted bleeds the simulator's false-positive filter had hidden: `<strong>không</strong>` inside §01 info-text + a bilingual disclaimer header. Fixed with full Pass-1 innerHTML pair + EN-only disclaimer. `tools/dump_real_vn.js` (added in #86) filters to VN-only diacritics so Spanish loanwords don't drown out real bleeds. 132 VI/EN pairs added total; setLang upgraded. |
+| Malaysia | ✓ | 8/8 locally (no section gaps after final round); 160 VI/EN pairs added (163 → 0 VN remnants in 3 rounds); setLang upgraded; round 2 fixed 5 sec-sub/info-text/tl-body pairs where I had assumed truncated `dump_real_vn` output rather than checking the actual DOM (lesson: always grep the brochure for full text, not the diagnostic's first 300 chars) |
+| Remaining 2 | not yet audited via jsdom | newzealand, turkey |
 
 ### Simulator regex gotcha (fixed in #76)
 
