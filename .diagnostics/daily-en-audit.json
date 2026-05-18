@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-18T08:00:43.984504+00:00",
+  "generated_at": "2026-05-18T08:57:48.408404+00:00",
   "source": "local",
-  "pass_count": 0,
+  "pass_count": 1,
   "total": 1,
   "reports": [
     {
       "alias": "malta",
-      "all_pass": false,
+      "all_pass": true,
       "toggle": {
         "pass": true,
         "issues": []
@@ -133,13 +133,11 @@
         "issues": []
       },
       "article_urls": {
-        "pass": false,
+        "pass": true,
         "total_article_ctas": 2,
-        "pdp_count": 1,
-        "bare_homepage_count": 1,
-        "issues": [
-          "1 article CTA(s) point to blog homepage instead of a specific PDP"
-        ]
+        "pdp_count": 2,
+        "bare_homepage_count": 0,
+        "issues": []
       },
       "chart_rendering": {
         "pass": true,

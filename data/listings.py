@@ -18,16 +18,16 @@ brochure), append a `pin` list of integer IDs.
 """
 
 COUNTRIES = {
-    'turkey':     {'notion_country': 'Thổ Nhĩ Kỳ',                 'program_code': 'CBI'},
-    'portugal':   {'notion_country': 'Bồ Đào Nha',                 'program_code': 'RBI'},
-    'greece':     {'notion_country': 'Hy Lạp',                     'program_code': 'RBI'},
-    'cyprus':     {'notion_country': 'Đảo Síp',                    'program_code': 'RBI'},
-    'uae':        {'notion_country': ['UAE', 'Dubai', 'Abu Dhabi'],'program_code': 'RBI'},
-    'uk':         {'notion_country': 'Anh Quốc',                   'program_code': 'RBI'},
-    'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI'},
-    'stkitts':    {'notion_country': 'St Kitts',                   'program_code': 'CBI'},
-    'thailand':   {'notion_country': 'Thái Lan',                   'program_code': 'LTR'},
-    'newzealand': {'notion_country': 'New Zealand',                'program_code': 'RBI'},
-    'panama':     {'notion_country': 'Panama',                     'program_code': 'RBI'},
-    'malaysia':   {'notion_country': 'Malaysia',                   'program_code': 'RBI'},
+    'turkey':     {'notion_country': 'Thổ Nhĩ Kỳ',                 'program_code': 'CBI', 'currency': '$'},
+    'portugal':   {'notion_country': 'Bồ Đào Nha',                 'program_code': 'RBI', 'currency': '€'},
+    'greece':     {'notion_country': 'Hy Lạp',                     'program_code': 'RBI', 'currency': '€'},
+    'cyprus':     {'notion_country': 'Đảo Síp',                    'program_code': 'RBI', 'currency': '€'},
+    'uae':        {'notion_country': ['UAE', 'Dubai', 'Abu Dhabi'],'program_code': 'RBI', 'currency': '$'},
+    'uk':         {'notion_country': 'Anh Quốc',                   'program_code': 'RBI', 'currency': '£'},
+    'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI', 'currency': '€'},
+    'stkitts':    {'notion_country': 'St Kitts',                   'program_code': 'CBI', 'currency': '$'},
+    'thailand':   {'notion_country': 'Thái Lan',                   'program_code': 'LTR', 'currency': '$'},
+    'newzealand': {'notion_country': 'New Zealand',                'program_code': 'RBI', 'currency': '$'},
+    'panama':     {'notion_country': 'Panama',                     'program_code': 'RBI', 'currency': '$'},
+    'malaysia':   {'notion_country': 'Malaysia',                   'program_code': 'RBI', 'currency': '$'},
 }
