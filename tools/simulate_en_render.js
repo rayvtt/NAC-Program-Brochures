@@ -35,8 +35,12 @@ catch (_) {
 const fs = require('fs');
 const path = require('path');
 
-// Vietnamese-only diacritics. Same set as the Python tool.
-const VN_UNIQUE = /[ăĂưƯơƠđĐảấầẩẫậắằẳẵặẹếềểễệỉịỏốồổỗộớờởỡợủụứừửữựỳỷỹỵẠ]/;
+// Vietnamese-unique diacritics. Wider set than v1 — earlier version
+// missed common single-mark vowels (á, ạ, ó, ò, ô, è, í, ú, ý, etc.)
+// that legitimately don't appear in English but DO show up in Vietnamese
+// remnants. False positives on Spanish/Portuguese names are filtered
+// via the ALLOWED set + the 2-word minimum below.
+const VN_UNIQUE = /[ăâđêôơưĂÂĐÊÔƠƯáàảãạắằẳẵặấầẩẫậéèẻẽẹếềểễệíìỉĩịóòỏõọốồổỗộớờởỡợúùủũụứừửữựýỳỷỹỵÁÀẢÃẠẮẰẲẴẶẤẦẨẪẬÉÈẺẼẸẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌỐỒỔỖỘỚỜỞỠỢÚÙỦŨỤỨỪỬỮỰÝỲỶỸỴ]/;
 
 // Phrases that legitimately stay in original form (brand / place names).
 const ALLOWED = new Set([
