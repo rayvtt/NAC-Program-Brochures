@@ -1,0 +1,160 @@
+
+[1mDaily EN Audit (LIVE)[0m
+[90m──────────────────────────────────────────────────────────────────────[0m
+
+[1mportugal[0m  [32m✓[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+     [33mNotion has EN for 1 gaps (sample):[0m
+       [nac] Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa 
+
+[1mgreece[0m  [32m✓[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+
+[1mcyprus[0m  [32m✓[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+
+[1mturkey[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m19 VN remnants[0m
+     [90m· 🔒 Còn 6 phần chuyên sâu[0m
+     [90m· Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?[0m
+     [90m· Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
+
+[1muae[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+     [33mlow sections: investment[0m
+     [33mNotion has EN for 2 gaps (sample):[0m
+       [investment] UAE Golden Visa cung cấp nhiều hình thức đủ điều kiện — bất động sản là phổ biến
+       [investment] Nhận định NAC: Dubai Marina, Downtown Dubai, Palm Jumeirah và Dubai Hills Estate
+
+[1muk[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [31m✗[0m [31m1 article CTA(s) point to blog homepage instead of a specific PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m105 VN remnants[0m
+     [90m· ★ BĐS đang mở bán[0m
+     [90m· Tốt – Hệ Thống Pháp Lý & BĐS Mạnh[0m
+     [90m· BĐS đang mở bán[0m
+
+[1mmalta[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [31m✗[0m [31m1 article CTA(s) point to blog homepage instead of a specific PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+     [33mlow sections: process[0m
+     [33mNotion has EN for 1 gaps (sample):[0m
+       [process] MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩ
+
+[1mstkitts[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m136 VN remnants[0m
+     [90m· ★ BĐS đang mở bán[0m
+     [90m· Xuất Sắc – Quốc Tịch Caribbean Tốt Nhất[0m
+     [90m· BĐS đang mở bán[0m
+     [33mlow sections: tax, citizenship, compare, nac[0m
+     [33mNotion has EN for 9 gaps (sample):[0m
+       [overview] St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời
+       [investment] St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền 
+       [process] St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Light
+
+[1mthailand[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [31m✗[0m [31m1 article CTA(s) point to blog homepage instead of a specific PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m166 VN remnants[0m
+     [90m· ★ BĐS đang mở bán[0m
+     [90m· Khá – BĐS & Nomad Lifestyle[0m
+     [90m· BĐS đang mở bán[0m
+     [33mlow sections: family[0m
+     [33mNotion has EN for 2 gaps (sample):[0m
+       [overview] Thái Lan LTR Visa — ra mắt tháng 9/2022, mở rộng tiêu chuẩn đầu 2025 — là chương
+       [family] LTR Visa cho phép bảo lãnh vợ/chồng và tối đa 4 con dưới 20 tuổi. Phạm vi hẹp hơ
+
+[1mnewzealand[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [31m✗[0m [31m1 article CTA(s) point to blog homepage instead of a specific PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m159 VN remnants[0m
+     [90m· ★ BĐS đang mở bán[0m
+     [90m· Tốt – Không Thuế Lãi Vốn & Linh Hoạt[0m
+     [90m· BĐS đang mở bán[0m
+     [33mNotion has EN for 2 gaps (sample):[0m
+       [overview] New Zealand Active Investor Plus Visa — ra mắt năm 2022, cải cách lớn tháng 4/20
+       [proscons] Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc NZ Active 
+
+[1mpanama[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mmalaysia[0m  [31m✗[0m
+  1. Toggle:        [32m✓[0m 
+  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
+  3. §01 Overview:  [32m✓[0m 
+  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  6. Article URLs:  [31m✗[0m [31m1 article CTA(s) point to blog homepage instead of a specific PDP[0m
+  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
+  8. EN displays:   [31m✗[0m [31m151 VN remnants[0m
+     [90m· ★ BĐS đang mở bán[0m
+     [90m· Tốt – BĐS & Chi Phí Sống Hấp Dẫn[0m
+     [90m· BĐS đang mở bán[0m
+     [33mlow sections: compare[0m
+     [33mNotion has EN for 4 gaps (sample):[0m
+       [overview] Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là ch
+       [process] Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ 
+       [compare] Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC 
+
+[90m──────────────────────────────────────────────────────────────────────[0m
+[1mSummary:[0m  [32m3/12 brochures fully passing[0m
+  [33mSection gaps:[0m    uae, malta, stkitts, thailand, malaysia
+  → JSON report: .diagnostics/daily-en-audit.json
