@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-05-18T14:21:25.012951+00:00",
+  "generated_at": "2026-05-18T14:26:41.957309+00:00",
   "source": "local",
   "pass_count": 1,
   "total": 1,
   "reports": [
     {
-      "alias": "newzealand",
+      "alias": "turkey",
       "all_pass": true,
       "toggle": {
         "pass": true,
@@ -31,31 +31,31 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 24,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 15,
+            "translated": 22,
             "fixable_gap": 0,
             "acceptable_gap": 6,
             "gap": 6,
             "skip": 0,
             "coverage_pct": 100.0
           },
-          "listings": {
-            "translated": 1,
+          "investment": {
+            "translated": 22,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
+          "listings": {
+            "translated": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100
+          },
           "process": {
-            "translated": 12,
+            "translated": 15,
             "fixable_gap": 0,
             "acceptable_gap": 2,
             "gap": 2,
@@ -63,18 +63,18 @@
             "coverage_pct": 100.0
           },
           "family": {
-            "translated": 8,
+            "translated": 10,
             "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 2,
+            "translated": 18,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -87,18 +87,18 @@
             "coverage_pct": 100.0
           },
           "compare": {
-            "translated": 2,
+            "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "proscons": {
-            "translated": 12,
+            "translated": 19,
             "fixable_gap": 0,
-            "acceptable_gap": 10,
-            "gap": 10,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -118,8 +118,8 @@
       "charts": {
         "pass": true,
         "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
+        "has_buildcharts": true,
+        "has_translator": false,
         "issues": []
       },
       "globe_sizing": {
@@ -139,10 +139,9 @@
         "has_charts": true,
         "canvases": [
           "radarChart",
-          "timelineChart",
-          "taxChart",
+          "citizenshipChart",
           "compareChart",
-          "strengthChart"
+          "matrixChart"
         ],
         "issues": []
       },

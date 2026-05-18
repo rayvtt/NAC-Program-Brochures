@@ -1310,7 +1310,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <div class="nav-right">
       <a class="nav-link" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Index</a>
       <span class="nav-sep">·</span>
-      <a class="nav-link" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh</a>
+      <a class="nav-link" href="https://nomadassetcollective.com/so-sanh/" target="_blank" data-vi="So Sánh" data-en="Compare">So Sánh</a>
       <span class="nav-sep">·</span>
       <a class="nav-link" href="https://nomadassetcollective.com/property-hub/" target="_blank">Property Hub</a>
       <div class="lang-toggle">
@@ -1539,7 +1539,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <div class="tier">
           <span class="tier-badge" style="background:#374151;color:#fff;" data-vi="Thay Thế" data-en="Alternative">Thay Thế</span>
           <div class="tier-header"><div>
-            <div class="tier-amount">50 nhân viên</div>
+            <div class="tier-amount" data-vi="50 nhân viên" data-en="50 employees">50 nhân viên</div>
             <div class="tier-name" data-vi="Tạo việc làm" data-en="Job Creation">Tạo việc làm</div>
             <div class="tier-region" data-vi="Theo xác nhận của Bộ Gia đình &amp; Lao động" data-en="Confirmed by Ministry of Family &amp; Labour">Theo xác nhận của Bộ Gia đình & Lao động</div>
           </div></div>
@@ -1688,16 +1688,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
           <!-- ── STATE: ASK (default first paint) ───────────────────── -->
           <div class="pw-stage pw-stage-ask">
-            <span class="nac-paywall-lock-pill">🔒 Còn 6 phần chuyên sâu</span>
-            <h3>Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?</h3>
-            <p class="pw-sub">Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.</p>
+            <span class="nac-paywall-lock-pill" data-vi="🔒 Còn 6 phần chuyên sâu" data-en="🔒 6 in-depth sections remaining">🔒 Còn 6 phần chuyên sâu</span>
+            <h3 data-vi="Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?" data-en="Read the full Türkiye CBI Brochure?">Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?</h3>
+            <p class="pw-sub" data-vi="Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn." data-en="Family · Tax · Citizenship pathway · Compare · Pros &amp; cons · NAC analysis — sent to your email.">Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.</p>
 
             <div class="nac-paywall-yesno" id="nac-paywall-yesno">
-              <button type="button" class="pw-btn-yes" data-choice="yes">Có, gửi cho tôi →</button>
-              <button type="button" class="pw-btn-no"  data-choice="no">Để sau</button>
+              <button type="button" class="pw-btn-yes" data-choice="yes" data-vi="Có, gửi cho tôi →" data-en="Yes, send it to me →">Có, gửi cho tôi →</button>
+              <button type="button" class="pw-btn-no"  data-choice="no" data-vi="Để sau" data-en="Maybe later">Để sau</button>
             </div>
 
-            <p class="nac-paywall-disclaimer">
+            <p class="nac-paywall-disclaimer" data-vi="Brochure được gửi từ <a href=&quot;mailto:ray@nomadassetcollective.com&quot;>ray@</a> hoặc <a href=&quot;mailto:hello@nomadassetcollective.com&quot;>hello@nomadassetcollective.com</a>." data-en="Brochure sent from <a href=&quot;mailto:ray@nomadassetcollective.com&quot;>ray@</a> or <a href=&quot;mailto:hello@nomadassetcollective.com&quot;>hello@nomadassetcollective.com</a>.">
               Brochure được gửi từ
               <a href="mailto:ray@nomadassetcollective.com">ray@</a> hoặc
               <a href="mailto:hello@nomadassetcollective.com">hello@nomadassetcollective.com</a>.
@@ -1709,43 +1709,43 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <!-- ── STATE: ADMIN (NAC team enters password to bypass paywall) ── -->
           <div class="pw-stage pw-stage-admin">
             <h3>Admin access</h3>
-            <p class="pw-sub">Nhập mật khẩu để xem toàn bộ brochure ngay.</p>
+            <p class="pw-sub" data-vi="Nhập mật khẩu để xem toàn bộ brochure ngay." data-en="Enter the password to view the full brochure now.">Nhập mật khẩu để xem toàn bộ brochure ngay.</p>
 
             <form class="nac-paywall-form" id="nac-paywall-admin-form" novalidate>
               <input type="password" name="admin" placeholder="Mật khẩu admin" autocomplete="off" autofocus>
-              <button type="submit">Mở khóa</button>
+              <button type="submit" data-vi="Mở khóa" data-en="Unlock">Mở khóa</button>
             </form>
 
-            <button type="button" class="pw-back-link" data-action="back">← Quay lại</button>
+            <button type="button" class="pw-back-link" data-action="back" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
           </div>
 
           <!-- ── STATE: EMAIL (untracked Yes → ask only for email) ───── -->
           <div class="pw-stage pw-stage-email">
-            <h3>Gửi tới email nào?</h3>
-            <p class="pw-sub">Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.</p>
+            <h3 data-vi="Gửi tới email nào?" data-en="Send to which email?">Gửi tới email nào?</h3>
+            <p class="pw-sub" data-vi="Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ." data-en="One last step. NAC will send the full brochure within 24 hours.">Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.</p>
 
             <!-- Cold-flow form: posts directly to NAC Notion Worker
                  (creates new row in NAC Lead CRM). Submit handled by JS. -->
             <form class="nac-paywall-form" id="nac-paywall-form" novalidate>
               <input type="email" name="email" placeholder="Email của bạn" required autocomplete="email">
-              <button type="submit">Gửi cho tôi →</button>
+              <button type="submit" data-vi="Gửi cho tôi →" data-en="Send to me →">Gửi cho tôi →</button>
             </form>
 
-            <button type="button" class="pw-back-link" data-action="back">← Quay lại</button>
+            <button type="button" class="pw-back-link" data-action="back" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
           </div>
 
           <!-- ── STATE: SENT (success) ──────────────────────────────── -->
           <div class="pw-stage pw-stage-sent" role="status" aria-live="polite">
             <div class="pw-success-icon">📨</div>
-            <h3>Đã nhận yêu cầu của bạn</h3>
-            <p class="pw-sub">Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.</p>
+            <h3 data-vi="Đã nhận yêu cầu của bạn" data-en="Your request has been received">Đã nhận yêu cầu của bạn</h3>
+            <p class="pw-sub" data-vi="Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions." data-en="The NAC team will send the full brochure within 24 hours. Check your Spam/Promotions folder too.">Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.</p>
           </div>
 
           <!-- ── STATE: DISMISSED (No) ──────────────────────────────── -->
           <div class="pw-stage pw-stage-dismissed" role="status" aria-live="polite">
             <div class="pw-success-icon">👋</div>
-            <h3>OK, để sau cũng được</h3>
-            <p class="pw-sub">Đổi ý lúc nào cũng được —
+            <h3 data-vi="OK, để sau cũng được" data-en="OK, maybe later">OK, để sau cũng được</h3>
+            <p class="pw-sub" data-vi="Đổi ý lúc nào cũng được — <button type=&quot;button&quot; class=&quot;pw-link-reopen&quot; data-action=&quot;reopen&quot;>gửi brochure cho tôi</button>." data-en="Change your mind any time — <button type=&quot;button&quot; class=&quot;pw-link-reopen&quot; data-action=&quot;reopen&quot;>send me the brochure</button>.">Đổi ý lúc nào cũng được —
               <button type="button" class="pw-link-reopen" data-action="reopen">gửi brochure cho tôi</button>.
             </p>
           </div>
@@ -1864,7 +1864,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         </thead>
         <tbody>
           <tr class="highlight">
-            <td><span class="comp-flag">🇹🇷</span> Thổ Nhĩ Kỳ CBI</td><td>$400K (BĐS)</td><td><span class="tag tag-green" data-vi="Quốc Tịch" data-en="Citizenship">Quốc Tịch</span></td><td>110+ visa-free</td><td>3–6 tháng</td>
+            <td><span class="comp-flag">🇹🇷</span> Thổ Nhĩ Kỳ CBI</td><td data-vi="$400K (BĐS)" data-en="$400K (real estate)">$400K (BĐS)</td><td><span class="tag tag-green" data-vi="Quốc Tịch" data-en="Citizenship">Quốc Tịch</span></td><td>110+ visa-free</td><td data-vi="3–6 tháng" data-en="3–6 months">3–6 tháng</td>
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill" style="width:74%"></div></div><span class="comp-score-num">74</span></div></td>
           </tr>
           <tr>
@@ -1872,7 +1872,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:78%"></div></div><span class="comp-score-num">78</span></div></td>
           </tr>
           <tr>
-            <td><span class="comp-flag">🇵🇹</span> Bồ Đào Nha GV</td><td>€250K (quỹ)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td>12–18 tháng</td>
+            <td><span class="comp-flag">🇵🇹</span> Bồ Đào Nha GV</td><td data-vi="€250K (quỹ)" data-en="€250K (fund)">€250K (quỹ)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td data-vi="12–18 tháng" data-en="12–18 months">12–18 tháng</td>
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill top" style="width:88%"></div></div><span class="comp-score-num">88</span></div></td>
           </tr>
           <tr>
@@ -1884,7 +1884,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:79%"></div></div><span class="comp-score-num">79</span></div></td>
           </tr>
           <tr>
-            <td><span class="comp-flag">🇪🇸</span> Tây Ban Nha GV</td><td>€500K (BĐS)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td>6–12 tháng</td>
+            <td><span class="comp-flag">🇪🇸</span> Tây Ban Nha GV</td><td data-vi="€500K (BĐS)" data-en="€500K (real estate)">€500K (BĐS)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td data-vi="6–12 tháng" data-en="6–12 months">6–12 tháng</td>
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:75%"></div></div><span class="comp-score-num">75</span></div></td>
           </tr>
         </tbody>
