@@ -1,12 +1,12 @@
 {
-  "generated_at": "2026-05-18T06:14:04.525309+00:00",
+  "generated_at": "2026-05-18T07:17:15.054936+00:00",
   "source": "local",
-  "pass_count": 1,
+  "pass_count": 0,
   "total": 1,
   "reports": [
     {
-      "alias": "uae",
-      "all_pass": true,
+      "alias": "uk",
+      "all_pass": false,
       "toggle": {
         "pass": true,
         "issues": []
@@ -33,16 +33,16 @@
           "overview": {
             "translated": 27,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 24,
+            "translated": 23,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -55,7 +55,7 @@
             "coverage_pct": 100.0
           },
           "process": {
-            "translated": 12,
+            "translated": 11,
             "fixable_gap": 0,
             "acceptable_gap": 3,
             "gap": 3,
@@ -71,18 +71,18 @@
             "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
             "translated": 3,
             "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "citizenship": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -95,7 +95,7 @@
             "coverage_pct": 100.0
           },
           "proscons": {
-            "translated": 21,
+            "translated": 23,
             "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
@@ -128,11 +128,13 @@
         "issues": []
       },
       "article_urls": {
-        "pass": true,
+        "pass": false,
         "total_article_ctas": 1,
-        "pdp_count": 1,
-        "bare_homepage_count": 0,
-        "issues": []
+        "pdp_count": 0,
+        "bare_homepage_count": 1,
+        "issues": [
+          "1 article CTA(s) point to blog homepage instead of a specific PDP"
+        ]
       },
       "chart_rendering": {
         "pass": true,
