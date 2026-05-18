@@ -1202,6 +1202,33 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
 </style>
 </head>
 <body>
@@ -2752,8 +2779,8 @@ const EN_STRINGS = [
   'Greece Golden Visa’s position in the overall landscape. See full rankings at <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Residence Index →</a>',
   'Can’t decide yet? The <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">NAC Comparison Tool</a> helps you choose the right program based on your budget, family goals and timeline.',
   'The NAC Consulting team has extensive experience advising Vietnamese HNWI families on Greece Golden Visa, with a network of real estate and legal partners in Athens, Thessaloniki and the islands. We support the entire process — from obtaining AFM, property selection, legal due diligence to residency application. Read more at <a href="https://blog.nomadassetcollective.com/" target="_blank">blog.nomadassetcollective.com</a>',
-  "★ Properties on sale",
-  "Properties on sale",
+  "★ Active Listings",
+  "Active Listings",
   "30' Consultation",
   "2013 (reformed 2024)",
   "6-criteria NAC score breakdown — Greece Golden Visa",
@@ -2768,7 +2795,7 @@ const EN_STRINGS = [
   "and an administrative fine of €50,000. Beyond real estate, there is also a €500K+ capital route into Greek companies, investment funds, equities, or government bonds — but it requires a D-visa entry first and is more complex than the real-estate route.",
   "Learn more:",
   "Real Investment Opportunities",
-  "RBI-Eligible Properties — On Sale",
+  "RBI-Eligible Properties — Active Listings",
   "These are properties vetted by NAC, eligible for the Greece RBI program, and ready for transaction. No need to hunt — we have curated the selection.",
   "Updating",
   "More Greece RBI-eligible properties will be announced here in due course.",

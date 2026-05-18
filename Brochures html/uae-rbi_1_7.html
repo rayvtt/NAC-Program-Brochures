@@ -1264,6 +1264,33 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
 </style>
 </head>
 <body>
@@ -2818,8 +2845,8 @@ const EN_STRINGS = [
   "UAE Golden Visa is best for:\\n• Investors wanting the fastest residency — approved in 2–4 weeks\\n• Those seeking 0% tax on all personal income globally\\n• Investors wanting USD-yield real estate (5–8%/year)\\n• First step in a 2-flag strategy paired with Turkey CBI or Caribbean CBI\\n• Families comfortable without a citizenship pathway",
   'Read more in-depth analysis: <a href="https://blog.nomadassetcollective.com/🧮-so-sanh-thue-2026-uae-0-vs-phuong-tay-tai-sao-nha-dau-tu-chon-tai-dinh-cu-vi-thue/" target="_blank"><strong>Tax Comparison 2026: UAE 0% vs the West — Why Investors Relocate for Tax</strong></a>',
   'Read more in-depth analysis: <a href="https://blog.nomadassetcollective.com/🧮-so-sanh-thue-2026-uae-0-vs-phuong-tay-tai-sao-nha-dau-tu-chon-tai-dinh-cu-vi-thue/" target="_blank"><strong>Tax Comparison 2026: UAE 0% vs the West — Why Investors Relocate for Tax</strong></a>',
-  "★ Properties on sale",
-  "Properties on sale",
+  "★ Active Listings",
+  "Active Listings",
   "Book 30'",
   "UAE Golden Visa — launched in 2019, expanded in 2022 — is the United Arab Emirates' 10-year long-term residency program. Zero income tax, a world-class business environment, and an exceptionally fast visa issuance process are the three reasons UAE has become the top destination for Southeast Asian HNWIs.",
   "2019 (expanded 2022)",
@@ -2861,7 +2888,7 @@ const EN_STRINGS = [
   "Dubai Marina, Downtown Dubai, Palm Jumeirah and Dubai Hills Estate are the most popular property zones for foreign investors. Apartments in the AED 2M–3M range yield 5–8%/year in USD rent — significantly higher than European markets.",
   "Learn more:",
   "Real Investment Opportunities",
-  "RBI-Eligible Properties — On Sale",
+  "RBI-Eligible Properties — Active Listings",
   "These are NAC-vetted assets, RBI-eligible for Dubai and ready to transact. No hunting required — we've already curated.",
   "✓ RBI-eligible",
   "Starting Price",

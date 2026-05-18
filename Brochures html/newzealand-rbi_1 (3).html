@@ -1259,6 +1259,33 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
 </style>
 </head>
 <body>
