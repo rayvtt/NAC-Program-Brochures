@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-18T07:00:19.652843+00:00",
+  "generated_at": "2026-05-18T07:17:15.054936+00:00",
   "source": "local",
   "pass_count": 0,
   "total": 1,
@@ -47,12 +47,12 @@
             "coverage_pct": 100.0
           },
           "listings": {
-            "translated": 0,
+            "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
-            "coverage_pct": 100
+            "coverage_pct": 100.0
           },
           "process": {
             "translated": 11,
