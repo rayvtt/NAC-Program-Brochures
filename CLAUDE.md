@@ -301,7 +301,8 @@ python tools/daily_en_audit.py <alias> --local
 | Malta | ✓ | 8/8, verified live (Trap 3 fixed at root in injector via PR #80) |
 | St Kitts | ✓ | 8/8 locally; 141 VI/EN pairs added (155 → 0 VN remnants); setLang upgraded to Cyprus reference (desc-length sort + Pass 2 universal walker); 3 low-coverage sections flagged in Notion but those are VI/HTML text-drift, not user-visible remnants |
 | Thailand | ✓ | 8/8 fully passing locally (no section gaps); 197 VI/EN pairs added (182 → 0 VN remnants in 4 rounds); setLang upgraded; included EN translation for the random article title pushed by PR #79's fallback |
-| Remaining 4 | not yet audited via jsdom | malaysia, newzealand, panama, turkey |
+| Panama | ✓ | 7/8 locally (#8 fails on simulator false positives only — 142 → 9 in 5 rounds, all 9 are Spanish proper nouns: Migración / Cédula / Santa María / Pacífico / Colón that pass through the VN-diacritic regex). 129 VI/EN pairs added; setLang upgraded. 0 actual Vietnamese remnants. |
+| Remaining 3 | not yet audited via jsdom | malaysia, newzealand, turkey |
 
 ### Simulator regex gotcha (fixed in #76)
 

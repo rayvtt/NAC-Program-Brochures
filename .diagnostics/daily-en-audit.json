@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-18T10:36:33.730613+00:00",
+  "generated_at": "2026-05-18T12:13:17.776032+00:00",
   "source": "local",
   "pass_count": 0,
   "total": 1,
   "reports": [
     {
-      "alias": "stkitts",
+      "alias": "panama",
       "all_pass": false,
       "toggle": {
         "pass": true,
         "issues": []
       },
       "sections": {
-        "pass": false,
+        "pass": true,
         "per_section": {
           "hero": {
             "translated": 0,
@@ -31,20 +31,20 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 21,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
+            "translated": 23,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
             "skip": 0,
-            "coverage_pct": 95.5
+            "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 20,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
+            "translated": 24,
+            "fixable_gap": 0,
+            "acceptable_gap": 3,
+            "gap": 3,
             "skip": 0,
-            "coverage_pct": 95.2
+            "coverage_pct": 100.0
           },
           "listings": {
             "translated": 1,
@@ -55,105 +55,64 @@
             "coverage_pct": 100.0
           },
           "process": {
-            "translated": 14,
-            "fixable_gap": 1,
-            "acceptable_gap": 2,
-            "gap": 3,
+            "translated": 10,
+            "fixable_gap": 0,
+            "acceptable_gap": 4,
+            "gap": 4,
             "skip": 0,
-            "coverage_pct": 93.3
+            "coverage_pct": 100.0
           },
           "family": {
-            "translated": 7,
-            "fixable_gap": 1,
+            "translated": 8,
+            "fixable_gap": 0,
             "acceptable_gap": 2,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 87.5
-          },
-          "tax": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
             "gap": 2,
             "skip": 0,
-            "coverage_pct": 50.0
+            "coverage_pct": 100.0
+          },
+          "tax": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
           },
           "citizenship": {
             "translated": 2,
-            "fixable_gap": 1,
-            "acceptable_gap": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
             "gap": 1,
             "skip": 0,
-            "coverage_pct": 66.7
+            "coverage_pct": 100.0
           },
           "compare": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
-            "coverage_pct": 50.0
+            "coverage_pct": 100.0
           },
           "proscons": {
             "translated": 20,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 2,
             "gap": 2,
             "skip": 0,
-            "coverage_pct": 95.2
+            "coverage_pct": 100.0
           },
           "nac": {
             "translated": 3,
-            "fixable_gap": 1,
+            "fixable_gap": 0,
             "acceptable_gap": 1,
-            "gap": 2,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 75.0
+            "coverage_pct": 100.0
           }
         },
-        "low_sections": [
-          "tax",
-          "citizenship",
-          "compare"
-        ],
-        "notion_gaps": [
-          {
-            "section": "overview",
-            "text": "St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh "
-          },
-          {
-            "section": "investment",
-            "text": "St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền Vững (SISC) — không hoàn lại nhưng nhanh"
-          },
-          {
-            "section": "process",
-            "text": "St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Lightning Process (ALP) — 45–60 ngày với phí "
-          },
-          {
-            "section": "family",
-            "text": "St Kitts & Nevis có chính sách bảo lãnh gia đình rộng rãi nhất trong nhóm Caribbean CBI — bao gồm vợ/chồng, con, cha mẹ,"
-          },
-          {
-            "section": "tax",
-            "text": "St Kitts & Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lã"
-          },
-          {
-            "section": "citizenship",
-            "text": "Khác với các chương trình RBI (cư trú đầu tư), St Kitts & Nevis CBI cấp quốc tịch trực tiếp — không qua giai đoạn cư trú"
-          },
-          {
-            "section": "compare",
-            "text": "So sánh St Kitts & Nevis với các chương trình Caribbean CBI khác và một số chương trình châu Âu — theo góc nhìn của nhà "
-          },
-          {
-            "section": "proscons",
-            "text": "Đánh giá khách quan của NAC dành cho nhà đầu tư HNWI người Việt đang cân nhắc St Kitts & Nevis CBI trong năm 2026."
-          },
-          {
-            "section": "nac",
-            "text": "Sẵn sàng tìm hiểu hộ chiếu St Kitts & Nevis?"
-          }
-        ]
+        "low_sections": [],
+        "notion_gaps": []
       },
       "overview_ok": true,
       "charts": {
@@ -170,8 +129,8 @@
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 2,
-        "pdp_count": 2,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
         "bare_homepage_count": 0,
         "issues": []
       },
@@ -188,10 +147,28 @@
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
+        "pass": false,
+        "issues": [
+          "9 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 9,
+        "samples": [
+          {
+            "text": "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) & Decree 193 (2024) · Henley Passport Index 2026 · P"
+          },
+          {
+            "text": "Panama City, Bocas del Toro, Coronado, Santa María"
+          },
+          {
+            "text": "Wire funds from abroad into Panama, complete the real-estate transaction (sign the contract, register at the Public Regi"
+          },
+          {
+            "text": "Immigration reviews the application via the Special Processing Service Division. Receive a temporary residence card whil"
+          },
+          {
+            "text": "Receive Permanent Residency & Cédula"
+          }
+        ]
       }
     }
   ]
