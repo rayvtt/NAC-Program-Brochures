@@ -55,6 +55,7 @@ ALIAS_FILE = {
     'newzealand': 'newzealand-rbi_1 (3).html',
     'panama':     'panama-rbi_.html',
     'malaysia':   'malaysia-mm2h.html',
+    'antigua':    'antigua-cbi.html',
 }
 
 DATA_NOTION_RE = re.compile(r'data-notion="([\w_]+)"[^>]*>(.*?)</[a-zA-Z]', re.DOTALL)

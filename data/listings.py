@@ -30,4 +30,5 @@ COUNTRIES = {
     'newzealand': {'notion_country': 'New Zealand',                'program_code': 'RBI', 'currency': '$'},
     'panama':     {'notion_country': 'Panama',                     'program_code': 'RBI', 'currency': '$'},
     'malaysia':   {'notion_country': 'Malaysia',                   'program_code': 'RBI', 'currency': '$'},
+    'antigua':    {'notion_country': 'Antigua & Barbuda',           'program_code': 'CBI', 'currency': '$'},
 }

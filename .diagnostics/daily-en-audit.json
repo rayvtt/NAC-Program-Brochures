@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-05-18T14:26:41.957309+00:00",
+  "generated_at": "2026-05-18T15:13:05.284239+00:00",
   "source": "local",
   "pass_count": 1,
   "total": 1,
   "reports": [
     {
-      "alias": "turkey",
+      "alias": "antigua",
       "all_pass": true,
       "toggle": {
         "pass": true,
@@ -31,20 +31,20 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 22,
+            "translated": 9,
             "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
+            "acceptable_gap": 17,
+            "gap": 17,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 22,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 15,
+            "gap": 15,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "listings": {
             "translated": 0,
@@ -55,36 +55,36 @@
             "coverage_pct": 100
           },
           "process": {
-            "translated": 15,
+            "translated": 2,
             "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
+            "acceptable_gap": 14,
+            "gap": 14,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "family": {
-            "translated": 10,
+            "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 9,
+            "gap": 9,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 18,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 15,
+            "gap": 15,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "citizenship": {
-            "translated": 2,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 3,
+            "gap": 3,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "compare": {
             "translated": 1,
@@ -95,18 +95,18 @@
             "coverage_pct": 100.0
           },
           "proscons": {
-            "translated": 19,
+            "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 18,
+            "gap": 18,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "nac": {
-            "translated": 4,
+            "translated": 2,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
             "coverage_pct": 100.0
           }

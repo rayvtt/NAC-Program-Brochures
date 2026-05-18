@@ -18,6 +18,7 @@ URL pattern: `https://nomadassetcollective.com/brochures/<slug>/` — each broch
 | 🇳🇿 New Zealand | `newzealand` | 1944 | https://nomadassetcollective.com/brochures/chuong-trinh-new-zealand-rbi-dau-tu-di-tru/ |
 | 🇵🇦 Panama | `panama` | 1996 | https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/ |
 | 🇲🇾 Malaysia | `malaysia` | 2024 | https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/ |
+| 🇦🇬 Antigua & Barbuda | `antigua` | 2158 | https://nomadassetcollective.com/brochures/chuong-trinh-antigua-barbuda-cbi/ |
 
 ## Gateway page (synced by this repo)
 
