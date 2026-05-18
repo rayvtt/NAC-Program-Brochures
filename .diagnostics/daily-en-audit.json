@@ -1,18 +1,18 @@
 {
-  "generated_at": "2026-05-18T12:13:17.776032+00:00",
+  "generated_at": "2026-05-18T13:46:42.387330+00:00",
   "source": "local",
   "pass_count": 0,
   "total": 1,
   "reports": [
     {
-      "alias": "panama",
+      "alias": "malaysia",
       "all_pass": false,
       "toggle": {
         "pass": true,
         "issues": []
       },
       "sections": {
-        "pass": true,
+        "pass": false,
         "per_section": {
           "hero": {
             "translated": 0,
@@ -31,18 +31,18 @@
             "coverage_pct": 100
           },
           "overview": {
-            "translated": 23,
+            "translated": 27,
             "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 24,
+            "translated": 23,
             "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
+            "acceptable_gap": 4,
+            "gap": 4,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -55,18 +55,18 @@
             "coverage_pct": 100.0
           },
           "process": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 4,
-            "gap": 4,
+            "translated": 8,
+            "fixable_gap": 1,
+            "acceptable_gap": 5,
+            "gap": 6,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 88.9
           },
           "family": {
-            "translated": 8,
+            "translated": 5,
             "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
+            "acceptable_gap": 5,
+            "gap": 5,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -81,38 +81,49 @@
           "citizenship": {
             "translated": 2,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 1,
+            "acceptable_gap": 0,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 50.0
+          },
           "proscons": {
-            "translated": 20,
+            "translated": 16,
             "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
+            "acceptable_gap": 6,
+            "gap": 6,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "nac": {
-            "translated": 3,
+            "translated": 4,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
             "coverage_pct": 100.0
           }
         },
-        "low_sections": [],
-        "notion_gaps": []
+        "low_sections": [
+          "compare"
+        ],
+        "notion_gaps": [
+          {
+            "section": "process",
+            "text": "Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất "
+          },
+          {
+            "section": "compare",
+            "text": "Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →"
+          }
+        ]
       },
       "overview_ok": true,
       "charts": {
@@ -129,8 +140,8 @@
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 0,
-        "pdp_count": 0,
+        "total_article_ctas": 1,
+        "pdp_count": 1,
         "bare_homepage_count": 0,
         "issues": []
       },
@@ -147,28 +158,10 @@
         "issues": []
       },
       "en_render": {
-        "pass": false,
-        "issues": [
-          "9 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 9,
-        "samples": [
-          {
-            "text": "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) & Decree 193 (2024) · Henley Passport Index 2026 · P"
-          },
-          {
-            "text": "Panama City, Bocas del Toro, Coronado, Santa María"
-          },
-          {
-            "text": "Wire funds from abroad into Panama, complete the real-estate transaction (sign the contract, register at the Public Regi"
-          },
-          {
-            "text": "Immigration reviews the application via the Special Processing Service Division. Receive a temporary residence card whil"
-          },
-          {
-            "text": "Receive Permanent Residency & Cédula"
-          }
-        ]
+        "pass": true,
+        "issues": [],
+        "remnant_count": 0,
+        "samples": []
       }
     }
   ]
