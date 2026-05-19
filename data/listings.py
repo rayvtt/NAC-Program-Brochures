@@ -27,7 +27,11 @@ COUNTRIES = {
                    # auto-anchor which would otherwise pin Pearl Park (€230K Paphos).
                    'pin': [86, 85]},
     'uae':        {'notion_country': ['UAE', 'Dubai', 'Abu Dhabi'],'program_code': 'RBI', 'currency': '$'},
-    'uk':         {'notion_country': ['Anh Quốc', 'United Kingdom'],'program_code': 'RBI', 'currency': '£'},
+    'uk':         {'notion_country': ['Anh Quốc', 'United Kingdom'],'program_code': 'RBI', 'currency': '£',
+                   # Curation: feature White City Living (id 91, £665K) +
+                   # London Dock (id 87, £790K). Overrides auto-pair which
+                   # would anchor on Bermondsey Place (cheapest at £499,950).
+                   'pin': [91, 87]},
     'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI', 'currency': '€'},
     'stkitts':    {'notion_country': 'St Kitts',                   'program_code': 'CBI', 'currency': '$'},
     'thailand':   {'notion_country': 'Thái Lan',                   'program_code': 'LTR', 'currency': '$'},
