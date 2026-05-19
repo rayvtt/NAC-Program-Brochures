@@ -56,19 +56,12 @@ thailand-rbi_1 (2).html  15/15  ✓
 uae-rbi_1_7.html         15/15  ✓
 uk-rbi_1 (2).html        15/15  ✓
 antigua-cbi.html         15/15  ✓
-italy-investor.html      15/15  ✓  (wp_page_id=0 placeholder)
-spain-gv.html            15/15  ✓  (wp_page_id=0 placeholder · LEGACY, closed 03/04/2025)
-montenegro-rbi.html      15/15  ✓  (wp_page_id=0 placeholder)
+italy-investor.html      15/15  ✓
+spain-gv.html            15/15  ✓  (LEGACY, closed 03/04/2025 — Archived in Notion)
+montenegro-rbi.html      15/15  ✓
 ```
 
-**🎉 All 16 brochures at full Turkey parity.**
-
-Three of these (italy / spain / montenegro) are scaffolded but not yet live on
-WordPress — `wp_page_id=0` is a placeholder. `sync_brochures.py` skips id=0
-entries in both `cmd_status` (shows "placeholder (id=0)") and `cmd_sync` (skips
-with explanation), so the wp-sync workflow stays green until real page IDs are
-supplied. The HTML files live on GitHub Pages preview and are ready to push to
-WP once IDs are assigned.
+**🎉 All 16 brochures at full Turkey parity, all 16 wired to WordPress.**
 
 ### What's at parity across all 16 brochures
 

@@ -19,9 +19,9 @@ URL pattern: `https://nomadassetcollective.com/brochures/<slug>/` — each broch
 | 🇵🇦 Panama | `panama` | 1996 | https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/ |
 | 🇲🇾 Malaysia | `malaysia` | 2024 | https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/ |
 | 🇦🇬 Antigua & Barbuda | `antigua` | 2158 | https://nomadassetcollective.com/brochures/chuong-trinh-antigua-barbuda-cbi/ |
-| 🇮🇹 Italy | `italy` | _0 (placeholder)_ | https://nomadassetcollective.com/brochures/chuong-trinh-y-italy-rbi-qua-dau-tu-bds/ |
-| 🇪🇸 Spain (Golden Visa, closed 03/04/2025) | `spain` | _0 (placeholder)_ | https://nomadassetcollective.com/brochures/chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds/ |
-| 🇲🇪 Montenegro | `montenegro` | _0 (placeholder)_ | https://nomadassetcollective.com/brochures/chuong-trinh-montenengro-rbi-qua-dau-tu-bds/ |
+| 🇮🇹 Italy | `italy` | 2165 | https://nomadassetcollective.com/brochures/chuong-trinh-y-italy-rbi-qua-dau-tu-bds/ |
+| 🇪🇸 Spain (Golden Visa, closed 03/04/2025) | `spain` | 2170 | https://nomadassetcollective.com/brochures/chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds/ |
+| 🇲🇪 Montenegro | `montenegro` | 2167 | https://nomadassetcollective.com/brochures/chuong-trinh-montenengro-rbi-qua-dau-tu-bds/ |
 
 ## Gateway page (synced by this repo)
 

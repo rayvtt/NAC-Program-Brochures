@@ -189,7 +189,7 @@ IDENTITY = {
         'program_vi':      'Visa Đầu Tư Ý',
         'program_en':      'Italy Investor Visa',
         'source_filename': 'italy-investor.html',
-        'wp_page_id':      0,
+        'wp_page_id':      2165,
         'wp_slug':         'chuong-trinh-y-italy-rbi-qua-dau-tu-bds',
         'cover':           'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1500&q=80',  # Tuscany cypress road
     },
@@ -202,7 +202,7 @@ IDENTITY = {
         'program_vi':      'Tây Ban Nha Golden Visa',
         'program_en':      'Spain Golden Visa',
         'source_filename': 'spain-gv.html',
-        'wp_page_id':      0,
+        'wp_page_id':      2170,
         'wp_slug':         'chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds',
         'cover':           'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=1500&q=80',  # Barcelona Sagrada Familia
     },
@@ -215,7 +215,7 @@ IDENTITY = {
         'program_vi':      'Montenegro Cư Trú Qua Bất Động Sản',
         'program_en':      'Montenegro Residence by Real Estate',
         'source_filename': 'montenegro-rbi.html',
-        'wp_page_id':      0,
+        'wp_page_id':      2167,
         'wp_slug':         'chuong-trinh-montenengro-rbi-qua-dau-tu-bds',
         'cover':           'https://images.unsplash.com/photo-1601581433144-7f568833bc4f?w=1500&q=80',  # Bay of Kotor
     },
