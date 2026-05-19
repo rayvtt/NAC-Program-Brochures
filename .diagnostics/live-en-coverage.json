@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T14:20:22.166736+00:00",
+  "generated_at": "2026-05-19T17:21:48.768530+00:00",
   "source": "live WordPress fetched HTML",
   "reports": [
     {
@@ -115,11 +115,11 @@
     {
       "alias": "cyprus",
       "html_file": "live_cyprus.html",
-      "visible_vn_strings": 127,
+      "visible_vn_strings": 129,
       "translated": 102,
-      "gap": 25,
+      "gap": 27,
       "skip": 0,
-      "coverage_pct": 80.3,
+      "coverage_pct": 79.1,
       "gap_samples": [
         {
           "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — ",
@@ -171,11 +171,15 @@
       "alias": "turkey",
       "html_file": "live_turkey.html",
       "visible_vn_strings": 139,
-      "translated": 130,
-      "gap": 9,
+      "translated": 129,
+      "gap": 10,
       "skip": 0,
-      "coverage_pct": 93.5,
+      "coverage_pct": 92.8,
       "gap_samples": [
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm",
+          "reason": "text_drift_vs_notion"
+        },
         {
           "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
           "reason": "no_en_available"
@@ -215,7 +219,7 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 265,
+      "data_attr_pairs": 248,
       "notion_en_fields": 29
     },
     {
@@ -268,20 +272,24 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 356,
-      "en_array_size": 356,
+      "vi_array_size": 357,
+      "en_array_size": 357,
       "data_attr_pairs": 10,
       "notion_en_fields": 30
     },
     {
       "alias": "uk",
       "html_file": "live_uk.html",
-      "visible_vn_strings": 124,
-      "translated": 105,
-      "gap": 19,
+      "visible_vn_strings": 125,
+      "translated": 104,
+      "gap": 21,
       "skip": 0,
-      "coverage_pct": 84.7,
+      "coverage_pct": 83.2,
       "gap_samples": [
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Kingdom và sẵn sàng giao dịch. Bạn không cần săn tìm — ",
+          "reason": "no_en_available"
+        },
         {
           "text": "Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the",
           "reason": "no_en_available"
@@ -316,10 +324,6 @@
         },
         {
           "text": "Xây dựng kế hoạch kinh doanh & chọn tổ chức bảo trợ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nộp hồ sơ phê duyệt & nhận thư bảo trợ",
           "reason": "no_en_available"
         }
       ],
@@ -378,8 +382,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 382,
-      "en_array_size": 382,
+      "vi_array_size": 383,
+      "en_array_size": 383,
       "data_attr_pairs": 7,
       "notion_en_fields": 30
     },
@@ -598,8 +602,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 374,
-      "en_array_size": 374,
+      "vi_array_size": 375,
+      "en_array_size": 375,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
