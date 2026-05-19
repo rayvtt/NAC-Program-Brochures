@@ -1319,6 +1319,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .logo-text { display: none !important; }
 .logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
 
+
+/* Move NAC-ID pill away from the top pills cluster to bottom-right
+   of the hero image so it stops crowding the location/eligibility
+   pills on long location names like "Hammersmith & Fulham".
+   /*LISTING-REF-BOTTOM*/ */
+.listing-ref { top: auto !important; bottom: 14px !important; right: 14px !important; }
+@media (max-width: 768px) {
+  .listing-ref { bottom: 8px !important; right: 8px !important; }
+}
+
 </style></head>
 <body>
 <!-- NAV — mirrors NAC Index header exactly -->
