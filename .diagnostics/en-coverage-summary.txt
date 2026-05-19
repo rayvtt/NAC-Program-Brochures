@@ -59,7 +59,7 @@
       [90mreason: no_en_available[0m
 
 [1muae[0m  [33m 90.5%[0m (114 translated / 12 gap / 0 skip of 126 VN strings)
-  [90mVI_STRINGS=346  EN_STRINGS=346  data-attr pairs=10  Notion EN fields=30[0m
+  [90mVI_STRINGS=352  EN_STRINGS=352  data-attr pairs=10  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)
       [90mreason: no_en_available[0m
@@ -87,7 +87,7 @@
       [90mreason: no_en_available[0m
 
 [1mmalta[0m  [33m 85.2%[0m (98 translated / 17 gap / 0 skip of 115 VN strings)
-  [90mVI_STRINGS=372  EN_STRINGS=372  data-attr pairs=7  Notion EN fields=30[0m
+  [90mVI_STRINGS=378  EN_STRINGS=378  data-attr pairs=7  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi
       [90mreason: text_drift_vs_notion[0m
@@ -143,7 +143,7 @@
       [90mreason: no_en_available[0m
 
 [1mpanama[0m  [33m 81.3%[0m (100 translated / 23 gap / 0 skip of 123 VN strings)
-  [90mVI_STRINGS=364  EN_STRINGS=364  data-attr pairs=6  Notion EN fields=30[0m
+  [90mVI_STRINGS=370  EN_STRINGS=370  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Hub tài chính & thương mại quốc tế
       [90mreason: no_en_available[0m
@@ -171,7 +171,7 @@
       [90mreason: no_en_available[0m
 
 [1mantigua[0m  [33m 82.4%[0m (103 translated / 22 gap / 0 skip of 125 VN strings)
-  [90mVI_STRINGS=250  EN_STRINGS=250  data-attr pairs=257  Notion EN fields=7[0m
+  [90mVI_STRINGS=258  EN_STRINGS=258  data-attr pairs=257  Notion EN fields=17[0m
   [33mTop gaps:[0m
     [33m•[0m Antigua & Barbuda cấp quốc tịch trực tiếp qua đầu tư — không qua giai đoạn cư trú. Hộ chiếu trọn đời, con cái thừa kế th
       [90mreason: text_drift_vs_notion[0m
