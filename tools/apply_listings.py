@@ -136,9 +136,28 @@ def country_matches(prop_country, notion_country):
 
 
 def extract_flag(prop_country):
-    """Pull the emoji flag from a '🇹🇷 Thổ Nhĩ Kỳ' style string."""
-    m = re.match(r'(\S+)\s+', prop_country or '')
-    return m.group(1) if m else ''
+    """Pull the emoji flag from a '🇹🇷 Thổ Nhĩ Kỳ' style string.
+
+    Returns '' if the first token isn't a flag emoji (e.g. for legacy
+    rows like 'United Kingdom' that lack the prefix). Flag emojis are
+    two regional-indicator codepoints in the U+1F1E6..U+1F1FF range.
+    """
+    if not prop_country:
+        return ''
+    first = prop_country.split(maxsplit=1)[0]
+    # A flag emoji is exactly 2 regional-indicator codepoints.
+    if len(first) == 2 and all(0x1F1E6 <= ord(c) <= 0x1F1FF for c in first):
+        return first
+    return ''
+
+
+def strip_country_flag(prop_country):
+    """Return the country name with any leading flag emoji removed."""
+    if not prop_country:
+        return ''
+    if extract_flag(prop_country):
+        return re.sub(r'^\S+\s+', '', prop_country).strip()
+    return prop_country.strip()
 
 
 def ph_catalog_url(program_code, country_alias):
@@ -179,26 +198,41 @@ def select_pair(candidates, fortnight=None, pin=None):
 
 
 # ── Render ──────────────────────────────────────────────────────────────
+def clean(text):
+    """Strip leading/trailing whitespace and undo any HTML entities present
+    in the source (PDP scrape returns "Hammersmith &amp; Fulham" which would
+    re-encode to "&amp;amp;" if escaped again)."""
+    return html_lib.unescape((text or '').strip())
+
+
 def render_card(prop, pdp, country_cfg):
     program_code = country_cfg['program_code']
-    flag = extract_flag(prop.get('country', ''))
+    # Prefer the PDP's clean separated flag/country fields; fall back to
+    # parsing the worker's combined "🇹🇷 Thổ Nhĩ Kỳ" string.
+    flag = clean(pdp.get('flag') or extract_flag(prop.get('country', '')))
     e = html_lib.escape
 
-    # Name — prefer PDP's canonical Notion name, fall back to worker.
-    name = short_name(pdp.get('property_name_vi') or prop.get('name_vi') or '')
+    # ── Bilingual content (VI primary, EN from PDP when available) ──────
+    name_vi = short_name(clean(pdp.get('property_name_vi') or prop.get('name_vi') or ''))
+    name_en = short_name(clean(pdp.get('property_name_en') or prop.get('name_en') or ''))
+    desc_vi = first_sentence(clean(pdp.get('desc_vi') or prop.get('excerpt_vi') or ''))
+    desc_en = first_sentence(clean(pdp.get('desc_en') or prop.get('excerpt_en') or ''))
+    tagline_vi = clean(pdp.get('tagline_vi') or prop.get('hubType', ''))
+    tagline_en = clean(pdp.get('tagline_en') or prop.get('hubType', ''))
 
-    # Description — PDP desc_vi (rich, investment-specific) > worker excerpt_vi.
-    desc = first_sentence(pdp.get('desc_vi') or prop.get('excerpt_vi') or '')
+    # ── Location ────────────────────────────────────────────────────────
+    # District is the PDP's "neighborhood" field, e.g. "Şişli / Levent".
+    # Some districts have very long compound forms ("White City, Hammersmith
+    # & Fulham") — keep the first comma-segment for the on-image badge so
+    # it doesn't crowd against the NAC-ID, but use the full string in the
+    # body location pin.
+    district_full = clean(pdp.get('district', ''))
+    district_short = district_full.split(',')[0].strip()
+    country_clean = clean(pdp.get('country', '')) or strip_country_flag(prop.get('country', ''))
+    location_parts = [p for p in [district_full, country_clean] if p]
+    location_text = ' · '.join(location_parts)
 
-    # Tagline (small kicker) — PDP tagline_vi; falls back to hubType.
-    tagline = pdp.get('tagline_vi') or prop.get('hubType', '')
-
-    # Location — PDP district (e.g. "Şişli / Levent") + worker country.
-    district = pdp.get('district', '').strip()
-    country_clean = re.sub(r'^\S+\s+', '', prop.get('country', '')).strip()  # strip flag
-    location_parts = [p for p in [district, country_clean] if p]
-
-    # Stats — prefer PDP price_full (e.g. "$572,300"); fall back to worker entry.
+    # ── Stats ───────────────────────────────────────────────────────────
     # The worker's `entry` is inconsistent: some rows store thousands (e.g. 290 = $290K),
     # others store full dollars (e.g. 1650000 = $1,650,000). Heuristic: if entry < 10_000
     # treat as thousands, otherwise as full units. Format with thousand-separator commas,
@@ -224,32 +258,38 @@ def render_card(prop, pdp, country_cfg):
     src_url = prop.get('listingUrl', '')
     ref = pdp.get('property_id') or (f'NAC-{prop["id"]}' if prop.get('id') else '')
     hero = pdp.get('hero_img') or prop.get('img', '')
-    badge_loc = district or country_clean
+    badge_loc = district_short or country_clean
+
+    # ── Helper: emit a span with data-vi / data-en when EN differs ──────
+    def bi(vi, en=None):
+        if en and en != vi:
+            return f'data-vi="{e(vi)}" data-en="{e(en)}"'
+        return ''
 
     return (
         '        <article class="listing-card">\n'
         f'          <a class="listing-card-link" href="{e(src_url)}" target="_blank" rel="noopener">\n'
         '            <div class="listing-hero">\n'
-        f'              <img src="{e(hero)}" alt="{e(name)}" loading="lazy">\n'
+        f'              <img src="{e(hero)}" alt="{e(name_vi)}" loading="lazy">\n'
         '              <div class="listing-badges">\n'
-        f'                <span class="listing-badge listing-badge-flag">{flag} {e(badge_loc)}</span>\n'
-        f'                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện {program_code}</span>\n'
+        f'                <span class="listing-badge listing-badge-flag">{flag + " " if flag else ""}{e(badge_loc)}</span>\n'
+        f'                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện {program_code}" data-en="✓ {program_code} Eligible">✓ Đủ điều kiện {program_code}</span>\n'
         '              </div>\n'
         f'              <div class="listing-ref">{e(ref)}</div>\n'
         '            </div>\n'
         '            <div class="listing-body">\n'
-        f'              <div class="listing-tagline">{e(tagline)}</div>\n'
-        f'              <h3 class="listing-name">{e(name)}</h3>\n'
-        f'              <div class="listing-location">📍 {e(" · ".join(location_parts))}</div>\n'
+        f'              <div class="listing-tagline" {bi(tagline_vi, tagline_en)}>{e(tagline_vi)}</div>\n'
+        f'              <h3 class="listing-name" {bi(name_vi, name_en)}>{e(name_vi)}</h3>\n'
+        f'              <div class="listing-location">📍 {e(location_text)}</div>\n'
         '              <div class="listing-stats">\n'
-        f'                <div class="listing-stat"><div class="listing-stat-val">{e(price)}</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>\n'
+        f'                <div class="listing-stat"><div class="listing-stat-val">{e(price)}</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>\n'
         f'                <div class="listing-stat"><div class="listing-stat-val">{e(y)}</div><div class="listing-stat-lbl">Gross Yield</div></div>\n'
         f'                <div class="listing-stat"><div class="listing-stat-val">{e(irr)}</div><div class="listing-stat-lbl">5-Year IRR</div></div>\n'
-        f'                <div class="listing-stat"><div class="listing-stat-val">{e(handover)}</div><div class="listing-stat-lbl">Bàn Giao</div></div>\n'
+        f'                <div class="listing-stat"><div class="listing-stat-val">{e(handover)}</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>\n'
         '              </div>\n'
-        f'              <p class="listing-desc">{e(desc)}</p>\n'
+        f'              <p class="listing-desc" {bi(desc_vi, desc_en)}>{e(desc_vi)}</p>\n'
         '              <div class="listing-cta-row">\n'
-        '                <span class="listing-cta-primary">Xem Chi Tiết →</span>\n'
+        '                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>\n'
         '              </div>\n'
         '            </div>\n'
         '          </a>\n'
@@ -257,36 +297,52 @@ def render_card(prop, pdp, country_cfg):
     )
 
 
-def render_placeholder(country_vi, program_code, catalog_url):
+def render_placeholder(country_vi, country_en, program_code, catalog_url):
+    e = html_lib.escape
+    sub_vi = f'Thêm BĐS {country_vi} đủ điều kiện {program_code} sẽ được công bố tại đây trong thời gian tới.'
+    sub_en = f'More {program_code}-eligible {country_en} properties will be announced here soon.'
     return (
         '        <article class="listing-card listing-card-placeholder">\n'
         '          <div class="listing-placeholder-content">\n'
         '            <div class="listing-placeholder-icon">+</div>\n'
-        '            <div class="listing-placeholder-title">Đang Cập Nhật</div>\n'
-        f'            <div class="listing-placeholder-sub">Thêm BĐS {country_vi} đủ điều kiện {program_code} sẽ được công bố tại đây trong thời gian tới.</div>\n'
-        f'            <a class="listing-placeholder-link" href="{catalog_url}" target="_blank" rel="noopener">Khám phá Property Hub →</a>\n'
+        '            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>\n'
+        f'            <div class="listing-placeholder-sub" data-vi="{e(sub_vi)}" data-en="{e(sub_en)}">{e(sub_vi)}</div>\n'
+        f'            <a class="listing-placeholder-link" href="{catalog_url}" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>\n'
         '          </div>\n'
         '        </article>'
     )
+
+
+def _country_names_for(alias, notion_country, selected):
+    """Best-effort VI + EN country labels for the section header/footnote."""
+    # Identity registry has clean VI + EN strings keyed by alias.
+    try:
+        from data.brochure_identity import IDENTITY
+        ident = IDENTITY.get(alias, {})
+        return ident.get('country_vi', ''), ident.get('country_en', '')
+    except Exception:
+        pass
+    # Fallback: derive VI from the worker prop; EN ≡ VI if we have nothing else.
+    if selected:
+        vi = clean(re.sub(r'^\S+\s+', '', selected[0].get('country', '')) or '')
+    elif isinstance(notion_country, list):
+        vi = notion_country[0]
+    else:
+        vi = notion_country
+    return vi, vi
 
 
 def render_section(alias, all_props, offline=False):
     cfg = COUNTRIES[alias]
     program_code = cfg['program_code']
     notion_country = cfg['notion_country']
+    e = html_lib.escape
 
     # Filter live properties by country.
     candidates = [p for p in all_props if country_matches(p.get('country', ''), notion_country)]
     selected = select_pair(candidates, pin=cfg.get('pin')) if not offline else []
 
-    # Derive Vietnamese country name for the section header / footnote.
-    if selected:
-        country_vi = re.sub(r'^\S+\s+', '', selected[0].get('country', '')).strip()
-    elif isinstance(notion_country, list):
-        country_vi = notion_country[0]
-    else:
-        country_vi = notion_country
-
+    country_vi, country_en = _country_names_for(alias, notion_country, selected)
     fn_url = ph_catalog_url(program_code, alias)
 
     cards = []
@@ -294,22 +350,32 @@ def render_section(alias, all_props, offline=False):
         pdp = fetch_pdp_details(prop['listingUrl']) if prop.get('listingUrl') else {}
         cards.append(render_card(prop, pdp, cfg))
     while len(cards) < 2:
-        cards.append(render_placeholder(country_vi, program_code, fn_url))
+        cards.append(render_placeholder(country_vi, country_en, program_code, fn_url))
+
+    # ── Section header (bilingual) ──────────────────────────────────────
+    title_vi = f'BĐS Đủ Điều Kiện {program_code} — Đang Mở Bán'
+    title_en = f'{program_code}-Eligible Properties — Active Listings'
+    sub_vi = f'Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ {program_code} {country_vi} và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.'
+    sub_en = f"These are properties NAC has vetted, eligible for the {country_en} {program_code} program and ready to transact. You don't need to hunt — we've curated them."
+    fn_text_vi = f'NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện {program_code} {country_vi}.'
+    fn_text_en = f'NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the {country_en} {program_code} program.'
+    fn_link_vi = f'Tất cả BĐS đủ điều kiện {program_code} →'
+    fn_link_en = f'All {program_code}-eligible properties →'
 
     return (
         '    <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->\n'
         '    <section class="section section-spotlight" id="listings">\n'
-        '      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>\n'
-        f'      <h2 class="sec-title">BĐS Đủ Điều Kiện {program_code} — Đang Mở Bán</h2>\n'
-        f'      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ {program_code} {country_vi} và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>\n'
+        '      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>\n'
+        f'      <h2 class="sec-title" data-vi="{e(title_vi)}" data-en="{e(title_en)}">{e(title_vi)}</h2>\n'
+        f'      <p class="sec-sub" data-vi="{e(sub_vi)}" data-en="{e(sub_en)}">{e(sub_vi)}</p>\n'
         '\n'
         '      <div class="listings-grid">\n'
         + '\n'.join(cards) + '\n'
         '      </div>\n'
         '\n'
         '      <div class="listings-footnote">\n'
-        f'        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện {program_code} {country_vi}.</span>\n'
-        f'        <a class="listings-fn-link" href="{fn_url}" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện {program_code} →</a>\n'
+        f'        <span class="listings-fn-text" data-vi="{e(fn_text_vi)}" data-en="{e(fn_text_en)}">{e(fn_text_vi)}</span>\n'
+        f'        <a class="listings-fn-link" href="{fn_url}" target="_blank" rel="noopener" data-vi="{e(fn_link_vi)}" data-en="{e(fn_link_en)}">{e(fn_link_vi)}</a>\n'
         '      </div>\n'
         '    </section>'
     )
