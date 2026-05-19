@@ -149,13 +149,23 @@ def ph_catalog_url(program_code, country_alias):
 
 
 # ── Selection (Rule 1 + Rule 2) ─────────────────────────────────────────
-def select_pair(candidates, fortnight=None):
+def select_pair(candidates, fortnight=None, pin=None):
     """Apply Rule 1 (cheapest+priciest) + Rule 2 (biweekly rotation).
 
     ≤ 2 candidates → return them all.
     > 2 candidates → card 1 = cheapest (anchor); card 2 = rotated from
         the rest, biased toward a different hubType than card 1.
+
+    Curation override:
+        If `pin` is a non-empty list of property IDs, those IDs are
+        looked up in `candidates` and returned in the given order
+        (up to 2). Missing IDs fall back to the auto-selected pair.
     """
+    if pin:
+        by_id = {p.get('id'): p for p in candidates}
+        picked = [by_id[i] for i in pin if i in by_id]
+        if picked:
+            return picked[:2]
     if len(candidates) <= 2:
         return candidates
     by_price = sorted(candidates, key=lambda p: p.get('entry') or 0)
@@ -258,7 +268,7 @@ def render_section(alias, all_props, offline=False):
 
     # Filter live properties by country.
     candidates = [p for p in all_props if country_matches(p.get('country', ''), notion_country)]
-    selected = select_pair(candidates) if not offline else []
+    selected = select_pair(candidates, pin=cfg.get('pin')) if not offline else []
 
     # Derive Vietnamese country name for the section header / footnote.
     if selected:
