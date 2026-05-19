@@ -59,6 +59,12 @@ jobs:
         if: inputs.dry_run == 'true'
         run: python tools/inject_notion_en_to_html.py --dry-run
 
+      - name: Refresh Live Listings spotlight from Property Hub
+        # Picks up any listing add/edit/delete on the PH Notion DB
+        # within ~10min — same cadence as the brochure-content sync above.
+        if: inputs.dry_run != 'true'
+        run: python tools/apply_listings.py
+
       - name: Verify EN translation coverage
         run: |
           # Run the coverage check, capture summary into .diagnostics/
