@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-19T01:26:36.033001Z",
+  "generated_at": "2026-05-19T05:36:19.320764Z",
   "reports": [
     {
       "alias": "portugal",
@@ -214,7 +214,7 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 264,
+      "data_attr_pairs": 265,
       "notion_en_fields": 29
     },
     {
@@ -267,8 +267,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 352,
-      "en_array_size": 352,
+      "vi_array_size": 353,
+      "en_array_size": 353,
       "data_attr_pairs": 10,
       "notion_en_fields": 30
     },
@@ -377,8 +377,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 378,
-      "en_array_size": 378,
+      "vi_array_size": 379,
+      "en_array_size": 379,
       "data_attr_pairs": 7,
       "notion_en_fields": 30
     },
@@ -597,8 +597,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 370,
-      "en_array_size": 370,
+      "vi_array_size": 371,
+      "en_array_size": 371,
       "data_attr_pairs": 6,
       "notion_en_fields": 30
     },
@@ -661,11 +661,15 @@
       "alias": "antigua",
       "html_file": "antigua-cbi.html",
       "visible_vn_strings": 125,
-      "translated": 103,
-      "gap": 22,
+      "translated": 102,
+      "gap": 23,
       "skip": 0,
-      "coverage_pct": 82.4,
+      "coverage_pct": 81.6,
       "gap_samples": [
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Antigua & Barbuda và sẵn sàng giao dịch. Bạn không cần ",
+          "reason": "text_drift_vs_notion"
+        },
         {
           "text": "Antigua & Barbuda cấp quốc tịch trực tiếp qua đầu tư — không qua giai đoạn cư trú. Hộ chiếu trọn đời, con cái thừa kế th",
           "reason": "text_drift_vs_notion"
@@ -701,16 +705,177 @@
         {
           "text": "Chiến lược tối ưu NAC: Kết hợp Antigua CBI (hộ chiếu Caribbean với UK + Schengen visa-free + tax haven) + Bồ Đào Nha Gol",
           "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cập nhật quan trọng 2024: Tháng 7/2024, 5 quốc gia Caribbean CBI (Antigua, St Kitts, Dominica, Grenada, St Lucia) đồng t",
-          "reason": "no_en_available"
         }
       ],
       "vi_array_size": 258,
       "en_array_size": 258,
-      "data_attr_pairs": 257,
+      "data_attr_pairs": 241,
       "notion_en_fields": 17
+    },
+    {
+      "alias": "italy",
+      "html_file": "italy-investor.html",
+      "visible_vn_strings": 134,
+      "translated": 100,
+      "gap": 34,
+      "skip": 0,
+      "coverage_pct": 74.6,
+      "gap_samples": [
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Ý và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Ý có hệ thống thuế lũy tiến tiêu chuẩn (23–43%) cho thu nhập từ Ý. Điểm khác biệt là chế độ neo-residenti — flat tax €20",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Vị trí của Visa Đầu Tư Ý trong bức tranh EU RBI. Xem toàn bộ xếp hạng tại NAC Residence Index →",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Người mới đăng ký sau 11/8/2024 · tối đa 15 năm",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Không gia hạn sau 15 năm",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Thu nhập nguồn Ý luôn chịu thuế bình thường",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Thu nhập Ý (không flat tax)",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Cập nhật quan trọng tháng 8/2024: Thuế flat tax neo-residenti cho người đăng ký mới đã tăng từ €100.000 lên €200.000/năm",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Nhận định NAC — Chi phí tổng hợp gia đình 4 người: Mức startup €250K + phí pháp lý ~€10K + phí chính phủ ~€16K = tổng ~ ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Lợi thế quan trọng: Italy IV là chương trình EU RBI duy nhất với lộ trình startup đổi mới sáng tạo — ngưỡng €250K thấp n",
+          "reason": "text_drift_vs_notion"
+        }
+      ],
+      "vi_array_size": 251,
+      "en_array_size": 254,
+      "data_attr_pairs": 257,
+      "notion_en_fields": 7
+    },
+    {
+      "alias": "spain",
+      "html_file": "spain-gv.html",
+      "visible_vn_strings": 111,
+      "translated": 43,
+      "gap": 68,
+      "skip": 0,
+      "coverage_pct": 38.7,
+      "gap_samples": [
+        {
+          "text": "Dưới đây là các mức đầu tư lịch sử của Spain Golden Visa. Chương trình đã đóng cửa ngày 03/04/2025 — chỉ mang tính tham ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Quy trình lịch sử của Spain Golden Visa — từ nộp đơn tại lãnh sự đến nhận TIE. Thông tin chỉ mang tính tham khảo.",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Phạm vi gia đình của Spain Golden Visa (quy định lịch sử).",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Thông tin thuế cho holders permit GV còn hiệu lực và người chuyển về Tây Ban Nha.",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Holders permit trước 03/04/2025 vẫn có thể theo lộ trình này. Lưu ý quan trọng về song tịch.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Spain GV (lịch sử) so với các chương trình đang hoạt động. Xem toàn bộ tại NAC Residence Index →",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Đánh giá khách quan — lịch sử, chương trình đã đóng cửa 03/04/2025.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Phân tích đội ngũ NAC — Q2/2026. Dưới đây là các lựa chọn tốt nhất thay thế Spain GV.",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Tối thiểu để duy trì",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Holders cũ được gia hạn",
+          "reason": "no_en_available"
+        }
+      ],
+      "vi_array_size": 35,
+      "en_array_size": 35,
+      "data_attr_pairs": 245,
+      "notion_en_fields": 7
+    },
+    {
+      "alias": "montenegro",
+      "html_file": "montenegro-rbi.html",
+      "visible_vn_strings": 127,
+      "translated": 106,
+      "gap": 21,
+      "skip": 0,
+      "coverage_pct": 83.5,
+      "gap_samples": [
+        {
+          "text": "Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o strancime) — cấp giấy phép cư trú tạm th",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Montenegro và sẵn sàng giao dịch. Bạn không cần săn tìm",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Không có mức đầu tư tối thiểu theo luật. Thực tế cần €100K+ cho BĐS sạch pháp lý, đã đăng ký cadastre. NAC khuyến nghị €",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Nhận định NAC: Tổng chi phí bao gồm giá BĐS + thuế chuyển nhượng 3-5% + phí môi giới 2-3% + phí pháp lý 1-2% + thuế tài ",
+          "reason": "no_en_available"
+        },
+        {
+          "text": "Lợi thế quan trọng: Hồ sơ TRP Montenegro được xử lý ở cấp MUP địa phương (Podgorica hoặc Kotor) — không cần chờ hàng thá",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "So sánh phạm vi gia đình: Montenegro RBI bảo lãnh vợ/chồng + con nhỏ tự động — hẹp hơn Antigua CBI (4 thế hệ) nhưng phù ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Điều kiện trở thành cư dân thuế Montenegro: Ở Montenegro >183 ngày/năm. Cư dân thuế kê khai và nộp PIT 9-15% cho thu nhậ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "So sánh thuế khu vực Balkan: Montenegro 9-15% PIT, 9% CIT · Albania 15% PIT · Serbia 10-15% PIT, 15% CIT · Bulgaria 10% ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Yêu cầu nhập tịch năm 10: Cư trú hợp pháp liên tục 10 năm (không gián đoạn quá 6 tháng liên tục) · Lý lịch tư pháp sạch ",
+          "reason": "text_drift_vs_notion"
+        },
+        {
+          "text": "Chiến lược tối ưu NAC: Montenegro RBI là lý tưởng cho nhà đầu tư muốn sống thực sự tại Châu Âu với chi phí thấp và lộ tr",
+          "reason": "text_drift_vs_notion"
+        }
+      ],
+      "vi_array_size": 248,
+      "en_array_size": 248,
+      "data_attr_pairs": 251,
+      "notion_en_fields": 7
     }
   ]
 }
