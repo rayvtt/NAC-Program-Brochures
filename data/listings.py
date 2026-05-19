@@ -21,7 +21,11 @@ COUNTRIES = {
     'turkey':     {'notion_country': 'Thổ Nhĩ Kỳ',                 'program_code': 'CBI', 'currency': '$'},
     'portugal':   {'notion_country': 'Bồ Đào Nha',                 'program_code': 'RBI', 'currency': '€'},
     'greece':     {'notion_country': 'Hy Lạp',                     'program_code': 'RBI', 'currency': '€'},
-    'cyprus':     {'notion_country': 'Đảo Síp',                    'program_code': 'RBI', 'currency': '€'},
+    'cyprus':     {'notion_country': 'Đảo Síp',                    'program_code': 'RBI', 'currency': '€',
+                   # Curation: feature Del Mar (id 86, Limassol trophy €1.65M) +
+                   # Blu Marine (id 85, Limassol mid-tier €748K). Overrides the
+                   # auto-anchor which would otherwise pin Pearl Park (€230K Paphos).
+                   'pin': [86, 85]},
     'uae':        {'notion_country': ['UAE', 'Dubai', 'Abu Dhabi'],'program_code': 'RBI', 'currency': '$'},
     'uk':         {'notion_country': 'Anh Quốc',                   'program_code': 'RBI', 'currency': '£'},
     'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI', 'currency': '€'},
