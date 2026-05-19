@@ -1290,6 +1290,25 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
   }
 }
+
+/* Compare-table collapse — table can be folded on mobile.
+   Mirrors .chart-collapse pattern (matrix chart). Idempotent — guarded
+   by /*COMP-COLLAPSE-CSS*/ marker. */
+.comp-collapse { width: 100%; margin-bottom: 0; }
+.comp-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-bottom: none; border-radius: var(--r) var(--r) 0 0; }
+.comp-collapse > summary::-webkit-details-marker { display: none; }
+.comp-collapse > summary .comp-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.comp-collapse[open] > summary { border-radius: var(--r) var(--r) 0 0; }
+.comp-collapse:not([open]) > summary { border-radius: var(--r); border-bottom: 1px solid var(--border); }
+.comp-collapse > .comp-table { border-radius: 0 0 var(--r) var(--r); border-top: none; }
+.comp-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .comp-collapse > summary { cursor: pointer; user-select: none; }
+  .comp-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .comp-collapse[open] .comp-collapse-icon { transform: rotate(180deg); }
+}
+/*COMP-COLLAPSE-CSS*/
+
 </style></head>
 <body>
 <!-- NAV — mirrors NAC Index header exactly -->
@@ -1749,7 +1768,8 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <canvas id="compareChart" style="max-height:260px"></canvas>
       </div>
 
-      <table class="comp-table">
+      <!--COMP-COLLAPSE-->
+<details class="comp-collapse" open><summary><span class="comp-collapse-title" data-vi="Bảng so sánh chi tiết" data-en="Detailed comparison table">Bảng so sánh chi tiết</span><span class="comp-collapse-icon" aria-hidden="true">▾</span></summary><table class="comp-table">
         <thead>
           <tr><th data-vi="Chương trình" data-en="Program">Chương trình</th><th data-vi="Đầu tư tối thiểu" data-en="Min. Investment">Đầu tư tối thiểu</th><th data-vi="Loại" data-en="Type">Loại</th><th data-vi="Di chuyển" data-en="Mobility">Di chuyển</th><th data-vi="Thời gian" data-en="Timeline">Thời gian</th><th data-vi="Điểm NAC" data-en="NAC Score">Điểm NAC</th></tr>
         </thead>
@@ -1779,7 +1799,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:79%"></div></div><span class="comp-score-num">79</span></div></td>
           </tr>
         </tbody>
-      </table>
+      </table></details>
 
       <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
@@ -2974,6 +2994,23 @@ function setLang(lang) {
   document.addEventListener('click', function(e){
     if (!el.contains(e.target)) el.classList.remove('is-open');
   });
+})();
+</script>
+
+
+<script>
+/* Compare-table collapse: closed by default on mobile, open on desktop.
+   COMP-COLLAPSE-JS */
+(function () {
+  function syncCompCollapse() {
+    var det = document.querySelector('details.comp-collapse');
+    if (!det) return;
+    if (window.matchMedia('(max-width: 600px)').matches) det.open = false;
+    else det.open = true;
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncCompCollapse);
+  else syncCompCollapse();
+  window.addEventListener('resize', syncCompCollapse);
 })();
 </script>
 
