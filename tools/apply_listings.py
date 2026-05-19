@@ -198,13 +198,22 @@ def render_card(prop, pdp, country_cfg):
     country_clean = re.sub(r'^\S+\s+', '', prop.get('country', '')).strip()  # strip flag
     location_parts = [p for p in [district, country_clean] if p]
 
-    # Stats — prefer PDP price_full (e.g. "$572,300"); fall back to worker entry × 1000.
+    # Stats — prefer PDP price_full (e.g. "$572,300"); fall back to worker entry.
+    # The worker's `entry` is inconsistent: some rows store thousands (e.g. 290 = $290K),
+    # others store full dollars (e.g. 1650000 = $1,650,000). Heuristic: if entry < 10_000
+    # treat as thousands, otherwise as full units. Format with thousand-separator commas,
+    # no compact "K" / "M" suffix (caused "€1650000K" on the new Cyprus listings).
     # Currency normalisation: per-country currency from data/listings.py — if the PDP price
     # came in with $ but the country uses € (EU programs), swap the symbol so Malta/Cyprus/
-    # Portugal/Greece show € not $. PDP-side data entry is the canonical fix; this is a
-    # safety net while listings are still in mixed currencies.
+    # Portugal/Greece show € not $.
     currency = country_cfg.get('currency', '$')
-    price_raw = pdp.get('price_full') or (f"{currency}{prop['entry']}K" if prop.get('entry') else '—')
+    if pdp.get('price_full'):
+        price_raw = pdp['price_full']
+    elif prop.get('entry'):
+        entry_full = prop['entry'] if prop['entry'] >= 10000 else prop['entry'] * 1000
+        price_raw = f"{currency}{entry_full:,}"
+    else:
+        price_raw = '—'
     if currency != '$' and price_raw and price_raw != '—':
         price_raw = price_raw.replace('$', currency)
     price = price_raw
