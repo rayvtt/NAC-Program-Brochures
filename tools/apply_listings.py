@@ -272,7 +272,6 @@ def render_card(prop, pdp, country_cfg):
         '            <div class="listing-hero">\n'
         f'              <img src="{e(hero)}" alt="{e(name_vi)}" loading="lazy">\n'
         '              <div class="listing-badges">\n'
-        f'                <span class="listing-badge listing-badge-flag">{flag + " " if flag else ""}{e(badge_loc)}</span>\n'
         f'                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện {program_code}" data-en="✓ {program_code} Eligible">✓ Đủ điều kiện {program_code}</span>\n'
         '              </div>\n'
         f'              <div class="listing-ref">{e(ref)}</div>\n'
