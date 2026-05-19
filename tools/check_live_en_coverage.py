@@ -48,9 +48,9 @@ LIVE_SLUG = {
     'panama':     'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien',
     'malaysia':   'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru',
     'antigua':    'chuong-trinh-antigua-barbuda-cbi',
-    'italy':      'chuong-trinh-y-investor-visa-rbi',
-    'spain':      'chuong-trinh-tay-ban-nha-golden-visa',
-    'montenegro': 'chuong-trinh-montenegro-rbi-bat-dong-san',
+    'italy':      'chuong-trinh-y-italy-rbi-qua-dau-tu-bds',
+    'spain':      'chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds',
+    'montenegro': 'chuong-trinh-montenengro-rbi-qua-dau-tu-bds',
 }
 LIVE_BASE = 'https://nomadassetcollective.com/brochures'
 
