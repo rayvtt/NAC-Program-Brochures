@@ -31,4 +31,7 @@ COUNTRIES = {
     'panama':     {'notion_country': 'Panama',                     'program_code': 'RBI', 'currency': '$'},
     'malaysia':   {'notion_country': 'Malaysia',                   'program_code': 'RBI', 'currency': '$'},
     'antigua':    {'notion_country': 'Antigua & Barbuda',           'program_code': 'CBI', 'currency': '$'},
+    'italy':      {'notion_country': 'Ý',                            'program_code': 'RBI', 'currency': '€'},
+    'spain':      {'notion_country': 'Tây Ban Nha',                  'program_code': 'RBI', 'currency': '€'},
+    'montenegro': {'notion_country': 'Montenegro',                   'program_code': 'RBI', 'currency': '€'},
 }

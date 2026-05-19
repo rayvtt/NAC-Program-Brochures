@@ -55,11 +55,15 @@ stkitts-nevis.html       15/15  ✓
 thailand-rbi_1 (2).html  15/15  ✓
 uae-rbi_1_7.html         15/15  ✓
 uk-rbi_1 (2).html        15/15  ✓
+antigua-cbi.html         15/15  ✓
+italy-investor.html      15/15  ✓
+spain-gv.html            15/15  ✓  (LEGACY, closed 03/04/2025 — Archived in Notion)
+montenegro-rbi.html      15/15  ✓
 ```
 
-**🎉 All 12 brochures at full Turkey parity.**
+**🎉 All 16 brochures at full Turkey parity, all 16 wired to WordPress.**
 
-### What's at parity across all 12 brochures
+### What's at parity across all 16 brochures
 
 ✓ Sidebar CTA cream-glass pill (4 colour-coded chips)
 ✓ Header / sidebar booking → Google Calendar

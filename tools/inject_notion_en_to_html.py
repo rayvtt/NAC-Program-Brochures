@@ -42,6 +42,9 @@ ALIAS_TO_FILENAME = {
     'panama':     'panama-rbi_.html',
     'malaysia':   'malaysia-mm2h.html',
     'antigua':    'antigua-cbi.html',
+    'italy':      'italy-investor.html',
+    'spain':      'spain-gv.html',
+    'montenegro': 'montenegro-rbi.html',
 }
 
 DATA_DIR = ROOT / 'data'

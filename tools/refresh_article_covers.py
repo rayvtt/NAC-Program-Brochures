@@ -121,6 +121,9 @@ _ALIAS_BY_PREFIX = {
     "stkitts": "stkitts", "thailand": "thailand", "newzealand": "newzealand",
     "panama": "panama", "malaysia": "malaysia",
     "antigua": "antigua",
+    "italy": "italy",
+    "spain": "spain",
+    "montenegro": "montenegro",
 }
 
 
