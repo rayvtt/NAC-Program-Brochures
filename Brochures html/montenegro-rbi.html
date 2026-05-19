@@ -1310,13 +1310,13 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 /*TAX-COLLAPSE-CSS*/
 
 
-/* Mobile header: show only "NAC BROCHURE 2026" subtitle, hide
-   "Nomad Asset Collective" main label so the header doesn't
-   crowd next to the logo mark on small screens. /*MOBILE-LOGO-CSS*/ */
-@media (max-width: 600px) {
-  .logo-text { display: none; }
-  .logo-sub  { font-size: 11px; letter-spacing: 1.4px; line-height: 1.2; }
-}
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 11px; letter-spacing: 1.4px; line-height: 1.2; }
 
 </style>
 </head>
