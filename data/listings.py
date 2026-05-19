@@ -27,7 +27,7 @@ COUNTRIES = {
                    # auto-anchor which would otherwise pin Pearl Park (€230K Paphos).
                    'pin': [86, 85]},
     'uae':        {'notion_country': ['UAE', 'Dubai', 'Abu Dhabi'],'program_code': 'RBI', 'currency': '$'},
-    'uk':         {'notion_country': 'Anh Quốc',                   'program_code': 'RBI', 'currency': '£'},
+    'uk':         {'notion_country': ['Anh Quốc', 'United Kingdom'],'program_code': 'RBI', 'currency': '£'},
     'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI', 'currency': '€'},
     'stkitts':    {'notion_country': 'St Kitts',                   'program_code': 'CBI', 'currency': '$'},
     'thailand':   {'notion_country': 'Thái Lan',                   'program_code': 'LTR', 'currency': '$'},
