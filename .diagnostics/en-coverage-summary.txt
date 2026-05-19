@@ -2,11 +2,9 @@
 [1mEN Translation Coverage Report[0m
 [90m──────────────────────────────────────────────────────────────────────[0m
 
-[1mportugal[0m  [33m 82.2%[0m (106 translated / 23 gap / 0 skip of 129 VN strings)
-  [90mVI_STRINGS=332  EN_STRINGS=332  data-attr pairs=13  Notion EN fields=28[0m
+[1mportugal[0m  [33m 82.9%[0m (107 translated / 22 gap / 0 skip of 129 VN strings)
+  [90mVI_STRINGS=332  EN_STRINGS=332  data-attr pairs=21  Notion EN fields=28[0m
   [33mTop gaps:[0m
-    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm
-      [90mreason: text_drift_vs_notion[0m
     [31m•[0m Cải cách 2023 — Quan trọng: Kể từ 07/10/2023, đầu tư BĐS nhà ở không còn đủ điều kiện cho Golden Visa. Quỹ đầu tư đã đượ
       [90mreason: no_en_available[0m
     [33m•[0m Lợi thế quan trọng: Trong khi chờ ARI Card, nhà đầu tư và gia đình có thể đăng ký visa Schengen ngắn hạn qua đại sứ quán
@@ -15,12 +13,12 @@
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m NHR 2.0 vs NHR 1.0: Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 th
       [90mreason: text_drift_vs_notion[0m
-
-[1mgreece[0m  [33m 73.8%[0m (93 translated / 33 gap / 0 skip of 126 VN strings)
-  [90mVI_STRINGS=317  EN_STRINGS=317  data-attr pairs=7  Notion EN fields=30[0m
-  [33mTop gaps:[0m
-    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — c
+    [33m•[0m Yêu cầu xin quốc tịch sau 5 năm: • Hoàn thành 5 năm cư trú hợp lệ (với 7–14 ngày/năm tại Bồ Đào Nha) • Đạt trình độ tiến
       [90mreason: text_drift_vs_notion[0m
+
+[1mgreece[0m  [33m 74.6%[0m (94 translated / 32 gap / 0 skip of 126 VN strings)
+  [90mVI_STRINGS=317  EN_STRINGS=317  data-attr pairs=15  Notion EN fields=30[0m
+  [33mTop gaps:[0m
     [33m•[0m Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Thay đổi quan trọng — Luật 5100/2024 (hiệu lực 09/2024): Ngưỡng cũ €250K cho BĐS nhà ở thông thường đã hết hiệu lực hoàn
@@ -29,12 +27,12 @@
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Cải thiện xử lý 2025–2026: Hy Lạp đã đầu tư mạnh vào hệ thống Digital Residency Portal từ 2025, giảm thời gian xử lý từ 
       [90mreason: text_drift_vs_notion[0m
-
-[1mcyprus[0m  [33m 79.1%[0m (102 translated / 27 gap / 0 skip of 129 VN strings)
-  [90mVI_STRINGS=288  EN_STRINGS=288  data-attr pairs=7  Notion EN fields=28[0m
-  [33mTop gaps:[0m
-    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — 
+    [33m•[0m Lợi thế gia đình Hy Lạp: Với một khoản đầu tư duy nhất €250K–€800K, gia đình có thể bao gồm vợ/chồng + con + bố mẹ hai b
       [90mreason: text_drift_vs_notion[0m
+
+[1mcyprus[0m  [33m 81.4%[0m (105 translated / 24 gap / 0 skip of 129 VN strings)
+  [90mVI_STRINGS=288  EN_STRINGS=288  data-attr pairs=22  Notion EN fields=28[0m
+  [33mTop gaps:[0m
     [33m•[0m Vị trí của Cyprus PR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Cư Trú Vĩnh Viễn
@@ -43,12 +41,12 @@
       [90mreason: text_drift_vs_notion[0m
     [31m•[0m Loại chương trình
       [90mreason: no_en_available[0m
+    [31m•[0m Loại thẻ
+      [90mreason: no_en_available[0m
 
-[1mturkey[0m  [33m 92.8%[0m (129 translated / 10 gap / 0 skip of 139 VN strings)
-  [90mVI_STRINGS=247  EN_STRINGS=247  data-attr pairs=248  Notion EN fields=29[0m
+[1mturkey[0m  [33m 93.5%[0m (130 translated / 9 gap / 0 skip of 139 VN strings)
+  [90mVI_STRINGS=247  EN_STRINGS=247  data-attr pairs=262  Notion EN fields=29[0m
   [33mTop gaps:[0m
-    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm
-      [90mreason: text_drift_vs_notion[0m
     [31m•[0m 183 ngày/năm" data-en="Only if resident >183 days/year">Chỉ khi cư trú >183 ngày/năm
       [90mreason: no_en_available[0m
     [33m•[0m Chiến lược tối ưu NAC: Sử dụng hộ chiếu Thổ Nhĩ Kỳ như “bàn đạp” — miễn visa Nhật Bản, Hàn Quốc, Singapore và nhiều nước
@@ -57,9 +55,11 @@
       [90mreason: text_drift_vs_notion[0m
     [31m•[0m 02 Các mức đầu tư
       [90mreason: no_en_available[0m
+    [31m•[0m 03 Quy trình & thời gian
+      [90mreason: no_en_available[0m
 
 [1muae[0m  [33m 90.5%[0m (114 translated / 12 gap / 0 skip of 126 VN strings)
-  [90mVI_STRINGS=357  EN_STRINGS=357  data-attr pairs=10  Notion EN fields=30[0m
+  [90mVI_STRINGS=358  EN_STRINGS=358  data-attr pairs=21  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)
       [90mreason: no_en_available[0m
@@ -72,11 +72,9 @@
     [33m•[0m Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Cư Trú D7 Cho Nhà Đầu Tư Việt
       [90mreason: text_drift_vs_notion[0m
 
-[1muk[0m  [33m 83.2%[0m (104 translated / 21 gap / 0 skip of 125 VN strings)
-  [90mVI_STRINGS=309  EN_STRINGS=309  data-attr pairs=7  Notion EN fields=31[0m
+[1muk[0m  [33m 84.8%[0m (106 translated / 19 gap / 0 skip of 125 VN strings)
+  [90mVI_STRINGS=309  EN_STRINGS=309  data-attr pairs=21  Notion EN fields=31[0m
   [33mTop gaps:[0m
-    [31m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Kingdom và sẵn sàng giao dịch. Bạn không cần săn tìm — 
-      [90mreason: no_en_available[0m
     [31m•[0m Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the
       [90mreason: no_en_available[0m
     [33m•[0m Chiến lược NAC cho nhà đầu tư Việt: Kết hợp Innovator Founder Visa (£50K–£100K vốn kinh doanh) + Đầu tư BĐS song song (£
@@ -85,9 +83,11 @@
       [90mreason: no_en_available[0m
     [31m•[0m Chi phí BĐS thực tế cho NĐT Việt: Nhà đầu tư Việt mua BĐS UK £500,000 (BĐS thứ 2, chưa cư trú) sẽ trả SDLT: £12,500 (chu
       [90mreason: no_en_available[0m
+    [31m•[0m Lợi thế thuế BĐS cho thuê UK: Thu nhập cho thuê BĐS UK chịu thuế thu nhập (20–45%), nhưng được khấu trừ nhiều chi phí: b
+      [90mreason: no_en_available[0m
 
 [1mmalta[0m  [33m 85.2%[0m (98 translated / 17 gap / 0 skip of 115 VN strings)
-  [90mVI_STRINGS=383  EN_STRINGS=383  data-attr pairs=7  Notion EN fields=30[0m
+  [90mVI_STRINGS=384  EN_STRINGS=384  data-attr pairs=20  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi
       [90mreason: text_drift_vs_notion[0m
@@ -101,7 +101,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mstkitts[0m  [33m 76.4%[0m (94 translated / 29 gap / 0 skip of 123 VN strings)
-  [90mVI_STRINGS=350  EN_STRINGS=350  data-attr pairs=7  Notion EN fields=30[0m
+  [90mVI_STRINGS=350  EN_STRINGS=350  data-attr pairs=20  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh 
       [90mreason: notion_has_en_not_injected[0m
@@ -115,7 +115,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mthailand[0m  [33m 90.6%[0m (106 translated / 11 gap / 0 skip of 117 VN strings)
-  [90mVI_STRINGS=400  EN_STRINGS=400  data-attr pairs=7  Notion EN fields=30[0m
+  [90mVI_STRINGS=400  EN_STRINGS=400  data-attr pairs=18  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Ưu đãi thuế LTR đặc biệt: Người giữ LTR Visa được miễn khai thuế trên thu nhập nước ngoài chuyển vào Thái Lan. Đây là lợ
       [90mreason: text_drift_vs_notion[0m
@@ -129,7 +129,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mnewzealand[0m  [33m 75.4%[0m (89 translated / 29 gap / 0 skip of 118 VN strings)
-  [90mVI_STRINGS=355  EN_STRINGS=355  data-attr pairs=7  Notion EN fields=28[0m
+  [90mVI_STRINGS=355  EN_STRINGS=355  data-attr pairs=20  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [31m•[0m Lợi thế gia đình đặc biệt: Con phụ thuộc đến 24 tuổi (cao hơn UK ≤18 hoặc Hy Lạp ≤21). Công dân NZ có quyền sống và làm 
       [90mreason: no_en_available[0m
@@ -143,7 +143,7 @@
       [90mreason: no_en_available[0m
 
 [1mpanama[0m  [33m 81.3%[0m (100 translated / 23 gap / 0 skip of 123 VN strings)
-  [90mVI_STRINGS=375  EN_STRINGS=375  data-attr pairs=6  Notion EN fields=30[0m
+  [90mVI_STRINGS=376  EN_STRINGS=376  data-attr pairs=21  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Hub tài chính & thương mại quốc tế
       [90mreason: no_en_available[0m
@@ -157,7 +157,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mmalaysia[0m  [33m 76.0%[0m (92 translated / 29 gap / 0 skip of 121 VN strings)
-  [90mVI_STRINGS=351  EN_STRINGS=351  data-attr pairs=7  Notion EN fields=28[0m
+  [90mVI_STRINGS=351  EN_STRINGS=351  data-attr pairs=20  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất 
       [90mreason: text_drift_vs_notion[0m
@@ -170,11 +170,9 @@
     [31m•[0m Visa 10 năm · Chỉ áp dụng tại Forest City
       [90mreason: no_en_available[0m
 
-[1mantigua[0m  [33m 81.6%[0m (102 translated / 23 gap / 0 skip of 125 VN strings)
-  [90mVI_STRINGS=258  EN_STRINGS=258  data-attr pairs=241  Notion EN fields=17[0m
+[1mantigua[0m  [33m 82.4%[0m (103 translated / 22 gap / 0 skip of 125 VN strings)
+  [90mVI_STRINGS=258  EN_STRINGS=258  data-attr pairs=249  Notion EN fields=17[0m
   [33mTop gaps:[0m
-    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Antigua & Barbuda và sẵn sàng giao dịch. Bạn không cần 
-      [90mreason: text_drift_vs_notion[0m
     [33m•[0m Antigua & Barbuda cấp quốc tịch trực tiếp qua đầu tư — không qua giai đoạn cư trú. Hộ chiếu trọn đời, con cái thừa kế th
       [90mreason: text_drift_vs_notion[0m
     [31m•[0m Cập nhật quan trọng 2024: Mức đóng góp NDF cho gia đình ≤4 người đã tăng từ $100,000 lên $230,000 từ tháng 7/2024 (cùng 
@@ -183,12 +181,12 @@
       [90mreason: no_en_available[0m
     [31m•[0m Lợi thế quan trọng: Antigua là một trong rất ít CBI cho phép tuyên thệ ngoài đảo — qua lãnh sự quán tại London, Toronto,
       [90mreason: no_en_available[0m
+    [31m•[0m So sánh phạm vi gia đình: Antigua bao phủ 4 thế hệ trong một hồ sơ duy nhất — vợ/chồng, con đến 30, bố mẹ/ông bà từ 55, 
+      [90mreason: no_en_available[0m
 
-[1mitaly[0m  [33m 74.6%[0m (100 translated / 34 gap / 0 skip of 134 VN strings)
-  [90mVI_STRINGS=251  EN_STRINGS=254  data-attr pairs=257  Notion EN fields=7[0m
+[1mitaly[0m  [33m 75.4%[0m (101 translated / 33 gap / 0 skip of 134 VN strings)
+  [90mVI_STRINGS=251  EN_STRINGS=254  data-attr pairs=270  Notion EN fields=7[0m
   [33mTop gaps:[0m
-    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Ý và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng 
-      [90mreason: text_drift_vs_notion[0m
     [33m•[0m Ý có hệ thống thuế lũy tiến tiêu chuẩn (23–43%) cho thu nhập từ Ý. Điểm khác biệt là chế độ neo-residenti — flat tax €20
       [90mreason: text_drift_vs_notion[0m
     [33m•[0m Vị trí của Visa Đầu Tư Ý trong bức tranh EU RBI. Xem toàn bộ xếp hạng tại NAC Residence Index →
@@ -197,6 +195,8 @@
       [90mreason: text_drift_vs_notion[0m
     [31m•[0m Không gia hạn sau 15 năm
       [90mreason: no_en_available[0m
+    [33m•[0m Thu nhập nguồn Ý luôn chịu thuế bình thường
+      [90mreason: text_drift_vs_notion[0m
 
 [1mspain[0m  [31m 38.7%[0m (43 translated / 68 gap / 0 skip of 111 VN strings)
   [90mVI_STRINGS=35  EN_STRINGS=35  data-attr pairs=245  Notion EN fields=7[0m
@@ -212,12 +212,10 @@
     [31m•[0m Holders permit trước 03/04/2025 vẫn có thể theo lộ trình này. Lưu ý quan trọng về song tịch.
       [90mreason: no_en_available[0m
 
-[1mmontenegro[0m  [33m 83.5%[0m (106 translated / 21 gap / 0 skip of 127 VN strings)
-  [90mVI_STRINGS=248  EN_STRINGS=248  data-attr pairs=251  Notion EN fields=7[0m
+[1mmontenegro[0m  [33m 84.3%[0m (107 translated / 20 gap / 0 skip of 127 VN strings)
+  [90mVI_STRINGS=248  EN_STRINGS=248  data-attr pairs=264  Notion EN fields=7[0m
   [33mTop gaps:[0m
     [33m•[0m Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o strancime) — cấp giấy phép cư trú tạm th
-      [90mreason: text_drift_vs_notion[0m
-    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Montenegro và sẵn sàng giao dịch. Bạn không cần săn tìm
       [90mreason: text_drift_vs_notion[0m
     [31m•[0m Không có mức đầu tư tối thiểu theo luật. Thực tế cần €100K+ cho BĐS sạch pháp lý, đã đăng ký cadastre. NAC khuyến nghị €
       [90mreason: no_en_available[0m
@@ -225,8 +223,10 @@
       [90mreason: no_en_available[0m
     [33m•[0m Lợi thế quan trọng: Hồ sơ TRP Montenegro được xử lý ở cấp MUP địa phương (Podgorica hoặc Kotor) — không cần chờ hàng thá
       [90mreason: text_drift_vs_notion[0m
+    [33m•[0m So sánh phạm vi gia đình: Montenegro RBI bảo lãnh vợ/chồng + con nhỏ tự động — hẹp hơn Antigua CBI (4 thế hệ) nhưng phù 
+      [90mreason: text_drift_vs_notion[0m
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  avg 79.1%  ·  [32m0 ≥95%[0m  ·  [33m15 70-94%[0m  ·  [31m1 <70%[0m
+[1mSummary:[0m  avg 79.6%  ·  [32m0 ≥95%[0m  ·  [33m15 70-94%[0m  ·  [31m1 <70%[0m
 
   → JSON report: .diagnostics/en-coverage.json
