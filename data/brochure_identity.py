@@ -180,6 +180,45 @@ IDENTITY = {
         'wp_slug':         'chuong-trinh-antigua-barbuda-cbi',
         'cover':           'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1500&q=80',  # Caribbean coastline
     },
+    'italy': {
+        'flag':            '🇮🇹',
+        'country_vi':      'Ý',
+        'country_en':      'Italy',
+        'program_code':    'RBI',
+        'program_tag':     'RBI · Ý',
+        'program_vi':      'Visa Đầu Tư Ý',
+        'program_en':      'Italy Investor Visa',
+        'source_filename': 'italy-investor.html',
+        'wp_page_id':      0,
+        'wp_slug':         'chuong-trinh-y-investor-visa-rbi',
+        'cover':           'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1500&q=80',  # Tuscany cypress road
+    },
+    'spain': {
+        'flag':            '🇪🇸',
+        'country_vi':      'Tây Ban Nha',
+        'country_en':      'Spain',
+        'program_code':    'RBI',
+        'program_tag':     'RBI · Tây Ban Nha',
+        'program_vi':      'Tây Ban Nha Golden Visa',
+        'program_en':      'Spain Golden Visa',
+        'source_filename': 'spain-gv.html',
+        'wp_page_id':      0,
+        'wp_slug':         'chuong-trinh-tay-ban-nha-golden-visa',
+        'cover':           'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=1500&q=80',  # Barcelona Sagrada Familia
+    },
+    'montenegro': {
+        'flag':            '🇲🇪',
+        'country_vi':      'Montenegro',
+        'country_en':      'Montenegro',
+        'program_code':    'RBI',
+        'program_tag':     'RBI · Montenegro',
+        'program_vi':      'Montenegro Cư Trú Qua Bất Động Sản',
+        'program_en':      'Montenegro Residence by Real Estate',
+        'source_filename': 'montenegro-rbi.html',
+        'wp_page_id':      0,
+        'wp_slug':         'chuong-trinh-montenegro-rbi-bat-dong-san',
+        'cover':           'https://images.unsplash.com/photo-1601581433144-7f568833bc4f?w=1500&q=80',  # Bay of Kotor
+    },
 }
 
 

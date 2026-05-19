@@ -45,6 +45,7 @@ INDEX_TO_ALIAS = {
 ORDER = [
     'portugal', 'greece', 'cyprus', 'turkey', 'uae', 'uk',
     'malta', 'stkitts', 'antigua', 'thailand', 'newzealand', 'panama', 'malaysia',
+    'italy', 'spain', 'montenegro',
 ]
 
 

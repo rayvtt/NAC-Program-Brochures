@@ -64,6 +64,9 @@ BROCHURES = {
     'panama':      ('panama-rbi_.html',             1996, 'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien'),
     'malaysia':    ('malaysia-mm2h.html',            2024, 'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru'),
     'antigua':     ('antigua-cbi.html',               2158, 'chuong-trinh-antigua-barbuda-cbi'),
+    'italy':       ('italy-investor.html',               0, 'chuong-trinh-y-investor-visa-rbi'),
+    'spain':       ('spain-gv.html',                     0, 'chuong-trinh-tay-ban-nha-golden-visa'),
+    'montenegro':  ('montenegro-rbi.html',               0, 'chuong-trinh-montenegro-rbi-bat-dong-san'),
     # 'nph' (property-hub) and 'index' (nac-residence-index) intentionally
     # omitted — those tool pages are NOT managed by this repo. They live in
     # WordPress directly. Re-adding them here would overwrite WP-side edits
@@ -143,8 +146,11 @@ def cmd_status():
         local = resolve_local(fname)
         size = (os.path.getsize(local) // 1024) if os.path.exists(local) else None
         size_str = f'{size}KB' if size else red('MISSING')
-        status, meta = fetch_page_meta(pid)
-        wp_mod = meta.get('modified', 'n/a') if status == 200 else red(f'HTTP {status}')
+        if pid == 0:
+            wp_mod = yellow('placeholder (id=0)')
+        else:
+            status, meta = fetch_page_meta(pid)
+            wp_mod = meta.get('modified', 'n/a') if status == 200 else red(f'HTTP {status}')
         print(f'  {alias:10s}  {pid:>5d}  {size_str:>8s}  {wp_mod}')
     print(gray('─' * 70))
     print(gray('  push one:    python sync_brochures.py <alias>'))
@@ -157,6 +163,9 @@ def cmd_sync(alias, auth=None, dry_run=False):
         print(red(f'  unknown alias: {alias}'))
         return False
     fname, pid, _ = BROCHURES[alias]
+    if pid == 0:
+        print(yellow(f'  ⤬ {alias}: wp_page_id=0 placeholder — skipping (set real id in BROCHURES dict to enable sync)'))
+        return True
     local = resolve_local(fname)
     if not os.path.exists(local):
         print(red(f'  ✗ {alias}: local file missing ({fname})'))
