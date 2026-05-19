@@ -1015,6 +1015,15 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 }
 /*TAX-COLLAPSE-CSS*/
 
+
+/* Mobile header: show only "NAC BROCHURE 2026" subtitle, hide
+   "Nomad Asset Collective" main label so the header doesn't
+   crowd next to the logo mark on small screens. /*MOBILE-LOGO-CSS*/ */
+@media (max-width: 600px) {
+  .logo-text { display: none; }
+  .logo-sub  { font-size: 11px; letter-spacing: 1.4px; line-height: 1.2; }
+}
+
 </style>
 </head>
 <body>
