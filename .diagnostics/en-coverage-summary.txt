@@ -30,7 +30,7 @@
     [33m•[0m Cải thiện xử lý 2025–2026: Hy Lạp đã đầu tư mạnh vào hệ thống Digital Residency Portal từ 2025, giảm thời gian xử lý từ 
       [90mreason: text_drift_vs_notion[0m
 
-[1mcyprus[0m  [33m 80.3%[0m (102 translated / 25 gap / 0 skip of 127 VN strings)
+[1mcyprus[0m  [33m 79.1%[0m (102 translated / 27 gap / 0 skip of 129 VN strings)
   [90mVI_STRINGS=288  EN_STRINGS=288  data-attr pairs=7  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Đảo Síp và sẵn sàng giao dịch. Bạn không cần săn tìm — 
@@ -44,9 +44,11 @@
     [31m•[0m Loại chương trình
       [90mreason: no_en_available[0m
 
-[1mturkey[0m  [33m 93.5%[0m (130 translated / 9 gap / 0 skip of 139 VN strings)
-  [90mVI_STRINGS=247  EN_STRINGS=247  data-attr pairs=265  Notion EN fields=29[0m
+[1mturkey[0m  [33m 92.8%[0m (129 translated / 10 gap / 0 skip of 139 VN strings)
+  [90mVI_STRINGS=247  EN_STRINGS=247  data-attr pairs=248  Notion EN fields=29[0m
   [33mTop gaps:[0m
+    [33m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm
+      [90mreason: text_drift_vs_notion[0m
     [31m•[0m 183 ngày/năm" data-en="Only if resident >183 days/year">Chỉ khi cư trú >183 ngày/năm
       [90mreason: no_en_available[0m
     [33m•[0m Chiến lược tối ưu NAC: Sử dụng hộ chiếu Thổ Nhĩ Kỳ như “bàn đạp” — miễn visa Nhật Bản, Hàn Quốc, Singapore và nhiều nước
@@ -55,11 +57,9 @@
       [90mreason: text_drift_vs_notion[0m
     [31m•[0m 02 Các mức đầu tư
       [90mreason: no_en_available[0m
-    [31m•[0m 03 Quy trình & thời gian
-      [90mreason: no_en_available[0m
 
 [1muae[0m  [33m 90.5%[0m (114 translated / 12 gap / 0 skip of 126 VN strings)
-  [90mVI_STRINGS=356  EN_STRINGS=356  data-attr pairs=10  Notion EN fields=30[0m
+  [90mVI_STRINGS=357  EN_STRINGS=357  data-attr pairs=10  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)
       [90mreason: no_en_available[0m
@@ -72,9 +72,11 @@
     [33m•[0m Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Cư Trú D7 Cho Nhà Đầu Tư Việt
       [90mreason: text_drift_vs_notion[0m
 
-[1muk[0m  [33m 84.7%[0m (105 translated / 19 gap / 0 skip of 124 VN strings)
+[1muk[0m  [33m 83.2%[0m (104 translated / 21 gap / 0 skip of 125 VN strings)
   [90mVI_STRINGS=309  EN_STRINGS=309  data-attr pairs=7  Notion EN fields=31[0m
   [33mTop gaps:[0m
+    [31m•[0m Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Kingdom và sẵn sàng giao dịch. Bạn không cần săn tìm — 
+      [90mreason: no_en_available[0m
     [31m•[0m Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the
       [90mreason: no_en_available[0m
     [33m•[0m Chiến lược NAC cho nhà đầu tư Việt: Kết hợp Innovator Founder Visa (£50K–£100K vốn kinh doanh) + Đầu tư BĐS song song (£
@@ -83,11 +85,9 @@
       [90mreason: no_en_available[0m
     [31m•[0m Chi phí BĐS thực tế cho NĐT Việt: Nhà đầu tư Việt mua BĐS UK £500,000 (BĐS thứ 2, chưa cư trú) sẽ trả SDLT: £12,500 (chu
       [90mreason: no_en_available[0m
-    [31m•[0m Lợi thế thuế BĐS cho thuê UK: Thu nhập cho thuê BĐS UK chịu thuế thu nhập (20–45%), nhưng được khấu trừ nhiều chi phí: b
-      [90mreason: no_en_available[0m
 
 [1mmalta[0m  [33m 85.2%[0m (98 translated / 17 gap / 0 skip of 115 VN strings)
-  [90mVI_STRINGS=382  EN_STRINGS=382  data-attr pairs=7  Notion EN fields=30[0m
+  [90mVI_STRINGS=383  EN_STRINGS=383  data-attr pairs=7  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi
       [90mreason: text_drift_vs_notion[0m
@@ -143,7 +143,7 @@
       [90mreason: no_en_available[0m
 
 [1mpanama[0m  [33m 81.3%[0m (100 translated / 23 gap / 0 skip of 123 VN strings)
-  [90mVI_STRINGS=374  EN_STRINGS=374  data-attr pairs=6  Notion EN fields=30[0m
+  [90mVI_STRINGS=375  EN_STRINGS=375  data-attr pairs=6  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Hub tài chính & thương mại quốc tế
       [90mreason: no_en_available[0m
@@ -227,6 +227,6 @@
       [90mreason: text_drift_vs_notion[0m
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  avg 79.3%  ·  [32m0 ≥95%[0m  ·  [33m15 70-94%[0m  ·  [31m1 <70%[0m
+[1mSummary:[0m  avg 79.1%  ·  [32m0 ≥95%[0m  ·  [33m15 70-94%[0m  ·  [31m1 <70%[0m
 
   → JSON report: .diagnostics/en-coverage.json
