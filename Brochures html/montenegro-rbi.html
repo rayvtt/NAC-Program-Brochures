@@ -1290,23 +1290,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   }
 }
 
-/* Compare-table collapse — table can be folded on mobile.
-   Mirrors .chart-collapse pattern (matrix chart). Idempotent — guarded
-   by /*COMP-COLLAPSE-CSS*/ marker. */
-.comp-collapse { width: 100%; margin-bottom: 0; }
-.comp-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-bottom: none; border-radius: var(--r) var(--r) 0 0; }
-.comp-collapse > summary::-webkit-details-marker { display: none; }
-.comp-collapse > summary .comp-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
-.comp-collapse[open] > summary { border-radius: var(--r) var(--r) 0 0; }
-.comp-collapse:not([open]) > summary { border-radius: var(--r); border-bottom: 1px solid var(--border); }
-.comp-collapse > .comp-table { border-radius: 0 0 var(--r) var(--r); border-top: none; }
-.comp-collapse-icon { display: none; }
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
 @media (max-width: 600px) {
-  .comp-collapse > summary { cursor: pointer; user-select: none; }
-  .comp-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
-  .comp-collapse[open] .comp-collapse-icon { transform: rotate(180deg); }
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
 }
-/*COMP-COLLAPSE-CSS*/
+/*TAX-COLLAPSE-CSS*/
 
 </style>
 </head>
@@ -1790,7 +1791,8 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       <h2 class="sec-title" data-vi="Thuế &amp; Lợi Thế Tài Chính" data-en="Tax &amp; Financial Advantages">Thuế & Lợi Thế Tài Chính</h2>
       <p class="sec-sub" data-vi="Montenegro có mức thuế thu nhập cá nhân thấp nhất Châu Âu (cùng Bulgaria) — hệ thống lũy tiến 9-15%. Không thuế tài sản ròng, không thuế thừa kế cho vợ/chồng và con cái trực tiếp. Dùng đồng Euro từ 2002 — không có rủi ro tỷ giá." data-en="Montenegro has the lowest personal income tax in Europe (alongside Bulgaria) — a progressive 9-15% system. No net wealth tax, no inheritance tax for spouses and direct descendants. Euro-based since 2002 — no foreign exchange risk.">Montenegro có mức thuế thu nhập cá nhân thấp nhất Châu Âu (cùng Bulgaria) — hệ thống lũy tiến 9-15%. Không thuế tài sản ròng, không thuế thừa kế cho vợ/chồng và con cái trực tiếp. Dùng đồng Euro từ 2002 — không có rủi ro tỷ giá.</p>
 
-      <div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
+      <!--TAX-COLLAPSE-->
+<details class="tax-collapse" open><summary><span class="tax-collapse-title" data-vi="Bảng thuế chi tiết" data-en="Detailed tax breakdown">Bảng thuế chi tiết</span><span class="tax-collapse-icon" aria-hidden="true">▾</span></summary><div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
         <div class="ov-card"><div class="ov-icon">📊</div><div class="ov-label" data-vi="Thuế thu nhập cá nhân (PIT)" data-en="Personal Income Tax (PIT)">Thuế thu nhập cá nhân (PIT)</div><div class="ov-value" data-vi="9-15%" data-en="9-15%">9-15%</div><div class="ov-note" data-vi="Lũy tiến: 9% (cơ bản) · 11% (&gt;€700/tháng) · 15% (&gt;€1,000)" data-en="Progressive: 9% (base) · 11% (&gt;€700/mo) · 15% (&gt;€1,000)">Lũy tiến: 9% (cơ bản) · 11% (&gt;€700/tháng) · 15% (&gt;€1,000)</div></div>
         <div class="ov-card"><div class="ov-icon">📈</div><div class="ov-label" data-vi="Thuế lãi vốn (CGT)" data-en="Capital Gains Tax (CGT)">Thuế lãi vốn (CGT)</div><div class="ov-value" data-vi="15%" data-en="15%">15%</div><div class="ov-note" data-vi="Áp dụng cho lãi vốn từ bán BĐS và tài sản tài chính" data-en="Applies to gains from property and financial asset sales">Áp dụng cho lãi vốn từ bán BĐS và tài sản tài chính</div></div>
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label" data-vi="Thuế thừa kế / Di sản" data-en="Inheritance / Estate Tax">Thuế thừa kế / Di sản</div><div class="ov-value" data-vi="0%" data-en="0%">0%</div><div class="ov-note" data-vi="Miễn cho vợ/chồng và con trực tiếp" data-en="Exempt for spouses and direct descendants">Miễn cho vợ/chồng và con trực tiếp</div></div>
@@ -1804,7 +1806,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <div class="info-text" data-vi="&lt;strong&gt;Điều kiện trở thành cư dân thuế Montenegro:&lt;/strong&gt; Ở Montenegro &gt;183 ngày/năm. Cư dân thuế kê khai và nộp PIT 9-15% cho thu nhập toàn cầu tại Montenegro. Việt Nam có nghĩa vụ khai báo thu nhập theo chế độ cư trú — nếu bạn thực sự sống tại Montenegro &gt;183 ngày, nghĩa vụ thuế VN giảm xuống chỉ còn thu nhập phát sinh tại VN. &lt;strong&gt;Tham vấn luật sư thuế quốc tế trước khi quyết định.&lt;/strong&gt;" data-en="&lt;strong&gt;Becoming a Montenegrin tax resident:&lt;/strong&gt; Spend &gt;183 days/year in Montenegro. Tax residents declare and pay 9-15% PIT on global income in Montenegro. Vietnam applies tax based on residency — if you genuinely live in Montenegro &gt;183 days, Vietnamese tax obligations reduce to income sourced in Vietnam only. &lt;strong&gt;Consult an international tax lawyer before deciding.&lt;/strong&gt;"><strong>Điều kiện trở thành cư dân thuế Montenegro:</strong> Ở Montenegro &gt;183 ngày/năm. Cư dân thuế kê khai và nộp PIT 9-15% cho thu nhập toàn cầu tại Montenegro. Việt Nam có nghĩa vụ khai báo thu nhập theo chế độ cư trú — nếu bạn thực sự sống tại Montenegro &gt;183 ngày, nghĩa vụ thuế VN giảm xuống chỉ còn thu nhập phát sinh tại VN. <strong>Tham vấn luật sư thuế quốc tế trước khi quyết định.</strong></div>
       </div>
 
-      <div class="info-box">
+      </details><div class="info-box">
         <div class="info-icon">ℹ️</div>
         <div class="info-text" data-vi="&lt;strong&gt;So sánh thuế khu vực Balkan:&lt;/strong&gt; Montenegro 9-15% PIT, 9% CIT · Albania 15% PIT · Serbia 10-15% PIT, 15% CIT · Bulgaria 10% PIT (flat) · Bosnia 10% PIT. Montenegro nằm trong nhóm tốt nhất khu vực — đặc biệt hấp dẫn cho thu nhập từ cổ tức, lãi đầu tư và hoạt động freelance quốc tế (9% flat trên nguồn nước ngoài). VAT: 21% tiêu chuẩn, 7% giảm." data-en="&lt;strong&gt;Balkan regional tax comparison:&lt;/strong&gt; Montenegro 9-15% PIT, 9% CIT · Albania 15% PIT · Serbia 10-15% PIT, 15% CIT · Bulgaria 10% PIT (flat) · Bosnia 10% PIT. Montenegro ranks among the best in the region — particularly attractive for dividend income, investment returns and international freelance (9% flat on foreign-source income). VAT: 21% standard, 7% reduced."><strong>So sánh thuế khu vực Balkan:</strong> Montenegro 9-15% PIT, 9% CIT · Albania 15% PIT · Serbia 10-15% PIT, 15% CIT · Bulgaria 10% PIT (flat) · Bosnia 10% PIT. Montenegro nằm trong nhóm tốt nhất khu vực — đặc biệt hấp dẫn cho thu nhập từ cổ tức, lãi đầu tư và hoạt động freelance quốc tế (9% flat trên nguồn nước ngoài). VAT: 21% tiêu chuẩn, 7% giảm.</div>
       </div>
@@ -1863,8 +1865,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <canvas id="compareChart" style="max-height:260px"></canvas>
       </div>
 
-      <!--COMP-COLLAPSE-->
-<details class="comp-collapse" open><summary><span class="comp-collapse-title" data-vi="Bảng so sánh chi tiết" data-en="Detailed comparison table">Bảng so sánh chi tiết</span><span class="comp-collapse-icon" aria-hidden="true">▾</span></summary><table class="comp-table">
+      <table class="comp-table">
         <thead>
           <tr><th data-vi="Chương trình" data-en="Program">Chương trình</th><th data-vi="Đầu tư tối thiểu" data-en="Min. Investment">Đầu tư tối thiểu</th><th data-vi="Loại" data-en="Type">Loại</th><th data-vi="Di chuyển" data-en="Mobility">Di chuyển</th><th data-vi="Thời gian" data-en="Timeline">Thời gian</th><th data-vi="Điểm NAC" data-en="NAC Score">Điểm NAC</th></tr>
         </thead>
@@ -1902,7 +1903,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill top" style="width:91%"></div></div><span class="comp-score-num">91</span></div></td>
           </tr>
         </tbody>
-      </table></details>
+      </table>
 
       <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
@@ -3510,19 +3511,21 @@ function setLang(lang) {
 </script>
 
 
+
+
 <script>
-/* Compare-table collapse: closed by default on mobile, open on desktop.
-   COMP-COLLAPSE-JS */
+/* Tax-grid collapse: closed by default on mobile, open on desktop.
+   TAX-COLLAPSE-JS */
 (function () {
-  function syncCompCollapse() {
-    var det = document.querySelector('details.comp-collapse');
+  function syncTaxCollapse() {
+    var det = document.querySelector('details.tax-collapse');
     if (!det) return;
     if (window.matchMedia('(max-width: 600px)').matches) det.open = false;
     else det.open = true;
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncCompCollapse);
-  else syncCompCollapse();
-  window.addEventListener('resize', syncCompCollapse);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncTaxCollapse);
+  else syncTaxCollapse();
+  window.addEventListener('resize', syncTaxCollapse);
 })();
 </script>
 

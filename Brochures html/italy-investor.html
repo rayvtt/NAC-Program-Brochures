@@ -1289,23 +1289,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   }
 }
 
-/* Compare-table collapse — table can be folded on mobile.
-   Mirrors .chart-collapse pattern (matrix chart). Idempotent — guarded
-   by /*COMP-COLLAPSE-CSS*/ marker. */
-.comp-collapse { width: 100%; margin-bottom: 0; }
-.comp-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-bottom: none; border-radius: var(--r) var(--r) 0 0; }
-.comp-collapse > summary::-webkit-details-marker { display: none; }
-.comp-collapse > summary .comp-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
-.comp-collapse[open] > summary { border-radius: var(--r) var(--r) 0 0; }
-.comp-collapse:not([open]) > summary { border-radius: var(--r); border-bottom: 1px solid var(--border); }
-.comp-collapse > .comp-table { border-radius: 0 0 var(--r) var(--r); border-top: none; }
-.comp-collapse-icon { display: none; }
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
 @media (max-width: 600px) {
-  .comp-collapse > summary { cursor: pointer; user-select: none; }
-  .comp-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
-  .comp-collapse[open] .comp-collapse-icon { transform: rotate(180deg); }
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
 }
-/*COMP-COLLAPSE-CSS*/
+/*TAX-COLLAPSE-CSS*/
 
 </style>
 </head>
@@ -1802,7 +1803,8 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       <h2 class="sec-title" data-vi="Thuế &amp; Lợi Thế Tài Chính" data-en="Tax &amp; Financial Advantages">Thuế & Lợi Thế Tài Chính</h2>
       <p class="sec-sub" data-vi="Ý có hệ thống thuế lũy tiến tiêu chuẩn (23–43%) cho thu nhập từ Ý. Điểm khác biệt là chế độ neo-residenti — flat tax €200K/năm áp dụng cho &lt;em&gt;toàn bộ thu nhập nước ngoài&lt;/em&gt; — biến Ý thành điểm đến cạnh tranh với Bồ Đào Nha NHR và Malta GRP cho HNWI có thu nhập đầu tư lớn." data-en="Italy has a standard progressive income tax system (23–43%) on Italian-source income. The standout is the neo-residenti regime — a €200K/year flat tax covering &lt;em&gt;all foreign-source income&lt;/em&gt; — making Italy competitive with Portugal NHR and Malta GRP for HNWIs with large investment income.">Ý có hệ thống thuế lũy tiến tiêu chuẩn (23–43%) cho thu nhập từ Ý. Điểm khác biệt là chế độ neo-residenti — flat tax €200K/năm áp dụng cho <em>toàn bộ thu nhập nước ngoài</em> — biến Ý thành điểm đến cạnh tranh với Bồ Đào Nha NHR và Malta GRP cho HNWI có thu nhập đầu tư lớn.</p>
 
-      <div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
+      <!--TAX-COLLAPSE-->
+<details class="tax-collapse" open><summary><span class="tax-collapse-title" data-vi="Bảng thuế chi tiết" data-en="Detailed tax breakdown">Bảng thuế chi tiết</span><span class="tax-collapse-icon" aria-hidden="true">▾</span></summary><div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
         <div class="ov-card"><div class="ov-icon">📊</div><div class="ov-label" data-vi="Thuế thu nhập Ý (nguồn nội địa)" data-en="Italian Income Tax (domestic)">Thuế thu nhập Ý (nguồn nội địa)</div><div class="ov-value" data-vi="23–43%" data-en="23–43%">23–43%</div><div class="ov-note" data-vi="Thuế lũy tiến tiêu chuẩn, áp dụng cho thu nhập từ Ý" data-en="Standard progressive tax on Italian-source income">Thuế lũy tiến tiêu chuẩn, áp dụng cho thu nhập từ Ý</div></div>
         <div class="ov-card"><div class="ov-icon">🌐</div><div class="ov-label" data-vi="Flat Tax Neo-Residenti (thu nhập nước ngoài)" data-en="Neo-Residenti Flat Tax (foreign income)">Flat Tax Neo-Residenti (thu nhập nước ngoài)</div><div class="ov-value" data-vi="€200K/năm" data-en="€200K/year">€200K/năm</div><div class="ov-note" data-vi="Áp dụng cho người đăng ký mới sau 11/8/2024 · tối đa 15 năm" data-en="For new registrants after 11 Aug 2024 · up to 15 years">Người mới đăng ký sau 11/8/2024 · tối đa 15 năm</div></div>
         <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label" data-vi="Flat Tax phụ — Thành viên gia đình" data-en="Family Member Add-On Flat Tax">Flat Tax phụ — Thành viên gia đình</div><div class="ov-value" data-vi="€25K/người/năm" data-en="€25K/person/year">€25K/người/năm</div><div class="ov-note" data-vi="Mỗi thành viên gia đình chọn chế độ này" data-en="Per family member opting into the regime">Mỗi thành viên gia đình chọn chế độ này</div></div>
@@ -1816,7 +1818,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <div class="info-text" data-vi="&lt;strong&gt;So sánh flat tax với các chương trình cạnh tranh:&lt;/strong&gt; Bồ Đào Nha NHR 2024 (IFICI): 20% thuế cho thu nhập nghề nghiệp tại Bồ Đào Nha, miễn/giảm thu nhập nước ngoài trong 10 năm. Malta GRP: 15% thuế remittance-basis trên thu nhập nước ngoài chuyển vào Malta. Hy Lạp NDR: flat tax €100K/năm cho thu nhập nước ngoài (giống mức cũ của Ý). &lt;strong&gt;Break-even của Italy neo-residenti:&lt;/strong&gt; Flat tax €200K/năm là hiệu quả nếu thu nhập nước ngoài vượt ~€600K/năm (33% thuế hiệu dụng). Dưới mức này, Portugal IFICI hoặc Malta GRP thường rẻ hơn." data-en="&lt;strong&gt;Flat-tax comparison with competing regimes:&lt;/strong&gt; Portugal NHR 2024 (IFICI): 20% on Portuguese-source professional income, foreign income exempt/reduced for 10 years. Malta GRP: 15% remittance-basis tax on foreign income remitted to Malta. Greece NDR: €100K/year flat on foreign income (similar to Italy's old level). &lt;strong&gt;Italy neo-residenti break-even:&lt;/strong&gt; The €200K/year flat tax is efficient when foreign income exceeds ~€600K/year (33% effective rate). Below that, Portugal IFICI or Malta GRP are typically cheaper."><strong>So sánh flat tax với các chương trình cạnh tranh:</strong> Bồ Đào Nha NHR 2024 (IFICI): 20% thuế cho thu nhập nghề nghiệp tại Bồ Đào Nha, miễn/giảm thu nhập nước ngoài trong 10 năm. Malta GRP: 15% thuế remittance-basis trên thu nhập nước ngoài chuyển vào Malta. Hy Lạp NDR: flat tax €100K/năm cho thu nhập nước ngoài (giống mức cũ của Ý). <strong>Break-even của Italy neo-residenti:</strong> Flat tax €200K/năm là hiệu quả nếu thu nhập nước ngoài vượt ~€600K/năm (33% thuế hiệu dụng). Dưới mức này, Portugal IFICI hoặc Malta GRP thường rẻ hơn.</div>
       </div>
 
-      <div class="info-box">
+      </details><div class="info-box">
         <div class="info-icon">ℹ️</div>
         <div class="info-text" data-vi="&lt;strong&gt;Lưu ý quan trọng về thuế VN:&lt;/strong&gt; Việt Nam áp dụng chế độ thuế theo &lt;em&gt;quốc tịch và cư trú&lt;/em&gt; (Luật TNCN 2007). Công dân Việt Nam vẫn có nghĩa vụ khai báo thu nhập tại Việt Nam kể cả khi cư trú tại Ý. Để hưởng đầy đủ lợi thế flat tax neo-residenti, nhà đầu tư thường cần chứng minh không cư trú thường xuyên tại Việt Nam (&lt;183 ngày/năm). &lt;strong&gt;Tham vấn luật sư thuế quốc tế trước khi quyết định.&lt;/strong&gt;" data-en="&lt;strong&gt;Important Vietnamese tax note:&lt;/strong&gt; Vietnam applies a tax regime based on &lt;em&gt;citizenship and residence&lt;/em&gt; (PIT Law 2007). Vietnamese citizens remain obliged to declare income in Vietnam even when residing in Italy. To fully benefit from the neo-residenti flat-tax regime, investors typically need to demonstrate non-habitual residence in Vietnam (&lt;183 days/year). &lt;strong&gt;Consult an international tax lawyer before deciding.&lt;/strong&gt;"><strong>Lưu ý quan trọng về thuế VN:</strong> Việt Nam áp dụng chế độ thuế theo <em>quốc tịch và cư trú</em> (Luật TNCN 2007). Công dân Việt Nam vẫn có nghĩa vụ khai báo thu nhập tại Việt Nam kể cả khi cư trú tại Ý. Để hưởng đầy đủ lợi thế flat tax neo-residenti, nhà đầu tư thường cần chứng minh không cư trú thường xuyên tại Việt Nam (<183 ngày/năm). <strong>Tham vấn luật sư thuế quốc tế trước khi quyết định.</strong></div>
       </div>
@@ -1875,8 +1877,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <canvas id="compareChart" style="max-height:260px"></canvas>
       </div>
 
-      <!--COMP-COLLAPSE-->
-<details class="comp-collapse" open><summary><span class="comp-collapse-title" data-vi="Bảng so sánh chi tiết" data-en="Detailed comparison table">Bảng so sánh chi tiết</span><span class="comp-collapse-icon" aria-hidden="true">▾</span></summary><table class="comp-table">
+      <table class="comp-table">
         <thead>
           <tr><th data-vi="Chương trình" data-en="Program">Chương trình</th><th data-vi="Đầu tư tối thiểu" data-en="Min. Investment">Đầu tư tối thiểu</th><th data-vi="Loại" data-en="Type">Loại</th><th data-vi="Di chuyển" data-en="Mobility">Di chuyển</th><th data-vi="Thời gian" data-en="Timeline">Thời gian</th><th data-vi="Điểm NAC" data-en="NAC Score">Điểm NAC</th></tr>
         </thead>
@@ -1910,7 +1911,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:84%"></div></div><span class="comp-score-num">84</span></div></td>
           </tr>
         </tbody>
-      </table></details>
+      </table>
 
       <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
@@ -3524,19 +3525,21 @@ function setLang(lang) {
 </script>
 
 
+
+
 <script>
-/* Compare-table collapse: closed by default on mobile, open on desktop.
-   COMP-COLLAPSE-JS */
+/* Tax-grid collapse: closed by default on mobile, open on desktop.
+   TAX-COLLAPSE-JS */
 (function () {
-  function syncCompCollapse() {
-    var det = document.querySelector('details.comp-collapse');
+  function syncTaxCollapse() {
+    var det = document.querySelector('details.tax-collapse');
     if (!det) return;
     if (window.matchMedia('(max-width: 600px)').matches) det.open = false;
     else det.open = true;
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncCompCollapse);
-  else syncCompCollapse();
-  window.addEventListener('resize', syncCompCollapse);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncTaxCollapse);
+  else syncTaxCollapse();
+  window.addEventListener('resize', syncTaxCollapse);
 })();
 </script>
 

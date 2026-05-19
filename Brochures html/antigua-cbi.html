@@ -1289,23 +1289,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   }
 }
 
-/* Compare-table collapse — table can be folded on mobile.
-   Mirrors .chart-collapse pattern (matrix chart). Idempotent — guarded
-   by /*COMP-COLLAPSE-CSS*/ marker. */
-.comp-collapse { width: 100%; margin-bottom: 0; }
-.comp-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-bottom: none; border-radius: var(--r) var(--r) 0 0; }
-.comp-collapse > summary::-webkit-details-marker { display: none; }
-.comp-collapse > summary .comp-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
-.comp-collapse[open] > summary { border-radius: var(--r) var(--r) 0 0; }
-.comp-collapse:not([open]) > summary { border-radius: var(--r); border-bottom: 1px solid var(--border); }
-.comp-collapse > .comp-table { border-radius: 0 0 var(--r) var(--r); border-top: none; }
-.comp-collapse-icon { display: none; }
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
 @media (max-width: 600px) {
-  .comp-collapse > summary { cursor: pointer; user-select: none; }
-  .comp-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
-  .comp-collapse[open] .comp-collapse-icon { transform: rotate(180deg); }
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
 }
-/*COMP-COLLAPSE-CSS*/
+/*TAX-COLLAPSE-CSS*/
 
 </style>
 </head>
@@ -1757,7 +1758,8 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       <h2 class="sec-title" data-vi="Thuế &amp; Lợi Thế Tài Chính" data-en="Tax &amp; Financial Advantages">Thuế & Lợi Thế Tài Chính</h2>
       <p class="sec-sub" data-vi="Antigua &amp; Barbuda là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân toàn cầu, không thuế lãi vốn, không thuế thừa kế, không thuế tài sản ròng. Đây là lý do cốt lõi khiến CBI Antigua hấp dẫn không chỉ vì hộ chiếu mà còn vì cấu trúc bảo toàn tài sản." data-en="Antigua &amp; Barbuda is an internationally recognised tax haven — no worldwide personal income tax, no capital gains tax, no inheritance tax, no wealth tax. This is the core reason Antigua CBI is attractive not just for the passport but for asset-preservation structures.">Antigua & Barbuda là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân toàn cầu, không thuế lãi vốn, không thuế thừa kế, không thuế tài sản ròng. Đây là lý do cốt lõi khiến CBI Antigua hấp dẫn không chỉ vì hộ chiếu mà còn vì cấu trúc bảo toàn tài sản.</p>
 
-      <div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
+      <!--TAX-COLLAPSE-->
+<details class="tax-collapse" open><summary><span class="tax-collapse-title" data-vi="Bảng thuế chi tiết" data-en="Detailed tax breakdown">Bảng thuế chi tiết</span><span class="tax-collapse-icon" aria-hidden="true">▾</span></summary><div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
         <div class="ov-card"><div class="ov-icon">📊</div><div class="ov-label" data-vi="Thuế thu nhập cá nhân (toàn cầu)" data-en="Personal Income Tax (worldwide)">Thuế thu nhập cá nhân (toàn cầu)</div><div class="ov-value" data-vi="0%" data-en="0%">0%</div><div class="ov-note" data-vi="Không đánh thuế thu nhập ngoài Antigua" data-en="No tax on income outside Antigua">Không đánh thuế thu nhập ngoài Antigua</div></div>
         <div class="ov-card"><div class="ov-icon">📈</div><div class="ov-label" data-vi="Thuế lãi vốn (CGT)" data-en="Capital Gains Tax (CGT)">Thuế lãi vốn (CGT)</div><div class="ov-value" data-vi="0%" data-en="0%">0%</div><div class="ov-note" data-vi="Không CGT tại Antigua" data-en="No CGT in Antigua">Không CGT tại Antigua</div></div>
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label" data-vi="Thuế thừa kế / Di sản" data-en="Inheritance / Estate Tax">Thuế thừa kế / Di sản</div><div class="ov-value" data-vi="0%" data-en="0%">0%</div><div class="ov-note" data-vi="Không thuế thừa kế cho di sản toàn cầu" data-en="No inheritance tax on global estates">Không thuế thừa kế cho di sản toàn cầu</div></div>
@@ -1771,7 +1773,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <div class="info-text" data-vi="&lt;strong&gt;Lưu ý quan trọng về thuế VN:&lt;/strong&gt; Việt Nam áp dụng chế độ thuế theo &lt;em&gt;quốc tịch và cư trú&lt;/em&gt; (Luật TNCN 2007). Công dân Việt Nam vẫn có nghĩa vụ khai báo thu nhập tại Việt Nam ngay cả khi đã có quốc tịch Antigua. Để hưởng đầy đủ lợi thế thuế 0%, nhà đầu tư thường cần từ bỏ quốc tịch Việt Nam hoặc chứng minh không cư trú thường xuyên tại Việt Nam (&lt;183 ngày/năm). &lt;strong&gt;Tham vấn luật sư thuế quốc tế trước khi quyết định.&lt;/strong&gt;" data-en="&lt;strong&gt;Important Vietnamese tax note:&lt;/strong&gt; Vietnam applies a tax regime based on &lt;em&gt;citizenship and residence&lt;/em&gt; (PIT Law 2007). Vietnamese citizens remain obliged to declare income in Vietnam even after acquiring Antiguan citizenship. To enjoy full 0% tax benefits, investors typically need to renounce Vietnamese citizenship or demonstrate non-habitual residence (&lt;183 days/year). &lt;strong&gt;Consult an international tax lawyer before deciding.&lt;/strong&gt;"><strong>Lưu ý quan trọng về thuế VN:</strong> Việt Nam áp dụng chế độ thuế theo <em>quốc tịch và cư trú</em> (Luật TNCN 2007). Công dân Việt Nam vẫn có nghĩa vụ khai báo thu nhập tại Việt Nam ngay cả khi đã có quốc tịch Antigua. Để hưởng đầy đủ lợi thế thuế 0%, nhà đầu tư thường cần từ bỏ quốc tịch Việt Nam hoặc chứng minh không cư trú thường xuyên tại Việt Nam (<183 ngày/năm). <strong>Tham vấn luật sư thuế quốc tế trước khi quyết định.</strong></div>
       </div>
 
-      <div class="info-box">
+      </details><div class="info-box">
         <div class="info-icon">ℹ️</div>
         <div class="info-text" data-vi="&lt;strong&gt;Hộ chiếu Antigua mở những cửa nào?&lt;/strong&gt; Miễn thị thực UK (6 tháng/lần ghé thăm) — một trong số ít CBI Caribbean có quyền này, EU Schengen 26 nước (90 ngày trong 180), Singapore, Hong Kong, UAE, và 150+ quốc gia. &lt;strong&gt;Không&lt;/strong&gt; được miễn visa vào Mỹ (cần B1/B2) hay Canada. Hộ chiếu Antigua không trực tiếp dẫn đến quốc tịch EU nhưng mở cơ hội sống/làm việc trong Commonwealth." data-en="&lt;strong&gt;What does the Antigua passport unlock?&lt;/strong&gt; UK visa-free (6 months per visit) — one of the few Caribbean CBIs with this right, EU Schengen 26 countries (90 days in 180), Singapore, Hong Kong, UAE, and 150+ countries. &lt;strong&gt;No&lt;/strong&gt; visa-free access to the US (B1/B2 required) or Canada. The Antigua passport doesn't lead directly to EU citizenship but opens Commonwealth living/working opportunities."><strong>Hộ chiếu Antigua mở những cửa nào?</strong> Miễn thị thực UK (6 tháng/lần ghé thăm) — một trong số ít CBI Caribbean có quyền này, EU Schengen 26 nước (90 ngày trong 180), Singapore, Hong Kong, UAE, và 150+ quốc gia. <strong>Không</strong> được miễn visa vào Mỹ (cần B1/B2) hay Canada. Hộ chiếu Antigua không trực tiếp dẫn đến quốc tịch EU nhưng mở cơ hội sống/làm việc trong Commonwealth.</div>
       </div>
@@ -1830,8 +1832,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <canvas id="compareChart" style="max-height:260px"></canvas>
       </div>
 
-      <!--COMP-COLLAPSE-->
-<details class="comp-collapse" open><summary><span class="comp-collapse-title" data-vi="Bảng so sánh chi tiết" data-en="Detailed comparison table">Bảng so sánh chi tiết</span><span class="comp-collapse-icon" aria-hidden="true">▾</span></summary><table class="comp-table">
+      <table class="comp-table">
         <thead>
           <tr><th data-vi="Chương trình" data-en="Program">Chương trình</th><th data-vi="Đầu tư tối thiểu" data-en="Min. Investment">Đầu tư tối thiểu</th><th data-vi="Loại" data-en="Type">Loại</th><th data-vi="Di chuyển" data-en="Mobility">Di chuyển</th><th data-vi="Thời gian" data-en="Timeline">Thời gian</th><th data-vi="Điểm NAC" data-en="NAC Score">Điểm NAC</th></tr>
         </thead>
@@ -1869,7 +1870,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:75%"></div></div><span class="comp-score-num">75</span></div></td>
           </tr>
         </tbody>
-      </table></details>
+      </table>
 
       <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
@@ -3487,19 +3488,21 @@ function setLang(lang) {
 </script>
 
 
+
+
 <script>
-/* Compare-table collapse: closed by default on mobile, open on desktop.
-   COMP-COLLAPSE-JS */
+/* Tax-grid collapse: closed by default on mobile, open on desktop.
+   TAX-COLLAPSE-JS */
 (function () {
-  function syncCompCollapse() {
-    var det = document.querySelector('details.comp-collapse');
+  function syncTaxCollapse() {
+    var det = document.querySelector('details.tax-collapse');
     if (!det) return;
     if (window.matchMedia('(max-width: 600px)').matches) det.open = false;
     else det.open = true;
   }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncCompCollapse);
-  else syncCompCollapse();
-  window.addEventListener('resize', syncCompCollapse);
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncTaxCollapse);
+  else syncTaxCollapse();
+  window.addEventListener('resize', syncTaxCollapse);
 })();
 </script>
 
