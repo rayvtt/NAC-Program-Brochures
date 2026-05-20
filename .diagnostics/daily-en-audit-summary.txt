@@ -35,10 +35,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m8 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m17 VN remnants[0m
      [90m· So Sánh[0m
      [90m· Type thẻ[0m
-     [90m· Khám phá Property Hub →[0m
+     [90m· ✓ Đủ điều kiện RBI[0m
 
 [1mturkey[0m  [32m✓[0m
   1. Toggle:        [32m✓[0m 
@@ -56,7 +56,9 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m3 VN remnants[0m
+     [90m· Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI United Arab Emi[0m
+     [90m· NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiệ[0m
      [90m· Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Residency D7 Cho Nh[0m
 
 [1muk[0m  [31m✗[0m
@@ -66,8 +68,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m10 VN remnants[0m
      [90m· Góc Nhìn NAC: Passport Portfolio — Chiến Lược Đầu Tư Của Thập Kỷ Tới Cho HNWIs V[0m
+     [90m· ✓ Đủ điều kiện RBI[0m
+     [90m· Tây London — Beach Club Mái Tháp, 8 Mẫu Cảnh Quan, 30 Tiện Ích Đẳng Cấp[0m
 
 [1mmalta[0m  [32m✓[0m
   1. Toggle:        [32m✓[0m 
@@ -87,7 +91,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+  8. EN displays:   [31m✗[0m [31m3 VN remnants[0m
+     [90m· Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St. Kitts & Nev[0m
+     [90m· Thêm BĐS St. Kitts & Nevis đủ điều kiện CBI sẽ được công bố tại đây trong thời g[0m
+     [90m· NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiệ[0m
      [33mlow sections: tax, citizenship, compare[0m
      [33mNotion has EN for 9 gaps (sample):[0m
        [overview] St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời
@@ -144,27 +151,21 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m8 VN remnants[0m
-     [90m· Cơ Hội Đầu Tư Thực Tế[0m
-     [90m· BĐS Đủ Điều Kiện CBI — Đang Mở Bán[0m
-     [90m· Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Citizenship và [0m
+  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
      [33mlow sections: investment, process, family, tax, nac[0m
      [33mNotion has EN for 6 gaps (sample):[0m
        [overview] Antigua & Barbuda Citizenship by Investment Program (CIP) — vận hành từ 2013 — l
        [investment] Antigua & Barbuda cung cấp hai lộ trình đầu tư chính để đủ điều kiện CBI: Đóng g
        [process] Antigua & Barbuda CBI có hai quy trình: Standard (3–6 tháng) qua đại lý được CIU
 
-[1mitaly[0m  [31m✗[0m
+[1mitaly[0m  [32m✓[0m
   1. Toggle:        [32m✓[0m 
   2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
   3. §01 Overview:  [32m✓[0m 
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m14 VN remnants[0m
-     [90m· Cơ Hội Đầu Tư Thực Tế[0m
-     [90m· BĐS Đủ Điều Kiện RBI — Đang Mở Bán[0m
-     [90m· Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Investor Visa v[0m
+  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
 
 [1mspain[0m  [31m✗[0m
   1. Toggle:        [31m✗[0m [31mVI_STRINGS only 35 entries — sparse coverage[0m
@@ -178,22 +179,19 @@
      [90m· ⛔ ĐÃ ĐÓNG[0m
      [90m· Không quy định[0m
 
-[1mmontenegro[0m  [31m✗[0m
+[1mmontenegro[0m  [32m✓[0m
   1. Toggle:        [32m✓[0m 
   2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
   3. §01 Overview:  [32m✓[0m 
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m13 VN remnants[0m
-     [90m· Cơ Hội Đầu Tư Thực Tế[0m
-     [90m· BĐS Đủ Điều Kiện RBI — Đang Mở Bán[0m
-     [90m· Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Residence và sẵ[0m
+  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
      [33mNotion has EN for 1 gaps (sample):[0m
        [overview] Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o 
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  [32m4/16 brochures fully passing[0m
+[1mSummary:[0m  [32m6/16 brochures fully passing[0m
   [31mToggle issues:[0m    spain
   [33mSection gaps:[0m    stkitts, malaysia, antigua
   → JSON report: .diagnostics/daily-en-audit.json

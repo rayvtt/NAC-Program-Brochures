@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-19T06:08:59.315457+00:00",
+  "generated_at": "2026-05-20T06:08:49.414128+00:00",
   "source": "live",
-  "pass_count": 4,
+  "pass_count": 6,
   "total": 16,
   "reports": [
     {
@@ -383,8 +383,8 @@
           "listings": {
             "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 3,
+            "gap": 3,
             "skip": 0,
             "coverage_pct": 100
           },
@@ -482,9 +482,9 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "8 Vietnamese remnants after EN click"
+          "17 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 8,
+        "remnant_count": 17,
         "samples": [
           {
             "text": "So Sánh"
@@ -493,13 +493,13 @@
             "text": "Type thẻ"
           },
           {
-            "text": "Khám phá Property Hub →"
+            "text": "✓ Đủ điều kiện RBI"
           },
           {
-            "text": "03 — Quy Trình"
+            "text": "Địa Chỉ Danh Giá Nhất Síp — Penthouse Mặt Biển Đường Georgiou A"
           },
           {
-            "text": "← Quay lại"
+            "text": "Căn Hộ Del Mar"
           }
         ]
       }
@@ -695,12 +695,12 @@
             "coverage_pct": 100.0
           },
           "listings": {
-            "translated": 1,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "process": {
             "translated": 13,
@@ -797,10 +797,16 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "1 Vietnamese remnants after EN click"
+          "3 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 1,
+        "remnant_count": 3,
         "samples": [
+          {
+            "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI United Arab Emirates và sẵn sàng giao dịch. Bạn không c"
+          },
+          {
+            "text": "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI United Arab Emirates."
+          },
           {
             "text": "Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Residency D7 Cho Nhà Đầu Tư Việt"
           }
@@ -852,8 +858,8 @@
           "listings": {
             "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -952,12 +958,24 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "1 Vietnamese remnants after EN click"
+          "10 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 1,
+        "remnant_count": 10,
         "samples": [
           {
             "text": "Góc Nhìn NAC: Passport Portfolio — Chiến Lược Đầu Tư Của Thập Kỷ Tới Cho HNWIs Việt"
+          },
+          {
+            "text": "✓ Đủ điều kiện RBI"
+          },
+          {
+            "text": "Tây London — Beach Club Mái Tháp, 8 Mẫu Cảnh Quan, 30 Tiện Ích Đẳng Cấp"
+          },
+          {
+            "text": "Giá Khởi Điểm"
+          },
+          {
+            "text": "Bàn Giao"
           }
         ]
       }
@@ -1159,12 +1177,12 @@
             "coverage_pct": 95.2
           },
           "listings": {
-            "translated": 1,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "process": {
             "translated": 14,
@@ -1300,10 +1318,22 @@
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
+        "pass": false,
+        "issues": [
+          "3 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 3,
+        "samples": [
+          {
+            "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St. Kitts & Nevis và sẵn sàng giao dịch. Bạn không cần "
+          },
+          {
+            "text": "Thêm BĐS St. Kitts & Nevis đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới."
+          },
+          {
+            "text": "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI St. Kitts & Nevis."
+          }
+        ]
       }
     },
     {
@@ -2104,33 +2134,15 @@
         "issues": []
       },
       "en_render": {
-        "pass": false,
-        "issues": [
-          "8 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 8,
-        "samples": [
-          {
-            "text": "Cơ Hội Đầu Tư Thực Tế"
-          },
-          {
-            "text": "BĐS Đủ Điều Kiện CBI — Đang Mở Bán"
-          },
-          {
-            "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Citizenship và sẵn sàng giao dịch. Bạn không cần săn tì"
-          },
-          {
-            "text": "Đang Cập Nhật"
-          },
-          {
-            "text": "Thêm BĐS Antigua & Barbuda đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới."
-          }
-        ]
+        "pass": true,
+        "issues": [],
+        "remnant_count": 0,
+        "samples": []
       }
     },
     {
       "alias": "italy",
-      "all_pass": false,
+      "all_pass": true,
       "toggle": {
         "pass": true,
         "issues": []
@@ -2270,28 +2282,10 @@
         "issues": []
       },
       "en_render": {
-        "pass": false,
-        "issues": [
-          "14 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 14,
-        "samples": [
-          {
-            "text": "Cơ Hội Đầu Tư Thực Tế"
-          },
-          {
-            "text": "BĐS Đủ Điều Kiện RBI — Đang Mở Bán"
-          },
-          {
-            "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Investor Visa và sẵn sàng giao dịch. Bạn không cần săn "
-          },
-          {
-            "text": "🇮🇹 Ý"
-          },
-          {
-            "text": "✓ Đủ điều kiện RBI"
-          }
-        ]
+        "pass": true,
+        "issues": [],
+        "remnant_count": 0,
+        "samples": []
       }
     },
     {
@@ -2456,7 +2450,7 @@
     },
     {
       "alias": "montenegro",
-      "all_pass": false,
+      "all_pass": true,
       "toggle": {
         "pass": true,
         "issues": []
@@ -2601,28 +2595,10 @@
         "issues": []
       },
       "en_render": {
-        "pass": false,
-        "issues": [
-          "13 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 13,
-        "samples": [
-          {
-            "text": "Cơ Hội Đầu Tư Thực Tế"
-          },
-          {
-            "text": "BĐS Đủ Điều Kiện RBI — Đang Mở Bán"
-          },
-          {
-            "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Residence và sẵn sàng giao dịch. Bạn không cần săn tìm "
-          },
-          {
-            "text": "✓ Đủ điều kiện RBI"
-          },
-          {
-            "text": "Giá Khởi Điểm"
-          }
-        ]
+        "pass": true,
+        "issues": [],
+        "remnant_count": 0,
+        "samples": []
       }
     }
   ]
