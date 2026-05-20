@@ -1531,6 +1531,28 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .nav-right .nav-link,
 .nav-right .nav-sep { display: none !important; }
 
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
 </style>
 </head>
 <body>
