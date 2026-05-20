@@ -1034,6 +1034,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   .listing-ref { bottom: 8px !important; right: 8px !important; }
 }
 
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
 </style>
 </head>
 <body>
