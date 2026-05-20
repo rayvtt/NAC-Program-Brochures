@@ -65,6 +65,15 @@ jobs:
         if: inputs.dry_run != 'true'
         run: python tools/apply_listings.py
 
+      - name: Refresh Overview deck cards from Notion
+        # Picks up any overview-deck card add/edit/reorder from the
+        # 🎴 NAC - Overview Deck DB (id ae0d5fde-…). Edits propagate within
+        # ≤10min same as the listings sync above.
+        if: inputs.dry_run != 'true'
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: python tools/pull_overview_from_notion.py
+
       - name: Verify EN translation coverage
         run: |
           # Run the coverage check, capture summary into .diagnostics/

@@ -1501,7 +1501,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
   </div>
 
   <div class="deck-stage" id="deckStage">
-
+    <!-- OVERVIEW-DECK-CARDS START -->
     <!-- CARD 0: Portugal -->
     <div class="card" data-index="0" data-url="https://nomadassetcollective.com/chuong-trinh-bo-dao-nha-golden-visa/">
       <div class="card-photo" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/bat-dong-san-lisbon-2026-phan-tich-gia-theo-quan-va-co-hoi-dau-tu-cho-nguoi-xin-d7-visa-infographic-cover-8a5b2.jpg')"></div>
@@ -1791,6 +1791,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
         <div class="card-cta-wrap"><a class="card-cta" href="#" onclick="event.stopPropagation();openModal('RBI · Panama','https://nomadassetcollective.com/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/');return false;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="flex-shrink:0"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg><span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span></a></div>
       </div>
     </div>
+    <!-- OVERVIEW-DECK-CARDS END -->
   </div><!-- /deck-stage -->
 
   <!-- Contextual advisor pill — updates with active card -->
@@ -2588,7 +2589,10 @@ const TAGS = {
   hot:      { vi:'🔥 Đang Hot',             en:'🔥 Trending now' }
 };
 
-// Per-card metadata (indexed by data-index). Edit values here as policies/prices change.
+// Per-card metadata (indexed by data-index). Generated from the
+// "🎴 NAC - Overview Deck" Notion DB by tools/pull_overview_from_notion.py
+// — DO NOT edit by hand between the markers below.
+/* OVERVIEW-CARDMETA START */
 const cardMeta = {
   0:  { tag:'schengen', price:'€500.000' },   // Portugal — Schengen
   1:  { tag:'cheap',    price:'€250.000' },   // Greece — cheapest EU GV
@@ -2609,6 +2613,7 @@ const cardMeta = {
   16: { tag:'hot',      price:'NZD 5M' },     // New Zealand — strong passport
   17: { tag:'cheap',    price:'$200.000' }    // Panama — Friendly Nations
 };
+/* OVERVIEW-CARDMETA END */
 
 document.querySelectorAll('.card').forEach(card => {
   // Minimal techy chevron arrows on each outside corner of the active card
