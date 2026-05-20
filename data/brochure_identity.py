@@ -217,7 +217,7 @@ IDENTITY = {
         'source_filename': 'montenegro-rbi.html',
         'wp_page_id':      2167,
         'wp_slug':         'chuong-trinh-montenengro-rbi-qua-dau-tu-bds',
-        'cover':           'https://images.unsplash.com/photo-1601581433144-7f568833bc4f?w=1500&q=80',  # Bay of Kotor
+        'cover':           'https://nomadassetcollective.com/wp-content/uploads/2026/05/perast-kotor-montenegro-panoramic-view-from-water-boat-in-crystal-clear-water-and-old-town-in-background.webp',  # Bay of Kotor / Perast
     },
 }
 
