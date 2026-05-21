@@ -1025,14 +1025,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 .logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
 
 
-/* Move NAC-ID pill away from the top pills cluster to bottom-right
-   of the hero image so it stops crowding the location/eligibility
-   pills on long location names like "Hammersmith & Fulham".
-   /*LISTING-REF-BOTTOM*/ */
-.listing-ref { top: auto !important; bottom: 14px !important; right: 14px !important; }
-@media (max-width: 768px) {
-  .listing-ref { bottom: 8px !important; right: 8px !important; }
-}
 
 
 /* Header right side: hide cross-site nav links + separators on every
@@ -1103,6 +1095,28 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
   .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
   .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
 }
 
 </style>
