@@ -1151,7 +1151,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 .sec-live-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   margin: 4px 0 14px;
   font-size: 11px;
   font-weight: 600;
@@ -1375,7 +1375,7 @@ body .breadcrumb span {
         <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">ASEAN · Đông Nam Á</div><div class="ov-note">Trung tâm kinh tế ĐNA</div></div>
         <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">90 ngày/năm (dưới 50 tuổi)</div><div class="ov-note">Trên 50 tuổi: không yêu cầu</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn visa</div><div class="ov-value">5–20 năm (gia hạn)</div><div class="ov-note">Silver 5 · Gold 15 · Platinum 20</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con đến 34 + bố mẹ</div><div class="ov-note">Phạm vi rộng nhất khu vực</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con đến 34 + bố mẹ</div><div class="ov-note">Phạm vi rộng nhất khu vực</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">3–6 tháng</div><div class="ov-note">Qua đại lý MM2H có giấy phép</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập tối đa</div><div class="ov-value">26% (nội địa)</div><div class="ov-note">Thu nhập nước ngoài: miễn thuế đến 2026</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">183 quốc gia visa-free</div><div class="ov-note">Hộ chiếu MY hạng 6 Henley 2026</div></div>
@@ -1965,7 +1965,7 @@ function makeRadarDataset(key, alpha, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [
       makeRadarDataset('malaysia', 0.18, 1),
       makeRadarDataset(radarCompare1, 0.10, 0.75),

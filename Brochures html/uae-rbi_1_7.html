@@ -1447,7 +1447,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .sec-live-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   margin: 4px 0 14px;
   font-size: 11px;
   font-weight: 600;
@@ -1671,7 +1671,7 @@ body .breadcrumb span {
         <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">Trung Đông · G20</div><div class="ov-note">Trung tâm tài chính toàn cầu</div></div>
         <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Không bắt buộc</div><div class="ov-note">Chỉ cần nhập cảnh mỗi 180 ngày</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn visa</div><div class="ov-value">10 năm (gia hạn được)</div><div class="ov-note">Tự động gia hạn nếu đủ điều kiện</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con không giới hạn tuổi</div><div class="ov-note">Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con không giới hạn tuổi</div><div class="ov-note">Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">1–3 tháng</div><div class="ov-note">Một trong những chương trình nhanh nhất</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập</div><div class="ov-value">0%</div><div class="ov-note">Không có thuế thu nhập cá nhân</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">Cư trú UAE</div><div class="ov-note">Visa UAE — không phải Schengen</div></div>
@@ -2400,7 +2400,7 @@ function makeRadarDataset(key, alpha1, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [
       makeRadarDataset('uae', 0.18, 1),
       makeRadarDataset(radarCompare1, 0.10, 0.75),
