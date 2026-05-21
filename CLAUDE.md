@@ -1,10 +1,12 @@
 # NAC Program Brochures — Claude session memory
 
-> **Repo purpose:** Single-file HTML brochures for 12 country programs (RBI / CBI / LTR). HTML is the source of truth; pushes to `main` auto-sync to WordPress via REST.
+> **Repo purpose:** Single-file HTML brochures for 16 country programs (RBI / CBI / LTR). HTML is the source of truth; pushes to `main` auto-sync to WordPress via REST.
 >
-> **Master template:** `Brochures html/turkey-cbi_8.html` — every other brochure replicates from here.
+> **Master template:** `Brochures html/cyprus-rbi_3_3.html` — Cyprus is the current canonical reference after the May 2026 polish sweep (clean header lock, slim breadcrumb, pulsing live-tag on the listings section, mobile tax-table pill disclaimer, left-aligned chart Y-labels). Every other brochure replicates from here.
 >
-> **Canonical reference:** [`TURKEY-TEMPLATE.md`](./TURKEY-TEMPLATE.md) — design system, components, replication checklist.
+> Historical master: `Brochures html/turkey-cbi_8.html` (the original template that seeded the family). Turkey is still parity-compliant but the visual polish is on Cyprus.
+>
+> **Canonical reference:** [`TURKEY-TEMPLATE.md`](./TURKEY-TEMPLATE.md) — design system, components, replication checklist (still valid; updated diffs live in Cyprus).
 
 ---
 
