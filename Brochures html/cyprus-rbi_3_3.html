@@ -1382,6 +1382,27 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   text-transform: inherit !important;
 }
 
+
+/* Tax table — mobile: hide notes column, let first 2 expand, drop
+   the inline min-width lock. /*TAX-TABLE-MOBILE-V1*/ */
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
 </style>
 
 </head>
@@ -1908,6 +1929,8 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         </tbody>
       </table>
       </div><!-- end tax-table overflow wrapper -->
+      <!--TAX-TABLE-NOTE-->
+      <p class="tax-table-mobile-note" data-vi="* Cột &quot;Ghi chú&quot; ẩn trên di động — xem trên màn hình lớn để đọc đầy đủ chi tiết." data-en="* The &quot;Notes&quot; column is hidden on mobile — view on a larger screen for full detail.">* Cột "Ghi chú" ẩn trên di động — xem trên màn hình lớn để đọc đầy đủ chi tiết.</p>
 
       <div class="info-box amber-box">
         <div class="info-icon">⚠️</div>
