@@ -3686,5 +3686,34 @@ function setLang(lang) {
 })();
 </script>
 
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
+})();
+</script>
+
 </body>
 </html>
