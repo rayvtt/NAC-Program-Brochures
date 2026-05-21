@@ -352,8 +352,10 @@ def render_section(alias, all_props, offline=False):
         cards.append(render_placeholder(country_vi, country_en, program_code, fn_url))
 
     # ── Section header (bilingual) ──────────────────────────────────────
-    title_vi = f'BĐS Đủ Điều Kiện {program_code} — Đang Mở Bán'
-    title_en = f'{program_code}-Eligible Properties — Active Listings'
+    title_vi = f'BĐS Đủ Điều Kiện {program_code}'
+    title_en = f'{program_code}-Eligible Properties'
+    live_tag_vi = 'Đang Mở Bán'
+    live_tag_en = 'Now Live'
     sub_vi = f'Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ {program_code} {country_vi} và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.'
     sub_en = f"These are properties NAC has vetted, eligible for the {country_en} {program_code} program and ready to transact. You don't need to hunt — we've curated them."
     fn_text_vi = f'NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện {program_code} {country_vi}.'
@@ -366,6 +368,7 @@ def render_section(alias, all_props, offline=False):
         '    <section class="section section-spotlight" id="listings">\n'
         '      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>\n'
         f'      <h2 class="sec-title" data-vi="{e(title_vi)}" data-en="{e(title_en)}">{e(title_vi)}</h2>\n'
+        f'      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="{e(live_tag_vi)}" data-en="{e(live_tag_en)}">{e(live_tag_vi)}</span></div>\n'
         f'      <p class="sec-sub" data-vi="{e(sub_vi)}" data-en="{e(sub_en)}">{e(sub_vi)}</p>\n'
         '\n'
         '      <div class="listings-grid">\n'
