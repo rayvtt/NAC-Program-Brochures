@@ -1356,7 +1356,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .sec-live-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   margin: 4px 0 14px;
   font-size: 11px;
   font-weight: 600;
@@ -1580,7 +1580,7 @@ body .breadcrumb span {
         <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">G7 · Châu Âu</div><div class="ov-note">Trung tâm tài chính toàn cầu</div></div>
         <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Có — liên tục</div><div class="ov-note">Yêu cầu cư trú liên tục tại UK</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn visa</div><div class="ov-value">3 năm (gia hạn không giới hạn)</div><div class="ov-note">ILR sau 3 năm liên tục</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con dưới 18</div><div class="ov-note">Người phụ thuộc được quyền làm việc</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con dưới 18</div><div class="ov-note">Người phụ thuộc được quyền làm việc</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">3–8 tuần (ngoài UK)</div><div class="ov-note">Dịch vụ ưu tiên 5 ngày làm việc</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập tối đa</div><div class="ov-value">45%</div><div class="ov-note">Hệ thống thuế phức tạp nhưng minh bạch</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">182 quốc gia visa-free</div><div class="ov-note">Hộ chiếu UK hạng 7 Henley 2026</div></div>
@@ -2277,7 +2277,7 @@ function makeRadarDataset(key, alpha, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [
       makeRadarDataset('uk', 0.18, 1),
       makeRadarDataset(radarCompare1, 0.10, 0.75),

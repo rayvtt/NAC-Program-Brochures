@@ -1375,7 +1375,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .sec-live-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   margin: 4px 0 14px;
   font-size: 11px;
   font-weight: 600;
@@ -1595,7 +1595,7 @@ body .breadcrumb span {
         <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">Châu Mỹ · Kênh Đào</div><div class="ov-note">Hub tài chính & thương mại quốc tế</div></div>
         <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Không — rất tối thiểu</div><div class="ov-note">Chỉ cần nhập cảnh 1 lần mỗi 2 năm</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Loại cư trú</div><div class="ov-value">PR tức thì (QIV)</div><div class="ov-note">FNV: 2 năm tạm trú → PR</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con + bố mẹ</div><div class="ov-note">Bảo lãnh cả bố mẹ phụ thuộc</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con + bố mẹ</div><div class="ov-note">Bảo lãnh cả bố mẹ phụ thuộc</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">30–90 ngày (QIV)</div><div class="ov-note">FNV: 3–6 tháng · QIV nhanh nhất</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập nước ngoài</div><div class="ov-value">0%</div><div class="ov-note">Hệ thống thuế lãnh thổ — chỉ đánh thuế cho thu nhập trong nước</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">148 quốc gia visa-free</div><div class="ov-note">Hộ chiếu Panama hạng 26 [Henley 2026]</div></div>
@@ -2256,7 +2256,7 @@ function makeRadarDataset(key, alpha, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [makeRadarDataset('panama', 0.18, 1), makeRadarDataset(radarCompare1, 0.10, 0.75), makeRadarDataset(radarCompare2, 0.10, 0.75)]
   },
   options: {

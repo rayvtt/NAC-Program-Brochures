@@ -1640,7 +1640,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .sec-live-tag {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 14px;
   margin: 4px 0 14px;
   font-size: 11px;
   font-weight: 600;
@@ -1864,7 +1864,7 @@ body .breadcrumb span {
         <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">EU · Schengen · Eurozone</div><div class="ov-note">Quốc đảo Địa Trung Hải</div></div>
         <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Không bắt buộc</div><div class="ov-note">Chỉ cần 1 ngày để biometrics</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn cư trú</div><div class="ov-value">Vĩnh viễn (không hết hạn)</div><div class="ov-note">Thẻ vật lý gia hạn 5 năm/lần</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Tới 4 thế hệ (duy nhất)</div><div class="ov-note">Vợ/chồng + con đến 28 + bố mẹ + ông bà</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Tới 4 thế hệ (duy nhất)</div><div class="ov-note">Vợ/chồng + con đến 28 + bố mẹ + ông bà</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">6–12 tháng</div><div class="ov-note">TRP cấp trong 1 tháng đầu</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế (non-dom)</div><div class="ov-value">Remittance basis</div><div class="ov-note">Lãi vốn nước ngoài miễn 100%</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">Schengen 90/180</div><div class="ov-note">29 quốc gia EU/EEA miễn visa</div></div>
@@ -2603,7 +2603,7 @@ function makeRadarDataset(key, alpha1, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [
       makeRadarDataset('malta', 0.18, 1),
       makeRadarDataset(radarCompare1, 0.10, 0.75),
