@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-20T06:08:49.414128+00:00",
+  "generated_at": "2026-05-21T06:11:57.768243+00:00",
   "source": "live",
-  "pass_count": 6,
+  "pass_count": 3,
   "total": 16,
   "reports": [
     {
@@ -152,10 +152,13 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "4 Vietnamese remnants after EN click"
+          "8 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 4,
+        "remnant_count": 8,
         "samples": [
+          {
+            "text": "Gia đình & thụ hưởng"
+          },
           {
             "text": "Portugal Golden Visa (ARI — Autorização de Residência para Atividade de Investimento) — launched in 2012 and comprehensi"
           },
@@ -163,10 +166,10 @@
             "text": "AIMA (Agência para a Integração, Migrações e Asilo) · Data updated Q2/2026 · Passport Index: Henley & Partners 2026. Fig"
           },
           {
-            "text": "Apply for a NIF (Número de Identificação Fiscal — Portuguese tax ID) via the consulate or an agent in Vietnam. Open a Po"
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
           },
           {
-            "text": "Phân Tích Chiến Lược Đầu Tư Quỹ Tại Cyprus (PR) 2026 - Tối Ưu Vốn Và Quyền Lợi EU Residency Cho Nhà Đầu Tư Việt Nam"
+            "text": "BĐS Đủ Điều Kiện RBI"
           }
         ]
       }
@@ -316,24 +319,24 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "11 Vietnamese remnants after EN click"
+          "21 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 11,
+        "remnant_count": 21,
         "samples": [
           {
             "text": "So Sánh"
           },
           {
-            "text": "Khám phá Property Hub →"
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
           },
           {
-            "text": "Tháng 2–3"
+            "text": "BĐS Đủ Điều Kiện RBI"
           },
           {
-            "text": "Tháng 3–5"
+            "text": "Đang Mở Bán"
           },
           {
-            "text": "Góc nhìn NAC"
+            "text": "✓ Đủ điều kiện RBI"
           }
         ]
       }
@@ -482,9 +485,9 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "17 Vietnamese remnants after EN click"
+          "21 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 17,
+        "remnant_count": 21,
         "samples": [
           {
             "text": "So Sánh"
@@ -493,13 +496,13 @@
             "text": "Type thẻ"
           },
           {
-            "text": "✓ Đủ điều kiện RBI"
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
           },
           {
-            "text": "Địa Chỉ Danh Giá Nhất Síp — Penthouse Mặt Biển Đường Georgiou A"
+            "text": "BĐS Đủ Điều Kiện RBI"
           },
           {
-            "text": "Căn Hộ Del Mar"
+            "text": "Đang Mở Bán"
           }
         ]
       }
@@ -797,18 +800,24 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "3 Vietnamese remnants after EN click"
+          "6 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 3,
+        "remnant_count": 6,
         "samples": [
+          {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
+          {
+            "text": "BĐS Đủ Điều Kiện RBI"
+          },
+          {
+            "text": "Đang Mở Bán"
+          },
           {
             "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI United Arab Emirates và sẵn sàng giao dịch. Bạn không c"
           },
           {
             "text": "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI United Arab Emirates."
-          },
-          {
-            "text": "Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Residency D7 Cho Nhà Đầu Tư Việt"
           }
         ]
       }
@@ -958,31 +967,31 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "10 Vietnamese remnants after EN click"
+          "14 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 10,
+        "remnant_count": 14,
         "samples": [
+          {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
           {
             "text": "Góc Nhìn NAC: Passport Portfolio — Chiến Lược Đầu Tư Của Thập Kỷ Tới Cho HNWIs Việt"
           },
           {
+            "text": "BĐS Đủ Điều Kiện RBI"
+          },
+          {
+            "text": "Đang Mở Bán"
+          },
+          {
             "text": "✓ Đủ điều kiện RBI"
-          },
-          {
-            "text": "Tây London — Beach Club Mái Tháp, 8 Mẫu Cảnh Quan, 30 Tiện Ích Đẳng Cấp"
-          },
-          {
-            "text": "Giá Khởi Điểm"
-          },
-          {
-            "text": "Bàn Giao"
           }
         ]
       }
     },
     {
       "alias": "malta",
-      "all_pass": true,
+      "all_pass": false,
       "toggle": {
         "pass": true,
         "issues": []
@@ -1128,10 +1137,25 @@
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
+        "pass": false,
+        "issues": [
+          "4 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 4,
+        "samples": [
+          {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
+          {
+            "text": "BĐS Đủ Điều Kiện RBI"
+          },
+          {
+            "text": "Đang Mở Bán"
+          },
+          {
+            "text": "Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
+          }
+        ]
       }
     },
     {
@@ -1320,25 +1344,31 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "3 Vietnamese remnants after EN click"
+          "7 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 3,
+        "remnant_count": 7,
         "samples": [
+          {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
+          {
+            "text": "BĐS Đủ Điều Kiện CBI"
+          },
+          {
+            "text": "Đang Mở Bán"
+          },
           {
             "text": "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St. Kitts & Nevis và sẵn sàng giao dịch. Bạn không cần "
           },
           {
             "text": "Thêm BĐS St. Kitts & Nevis đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới."
-          },
-          {
-            "text": "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI St. Kitts & Nevis."
           }
         ]
       }
     },
     {
       "alias": "thailand",
-      "all_pass": true,
+      "all_pass": false,
       "toggle": {
         "pass": true,
         "issues": []
@@ -1479,15 +1509,30 @@
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
+        "pass": false,
+        "issues": [
+          "4 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 4,
+        "samples": [
+          {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
+          {
+            "text": "BĐS Đủ Điều Kiện LTR"
+          },
+          {
+            "text": "Đang Mở Bán"
+          },
+          {
+            "text": "Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
+          }
+        ]
       }
     },
     {
       "alias": "newzealand",
-      "all_pass": true,
+      "all_pass": false,
       "toggle": {
         "pass": true,
         "issues": []
@@ -1628,10 +1673,25 @@
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
+        "pass": false,
+        "issues": [
+          "4 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 4,
+        "samples": [
+          {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
+          {
+            "text": "BĐS Đủ Điều Kiện RBI"
+          },
+          {
+            "text": "Đang Mở Bán"
+          },
+          {
+            "text": "Gia đình · Tax · Path to citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
+          }
+        ]
       }
     },
     {
@@ -1779,24 +1839,24 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "8 Vietnamese remnants after EN click"
+          "13 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 8,
+        "remnant_count": 13,
         "samples": [
           {
             "text": "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) & Decree 193 (2024) · Henley Passport Index 2026 · P"
           },
           {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
+          {
             "text": "Panama City, Bocas del Toro, Coronado, Santa María"
           },
           {
-            "text": "Wire funds from abroad into Panama, complete the real-estate transaction (sign the contract, register at the Public Regi"
+            "text": "BĐS Đủ Điều Kiện RBI"
           },
           {
-            "text": "Immigration reviews the application via the Special Processing Service Division. Receive a temporary residence card whil"
-          },
-          {
-            "text": "Receive Permanent Residency & Cédula"
+            "text": "Đang Mở Bán"
           }
         ]
       }
@@ -1955,10 +2015,22 @@
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
+        "pass": false,
+        "issues": [
+          "3 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 3,
+        "samples": [
+          {
+            "text": "6 Tiêu Chí Trọng Điểm theo NAC Index"
+          },
+          {
+            "text": "BĐS Đủ Điều Kiện RBI"
+          },
+          {
+            "text": "Đang Mở Bán"
+          }
+        ]
       }
     },
     {

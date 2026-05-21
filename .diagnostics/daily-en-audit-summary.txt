@@ -9,10 +9,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m4 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m8 VN remnants[0m
+     [90m· Gia đình & thụ hưởng[0m
      [90m· Portugal Golden Visa (ARI — Autorização de Residência para Atividade de Investim[0m
      [90m· AIMA (Agência para a Integração, Migrações e Asilo) · Data updated Q2/2026 · Pas[0m
-     [90m· Apply for a NIF (Número de Identificação Fiscal — Portuguese tax ID) via the con[0m
      [33mNotion has EN for 1 gaps (sample):[0m
        [nac] Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa 
 
@@ -23,10 +23,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m11 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m21 VN remnants[0m
      [90m· So Sánh[0m
-     [90m· Khám phá Property Hub →[0m
-     [90m· Tháng 2–3[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
+     [90m· BĐS Đủ Điều Kiện RBI[0m
 
 [1mcyprus[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
@@ -35,10 +35,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m17 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m21 VN remnants[0m
      [90m· So Sánh[0m
      [90m· Type thẻ[0m
-     [90m· ✓ Đủ điều kiện RBI[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
 
 [1mturkey[0m  [32m✓[0m
   1. Toggle:        [32m✓[0m 
@@ -56,10 +56,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m3 VN remnants[0m
-     [90m· Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI United Arab Emi[0m
-     [90m· NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiệ[0m
-     [90m· Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Residency D7 Cho Nh[0m
+  8. EN displays:   [31m✗[0m [31m6 VN remnants[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
+     [90m· BĐS Đủ Điều Kiện RBI[0m
+     [90m· Đang Mở Bán[0m
 
 [1muk[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
@@ -68,19 +68,22 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m10 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m14 VN remnants[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
      [90m· Góc Nhìn NAC: Passport Portfolio — Chiến Lược Đầu Tư Của Thập Kỷ Tới Cho HNWIs V[0m
-     [90m· ✓ Đủ điều kiện RBI[0m
-     [90m· Tây London — Beach Club Mái Tháp, 8 Mẫu Cảnh Quan, 30 Tiện Ích Đẳng Cấp[0m
+     [90m· BĐS Đủ Điều Kiện RBI[0m
 
-[1mmalta[0m  [32m✓[0m
+[1mmalta[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
   2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
   3. §01 Overview:  [32m✓[0m 
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+  8. EN displays:   [31m✗[0m [31m4 VN remnants[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
+     [90m· BĐS Đủ Điều Kiện RBI[0m
+     [90m· Đang Mở Bán[0m
      [33mNotion has EN for 1 gaps (sample):[0m
        [process] MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩ
 
@@ -91,33 +94,39 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m3 VN remnants[0m
-     [90m· Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St. Kitts & Nev[0m
-     [90m· Thêm BĐS St. Kitts & Nevis đủ điều kiện CBI sẽ được công bố tại đây trong thời g[0m
-     [90m· NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiệ[0m
+  8. EN displays:   [31m✗[0m [31m7 VN remnants[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
+     [90m· BĐS Đủ Điều Kiện CBI[0m
+     [90m· Đang Mở Bán[0m
      [33mlow sections: tax, citizenship, compare[0m
      [33mNotion has EN for 9 gaps (sample):[0m
        [overview] St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời
        [investment] St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền 
        [process] St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Light
 
-[1mthailand[0m  [32m✓[0m
+[1mthailand[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
   2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
   3. §01 Overview:  [32m✓[0m 
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+  8. EN displays:   [31m✗[0m [31m4 VN remnants[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
+     [90m· BĐS Đủ Điều Kiện LTR[0m
+     [90m· Đang Mở Bán[0m
 
-[1mnewzealand[0m  [32m✓[0m
+[1mnewzealand[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
   2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
   3. §01 Overview:  [32m✓[0m 
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+  8. EN displays:   [31m✗[0m [31m4 VN remnants[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
+     [90m· BĐS Đủ Điều Kiện RBI[0m
+     [90m· Đang Mở Bán[0m
 
 [1mpanama[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
@@ -126,10 +135,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m8 VN remnants[0m
+  8. EN displays:   [31m✗[0m [31m13 VN remnants[0m
      [90m· Servicio Nacional de Migración Panama · Executive Decree 722 (2020) & Decree 193[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
      [90m· Panama City, Bocas del Toro, Coronado, Santa María[0m
-     [90m· Wire funds from abroad into Panama, complete the real-estate transaction (sign t[0m
 
 [1mmalaysia[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
@@ -138,7 +147,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+  8. EN displays:   [31m✗[0m [31m3 VN remnants[0m
+     [90m· 6 Tiêu Chí Trọng Điểm theo NAC Index[0m
+     [90m· BĐS Đủ Điều Kiện RBI[0m
+     [90m· Đang Mở Bán[0m
      [33mlow sections: compare[0m
      [33mNotion has EN for 2 gaps (sample):[0m
        [process] Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ 
@@ -191,7 +203,7 @@
        [overview] Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o 
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  [32m6/16 brochures fully passing[0m
+[1mSummary:[0m  [32m3/16 brochures fully passing[0m
   [31mToggle issues:[0m    spain
   [33mSection gaps:[0m    stkitts, malaysia, antigua
   → JSON report: .diagnostics/daily-en-audit.json
