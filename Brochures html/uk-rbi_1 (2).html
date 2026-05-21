@@ -1380,6 +1380,35 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   100% { box-shadow: 0 0 0 0   rgba(16,185,129,0); }
 }
 
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
