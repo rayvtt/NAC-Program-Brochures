@@ -3327,6 +3327,20 @@ function setLang(lang) {
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
 
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
+
   // ── NEW data-driven pass: any element with data-vi/data-en gets its
   // innerHTML swapped per the active language. If data-en is empty/missing,
   // the VI text is left in place (graceful fallback while EN content is

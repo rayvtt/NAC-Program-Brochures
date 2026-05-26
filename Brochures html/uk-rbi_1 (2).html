@@ -3077,6 +3077,20 @@ function setLang(lang) {
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
 
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
+
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = heroText[lang].title;
   const desc = document.querySelector('.hero-desc');
