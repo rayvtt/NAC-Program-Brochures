@@ -83,7 +83,9 @@ montenegro-rbi.html      15/15  ✓
 
 ### What's left
 
-Nothing critical. The 11 non-Turkey brochures still use the legacy `VI_STRINGS`/`EN_STRINGS` string-replace pattern instead of Turkey's newer `data-vi`/`data-en` attribute pattern. Both work; data-attr is just more robust to text edits. Translation content is already complete in the legacy arrays — future migration to data-attr is mechanical.
+**Bleeding VI in EN version** — UAE, UK, St Kitts still have Vietnamese text visible in non-listing sections when EN is toggled. This is the legacy `VI_STRINGS/EN_STRINGS` coverage gap (not a regression). Requires the full EN audit loop per brochure (§7 recipe). The listing section itself is now fully bilingual via `data-vi`/`data-en` + the Pass-0 data-attr walker (PR #128).
+
+**WP cache lag** — some CSS changes (breadcrumb lock, tax-table mobile) are in the HTML source but take time to appear on live WP pages. Hard-refresh or wait for the next cron tick.
 
 ### How chart bilingual works on the 11
 
@@ -95,6 +97,20 @@ Turkey uses `buildCharts(lang)` that destroys and recreates charts on toggle. Th
 - Attaches a click listener to `#btn-vi` / `#btn-en` that re-runs the translation on every toggle
 
 This avoids rewriting each brochure's chart code while still flipping country names from "Thổ Nhĩ Kỳ" → "Türkiye" etc. when EN is clicked. The translator is checked by `daily_en_audit.py` (check #3).
+
+### Pass-0 data-attr walker (PR #128)
+
+All 16 brochures now have a "Pass 0" in setLang that runs BEFORE the legacy VI_STRINGS replacement:
+
+```javascript
+document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+  var val = el.getAttribute('data-' + lang);
+  if (val.indexOf('<') >= 0) el.innerHTML = val;
+  else el.textContent = val;
+});
+```
+
+This means any element with `data-vi`/`data-en` attributes (listings section, live-tag, section headers, footnotes) toggles cleanly without needing VI_STRINGS/EN_STRINGS entries. Future `apply_listings.py` renders are automatically picked up.
 
 ---
 
@@ -113,22 +129,42 @@ tools/
 ├── pull_from_notion.py                 ← Notion → data/<alias>_payload.json
 ├── inject_notion_en_to_html.py         ← payload → VI_STRINGS/EN_STRINGS in HTML
 ├── refresh_article_covers.py           ← pull og:image for every article-cta-banner
-├── apply_listings.py                   ← refresh Live Listings spotlight from Property Hub
+├── apply_listings.py                   ← refresh Live Listings spotlight from Property Hub (bilingual, pin curation)
 ├── build_preview_index.py              ← regenerate index.html for GitHub Pages preview
+├── pull_overview_from_notion.py        ← 🎴 NAC - Overview Deck DB → regenerate overview card deck
+├── scan_qa_tracker.py                  ← ✅ NAC - QA Tracker DB → .diagnostics/qa-status.md
+├── inject_data_attr_walker.py          ← add Pass-0 data-vi/data-en walker to all legacy setLang
+├── lock_header_style.py                ← global header style lock (Greece template values)
+├── lock_breadcrumb_v2.py               ← breadcrumb typography lock (high specificity)
+├── sec_live_tag_css.py                 ← pulsing "● ĐANG MỞ BÁN" live-tag CSS
+├── tax_table_mobile_v2.py              ← hide tax notes column on mobile + pill disclaimer
+├── chart_y_left_align.py               ← left-align Y-axis labels on horizontal bar charts
+├── listing_ref_top_small.py            ← NAC-ID pill small + top-right
+├── header_lang_only_right.py           ← hide nav-links, lang toggle only
+├── widen_nac_tools_breakpoint.py       ← CTA pill visible on iPad/tablet (720→1024px)
 └── patch_ph_catalog.py                 ← Property Hub catalog patcher
 ```
 
-Run with no argument to apply to all 12 (or all relevant). Run with `<alias>` to target one. All scripts print counts and second-run reports `0` if no upstream change.
+Run with no argument to apply to all 16 (or all relevant). Run with `<alias>` to target one. All scripts print counts and second-run reports `0` if no upstream change.
 
 ### Workflows
 
 ```
 .github/workflows/
-├── pull-notion.yml         ← cron */10 — Notion → HTML → coverage → WP push → live snapshot
+├── pull-notion.yml         ← cron */10 — Notion → HTML → listings → overview deck → coverage → WP push
 ├── daily-en-audit.yml      ← cron daily 02:00 UTC — toggle/sections/charts → GitHub Issue
 ├── wp-sync.yml             ← on push to main — apply_listings + sync_brochures to WP
+├── qa-tracker-scan.yml     ← cron daily 09:00 UTC — scan Notion QA tracker → .diagnostics/qa-status.md
 └── patch-ph-catalog.yml    ← manual dispatch — Property Hub catalog patches
 ```
+
+### Notion DBs (3 total)
+
+| DB | ID | Purpose |
+|---|---|---|
+| 🔖 NAC - Brochures Meta-data | `35f48ec25e8680f69c3dc5ad538e7ca8` | Per-brochure content (hero, sections, scores) |
+| 🎴 NAC - Overview Deck | `26d8e7b69c4840f19adbac784d257330` | Cards on the overview page (editable → 10min sync) |
+| ✅ NAC - QA Tracker | `92318d9b81604764b8f620f64bcce83e` | Live QA checklist with native checkboxes + daily cron scan |
 
 ---
 
@@ -294,6 +330,10 @@ python tools/daily_en_audit.py <alias> --local
 ## 8. PRs shipped this session
 
 `#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix · `#45` parity check recognizes legacy bilingual · `#46` chart translator → all 12 at 15/15 · `#47` non-invasive chart translator + bigger globe banner · `#48` dedupe duplicate article CTA URLs · `#49` globe mobile stack layout · `#50` globe CSS Grid bulletproof · `#51` tighten globe banner fit · `#72` NAC Index banner specificity (300px lock across all 12) · `#73` UAE multi-line string SyntaxError + 147 EN pairs (charts + toggle restored) · `#75` UK setLang upgrade + 87 EN pairs + chart translator (0 VN remnants) · `#76` UK mop-up bleeds (So Sánh CTA + tax cells) + widened simulator regex
+
+### May 2026 polish sweep (PRs #94–#130)
+
+`#94` Italy / Spain / Montenegro brochures + hero/listings/tax fixes · `#95–#96` mobile header: only "NAC BROCHURE 2026" · `#97` Cyprus listings refresh · `#98` listings pin curation (Cyprus Del Mar + Blu Marine) · `#99` header tagline only (all viewports) · `#100` drop "K" suffix from listing prices · `#101` header tagline 9px · `#102` UK listings + auto-refresh on 10-min cron · `#103` UK pin White City Living + London Dock · `#104` overview live cards IT/ES/MG · `#105` listings full EN translation + flag fix + `&amp;amp;` fix · `#106` remove listing location pill · `#107` Montenegro Perast image · `#108` Notion overview deck DB + cron sync · `#109` header right = lang toggle only · `#110` header global style lock (Greece template) · `#111` breadcrumb typography lock · `#112` tax table mobile (hide notes col + pill disclaimer) · `#113` §01 title VI word order · `#114` §01 card labels rephrased · `#115` radar chart title unified · `#116` NAC-ID pill top-right small · `#117` tax pill disclaimer upgrade · `#118` chart Y-axis left-align · `#119` pulsing live-tag badge · `#120` breadcrumb V2 + Cyprus master in CLAUDE.md · `#121` checklist gaps (Bảo Lãnh + radar labels + live-tag gap) · `#122` daily QA tracker scan (Google Sheets) · `#123` QA tracker migration to Notion · `#124` QA cache refresh · `#125` live-tag gap 20px · `#127` Twemoji flag emojis on overview · `#128` Pass-0 data-attr walker for listing VI bleed fix · `#129` live-tag dot structural margin fix · `#130` live-tag dot gap halved + centered
 
 ## 8a. Per-brochure EN audit progress (jsdom-verified, 0 VN remnants)
 
