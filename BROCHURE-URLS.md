@@ -22,6 +22,8 @@ URL pattern: `https://nomadassetcollective.com/brochures/<slug>/` — each broch
 | 🇮🇹 Italy | `italy` | 2165 | https://nomadassetcollective.com/brochures/chuong-trinh-y-italy-rbi-qua-dau-tu-bds/ |
 | 🇪🇸 Spain (Golden Visa, closed 03/04/2025) | `spain` | 2170 | https://nomadassetcollective.com/brochures/chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds/ |
 | 🇲🇪 Montenegro | `montenegro` | 2167 | https://nomadassetcollective.com/brochures/chuong-trinh-montenengro-rbi-qua-dau-tu-bds/ |
+| 🇦🇺 Australia | `australia` | 0 | https://nomadassetcollective.com/brochures/chuong-trinh-uc-australia-rbi-dau-tu/ |
+| 🇳🇷 Nauru | `nauru` | 0 | https://nomadassetcollective.com/brochures/chuong-trinh-nauru-cbi-quoc-tich/ |
 
 ## Gateway page (synced by this repo)
 
