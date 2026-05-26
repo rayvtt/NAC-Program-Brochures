@@ -3103,6 +3103,14 @@ function setLang(lang) {
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang === 'en' ? 'en' : 'vi';
 
+  /* PASS-0-DATA-ATTR */
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
   // Hero title + desc
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = heroText[lang].title;
