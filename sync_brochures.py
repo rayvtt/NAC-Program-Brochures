@@ -67,6 +67,8 @@ BROCHURES = {
     'italy':       ('italy-investor.html',            2165, 'chuong-trinh-y-italy-rbi-qua-dau-tu-bds'),
     'spain':       ('spain-gv.html',                  2170, 'chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds'),
     'montenegro':  ('montenegro-rbi.html',            2167, 'chuong-trinh-montenengro-rbi-qua-dau-tu-bds'),
+    'australia':   ('australia-rbi.html',             0,    'chuong-trinh-uc-australia-rbi-dau-tu'),
+    'nauru':       ('nauru-cbi.html',                 0,    'chuong-trinh-nauru-cbi-quoc-tich'),
     # 'nph' (property-hub) and 'index' (nac-residence-index) intentionally
     # omitted — those tool pages are NOT managed by this repo. They live in
     # WordPress directly. Re-adding them here would overwrite WP-side edits

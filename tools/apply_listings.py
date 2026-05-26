@@ -59,6 +59,8 @@ ALIAS_FILE = {
     'italy':      'italy-investor.html',
     'spain':      'spain-gv.html',
     'montenegro': 'montenegro-rbi.html',
+    'australia':  'australia-rbi.html',
+    'nauru':      'nauru-cbi.html',
 }
 
 DATA_NOTION_RE = re.compile(r'data-notion="([\w_]+)"[^>]*>(.*?)</[a-zA-Z]', re.DOTALL)

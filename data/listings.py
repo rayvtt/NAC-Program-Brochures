@@ -42,4 +42,6 @@ COUNTRIES = {
     'italy':      {'notion_country': 'Ý',                            'program_code': 'RBI', 'currency': '€'},
     'spain':      {'notion_country': 'Tây Ban Nha',                  'program_code': 'RBI', 'currency': '€'},
     'montenegro': {'notion_country': 'Montenegro',                   'program_code': 'RBI', 'currency': '€'},
+    'australia':  {'notion_country': ['Úc', 'Australia'],              'program_code': 'RBI', 'currency': '$'},
+    'nauru':      {'notion_country': 'Nauru',                          'program_code': 'CBI', 'currency': '$'},
 }
