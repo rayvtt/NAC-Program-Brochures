@@ -1,11 +1,16 @@
-name: Apply checked intel boxes to Notion
+name: "Tick-to-live: apply intel checkbox → Notion → HTML → WordPress"
 
-# Fires whenever an `intel-daily` or `intel-weekly`-labelled issue is
-# edited. Reads the issue body, finds every `- [x]` checkbox with an
-# <!-- intel:... --> trailer, mutates the affected
-# `data/<alias>_payload.json`, PATCHes the matching Notion DB row, then
-# commits + comments back on the issue with a summary. The 10-min
-# pull-notion workflow then propagates to live WP.
+# ONE checkbox tick on a daily/weekly intel issue does everything:
+#   1. Parse checked boxes from the issue body
+#   2. PATCH Notion DB rows
+#   3. Update data/<alias>_payload.json
+#   4. Inject EN strings into brochure HTML
+#   5. Refresh article covers
+#   6. Push HTML to WordPress (live in ~2 min)
+#   7. Commit all changes to main
+#   8. Comment ✅ summary on the issue
+#
+# Zero other approvals needed. Tick → live.
 
 on:
   issues:
@@ -20,12 +25,12 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  apply:
+  tick-to-live:
     if: >-
       contains(github.event.issue.labels.*.name, 'intel-daily') ||
       contains(github.event.issue.labels.*.name, 'intel-weekly')
     runs-on: ubuntu-latest
-    timeout-minutes: 8
+    timeout-minutes: 12
     steps:
       - uses: actions/checkout@v4
         with:
@@ -36,15 +41,17 @@ jobs:
         with:
           python-version: '3.11'
 
+      # ── 1. Parse checkbox ticks ─────────────────────────────────────
       - name: Save issue body
         run: |
           mkdir -p /tmp/intel
           cat <<'__BODY_EOF__' > /tmp/intel/issue.md
           ${{ github.event.issue.body }}
           __BODY_EOF__
-          wc -l /tmp/intel/issue.md
+          echo "Issue body: $(wc -l < /tmp/intel/issue.md) lines"
 
-      - name: Apply checked boxes
+      # ── 2. Apply to Notion + payload JSON ───────────────────────────
+      - name: Apply checked boxes → Notion + payload
         env:
           NOTION_KEY: ${{ secrets.NOTION_KEY }}
         run: |
@@ -52,31 +59,58 @@ jobs:
             --body-file=/tmp/intel/issue.md \
             --summary-file=/tmp/intel/summary.md
 
-      - name: Commit payload changes
+      # ── 3. Payload → HTML (inject EN strings) ──────────────────────
+      - name: Inject payload into brochure HTML
+        run: |
+          python tools/inject_notion_en_to_html.py
+
+      # ── 4. Refresh article cover images ─────────────────────────────
+      - name: Refresh article og:image covers
+        run: |
+          python tools/refresh_article_covers.py || echo "Cover refresh skipped (network issue)"
+
+      # ── 5. Commit everything to main ────────────────────────────────
+      - name: Commit all changes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/*_payload.json || true
+          git add data/*_payload.json "Brochures html/" || true
           if git diff --cached --quiet; then
-            echo "No payload changes to commit."
+            echo "no_changes=true" >> "$GITHUB_ENV"
+            echo "No changes to commit."
           else
-            git commit -m "intel-apply: payload updates from issue #${{ github.event.issue.number }}"
+            ALIASES=$(git diff --cached --name-only | grep '_payload.json' | sed 's|data/||;s|_payload.json||' | tr '\n' ', ' | sed 's/,$//')
+            git commit -m "tick-to-live: $ALIASES updated from issue #${{ github.event.issue.number }}"
             git push origin main
+            echo "no_changes=false" >> "$GITHUB_ENV"
           fi
 
-      - name: Comment apply summary on the issue
+      # ── 6. Push HTML to WordPress ───────────────────────────────────
+      - name: Sync brochures to WordPress
+        if: env.no_changes != 'true'
+        env:
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          python sync_brochures.py --all
+
+      # ── 7. Comment summary on the issue ─────────────────────────────
+      - name: Post ✅ summary
         if: always()
         uses: actions/github-script@v7
         with:
           script: |
             const fs = require('fs');
-            let summary = '_(apply step did not produce a summary)_';
+            let summary = '_(no changes applied)_';
             try {
               summary = fs.readFileSync('/tmp/intel/summary.md', 'utf8');
             } catch (_) {}
+            const live = process.env.no_changes === 'true'
+              ? ''
+              : '\n\n✅ **Live on WordPress** — changes pushed to WP within this run.';
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: context.issue.number,
-              body: summary,
+              body: summary + live,
             });

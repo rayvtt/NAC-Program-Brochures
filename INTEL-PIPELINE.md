@@ -1,6 +1,6 @@
 # Daily Intel Pipeline — policy / pricing / community
 
-> **Purpose:** daily scrape + daily GitHub Issue with checkbox-driven approvals for the 12 brochure countries. Tick a box → auto-PATCH to Notion → existing 10-min `pull-notion` cron propagates to live WordPress. Weekly Monday digest also available for the 7-day rollup.
+> **Purpose:** daily scrape + daily GitHub Issue with checkbox-driven approvals for the 12 brochure countries. **Tick a box → Notion + HTML + WordPress all update in one workflow run (~2 min).** No other approvals needed.
 
 ## At a glance
 
@@ -16,24 +16,24 @@
                                                 open/update GitHub Issue
                                                 labelled `intel-weekly`
 
-on issue edit     →  intel-apply.yml      →  for every `- [x]` with
-                 (intel-daily OR                <!-- intel:... --> trailer:
-                  intel-weekly label)              · patch data/<alias>_payload.json
-                                                  · PATCH Notion DB row
-                                              commit, comment apply summary
-
-every 10 min      →  pull-notion.yml      →  data/*_payload.json → HTML → WordPress
-                                              (already in place)
+on issue edit     →  intel-apply.yml         →  FULL END-TO-END in one run:
+                 (intel-daily OR                   1. parse `- [x]` checkboxes
+                  intel-weekly label)               2. PATCH Notion DB rows
+                                                    3. update data/*_payload.json
+                                                    4. inject EN strings → HTML
+                                                    5. refresh article covers
+                                                    6. commit to main
+                                                    7. push HTML → WordPress
+                                                    8. post ✅ comment on issue
 ```
 
-### Daily flow — what you'll see
+### Daily flow — what you do
 
-1. **03:00 UTC** — GitHub sends you an email notification: "📰 Daily program intel · 2026-05-26"
-2. Open the issue. Each country with findings has a section with checkbox tasks.
-3. **Tick the boxes** for updates you approve, then save.
-4. `intel-apply` fires within seconds. It PATCHes Notion, commits payload changes, and posts a ✅ comment on the issue.
-5. Within 10 minutes, `pull-notion` pushes the change to live WordPress.
-6. Yesterday's issue is auto-closed to keep your inbox clean.
+1. **03:00 UTC** — GitHub sends you an email: "📰 Daily program intel · 2026-05-26"
+2. Open the issue. Each country has a section with checkbox tasks.
+3. **Tick the boxes** you approve, then save.
+4. Done. `intel-apply` does everything else — Notion, HTML, WordPress — in one run (~2 min). A ✅ comment confirms when it's live.
+5. Yesterday's issue auto-closes to keep your inbox clean.
 
 ## Sources scanned per country
 
@@ -87,8 +87,7 @@ Workflow:
 
 1. Edit the issue body and change `- [ ]` to `- [x]` on the rows you accept.
 2. Save the issue.
-3. `intel-apply.yml` fires on the `edited` event. It parses every `- [x]` with an `<!-- intel:... -->` trailer, mutates the payload JSON in place, PATCHes the matching Notion property, commits the payload change to `main`, and comments back on the issue with an apply summary.
-4. Within 10 minutes, `pull-notion.yml` picks up the Notion change, re-injects HTML, and pushes to WordPress.
+3. `intel-apply.yml` fires on the `edited` event and does everything in one run: parses ticked boxes → PATCHes Notion → updates payload JSON → injects EN strings into HTML → pushes to WordPress → commits to main → posts ✅ comment. Live in ~2 minutes.
 
 **Untick is not a revert** — the apply step is forward-only. Roll back via a follow-up issue or direct Notion edit.
 
@@ -135,7 +134,7 @@ python tools/intel_apply.py --body-file=path/to/issue.md --dry-run
 | `tools/intel_apply.py` | Reads issue body, applies ticked boxes to Notion + payloads |
 | `.github/workflows/intel-daily.yml` | Cron @ 03:00 UTC daily |
 | `.github/workflows/intel-weekly-digest.yml` | Cron @ 04:00 UTC Mondays |
-| `.github/workflows/intel-apply.yml` | Triggered by issue edits on `intel-weekly`-labelled issues |
+| `.github/workflows/intel-apply.yml` | Tick-to-live: issue edit → Notion → HTML → WordPress (one run) |
 | `INTEL-PIPELINE.md` | This file |
 
 ## Required secrets
@@ -145,6 +144,8 @@ Already in repo for the existing pull-notion pipeline; the intel-apply workflow 
 | Secret | Used by | Purpose |
 |---|---|---|
 | `NOTION_KEY` | `intel-apply.yml` | PATCH `properties` on Notion DB rows |
+| `WP_USER` | `intel-apply.yml` | WordPress REST API auth (also used by wp-sync) |
+| `WP_APP_PASSWORD` | `intel-apply.yml` | WordPress app password (also used by wp-sync) |
 | `GITHUB_TOKEN` | all three workflows | Push commits, manage issues |
 
 ## Adding a country / source
