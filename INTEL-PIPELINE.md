@@ -1,28 +1,39 @@
-# Weekly Intel Pipeline — policy / pricing / community
+# Daily Intel Pipeline — policy / pricing / community
 
-> **Purpose:** daily sweep of investment-migration intel for the 12 brochure countries → weekly GitHub Issue digest with checkbox-driven approvals → auto-PATCH to Notion when boxes are ticked. The existing 10-min `pull-notion` cron then propagates approved changes to live WordPress.
+> **Purpose:** daily scrape + daily GitHub Issue with checkbox-driven approvals for the 12 brochure countries. Tick a box → auto-PATCH to Notion → existing 10-min `pull-notion` cron propagates to live WordPress. Weekly Monday digest also available for the 7-day rollup.
 
 ## At a glance
 
 ```
-03:00 UTC daily   →  intel-daily.yml      →  scrape sources per country
-                                              writes .diagnostics/weekly-intel/<date>/<alias>.json
-                                              (committed back to main)
+03:00 UTC daily   →  intel-daily.yml      →  1. scrape sources per country
+                                                 → .diagnostics/weekly-intel/<date>/
+                                              2. compose daily digest (--days=1)
+                                              3. open GitHub Issue `intel-daily`
+                                                 with `- [ ]` checkbox tasks
+                                              4. auto-close yesterday's issue
 
 04:00 UTC Mondays →  intel-weekly-digest.yml → roll up last 7 days
                                                 open/update GitHub Issue
-                                                labelled `intel-weekly`,
-                                                with `- [ ]` checkbox tasks
+                                                labelled `intel-weekly`
 
 on issue edit     →  intel-apply.yml      →  for every `- [x]` with
-                                              <!-- intel:... --> trailer:
-                                                · patch data/<alias>_payload.json
-                                                · PATCH Notion DB row
+                 (intel-daily OR                <!-- intel:... --> trailer:
+                  intel-weekly label)              · patch data/<alias>_payload.json
+                                                  · PATCH Notion DB row
                                               commit, comment apply summary
 
 every 10 min      →  pull-notion.yml      →  data/*_payload.json → HTML → WordPress
                                               (already in place)
 ```
+
+### Daily flow — what you'll see
+
+1. **03:00 UTC** — GitHub sends you an email notification: "📰 Daily program intel · 2026-05-26"
+2. Open the issue. Each country with findings has a section with checkbox tasks.
+3. **Tick the boxes** for updates you approve, then save.
+4. `intel-apply` fires within seconds. It PATCHes Notion, commits payload changes, and posts a ✅ comment on the issue.
+5. Within 10 minutes, `pull-notion` pushes the change to live WordPress.
+6. Yesterday's issue is auto-closed to keep your inbox clean.
 
 ## Sources scanned per country
 

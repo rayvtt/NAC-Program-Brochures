@@ -1,14 +1,11 @@
 name: Apply checked intel boxes to Notion
 
-# Fires whenever an `intel-weekly`-labelled issue is edited. Reads the
-# issue body, finds every `- [x]` checkbox with an <!-- intel:... -->
-# trailer, mutates the affected `data/<alias>_payload.json`, PATCHes the
-# matching Notion DB row, then commits + comments back on the issue with
-# a summary. The 10-min pull-notion workflow then propagates to live WP.
-#
-# Safety: only operates on issues with the `intel-weekly` label. Skips
-# duplicate runs by tagging the issue with `intel-applied:<sha>` via
-# hidden HTML comment in the body.
+# Fires whenever an `intel-daily` or `intel-weekly`-labelled issue is
+# edited. Reads the issue body, finds every `- [x]` checkbox with an
+# <!-- intel:... --> trailer, mutates the affected
+# `data/<alias>_payload.json`, PATCHes the matching Notion DB row, then
+# commits + comments back on the issue with a summary. The 10-min
+# pull-notion workflow then propagates to live WP.
 
 on:
   issues:
@@ -24,7 +21,9 @@ concurrency:
 
 jobs:
   apply:
-    if: contains(github.event.issue.labels.*.name, 'intel-weekly')
+    if: >-
+      contains(github.event.issue.labels.*.name, 'intel-daily') ||
+      contains(github.event.issue.labels.*.name, 'intel-weekly')
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
