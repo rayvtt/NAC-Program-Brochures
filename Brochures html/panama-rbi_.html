@@ -1375,7 +1375,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 .sec-live-tag {
   display: inline-flex;
   align-items: center;
-  gap: 20px;
+  gap: 0;
   margin: 4px 0 14px;
   font-size: 11px;
   font-weight: 600;
@@ -1385,18 +1385,19 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 }
 .sec-live-dot {
   display: inline-block;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--green, #10b981);
   box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
-  animation: sec-live-pulse 1.8s infinite;
+  animation: sec-live-pulse 2s infinite;
   flex-shrink: 0;
+  margin-right: 18px;
 }
 @keyframes sec-live-pulse {
-  0%   { box-shadow: 0 0 0 0   rgba(16,185,129,0.7); }
-  70%  { box-shadow: 0 0 0 10px rgba(16,185,129,0); }
-  100% { box-shadow: 0 0 0 0   rgba(16,185,129,0); }
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
 }
 
 
