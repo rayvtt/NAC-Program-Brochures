@@ -228,8 +228,8 @@ IDENTITY = {
         'program_vi':      'Visa Đầu Tư Úc',
         'program_en':      'Australia Investor Visa',
         'source_filename': 'australia-rbi.html',
-        'wp_page_id':      0,
-        'wp_slug':         'chuong-trinh-uc-australia-rbi-dau-tu',
+        'wp_page_id':      2213,
+        'wp_slug':         'chuong-trinh-uc-rbi-residency-by-investment',
         'cover':           'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1500&q=80',  # Australia
         'color_primary':   '#00008B',
         'color_secondary': '#FFD700',
@@ -243,8 +243,8 @@ IDENTITY = {
         'program_vi':      'Nauru CBI',
         'program_en':      'Nauru CBI',
         'source_filename': 'nauru-cbi.html',
-        'wp_page_id':      0,
-        'wp_slug':         'chuong-trinh-nauru-cbi-quoc-tich',
+        'wp_page_id':      2215,
+        'wp_slug':         'chuong-trinh-nauru-quoc-tich-cbi-citizenship-by-investment',
         'cover':           'https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/nauru.jpeg',  # Nauru
         'color_primary':   '#003580',
         'color_secondary': '#FFD100',
