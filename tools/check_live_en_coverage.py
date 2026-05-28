@@ -51,8 +51,8 @@ LIVE_SLUG = {
     'italy':      'chuong-trinh-y-italy-rbi-qua-dau-tu-bds',
     'spain':      'chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds',
     'montenegro': 'chuong-trinh-montenengro-rbi-qua-dau-tu-bds',
-    'australia':  'chuong-trinh-uc-australia-rbi-dau-tu',
-    'nauru':      'chuong-trinh-nauru-cbi-quoc-tich',
+    'australia':  'chuong-trinh-uc-rbi-residency-by-investment',
+    'nauru':      'chuong-trinh-nauru-quoc-tich-cbi-citizenship-by-investment',
 }
 LIVE_BASE = 'https://nomadassetcollective.com/brochures'
 
