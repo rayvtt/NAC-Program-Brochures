@@ -40,7 +40,7 @@
      [90m· 03 — Quy Trình[0m
      [90m· Gia đình · Thuế · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — g[0m
 
-[1mturkey[0m  [32m✓[0m
+[1mturkey[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
   2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
   3. §01 Overview:  [32m✓[0m 
@@ -48,6 +48,11 @@
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
   8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+     [33mlow sections: citizenship, nac[0m
+     [33mNotion has EN for 8 gaps (sample):[0m
+       [investment] Lưu ý quan trọng 2025–2026: Nhà đầu tư phải giữ tài sản ít nhất 3 năm sau khi nh
+       [investment] Nhận định NAC: Istanbul (Beylikdüzü, Başakşehir, Kağıthane) và Antalya tiếp tục 
+       [family] So sánh với Hy Lạp: Greece Golden Visa bảo lãnh bố mẹ 2 bên và con đến 24 tuổi —
 
 [1muae[0m  [32m✓[0m
   1. Toggle:        [32m✓[0m 
@@ -188,7 +193,7 @@
        [overview] Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o 
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  [32m4/16 brochures fully passing[0m
+[1mSummary:[0m  [32m3/16 brochures fully passing[0m
   [31mToggle issues:[0m    spain
-  [33mSection gaps:[0m    stkitts, malaysia, antigua
+  [33mSection gaps:[0m    turkey, stkitts, malaysia, antigua
   → JSON report: .diagnostics/daily-en-audit.json

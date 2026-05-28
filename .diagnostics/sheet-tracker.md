@@ -1,13 +1,13 @@
 # Brochure status tracker
 
-_Generated: 2026-05-27T06:22:26Z_
+_Generated: 2026-05-28T06:14:02Z_
 
 Paste `sheet-tracker.tsv` into your Google Sheet at **A28:J39** (the "backlink" tab).
 Header lives in row 27 — overwrite from `sheet-tracker-header.tsv` if you want.
 
 | Brochure | Live cov % | Toggle | Section gaps | Charts | Text drift | No-EN | Auto-fix? | Live URL | Last sync |
 |---|---|---|---|---|---|---|---|---|---|
-| 🇹🇷 turkey | 93.5% | ✓ | ✓ all ≥70% | ✓ wrapper | 2 | 7 | 2 | https://nomadassetcollective.com/brochures/chuong-trinh-tho-nhi-ky-cbi-citize… | 2026-05-20 01:35 UTC |
+| 🇹🇷 turkey | 93.5% | ✓ | ✗ (2): citizenship, nac | ✓ wrapper | 2 | 7 | 2 | https://nomadassetcollective.com/brochures/chuong-trinh-tho-nhi-ky-cbi-citize… | 2026-05-20 01:35 UTC |
 | 🇵🇹 portugal | 82.9% | ✓ | ✓ all ≥70% | ✓ translator | 6 | 4 | 6 | https://nomadassetcollective.com/brochures/chuong-trinh-bo-dao-nha-golden-visa/ | 2026-05-20 01:35 UTC |
 | 🇬🇷 greece | 74.6% | ✓ | ✓ all ≥70% | ✓ translator | 10 | 0 | 10 | https://nomadassetcollective.com/brochures/residences-chuong-trinh-hy-lap-gol… | 2026-05-20 01:35 UTC |
 | 🇨🇾 cyprus | 81.4% | ✓ | ✓ all ≥70% | ✓ translator | 5 | 5 | 5 | https://nomadassetcollective.com/brochures/chuong-trinh-dao-sip-rbi-residence… | 2026-05-20 01:35 UTC |

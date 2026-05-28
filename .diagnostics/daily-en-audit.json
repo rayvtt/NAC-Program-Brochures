@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-27T06:22:26.114329+00:00",
+  "generated_at": "2026-05-28T06:14:02.462061+00:00",
   "source": "live",
-  "pass_count": 4,
+  "pass_count": 3,
   "total": 16,
   "reports": [
     {
@@ -87,7 +87,7 @@
             "coverage_pct": 100.0
           },
           "compare": {
-            "translated": 2,
+            "translated": 1,
             "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
@@ -506,13 +506,13 @@
     },
     {
       "alias": "turkey",
-      "all_pass": true,
+      "all_pass": false,
       "toggle": {
         "pass": true,
         "issues": []
       },
       "sections": {
-        "pass": true,
+        "pass": false,
         "per_section": {
           "hero": {
             "translated": 0,
@@ -539,12 +539,12 @@
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 22,
-            "fixable_gap": 0,
+            "translated": 20,
+            "fixable_gap": 2,
             "acceptable_gap": 1,
-            "gap": 1,
+            "gap": 3,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 90.9
           },
           "listings": {
             "translated": 0,
@@ -555,64 +555,100 @@
             "coverage_pct": 100
           },
           "process": {
-            "translated": 15,
+            "translated": 14,
             "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
+            "acceptable_gap": 3,
+            "gap": 3,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "translated": 8,
+            "fixable_gap": 1,
+            "acceptable_gap": 1,
+            "gap": 2,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 88.9
           },
           "tax": {
-            "translated": 18,
-            "fixable_gap": 0,
+            "translated": 16,
+            "fixable_gap": 2,
             "acceptable_gap": 1,
-            "gap": 1,
+            "gap": 3,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 88.9
           },
           "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "translated": 0,
+            "fixable_gap": 1,
+            "acceptable_gap": 2,
+            "gap": 3,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 0.0
           },
           "compare": {
-            "translated": 1,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "proscons": {
-            "translated": 19,
-            "fixable_gap": 0,
+            "translated": 18,
+            "fixable_gap": 1,
             "acceptable_gap": 0,
-            "gap": 0,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 94.7
           },
           "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
+            "translated": 2,
+            "fixable_gap": 1,
+            "acceptable_gap": 1,
+            "gap": 2,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 66.7
           }
         },
-        "low_sections": [],
-        "notion_gaps": []
+        "low_sections": [
+          "citizenship",
+          "nac"
+        ],
+        "notion_gaps": [
+          {
+            "section": "investment",
+            "text": "Lưu ý quan trọng 2025–2026: Nhà đầu tư phải giữ tài sản ít nhất 3 năm sau khi nhận quốc tịch. Không được bán hoặc chuyển"
+          },
+          {
+            "section": "investment",
+            "text": "Nhận định NAC: Istanbul (Beylikdüzü, Başakşehir, Kağıthane) và Antalya tiếp tục là hai thị trường BĐS nhận được nhiều nh"
+          },
+          {
+            "section": "family",
+            "text": "So sánh với Hy Lạp: Greece Golden Visa bảo lãnh bố mẹ 2 bên và con đến 24 tuổi — phạm vi rộng hơn đáng kể. Nếu gia đình "
+          },
+          {
+            "section": "tax",
+            "text": "Lưu ý đặc biệt — Lạm phát & Tỷ giá: Lira Thổ Nhĩ Kỳ (TRY) đã mất giá đáng kể so với USD trong 5 năm qua. BĐS tại Thổ Nhĩ"
+          },
+          {
+            "section": "tax",
+            "text": "Không có thuế thừa kế toàn cầu: Thổ Nhĩ Kỳ không đánh thuế thừa kế đối với tài sản nằm ngoài lãnh thổ Thổ Nhĩ Kỳ — đây l"
+          },
+          {
+            "section": "citizenship",
+            "text": "Dual citizenship (song tịch): Thổ Nhĩ Kỳ cho phép giữ nguyên quốc tịch gốc. Nhà đầu tư Việt Nam sẽ có 2 hộ chiếu — nhưng"
+          },
+          {
+            "section": "proscons",
+            "text": "Rủi ro chính sách: Năm 2022, Thổ Nhĩ Kỳ tăng ngưỡng CBI từ $250K lên $400K. Không có gì đảm bảo ngưỡng này ổn định lâu d"
+          },
+          {
+            "section": "nac",
+            "text": "Turkey CBI phù hợp nhất với: Nhà đầu tư cần quốc tịch thứ hai ngay lập tức trong 3–6 tháng, ngân sách $400K–$500K, gia đ"
+          }
+        ]
       },
       "overview_ok": true,
       "charts": {
@@ -2035,12 +2071,12 @@
             "coverage_pct": 100
           },
           "compare": {
-            "translated": 1,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "proscons": {
             "translated": 1,
@@ -2222,10 +2258,10 @@
             "coverage_pct": 100
           },
           "proscons": {
-            "translated": 13,
+            "translated": 12,
             "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
+            "acceptable_gap": 4,
+            "gap": 4,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -2522,12 +2558,12 @@
             "coverage_pct": 100
           },
           "compare": {
-            "translated": 1,
+            "translated": 0,
             "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
-            "coverage_pct": 100.0
+            "coverage_pct": 100
           },
           "proscons": {
             "translated": 11,
