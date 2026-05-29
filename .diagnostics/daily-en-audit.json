@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-05-28T06:14:02.462061+00:00",
+  "generated_at": "2026-05-29T06:14:42.296952+00:00",
   "source": "live",
-  "pass_count": 3,
+  "pass_count": 4,
   "total": 16,
   "reports": [
     {
@@ -87,7 +87,7 @@
             "coverage_pct": 100.0
           },
           "compare": {
-            "translated": 1,
+            "translated": 2,
             "fixable_gap": 0,
             "acceptable_gap": 0,
             "gap": 0,
@@ -506,13 +506,13 @@
     },
     {
       "alias": "turkey",
-      "all_pass": false,
+      "all_pass": true,
       "toggle": {
         "pass": true,
         "issues": []
       },
       "sections": {
-        "pass": false,
+        "pass": true,
         "per_section": {
           "hero": {
             "translated": 0,
@@ -539,12 +539,12 @@
             "coverage_pct": 100.0
           },
           "investment": {
-            "translated": 20,
-            "fixable_gap": 2,
+            "translated": 22,
+            "fixable_gap": 0,
             "acceptable_gap": 1,
-            "gap": 3,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 90.9
+            "coverage_pct": 100.0
           },
           "listings": {
             "translated": 0,
@@ -555,100 +555,64 @@
             "coverage_pct": 100
           },
           "process": {
-            "translated": 14,
+            "translated": 15,
             "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
+            "acceptable_gap": 2,
+            "gap": 2,
             "skip": 0,
             "coverage_pct": 100.0
           },
           "family": {
-            "translated": 8,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
+            "translated": 10,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
-            "coverage_pct": 88.9
+            "coverage_pct": 100.0
           },
           "tax": {
-            "translated": 16,
-            "fixable_gap": 2,
-            "acceptable_gap": 1,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 88.9
-          },
-          "citizenship": {
-            "translated": 0,
-            "fixable_gap": 1,
-            "acceptable_gap": 2,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 0.0
-          },
-          "compare": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "proscons": {
             "translated": 18,
-            "fixable_gap": 1,
-            "acceptable_gap": 0,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
             "gap": 1,
             "skip": 0,
-            "coverage_pct": 94.7
+            "coverage_pct": 100.0
+          },
+          "citizenship": {
+            "translated": 2,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "compare": {
+            "translated": 1,
+            "fixable_gap": 0,
+            "acceptable_gap": 1,
+            "gap": 1,
+            "skip": 0,
+            "coverage_pct": 100.0
+          },
+          "proscons": {
+            "translated": 19,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
+            "skip": 0,
+            "coverage_pct": 100.0
           },
           "nac": {
-            "translated": 2,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
+            "translated": 4,
+            "fixable_gap": 0,
+            "acceptable_gap": 0,
+            "gap": 0,
             "skip": 0,
-            "coverage_pct": 66.7
+            "coverage_pct": 100.0
           }
         },
-        "low_sections": [
-          "citizenship",
-          "nac"
-        ],
-        "notion_gaps": [
-          {
-            "section": "investment",
-            "text": "Lưu ý quan trọng 2025–2026: Nhà đầu tư phải giữ tài sản ít nhất 3 năm sau khi nhận quốc tịch. Không được bán hoặc chuyển"
-          },
-          {
-            "section": "investment",
-            "text": "Nhận định NAC: Istanbul (Beylikdüzü, Başakşehir, Kağıthane) và Antalya tiếp tục là hai thị trường BĐS nhận được nhiều nh"
-          },
-          {
-            "section": "family",
-            "text": "So sánh với Hy Lạp: Greece Golden Visa bảo lãnh bố mẹ 2 bên và con đến 24 tuổi — phạm vi rộng hơn đáng kể. Nếu gia đình "
-          },
-          {
-            "section": "tax",
-            "text": "Lưu ý đặc biệt — Lạm phát & Tỷ giá: Lira Thổ Nhĩ Kỳ (TRY) đã mất giá đáng kể so với USD trong 5 năm qua. BĐS tại Thổ Nhĩ"
-          },
-          {
-            "section": "tax",
-            "text": "Không có thuế thừa kế toàn cầu: Thổ Nhĩ Kỳ không đánh thuế thừa kế đối với tài sản nằm ngoài lãnh thổ Thổ Nhĩ Kỳ — đây l"
-          },
-          {
-            "section": "citizenship",
-            "text": "Dual citizenship (song tịch): Thổ Nhĩ Kỳ cho phép giữ nguyên quốc tịch gốc. Nhà đầu tư Việt Nam sẽ có 2 hộ chiếu — nhưng"
-          },
-          {
-            "section": "proscons",
-            "text": "Rủi ro chính sách: Năm 2022, Thổ Nhĩ Kỳ tăng ngưỡng CBI từ $250K lên $400K. Không có gì đảm bảo ngưỡng này ổn định lâu d"
-          },
-          {
-            "section": "nac",
-            "text": "Turkey CBI phù hợp nhất với: Nhà đầu tư cần quốc tịch thứ hai ngay lập tức trong 3–6 tháng, ngân sách $400K–$500K, gia đ"
-          }
-        ]
+        "low_sections": [],
+        "notion_gaps": []
       },
       "overview_ok": true,
       "charts": {
@@ -2071,12 +2035,12 @@
             "coverage_pct": 100
           },
           "compare": {
-            "translated": 0,
+            "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 100
+            "coverage_pct": 100.0
           },
           "proscons": {
             "translated": 1,
@@ -2258,10 +2222,10 @@
             "coverage_pct": 100
           },
           "proscons": {
-            "translated": 12,
+            "translated": 13,
             "fixable_gap": 0,
-            "acceptable_gap": 4,
-            "gap": 4,
+            "acceptable_gap": 3,
+            "gap": 3,
             "skip": 0,
             "coverage_pct": 100.0
           },
@@ -2558,12 +2522,12 @@
             "coverage_pct": 100
           },
           "compare": {
-            "translated": 0,
+            "translated": 1,
             "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
+            "acceptable_gap": 1,
+            "gap": 1,
             "skip": 0,
-            "coverage_pct": 100
+            "coverage_pct": 100.0
           },
           "proscons": {
             "translated": 11,
