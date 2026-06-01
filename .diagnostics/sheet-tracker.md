@@ -1,6 +1,6 @@
 # Brochure status tracker
 
-_Generated: 2026-05-31T06:19:45Z_
+_Generated: 2026-06-01T06:57:19Z_
 
 Paste `sheet-tracker.tsv` into your Google Sheet at **A28:J39** (the "backlink" tab).
 Header lives in row 27 — overwrite from `sheet-tracker-header.tsv` if you want.
