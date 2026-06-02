@@ -20,7 +20,12 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 OVERVIEW_FILE = ROOT / 'Brochures html' / 'NAC-BROCHURES-OVERVIEW.html'
-DATA_SOURCE_ID = 'ae0d5fde-52e6-4a1a-b66e-43533f06c25d'
+# Parent database id. We query the classic /databases/{id}/query endpoint with
+# Notion-Version 2022-06-28 (same as tools/pull_from_notion.py). The newer
+# /data_sources/{id}/query endpoint only exists on Notion-Version 2025-09-03+,
+# so calling it under 2022-06-28 returns HTTP 400 invalid_request_url.
+DATABASE_ID = '26d8e7b69c4840f19adbac784d257330'
+DATA_SOURCE_ID = 'ae0d5fde-52e6-4a1a-b66e-43533f06c25d'  # data source under DATABASE_ID (kept for reference)
 NOTION_BASE = 'https://api.notion.com/v1'
 
 CARD_START = '<!-- OVERVIEW-DECK-CARDS START -->'
@@ -65,7 +70,7 @@ def query_all_rows(token):
     while True:
         body = json.dumps({'page_size': 100, **({'start_cursor': cursor} if cursor else {})})
         status, resp = http(
-            'POST', f'{NOTION_BASE}/data_sources/{DATA_SOURCE_ID}/query',
+            'POST', f'{NOTION_BASE}/databases/{DATABASE_ID}/query',
             token=token, body=body,
         )
         if status != 200:
