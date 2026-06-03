@@ -3246,5 +3246,24 @@ function setLang(lang) {
 })();
 </script>
 
+
+<!-- Twemoji: render flag emojis as images on platforms that show
+     country codes (Windows, some Android). CDN-hosted SVGs. -->
+<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+if (typeof twemoji !== 'undefined') {
+  twemoji.parse(document.body, {
+    folder: 'svg',
+    ext: '.svg',
+    className: 'twemoji-flag'
+  });
+}
+</script>
+<style>
+/* Size twemoji flag images to match the surrounding text */
+img.twemoji-flag { height: 1em; width: 1em; vertical-align: -0.1em; display: inline-block; }
+.card-flag img.twemoji-flag { height: 28px; width: 28px; vertical-align: baseline; }
+</style>
+
 </body>
 </html>
