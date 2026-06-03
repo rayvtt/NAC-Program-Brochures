@@ -135,6 +135,7 @@ tools/
 ├── scan_qa_tracker.py                  ← ✅ NAC - QA Tracker DB → .diagnostics/qa-status.md
 ├── inject_data_attr_walker.py          ← add Pass-0 data-vi/data-en walker to all legacy setLang
 ├── inject_twemoji.py                   ← inject Twemoji flag-image fallback (Windows/Android show codes)
+├── repoint_listings_to_clp.py          ← repoint "All RBI properties →" link to /property-hub-bat-dong-san/<slug>/ CLP
 ├── lock_header_style.py                ← global header style lock (Greece template values)
 ├── lock_breadcrumb_v2.py               ← breadcrumb typography lock (high specificity)
 ├── sec_live_tag_css.py                 ← pulsing "● ĐANG MỞ BÁN" live-tag CSS
