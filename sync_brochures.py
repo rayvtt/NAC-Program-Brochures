@@ -113,6 +113,12 @@ def auth_header(user, pwd):
 
 def http(method, url, *, headers=None, body=None):
     req = urllib.request.Request(url, method=method)
+    # Browser-like User-Agent. Some bot/WAF layers serve a JS "verify your
+    # request" challenge to non-browser clients (the default Python-urllib UA),
+    # returning HTTP 200 with a challenge page instead of the REST API JSON —
+    # which silently breaks the sync. A real UA slips past UA-based gates.
+    req.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36')
+    req.add_header('Accept', 'application/json')
     if headers:
         for k, v in headers.items(): req.add_header(k, v)
     data = body.encode('utf-8') if isinstance(body, str) else body
@@ -190,8 +196,17 @@ def cmd_sync(alias, auth=None, dry_run=False):
         else:
             print(green(f'    ✓ pushed · modified: {data.get("modified")}'))
         return True
-    msg = data.get('message') if isinstance(data, dict) else str(data)
-    code = data.get('code', '') if isinstance(data, dict) else ''
+    if not isinstance(data, dict):
+        # Non-JSON body on HTTP 200 = a bot/WAF "verify your request" challenge
+        # intercepted the REST call. Flag it clearly instead of dumping the HTML.
+        blob = str(data)
+        if 'being verified' in blob or 'One moment' in blob or '<!DOCTYPE' in blob.lstrip()[:60]:
+            print(red(f'    ✗ failed (HTTP {status}) — blocked by bot/WAF challenge page (REST API not reached)'))
+        else:
+            print(red(f'    ✗ failed (HTTP {status}): {blob[:160]}'))
+        return False
+    msg = data.get('message')
+    code = data.get('code', '')
     print(red(f'    ✗ failed (HTTP {status}) {code}: {msg}'))
     return False
 
@@ -209,6 +224,7 @@ def cmd_sync_all(dry_run=False):
     msg = f'  done — {ok} ok, {fail} failed'
     print((green if fail == 0 else yellow)(msg))
     print()
+    return fail
 
 
 # ── Entry ──────────────────────────────────────────────────────────────
@@ -222,11 +238,17 @@ def main():
         return
     target = args[0]
     if target == '--all':
-        cmd_sync_all(dry_run=dry_run)
+        fail = cmd_sync_all(dry_run=dry_run)
+        # Exit non-zero so CI fails loudly instead of masking a total push
+        # failure (e.g. every page blocked by a bot/WAF challenge) as success.
+        if fail:
+            sys.exit(red(f'❌ {fail} page(s) failed to sync — see errors above.'))
     elif target in BROCHURES:
         auth = None if dry_run else auth_header(*load_env())
-        cmd_sync(target, auth=auth, dry_run=dry_run)
+        ok = cmd_sync(target, auth=auth, dry_run=dry_run)
         print()
+        if not ok:
+            sys.exit(1)
     else:
         sys.exit(red(f'unknown target: {target}\nvalid: {", ".join(BROCHURES)} | --all'))
 
