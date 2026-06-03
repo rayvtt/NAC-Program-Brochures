@@ -908,7 +908,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ============================================================ */
 .nac-tools { display:none; }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) { /*NAC-TOOLS-1024*/
   .nac-tools {
     position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
     display:flex; align-items:center; gap:.2rem;
@@ -990,22 +990,22 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ────────────────────────────────────────────── */
 /* ── NAC INDEX banner variant — animated globe canvas behind title ──
    Light lavender gradient mirrors the NAC Residence Index page hero. */
-.nac-index-banner {
+.article-cta-banner.nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 360px;
+  min-height: 300px;
   overflow: hidden;
 }
-.nac-index-banner::after {
+.article-cta-banner.nac-index-banner::after {
   /* Soft top-to-bottom fade so the title sits cleanly above the globe.
      Uses the same lavender as the bg so the corners stay airy. */
   background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
 }
 /* Default text is white — flip to dark since we're on a light background */
-.nac-index-banner .article-cta-kicker {
+.article-cta-banner.nac-index-banner .article-cta-kicker {
   color: #5b3aa8;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
-.nac-index-banner .article-cta-title {
+.article-cta-banner.nac-index-banner .article-cta-title {
   color: #1a0f5c;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
@@ -1055,7 +1055,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 }
 @media (max-width: 600px) {
   /* Mobile: CSS Grid stack — tight fit around globe. */
-  .nac-index-banner {
+  .article-cta-banner.nac-index-banner {
     display: grid !important;
     grid-template-rows: 240px auto auto;
     grid-template-columns: 1fr;
@@ -1075,24 +1075,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     opacity: .95;
     animation: none;
   }
-  .nac-index-banner .article-cta-kicker,
-  .nac-index-banner .article-cta-title {
+  .article-cta-banner.nac-index-banner .article-cta-kicker,
+  .article-cta-banner.nac-index-banner .article-cta-title {
     position: relative;
     z-index: 2;
     grid-column: 1;
     padding-left: 18px;
     padding-right: 18px;
   }
-  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
-  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+  .article-cta-banner.nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
+  .article-cta-banner.nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
   /* The pseudo-element overlay sits on top of everything — push it back */
-  .nac-index-banner::after { display: none; }
+  .article-cta-banner.nac-index-banner::after { display: none; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
   /* The pills inside the dark glass banner are hidden on mobile —
      they sit on the white body strip below instead (see below). */
-  .nac-index-banner .nac-index-pills { display: none; }
+  .article-cta-banner.nac-index-banner .nac-index-pills { display: none; }
   /* Mobile pills strip — sits in the white .article-cta-body band so
      icons get a clean, airy surface. Forced 6×2 grid (two rows of six)
      regardless of viewport width — no flex-wrap surprises. */
@@ -1202,6 +1202,245 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
+
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
+}
+/*TAX-COLLAPSE-CSS*/
+
+
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
+
+
+
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
+
+/* Breadcrumb typography lock — match "NAC BROCHURE 2026" tagline
+   look. Colors preserved (white-on-dark hero). /*BREADCRUMB-LOCK-V1*/ */
+.breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.breadcrumb a,
+.breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
+
+
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
+}
+
+
+/* Tax table mobile — pill-style disclaimer + column hiding.
+   Matches the .comp-table-mobile-msg look so the two tables read
+   alike on small screens. /*TAX-TABLE-MOBILE-V2*/ */
+.tax-table-mobile-note { display: none; }
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    text-align: center;
+    margin: 12px 0 24px;
+    line-height: 1.4;
+  }
+}
+
+
+/* Listings live-tag — small pulsing-dot indicator below the section
+   title (mirrors a status badge). /*SEC-LIVE-TAG-V1*/ */
+.sec-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 4px 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green, #10b981);
+}
+.sec-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #10b981);
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
+  animation: sec-live-pulse 2s infinite;
+  flex-shrink: 0;
+  margin-right: 9px;
+  position: relative;
+  top: 0px;
+}
+@keyframes sec-live-pulse {
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -1362,16 +1601,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- 01 OVERVIEW -->
     <section class="section" id="overview">
       <div class="sec-label">01 — Tổng Quan</div>
-      <h2 class="sec-title">Chương Trình Tổng Quan</h2>
+      <h2 class="sec-title">Tổng Quan Chương Trình</h2>
       <p class="sec-sub">Hy Lạp Golden Visa — ra mắt năm 2013, cải cách lớn năm 2024 — là chương trình cư trú đầu tư cuối cùng tại EU cho phép mua BĐS trực tiếp. Sau khi Tây Ban Nha đóng cửa (04/2025) và Bồ Đào Nha loại bỏ đường BĐS (2023), Hy Lạp trở thành lựa chọn duy nhất cho nhà đầu tư muốn sở hữu bất động sản EU và nhận Schengen.</p>
 
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Cư Trú Dài Hạn (RBI)</div><div class="ov-note">Giấy phép cư trú 5 năm, gia hạn được</div></div>
         <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Ra mắt</div><div class="ov-value">2013 (cải cách 2024)</div><div class="ov-note">13 năm hoạt động · 27,786 nhà đầu tư (12/2025)</div></div>
-        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Vị trí địa chính trị</div><div class="ov-value">EU · Schengen · NATO</div><div class="ov-note">Cửa ngõ châu Âu · Địa Trung Hải</div></div>
-        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Cư trú bắt buộc</div><div class="ov-value">Không bắt buộc</div><div class="ov-note">Không yêu cầu số ngày cư trú tối thiểu</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">EU · Schengen · NATO</div><div class="ov-note">Cửa ngõ châu Âu · Địa Trung Hải</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Không bắt buộc</div><div class="ov-note">Không yêu cầu số ngày cư trú tối thiểu</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn visa</div><div class="ov-value">5 năm (gia hạn được)</div><div class="ov-note">Gia hạn nếu vẫn sở hữu BĐS</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con + bố mẹ hai bên</div><div class="ov-note">Bao gồm bố mẹ cả hai bên — không tăng đầu tư</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con + bố mẹ hai bên</div><div class="ov-note">Bao gồm bố mẹ cả hai bên — không tăng đầu tư</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">3–6 tháng</div><div class="ov-note">Cải thiện đáng kể từ 2025 (trước đó 12–18 tháng)</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">26 nước Schengen</div><div class="ov-note">Di chuyển tự do toàn Schengen 90/180 ngày</div></div>
         <div class="ov-card"><div class="ov-icon">🛣️</div><div class="ov-label">Lộ trình quốc tịch</div><div class="ov-value">7 năm cư trú thực tế</div><div class="ov-note">Quốc tịch EU · Hộ chiếu Hy Lạp top 8 thế giới</div></div>
@@ -1383,7 +1622,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="chart-box">
-        <div class="chart-title">Phân tích điểm 6 tiêu chí NAC — Hy Lạp Golden Visa</div>
+        <div class="chart-title" data-vi="6 Tiêu Chí Trọng Điểm theo NAC Index" data-en="6 Key Criteria by NAC Index">6 Tiêu Chí Trọng Điểm theo NAC Index</div>
         <canvas id="radarChart" style="max-height:300px"></canvas>
       </div>
 
@@ -1398,7 +1637,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <h3 class="article-cta-title">So Sánh Toàn Diện Hy Lạp vs. Thổ Nhĩ Kỳ</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
           <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua" target="_blank">Đọc Ngay →</a>
         </div>
       </div>
@@ -1473,7 +1712,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
       <div class="info-box green-box" style="margin-top:16px">
         <div class="info-icon">💡</div>
-        <div class="info-text"><strong>Nhận định NAC — Đường €250K:</strong> Đây là lựa chọn chiến lược nhất — cho phép sở hữu BĐS ngay tại Athens với ngưỡng thấp nhất trong toàn EU. Tuy nhiên, có hai yêu cầu then chốt cần kiểm tra kỹ: <em>(1) Chuyển đổi phải được cơ quan có thẩm quyền Hy Lạp phê duyệt và hoàn thành hoàn toàn trước khi nộp hồ sơ Golden Visa</em> — dự án đang thi công chưa đủ điều kiện. <em>(2) BĐS phải là nhà ở hoàn chỉnh, không phải văn phòng công ty</em> — dùng làm trụ sở doanh nghiệp cũng bị phạt €50,000. Nguồn cung dự án đủ điều kiện hạn chế — NAC kết nối trực tiếp với developer đã được xác nhận pháp lý. <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" style="color:var(--green);font-weight:600;">Xem NAC Index →</a></div>
+        <div class="info-text"><strong>Nhận định NAC — Đường €250K:</strong> Đây là lựa chọn chiến lược nhất — cho phép sở hữu BĐS ngay tại Athens với ngưỡng thấp nhất trong toàn EU. Tuy nhiên, có hai yêu cầu then chốt cần kiểm tra kỹ: <em>(1) Chuyển đổi phải được cơ quan có thẩm quyền Hy Lạp phê duyệt và hoàn thành hoàn toàn trước khi nộp hồ sơ Golden Visa</em> — dự án đang thi công chưa đủ điều kiện. <em>(2) BĐS phải là nhà ở hoàn chỉnh, không phải văn phòng công ty</em> — dùng làm trụ sở doanh nghiệp cũng bị phạt €50,000. Nguồn cung dự án đủ điều kiện hạn chế — NAC kết nối trực tiếp với developer đã được xác nhận pháp lý. <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">Xem NAC Index →</a></div>
       </div>
 
       <div class="cta-strip" style="margin-top:8px">
@@ -1488,32 +1727,69 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- LISTINGS START -->
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
-      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title">BĐS Đủ Điều Kiện RBI — Đang Mở Bán</h2>
-      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện RBI" data-en="RBI-Eligible Properties">BĐS Đủ Điều Kiện RBI</h2>
+      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="Đang Mở Bán" data-en="Now Live">Đang Mở Bán</span></div>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Greece RBI program and ready to transact. You don&#x27;t need to hunt — we&#x27;ve curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Hy Lạp và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
-        <article class="listing-card listing-card-placeholder">
-          <div class="listing-placeholder-content">
-            <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Hy Lạp đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=greece" target="_blank" rel="noopener">Khám phá Property Hub →</a>
-          </div>
+        <article class="listing-card">
+          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/keranis-ports-residences-piraeus-athens/" target="_blank" rel="noopener">
+            <div class="listing-hero">
+              <img src="https://imagedelivery.net/qse3Pw84PrZ2S0PQOTtixw/keranis-ports-residences-piraeus-athens-hero/public" alt="Keranis Ports Residences" loading="lazy">
+              <div class="listing-badges">
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện RBI" data-en="✓ RBI Eligible">✓ Đủ điều kiện RBI</span>
+              </div>
+              <div class="listing-ref">NAC-4</div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-tagline" data-vi="Cửa ngõ Golden Visa tại cảng biển sôi động nhất châu Âu" data-en="Golden Visa entry at Europe&#x27;s fastest-growing port city">Cửa ngõ Golden Visa tại cảng biển sôi động nhất châu Âu</div>
+              <h3 class="listing-name" >Keranis Ports Residences</h3>
+              <div class="listing-location">📍 Piraeus Waterfront · Greece</div>
+              <div class="listing-stats">
+                <div class="listing-stat"><div class="listing-stat-val">€250,000</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">3.0%</div><div class="listing-stat-lbl">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">10.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
+              </div>
+              <p class="listing-desc" data-vi="Keranis Ports Residences là dự án phức hợp 270+ căn hộ của Mercan tại Piraeus — cảng biển lớn nhất Hy Lạp và một trong những khu đô thị tái phát triển nhanh nhất châu Âu." data-en="Keranis Ports Residences is a 270+ unit mixed-use development by Mercan rising in Piraeus — Greece&#x27;s largest port and one of Europe&#x27;s fastest-regenerating urban zones.">Keranis Ports Residences là dự án phức hợp 270+ căn hộ của Mercan tại Piraeus — cảng biển lớn nhất Hy Lạp và một trong những khu đô thị tái phát triển nhanh nhất châu Âu.</p>
+              <div class="listing-cta-row">
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
+              </div>
+            </div>
+          </a>
         </article>
-        <article class="listing-card listing-card-placeholder">
-          <div class="listing-placeholder-content">
-            <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Hy Lạp đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=greece" target="_blank" rel="noopener">Khám phá Property Hub →</a>
-          </div>
+        <article class="listing-card">
+          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/ocean-gate-building-piraeus-waterfront/" target="_blank" rel="noopener">
+            <div class="listing-hero">
+              <img src="https://imagedelivery.net/qse3Pw84PrZ2S0PQOTtixw/ocean-gate-building-piraeus-waterfront-hero/public" alt="Ocean Gate Building" loading="lazy">
+              <div class="listing-badges">
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện RBI" data-en="✓ RBI Eligible">✓ Đủ điều kiện RBI</span>
+              </div>
+              <div class="listing-ref">NAC-4</div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-tagline" data-vi="Cửa ngõ Golden Visa full nội thất tại cảng Piraeus" data-en="Furnished Golden Visa entry at the gates of Piraeus port">Cửa ngõ Golden Visa full nội thất tại cảng Piraeus</div>
+              <h3 class="listing-name" >Ocean Gate Building</h3>
+              <div class="listing-location">📍 Piraeus Waterfront · Greece</div>
+              <div class="listing-stats">
+                <div class="listing-stat"><div class="listing-stat-val">€261,000</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">3.0%</div><div class="listing-stat-lbl">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">10.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
+              </div>
+              <p class="listing-desc" data-vi="Ocean Gate Building là dự án căn hộ boutique full nội thất do Goldally phát triển tại Thermopilon 53, cách ga Metro Piraeus 400m — cửa ngõ vào khu cảng lịch sử đang tái sinh mạnh mẽ của Athens." data-en="Ocean Gate Building is a fully-furnished boutique residential project by Goldally at Thermopilon 53, 400 metres from Piraeus Metro — the gateway to Athens&#x27; historic and rapidly-regenerating port district.">Ocean Gate Building là dự án căn hộ boutique full nội thất do Goldally phát triển tại Thermopilon 53, cách ga Metro Piraeus 400m — cửa ngõ vào khu cảng lịch sử đang tái sinh mạnh mẽ của Athens.</p>
+              <div class="listing-cta-row">
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
+              </div>
+            </div>
+          </a>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Hy Lạp.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=greece" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện RBI →</a>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Hy Lạp." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Greece RBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Hy Lạp.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=greece" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện RBI →" data-en="All RBI-eligible properties →">Tất cả BĐS đủ điều kiện RBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -1565,7 +1841,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <h3 class="article-cta-title">Tại Sao Hộ Chiếu Thứ Hai Trở Thành xu Hướng Cho UHNWI Việt ?</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc">Tìm hiểu Góc Nhìn NAC</p>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
           <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/%f0%9f%93%88-nguoi-giau-viet-nam-dang-tang-nhanh-752-uhnwi-%e2%86%92-978-vao-2028-tai-sao-ho-chieu-thu-hai-tro-thanh-xu-huong/" target="_blank">Đọc Bài →</a>
         </div>
       </div>
@@ -1790,7 +2066,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
       <div class="info-box gold-box">
         <div class="info-icon">💡</div>
-        <div class="info-text"><strong>Chiến lược kết hợp tối ưu:</strong> Hy Lạp Golden Visa (EU Schengen + BĐS) + Thổ Nhĩ Kỳ CBI (quốc tịch thứ 2 nhanh trong 3–6 tháng) + UAE Golden Visa (thuế 0% + kinh doanh) = bộ ba chiến lược phổ biến nhất cho HNWI Việt tại NAC. Mỗi chương trình phục vụ mục tiêu khác nhau. <a href="https://nomadassetcollective.com/so-sanh/" target="_blank" style="color:var(--amber);font-weight:600;">Xem bộ so sánh đầy đủ →</a></div>
+        <div class="info-text"><strong>Chiến lược kết hợp tối ưu:</strong> Hy Lạp Golden Visa (EU Schengen + BĐS) + Thổ Nhĩ Kỳ CBI (quốc tịch thứ 2 nhanh trong 3–6 tháng) + UAE Golden Visa (thuế 0% + kinh doanh) = bộ ba chiến lược phổ biến nhất cho HNWI Việt tại NAC. Mỗi chương trình phục vụ mục tiêu khác nhau. <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">Xem bộ so sánh đầy đủ →</a></div>
       </div>
 
       <div class="cta-strip">
@@ -1806,7 +2082,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <section class="section" id="compare">
       <div class="sec-label">07 — So Sánh</div>
       <h2 class="sec-title">So Sánh Chương Trình</h2>
-      <p class="sec-sub">Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" style="color:var(--country);font-weight:600;">NAC Residence Index →</a></p>
+      <p class="sec-sub">Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Residence Index →</a></p>
 
       <div class="chart-box" style="margin-bottom:20px">
         <div class="chart-title">Thang Điểm NAC (INDEX) — Top chương trình (2026)</div>
@@ -1845,17 +2121,6 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         </tbody>
       </table>
       <div class="comp-table-mobile-msg">📊 Xem thông tin hoàn chỉnh trên desktop / web view</div>
-
-      <div class="article-cta" style="margin-top:16px">
-        <a class="article-cta-banner" href="https://nomadassetcollective.com/so-sanh/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/18-1024x683.jpg')">
-          <span class="article-cta-kicker">Công cụ</span>
-          <h3 class="article-cta-title">Công cụ So Sánh NAC</h3>
-        </a>
-        <div class="article-cta-body">
-          <p class="article-cta-desc">Chưa quyết định được? giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline.</p>
-          <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh →</a>
-        </div>
-      </div>
     
       <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
@@ -1969,13 +2234,13 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
       <div class="nac-box">
         <h3>Sẵn sàng bắt đầu hồ sơ Hy Lạp Golden Visa?</h3>
-        <p>Đội ngũ NAC Consulting có kinh nghiệm tư vấn Hy Lạp Golden Visa cho các gia đình HNWI Việt Nam, với mạng lưới đối tác BĐS và pháp lý tại Athens, Thessaloniki và các đảo. Chúng tôi hỗ trợ toàn bộ quy trình — từ lấy AFM, chọn BĐS, thẩm định pháp lý đến nộp hồ sơ cư trú. Đọc thêm tại <a href="https://blog.nomadassetcollective.com/" target="_blank" style="color:rgba(255,255,255,0.9);font-weight:700;">blog.nomadassetcollective.com</a></p>
+        <p>Đội ngũ NAC Consulting có kinh nghiệm tư vấn Hy Lạp Golden Visa cho các gia đình HNWI Việt Nam, với mạng lưới đối tác BĐS và pháp lý tại Athens, Thessaloniki và các đảo. Chúng tôi hỗ trợ toàn bộ quy trình — từ lấy AFM, chọn BĐS, thẩm định pháp lý đến nộp hồ sơ cư trú. Đọc thêm tại <a href="https://blog.nomadassetcollective.com/" target="_blank">blog.nomadassetcollective.com</a></p>
         <div class="nac-btns">
           <a class="nac-btn" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank">📅 Đặt 30" Tư Vấn</a>
-          <a class="nac-btn-wa" href="https://wa.me/447388646000" target="_blank" style="padding:10px 14px;">
+          <a class="nac-btn-wa" href="https://wa.me/447388646000" target="_blank">
             <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#25D366;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </a>
-          <a class="nac-btn" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" style="background:rgba(255,255,255,0.15);color:#fff;border:1.5px solid rgba(255,255,255,0.3);padding:10px 14px;font-size:16px;">📝</a>
+          <a class="nac-btn" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank">📝</a>
         </div>
       </div>
     </section>
@@ -2069,7 +2334,7 @@ function makeRadarDataset(key, alpha1, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [
       makeRadarDataset('greece', 0.18, 1),
       makeRadarDataset(radarCompare1, 0.10, 0.75),
@@ -2280,7 +2545,7 @@ const VI_STRINGS = [
   "07 — So Sánh",
   "08 — Ưu &amp; Nhược",
   "09 — Nhận Định NAC",
-  "Chương Trình Tổng Quan",
+  "Tổng Quan Chương Trình",
   "Các Mức Đầu Tư",
   "Quy Trình &amp; Thời Gian",
   "Gia Đình &amp; Đối Tượng Thụ Hưởng",
@@ -2306,16 +2571,16 @@ const VI_STRINGS = [
   "Giấy phép cư trú 5 năm, gia hạn được",
   "Ra mắt",
   "13 năm hoạt động · 27,786 nhà đầu tư (12/2025)",
-  "Vị trí địa chính trị",
+  "Địa Lý Chính Trị",
   "EU · Schengen · NATO",
   "Cửa ngõ châu Âu · Địa Trung Hải",
-  "Cư trú bắt buộc",
+  "Yêu Cầu Cư Trú",
   "Không bắt buộc",
   "Không yêu cầu số ngày cư trú tối thiểu",
   "Thời hạn visa",
   "5 năm (gia hạn được)",
   "Gia hạn nếu vẫn sở hữu BĐS",
-  "Gia đình",
+  "Bảo Lãnh",
   "Vợ/chồng + con + bố mẹ hai bên",
   "Bao gồm bố mẹ cả hai bên — không tăng đầu tư",
   "Thời gian xử lý",
@@ -2350,13 +2615,13 @@ const VI_STRINGS = [
   "<strong>Nguồn dữ liệu:</strong> Bộ Di Cư Hy Lạp · Luật 5100/2024 · Henley Passport Index 2026 · Dữ liệu cập nhật Q2/2026. Số liệu có thể thay đổi — liên hệ NAC để xác nhận trước khi quyết định.",
   'Đọc thêm phân tích chuyên sâu: <a href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank">So Sánh Toàn Diện Hy Lạp vs. Thổ Nhĩ Kỳ</a>',
   "Từ tháng 9/2024, Hy Lạp áp dụng mô hình 3 tầng đầu tư theo vùng địa lý và loại BĐS. Đường €250K vẫn tồn tại cho BĐS chuyển đổi thương mại → nhà ở.",
-  "<strong>Thay đổi quan trọng — Luật 5100/2024 (hiệu lực 09/2024):</strong> Ngưỡng cũ €250K cho BĐS nhà ở thông thường đã <em>hết hiệu lực hoàn toàn</em> kể từ 01/09/2024 — không có điều khoản chuyển tiếp nào còn mở. Ứng dụng mới từ nay phải tuân theo: €800K (Attica, Thessaloniki, Mykonos, Santorini và 32 đảo >3,100 dân) hoặc €400K (toàn bộ khu vực còn lại). Mỗi BĐS phải là một tài sản duy nhất ≥120m² (không cộng nhiều BĐS nhỏ). Cấm tuyệt đối cho thuê ngắn hạn kiểu Airbnb — vi phạm: thu hồi giấy phép cư trú <em>và</em> phạt hành chính €50,000. Ngoài BĐS, còn có đường vốn €500K+ vào công ty Hy Lạp, quỹ đầu tư, cổ phiếu hoặc trái phiếu chính phủ — nhưng yêu cầu visa D nhập cảnh trước, phức tạp hơn đường BĐS.",
+  "<strong>Thay đổi quan trọng — Luật 5100/2024 (hiệu lực 09/2024):</strong> Ngưỡng cũ €250K cho BĐS nhà ở thông thường đã <em>hết hiệu lực hoàn toàn</em> kể từ 01/09/2024 — không có điều khoản chuyển tiếp nào còn mở. Ứng dụng mới từ nay phải tuân theo: €800K (Attica, Thessaloniki, Mykonos, Santorini và 32 đảo &gt;3,100 dân) hoặc €400K (toàn bộ khu vực còn lại). Mỗi BĐS phải là một tài sản duy nhất ≥120m² (không cộng nhiều BĐS nhỏ). Cấm tuyệt đối cho thuê ngắn hạn kiểu Airbnb — vi phạm: thu hồi giấy phép cư trú <em>và</em> phạt hành chính €50,000. Ngoài BĐS, còn có đường vốn €500K+ vào công ty Hy Lạp, quỹ đầu tư, cổ phiếu hoặc trái phiếu chính phủ — nhưng yêu cầu visa D nhập cảnh trước, phức tạp hơn đường BĐS.",
   '<strong>Nhận định NAC — Đường €250K:</strong> Đây là lựa chọn chiến lược nhất — cho phép sở hữu BĐS ngay tại Athens với ngưỡng thấp nhất trong toàn EU. Tuy nhiên, có hai yêu cầu then chốt cần kiểm tra kỹ: <em>(1) Chuyển đổi phải được cơ quan có thẩm quyền Hy Lạp phê duyệt và hoàn thành hoàn toàn trước khi nộp hồ sơ Golden Visa</em> — dự án đang thi công chưa đủ điều kiện. <em>(2) BĐS phải là nhà ở hoàn chỉnh, không phải văn phòng công ty</em> — dùng làm trụ sở doanh nghiệp cũng bị phạt €50,000. Nguồn cung dự án đủ điều kiện hạn chế — NAC kết nối trực tiếp với developer đã được xác nhận pháp lý. <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">Xem NAC Index →</a>',
   "Quy trình Hy Lạp Golden Visa qua BĐS thường mất 3–6 tháng. Hầu hết các bước có thể thực hiện từ xa qua Giấy Ủy Quyền (Power of Attorney). Chỉ cần đến Hy Lạp một lần cho sinh trắc học.",
   "Điểm mạnh nổi bật nhất của Hy Lạp Golden Visa: bảo lãnh bố mẹ của cả hai bên (nhà đầu tư và vợ/chồng) mà không cần tăng mức đầu tư — điều hiếm gặp trong các chương trình RBI toàn cầu.",
   '<strong>Lợi thế gia đình Hy Lạp:</strong> Với một khoản đầu tư duy nhất €250K–€800K, gia đình có thể bao gồm vợ/chồng + con + bố mẹ hai bên = tối đa 8+ thành viên. Đây là tỷ lệ "đầu tư trên mỗi thành viên gia đình" thấp nhất trong mọi chương trình EU. Ví dụ: €250K ÷ 8 người = ~€31K/người — không chương trình nào cạnh tranh được.',
   "Hy Lạp có hệ thống thuế lũy tiến với mức cao nhất 44%, nhưng cung cấp nhiều chế độ ưu đãi đặc biệt cho nhà đầu tư nước ngoài — bao gồm Non-Dom, thuế khoán €100K/năm cho HNWI, và giảm 50% thuế 7 năm cho cư dân mới.",
-  "<strong>Golden Visa ≠ Cư trú thuế Hy Lạp:</strong> Sở hữu BĐS và giữ giấy phép cư trú Hy Lạp <em>không tự động</em> tạo nghĩa vụ thuế tại Hy Lạp — chỉ khi thực tế cư trú >183 ngày/năm tại Hy Lạp mới trở thành cư trú thuế. Nhà đầu tư Việt sống tại Việt Nam có thể giữ BĐS Hy Lạp, di chuyển Schengen tự do, mà không phải khai thuế thu nhập tại Hy Lạp. <strong>Hai lưu ý quan trọng:</strong> (1) Thuế thu nhập từ cho thuê BĐS tại Hy Lạp vẫn phát sinh tại nguồn — bất kể bạn cư trú ở đâu. (2) Việt Nam và Hy Lạp có hiệp định tránh đánh thuế hai lần (DTT) — thu nhập đã nộp thuế tại Hy Lạp sẽ được khấu trừ khi khai tại Việt Nam, nhưng cơ chế cụ thể cần xác nhận với tư vấn thuế chuyên biệt. <em>Thông tin này không phải tư vấn thuế — liên hệ luật sư thuế quốc tế trước khi tái cơ cấu tài sản.</em>",
+  "<strong>Golden Visa ≠ Cư trú thuế Hy Lạp:</strong> Sở hữu BĐS và giữ giấy phép cư trú Hy Lạp <em>không tự động</em> tạo nghĩa vụ thuế tại Hy Lạp — chỉ khi thực tế cư trú &gt;183 ngày/năm tại Hy Lạp mới trở thành cư trú thuế. Nhà đầu tư Việt sống tại Việt Nam có thể giữ BĐS Hy Lạp, di chuyển Schengen tự do, mà không phải khai thuế thu nhập tại Hy Lạp. <strong>Hai lưu ý quan trọng:</strong> (1) Thuế thu nhập từ cho thuê BĐS tại Hy Lạp vẫn phát sinh tại nguồn — bất kể bạn cư trú ở đâu. (2) Việt Nam và Hy Lạp có hiệp định tránh đánh thuế hai lần (DTT) — thu nhập đã nộp thuế tại Hy Lạp sẽ được khấu trừ khi khai tại Việt Nam, nhưng cơ chế cụ thể cần xác nhận với tư vấn thuế chuyên biệt. <em>Thông tin này không phải tư vấn thuế — liên hệ luật sư thuế quốc tế trước khi tái cơ cấu tài sản.</em>",
   "<strong>Non-Dom HNWI Regime (Điều 5A — Luật 4646/2019):</strong> Nhà đầu tư nước ngoài chuyển tư cách cư trú thuế sang Hy Lạp có thể đăng ký chế độ lump-sum: nộp <em>đúng €100,000/năm</em> để thanh toán toàn bộ nghĩa vụ thuế Hy Lạp trên thu nhập nước ngoài — bất kể thu nhập thực tế là bao nhiêu. Hiệu lực tối đa 15 năm. Điều kiện cứng: <strong>(1)</strong> đầu tư ít nhất €500,000 vào BĐS, doanh nghiệp, hoặc chứng khoán Hy Lạp, <strong>(2)</strong> chưa là cư trú thuế Hy Lạp trong 7/8 năm trước (không phải 5/6 như một số nguồn cũ đề cập — xác nhận với luật sư thuế Hy Lạp tại thời điểm đăng ký). Thu nhập phát sinh <em>tại</em> Hy Lạp vẫn nộp thuế thông thường theo bậc lũy tiến.",
   "Hy Lạp cho phép nhập tịch qua cư trú thực tế sau 7 năm — dẫn đến hộ chiếu EU với 186 quốc gia miễn visa (top 8 thế giới). Tuy nhiên, yêu cầu cư trú thực tế 183 ngày/năm và thi ngôn ngữ/lịch sử.",
   "<strong>Yêu cầu nhập tịch — hiểu đúng để lập kế hoạch:</strong> Thứ nhất, <em>7 năm cư trú thực tế</em> nghĩa là bạn phải thực sự sống tại Hy Lạp ≥183 ngày/năm trong 7 năm liên tục — đồng hồ chỉ tính khi bạn <em>cư trú thuế</em> tại Hy Lạp, không tính thời gian chỉ giữ visa mà sống ở Việt Nam. Thứ hai, nhà đầu tư Golden Visa không sống ở Hy Lạp sẽ <em>không tích lũy</em> thời gian hướng đến quốc tịch — đây là điểm khác biệt quan trọng thường bị nhầm. Thứ ba, sau 5 năm cư trú liên tục (có thực tế), nhà đầu tư có thể đủ điều kiện xin Thường Trú Nhân EU — quyền này ít bị ràng buộc hơn quốc tịch. Yêu cầu khác cho nhập tịch: thi tiếng Hy Lạp B1, kiến thức lịch sử &amp; văn hóa, không tiền án, hồ sơ thuế sạch.",
@@ -2369,7 +2634,7 @@ const VI_STRINGS = [
   'Đội ngũ NAC Consulting có kinh nghiệm tư vấn Hy Lạp Golden Visa cho các gia đình HNWI Việt Nam, với mạng lưới đối tác BĐS và pháp lý tại Athens, Thessaloniki và các đảo. Chúng tôi hỗ trợ toàn bộ quy trình — từ lấy AFM, chọn BĐS, thẩm định pháp lý đến nộp hồ sơ cư trú. Đọc thêm tại <a href="https://blog.nomadassetcollective.com/" target="_blank">blog.nomadassetcollective.com</a>',
   "<strong>Hy Lạp Golden Visa phù hợp nhất với:</strong> Gia đình đa thế hệ muốn bảo lãnh bố mẹ hai bên, nhà đầu tư muốn sở hữu BĐS thực tại EU, ngân sách €250K–€400K (đường chuyển đổi hoặc vùng ngoài Athens), cần Schengen miễn visa cho di chuyển thường xuyên, và có kế hoạch dài hạn hướng đến quốc tịch EU. Nếu thuế 0% là ưu tiên → UAE. Nếu quốc tịch nhanh → Thổ Nhĩ Kỳ. Nếu EU + BĐS + gia đình → Hy Lạp.",
   "BĐS tại vùng nhu cầu cao",
-  "Athens (Attica) · Thessaloniki · Mykonos · Santorini · đảo >3,100 dân",
+  "Athens (Attica) · Thessaloniki · Mykonos · Santorini · đảo &gt;3,100 dân",
   "BĐS duy nhất ≥120m²",
   "Cho thuê dài hạn OK",
   "Cấm Airbnb",
@@ -2444,6 +2709,123 @@ const VI_STRINGS = [
   'Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Residence Index →</a>',
   'Chưa quyết định được? <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">Công cụ So Sánh NAC</a> giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline.',
   'Đội ngũ NAC Consulting có kinh nghiệm tư vấn Hy Lạp Golden Visa cho các gia đình HNWI Việt Nam, với mạng lưới đối tác BĐS và pháp lý tại Athens, Thessaloniki và các đảo. Chúng tôi hỗ trợ toàn bộ quy trình — từ lấy AFM, chọn BĐS, thẩm định pháp lý đến nộp hồ sơ cư trú. Đọc thêm tại <a href="https://blog.nomadassetcollective.com/" target="_blank">blog.nomadassetcollective.com</a>',
+  "★ BĐS đang mở bán",
+  "BĐS đang mở bán",
+  "Tư Vấn 30''",
+  "2013 (cải cách 2024)",
+  "Phân tích điểm 6 tiêu chí NAC — Greece Golden Visa",
+  "Thời gian cấp cư trú — Greece vs các chương trình hàng đầu (tháng)",
+  "Bài viết đề xuất",
+  "So Sánh Toàn Diện Greece vs. Thổ Nhĩ Kỳ",
+  "Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.",
+  "Thay đổi quan trọng — Luật 5100/2024 (hiệu lực 09/2024):",
+  "Ngưỡng cũ €250K cho BĐS nhà ở thông thường đã",
+  "hết hiệu lực hoàn toàn",
+  "kể từ 01/09/2024 — không có điều khoản chuyển tiếp nào còn mở. Ứng dụng mới từ nay phải tuân theo: €800K (Attica, Thessaloniki, Mykonos, Santorini và 32 đảo &gt;3,100 dân) hoặc €400K (toàn bộ khu vực còn lại). Mỗi Property must be a single unit ≥120m² (multiple small properties cannot be combined). Cấm tuyệt đối cho thuê ngắn hạn kiểu Airbnb — vi phạm: thu hồi giấy phép cư trú",
+  "phạt hành chính €50,000. Ngoài BĐS, còn có đường vốn €500K+ vào công ty Greece, quỹ đầu tư, cổ phiếu hoặc trái phiếu chính phủ — nhưng yêu cầu visa D nhập cảnh trước, phức tạp hơn đường BĐS.",
+  "Tìm hiểu thêm:",
+  "Cơ Hội Đầu Tư Thực Tế",
+  "BĐS Đủ Điều Kiện RBI — Đang Mở Bán",
+  "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Greece và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.",
+  "Đang Cập Nhật",
+  "Thêm BĐS Greece đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.",
+  "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Greece.",
+  "Tất cả BĐS đủ điều kiện RBI →",
+  "Tuần 1–3",
+  "Lấy Mã Số Tax (AFM) &amp; mở tài khoản ngân hàng Greece",
+  "NAC hỗ trợ lấy AFM (mã số thuế Greece) — bắt buộc cho mọi giao dịch BĐS. Mở tài khoản ngân hàng tại Greece để chuyển tiền mua BĐS. Có thể thực hiện qua Power of Attorney (PoA) mà không cần đến Greece.",
+  "Tuần 3–6",
+  "Chọn BĐS &amp; thẩm định pháp lý — bước quan trọng nhất",
+  'Luật sư Greece thẩm định toàn diện: kiểm tra sổ đỏ, lịch sử tranh chấp, xác nhận BĐS đủ điều kiện Golden Visa (đúng khu vực, đúng ngưỡng, đúng loại). Với đường €250K chuyển đổi: phải xác nhận (a) giấy phép chuyển đổi đã được cơ quan Greece cấp và (b) công trình đã hoàn thành — không chấp nhận "đang xây". Với đường €400K/€800K: xác nhận diện tích thực tế ≥120m² tính trên phần "không gian chính" (không tính kho, bãi đậu xe). Đây là bước không nên tự làm — sai tầng này dẫn đến từ chối hồ sơ.',
+  "Hoàn tất mua BĐS &amp; đăng ký tại Cơ Quan Đất Đai",
+  "Thanh toán đầy đủ, ký công chứng. Đăng ký tại Cadastre/Land Registry. Nộp thuế chuyển nhượng 3.09%. Nhận giấy chứng nhận sở hữu. Chi phí bổ sung: phí công chứng ~1–2%, phí đăng ký 0.5%, phí luật sư 1–2%.",
+  "Nộp hồ sơ Golden Visa qua Cổng Kỹ Thuật Số",
+  "Nộp hồ sơ tại Cục Di Trú Greece qua Digital Residency Portal. Bộ hồ sơ: giấy chứng nhận BĐS, hộ chiếu, bảo hiểm y tế tư nhân Greece, ảnh sinh trắc học, lý lịch tư pháp quốc tế (cần công chứng và hợp pháp hóa lãnh sự). Cần đến Greece một lần để lấy dấu vân tay sinh trắc học. Từ 2025, thời gian xử lý giảm xuống ~3 tháng — nhưng có thể dao động theo khối lượng hồ sơ tại từng thời điểm.",
+  "Nhận Giấy Phép Residency 5 Năm",
+  "Cục Di Trú phê duyệt và cấp thẻ cư trú 5 năm. Toàn bộ gia đình (vợ/chồng, con dưới 21, bố mẹ hai bên) nhận giấy phép đồng thời. Di chuyển tự do trong 26 Schengen countries ngay lập tức. Gia hạn sau 5 năm nếu vẫn sở hữu BĐS.",
+  "Cải thiện xử lý 2025–2026:",
+  "Greece đã đầu tư mạnh vào hệ thống Digital Residency Portal từ 2025, giảm thời gian xử lý từ 12–18 months xuống ~3 tháng đối với hồ sơ đầy đủ. Tuy nhiên: thời gian thực tế phụ thuộc vào (a) hồ sơ có đầy đủ và chính xác ngay từ đầu không, (b) tải trọng hệ thống tại thời điểm nộp. NAC khuyến nghị lập kế hoạch với khung 4–6 tháng để đảm bảo an toàn.",
+  "Lưu ý: thẻ cư trú tạm thời (1 năm) thường được cấp trong vài tuần sau khi hồ sơ được tiếp nhận — nhà đầu tư có thể sử dụng thẻ này để di chuyển Schengen ngay trong khi chờ thẻ chính thức 5 năm.",
+  "Tại Sao Hộ Chiếu Thứ Hai Trở Thành xu Hướng Cho UHNWI Việt ?",
+  "Tìm hiểu Góc Nhìn NAC",
+  "Đọc Bài →",
+  "🔒 Còn 6 phần chuyên sâu",
+  "Đọc trọn bộ Brochure Greece Golden Visa?",
+  "Family · Tax · Path to Citizenship · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.",
+  "Có, gửi cho tôi →",
+  "Để sau",
+  "Brochure được gửi từ",
+  "Nhập mật khẩu để xem toàn bộ brochure ngay.",
+  "Mở khóa",
+  "Gửi tới email nào?",
+  "Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.",
+  "Gửi cho tôi →",
+  "Đã nhận yêu cầu của bạn",
+  "Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.",
+  "OK, để sau cũng được",
+  "Đổi ý lúc nào cũng được —",
+  "gửi brochure cho tôi",
+  "Hành động:",
+  "Tư Vấn Chiến Lược Gia Đình",
+  "Loại thuế",
+  "Mức thuế Greece",
+  "Điều kiện",
+  "So với VN",
+  "Tax thu nhập cá nhân",
+  "9–44% (lũy tiến)",
+  "Chỉ áp dụng nếu cư trú thuế tại Greece (&gt;183 ngày)",
+  "€100K/năm khoán",
+  "Tax khoán trên toàn bộ thu nhập nước ngoài — 15 năm",
+  "Tax lãi vốn BĐS (CGT)",
+  "0% (đình chỉ đến 31/12/2026)",
+  "Đang tạm đình chỉ — sau 31/12/2026: 15% (chưa chắc gia hạn tiếp)",
+  "Tax cổ tức",
+  "Thấp nhất EU",
+  "Tax thừa kế",
+  "Vợ/chồng, con: miễn đến €400K (kết hôn &gt;5 năm)",
+  "Tax doanh nghiệp",
+  "Tiêu chuẩn EU",
+  "Giảm 13% cho đảo và một số dịch vụ",
+  "Phí mua BĐS",
+  "Tax chuyển nhượng + phụ thu",
+  "Tax cho thuê BĐS",
+  "15% (≤€12K) · 35% (€12K–€35K) · 45% (&gt;€35K) — sau khi trừ 5% chi phí định mức. Từ 1/1/2026: bracket giữa giảm từ 35% → 25% cho thu nhập €12K–€35K",
+  "Giảm thuế cư dân mới",
+  "50% giảm 7 năm",
+  "Giảm 50% thuế thu nhập lao động/kinh doanh cho cư dân mới",
+  "📊 Xem thông tin hoàn chỉnh trên desktop / web view",
+  "Golden Visa ≠ Cư trú thuế Greece:",
+  "Sở hữu BĐS và giữ giấy phép cư trú Greece",
+  "không tự động",
+  "tạo nghĩa vụ thuế tại Greece — chỉ khi thực tế cư trú &gt;183 ngày/năm tại Greece mới trở thành cư trú thuế. Nhà đầu tư Việt sống tại Việt Nam có thể giữ BĐS Greece, di chuyển Schengen tự do, mà không phải khai thuế thu nhập tại Greece.",
+  "Hai lưu ý quan trọng:",
+  "(1) Tax thu nhập từ cho thuê BĐS tại Greece vẫn phát sinh tại nguồn — bất kể bạn cư trú ở đâu. (2) Việt Nam và Greece có hiệp định tránh đánh thuế hai lần (DTT) — thu nhập đã nộp thuế tại Greece sẽ được khấu trừ khi khai tại Việt Nam, nhưng cơ chế cụ thể cần xác nhận với tư vấn thuế chuyên biệt.",
+  "Thông tin này không phải tư vấn thuế — liên hệ luật sư thuế quốc tế trước khi tái cơ cấu tài sản.",
+  "So sánh thuế thu nhập cá nhân tối đa — Greece vs các quốc gia (%)",
+  "Bước tiếp theo:",
+  "NAC Score (INDEX) — Top chương trình (2026)",
+  "Đọc trọn bộ Brochure Hy Lạp Golden Visa?",
+  "Chỉ áp dụng nếu cư trú thuế tại Hy Lạp (&gt;183 ngày)",
+  "€250K (quỹ)",
+  "$400K (BĐS)",
+  "£50K (vốn)",
+  "Chương trình",
+  "Đầu tư tối thiểu",
+  "Di chuyển",
+  "Thời gian",
+  "Điểm NAC",
+  "Công cụ",
+  "Công cụ phân tích",
+  "Công cụ So Sánh NAC",
+  "NAC Residence Index — So Sánh 21 Chương Trình",
+  "Chưa quyết định được? giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline.",
+  "Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất.",
+  "Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.",
+  "Timeline cấp cư trú — Greece vs các chương trình hàng đầu (tháng)",
+  "Phân tích điểm mạnh — Greece vs các chương trình cạnh tranh (2026)",
+  "© 2026 NAC Consulting — Nomad Asset Collective. Tài liệu này chỉ mang tính <strong>tham khảo thông tin</strong> và không cấu thành tư vấn pháp lý, tư vấn đầu tư, hay tư vấn thuế. Các số liệu về ngưỡng đầu tư, thuế suất, thời gian xử lý và điều kiện chương trình có thể thay đổi theo chính sách của Chính phủ Hy Lạp mà không báo trước. Dữ liệu CGT 0% có hiệu lực đến 31/12/2026 và chưa chắc được gia hạn. Vui lòng xác nhận thông tin mới nhất với đội ngũ tư vấn NAC và luật sư Hy Lạp có thẩm quyền trước khi đưa ra bất kỳ quyết định đầu tư nào.",
+  "Cục Di Trú phê duyệt và cấp thẻ cư trú 5 năm. Toàn bộ gia đình (vợ/chồng, con dưới 21, bố mẹ hai bên) nhận giấy phép đồng thời. Di chuyển tự do trong 26 nước Schengen ngay lập tức. Gia hạn sau 5 năm nếu vẫn sở hữu BĐS.",
+  "Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC",
 ];
 
 const EN_STRINGS = [
@@ -2509,16 +2891,16 @@ const EN_STRINGS = [
   "5-year renewable residence permit",
   "Launched",
   "13 years active · 27,786 investors (12/2025)",
-  "Geopolitical Position",
+  "Geopolitics",
   "EU · Schengen · NATO",
   "Gateway to Europe · Mediterranean",
-  "Residency Required",
+  "Residency Requirement",
   "Not mandatory",
   "No minimum stay requirement",
   "Visa Duration",
   "5 years (renewable)",
   "Renewable while property is owned",
-  "Family",
+  "Sponsorship",
   "Spouse + children + parents of both sides",
   "Parents of both spouses included — no extra investment",
   "Processing Time",
@@ -2553,13 +2935,13 @@ const EN_STRINGS = [
   "<strong>Data sources:</strong> Greek Ministry of Migration · Law 5100/2024 · Henley Passport Index 2026 · Data updated Q2/2026. Figures may change — contact NAC to verify before making a decision.",
   'Read more in-depth analysis: <a href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank">Full Comparison: Greece vs. Turkey</a>',
   "From September 2024, Greece applies a 3-tier investment model based on geographic zone and property type. The €250K route still exists for commercial-to-residential conversion properties.",
-  "<strong>Important change — Law 5100/2024 (effective 09/2024):</strong> The old €250K threshold for standard residential properties has <em>fully expired</em> as of 01/09/2024 — no transitional provisions remain open. New applications must now comply with: €800K (Attica, Thessaloniki, Mykonos, Santorini and 32 islands >3,100 residents) or €400K (all other areas). Each property must be a single unit ≥120m² (multiple small properties cannot be combined). Short-term rentals (Airbnb-style) are strictly prohibited — violation: residency permit revocation <em>and</em> €50,000 administrative fine. Beyond real estate, there is also a €500K+ capital route into Greek companies, investment funds, shares or government bonds — but requires a D-visa entry first, more complex than the real estate route.",
+  "<strong>Important change — Law 5100/2024 (effective 09/2024):</strong> The old €250K threshold for standard residential properties has <em>fully expired</em> as of 01/09/2024 — no transitional provisions remain open. New applications must now comply with: €800K (Attica, Thessaloniki, Mykonos, Santorini and 32 islands &gt;3,100 residents) or €400K (all other areas). Each property must be a single unit ≥120m² (multiple small properties cannot be combined). Short-term rentals (Airbnb-style) are strictly prohibited — violation: residency permit revocation <em>and</em> €50,000 administrative fine. Beyond real estate, there is also a €500K+ capital route into Greek companies, investment funds, shares or government bonds — but requires a D-visa entry first, more complex than the real estate route.",
   '<strong>NAC Assessment — €250K Route:</strong> This is the most strategic option — allowing direct property ownership in Athens at the lowest threshold in the entire EU. However, two critical requirements must be carefully verified: <em>(1) The conversion must be approved and fully completed by the Greek competent authority before submitting the Golden Visa application</em> — projects under construction do not qualify. <em>(2) The property must be completed residential housing, not a company office</em> — using it as a business headquarters also incurs a €50,000 fine. Supply of qualifying conversion projects is limited — NAC connects directly with legally verified developers. <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">View NAC Index →</a>',
   "The Greece Golden Visa process via real estate typically takes 3–6 months. Most steps can be completed remotely via Power of Attorney. Only one visit to Greece is required for biometrics.",
   "Greece Golden Visa's most outstanding strength: sponsoring parents from both sides (investor and spouse) without increasing the investment amount — a rare feature among global RBI programs.",
   '<strong>Greece family advantage:</strong> With a single investment of €250K–€800K, the family can include spouse + children + both sets of parents = up to 8+ members. This is the lowest "investment per family member" ratio of any EU program. Example: €250K ÷ 8 people = ~€31K/person — no program can compete with this.',
   "Greece has a progressive tax system with a top rate of 44%, but offers several special preferential regimes for foreign investors — including Non-Dom, a €100K/year flat tax for HNWIs, and a 50% income tax reduction for 7 years for new residents.",
-  "<strong>Golden Visa ≠ Greek tax residency:</strong> Owning property and holding a Greek residency permit does <em>not automatically</em> create tax obligations in Greece — only when physically residing >183 days/year in Greece does one become a tax resident. Vietnamese investors living in Vietnam can hold Greek real estate, travel freely in Schengen, without filing income taxes in Greece. <strong>Two important notes:</strong> (1) Rental income from Greek real estate still generates tax at source — regardless of where you reside. (2) Vietnam and Greece have a double taxation treaty (DTT) — income already taxed in Greece will be credited when filing in Vietnam, but the specific mechanism should be confirmed with a specialist tax advisor. <em>This information is not tax advice — consult an international tax lawyer before restructuring assets.</em>",
+  "<strong>Golden Visa ≠ Greek tax residency:</strong> Owning property and holding a Greek residency permit does <em>not automatically</em> create tax obligations in Greece — only when physically residing &gt;183 days/year in Greece does one become a tax resident. Vietnamese investors living in Vietnam can hold Greek real estate, travel freely in Schengen, without filing income taxes in Greece. <strong>Two important notes:</strong> (1) Rental income from Greek real estate still generates tax at source — regardless of where you reside. (2) Vietnam and Greece have a double taxation treaty (DTT) — income already taxed in Greece will be credited when filing in Vietnam, but the specific mechanism should be confirmed with a specialist tax advisor. <em>This information is not tax advice — consult an international tax lawyer before restructuring assets.</em>",
   "<strong>Non-Dom HNWI Regime (Article 5A — Law 4646/2019):</strong> Foreign investors transferring their tax residency to Greece can register for a lump-sum regime: pay <em>exactly €100,000/year</em> to settle all Greek tax obligations on foreign income — regardless of actual income amount. Maximum validity 15 years. Hard conditions: <strong>(1)</strong> invest at least €500,000 in Greek real estate, businesses, or securities, <strong>(2)</strong> not been a Greek tax resident in 7 of the previous 8 years (not 5/6 as some older sources state — confirm with a Greek tax lawyer at time of registration). Income generated <em>in</em> Greece is still taxed at regular progressive rates.",
   "Greece allows naturalization through actual residency after 7 years — leading to an EU passport with 186 visa-free countries (top 8 globally). However, it requires 183 days/year of actual residence and language/history exams.",
   "<strong>Naturalization requirements — understand correctly to plan effectively:</strong> First, <em>7 years of actual residency</em> means you must physically live in Greece ≥183 days/year for 7 consecutive years — the clock only counts when you are a <em>tax resident</em> of Greece, not while merely holding a visa while living in Vietnam. Second, Golden Visa investors not living in Greece will <em>not accumulate</em> time toward citizenship — this is an important distinction that is often misunderstood. Third, after 5 years of continuous (actual) residency, investors may qualify for EU Permanent Residence — a less restrictive right than citizenship. Other naturalization requirements: pass Greek B1 language test, knowledge of history &amp; culture, no criminal record, clean tax record.",
@@ -2572,7 +2954,7 @@ const EN_STRINGS = [
   'The NAC Consulting team has extensive experience advising Vietnamese HNWI families on Greece Golden Visa, with a network of real estate and legal partners in Athens, Thessaloniki and the islands. We support the entire process — from obtaining AFM, property selection, legal due diligence to residency application. Read more at <a href="https://blog.nomadassetcollective.com/" target="_blank">blog.nomadassetcollective.com</a>',
   "<strong>Greece Golden Visa is best suited for:</strong> Multi-generational families wanting to sponsor both sets of parents, investors seeking actual EU real estate ownership, budget of €250K–€400K (conversion route or areas outside Athens), requiring Schengen visa-free access for frequent travel, and with long-term plans toward EU citizenship. If 0% tax is the priority → UAE. If fast citizenship → Turkey. If EU + real estate + family → Greece.",
   "Property in High-Demand Zones",
-  "Athens (Attica) · Thessaloniki · Mykonos · Santorini · islands >3,100 residents",
+  "Athens (Attica) · Thessaloniki · Mykonos · Santorini · islands &gt;3,100 residents",
   "Single property ≥120m²",
   "Long-term rental OK",
   "Airbnb banned",
@@ -2647,6 +3029,123 @@ const EN_STRINGS = [
   'Greece Golden Visa’s position in the overall landscape. See full rankings at <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Residence Index →</a>',
   'Can’t decide yet? The <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">NAC Comparison Tool</a> helps you choose the right program based on your budget, family goals and timeline.',
   'The NAC Consulting team has extensive experience advising Vietnamese HNWI families on Greece Golden Visa, with a network of real estate and legal partners in Athens, Thessaloniki and the islands. We support the entire process — from obtaining AFM, property selection, legal due diligence to residency application. Read more at <a href="https://blog.nomadassetcollective.com/" target="_blank">blog.nomadassetcollective.com</a>',
+  "★ Active Listings",
+  "Active Listings",
+  "30' Consultation",
+  "2013 (reformed 2024)",
+  "6-criteria NAC score breakdown — Greece Golden Visa",
+  "Time to residency — Greece vs leading programs (months)",
+  "Recommended article",
+  "Greece vs. Türkiye — Comprehensive Comparison",
+  "Insights from the NAC team after 5+ years handling cases for Vietnamese families.",
+  "Key change — Law 5100/2024 (effective 09/2024):",
+  "The old €250K threshold for ordinary residential real estate has",
+  "been fully repealed",
+  "as of 01/09/2024 — no transitional provisions remain open. New applications must now follow: €800K (Attica, Thessaloniki, Mykonos, Santorini and 32 islands with &gt;3,100 population) or €400K (all remaining regions). Each property must be a single unit ≥120m² (multiple small properties cannot be combined). Short-term Airbnb-style rental is strictly prohibited — violation: residence permit revoked",
+  "and an administrative fine of €50,000. Beyond real estate, there is also a €500K+ capital route into Greek companies, investment funds, equities, or government bonds — but it requires a D-visa entry first and is more complex than the real-estate route.",
+  "Learn more:",
+  "Real Investment Opportunities",
+  "RBI-Eligible Properties — Active Listings",
+  "These are properties vetted by NAC, eligible for the Greece RBI program, and ready for transaction. No need to hunt — we have curated the selection.",
+  "Updating",
+  "More Greece RBI-eligible properties will be announced here in due course.",
+  "NAC only lists properties that have been independently legally vetted and confirmed eligible for Greece RBI.",
+  "All RBI-eligible properties →",
+  "Weeks 1–3",
+  "Obtain Tax Number (AFM) &amp; open a Greek bank account",
+  "NAC assists in obtaining an AFM (Greek tax number) — mandatory for any real-estate transaction. Open a Greek bank account to wire funds for the property. Can be done via Power of Attorney (PoA) without travelling to Greece.",
+  "Weeks 3–6",
+  "Select property &amp; legal due diligence — the most critical step",
+  'A Greek lawyer conducts comprehensive due diligence: title check, dispute history, and confirmation that the property qualifies for Golden Visa (correct region, correct threshold, correct property type). For the €250K conversion route: confirm (a) the conversion permit has been issued by Greek authorities, and (b) construction is fully completed — "under construction" is not accepted. For the €400K/€800K routes: confirm actual area ≥120m² measured on the "main living space" (excluding storage and parking). This step should not be done DIY — getting it wrong leads to application rejection.',
+  "Complete property purchase &amp; register at the Land Authority",
+  "Full payment, notarised signing. Register at the Cadastre/Land Registry. Pay transfer tax 3.09%. Receive certificate of ownership. Additional costs: notary fees ~1–2%, registration fees 0.5%, legal fees 1–2%.",
+  "Submit Golden Visa application via the Digital Portal",
+  "Submit via Greece's Immigration Bureau through the Digital Residency Portal. The dossier: property certificate, passport, Greek private health insurance, biometric photos, international criminal record (notarised and consular-legalised). One trip to Greece is required to provide biometric fingerprints. From 2025, processing time has dropped to ~3 months — though actual time depends on application volume at the time of submission.",
+  "Receive 5-Year Residence Permit",
+  "The Immigration Bureau approves and issues the 5-year residence card. The whole family (spouse, children under 21, both sets of parents) receives permits simultaneously. Immediate free movement across the 26 Schengen countries. Renewable after 5 years as long as the property is still owned.",
+  "Processing improvements 2025–2026:",
+  "Greece has invested heavily in its Digital Residency Portal since 2025, cutting processing time from 12–18 months to ~3 months for complete applications. However: actual timing depends on (a) whether the dossier is complete and accurate from day one, and (b) system load at the time of submission. NAC recommends planning around a 4–6 month window to be safe.",
+  "Note: a temporary residence card (1 year) is typically issued within weeks of the application being accepted — the investor can use this card for immediate Schengen travel while waiting for the official 5-year card.",
+  "Why a Second Passport Has Become the Trend for Vietnamese UHNWI",
+  "Read the NAC Perspective",
+  "Read article →",
+  "🔒 6 more in-depth sections",
+  "Read the full Greece Golden Visa Brochure?",
+  "Family · Tax · Path to Citizenship · Comparison · Pros &amp; cons · NAC insights — delivered to your email.",
+  "Yes, send it to me →",
+  "Later",
+  "Brochure sent from",
+  "Enter the password to view the full brochure now.",
+  "Unlock",
+  "Send to which email?",
+  "One last step. NAC will send the full brochure within 24 hours.",
+  "Send to me →",
+  "We have received your request",
+  "The NAC team will send the full brochure within 24 hours. Please also check your Spam/Promotions folder.",
+  "OK, later is fine",
+  "Change your mind anytime —",
+  "send the brochure to me",
+  "Action:",
+  "Family Strategic Consultation",
+  "Tax type",
+  "Greek rate",
+  "Conditions",
+  "vs Vietnam",
+  "Personal income tax",
+  "9–44% (progressive)",
+  "Only applies if Greek tax-resident (&gt;183 days)",
+  "€100K/yr flat",
+  "Flat tax on all foreign income — 15 years",
+  "Real-estate capital gains tax (CGT)",
+  "0% (suspended until 31/12/2026)",
+  "Currently suspended — after 31/12/2026: 15% (extension uncertain)",
+  "Dividend tax",
+  "Lowest in the EU",
+  "Inheritance tax",
+  "Spouse, children: exempt up to €400K (married &gt;5 years)",
+  "Corporate tax",
+  "EU standard",
+  "13% reduction for islands and select services",
+  "Property purchase fees",
+  "Transfer tax + surcharges",
+  "Rental income tax",
+  "15% (≤€12K) · 35% (€12K–€35K) · 45% (&gt;€35K) — after a 5% standard expense deduction. From 1/1/2026: middle bracket drops from 35% → 25% for €12K–€35K income",
+  "New-resident tax break",
+  "50% reduction for 7 years",
+  "50% reduction on employment/business income tax for new residents",
+  "📊 View complete information on desktop / web view",
+  "Golden Visa ≠ Greek tax residency:",
+  "Owning real estate and holding a Greek residence permit",
+  "does not automatically",
+  "create Greek tax obligations — only by actually residing &gt;183 days/year in Greece do you become a tax resident. A Vietnamese investor living in Vietnam can hold Greek real estate and travel Schengen freely without declaring income tax in Greece.",
+  "Two important caveats:",
+  "(1) Tax on rental income from Greek real estate still arises at source — regardless of where you reside. (2) Vietnam and Greece have a double-tax treaty (DTT) — taxes paid in Greece are credited when declaring in Vietnam, but the specific mechanism should be confirmed with a specialised tax advisor.",
+  "This is not tax advice — consult an international tax lawyer before restructuring assets.",
+  "Top personal income tax comparison — Greece vs other countries (%)",
+  "Next step:",
+  "NAC Score (INDEX) — Top programs (2026)",
+  "Read the full Greece Golden Visa Brochure?",
+  "Only applies if Greek tax-resident (&gt;183 days)",
+  "€250K (fund)",
+  "$400K (RE)",
+  "£50K (capital)",
+  "Program",
+  "Min investment",
+  "Mobility",
+  "Timeline",
+  "NAC score",
+  "Tool",
+  "Analysis tool",
+  "NAC Comparison Tool",
+  "NAC Residence Index — Compare 21 Programs",
+  "Not sure yet? We help you pick the right program for your budget, family goals, and timeline.",
+  "Ranking automatically updates based on your family's criteria — pick the KPIs that matter most and get the best-fit program.",
+  "Family · Tax · Path to Citizenship · Comparison · Pros &amp; cons · NAC insights — delivered to your email.",
+  "Time to residency — Greece vs leading programs (months)",
+  "Strength analysis — Greece vs competing programs (2026)",
+  "© 2026 NAC Consulting — Nomad Asset Collective. This document is for <strong>informational reference only</strong> and does not constitute legal, investment, or tax advice. Investment thresholds, tax rates, processing times, and program conditions may change based on Greek government policy without prior notice. The 0% CGT data is valid until 31/12/2026 and is not guaranteed to be extended. Please verify the latest information with the NAC advisory team and qualified Greek lawyers before making any investment decision.",
+  "The Immigration Bureau approves and issues the 5-year residence card. The whole family (spouse, children under 21, both sets of parents) receives permits simultaneously. Immediate free movement across the 26 Schengen countries. Renewable after 5 years as long as the property is still owned.",
+  "Want to know more? Read more in-depth analyses on the NAC blog.",
 ];
 
 function setLang(lang) {
@@ -2654,6 +3153,20 @@ function setLang(lang) {
   document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
+
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
 
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = heroText[lang].title;
@@ -2669,8 +3182,15 @@ function setLang(lang) {
   const sbarVi = ['Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch'];
   sbarLbls.forEach((el,i) => { el.textContent = lang === 'en' ? sbarEn[i] : sbarVi[i]; });
 
-  const src = lang === 'en' ? VI_STRINGS : EN_STRINGS;
-  const dst = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  // Sort source/dest pairs by descending VI length so longer phrases
+  // replace before their substrings (avoids country-name short-replace
+  // pre-mangling a longer sentence that contains it).
+  const _srcRaw = lang === 'en' ? VI_STRINGS : EN_STRINGS;
+  const _dstRaw = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _idx = _srcRaw.map((_, i) => i)
+    .sort((a, b) => _srcRaw[b].length - _srcRaw[a].length);
+  const src = _idx.map(i => _srcRaw[i]);
+  const dst = _idx.map(i => _dstRaw[i]);
   const selectors = [
     '.sec-sub','.sec-label','.sec-title',
     '.ov-label','.ov-value','.ov-note',
@@ -2680,6 +3200,7 @@ function setLang(lang) {
     '.info-text','.factcheck-box > div',
     '.chart-title','.toc-link','.toc-title',
     '.hero-badge','.article-cta-text','.article-cta-btn',
+    '.article-cta-kicker','.article-cta-title','.article-cta-desc',
     '.road-label','.road-year',
     'th','td',
     '.pros h4','.cons h4','.pros li','.cons li',
@@ -2687,8 +3208,11 @@ function setLang(lang) {
     '.score-label','.score-title',
     '.footer-t','.footer-update',
     '.float-toc-panel a','.float-toc-panel-header',
-    '.breadcrumb','.toc-cta-mini a','.cta-strip-label',
+    '.breadcrumb','.toc-cta-mini a','.cta-strip-label','.cta-text',
     '.nac-btn','.comp-table-mobile-msg',
+    '.star-label','.tag','.listings-fn-text','.listings-fn-link',
+    '.listing-placeholder-title','.listing-placeholder-sub',
+    '.pw-sub','.pw-title','.pw-cta-primary','.pw-cta-secondary',
   ];
   document.querySelectorAll(selectors.join(',')).forEach(el => {
     let content = el.innerHTML;
@@ -2701,6 +3225,41 @@ function setLang(lang) {
     });
     if (changed) el.innerHTML = content;
   });
+
+  // Pass 2 — universal text-node fallback. Catches DOM strings whose
+  // class isn't in the selector list above. Plain-text entries only
+  // (skip ones with HTML tags — those belong to Pass 1's innerHTML).
+  // Decode `&amp;` → `&` for text-node comparison (text nodes hold
+  // raw `&`; array entries hold the entity form for Pass 1's compare).
+  function _decAmp(s) { return s.split('&amp;').join('&'); }
+  const plainPairs = [];
+  src.forEach((s, i) => {
+    if (s && dst[i] && s.indexOf('<') < 0 && s.indexOf('>') < 0) {
+      plainPairs.push([_decAmp(s), _decAmp(dst[i])]);
+    }
+  });
+  function walkText(n) {
+    if (!n) return;
+    if (n.nodeType === 8) return; // skip Comment
+    if (n.nodeType === 3) {
+      let t = n.nodeValue;
+      let changed = false;
+      for (let p = 0; p < plainPairs.length; p++) {
+        if (t.indexOf(plainPairs[p][0]) >= 0) {
+          t = t.split(plainPairs[p][0]).join(plainPairs[p][1]);
+          changed = true;
+        }
+      }
+      if (changed) n.nodeValue = t;
+      return;
+    }
+    if (n.nodeType === 1) {
+      const tag = n.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEMPLATE') return;
+      for (let c = n.firstChild; c; c = c.nextSibling) walkText(c);
+    }
+  }
+  walkText(document.body);
 }
 
 // Bind lang toggle without relying on inline onclick="" attributes.
@@ -3327,6 +3886,35 @@ function setLang(lang) {
     'Điểm tổng hợp NAC': 'NAC Composite Score',
     'Tháng xử lý trung bình': 'Average processing months',
     'Tháng xử lý': 'Processing months',
+    // ── Auto-added by fleet chart-label sweep (see CLAUDE.md §4)
+    'Chất lượng\nsống': 'Quality\nof Life',
+    'Hộ chiếu /\nDi chuyển': 'Passport /\nMobility',
+    'Lộ trình\nquốc tịch': 'Citizenship\npathway',
+    'Hồng Kông': 'Hong Kong',
+    'Việt Nam': 'Vietnam',
+    'Pháp': 'France',
+    'Úc SIV': 'Australia SIV',
+    'Úc': 'Australia',
+    'Di chuyển': 'Mobility',
+    'Lộ trình QT': 'Citizenship path',
+    'Gia đình': 'Family',
+    'Chi phí': 'Cost',
+    'Ổn định': 'Stability',
+    'Malaysia (ngoại)': 'Malaysia (foreign)',
+    'Malaysia (nội)': 'Malaysia (local)',
+    'Malta non-dom (FCG)': 'Malta non-dom (FCG)',
+    'Malta thông thường': 'Malta (standard)',
+    'Thái Lan (LTR)': 'Thailand (LTR)',
+    'Bồ Đào Nha (NHR hết)': 'Portugal (NHR ended)',
+    'BĐN GV': 'Portugal GV',
+    'Thổ CBI': 'Türkiye CBI',
+    'Síp PR': 'Cyprus PR',
+    'Hộ chiếu UK': 'UK passport',
+    'Ưu đãi thuế Non-Dom': 'Non-Dom tax benefit',
+    'Diện gia đình': 'Family scope',
+    'Ngưỡng đầu tư (hiệu quả)': 'Investment threshold (effective)',
+    'Lộ trình quốc tịch EU': 'EU citizenship pathway',
+    'Tốc độ xử lý': 'Processing speed',
   };
 
   const keysByLen = Object.keys(CHART_VI_EN).sort((a, b) => b.length - a.length);
@@ -3412,5 +4000,36 @@ function setLang(lang) {
 })();
 
 </script>
+
+
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
+})();
+</script>
+
 </body>
 </html>

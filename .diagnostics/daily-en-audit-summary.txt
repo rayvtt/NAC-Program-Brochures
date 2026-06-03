@@ -1,0 +1,120 @@
+
+[1mDaily EN Audit (LIVE)[0m
+[90m──────────────────────────────────────────────────────────────────────[0m
+
+[1mportugal[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mgreece[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mcyprus[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mturkey[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1muae[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1muk[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mmalta[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mstkitts[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mthailand[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mnewzealand[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mpanama[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mmalaysia[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mantigua[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mitaly[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mspain[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[1mmontenegro[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
+
+[90m──────────────────────────────────────────────────────────────────────[0m
+[1mSummary:[0m  [32m0/16 brochures fully passing[0m
+  [31mToggle issues:[0m    portugal, greece, cyprus, turkey, uae, uk, malta, stkitts, thailand, newzealand, panama, malaysia, antigua, italy, spain, montenegro
+  → JSON report: .diagnostics/daily-en-audit.json

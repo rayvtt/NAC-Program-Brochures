@@ -41,6 +41,10 @@ ALIAS_TO_FILENAME = {
     'newzealand': 'newzealand-rbi_1 (3).html',
     'panama':     'panama-rbi_.html',
     'malaysia':   'malaysia-mm2h.html',
+    'antigua':    'antigua-cbi.html',
+    'italy':      'italy-investor.html',
+    'spain':      'spain-gv.html',
+    'montenegro': 'montenegro-rbi.html',
 }
 
 DATA_DIR = ROOT / 'data'
@@ -197,16 +201,29 @@ def to_innerhtml_form(s: str) -> str:
     """Encode raw text the way the browser stores it in `innerHTML`.
 
     `setLang('en')` is `el.innerHTML.split(VI[i]).join(EN[i])`. The browser
-    always serializes `&` as `&amp;`, `<` as `&lt;`, `>` as `&gt;` when
-    you read `innerHTML`. So a VI entry containing a raw `&` will never
-    match the DOM — we must store the entity form instead.
+    always serializes `&`, `<`, `>` as `&amp;`, `&lt;`, `&gt;` when you
+    read `innerHTML` — but only inside TEXT, not inside actual HTML tags.
 
-    Only encode bare `&`/`<`/`>` — don't double-encode an already-encoded
-    `&amp;` or break embedded HTML tags. The simplest rule: only encode
-    `&` that isn't already the start of an existing entity, then leave
-    `<` / `>` alone (they're legitimate HTML markup in many entries).
+    So an entry like `Athens · đảo >3,100 dân` must become
+    `Athens · đảo &gt;3,100 dân`, while `<strong>NHR</strong>` stays
+    intact. We tokenize the string into tag / non-tag spans and only
+    encode within the non-tag spans.
     """
-    return re.sub(r'&(?![a-zA-Z0-9#]+;)', '&amp;', s)
+    # Encode bare `&` first (not part of an existing entity) on the
+    # entire string — entity refs inside attribute values stay valid.
+    s = re.sub(r'&(?![a-zA-Z0-9#]+;)', '&amp;', s)
+    # Tokenize: split on HTML tags. Keep tags as-is; encode `<`/`>` in text.
+    tag_re = re.compile(r'(<\/?[a-zA-Z][^<>]*>)')
+    out = []
+    last = 0
+    for m in tag_re.finditer(s):
+        text_part = s[last:m.start()]
+        out.append(text_part.replace('<', '&lt;').replace('>', '&gt;'))
+        out.append(m.group(0))  # tag stays untouched
+        last = m.end()
+    tail = s[last:]
+    out.append(tail.replace('<', '&lt;').replace('>', '&gt;'))
+    return ''.join(out)
 
 
 def js_escape_string(s: str, quote: str | None = None) -> str:
@@ -244,9 +261,17 @@ def js_escape_string(s: str, quote: str | None = None) -> str:
             quote = "'"
         else:
             quote = '"'
-    # Escape only `\` and the chosen quote character (both rare given the
-    # selection above; this is just defensive).
-    s = s.replace('\\', '\\\\').replace(quote, '\\' + quote)
+    # Escape `\`, control whitespace, and the chosen quote character. The
+    # control-whitespace escape is what prevents Trap 3 (multi-line string
+    # literals from Notion bullet-list fields landing as raw newlines
+    # inside the JS array → SyntaxError → silent EN-toggle + chart death).
+    # KSES leaves `\n` / `\r` / `\t` alone inside <script>, unlike `\"`,
+    # so these escape sequences are safe on WordPress.
+    s = (s.replace('\\', '\\\\')
+          .replace('\n', '\\n')
+          .replace('\r', '\\r')
+          .replace('\t', '\\t')
+          .replace(quote, '\\' + quote))
     return quote + s + quote
 
 

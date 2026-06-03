@@ -82,6 +82,10 @@ ALIAS_TO_FILENAME = {
     'newzealand': 'newzealand-rbi_1 (3).html',
     'panama': 'panama-rbi_.html',
     'malaysia': 'malaysia-mm2h.html',
+    'antigua': 'antigua-cbi.html',
+    'italy': 'italy-investor.html',
+    'spain': 'spain-gv.html',
+    'montenegro': 'montenegro-rbi.html',
 }
 
 

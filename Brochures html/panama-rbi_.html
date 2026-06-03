@@ -917,7 +917,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ============================================================ */
 .nac-tools { display:none; }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) { /*NAC-TOOLS-1024*/
   .nac-tools {
     position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
     display:flex; align-items:center; gap:.2rem;
@@ -980,22 +980,22 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ────────────────────────────────────────────── */
 /* ── NAC INDEX banner variant — animated globe canvas behind title ──
    Light lavender gradient mirrors the NAC Residence Index page hero. */
-.nac-index-banner {
+.article-cta-banner.nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 360px;
+  min-height: 300px;
   overflow: hidden;
 }
-.nac-index-banner::after {
+.article-cta-banner.nac-index-banner::after {
   /* Soft top-to-bottom fade so the title sits cleanly above the globe.
      Uses the same lavender as the bg so the corners stay airy. */
   background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
 }
 /* Default text is white — flip to dark since we're on a light background */
-.nac-index-banner .article-cta-kicker {
+.article-cta-banner.nac-index-banner .article-cta-kicker {
   color: #5b3aa8;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
-.nac-index-banner .article-cta-title {
+.article-cta-banner.nac-index-banner .article-cta-title {
   color: #1a0f5c;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
@@ -1045,7 +1045,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 }
 @media (max-width: 600px) {
   /* Mobile: CSS Grid stack — tight fit around globe. */
-  .nac-index-banner {
+  .article-cta-banner.nac-index-banner {
     display: grid !important;
     grid-template-rows: 240px auto auto;
     grid-template-columns: 1fr;
@@ -1065,24 +1065,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     opacity: .95;
     animation: none;
   }
-  .nac-index-banner .article-cta-kicker,
-  .nac-index-banner .article-cta-title {
+  .article-cta-banner.nac-index-banner .article-cta-kicker,
+  .article-cta-banner.nac-index-banner .article-cta-title {
     position: relative;
     z-index: 2;
     grid-column: 1;
     padding-left: 18px;
     padding-right: 18px;
   }
-  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
-  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+  .article-cta-banner.nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
+  .article-cta-banner.nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
   /* The pseudo-element overlay sits on top of everything — push it back */
-  .nac-index-banner::after { display: none; }
+  .article-cta-banner.nac-index-banner::after { display: none; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
   /* The pills inside the dark glass banner are hidden on mobile —
      they sit on the white body strip below instead (see below). */
-  .nac-index-banner .nac-index-pills { display: none; }
+  .article-cta-banner.nac-index-banner .nac-index-pills { display: none; }
   /* Mobile pills strip — sits in the white .article-cta-body band so
      icons get a clean, airy surface. Forced 6×2 grid (two rows of six)
      regardless of viewport width — no flex-wrap surprises. */
@@ -1192,6 +1192,245 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
+
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
+}
+/*TAX-COLLAPSE-CSS*/
+
+
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
+
+
+
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
+
+/* Breadcrumb typography lock — match "NAC BROCHURE 2026" tagline
+   look. Colors preserved (white-on-dark hero). /*BREADCRUMB-LOCK-V1*/ */
+.breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.breadcrumb a,
+.breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
+
+
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
+}
+
+
+/* Tax table mobile — pill-style disclaimer + column hiding.
+   Matches the .comp-table-mobile-msg look so the two tables read
+   alike on small screens. /*TAX-TABLE-MOBILE-V2*/ */
+.tax-table-mobile-note { display: none; }
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    text-align: center;
+    margin: 12px 0 24px;
+    line-height: 1.4;
+  }
+}
+
+
+/* Listings live-tag — small pulsing-dot indicator below the section
+   title (mirrors a status badge). /*SEC-LIVE-TAG-V1*/ */
+.sec-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 4px 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green, #10b981);
+}
+.sec-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #10b981);
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
+  animation: sec-live-pulse 2s infinite;
+  flex-shrink: 0;
+  margin-right: 9px;
+  position: relative;
+  top: 0px;
+}
+@keyframes sec-live-pulse {
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -1356,10 +1595,10 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Cư Trú Đầu Tư</div><div class="ov-note">Golden Visa (QIV) + Friendly Nations (FNV)</div></div>
         <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Ra mắt</div><div class="ov-value">QIV: 2020 · FNV: 2012</div><div class="ov-note">Cập nhật Decree 193 (10/2024)</div></div>
-        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Vị trí địa chính trị</div><div class="ov-value">Châu Mỹ · Kênh Đào</div><div class="ov-note">Hub tài chính & thương mại quốc tế</div></div>
-        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Cư trú bắt buộc</div><div class="ov-value">Không — rất tối thiểu</div><div class="ov-note">Chỉ cần nhập cảnh 1 lần mỗi 2 năm</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">Châu Mỹ · Kênh Đào</div><div class="ov-note">Hub tài chính & thương mại quốc tế</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Không — rất tối thiểu</div><div class="ov-note">Chỉ cần nhập cảnh 1 lần mỗi 2 năm</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Loại cư trú</div><div class="ov-value">PR tức thì (QIV)</div><div class="ov-note">FNV: 2 năm tạm trú → PR</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con + bố mẹ</div><div class="ov-note">Bảo lãnh cả bố mẹ phụ thuộc</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con + bố mẹ</div><div class="ov-note">Bảo lãnh cả bố mẹ phụ thuộc</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">30–90 ngày (QIV)</div><div class="ov-note">FNV: 3–6 tháng · QIV nhanh nhất</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập nước ngoài</div><div class="ov-value">0%</div><div class="ov-note">Hệ thống thuế lãnh thổ — chỉ đánh thuế cho thu nhập trong nước</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">148 quốc gia visa-free</div><div class="ov-note">Hộ chiếu Panama hạng 26 [Henley 2026]</div></div>
@@ -1376,7 +1615,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="chart-box">
-        <div class="chart-title">Phân tích điểm 6 tiêu chí NAC — Panama Golden Visa</div>
+        <div class="chart-title" data-vi="6 Tiêu Chí Trọng Điểm theo NAC Index" data-en="6 Key Criteria by NAC Index">6 Tiêu Chí Trọng Điểm theo NAC Index</div>
         <canvas id="radarChart" style="max-height:300px"></canvas>
       </div>
 
@@ -1470,9 +1709,10 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- LISTINGS START -->
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
-      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title">BĐS Đủ Điều Kiện RBI — Đang Mở Bán</h2>
-      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện RBI" data-en="RBI-Eligible Properties">BĐS Đủ Điều Kiện RBI</h2>
+      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="Đang Mở Bán" data-en="Now Live">Đang Mở Bán</span></div>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Panama RBI program and ready to transact. You don&#x27;t need to hunt — we&#x27;ve curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
         <article class="listing-card">
@@ -1480,41 +1720,58 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <div class="listing-hero">
               <img src="https://nomadassetcollective.com/wp-content/uploads/2026/05/pullman2.jpg" alt="Pullman Panama" loading="lazy">
               <div class="listing-badges">
-                <span class="listing-badge listing-badge-flag">🇵🇦 Punta Pacifica</span>
-                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện RBI</span>
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện RBI" data-en="✓ RBI Eligible">✓ Đủ điều kiện RBI</span>
               </div>
               <div class="listing-ref">NAC-19</div>
             </div>
             <div class="listing-body">
-              <div class="listing-tagline">Tháp Mang Thương Hiệu Accor · Vịnh Punta Pacifica · Đủ Điều Kiện FNV</div>
-              <h3 class="listing-name">Pullman Panama</h3>
+              <div class="listing-tagline" data-vi="Tháp Mang Thương Hiệu Accor · Vịnh Punta Pacifica · Đủ Điều Kiện FNV" data-en="Accor-Branded Tower · Punta Pacifica Bay · FNV-Eligible">Tháp Mang Thương Hiệu Accor · Vịnh Punta Pacifica · Đủ Điều Kiện FNV</div>
+              <h3 class="listing-name" data-vi="Pullman Panama" data-en="Pullman Panama City">Pullman Panama</h3>
               <div class="listing-location">📍 Punta Pacifica · Panama</div>
               <div class="listing-stats">
-                <div class="listing-stat"><div class="listing-stat-val">$320,000</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">$320,000</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
                 <div class="listing-stat"><div class="listing-stat-val">7.1%</div><div class="listing-stat-lbl">Gross Yield</div></div>
                 <div class="listing-stat"><div class="listing-stat-val">12.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">Operational</div><div class="listing-stat-lbl">Bàn Giao</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">Operational</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
               </div>
-              <p class="listing-desc">Pullman Panama City là căn hộ dân cư mang thương hiệu Accor tại Punta Pacifica — bán đảo tài chính cao cấp của Panama hướng ra Vịnh Thái Bình Dương.</p>
+              <p class="listing-desc" data-vi="Pullman Panama City là căn hộ dân cư mang thương hiệu Accor tại Punta Pacifica — bán đảo tài chính cao cấp của Panama hướng ra Vịnh Thái Bình Dương." data-en="Pullman Panama City is an Accor-managed branded residence in Punta Pacifica — Panama&#x27;s prime financial peninsula on the Pacific Bay.">Pullman Panama City là căn hộ dân cư mang thương hiệu Accor tại Punta Pacifica — bán đảo tài chính cao cấp của Panama hướng ra Vịnh Thái Bình Dương.</p>
               <div class="listing-cta-row">
-                <span class="listing-cta-primary">Xem Chi Tiết →</span>
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
               </div>
             </div>
           </a>
         </article>
-        <article class="listing-card listing-card-placeholder">
-          <div class="listing-placeholder-content">
-            <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Panama đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=panama" target="_blank" rel="noopener">Khám phá Property Hub →</a>
-          </div>
+        <article class="listing-card">
+          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/panama/santa-maria-panama/" target="_blank" rel="noopener">
+            <div class="listing-hero">
+              <img src="https://imagedelivery.net/qse3Pw84PrZ2S0PQOTtixw/santa-maria-panama-hero/public" alt="Santa Maria" loading="lazy">
+              <div class="listing-badges">
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện RBI" data-en="✓ RBI Eligible">✓ Đủ điều kiện RBI</span>
+              </div>
+              <div class="listing-ref">NAC-4</div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-tagline" data-vi="Căn Hộ Cao Cấp Sở Hữu Lâu Dài Kèm Định Cư Panama" data-en="Freehold Luxury Apartments with Panama Permanent Residency">Căn Hộ Cao Cấp Sở Hữu Lâu Dài Kèm Định Cư Panama</div>
+              <h3 class="listing-name" data-vi="Santa Maria" data-en="Santa Maria Luxury Apartments">Santa Maria</h3>
+              <div class="listing-location">📍 Santa Maria · Costa del Este · Panama</div>
+              <div class="listing-stats">
+                <div class="listing-stat"><div class="listing-stat-val">$300,000</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">7.8%</div><div class="listing-stat-lbl">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">13.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">2027–2028</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
+              </div>
+              <p class="listing-desc" data-vi="Santa Maria Luxury Apartments là dự án 200 căn hộ sở hữu lâu dài bên trong khu dân cư khép kín danh giá nhất Panama City — kề sân golf Jack Nicklaus và cách trung tâm tài chính Costa del Este vài phút." data-en="Santa Maria Luxury Apartments is a 200-unit freehold residential development inside Panama City&#x27;s most prestigious gated community — set beside a Jack Nicklaus championship golf course and minutes from Costa del Este&#x27;s financial district.">Santa Maria Luxury Apartments là dự án 200 căn hộ sở hữu lâu dài bên trong khu dân cư khép kín danh giá nhất Panama City — kề sân golf Jack Nicklaus và cách trung tâm tài chính Costa del Este vài phút.</p>
+              <div class="listing-cta-row">
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
+              </div>
+            </div>
+          </a>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Panama.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=panama" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện RBI →</a>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Panama." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Panama RBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Panama.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=panama" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện RBI →" data-en="All RBI-eligible properties →">Tất cả BĐS đủ điều kiện RBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -2002,7 +2259,7 @@ function makeRadarDataset(key, alpha, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [makeRadarDataset('panama', 0.18, 1), makeRadarDataset(radarCompare1, 0.10, 0.75), makeRadarDataset(radarCompare2, 0.10, 0.75)]
   },
   options: {
@@ -2140,7 +2397,7 @@ const VI_STRINGS = [
   "07 — So Sánh",
   "08 — Ưu &amp; Nhược",
   "09 — Nhận Định NAC",
-  "Chương Trình Tổng Quan",
+  "Tổng Quan Chương Trình",
   "Các Mức Đầu Tư",
   "Quy Trình &amp; Thời Gian",
   "Gia Đình &amp; Đối Tượng Thụ Hưởng",
@@ -2167,16 +2424,16 @@ const VI_STRINGS = [
   "Ra mắt",
   "QIV: 2020 · FNV: 2012",
   "Cập nhật Decree 193 (10/2024)",
-  "Vị trí địa chính trị",
+  "Địa Lý Chính Trị",
   "Châu Mỹ · Kênh Đào",
   "Hub tài chính &amp; thương mại quốc tế",
-  "Cư trú bắt buộc",
+  "Yêu Cầu Cư Trú",
   "Không — tối thiểu",
   "Chỉ cần 1 lần nhập cảnh mỗi 2 năm",
   "Loại cư trú",
   "PR tức thì (QIV)",
   "FNV: 2 năm tạm trú → PR",
-  "Gia đình",
+  "Bảo Lãnh",
   "Vợ/chồng + con + bố mẹ",
   "Bảo lãnh cả bố mẹ phụ thuộc",
   "Thời gian xử lý",
@@ -2332,13 +2589,160 @@ const VI_STRINGS = [
   "Panama RBI là lựa chọn cư trú đầu tư hàng đầu cho nhà đầu tư Đông Nam Á ưu tiên tối ưu hóa thuế và linh hoạt trong việc sinh sống.",
   "Sẵn sàng khởi động hồ sơ Panama?",
   "Đội ngũ NAC đã hỗ trợ hàng chục gia đình Việt cơ cấu cư trú Panama kết hợp với tối ưu hóa tài sản quốc tế. Đặt lịch tư vấn miễn phí để nhận lộ trình cá nhân hóa.",
-  "Panama RBI phù hợp nhất cho:
-• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp
-• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)
-• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu
-• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
   'Đọc thêm phân tích chuyên sâu: <a href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" target="_blank"><strong>Panama vs Bồ Đào Nha 2026: So Sánh Cư Trú Đầu Tư Toàn Diện</strong></a> — góc nhìn từ đội ngũ NAC về hai chương trình cư trú phổ biến nhất trong tầm ngắm của nhà đầu tư Việt.',
   'Đọc thêm phân tích chuyên sâu: <a href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" target="_blank"><strong>Panama vs Bồ Đào Nha 2026: So Sánh Cư Trú Đầu Tư Toàn Diện</strong></a> — góc nhìn từ đội ngũ NAC về hai chương trình cư trú phổ biến nhất trong tầm ngắm của nhà đầu tư Việt.',
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "★ BĐS đang mở bán",
+  "BĐS đang mở bán",
+  "Tư Vấn 30''",
+  "So Sánh",
+  "05 · Tax &amp; tài chính 🔒",
+  "Tổng Quan Chương Trình",
+  "BĐS Đủ Điều Kiện RBI — Đang Mở Bán",
+  "Không — rất tối thiểu",
+  "Chỉ cần nhập cảnh 1 lần mỗi 2 năm",
+  "Hệ thống thuế lãnh thổ — chỉ đánh thuế cho thu nhập trong nước",
+  "Passport Panama hạng 26 [Henley 2026]",
+  "Nguồn dữ liệu:",
+  "Lưu ý quan trọng cho nhà đầu tư Việt Nam:",
+  "bắt buộc",
+  "Cảnh báo deadline 2026:",
+  "Chiến lược NAC cho nhà đầu tư Việt:",
+  "Lợi thế tốc độ:",
+  "Lợi thế gia đình Panama:",
+  "Ưu đãi thuế BĐS:",
+  "Lưu ý nhập tịch:",
+  "Về song tịch:",
+  "Lưu ý:",
+  "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) &amp; Decree 193 (2024) · Henley Passport Index 2026 · Panama Public Registry. Số liệu cập nhật Q2/2026. Quy định có thể thay đổi — liên hệ NAC để xác nhận trước khi quyết định.",
+  "Việt Nam",
+  "nằm trong danh sách 50+ quốc gia của diện Friendly Nations Visa (FNV). Nhà đầu tư chỉ có quốc tịch Việt Nam",
+  "phải đi diện Qualified Investor Visa (QIV) — tối thiểu $300K BĐS. Diện FNV ($200K) chỉ áp dụng nếu bạn có thêm quốc tịch thứ hai thuộc danh sách (Mỹ, Canada, EU, UK, Nhật, Hàn Quốc, v.v.).",
+  "Ngưỡng đầu tư BĐS $300,000 (vốn tự có — equity, không bao gồm phần vay thế chấp) cho Qualified Investor Visa hết hạn ngày 15/10/2026. Lưu ý: thời hạn áp dụng cho ngày hoàn tất đăng ký tại Sở Đăng ký Công cộng (Public Registry), không chỉ ngày ký hợp đồng. Sau thời điểm này, mức tối thiểu tăng vĩnh viễn lên $500,000 (theo Decree 193). Phần giá trị vượt trên $300K có thể vay thế chấp tại ngân hàng Panama.",
+  "Ưu tiên QIV BĐS $300K (vốn tự có — equity) trước deadline 10/2026 — mua căn hộ cho thuê tại Panama City (tỷ suất 5–8%) hoặc BĐS nghỉ dưỡng Bocas del Toro. Vốn phải chuyển từ nước ngoài (có chứng minh nguồn gốc), có thể dùng công ty Panama hoặc quỹ tín thác (Private Interest Foundation) làm chủ sở hữu.",
+  "Việc thẩm định nguồn tiền (Compliance/KYC) tại các ngân hàng Panama đối với dòng vốn từ Đông Nam Á đang ngày càng thắt chặt — tư vấn luật sư Panama sớm để tránh chậm trễ.",
+  "50+ eligible countries (US, EU, UK, JP, KR...) · ⚠️ VN không đủ điều kiện",
+  "Instant PR — từ 30 ngày",
+  "Vốn tự có từ nước ngoài",
+  "Cơ Hội Đầu Tư Thực Tế",
+  "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Panama và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.",
+  "Qualified Investor Visa xử lý từ 30 ngày theo luật, thực tế thường mất 45–90 ngày tùy hồ sơ — vẫn là một trong những chương trình nhanh nhất thế giới. Không cần có mặt tại Panama trong quá trình xử lý (có thể ủy quyền qua Power of Attorney).",
+  "Panama không có chương trình quốc tịch trực tiếp qua đầu tư — nhưng cư dân vĩnh viễn đủ điều kiện nộp đơn nhập tịch sau 5 năm PR. Thời gian xét duyệt thực tế kéo dài thêm 2–3 năm (cần chữ ký Tổng thống). Tổng thực tế: 6–8 năm. Hộ chiếu Panama hạng 26 thế giới (148 quốc gia visa-free bao gồm Schengen, UK, Singapore).",
+  "✓ Đủ điều kiện RBI",
+  "Tháp Mang Thương Hiệu Accor · Vịnh Punta Pacifica · Đủ Điều Kiện FNV",
+  "Giá Khởi Điểm",
+  "Bàn Giao",
+  "Pullman Panama City là căn hộ dân cư mang thương hiệu Accor tại Punta Pacifica — bán đảo tài chính của Panama City. Vị trí giáp Soho Mall, Multiplaza, và sân bay Albrook (7 phút). Tỷ suất cho thuê 6–8%/năm, tiềm năng tăng giá đáng kể khi giai đoạn 2 mở bán.",
+  "Xem Chi Tiết →",
+  "Đang Cập Nhật",
+  "Thêm BĐS Panama đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.",
+  "Khám phá Property Hub →",
+  "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Panama.",
+  "Tất cả BĐS đủ điều kiện RBI →",
+  "Chọn BĐS ($300K vốn tự có), chứng khoán ($500K), hoặc tiền gửi ($750K). Chuẩn bị hộ chiếu (còn hạn 6+ tháng), lý lịch tư pháp (phải được Apostille — có hiệu lực trong vòng 6 tháng kể từ ngày cấp), chứng minh nguồn vốn từ nước ngoài (bank statements, tờ khai thuế), giấy khám sức khỏe tại Panama. Ủy quyền Power of Attorney cho luật sư Panama nếu không đến trực tiếp.",
+  "Chuyển vốn từ nước ngoài vào Panama, hoàn tất giao dịch BĐS (ký hợp đồng, đăng ký Sở Đăng ký Công cộng). Nộp hồ sơ tại Servicio Nacional de Migración. Phí chính phủ: $5,000 (Kho bạc) + $5,000 (Di trú) = $10,000 cho đương đơn chính. Mỗi người phụ thuộc 12+: thêm $2,000.",
+  "Cơ quan Di trú xét duyệt hồ sơ qua quy trình nhanh (Special Processing Service Division). Nhận thẻ cư trú tạm thời trong khi chờ thẻ chính thức. Có thể mở tài khoản ngân hàng Panama, đăng ký Cédula (CMND Panama) cho cư dân vĩnh viễn.",
+  "Cư trú vĩnh viễn được cấp — không có giai đoạn tạm trú (QIV). Nhận thẻ e-Cédula, quyền sống, làm việc và học tập vô thời hạn tại Panama. Bắt đầu đếm 5 năm cho lộ trình quốc tịch. Chỉ cần nhập cảnh Panama 1 lần mỗi 2 năm để duy trì PR.",
+  "Receive Permanent Residency &amp; Cédula",
+  "🔒 Còn 6 phần chuyên sâu",
+  "Đọc trọn bộ Brochure Panama Friendly Nations Visa?",
+  "Family · Tax · Path to citizenship · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.",
+  "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) &amp; Decree 193 (2024) · Henley Passport Index 2026 · PwC Panama Tax Summary 2026. Số liệu thay đổi có thể xảy ra — liên hệ NAC để xác nhận trước khi quyết định.",
+  "Pullman Panama City là căn hộ dân cư mang thương hiệu Accor tại Punta Pacifica — bán đảo tài chính cao cấp của Panama hướng ra Vịnh Thái Bình Dương.",
+  "Con 18–25 Tuổi",
+  "Nhận PR đồng thời với đương đơn chính — bất kể quốc tịch. Có quyền sống, làm việc tại Panama. Phí bổ sung: $2,000/người (12+ tuổi).",
+  "Bao gồm trong hồ sơ gia đình. Phí: $1,000/trẻ dưới 12 tuổi, $2,000/trẻ 12–17 tuổi. Tiếp cận hệ thống giáo dục Panama (quốc tế &amp; công lập).",
+  "FNV: bảo lãnh con chưa kết hôn đến 25 tuổi — phải đang học toàn thời gian",
+  "tại Panama",
+  ". QIV: con chưa kết hôn, phụ thuộc tài chính hoàn toàn vào đương đơn chính. Yêu cầu khác nhau tùy diện — cần xác nhận với luật sư di trú.",
+  "Panama cho phép bảo lãnh bố mẹ phụ thuộc — đây là lợi thế lớn so với UK (không bảo lãnh) hoặc Bồ Đào Nha (giới hạn). Yêu cầu chứng minh phụ thuộc tài chính.",
+  "0% (đến $11K) · 15% ($11K–$50K) · 25% (trên $50K)",
+  "Chỉ trên lợi nhuận nguồn Panama · 19% cho DN nhỏ (&lt;$50K)",
+  "VN: 20%",
+  "10% trên lãi ròng hoặc 3% trên giá bán gộp (chọn mức thấp hơn)",
+  "VN: 2% giá bán",
+  "Miễn dưới $120K · 0.5% ($120–700K) · 0.7% ($700K–1M) · 1% (trên $1M)",
+  "VN: 10%",
+  "€250K (quỹ)",
+  "€250K–€800K",
+  "£50K+ (vốn KD)",
+  "Panama QIV là một trong rất ít chương trình cấp Instant PR — không có giai đoạn tạm trú. So sánh: Bồ Đào Nha GV mất 12–18 tháng, Hy Lạp 6–12 tháng, UK Innovator 3–6 tháng (và chỉ là visa, không phải PR). Không yêu cầu có mặt vật lý — có thể xử lý qua PoA từ xa.",
+  "Trong số các chương trình Golden Visa phổ biến, Panama nổi bật vì bảo lãnh bố mẹ + con đến 25 tuổi (FNV). So sánh: UK không bảo lãnh bố mẹ, UAE chỉ bảo lãnh con dưới 18, Thổ Nhĩ Kỳ CBI không bao gồm bố mẹ. Chỉ Hy Lạp Golden Visa có lợi thế tương đương.",
+  "Panama có chính sách miễn thuế BĐS cho nhà ở mới (Patrimonio Familiar Tributario), thời hạn tùy dự án.",
+  "Chính sách này đã bị thu hẹp đáng kể trong các năm gần đây — cần kiểm tra xem dự án cụ thể có nằm trong diện ưu đãi hay không trước khi mua. BĐS dưới $120,000 vẫn miễn thuế hoàn toàn. Khu kinh tế đặc biệt Panama Pacífico và Colón Free Trade Zone có thêm ưu đãi cho DN đủ điều kiện — xác nhận điều kiện cụ thể với luật sư thuế Panama.",
+  "Yêu cầu gồm tiếng Tây Ban Nha (phỏng vấn), thi kiến thức lịch sử/địa lý Panama, chứng minh gắn bó thực tế với Panama (kinh doanh, gia đình, thời gian sống). Thời gian phê duyệt bổ sung 12–36 tháng sau khi nộp đơn (cần chữ ký Tổng thống). Tổng thực tế:",
+  "6–8 năm",
+  "từ đầu tư đến hộ chiếu.",
+  "Hiến pháp Panama yêu cầu tuyên thệ từ bỏ quốc tịch cũ khi nhập tịch. Nhà đầu tư cần tham vấn luật sư cả hai quốc gia để hiểu rõ hệ quả pháp lý trước khi quyết định.",
+  "Chiến lược kết hợp:",
+  "Có, gửi cho tôi →",
+  "Để sau",
+  "Brochure được gửi từ",
+  "Nhập mật khẩu để xem toàn bộ brochure ngay.",
+  "Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.",
+  "Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.",
+  "Đổi ý lúc nào cũng được —",
+  "Mở khóa",
+  "Gửi cho tôi →",
+  "← Quay lại",
+  "Gửi tới email nào?",
+  "Đã nhận yêu cầu của bạn",
+  "OK, để sau cũng được",
+  "gửi brochure cho tôi",
+  "📊 Xem thông tin hoàn chỉnh trên desktop / web view",
+  "Xem so sánh đầy đủ →",
+  "⚠️ TUYÊN BỐ MIỄN TRỪ TRÁCH NHIỆM · DISCLAIMER",
+  "Thông tin được cập nhật dựa trên Executive Decree 722 (2020) &amp; Decree 193 (2024). Chính sách di trú và thuế của Panama có thể thay đổi mà không báo trước bởi Chính phủ Panama. NAC Consulting không chịu trách nhiệm cho các thay đổi pháp lý phát sinh sau thời điểm tư vấn. Tài liệu này không phải tư vấn pháp lý, thuế, hoặc tài chính — nhà đầu tư cần tham vấn luật sư di trú và cố vấn thuế được cấp phép trước khi đưa ra quyết định đầu tư. Số liệu thời gian xử lý là ước tính — thời gian thực tế có thể thay đổi tùy hồ sơ và khối lượng công việc của cơ quan chức năng.",
+  "Panama Golden Visa (thuế 0% + PR tức thì + kinh tế USD) + Bồ Đào Nha Golden Visa (Schengen EU dài hạn) + UAE Golden Visa (0% thuế + Trung Đông). Bộ ba Americas–Europe–Middle East cho HNWI Việt muốn đa dạng hóa tối đa.",
+  "Rủi ro cần lưu ý:",
+  "Panama vẫn nằm trong danh sách giám sát FATF (dù đã cải thiện đáng kể từ 2023). Một số ngân hàng quốc tế có thể khó khăn hơn khi xử lý chuyển khoản từ/đến Panama. FATCA compliance nghiêm ngặt — công dân Mỹ cần tư vấn thuế chuyên biệt. NAC khuyến nghị luôn tham vấn luật sư Panama trước khi ra quyết định.",
+  "Panama Golden Visa phù hợp nhất với:",
+  "Nhà đầu tư HNWI Việt muốn tối ưu thuế (0% thu nhập nước ngoài), cần PR nhanh (30 ngày), ưu tiên kinh tế đô-la hóa ổn định, muốn đa dạng hóa tài sản tại Châu Mỹ, gia đình mở rộng (bao gồm bố mẹ), không cần cư trú thường xuyên. Đặc biệt phù hợp cho doanh nhân muốn kết hợp Panama làm base thuế + EU/UK cho giáo dục con cái.",
+  "Hiến pháp yêu cầu từ bỏ quốc tịch cũ khi nhập tịch — cần tư vấn pháp lý",
+  "Instant PR từ 30 ngày — nhanh nhất thế giới (QIV)",
+  "VN: Không có",
+  "Thuế hàng hóa &amp; dịch vụ · Thấp so với EU (20–27%)",
+  "Tax hàng hóa &amp; dịch vụ · Thấp so với EU (20–27%)",
+  "2% trên giá trị đăng ký hoặc giá bán (chọn mức cao hơn)",
+  "$300K (BĐS)",
+  "Từ 30 ngày",
+  "Công cụ phân tích",
+  "NAC Residence Index — So Sánh 21 Chương Trình",
+  "NAC Residence Index — Compare 21 Chương Trình",
+  "Đội ngũ NAC Consulting có kinh nghiệm tư vấn Panama Golden Visa &amp; Friendly Nations cho nhà đầu tư HNWI Việt Nam, với mạng lưới đối tác luật sư di trú, BĐS và ngân hàng tại Panama City. Chúng tôi hỗ trợ toàn bộ — từ chọn lộ trình đầu tư, Power of Attorney, đến BĐS và mở tài khoản ngân hàng. Đọc thêm tại",
+  '📅 Đặt 30"→',
+  "Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất.",
+  "Bồ Đào Nha GV",
+  "Hy Lạp GV",
+  "12–18 tháng",
+  "1–3 tháng",
+  "6–12 tháng",
+  "Panama QIV là một trong rất ít chương trình cấp PR tức thì — không có giai đoạn tạm trú. So sánh: Bồ Đào Nha GV mất 12–18 tháng, Hy Lạp 6–12 tháng, UK Innovator 3–6 tháng (và chỉ là visa, không phải PR). Không yêu cầu có mặt vật lý — có thể xử lý qua PoA từ xa.",
+  "3–6 tháng",
+  "Thổ Nhĩ Kỳ CBI",
+  "$400K (BĐS)",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "<strong>Lưu ý quan trọng cho nhà đầu tư Việt Nam:</strong> Việt Nam <strong>không</strong> nằm trong danh sách 50+ quốc gia của diện Friendly Nations Visa (FNV). Nhà đầu tư chỉ có quốc tịch Việt Nam <strong>bắt buộc</strong> phải đi diện Qualified Investor Visa (QIV) — tối thiểu $300K BĐS. Diện FNV ($200K) chỉ áp dụng nếu bạn có thêm quốc tịch thứ hai thuộc danh sách (Mỹ, Canada, EU, UK, Nhật, Hàn Quốc, v.v.).",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
+  "Panama RBI phù hợp nhất cho:\n• Nhà đầu tư có thu nhập quốc tế muốn cơ cấu thuế 0% một cách hợp pháp\n• Gia đình muốn bảo lãnh bố mẹ lớn tuổi (không giới hạn tuổi)\n• Nhà đầu tư ưu tiên linh hoạt — không muốn bị ràng buộc cư trú tối thiểu\n• Bước đầu trong lộ trình 2 hộ chiếu kết hợp với Turkey CBI hoặc Greece GV",
 ];
 
 const EN_STRINGS = [
@@ -2348,7 +2752,7 @@ const EN_STRINGS = [
   "Path to citizenship",
   "Passport rank",
   "NAC Score (INDEX)",
-  "Good – Optimal Tax &amp; Fast Processing",
+  "Good – Tax-Optimised &amp; Fast",
   "Investment",
   "Speed",
   "Quality of Life",
@@ -2405,16 +2809,16 @@ const EN_STRINGS = [
   "Launched",
   "QIV: 2020 · FNV: 2012",
   "Updated Decree 193 (10/2024)",
-  "Geopolitical Position",
+  "Geopolitics",
   "Americas · Canal Zone",
   "International trade &amp; finance hub",
-  "Residency Required",
+  "Residency Requirement",
   "No — minimal",
   "Only 1 entry every 2 years",
   "Residency Type",
   "Instant PR (QIV)",
   "FNV: 2-year temp → PR",
-  "Family",
+  "Sponsorship",
   "Spouse + children + parents",
   "Includes dependent parents",
   "Processing Time",
@@ -2486,14 +2890,14 @@ const EN_STRINGS = [
   "Conditions",
   "vs. Vietnam",
   "Foreign income",
-  "Fully exempt — dividends, interest, rent, foreign pensions",
+  "Fully tax-exempt — dividends, interest, rental, foreign pensions",
   "Domestic income (individual)",
   "Corporate tax",
   "Capital gains (property)",
   "Annual property tax",
   "Inheritance tax",
   "Property transfer tax",
-  "No inheritance, gift, or net wealth taxes",
+  "No inheritance tax, gift tax, or wealth tax",
   "✓ Pros",
   "✗ Cons",
   "Instant PR in 30 days — fastest in the world (QIV)",
@@ -2506,16 +2910,16 @@ const EN_STRINGS = [
   "Panama City real estate steady growth 5–8%/year",
   "Strategic location — Americas trade hub",
   "Panama passport: Schengen, UK, Singapore visa-free",
-  "Passport ranked 26th — lower than EU/UK/UAE",
-  "Citizenship requires Spanish — language barrier",
+  "Passport ranked 26 — lower than EU/UK/UAE",
+  "Naturalisation requires Spanish — language barrier",
   "No official dual citizenship (though rarely enforced)",
-  "Long citizenship approval (12–36 months extra)",
-  "Mandatory 5-year property hold — less liquidity",
-  "Banking system difficult for some nationalities",
-  "Infrastructure &amp; healthcare below EU/UK standards",
-  "Threshold rising to $500K after 10/2026",
-  "High government fees ($10K main applicant)",
-  "Smaller property market — lower liquidity than London/Dubai",
+  "Long citizenship-approval timeline (additional 12–36 months)",
+  "Real estate must be held for 5 years — low liquidity",
+  "Bank-account opening can be difficult for some nationalities",
+  "Infrastructure &amp; healthcare quality below EU/UK standards",
+  "Threshold rises to $500K after October 2026",
+  "High government fees ($10K for primary applicant)",
+  "Small real-estate market — lower liquidity than London/Dubai",
   "Ready to start your Panama journey?",
   "Quick Consult",
   "Residency Programs",
@@ -2525,15 +2929,15 @@ const EN_STRINGS = [
   "NAC Composite Scores — Top Programs (2026)",
   "Strength Analysis — Panama vs Competing Programs (2026)",
   "Last updated: Q2/2026 · Data: Servicio Nacional de Migración · Executive Decree 722 &amp; 193 · PwC Panama · Henley Passport Index 2026",
-  "Panama offers two main residency-by-investment pathways: Qualified Investor Visa (Golden Visa) — instant permanent residency from $300K real estate, and Friendly Nations Visa — for citizens of 50+ countries at a $200K threshold. Dollarized economy, territorial tax with 0% foreign income, strategic position connecting North and South America via the Panama Canal — the top Latin American choice for Vietnamese HNWI investors.",
-  "Panama offers multiple flexible investment routes — from $300K real estate (Golden Visa/QIV) to $200K bank deposits (Friendly Nations). The current $300K real estate threshold is extended until 15/10/2026 — then rises to $500K.",
+  "Panama offers two main residency-by-investment routes: the Qualified Investor Visa (Golden Visa) — instant permanent residency from $300K real estate, and the Friendly Nations Visa — for citizens of 50+ countries with a $200K threshold. A dollarised economy, territorial tax with 0% on foreign income, and a strategic location linking North and South America via the Panama Canal — the leading Latin American choice for Vietnamese HNWI investors.",
+  "Panama offers flexible investment routes — from $300K real estate (Golden Visa/QIV) to $200K bank deposits (Friendly Nations). The current $300K real-estate threshold has been extended to 15 October 2026 — increasing to $500K thereafter.",
   "The Qualified Investor Visa processes in 30–90 days — one of the fastest programs globally. No physical presence required in Panama during processing (Power of Attorney available).",
-  "Panama allows extended family sponsorship — including spouse, children, and notably dependent parents — a rare advantage among global residency-by-investment programs.",
-  "Panama applies a territorial tax system — only taxing income generated within Panama. Foreign income (investments, dividends, overseas rent, pensions) is fully exempt. No net wealth tax, inheritance tax, or gift tax. Dollarized economy — no exchange rate risk.",
+  "Panama allows extended-family sponsorship — including spouse, children, and notably dependent parents — a rarely-seen advantage among global residency-by-investment programs.",
+  "Panama applies a territorial tax system — only income arising in Panama is taxed. Foreign income (investments, dividends, foreign rental, pensions) is fully exempt. No wealth tax, no inheritance tax, no gift tax. Dollarised economy — no exchange-rate risk.",
   "Panama has no direct citizenship-by-investment program — but permanent residents can apply for naturalization after 5 years. Panama passport ranked 26th globally (148 visa-free countries including Schengen, UK, Singapore).",
-  "Objective assessment for Vietnamese HNWI investors considering the Panama Golden Visa in 2026.",
+  "Objective assessment for Vietnamese HNWI investors considering Panama Golden Visa in 2026.",
   "In-depth analysis from the NAC Consulting team for Vietnamese HNWI investors — updated Q2/2026.",
-  "Panama Golden Visa's position in the broader landscape. See full rankings at ",
+  "Where Panama Golden Visa sits in the bigger picture. See the full ranking at",
   "Program",
   "Min. Investment",
   "Type",
@@ -2570,13 +2974,160 @@ const EN_STRINGS = [
   "Panama RBI is the leading investment residency option for Southeast Asian investors prioritising tax optimisation and lifestyle flexibility.",
   "Ready to start your Panama application?",
   "The NAC team has helped dozens of Vietnamese families structure Panama residency alongside international asset optimisation. Book a free consultation to receive your personalised roadmap.",
-  "Panama RBI is best for:
-• Investors with international income seeking legal 0% tax structuring
-• Families wanting to include elderly parents (no age limit)
-• Investors prioritising flexibility — no minimum stay requirement
-• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
   'Read more in-depth analysis: <a href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" target="_blank"><strong>Panama vs Portugal 2026: The Ultimate Residency Comparison</strong></a> — NAC’s in-depth breakdown of the two most popular residency programs for Vietnamese investors.',
   'Read more in-depth analysis: <a href="https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/" target="_blank"><strong>Panama vs Portugal 2026: The Ultimate Residency Comparison</strong></a> — NAC’s in-depth breakdown of the two most popular residency programs for Vietnamese investors.',
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "★ Active Listings",
+  "Active Listings",
+  "Book 30'",
+  "Compare",
+  "05 · Tax &amp; finance 🔒",
+  "Program Overview",
+  "RBI-Eligible Real Estate — Active Listings",
+  "None — minimal",
+  "Only 1 entry every 2 years required",
+  "Territorial tax system — only domestic income is taxed",
+  "Panama passport ranked 26 [Henley 2026]",
+  "Data sources:",
+  "Important note for Vietnamese investors:",
+  "mandatory",
+  "2026 deadline warning:",
+  "NAC strategy for Vietnamese investors:",
+  "Speed advantage:",
+  "Panama family advantage:",
+  "Property tax incentives:",
+  "Naturalisation note:",
+  "On dual citizenship:",
+  "Note:",
+  "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) &amp; Decree 193 (2024) · Henley Passport Index 2026 · Panama Public Registry. Figures updated Q2/2026. Regulations may change — contact NAC to confirm before deciding.",
+  "Vietnam",
+  "is on the 50+ country Friendly Nations Visa (FNV) list. Investors holding only Vietnamese citizenship",
+  "must use the Qualified Investor Visa (QIV) route — minimum $300K real estate. The FNV route ($200K) only applies if you hold a second citizenship from the eligible list (US, Canada, EU, UK, Japan, South Korea, etc.).",
+  "The $300,000 real-estate investment threshold (equity only — not including mortgage portions) for the Qualified Investor Visa expires on 15 October 2026. Note: the deadline applies to the date of registration completion at the Public Registry, not just the contract signing date. After this date, the minimum increases permanently to $500,000 (under Decree 193). Value above $300K may be financed via a Panama-bank mortgage.",
+  "Prioritise the QIV $300K real-estate route (equity only) before the October 2026 deadline — buy a rental condo in Panama City (5–8% yield) or a resort property in Bocas del Toro. Funds must be wired from abroad (with proof of source); a Panama company or Private Interest Foundation can hold ownership.",
+  "Source-of-funds due diligence (Compliance/KYC) at Panamanian banks on Southeast-Asian capital flows is tightening — engage a Panamanian lawyer early to avoid delays.",
+  "50+ eligible countries (US, EU, UK, JP, KR...) · ⚠️ VN not eligible",
+  "Instant PR — from 30 days",
+  "Equity funds from abroad",
+  "Real Investment Opportunities",
+  "These are properties NAC has vetted, qualified for Panama RBI applications, and ready to transact. No need to hunt — we've curated.",
+  "The Qualified Investor Visa processes from 30 days by statute, typically 45–90 days in practice depending on the file — still one of the fastest programs in the world. No physical presence required during processing (can be done via Power of Attorney).",
+  "Panama has no direct citizenship-by-investment program — but permanent residents become eligible to apply for naturalisation after 5 years of PR. Review timelines in practice add another 2–3 years (Presidential signature required). Total real timeline: 6–8 years. The Panamanian passport ranks 26 globally (148 visa-free countries including Schengen, UK, Singapore).",
+  "✓ RBI eligible",
+  "Accor-Branded Tower · Punta Pacifica Bay · FNV-Eligible",
+  "Starting Price",
+  "Handover",
+  "Pullman Panama City is an Accor-branded residential tower in Punta Pacifica — Panama City's financial peninsula. Adjacent to Soho Mall, Multiplaza, and Albrook Airport (7 minutes). 6–8%/year rental yield, with strong appreciation potential as Phase 2 launches.",
+  "View Details →",
+  "Coming Soon",
+  "More Panama RBI-eligible properties will be published here soon.",
+  "Explore Property Hub →",
+  "NAC only features properties with independent legal due diligence and confirmed Panama RBI eligibility.",
+  "All RBI-Eligible Properties →",
+  "Choose real estate ($300K equity), securities ($500K), or bank deposit ($750K). Prepare passport (6+ months validity), police clearance (must be Apostilled — valid within 6 months of issue), proof of overseas funds (bank statements, tax returns), Panama medical check. Issue Power of Attorney to a Panamanian lawyer if not attending in person.",
+  "Wire funds from abroad into Panama, complete the real-estate transaction (sign the contract, register at the Public Registry). File the application with Servicio Nacional de Migración. Government fees: $5,000 (Treasury) + $5,000 (Immigration) = $10,000 for the primary applicant. Each dependent aged 12+: additional $2,000.",
+  "Immigration reviews the application via the Special Processing Service Division. Receive a temporary residence card while awaiting the formal card. Can open a Panama bank account, register Cédula (Panama ID) as permanent resident.",
+  "Permanent residency is granted — no temporary phase (QIV). Receive the e-Cédula, with rights to live, work, and study in Panama indefinitely. The 5-year clock for the citizenship path begins. Only one Panama entry every 2 years is needed to maintain PR.",
+  "Receive Permanent Residency &amp; Cédula",
+  "🔒 6 in-depth sections remaining",
+  "Read the full Panama Friendly Nations Visa Brochure?",
+  "Family · Tax · Path to citizenship · Compare · Pros &amp; cons · NAC analysis — sent to your email.",
+  "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) &amp; Decree 193 (2024) · Henley Passport Index 2026 · PwC Panama Tax Summary 2026. Figures may change — contact NAC to confirm before deciding.",
+  "Pullman Panama City is an Accor-branded residential tower in Punta Pacifica — Panama's premium financial peninsula facing the Pacific Bay.",
+  "Children 18–25",
+  "Receives PR simultaneously with the principal applicant — regardless of citizenship. Right to live and work in Panama. Additional fee: $2,000/person (age 12+).",
+  "Included in the family file. Fee: $1,000/child under 12, $2,000/child 12–17. Access to the Panamanian education system (international &amp; public).",
+  "FNV: sponsors unmarried children up to 25 — must be in full-time study",
+  "in Panama",
+  ". QIV: unmarried children, fully financially dependent on the principal applicant. Requirements vary by route — confirm with an immigration lawyer.",
+  "Panama allows dependent-parent sponsorship — a major advantage over the UK (no sponsorship) or Portugal (limited). Proof of financial dependence required.",
+  "0% (up to $11K) · 15% ($11K–$50K) · 25% (over $50K)",
+  "Only on Panama-source profits · 19% for small businesses (&lt;$50K)",
+  "VN: 20%",
+  "10% on net gain or 3% on gross sale price (lower of the two)",
+  "VN: 2% of sale price",
+  "Exempt under $120K · 0.5% ($120–700K) · 0.7% ($700K–1M) · 1% (over $1M)",
+  "VN: 10%",
+  "€250K (fund)",
+  "€250K–€800K",
+  "£50K+ (business capital)",
+  "Panama QIV is one of very few programs granting Instant PR — no temporary phase. By comparison: Portugal GV takes 12–18 months, Greece 6–12 months, UK Innovator 3–6 months (and only a visa, not PR). No physical presence required — can be processed via Power of Attorney remotely.",
+  "Among popular Golden Visa programs, Panama stands out for sponsoring parents + children up to 25 (FNV). By comparison: UK doesn't sponsor parents, UAE only sponsors children under 18, Türkiye CBI excludes parents. Only Greece Golden Visa offers a comparable advantage.",
+  "Panama offers a property-tax exemption for new homes (Patrimonio Familiar Tributario), with duration depending on the project.",
+  "This policy has narrowed significantly in recent years — verify whether a specific project qualifies before purchasing. Real estate under $120,000 remains fully tax-exempt. The Panama Pacífico special economic zone and Colón Free Trade Zone offer additional incentives for qualifying businesses — confirm specific eligibility with a Panama tax lawyer.",
+  "Requirements include Spanish language (interview), Panama history/geography exam, proof of genuine ties to Panama (business, family, time lived). Additional review timeline 12–36 months after filing (Presidential signature required). Real total:",
+  "6–8 years",
+  "from investment to passport.",
+  "The Panama constitution requires renunciation of the original citizenship upon naturalisation. Investors should consult lawyers in both countries to understand the legal consequences before deciding.",
+  "Combination strategy:",
+  "Yes, send it to me →",
+  "Maybe later",
+  "Brochure sent from",
+  "Enter the password to view the full brochure now.",
+  "One last step. NAC will send the full brochure within 24 hours.",
+  "The NAC team will send the full brochure within 24 hours. Check your Spam/Promotions folder too.",
+  "Change your mind any time —",
+  "Unlock",
+  "Send to me →",
+  "← Back",
+  "Send to which email?",
+  "Your request has been received",
+  "OK, maybe later",
+  "send me the brochure",
+  "📊 View the complete table on desktop / web view",
+  "View the full comparison →",
+  "⚠️ DISCLAIMER",
+  "Information here reflects Executive Decree 722 (2020) &amp; Decree 193 (2024). Panama's immigration and tax policies may change without notice by the Panamanian government. NAC Consulting is not responsible for legal changes arising after the date of advice. This document is not legal, tax, or financial advice — investors should consult licensed immigration lawyers and tax advisors before making any investment decision. Processing-time figures are estimates — actual timelines may vary based on the file and the workload of the relevant authorities.",
+  "Panama Golden Visa (0% tax + instant PR + USD economy) + Portugal Golden Visa (long-term EU Schengen) + UAE Golden Visa (0% tax + Middle East). The Americas–Europe–Middle East trio for Vietnamese HNWIs seeking maximum diversification.",
+  "Risks to keep in mind:",
+  "Panama remains on the FATF monitoring list (though significantly improved since 2023). Some international banks may be more cautious processing transfers to/from Panama. FATCA compliance is strict — US citizens need specialised tax advice. NAC always recommends consulting a Panama lawyer before deciding.",
+  "Panama Golden Visa is best suited for:",
+  "Vietnamese HNWI investors seeking tax optimisation (0% on foreign income), needing fast PR (30 days), prioritising a stable dollarised economy, wanting to diversify assets in the Americas, with extended families (including parents), and not requiring regular residency. Especially suited for entrepreneurs who want to combine Panama as a tax base + EU/UK for children's education.",
+  "Constitution requires renouncing original citizenship upon naturalisation — legal counsel needed",
+  "Instant PR from 30 days — fastest in the world (QIV)",
+  "VN: None",
+  "Goods &amp; services tax · Low compared to EU (20–27%)",
+  "Goods &amp; services tax · Low compared to EU (20–27%)",
+  "2% on registered value or sale price (higher of the two)",
+  "$300K (real estate)",
+  "From 30 days",
+  "Analytics tool",
+  "NAC Residence Index — Compare 21 Programs",
+  "NAC Residence Index — Compare 21 Programs",
+  "The NAC Consulting team has experience advising on Panama Golden Visa &amp; Friendly Nations for Vietnamese HNWI investors, with a network of immigration lawyers, real-estate, and banking partners in Panama City. We support the entire process — from choosing the investment route, Power of Attorney, to real estate and bank-account opening. Read more at",
+  "📅 Book 30' →",
+  "Auto-ranking tailored to your family's criteria — pick the KPIs that matter, get the best-fit program.",
+  "Portugal GV",
+  "Greece GV",
+  "12–18 months",
+  "1–3 months",
+  "6–12 months",
+  "Panama QIV is one of very few programs granting instant PR — no temporary phase. By comparison: Portugal GV takes 12–18 months, Greece 6–12 months, UK Innovator 3–6 months (and only a visa, not PR). No physical presence required — can be processed via Power of Attorney remotely.",
+  "3–6 months",
+  "Türkiye CBI",
+  "$400K (real estate)",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "<strong>Important note for Vietnamese investors:</strong> Vietnam is <strong>not</strong> on the 50+ country Friendly Nations Visa (FNV) list. Investors holding only Vietnamese citizenship are <strong>required</strong> to use the Qualified Investor Visa (QIV) route — minimum $300K real estate. The FNV route ($200K) only applies if you hold a second citizenship from the eligible list (US, Canada, EU, UK, Japan, South Korea, etc.).",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\\n• Investors with international income seeking legal 0% tax structuring\\n• Families wanting to include elderly parents (no age limit)\\n• Investors prioritising flexibility — no minimum stay requirement\\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
+  "Panama RBI is best for:\n• Investors with international income seeking legal 0% tax structuring\n• Families wanting to include elderly parents (no age limit)\n• Investors prioritising flexibility — no minimum stay requirement\n• First step in a dual-passport roadmap paired with Turkey CBI or Greece GV",
 ];
 
 function setLang(lang) {
@@ -2584,6 +3135,20 @@ function setLang(lang) {
   document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
+
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
 
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = heroText[lang].title;
@@ -2599,8 +3164,13 @@ function setLang(lang) {
   const sbarVi = ['Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch'];
   sbarLbls.forEach((el,i) => { el.textContent = lang === 'en' ? sbarEn[i] : sbarVi[i]; });
 
-  const src = lang === 'en' ? VI_STRINGS : EN_STRINGS;
-  const dst = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _srcRaw = lang === 'en' ? VI_STRINGS : EN_STRINGS;
+  const _dstRaw = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _idx = _srcRaw.map((_, i) => i)
+    .sort((a, b) => _srcRaw[b].length - _srcRaw[a].length);
+  const src = _idx.map(i => _srcRaw[i]);
+  const dst = _idx.map(i => _dstRaw[i]);
+
   const selectors = [
     '.sec-sub','.sec-label','.sec-title',
     '.ov-label','.ov-value','.ov-note',
@@ -2610,6 +3180,7 @@ function setLang(lang) {
     '.info-text','.factcheck-box > div',
     '.chart-title','.toc-link','.toc-title',
     '.hero-badge','.article-cta-text','.article-cta-btn',
+    '.article-cta-kicker','.article-cta-title','.article-cta-desc',
     '.road-label','.road-year',
     'th','td',
     '.pros h4','.cons h4','.pros li','.cons li',
@@ -2617,7 +3188,12 @@ function setLang(lang) {
     '.score-label','.score-title',
     '.footer-t','.footer-update',
     '.float-toc-panel a','.float-toc-panel-header',
-    '.breadcrumb','.toc-cta-mini a','.cta-strip-label',
+    '.breadcrumb','.toc-cta-mini a','.cta-strip-label','.cta-text',
+    '.tax-highlight','.tax-note',
+    '.star-label','.tag','.listings-fn-text','.listings-fn-link',
+    '.listing-placeholder-title','.listing-placeholder-sub',
+    '.listing-stat-lbl','.listing-desc','.listing-cta-primary','.listing-badge',
+    '.pw-sub','.pw-title','.pw-cta-primary','.pw-cta-secondary',
     '.nac-btn','.comp-table-mobile-msg',
   ];
   document.querySelectorAll(selectors.join(',')).forEach(el => {
@@ -2628,6 +3204,36 @@ function setLang(lang) {
     });
     if (changed) el.innerHTML = content;
   });
+
+  function _decAmp(s) { return s.split('&amp;').join('&'); }
+  const plainPairs = [];
+  src.forEach((s, i) => {
+    if (s && dst[i] && s.indexOf('<') < 0 && s.indexOf('>') < 0) {
+      plainPairs.push([_decAmp(s), _decAmp(dst[i])]);
+    }
+  });
+  function walkText(n) {
+    if (!n) return;
+    if (n.nodeType === 8) return;
+    if (n.nodeType === 3) {
+      let t = n.nodeValue;
+      let changed = false;
+      for (let p = 0; p < plainPairs.length; p++) {
+        if (t.indexOf(plainPairs[p][0]) >= 0) {
+          t = t.split(plainPairs[p][0]).join(plainPairs[p][1]);
+          changed = true;
+        }
+      }
+      if (changed) n.nodeValue = t;
+      return;
+    }
+    if (n.nodeType === 1) {
+      const tag = n.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEMPLATE') return;
+      for (let c = n.firstChild; c; c = c.nextSibling) walkText(c);
+    }
+  }
+  walkText(document.body);
 }
 
 // Bind lang toggle without relying on inline onclick="" attributes.
@@ -3251,6 +3857,35 @@ function setLang(lang) {
     'Điểm tổng hợp NAC': 'NAC Composite Score',
     'Tháng xử lý trung bình': 'Average processing months',
     'Tháng xử lý': 'Processing months',
+    // ── Auto-added by fleet chart-label sweep (see CLAUDE.md §4)
+    'Chất lượng\nsống': 'Quality\nof Life',
+    'Hộ chiếu /\nDi chuyển': 'Passport /\nMobility',
+    'Lộ trình\nquốc tịch': 'Citizenship\npathway',
+    'Hồng Kông': 'Hong Kong',
+    'Việt Nam': 'Vietnam',
+    'Pháp': 'France',
+    'Úc SIV': 'Australia SIV',
+    'Úc': 'Australia',
+    'Di chuyển': 'Mobility',
+    'Lộ trình QT': 'Citizenship path',
+    'Gia đình': 'Family',
+    'Chi phí': 'Cost',
+    'Ổn định': 'Stability',
+    'Malaysia (ngoại)': 'Malaysia (foreign)',
+    'Malaysia (nội)': 'Malaysia (local)',
+    'Malta non-dom (FCG)': 'Malta non-dom (FCG)',
+    'Malta thông thường': 'Malta (standard)',
+    'Thái Lan (LTR)': 'Thailand (LTR)',
+    'Bồ Đào Nha (NHR hết)': 'Portugal (NHR ended)',
+    'BĐN GV': 'Portugal GV',
+    'Thổ CBI': 'Türkiye CBI',
+    'Síp PR': 'Cyprus PR',
+    'Hộ chiếu UK': 'UK passport',
+    'Ưu đãi thuế Non-Dom': 'Non-Dom tax benefit',
+    'Diện gia đình': 'Family scope',
+    'Ngưỡng đầu tư (hiệu quả)': 'Investment threshold (effective)',
+    'Lộ trình quốc tịch EU': 'EU citizenship pathway',
+    'Tốc độ xử lý': 'Processing speed',
   };
 
   const keysByLen = Object.keys(CHART_VI_EN).sort((a, b) => b.length - a.length);
@@ -3336,5 +3971,36 @@ function setLang(lang) {
 })();
 
 </script>
+
+
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
+})();
+</script>
+
 </body>
 </html>

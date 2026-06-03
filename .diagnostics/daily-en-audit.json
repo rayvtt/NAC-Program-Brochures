@@ -1,157 +1,837 @@
 {
-  "generated_at": "2026-05-17T11:45:37.036547+00:00",
-  "source": "local",
-  "pass_count": 1,
-  "total": 1,
+  "generated_at": "2026-06-03T06:53:13.966472+00:00",
+  "source": "live",
+  "pass_count": 0,
+  "total": 16,
   "reports": [
     {
       "alias": "portugal",
-      "all_pass": true,
+      "all_pass": false,
       "toggle": {
-        "pass": true,
-        "issues": []
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
       },
       "sections": {
         "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 27,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 23,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 14,
-            "fixable_gap": 0,
-            "acceptable_gap": 4,
-            "gap": 4,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 13,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 19,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 3,
-            "fixable_gap": 1,
-            "acceptable_gap": 0,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 75.0
-          }
-        },
+        "per_section": {},
         "low_sections": [],
-        "notion_gaps": [
-          {
-            "section": "nac",
-            "text": "Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa Bồ Đào Nha, với mạng lưới luật sư, tư vấ"
-          }
-        ]
+        "notion_gaps": []
       },
-      "overview_ok": true,
+      "overview_ok": false,
       "charts": {
         "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
+        "has_charts": false,
         "issues": []
       },
       "globe_sizing": {
         "pass": true,
-        "has_globe": true,
+        "has_globe": false,
         "issues": []
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
         "bare_homepage_count": 0,
         "issues": []
       },
       "chart_rendering": {
         "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "matrixChart"
-        ],
+        "has_charts": false,
         "issues": []
       },
       "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "greece",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
         "pass": true,
-        "issues": [],
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "cyprus",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "turkey",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "uae",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "uk",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "malta",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "stkitts",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "thailand",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "newzealand",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "panama",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "malaysia",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "antigua",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "italy",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "spain",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "montenegro",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
         "remnant_count": 0,
         "samples": []
       }

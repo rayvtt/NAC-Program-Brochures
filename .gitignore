@@ -18,3 +18,10 @@ venv/
 Thumbs.db
 .vscode/
 .idea/
+
+# Node — jsdom is installed ad hoc by daily-en-audit.yml (`npm install --no-save`)
+node_modules/
+package.json
+package-lock.json
+.claude/worktrees/
+.claude/

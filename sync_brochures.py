@@ -63,6 +63,12 @@ BROCHURES = {
     'newzealand':  ('newzealand-rbi_1 (3).html',    1944, 'chuong-trinh-new-zealand-rbi-dau-tu-di-tru'),
     'panama':      ('panama-rbi_.html',             1996, 'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien'),
     'malaysia':    ('malaysia-mm2h.html',            2024, 'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru'),
+    'antigua':     ('antigua-cbi.html',               2158, 'chuong-trinh-antigua-barbuda-cbi'),
+    'italy':       ('italy-investor.html',            2165, 'chuong-trinh-y-italy-rbi-qua-dau-tu-bds'),
+    'spain':       ('spain-gv.html',                  2170, 'chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds'),
+    'montenegro':  ('montenegro-rbi.html',            2167, 'chuong-trinh-montenengro-rbi-qua-dau-tu-bds'),
+    'australia':   ('australia-rbi.html',          2213, 'chuong-trinh-uc-rbi-residency-by-investment'),
+    'nauru':       ('nauru-cbi.html',              2215, 'chuong-trinh-nauru-quoc-tich-cbi-citizenship-by-investment'),
     # 'nph' (property-hub) and 'index' (nac-residence-index) intentionally
     # omitted — those tool pages are NOT managed by this repo. They live in
     # WordPress directly. Re-adding them here would overwrite WP-side edits
@@ -107,6 +113,12 @@ def auth_header(user, pwd):
 
 def http(method, url, *, headers=None, body=None):
     req = urllib.request.Request(url, method=method)
+    # Browser-like User-Agent. Some bot/WAF layers serve a JS "verify your
+    # request" challenge to non-browser clients (the default Python-urllib UA),
+    # returning HTTP 200 with a challenge page instead of the REST API JSON —
+    # which silently breaks the sync. A real UA slips past UA-based gates.
+    req.add_header('User-Agent', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36')
+    req.add_header('Accept', 'application/json')
     if headers:
         for k, v in headers.items(): req.add_header(k, v)
     data = body.encode('utf-8') if isinstance(body, str) else body
@@ -142,8 +154,11 @@ def cmd_status():
         local = resolve_local(fname)
         size = (os.path.getsize(local) // 1024) if os.path.exists(local) else None
         size_str = f'{size}KB' if size else red('MISSING')
-        status, meta = fetch_page_meta(pid)
-        wp_mod = meta.get('modified', 'n/a') if status == 200 else red(f'HTTP {status}')
+        if pid == 0:
+            wp_mod = yellow('placeholder (id=0)')
+        else:
+            status, meta = fetch_page_meta(pid)
+            wp_mod = meta.get('modified', 'n/a') if status == 200 else red(f'HTTP {status}')
         print(f'  {alias:10s}  {pid:>5d}  {size_str:>8s}  {wp_mod}')
     print(gray('─' * 70))
     print(gray('  push one:    python sync_brochures.py <alias>'))
@@ -156,6 +171,9 @@ def cmd_sync(alias, auth=None, dry_run=False):
         print(red(f'  unknown alias: {alias}'))
         return False
     fname, pid, _ = BROCHURES[alias]
+    if pid == 0:
+        print(yellow(f'  ⤬ {alias}: wp_page_id=0 placeholder — skipping (set real id in BROCHURES dict to enable sync)'))
+        return True
     local = resolve_local(fname)
     if not os.path.exists(local):
         print(red(f'  ✗ {alias}: local file missing ({fname})'))
@@ -178,8 +196,17 @@ def cmd_sync(alias, auth=None, dry_run=False):
         else:
             print(green(f'    ✓ pushed · modified: {data.get("modified")}'))
         return True
-    msg = data.get('message') if isinstance(data, dict) else str(data)
-    code = data.get('code', '') if isinstance(data, dict) else ''
+    if not isinstance(data, dict):
+        # Non-JSON body on HTTP 200 = a bot/WAF "verify your request" challenge
+        # intercepted the REST call. Flag it clearly instead of dumping the HTML.
+        blob = str(data)
+        if 'being verified' in blob or 'One moment' in blob or '<!DOCTYPE' in blob.lstrip()[:60]:
+            print(red(f'    ✗ failed (HTTP {status}) — blocked by bot/WAF challenge page (REST API not reached)'))
+        else:
+            print(red(f'    ✗ failed (HTTP {status}): {blob[:160]}'))
+        return False
+    msg = data.get('message')
+    code = data.get('code', '')
     print(red(f'    ✗ failed (HTTP {status}) {code}: {msg}'))
     return False
 
@@ -197,6 +224,7 @@ def cmd_sync_all(dry_run=False):
     msg = f'  done — {ok} ok, {fail} failed'
     print((green if fail == 0 else yellow)(msg))
     print()
+    return fail
 
 
 # ── Entry ──────────────────────────────────────────────────────────────
@@ -210,11 +238,17 @@ def main():
         return
     target = args[0]
     if target == '--all':
-        cmd_sync_all(dry_run=dry_run)
+        fail = cmd_sync_all(dry_run=dry_run)
+        # Exit non-zero so CI fails loudly instead of masking a total push
+        # failure (e.g. every page blocked by a bot/WAF challenge) as success.
+        if fail:
+            sys.exit(red(f'❌ {fail} page(s) failed to sync — see errors above.'))
     elif target in BROCHURES:
         auth = None if dry_run else auth_header(*load_env())
-        cmd_sync(target, auth=auth, dry_run=dry_run)
+        ok = cmd_sync(target, auth=auth, dry_run=dry_run)
         print()
+        if not ok:
+            sys.exit(1)
     else:
         sys.exit(red(f'unknown target: {target}\nvalid: {", ".join(BROCHURES)} | --all'))
 

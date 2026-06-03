@@ -442,22 +442,22 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 
 /* ── NAC INDEX banner variant — animated globe canvas behind title ──
    Light lavender gradient mirrors the NAC Residence Index page hero. */
-.nac-index-banner {
+.article-cta-banner.nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 360px;
+  min-height: 300px;
   overflow: hidden;
 }
-.nac-index-banner::after {
+.article-cta-banner.nac-index-banner::after {
   /* Soft top-to-bottom fade so the title sits cleanly above the globe.
      Uses the same lavender as the bg so the corners stay airy. */
   background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
 }
 /* Default text is white — flip to dark since we're on a light background */
-.nac-index-banner .article-cta-kicker {
+.article-cta-banner.nac-index-banner .article-cta-kicker {
   color: #5b3aa8;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
-.nac-index-banner .article-cta-title {
+.article-cta-banner.nac-index-banner .article-cta-title {
   color: #1a0f5c;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
@@ -507,7 +507,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 }
 @media (max-width: 600px) {
   /* Mobile: CSS Grid stack — tight fit around globe. */
-  .nac-index-banner {
+  .article-cta-banner.nac-index-banner {
     display: grid !important;
     grid-template-rows: 240px auto auto;
     grid-template-columns: 1fr;
@@ -527,24 +527,24 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
     opacity: .95;
     animation: none;
   }
-  .nac-index-banner .article-cta-kicker,
-  .nac-index-banner .article-cta-title {
+  .article-cta-banner.nac-index-banner .article-cta-kicker,
+  .article-cta-banner.nac-index-banner .article-cta-title {
     position: relative;
     z-index: 2;
     grid-column: 1;
     padding-left: 18px;
     padding-right: 18px;
   }
-  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
-  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+  .article-cta-banner.nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
+  .article-cta-banner.nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
   /* The pseudo-element overlay sits on top of everything — push it back */
-  .nac-index-banner::after { display: none; }
+  .article-cta-banner.nac-index-banner::after { display: none; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
   /* The pills inside the dark glass banner are hidden on mobile —
      they sit on the white body strip below instead (see below). */
-  .nac-index-banner .nac-index-pills { display: none; }
+  .article-cta-banner.nac-index-banner .nac-index-pills { display: none; }
   /* Mobile pills strip — sits in the white .article-cta-body band so
      icons get a clean, airy surface. Forced 6×2 grid (two rows of six)
      regardless of viewport width — no flex-wrap surprises. */
@@ -1206,7 +1206,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ============================================================ */
 .nac-tools { display:none; }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) { /*NAC-TOOLS-1024*/
   .nac-tools {
     position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
     display:flex; align-items:center; gap:.2rem;
@@ -1261,6 +1261,245 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   body { padding-bottom: 80px; }
 }
 
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
+
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
+}
+/*TAX-COLLAPSE-CSS*/
+
+
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
+
+
+
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
+
+/* Breadcrumb typography lock — match "NAC BROCHURE 2026" tagline
+   look. Colors preserved (white-on-dark hero). /*BREADCRUMB-LOCK-V1*/ */
+.breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.breadcrumb a,
+.breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
+
+
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
+}
+
+
+/* Tax table mobile — pill-style disclaimer + column hiding.
+   Matches the .comp-table-mobile-msg look so the two tables read
+   alike on small screens. /*TAX-TABLE-MOBILE-V2*/ */
+.tax-table-mobile-note { display: none; }
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    text-align: center;
+    margin: 12px 0 24px;
+    line-height: 1.4;
+  }
+}
+
+
+/* Listings live-tag — small pulsing-dot indicator below the section
+   title (mirrors a status badge). /*SEC-LIVE-TAG-V1*/ */
+.sec-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 4px 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green, #10b981);
+}
+.sec-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #10b981);
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
+  animation: sec-live-pulse 2s infinite;
+  flex-shrink: 0;
+  margin-right: 9px;
+  position: relative;
+  top: 0px;
+}
+@keyframes sec-live-pulse {
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -1283,7 +1522,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <div class="nav-right">
       <a class="nav-link" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Index</a>
       <span class="nav-sep">·</span>
-      <a class="nav-link" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh</a>
+      <a class="nav-link" href="https://nomadassetcollective.com/so-sanh/" target="_blank" data-vi="So Sánh" data-en="Compare">So Sánh</a>
       <span class="nav-sep">·</span>
       <a class="nav-link" href="https://nomadassetcollective.com/property-hub/" target="_blank">Property Hub</a>
       <div class="lang-toggle">
@@ -1301,7 +1540,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   <div class="float-toc-panel-header" data-vi="Mục Lục" data-en="Contents">Mục Lục</div>
   <a href="#overview"    onclick="closeFToc()" data-vi="01 · Tổng quan chương trình" data-en="01 · Program overview">01 · Tổng quan chương trình</a>
   <a href="#investment"  onclick="closeFToc()" data-vi="02 · Các mức đầu tư" data-en="02 · Investment routes">02 · Các mức đầu tư</a>
-  <a href="#listings"    onclick="closeFToc()" data-vi="★ BĐS đang mở bán" data-en="★ Properties for sale">★ BĐS đang mở bán</a>
+  <a href="#listings"    onclick="closeFToc()" data-vi="★ BĐS đang mở bán" data-en="★ Active Listings">★ BĐS đang mở bán</a>
   <a href="#process"     onclick="closeFToc()" data-vi="03 · Quy trình &amp; thời gian" data-en="03 · Process &amp; timeline">03 · Quy trình &amp; thời gian</a>
   <a href="#nac-paywall" onclick="closeFToc()" data-vi="04 · Gia đình &amp; thụ hưởng 🔒" data-en="04 · Family &amp; beneficiaries 🔒">04 · Gia đình &amp; thụ hưởng 🔒</a>
   <a href="#nac-paywall" onclick="closeFToc()" data-vi="05 · Thuế &amp; tài chính 🔒" data-en="05 · Tax &amp; finance 🔒">05 · Thuế &amp; tài chính 🔒</a>
@@ -1382,7 +1621,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <ul class="toc-list" id="toc">
       <li class="toc-item active"><a class="toc-link" href="#overview" data-vi="&lt;span class=&quot;toc-num&quot;&gt;01 &lt;/span&gt;Tổng quan chương trình" data-en="&lt;span class=&quot;toc-num&quot;&gt;01 &lt;/span&gt;Program overview"><span class="toc-num">01 </span>Tổng quan chương trình</a></li>
       <li class="toc-item"><a class="toc-link" href="#investment" data-vi="&lt;span class=&quot;toc-num&quot;&gt;02 &lt;/span&gt;Các mức đầu tư" data-en="&lt;span class=&quot;toc-num&quot;&gt;02 &lt;/span&gt;Investment routes"><span class="toc-num">02 </span>Các mức đầu tư</a></li>
-      <li class="toc-item toc-item-spotlight"><a class="toc-link" href="#listings" data-vi="&lt;span class=&quot;toc-num&quot;&gt;★ &lt;/span&gt;BĐS đang mở bán" data-en="&lt;span class=&quot;toc-num&quot;&gt;★ &lt;/span&gt;Properties for sale"><span class="toc-num">★ </span>BĐS đang mở bán</a></li>
+      <li class="toc-item toc-item-spotlight"><a class="toc-link" href="#listings" data-vi="&lt;span class=&quot;toc-num&quot;&gt;★ &lt;/span&gt;BĐS đang mở bán" data-en="&lt;span class=&quot;toc-num&quot;&gt;★ &lt;/span&gt;Active Listings"><span class="toc-num">★ </span>BĐS đang mở bán</a></li>
       <li class="toc-item"><a class="toc-link" href="#process" data-vi="&lt;span class=&quot;toc-num&quot;&gt;03 &lt;/span&gt;Quy trình &amp; thời gian" data-en="&lt;span class=&quot;toc-num&quot;&gt;03 &lt;/span&gt;Process &amp; timeline"><span class="toc-num">03 </span>Quy trình & thời gian</a></li>
       <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;04 &lt;/span&gt;Gia đình &amp; thụ hưởng" data-en="&lt;span class=&quot;toc-num&quot;&gt;04 &lt;/span&gt;Family &amp; beneficiaries"><span class="toc-num">04 </span>Gia đình & thụ hưởng</a></li>
       <li class="toc-item is-locked"><a class="toc-link" href="#nac-paywall" data-vi="&lt;span class=&quot;toc-num&quot;&gt;05 &lt;/span&gt;Thuế &amp; tài chính" data-en="&lt;span class=&quot;toc-num&quot;&gt;05 &lt;/span&gt;Tax &amp; finance"><span class="toc-num">05 </span>Thuế & tài chính</a></li>
@@ -1419,16 +1658,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- 01 OVERVIEW -->
     <section class="section" id="overview">
       <div class="sec-label" data-vi="01 — Tổng Quan" data-en="01 — Overview">01 — Tổng Quan</div>
-      <h2 class="sec-title" data-vi="Chương Trình Tổng Quan" data-en="Program Overview">Chương Trình Tổng Quan</h2>
+      <h2 class="sec-title" data-vi="Tổng Quan Chương Trình" data-en="Program Overview">Tổng Quan Chương Trình</h2>
       <p class="sec-sub" data-vi="Turkey Citizenship by Investment (CBI) — ra mắt năm 2017, cải cách năm 2018 — là chương trình quốc tịch qua đầu tư phổ biến nhất trong tầm ngắm của nhà đầu tư Đông Nam Á. Tốc độ, chi phí và tính thực dụng là ba yếu tố khiến chương trình này nổi bật." data-en="Turkey Citizenship by Investment (CBI) — launched in 2017, reformed in 2018 — is the most popular citizenship-by-investment program on the radar of Southeast Asian investors. Speed, cost, and practicality are the three factors that make this program stand out.">Turkey Citizenship by Investment (CBI) — ra mắt năm 2017, cải cách năm 2018 — là chương trình quốc tịch qua đầu tư phổ biến nhất trong tầm ngắm của nhà đầu tư Đông Nam Á. Tốc độ, chi phí và tính thực dụng là ba yếu tố khiến chương trình này nổi bật.</p>
 
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label" data-vi="Loại chương trình" data-en="Program Type">Loại chương trình</div><div class="ov-value" data-vi="Quốc Tịch Trực Tiếp" data-en="Direct Citizenship">Quốc Tịch Trực Tiếp</div><div class="ov-note" data-vi="Không phải cư trú trước" data-en="No prior residency required">Không phải cư trú trước</div></div>
         <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label" data-vi="Ra mắt" data-en="Launched">Ra mắt</div><div class="ov-value" data-vi="2017 (cải cách 2018)" data-en="2017 (reformed 2018)">2017 (cải cách 2018)</div><div class="ov-note" data-vi="8 năm hoạt động" data-en="8 years in operation">8 năm hoạt động</div></div>
-        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label" data-vi="Vị trí địa chính trị" data-en="Geopolitical Position">Vị trí địa chính trị</div><div class="ov-value" data-vi="Á–Âu · G20" data-en="Eurasia · G20">Á–Âu · G20</div><div class="ov-note" data-vi="Thành viên NATO, EU ứng viên" data-en="NATO member, EU candidate">Thành viên NATO, EU ứng viên</div></div>
-        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label" data-vi="Cư trú bắt buộc" data-en="Residency Required">Cư trú bắt buộc</div><div class="ov-value" data-vi="Không" data-en="No">Không</div><div class="ov-note" data-vi="Không cần sống tại Thổ Nhĩ Kỳ" data-en="No need to live in Turkey">Không cần sống tại Thổ Nhĩ Kỳ</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label" data-vi="Địa Lý Chính Trị" data-en="Geopolitics">Địa Lý Chính Trị</div><div class="ov-value" data-vi="Á–Âu · G20" data-en="Eurasia · G20">Á–Âu · G20</div><div class="ov-note" data-vi="Thành viên NATO, EU ứng viên" data-en="NATO member, EU candidate">Thành viên NATO, EU ứng viên</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label" data-vi="Yêu Cầu Cư Trú" data-en="Residency Requirement">Yêu Cầu Cư Trú</div><div class="ov-value" data-vi="Không" data-en="No">Không</div><div class="ov-note" data-vi="Không cần sống tại Thổ Nhĩ Kỳ" data-en="No need to live in Turkey">Không cần sống tại Thổ Nhĩ Kỳ</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label" data-vi="Thẻ cư trú" data-en="Status">Thẻ cư trú</div><div class="ov-value" data-vi="Quốc tịch trọn đời" data-en="Lifetime citizenship">Quốc tịch trọn đời</div><div class="ov-note" data-vi="Không cần gia hạn" data-en="No renewal needed">Không cần gia hạn</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label" data-vi="Gia đình" data-en="Family">Gia đình</div><div class="ov-value" data-vi="Vợ/chồng + con &lt;18" data-en="Spouse + children &lt;18">Vợ/chồng + con &lt;18</div><div class="ov-note" data-vi="Không bảo lãnh bố mẹ" data-en="Parents not included">Không bảo lãnh bố mẹ</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label" data-vi="Bảo Lãnh" data-en="Sponsorship">Bảo Lãnh</div><div class="ov-value" data-vi="Vợ/chồng + con &lt;18" data-en="Spouse + children &lt;18">Vợ/chồng + con &lt;18</div><div class="ov-note" data-vi="Không bảo lãnh bố mẹ" data-en="Parents not included">Không bảo lãnh bố mẹ</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label" data-vi="Thời gian xử lý" data-en="Processing Time">Thời gian xử lý</div><div class="ov-value" data-vi="3–6 tháng" data-en="3–6 months">3–6 tháng</div><div class="ov-note" data-vi="Nhanh nhất thế giới" data-en="Fastest in the world">Nhanh nhất thế giới</div></div>
         <div class="ov-card"><div class="ov-icon">🎓</div><div class="ov-label" data-vi="Yêu cầu ngôn ngữ" data-en="Language Requirement">Yêu cầu ngôn ngữ</div><div class="ov-value" data-vi="Không" data-en="No">Không</div><div class="ov-note" data-vi="Không cần tiếng Thổ" data-en="No Turkish required">Không cần tiếng Thổ</div></div>
         <div class="ov-card"><div class="ov-icon">🛂</div><div class="ov-label" data-vi="Hộ chiếu Thổ Nhĩ Kỳ" data-en="Turkish Passport">Hộ chiếu Thổ Nhĩ Kỳ</div><div class="ov-value" data-vi="110+ Visa-Free" data-en="110+ Visa-Free">110+ Visa-Free</div><div class="ov-note" data-vi="Xếp hạng ~38 thế giới" data-en="Ranked ~38 globally">Xếp hạng ~38 thế giới</div></div>
@@ -1440,7 +1679,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="chart-box">
-        <div class="chart-title" data-vi="Phân tích điểm 6 tiêu chí NAC — Thổ Nhĩ Kỳ CBI" data-en="NAC 6-Criteria Score Analysis — Turkey CBI">Phân tích điểm 6 tiêu chí NAC — Thổ Nhĩ Kỳ CBI</div>
+        <div class="chart-title" data-vi="6 Tiêu Chí Trọng Điểm theo NAC Index" data-en="6 Key Criteria by NAC Index">6 Tiêu Chí Trọng Điểm theo NAC Index</div>
         <canvas id="radarChart" style="max-height:300px"></canvas>
       </div>
 
@@ -1450,7 +1689,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <h3 class="article-cta-title" data-vi="Hy Lạp vs Thổ Nhĩ Kỳ 2026: So Sánh Toàn Diện Hai Chương Trình" data-en="Greece vs Turkey 2026: A Comprehensive Comparison">Hy Lạp vs Thổ Nhĩ Kỳ 2026: So Sánh Toàn Diện Hai Chương Trình</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc" data-vi="Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt." data-en="Insights from the NAC team after 5+ years processing applications for Vietnamese families.">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
           <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/hy-lap-vs-tho-nhi-ky-2026-so-sanh-toan-dien-hai-chuong-trinh-dau-tu-di-tru-du-lieu-bds-roi-va-chien-luoc-chon-lua/" target="_blank" data-vi="Đọc Ngay →" data-en="Read Now →">Đọc Ngay →</a>
         </div>
       </div>
@@ -1512,7 +1751,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <div class="tier">
           <span class="tier-badge" style="background:#374151;color:#fff;" data-vi="Thay Thế" data-en="Alternative">Thay Thế</span>
           <div class="tier-header"><div>
-            <div class="tier-amount">50 nhân viên</div>
+            <div class="tier-amount" data-vi="50 nhân viên" data-en="50 employees">50 nhân viên</div>
             <div class="tier-name" data-vi="Tạo việc làm" data-en="Job Creation">Tạo việc làm</div>
             <div class="tier-region" data-vi="Theo xác nhận của Bộ Gia đình &amp; Lao động" data-en="Confirmed by Ministry of Family &amp; Labour">Theo xác nhận của Bộ Gia đình & Lao động</div>
           </div></div>
@@ -1542,49 +1781,67 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
       <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện CBI — Đang Mở Bán" data-en="CBI-Eligible Properties — Now Available">BĐS Đủ Điều Kiện CBI — Đang Mở Bán</h2>
-      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Turkey CBI application and ready to transact. You don't need to hunt — we've curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện CBI" data-en="CBI-Eligible Properties">BĐS Đủ Điều Kiện CBI</h2>
+      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="Đang Mở Bán" data-en="Now Live">Đang Mở Bán</span></div>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Turkey CBI program and ready to transact. You don&#x27;t need to hunt — we&#x27;ve curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI Thổ Nhĩ Kỳ và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
         <article class="listing-card">
-          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/w-suite-istanbul" target="_blank" rel="noopener">
+          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/referans-residence-beylikduzu-istanbul" target="_blank" rel="noopener">
             <div class="listing-hero">
-              <img src="https://nomadassetcollective.com/wp-content/uploads/2026/05/W6-scaled.jpg" alt="W Suites Istanbul" loading="lazy">
+              <img src="https://imagedelivery.net/qse3Pw84PrZ2S0PQOTtixw/referans-residence-beylikduzu-istanbul-hero/public" alt="Referans Residence" loading="lazy">
               <div class="listing-badges">
-                <span class="listing-badge listing-badge-flag">🇹🇷 Şişli / Levent (New CBD)</span>
                 <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện CBI" data-en="✓ CBI Eligible">✓ Đủ điều kiện CBI</span>
               </div>
-              <div class="listing-ref">NAC-79</div>
+              <div class="listing-ref">NAC-4</div>
             </div>
             <div class="listing-body">
-              <div class="listing-tagline" data-vi="Căn hộ khách sạn 5 sao — lợi nhuận theo pool quản lý" data-en="5-star hotel residence — managed-pool returns">Căn hộ khách sạn 5 sao — lợi nhuận theo pool quản lý</div>
-              <h3 class="listing-name">W Suites Istanbul</h3>
-              <div class="listing-location" data-vi="📍 Şişli / Levent (New CBD) · Thổ Nhĩ Kỳ" data-en="📍 Şişli / Levent (New CBD) · Türkiye">📍 Şişli / Levent (New CBD) · Thổ Nhĩ Kỳ</div>
+              <div class="listing-tagline" data-vi="Cộng đồng 709 căn ven hồ — Kiler GYO, đủ điều kiện CBI" data-en="709-unit lakeside community by Kiler GYO with CBI eligibility">Cộng đồng 709 căn ven hồ — Kiler GYO, đủ điều kiện CBI</div>
+              <h3 class="listing-name" >Referans Residence</h3>
+              <div class="listing-location">📍 Beylikdüzü · Turkey</div>
               <div class="listing-stats">
-                <div class="listing-stat"><div class="listing-stat-val">$572,300</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">11.0%</div><div class="listing-stat-lbl" data-vi="Gross Yield" data-en="Gross Yield">Gross Yield</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">20.0%</div><div class="listing-stat-lbl" data-vi="5-Year IRR" data-en="5-Year IRR">5-Year IRR</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">Q4 2026</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">$400,000</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">7.5%</div><div class="listing-stat-lbl">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">18.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
               </div>
-              <p class="listing-desc" data-vi="W Suite Istanbul là dự án căn hộ khách sạn 5 sao 120 căn tại CBD mới của thành phố, gần hành lang kinh doanh Şişli / Levent, phát triển bởi Fer Yapı và vận hành theo nền tảng quản lý thương hiệu W Hotel." data-en="W Suites Istanbul is a 120-unit 5-star hotel residence in the city's new CBD, near the Şişli / Levent business corridor, developed by Fer Yapı and operated under the W Hotel brand management platform.">W Suite Istanbul là dự án căn hộ khách sạn 5 sao 120 căn tại CBD mới của thành phố, gần hành lang kinh doanh Şişli / Levent, phát triển bởi Fer Yapı và vận hành theo nền tảng quản lý thương hiệu W Hotel.</p>
+              <p class="listing-desc" data-vi="Referans Residence là cộng đồng quy hoạch tổng thể 709 căn tại Beylikdüzü, bờ châu Âu Istanbul, phát triển bởi Kiler GYO — nhánh bất động sản của Kiler Holding, đứng sau Istanbul Sapphire và hơn 170 dự án đã bàn giao." data-en="Referans Residence is a 709-unit master-planned community in Beylikdüzü on Istanbul&#x27;s European coast, developed by Kiler GYO — the Kiler Holding real-estate arm behind Istanbul Sapphire and 170+ delivered projects.">Referans Residence là cộng đồng quy hoạch tổng thể 709 căn tại Beylikdüzü, bờ châu Âu Istanbul, phát triển bởi Kiler GYO — nhánh bất động sản của Kiler Holding, đứng sau Istanbul Sapphire và hơn 170 dự án đã bàn giao.</p>
               <div class="listing-cta-row">
                 <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
               </div>
             </div>
           </a>
         </article>
-        <article class="listing-card listing-card-placeholder">
-          <div class="listing-placeholder-content">
-            <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub" data-vi="Thêm BĐS Thổ Nhĩ Kỳ đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới." data-en="More CBI-eligible Türkiye properties will be announced here soon.">Thêm BĐS Thổ Nhĩ Kỳ đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=turkey" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
-          </div>
+        <article class="listing-card">
+          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/w-suite-istanbul" target="_blank" rel="noopener">
+            <div class="listing-hero">
+              <img src="https://nomadassetcollective.com/wp-content/uploads/2026/05/W6-scaled.jpg" alt="W Suites Istanbul" loading="lazy">
+              <div class="listing-badges">
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện CBI" data-en="✓ CBI Eligible">✓ Đủ điều kiện CBI</span>
+              </div>
+              <div class="listing-ref">NAC-79</div>
+            </div>
+            <div class="listing-body">
+              <div class="listing-tagline" data-vi="Căn hộ khách sạn 5 sao — lợi nhuận theo pool quản lý" data-en="5-star hotel-managed apartments with revenue-pool yield">Căn hộ khách sạn 5 sao — lợi nhuận theo pool quản lý</div>
+              <h3 class="listing-name" data-vi="W Suites Istanbul" data-en="W Suite Istanbul">W Suites Istanbul</h3>
+              <div class="listing-location">📍 Şişli / Levent (New CBD) · Turkey</div>
+              <div class="listing-stats">
+                <div class="listing-stat"><div class="listing-stat-val">$572,300</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">11.0%</div><div class="listing-stat-lbl">Gross Yield</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">20.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">Q4 2026</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
+              </div>
+              <p class="listing-desc" data-vi="W Suite Istanbul là dự án căn hộ khách sạn 5 sao 120 căn tại CBD mới của thành phố, gần hành lang kinh doanh Şişli / Levent, phát triển bởi Fer Yapı và vận hành theo nền tảng quản lý thương hiệu W Hotel." data-en="W Suite Istanbul is a 120-unit five-star serviced apartment development in the city&#x27;s new CBD near the Şişli / Levent business corridor, developed by Fer Yapı and operated under the W Hotel-branded management platform.">W Suite Istanbul là dự án căn hộ khách sạn 5 sao 120 căn tại CBD mới của thành phố, gần hành lang kinh doanh Şişli / Levent, phát triển bởi Fer Yapı và vận hành theo nền tảng quản lý thương hiệu W Hotel.</p>
+              <div class="listing-cta-row">
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
+              </div>
+            </div>
+          </a>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Türkiye CBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ.</span>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Turkey CBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI Thổ Nhĩ Kỳ.</span>
         <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=turkey" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện CBI →" data-en="All CBI-eligible properties →">Tất cả BĐS đủ điều kiện CBI →</a>
       </div>
     </section>
@@ -1632,13 +1889,13 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/the-emerging-market-premium-why-vietnams-branded-residence-coast-is-where-bali-was-in-2010/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/the-emerging-market-premium-why-vietnams-branded-residence-coast-is-where-bali-was-in-2010-cover-e6057.jpg')">
           <span class="article-cta-kicker" data-vi="Khám phá thêm" data-en="Explore more">Khám phá thêm</span>
-          <h3 class="article-cta-title" data-vi="Đọc thêm phân tích trên Blog NAC" data-en="More analysis on the NAC Blog">Đọc thêm phân tích trên Blog NAC</h3>
+          <h3 class="article-cta-title" data-vi="Đọc thêm phân tích trên Blog NAC" data-en="More analysis on the NAC Blog">The Emerging Market Premium: Why Vietnam's Branded Residence Coast Is Where Bali Was in 2010</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc" data-vi="Phân tích thị trường BĐS Istanbul vs Athens, chỉ số ROI bằng USD và khung quyết định đầu tư." data-en="Istanbul vs Athens real estate analysis, USD-denominated ROI metrics, and the investment decision framework." data-vi="Tất cả bài viết chuyên sâu của đội ngũ NAC dành cho nhà đầu tư HNWI Việt — cập nhật hàng tuần." data-en="All in-depth analysis from the NAC team for Vietnamese HNWI investors — updated weekly.">Tất cả bài viết chuyên sâu của đội ngũ NAC dành cho nhà đầu tư HNWI Việt — cập nhật hàng tuần.</p>
-          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank" data-vi="Xem →" data-en="View →" data-vi="Tới Blog →" data-en="Visit Blog →">Tới Blog →</a>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/the-emerging-market-premium-why-vietnams-branded-residence-coast-is-where-bali-was-in-2010/" target="_blank" data-vi="Xem →" data-en="View →" data-vi="Tới Blog →" data-en="Visit Blog →">Tới Blog →</a>
         </div>
       </div>
     </section>
@@ -1661,16 +1918,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
           <!-- ── STATE: ASK (default first paint) ───────────────────── -->
           <div class="pw-stage pw-stage-ask">
-            <span class="nac-paywall-lock-pill">🔒 Còn 6 phần chuyên sâu</span>
-            <h3>Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?</h3>
-            <p class="pw-sub">Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.</p>
+            <span class="nac-paywall-lock-pill" data-vi="🔒 Còn 6 phần chuyên sâu" data-en="🔒 6 in-depth sections remaining">🔒 Còn 6 phần chuyên sâu</span>
+            <h3 data-vi="Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?" data-en="Read the full Türkiye CBI Brochure?">Đọc trọn bộ Brochure Thổ Nhĩ Kỳ CBI?</h3>
+            <p class="pw-sub" data-vi="Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn." data-en="Family · Tax · Citizenship pathway · Compare · Pros &amp; cons · NAC analysis — sent to your email.">Gia đình · Thuế · Lộ trình quốc tịch · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.</p>
 
             <div class="nac-paywall-yesno" id="nac-paywall-yesno">
-              <button type="button" class="pw-btn-yes" data-choice="yes">Có, gửi cho tôi →</button>
-              <button type="button" class="pw-btn-no"  data-choice="no">Để sau</button>
+              <button type="button" class="pw-btn-yes" data-choice="yes" data-vi="Có, gửi cho tôi →" data-en="Yes, send it to me →">Có, gửi cho tôi →</button>
+              <button type="button" class="pw-btn-no"  data-choice="no" data-vi="Để sau" data-en="Maybe later">Để sau</button>
             </div>
 
-            <p class="nac-paywall-disclaimer">
+            <p class="nac-paywall-disclaimer" data-vi="Brochure được gửi từ <a href=&quot;mailto:ray@nomadassetcollective.com&quot;>ray@</a> hoặc <a href=&quot;mailto:hello@nomadassetcollective.com&quot;>hello@nomadassetcollective.com</a>." data-en="Brochure sent from <a href=&quot;mailto:ray@nomadassetcollective.com&quot;>ray@</a> or <a href=&quot;mailto:hello@nomadassetcollective.com&quot;>hello@nomadassetcollective.com</a>.">
               Brochure được gửi từ
               <a href="mailto:ray@nomadassetcollective.com">ray@</a> hoặc
               <a href="mailto:hello@nomadassetcollective.com">hello@nomadassetcollective.com</a>.
@@ -1682,43 +1939,43 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <!-- ── STATE: ADMIN (NAC team enters password to bypass paywall) ── -->
           <div class="pw-stage pw-stage-admin">
             <h3>Admin access</h3>
-            <p class="pw-sub">Nhập mật khẩu để xem toàn bộ brochure ngay.</p>
+            <p class="pw-sub" data-vi="Nhập mật khẩu để xem toàn bộ brochure ngay." data-en="Enter the password to view the full brochure now.">Nhập mật khẩu để xem toàn bộ brochure ngay.</p>
 
             <form class="nac-paywall-form" id="nac-paywall-admin-form" novalidate>
               <input type="password" name="admin" placeholder="Mật khẩu admin" autocomplete="off" autofocus>
-              <button type="submit">Mở khóa</button>
+              <button type="submit" data-vi="Mở khóa" data-en="Unlock">Mở khóa</button>
             </form>
 
-            <button type="button" class="pw-back-link" data-action="back">← Quay lại</button>
+            <button type="button" class="pw-back-link" data-action="back" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
           </div>
 
           <!-- ── STATE: EMAIL (untracked Yes → ask only for email) ───── -->
           <div class="pw-stage pw-stage-email">
-            <h3>Gửi tới email nào?</h3>
-            <p class="pw-sub">Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.</p>
+            <h3 data-vi="Gửi tới email nào?" data-en="Send to which email?">Gửi tới email nào?</h3>
+            <p class="pw-sub" data-vi="Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ." data-en="One last step. NAC will send the full brochure within 24 hours.">Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.</p>
 
             <!-- Cold-flow form: posts directly to NAC Notion Worker
                  (creates new row in NAC Lead CRM). Submit handled by JS. -->
             <form class="nac-paywall-form" id="nac-paywall-form" novalidate>
               <input type="email" name="email" placeholder="Email của bạn" required autocomplete="email">
-              <button type="submit">Gửi cho tôi →</button>
+              <button type="submit" data-vi="Gửi cho tôi →" data-en="Send to me →">Gửi cho tôi →</button>
             </form>
 
-            <button type="button" class="pw-back-link" data-action="back">← Quay lại</button>
+            <button type="button" class="pw-back-link" data-action="back" data-vi="← Quay lại" data-en="← Back">← Quay lại</button>
           </div>
 
           <!-- ── STATE: SENT (success) ──────────────────────────────── -->
           <div class="pw-stage pw-stage-sent" role="status" aria-live="polite">
             <div class="pw-success-icon">📨</div>
-            <h3>Đã nhận yêu cầu của bạn</h3>
-            <p class="pw-sub">Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.</p>
+            <h3 data-vi="Đã nhận yêu cầu của bạn" data-en="Your request has been received">Đã nhận yêu cầu của bạn</h3>
+            <p class="pw-sub" data-vi="Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions." data-en="The NAC team will send the full brochure within 24 hours. Check your Spam/Promotions folder too.">Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.</p>
           </div>
 
           <!-- ── STATE: DISMISSED (No) ──────────────────────────────── -->
           <div class="pw-stage pw-stage-dismissed" role="status" aria-live="polite">
             <div class="pw-success-icon">👋</div>
-            <h3>OK, để sau cũng được</h3>
-            <p class="pw-sub">Đổi ý lúc nào cũng được —
+            <h3 data-vi="OK, để sau cũng được" data-en="OK, maybe later">OK, để sau cũng được</h3>
+            <p class="pw-sub" data-vi="Đổi ý lúc nào cũng được — <button type=&quot;button&quot; class=&quot;pw-link-reopen&quot; data-action=&quot;reopen&quot;>gửi brochure cho tôi</button>." data-en="Change your mind any time — <button type=&quot;button&quot; class=&quot;pw-link-reopen&quot; data-action=&quot;reopen&quot;>send me the brochure</button>.">Đổi ý lúc nào cũng được —
               <button type="button" class="pw-link-reopen" data-action="reopen">gửi brochure cho tôi</button>.
             </p>
           </div>
@@ -1756,7 +2013,8 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       <h2 class="sec-title" data-vi="Thuế &amp; Lợi Thế Tài Chính" data-en="Tax &amp; Financial Advantages">Thuế & Lợi Thế Tài Chính</h2>
       <p class="sec-sub" data-vi="Thổ Nhĩ Kỳ áp dụng hệ thống thuế theo nguyên tắc cư trú — nhà đầu tư nước ngoài không sống tại Thổ Nhĩ Kỳ hầu như không phát sinh nghĩa vụ thuế tại đây." data-en="Turkey applies a residency-based tax system — foreign investors not living in Turkey rarely incur tax obligations there.">Thổ Nhĩ Kỳ áp dụng hệ thống thuế theo nguyên tắc cư trú — nhà đầu tư nước ngoài không sống tại Thổ Nhĩ Kỳ hầu như không phát sinh nghĩa vụ thuế tại đây.</p>
 
-      <div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
+      <!--TAX-COLLAPSE-->
+<details class="tax-collapse" open><summary><span class="tax-collapse-title" data-vi="Bảng thuế chi tiết" data-en="Detailed tax breakdown">Bảng thuế chi tiết</span><span class="tax-collapse-icon" aria-hidden="true">▾</span></summary><div class="overview-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:20px;">
         <div class="ov-card"><div class="ov-icon">📊</div><div class="ov-label" data-vi="Thuế thu nhập cá nhân" data-en="Personal Income Tax">Thuế thu nhập cá nhân</div><div class="ov-value" data-vi="15%–40%" data-en="15%–40%">15%–40%</div><div class="ov-note" data-vi="Chỉ khi cư trú >183 ngày/năm" data-en="Only if resident >183 days/year">Chỉ khi cư trú >183 ngày/năm</div></div>
         <div class="ov-card"><div class="ov-icon">🌐</div><div class="ov-label" data-vi="Thu nhập ngoài Thổ Nhĩ Kỳ" data-en="Income Outside Turkey">Thu nhập ngoài Thổ Nhĩ Kỳ</div><div class="ov-value" data-vi="Không bị đánh thuế" data-en="Not taxed">Không bị đánh thuế</div><div class="ov-note" data-vi="Nếu không phải cư dân thuế TK" data-en="If not a Turkish tax resident">Nếu không phải cư dân thuế TK</div></div>
         <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label" data-vi="Thuế mua BĐS (TKDF)" data-en="Property Purchase Tax (TKDF)">Thuế mua BĐS (TKDF)</div><div class="ov-value" data-vi="4% (chia đôi)" data-en="4% (split)">4% (chia đôi)</div><div class="ov-note" data-vi="Thông thường người mua trả 2%" data-en="Buyer typically pays 2%">Thông thường người mua trả 2%</div></div>
@@ -1770,7 +2028,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <div class="info-text" data-vi="&lt;strong&gt;Lưu ý đặc biệt — Lạm phát &amp; Tỷ giá:&lt;/strong&gt; Lira Thổ Nhĩ Kỳ (TRY) đã mất giá đáng kể so với USD trong 5 năm qua. BĐS tại Thổ Nhĩ Kỳ thường niêm yết USD nhưng thực tế giao dịch theo tỷ giá TCMB. Điều này có thể tạo ra lợi thế hoặc rủi ro tỷ giá — NAC khuyến nghị nhà đầu tư tham vấn kỹ về cấu trúc giao dịch để tối ưu." data-en="&lt;strong&gt;Special note — Inflation &amp; Exchange Rate:&lt;/strong&gt; The Turkish Lira (TRY) has depreciated significantly against the USD over the past 5 years. Real estate in Turkey is typically listed in USD but transacted at the TCMB rate. This can create advantages or exchange rate risk — NAC recommends investors consult carefully on transaction structure to optimise outcomes."><strong>Lưu ý đặc biệt — Lạm phát & Tỷ giá:</strong> Lira Thổ Nhĩ Kỳ (TRY) đã mất giá đáng kể so với USD trong 5 năm qua. BĐS tại Thổ Nhĩ Kỳ thường niêm yết USD nhưng thực tế giao dịch theo tỷ giá TCMB. Điều này có thể tạo ra lợi thế hoặc rủi ro tỷ giá — NAC khuyến nghị nhà đầu tư tham vấn kỹ về cấu trúc giao dịch để tối ưu.</div>
       </div>
 
-      <div class="info-box">
+      </details><div class="info-box">
         <div class="info-icon">ℹ️</div>
         <div class="info-text" data-vi="&lt;strong&gt;Không có thuế thừa kế toàn cầu:&lt;/strong&gt; Thổ Nhĩ Kỳ không đánh thuế thừa kế đối với tài sản nằm ngoài lãnh thổ Thổ Nhĩ Kỳ — đây là điểm mạnh cho kế hoạch bảo vệ tài sản liên thế hệ." data-en="&lt;strong&gt;No global inheritance tax:&lt;/strong&gt; Turkey does not tax inheritances on assets located outside Turkish territory — a key strength for multi-generational wealth protection."><strong>Không có thuế thừa kế toàn cầu:</strong> Thổ Nhĩ Kỳ không đánh thuế thừa kế đối với tài sản nằm ngoài lãnh thổ Thổ Nhĩ Kỳ — đây là điểm mạnh cho kế hoạch bảo vệ tài sản liên thế hệ.</div>
       </div>
@@ -1837,7 +2095,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         </thead>
         <tbody>
           <tr class="highlight">
-            <td><span class="comp-flag">🇹🇷</span> Thổ Nhĩ Kỳ CBI</td><td>$400K (BĐS)</td><td><span class="tag tag-green" data-vi="Quốc Tịch" data-en="Citizenship">Quốc Tịch</span></td><td>110+ visa-free</td><td>3–6 tháng</td>
+            <td><span class="comp-flag">🇹🇷</span> Thổ Nhĩ Kỳ CBI</td><td data-vi="$400K (BĐS)" data-en="$400K (real estate)">$400K (BĐS)</td><td><span class="tag tag-green" data-vi="Quốc Tịch" data-en="Citizenship">Quốc Tịch</span></td><td>110+ visa-free</td><td data-vi="3–6 tháng" data-en="3–6 months">3–6 tháng</td>
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill" style="width:74%"></div></div><span class="comp-score-num">74</span></div></td>
           </tr>
           <tr>
@@ -1845,7 +2103,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:78%"></div></div><span class="comp-score-num">78</span></div></td>
           </tr>
           <tr>
-            <td><span class="comp-flag">🇵🇹</span> Bồ Đào Nha GV</td><td>€250K (quỹ)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td>12–18 tháng</td>
+            <td><span class="comp-flag">🇵🇹</span> Bồ Đào Nha GV</td><td data-vi="€250K (quỹ)" data-en="€250K (fund)">€250K (quỹ)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td data-vi="12–18 tháng" data-en="12–18 months">12–18 tháng</td>
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill top" style="width:88%"></div></div><span class="comp-score-num">88</span></div></td>
           </tr>
           <tr>
@@ -1857,7 +2115,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:79%"></div></div><span class="comp-score-num">79</span></div></td>
           </tr>
           <tr>
-            <td><span class="comp-flag">🇪🇸</span> Tây Ban Nha GV</td><td>€500K (BĐS)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td>6–12 tháng</td>
+            <td><span class="comp-flag">🇪🇸</span> Tây Ban Nha GV</td><td data-vi="€500K (BĐS)" data-en="€500K (real estate)">€500K (BĐS)</td><td><span class="tag tag-blue" data-vi="Cư Trú" data-en="Residency">Cư Trú</span></td><td>Schengen 26</td><td data-vi="6–12 tháng" data-en="6–12 months">6–12 tháng</td>
             <td><div class="comp-bar"><div class="comp-track"><div class="comp-fill other" style="width:75%"></div></div><span class="comp-score-num">75</span></div></td>
           </tr>
         </tbody>
@@ -2586,7 +2844,7 @@ const VI_STRINGS = [
   "07 — So Sánh",
   "08 — Ưu &amp; Nhược",
   "09 — Nhận Định NAC",
-  "Chương Trình Tổng Quan",
+  "Tổng Quan Chương Trình",
   "Các Mức Đầu Tư",
   "Quy Trình &amp; Thời Gian",
   "Gia Đình &amp; Đối Tượng Thụ Hưởng",
@@ -2609,13 +2867,13 @@ const VI_STRINGS = [
   "Không phải cư trú trước",
   "Ra mắt",
   "8 năm hoạt động",
-  "Vị trí địa chính trị",
+  "Địa Lý Chính Trị",
   "Thành viên NATO, EU ứng viên",
-  "Cư trú bắt buộc",
+  "Yêu Cầu Cư Trú",
   "Không cần sống tại Thổ Nhĩ Kỳ",
   "Thẻ cư trú",
   "Quốc tịch trọn đời",
-  "Gia đình",
+  "Bảo Lãnh",
   "Không bảo lãnh bố mẹ",
   "Thời gian xử lý",
   "Nhanh nhất thế giới",
@@ -2690,7 +2948,7 @@ const VI_STRINGS = [
   "Greece Golden Visa bảo lãnh bố mẹ 2 bên và con đến 24 tuổi — phạm vi rộng hơn đáng kể. Nếu gia đình bạn có bố mẹ cần được bảo lãnh hoặc con lớn, NAC khuyến nghị cân nhắc kết hợp: Thổ Nhĩ Kỳ CBI cho hộ chiếu nhanh, Hy Lạp GV cho bảo vệ gia đình mở rộng.",
   "Xem bảng so sánh đầy đủ →",
   "Thuế thu nhập cá nhân",
-  "Chỉ khi cư trú >183 ngày/năm",
+  "Chỉ khi cư trú &gt;183 ngày/năm",
   "Thu nhập ngoài Thổ Nhĩ Kỳ",
   "Không bị đánh thuế",
   "Nếu không phải cư dân thuế TK",
@@ -2858,13 +3116,13 @@ const EN_STRINGS = [
   "No prior residency required",
   "Launched",
   "8 years in operation",
-  "Geopolitical Position",
+  "Geopolitics",
   "NATO member, EU candidate",
-  "Residency Required",
+  "Residency Requirement",
   "No need to live in Türkiye",
   "Status",
   "Lifetime citizenship",
-  "Family",
+  "Sponsorship",
   "Parents not included",
   "Processing Time",
   "Fastest in the world",
@@ -2939,7 +3197,7 @@ const EN_STRINGS = [
   "The Greece Golden Visa covers parents on both sides and children up to age 24 — significantly broader scope. If your family includes parents or older children, NAC recommends combining: Turkey CBI for fast citizenship + Greece GV for extended family protection.",
   "See full comparison table →",
   "Personal Income Tax",
-  "Only if resident >183 days/year",
+  "Only if resident &gt;183 days/year",
   "Income Outside Turkey",
   "Not taxed",
   "If not a Turkish tax resident",
@@ -3095,6 +3353,20 @@ function setLang(lang) {
   document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
+
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
 
   // ── NEW data-driven pass: any element with data-vi/data-en gets its
   // innerHTML swapped per the active language. If data-en is empty/missing,
@@ -3469,6 +3741,54 @@ function setLang(lang) {
   document.addEventListener('click', function(e){
     if (!el.contains(e.target)) el.classList.remove('is-open');
   });
+})();
+</script>
+
+
+
+
+<script>
+/* Tax-grid collapse: closed by default on mobile, open on desktop.
+   TAX-COLLAPSE-JS */
+(function () {
+  function syncTaxCollapse() {
+    var det = document.querySelector('details.tax-collapse');
+    if (!det) return;
+    if (window.matchMedia('(max-width: 600px)').matches) det.open = false;
+    else det.open = true;
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', syncTaxCollapse);
+  else syncTaxCollapse();
+  window.addEventListener('resize', syncTaxCollapse);
+})();
+</script>
+
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
 })();
 </script>
 

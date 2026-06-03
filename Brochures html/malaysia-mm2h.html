@@ -693,7 +693,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
    ============================================================ */
 .nac-tools { display:none; }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) { /*NAC-TOOLS-1024*/
   .nac-tools {
     position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
     display:flex; align-items:center; gap:.2rem;
@@ -756,22 +756,22 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
    ────────────────────────────────────────────── */
 /* ── NAC INDEX banner variant — animated globe canvas behind title ──
    Light lavender gradient mirrors the NAC Residence Index page hero. */
-.nac-index-banner {
+.article-cta-banner.nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 360px;
+  min-height: 300px;
   overflow: hidden;
 }
-.nac-index-banner::after {
+.article-cta-banner.nac-index-banner::after {
   /* Soft top-to-bottom fade so the title sits cleanly above the globe.
      Uses the same lavender as the bg so the corners stay airy. */
   background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
 }
 /* Default text is white — flip to dark since we're on a light background */
-.nac-index-banner .article-cta-kicker {
+.article-cta-banner.nac-index-banner .article-cta-kicker {
   color: #5b3aa8;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
-.nac-index-banner .article-cta-title {
+.article-cta-banner.nac-index-banner .article-cta-title {
   color: #1a0f5c;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
@@ -821,7 +821,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
 }
 @media (max-width: 600px) {
   /* Mobile: CSS Grid stack — tight fit around globe. */
-  .nac-index-banner {
+  .article-cta-banner.nac-index-banner {
     display: grid !important;
     grid-template-rows: 240px auto auto;
     grid-template-columns: 1fr;
@@ -841,24 +841,24 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
     opacity: .95;
     animation: none;
   }
-  .nac-index-banner .article-cta-kicker,
-  .nac-index-banner .article-cta-title {
+  .article-cta-banner.nac-index-banner .article-cta-kicker,
+  .article-cta-banner.nac-index-banner .article-cta-title {
     position: relative;
     z-index: 2;
     grid-column: 1;
     padding-left: 18px;
     padding-right: 18px;
   }
-  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
-  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+  .article-cta-banner.nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
+  .article-cta-banner.nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
   /* The pseudo-element overlay sits on top of everything — push it back */
-  .nac-index-banner::after { display: none; }
+  .article-cta-banner.nac-index-banner::after { display: none; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
   /* The pills inside the dark glass banner are hidden on mobile —
      they sit on the white body strip below instead (see below). */
-  .nac-index-banner .nac-index-pills { display: none; }
+  .article-cta-banner.nac-index-banner .nac-index-pills { display: none; }
   /* Mobile pills strip — sits in the white .article-cta-body band so
      icons get a clean, airy surface. Forced 6×2 grid (two rows of six)
      regardless of viewport width — no flex-wrap surprises. */
@@ -968,6 +968,245 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
+
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
+}
+/*TAX-COLLAPSE-CSS*/
+
+
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
+
+
+
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
+
+/* Breadcrumb typography lock — match "NAC BROCHURE 2026" tagline
+   look. Colors preserved (white-on-dark hero). /*BREADCRUMB-LOCK-V1*/ */
+.breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.breadcrumb a,
+.breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
+
+
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
+}
+
+
+/* Tax table mobile — pill-style disclaimer + column hiding.
+   Matches the .comp-table-mobile-msg look so the two tables read
+   alike on small screens. /*TAX-TABLE-MOBILE-V2*/ */
+.tax-table-mobile-note { display: none; }
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    text-align: center;
+    margin: 12px 0 24px;
+    line-height: 1.4;
+  }
+}
+
+
+/* Listings live-tag — small pulsing-dot indicator below the section
+   title (mirrors a status badge). /*SEC-LIVE-TAG-V1*/ */
+.sec-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 4px 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green, #10b981);
+}
+.sec-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #10b981);
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
+  animation: sec-live-pulse 2s infinite;
+  flex-shrink: 0;
+  margin-right: 9px;
+  position: relative;
+  top: 0px;
+}
+@keyframes sec-live-pulse {
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -1130,16 +1369,16 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
     <!-- 01 OVERVIEW -->
     <section class="section" id="overview">
       <div class="sec-label">01 — Tổng Quan</div>
-      <h2 class="sec-title">Chương Trình Tổng Quan</h2>
+      <h2 class="sec-title">Tổng Quan Chương Trình</h2>
       <p class="sec-sub">Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người nước ngoài muốn sống, đầu tư hoặc nghỉ hưu tại Malaysia. Hệ thống 4 bậc (Silver/Gold/Platinum/SEZ) với yêu cầu ký quỹ + BĐS bắt buộc, hộ chiếu Malaysia xếp hạng 6 thế giới (183 quốc gia visa-free), chi phí sinh hoạt chỉ bằng 1/3 Singapore và miễn thuế thu nhập nước ngoài — đây là lựa chọn hấp dẫn nhất Đông Nam Á.</p>
 
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Cư Trú Dài Hạn</div><div class="ov-note">My Second Home (MM2H / RBI)</div></div>
         <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Tái cấu trúc</div><div class="ov-value">Tháng 7/2024</div><div class="ov-note">4 bậc mới — MOTAC quản lý</div></div>
-        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Vị trí địa chính trị</div><div class="ov-value">ASEAN · Đông Nam Á</div><div class="ov-note">Trung tâm kinh tế ĐNA</div></div>
-        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Cư trú bắt buộc</div><div class="ov-value">90 ngày/năm (dưới 50 tuổi)</div><div class="ov-note">Trên 50 tuổi: không yêu cầu</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">ASEAN · Đông Nam Á</div><div class="ov-note">Trung tâm kinh tế ĐNA</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">90 ngày/năm (dưới 50 tuổi)</div><div class="ov-note">Trên 50 tuổi: không yêu cầu</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn visa</div><div class="ov-value">5–20 năm (gia hạn)</div><div class="ov-note">Silver 5 · Gold 15 · Platinum 20</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con đến 34 + bố mẹ</div><div class="ov-note">Phạm vi rộng nhất khu vực</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con đến 34 + bố mẹ</div><div class="ov-note">Phạm vi rộng nhất khu vực</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">3–6 tháng</div><div class="ov-note">Qua đại lý MM2H có giấy phép</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập tối đa</div><div class="ov-value">26% (nội địa)</div><div class="ov-note">Thu nhập nước ngoài: miễn thuế đến 2026</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">183 quốc gia visa-free</div><div class="ov-note">Hộ chiếu MY hạng 6 Henley 2026</div></div>
@@ -1151,7 +1390,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
       </div>
 
       <div class="chart-box">
-        <div class="chart-title">Phân tích điểm 6 tiêu chí NAC — Malaysia MM2H</div>
+        <div class="chart-title" data-vi="6 Tiêu Chí Trọng Điểm theo NAC Index" data-en="6 Key Criteria by NAC Index">6 Tiêu Chí Trọng Điểm theo NAC Index</div>
         <canvas id="radarChart" style="max-height:300px"></canvas>
       </div>
 
@@ -1161,13 +1400,13 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
       </div>
 
       <div class="article-cta">
-        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/goc-nhin-nac-chien-luoc-thua-ke-tai-san-quoc-te-cho-nha-dau-tu-viet-nam-co-tai-san-da-quoc-gia/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/goc-nhin-nac-chien-luoc-thua-ke-tai-san-quoc-te-cho-nha-dau-tu-viet-nam-co-tai-san-da-quoc-gia-cover-42319.jpg')">
           <span class="article-cta-kicker">Bài viết đề xuất</span>
-          <h3 class="article-cta-title">Chiến lược đầu tư BĐS Malaysia cho nhà đầu tư Việt 2026</h3>
+          <h3 class="article-cta-title">Góc Nhìn NAC: Chiến Lược Thừa Kế Tài Sản Quốc Tế Cho Nhà Đầu Tư Việt Nam Có Tài Sản Đa Quốc Gia</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
-          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Đọc Ngay →</a>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/goc-nhin-nac-chien-luoc-thua-ke-tai-san-quoc-te-cho-nha-dau-tu-viet-nam-co-tai-san-da-quoc-gia/" target="_blank">Đọc Ngay →</a>
         </div>
       </div>
     </section>
@@ -1256,9 +1495,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
     <!-- LISTINGS START -->
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
-      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title">BĐS Đủ Điều Kiện RBI — Đang Mở Bán</h2>
-      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malaysia và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện RBI" data-en="RBI-Eligible Properties">BĐS Đủ Điều Kiện RBI</h2>
+      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="Đang Mở Bán" data-en="Now Live">Đang Mở Bán</span></div>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malaysia và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Malaysia RBI program and ready to transact. You don&#x27;t need to hunt — we&#x27;ve curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malaysia và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
         <article class="listing-card">
@@ -1266,24 +1506,23 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
             <div class="listing-hero">
               <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=800&amp;q=80" alt="Four Seasons Place KL" loading="lazy">
               <div class="listing-badges">
-                <span class="listing-badge listing-badge-flag">🇲🇾 Malaysia</span>
-                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện RBI</span>
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện RBI" data-en="✓ RBI Eligible">✓ Đủ điều kiện RBI</span>
               </div>
               <div class="listing-ref">NAC-9</div>
             </div>
             <div class="listing-body">
-              <div class="listing-tagline">Branded Residences</div>
-              <h3 class="listing-name">Four Seasons Place KL</h3>
+              <div class="listing-tagline" >Branded Residences</div>
+              <h3 class="listing-name" >Four Seasons Place KL</h3>
               <div class="listing-location">📍 Malaysia</div>
               <div class="listing-stats">
-                <div class="listing-stat"><div class="listing-stat-val">$290K</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">$290,000</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
                 <div class="listing-stat"><div class="listing-stat-val">5.9%</div><div class="listing-stat-lbl">Gross Yield</div></div>
                 <div class="listing-stat"><div class="listing-stat-val">12.8%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl">Bàn Giao</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
               </div>
-              <p class="listing-desc">Freehold tại trung tâm Kuala Lumpur.</p>
+              <p class="listing-desc" data-vi="Freehold tại trung tâm Kuala Lumpur." data-en="Freehold in central KL.">Freehold tại trung tâm Kuala Lumpur.</p>
               <div class="listing-cta-row">
-                <span class="listing-cta-primary">Xem Chi Tiết →</span>
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
               </div>
             </div>
           </a>
@@ -1291,16 +1530,16 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
         <article class="listing-card listing-card-placeholder">
           <div class="listing-placeholder-content">
             <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Malaysia đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malaysia" target="_blank" rel="noopener">Khám phá Property Hub →</a>
+            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
+            <div class="listing-placeholder-sub" data-vi="Thêm BĐS Malaysia đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới." data-en="More RBI-eligible Malaysia properties will be announced here soon.">Thêm BĐS Malaysia đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malaysia" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
           </div>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malaysia.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malaysia" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện RBI →</a>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malaysia." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Malaysia RBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malaysia.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malaysia" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện RBI →" data-en="All RBI-eligible properties →">Tất cả BĐS đủ điều kiện RBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -1529,17 +1768,6 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
         </tbody>
       </table>
       <div class="comp-table-mobile-msg">📊 Xem thông tin hoàn chỉnh trên desktop / web view</div>
-
-      <div class="article-cta" style="margin-top:16px">
-        <a class="article-cta-banner" href="https://nomadassetcollective.com/so-sanh/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/18-1024x683.jpg')">
-          <span class="article-cta-kicker">Công cụ</span>
-          <h3 class="article-cta-title">Công cụ So Sánh NAC</h3>
-        </a>
-        <div class="article-cta-body">
-          <p class="article-cta-desc">Chưa quyết định được? giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline.</p>
-          <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh →</a>
-        </div>
-      </div>
     
       <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
@@ -1740,7 +1968,7 @@ function makeRadarDataset(key, alpha, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [
       makeRadarDataset('malaysia', 0.18, 1),
       makeRadarDataset(radarCompare1, 0.10, 0.75),
@@ -1947,7 +2175,7 @@ const VI_STRINGS = [
   "07 — So Sánh",
   "08 — Ưu &amp; Nhược",
   "09 — Nhận Định NAC",
-  "Chương Trình Tổng Quan",
+  "Tổng Quan Chương Trình",
   "Các Mức Đầu Tư",
   "Quy Trình &amp; Thời Gian",
   "Gia Đình &amp; Đối Tượng Thụ Hưởng",
@@ -1974,16 +2202,16 @@ const VI_STRINGS = [
   "Tái cấu trúc",
   "Tháng 7/2024",
   "4 bậc mới — MOTAC quản lý",
-  "Vị trí địa chính trị",
+  "Địa Lý Chính Trị",
   "ASEAN · Đông Nam Á",
   "Trung tâm kinh tế ĐNA",
-  "Cư trú bắt buộc",
+  "Yêu Cầu Cư Trú",
   "90 ngày/năm (dưới 50 tuổi)",
   "Trên 50 tuổi: không yêu cầu",
   "Thời hạn visa",
   "5–20 năm (gia hạn)",
   "Silver 5 · Gold 15 · Platinum 20",
-  "Gia đình",
+  "Bảo Lãnh",
   "Vợ/chồng + con đến 34 + bố mẹ",
   "Phạm vi rộng nhất khu vực",
   "Thời gian xử lý",
@@ -2101,6 +2329,167 @@ const VI_STRINGS = [
   'Chưa quyết định? <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">Công cụ So Sánh NAC</a>',
   'Đọc thêm phân tích chuyên sâu: <a href="https://blog.nomadassetcollective.com/malaysia-mm2h-vs-new-zealand-active-investor-plus-2026-hai-con-duong-thuong-tru-chau-a-thai-binh-duong-danh-cho-nha-dau-tu-viet-nam/" target="_blank"><strong>Malaysia MM2H vs New Zealand Active Investor Plus 2026: Hai Con Đường Thường Trú Châu Á Thái Bình Dương Dành Cho Nhà Đầu Tư Việt Nam</strong></a>',
   'Chưa quyết định? <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">Công cụ So Sánh NAC</a>',
+  "Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC",
+  "★ BĐS đang mở bán",
+  "BĐS đang mở bán",
+  "Tư Vấn 30''",
+  "So Sánh",
+  "05 · Tax &amp; tài chính 🔒",
+  "Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người nước ngoài muốn sống, đầu tư hoặc nghỉ hưu tại Malaysia. Hệ thống 4 bậc (Silver/Gold/Platinum/SEZ) với yêu cầu ký quỹ + BĐS bắt buộc, hộ chiếu Malaysia xếp hạng 6 thế giới (183 visa-free), và miễn thuế thu nhập nước ngoài đến hết 2026 — lựa chọn ASEAN hàng đầu cho HNWI Việt.",
+  "Tax thu nhập tối đa",
+  "Passport MY hạng 6 Henley 2026",
+  "Nguồn dữ liệu:",
+  "MOTAC Malaysia · mm2h.gov.my · Henley Passport Index 2026 · LHDN (Cơ quan Tax Malaysia) · Budget 2026. Số liệu có thể thay đổi — liên hệ NAC để xác nhận trước khi quyết định.",
+  "Phân tích điểm 6 tiêu chí NAC — Malaysia MM2H",
+  "Thời gian cấp cư trú — Malaysia vs các chương trình hàng đầu (tháng)",
+  "Bài viết đề xuất",
+  "Góc Nhìn NAC: Chiến Lược Thừa Kế Tài Sản Quốc Tế Cho Nhà Đầu Tư Việt Nam Có Tài Sản Đa Quốc Gia",
+  "MM2H 2026 yêu cầu hai thành phần bắt buộc: ký quỹ cố định tại ngân hàng Malaysia + mua BĐS trong vòng 12 tháng sau khi visa được phê duyệt. Mức đầu tư phụ thuộc vào bậc chọn — từ $150K (Silver) đến $1M+ (Platinum). BĐS không được bán trong 10 năm.",
+  "Lưu ý quan trọng 2026:",
+  "Kể từ tháng 7/2024, mua BĐS là BẮT BUỘC cho tất cả các bậc MM2H (trước đây chỉ là tùy chọn). Hợp đồng mua bán (SPA) phải được ký trong vòng 12 tháng kể từ ngày visa được đóng dấu. BĐS phải giữ tối thiểu 10 năm — bán sớm sẽ bị thu hồi visa. Nộp hồ sơ bắt buộc qua đại lý MM2H có giấy phép (không nhận hồ sơ tự nộp).",
+  "Silver — Ký quỹ + BĐS bắt buộc",
+  "Ký quỹ USD 150,000",
+  "BĐS tối thiểu RM 600,000",
+  "Không được phép làm việc",
+  "Rút 50% ký quỹ sau mua BĐS",
+  "Gold — 15 năm visa + đầu tư BĐS lớn hơn",
+  "15-year visa · Gia hạn mỗi 5 năm",
+  "Ký quỹ USD 500,000",
+  "BĐS tối thiểu RM 1,000,000",
+  "Lãi suất ký quỹ ~3–4%/năm",
+  "Platinum — 20 năm + quyền kinh doanh",
+  "Visa 20 năm · Được làm giám đốc công ty",
+  "Ký quỹ USD 1,000,000",
+  "BĐS tối thiểu RM 2,000,000",
+  "Được phép kinh doanh &amp; làm giám đốc",
+  "Thuê người giúp việc nước ngoài",
+  "SEZ — Forest City Johor · Ngưỡng thấp nhất",
+  "10-year visa · Chỉ áp dụng tại Forest City",
+  "Ký quỹ $65K (21–49) / $32K (50+)",
+  "BĐS từ RM 600K (Forest City)",
+  "Mua từ developer trực tiếp",
+  "Chiến lược NAC cho nhà đầu tư Việt:",
+  "Silver MM2H ($150K ký quỹ + RM 600K BĐS) là điểm khởi đầu tốt nhất — tổng ngân sách ~$280K–$350K. BĐS tại KL/Penang/Johor có tỷ suất cho thuê 4–6% và tiềm năng tăng giá. Sau 1 năm, rút 50% ký quỹ ($75K) cho chi phí BĐS/y tế/giáo dục. Kết hợp MM2H + UAE Golden Visa để có cả ASEAN lẫn Trung Đông.",
+  "Tìm hiểu thêm:",
+  "Cơ Hội Đầu Tư Thực Tế",
+  "BĐS Đủ Điều Kiện RBI — Đang Mở Bán",
+  "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malaysia và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.",
+  "✓ Đủ điều kiện RBI",
+  "Giá Khởi Điểm",
+  "Freehold tại trung tâm Kuala Lumpur.",
+  "Xem Chi Tiết →",
+  "Đang Cập Nhật",
+  "Thêm BĐS Malaysia đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.",
+  "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malaysia.",
+  "Tất cả BĐS đủ điều kiện RBI →",
+  "From 2024, all MM2H applications must be filed through a MOTAC-licensed agent. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất 3–6 months, sau đó có thêm 12 tháng để hoàn tất mua BĐS bắt buộc.",
+  "Chọn bậc MM2H &amp; đại lý có giấy phép",
+  "Đánh giá ngân sách, mục tiêu cư trú và chọn bậc phù hợp (Silver/Gold/Platinum/SEZ). Chọn đại lý MM2H đã đăng ký với MOTAC theo Đạo luật Du lịch 1992 (Act 482). Phí đại lý: RM 40,000 (Silver/SEZ) đến RM 70,000 (Platinum). Chuẩn bị hộ chiếu (còn hạn ≥18 tháng), lý lịch tư pháp, sao kê ngân hàng.",
+  "Chuẩn bị &amp; nộp hồ sơ",
+  "Đại lý MM2H chuẩn bị bộ hồ sơ hoàn chỉnh: chứng minh tài chính (sao kê 3–6 months, xác nhận tài sản thanh khoản), hộ chiếu, lý lịch tư pháp từ nước gốc (dịch và công chứng), ảnh hộ chiếu, giấy chứng nhận kết hôn/sinh (nếu có người phụ thuộc). Nộp hồ sơ trực tuyến qua cổng MOTAC.",
+  "MOTAC Review &amp; phê duyệt có điều kiện",
+  "MOTAC và Cục Xuất nhập cảnh Malaysia đánh giá hồ sơ — thời gian xử lý: 60–120 ngày. Nếu được phê duyệt có điều kiện, nhà đầu tư nhận thư phê duyệt kèm hướng dẫn: đến Malaysia, mở tài khoản ngân hàng, gửi ký quỹ, khám sức khỏe, mua bảo hiểm y tế (tối thiểu RM 80,000 bảo hiểm).",
+  "Nhận visa MM2H &amp; bắt đầu mua BĐS",
+  "Hoàn tất ký quỹ tại ngân hàng Malaysia, khám sức khỏe, mua bảo hiểm → visa MM2H được đóng dấu vào hộ chiếu. Có 12 tháng để ký SPA mua BĐS bắt buộc (riêng SEZ: 3–6 months). BĐS phải đạt ngưỡng tối thiểu của bậc MM2H VÀ ngưỡng tối thiểu của bang cho người nước ngoài (lấy mức cao hơn). Trả phí tham gia: RM 5,000 (chính) + RM 2,500/người phụ thuộc.",
+  "Lưu ý quan trọng:",
+  "MM2H yêu cầu cư trú 90 ngày/năm cho người dưới 50 tuổi. Trên 50 tuổi (và một số bậc): không yêu cầu cư trú tối thiểu. Đây là điểm khác biệt lớn so với Thái Lan LTR (cũng yêu cầu cư trú) nhưng linh hoạt hơn UK (180 ngày). Nếu ưu tiên linh hoạt tối đa, cân nhắc UAE Golden Visa (không yêu cầu cư trú).",
+  "Đọc trọn bộ Brochure Malaysia MM2H?",
+  "Mở khóa 6 phần tiếp theo: Family, Tax, Path to Citizenship, So sánh, Ưu/nhược điểm và Nhận định chiến lược của NAC.",
+  "Để sau",
+  "MM2H có phạm vi người phụ thuộc rộng nhất trong khu vực — bao gồm vợ/chồng, con chưa kết hôn đến 34 tuổi, con tàn tật (không giới hạn tuổi), và bố mẹ/bố mẹ vợ/chồng (Platinum). Không phí thêm cho người phụ thuộc.",
+  "Spouse Hợp Pháp",
+  "Included on the MM2H visa. Quyền cư trú đồng thời. Không giới hạn giới tính. Silver/Gold: không được phép làm việc. Platinum: quyền kinh doanh.",
+  "Con chưa kết hôn, chưa đi làm tại Malaysia, đến 34 tuổi. Con tàn tật: không giới hạn tuổi. Được hưởng giáo dục quốc tế tại Malaysia.",
+  "Bố Mẹ / Bố Mẹ Spouse",
+  "Platinum: can sponsor both sets of parents. Gold/Silver: cần xác nhận với đại lý. Đây là lợi thế hiếm có — hầu hết chương trình châu Âu không hỗ trợ.",
+  "Trường quốc tế tại KL, Penang, Johor: $5K–$25K/năm (chương trình British, IB, American). Rẻ hơn đáng kể so với Singapore/HK. Đại học top Malaysia: UM, UKM — học phí cực thấp cho cư dân.",
+  "So sánh với Hy Lạp/Bồ Đào Nha:",
+  "MM2H bảo lãnh con đến 34 tuổi (Hy Lạp: 21, Bồ Đào Nha: 26 nếu phụ thuộc tài chính). Bố mẹ hai bên cũng có thể đi kèm (Platinum). Đây là phạm vi gia đình rộng nhất trong tất cả chương trình NAC đánh giá — lý tưởng cho gia đình đa thế hệ Việt Nam.",
+  "Malaysia áp dụng hệ thống thuế lãnh thổ — chỉ đánh thuế thu nhập phát sinh tại Malaysia. Thu nhập từ nước ngoài chuyển vào Malaysia được miễn thuế đến hết 31/12/2026. Không có thuế thừa kế, thuế tài sản ròng hoặc thuế quà tặng.",
+  "Loại thuế",
+  "Mức thuế MY 2026",
+  "Điều kiện",
+  "So với VN",
+  "Tax thu nhập cá nhân",
+  "0% (đến RM 5K) · Lũy tiến đến 26% (trên RM 2M)",
+  "Thu nhập nước ngoài",
+  "0% (miễn thuế)",
+  "Miễn đến 31/12/2026 — có thể gia hạn",
+  "VN: đánh thuế toàn cầu",
+  "Tax lãi vốn (BĐS)",
+  "30% (≤5 năm) · 10% (&gt;5 năm) cho NR",
+  "VN: 2% trên giá bán",
+  "Tax thừa kế",
+  "Không có thuế thừa kế tại Malaysia",
+  "VN: Không có",
+  "Tax doanh nghiệp",
+  "Thay thế GST từ 2018 · 8% dịch vụ · 6% hàng hóa",
+  "Stamp Duty — BĐS (MY)",
+  "VN: 0.5% phí trước bạ",
+  "Tăng từ 4% lên 8% cho người nước ngoài từ 1/1/2026",
+  "VN: Không áp dụng",
+  "📊 Xem thông tin hoàn chỉnh trên desktop / web view",
+  "Lợi thế thuế lớn nhất:",
+  "Malaysia miễn thuế thu nhập nước ngoài cho cư dân đến hết 2026 (có khả năng gia hạn đến 2036 theo đề xuất). Đối với nhà đầu tư Việt có thu nhập từ kinh doanh/cổ tức/cho thuê tại VN hoặc nước thứ ba, đây là lợi thế cực lớn. Kết hợp MM2H Malaysia (0% thuế ngoại) + UAE (0% thuế tổng) = bộ đôi tối ưu thuế cho doanh nhân quốc tế.",
+  "So sánh thuế thu nhập cá nhân tối đa — Malaysia vs các quốc gia cạnh tranh (%)",
+  "MM2H KHÔNG cung cấp lộ trình trực tiếp đến quốc tịch hoặc thường trú nhân (PR) Malaysia. Đây là chương trình cư trú dài hạn có thể gia hạn vô thời hạn, nhưng không phải con đường nhập tịch. PR Malaysia phải nộp hồ sơ riêng biệt, và quá trình cực kỳ chọn lọc.",
+  "Nhận visa MM2H (5–20 năm tùy bậc)",
+  "Gia hạn visa — không giới hạn số lần",
+  "PR — hồ sơ riêng, cực kỳ chọn lọc",
+  "Citizenship — rất hiếm cho NĐT nước ngoài",
+  "So sánh lộ trình:",
+  "UK Innovator: quốc tịch sau 4 năm. Portugal GV: quốc tịch EU sau 5 năm. Turkey CBI: quốc tịch ngay lập tức. Malaysia MM2H: KHÔNG có lộ trình quốc tịch. Nếu quốc tịch thứ hai là mục tiêu, MM2H không phải lựa chọn đúng — nhưng nếu mục tiêu là cư trú dài hạn, BĐS đầu tư, chi phí sống thấp và miễn thuế thu nhập nước ngoài, MM2H là một trong những lựa chọn tốt nhất ASEAN.",
+  "Bước tiếp theo:",
+  "Malaysia MM2H's position in the overall landscape. Xem toàn bộ xếp hạng tại",
+  "Điểm tổng hợp NAC — Top chương trình (2026)",
+  "Chương trình",
+  "Investment tối thiểu",
+  "Đầu tư tối thiểu",
+  "Di chuyển",
+  "Thời gian",
+  "Điểm NAC",
+  "€250K (quỹ)",
+  "$400K (BĐS)",
+  "£50K+ (vốn KD)",
+  "Công cụ phân tích",
+  "NAC Residence Index — So Sánh 21 Chương Trình",
+  "Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất.",
+  "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Malaysia MM2H trong năm 2026.",
+  "Foreign income tax exemption — through end of 2026 (có thể gia hạn)",
+  "Không có thuế thừa kế, thuế tài sản ròng, thuế quà tặng",
+  "Y tế đẳng cấp quốc tế, giá cực rẻ (top 5 y tế du lịch thế giới)",
+  "Bảo lãnh gia đình rộng nhất: con đến 34 tuổi + bố mẹ",
+  "BĐS sở hữu hoàn toàn + tỷ suất cho thuê 4–6%",
+  "Passport MY hạng 6 thế giới (183 visa-free)",
+  "Gần Việt Nam — bay 2.5 giờ từ HCMC",
+  "Indefinitely renewable visa — cư trú vĩnh viễn trên thực tế",
+  "NO citizenship/PR pathway trực tiếp",
+  "Fixed deposit locked — lãi suất thấp (3–4%)",
+  "BĐS bắt buộc + khóa 10 năm — thiếu thanh khoản",
+  "Silver/Gold: KHÔNG được phép làm việc hoặc kinh doanh",
+  "Stamp Duty cho NR tăng lên 8% từ 2026",
+  "Phải nộp qua đại lý — phí RM 40K–70K",
+  "Dưới 50 tuổi: phải cư trú 90 ngày/năm",
+  "Investment threshold rising mạnh so với trước 2022",
+  "Hệ thống hành chính có thể chậm &amp; thay đổi thường xuyên",
+  "Hạn chế quyền sở hữu BĐS theo bang",
+  "Rủi ro BĐS Malaysia:",
+  "Stamp Duty cho người nước ngoài tăng từ 4% lên 8% kể từ 1/1/2026 — tăng đáng kể chi phí đầu vào. Một số bang (Johor, Selangor, Penang, KL) có ngưỡng tối thiểu cao hơn ngưỡng MM2H. BĐS bị khóa 10 năm — bán sớm mất visa. Cần luật sư BĐS Malaysia ngay từ đầu.",
+  "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+  "Phân tích điểm mạnh — Malaysia vs các chương trình cạnh tranh (2026)",
+  "Malaysia MM2H phù hợp nhất với:",
+  'Nhà đầu tư Việt muốn đa dạng hóa BĐS Đông Nam Á với ngân sách $250K–$500K, gia đình đa thế hệ (vợ/chồng + con lớn + bố mẹ), ưu tiên chi phí sinh hoạt thấp và y tế/giáo dục tốt, có thu nhập nước ngoài muốn tối ưu thuế, KHÔNG cần quốc tịch thứ hai mà cần "base thứ hai" an toàn gần Việt Nam.',
+  "Đội ngũ NAC Consulting có kinh nghiệm tư vấn Malaysia MM2H cho nhà đầu tư HNWI Việt Nam, với mạng lưới đại lý MM2H có giấy phép, luật sư BĐS và ngân hàng tại KL, Penang và Johor. Chúng tôi hỗ trợ toàn bộ quy trình — từ chọn bậc, chuẩn bị hồ sơ đến mua BĐS. Đọc thêm tại",
+  '📅 Đặt 30"→',
+  "© 2026 NAC Consulting — Nomad Asset Collective. Thông tin trong tài liệu này chỉ mang tính tham khảo và có thể thay đổi theo chính sách của Chính phủ Malaysia. Vui lòng liên hệ đội ngũ tư vấn NAC để cập nhật thông tin mới nhất trước khi đưa ra quyết định đầu tư. Không phải tư vấn pháp lý hay tài chính.",
+  "Malaysia My Second Home (MM2H) — tái cấu trúc hoàn chỉnh từ tháng 7/2024 — là chương trình cư trú dài hạn dành cho người nước ngoài muốn sống, đầu tư hoặc nghỉ hưu tại Malaysia. Hệ thống 4 bậc (Silver/Gold/Platinum/SEZ) với yêu cầu ký quỹ + BĐS bắt buộc, hộ chiếu Malaysia xếp hạng 6 thế giới (183 quốc gia visa-free), chi phí sinh hoạt chỉ bằng 1/3 Singapore và miễn thuế thu nhập nước ngoài — đây là lựa chọn hấp dẫn nhất Đông Nam Á.",
+  "Hoàn tất ký quỹ tại ngân hàng Malaysia, khám sức khỏe, mua bảo hiểm → visa MM2H được đóng dấu vào hộ chiếu. Có 12 tháng để ký SPA mua BĐS bắt buộc (riêng SEZ: 3–6 tháng). BĐS phải đạt ngưỡng tối thiểu của bậc MM2H VÀ ngưỡng tối thiểu của bang cho người nước ngoài (lấy mức cao hơn). Trả phí tham gia: RM 1,000 (Silver/SEZ) / RM 3,000 (Gold) / RM 200,000 (Platinum).",
+  "Mở khóa 6 phần tiếp theo: Gia đình, Thuế, Lộ trình quốc tịch, So sánh, Ưu/nhược điểm và Nhận định chiến lược của NAC.",
+  "Malaysia miễn thuế thu nhập nước ngoài cho cư dân đến hết 2026 (có khả năng gia hạn đến 2036 theo đề xuất). Đối với nhà đầu tư Việt có thu nhập từ kinh doanh/cổ tức/cho thuê tại VN hoặc nước thứ ba, đây là lợi thế cực lớn. Kết hợp MM2H Malaysia (0% thuế ngoại) + UAE (0% thuế tổng) = bộ đôi tối ưu thuế hoàn hảo.",
+  "UK Innovator: quốc tịch sau 4 năm. Bồ Đào Nha GV: quốc tịch EU sau 5 năm. Thổ Nhĩ Kỳ CBI: quốc tịch ngay lập tức. Malaysia MM2H: KHÔNG có lộ trình quốc tịch. Nếu quốc tịch thứ hai là mục tiêu, MM2H không phải lựa chọn đúng — nhưng nếu mục tiêu là cư trú dài hạn, BĐS đầu tư, chi phí sống thấp và miễn thuế ngoại, MM2H xuất sắc.",
+  "Bàn Giao",
+  "Khám phá Property Hub →",
+  "Education Con Cái",
 ];
 
 const EN_STRINGS = [
@@ -2110,7 +2499,7 @@ const EN_STRINGS = [
   "Renewable visa",
   "Passport rank",
   "NAC Score (INDEX)",
-  "Good – Property &amp; Cost of Living",
+  "Good – Real Estate &amp; Attractive Cost of Living",
   "Investment",
   "Speed",
   "Quality of Life",
@@ -2167,16 +2556,16 @@ const EN_STRINGS = [
   "Restructured",
   "July 2024",
   "4 new tiers — MOTAC managed",
-  "Geopolitical Position",
+  "Geopolitics",
   "ASEAN · Southeast Asia",
   "Regional economic hub",
-  "Residency Required",
+  "Residency Requirement",
   "90 days/year (under 50)",
   "Over 50: no minimum",
   "Visa Duration",
   "5–20 years (renewable)",
   "Silver 5 · Gold 15 · Platinum 20",
-  "Family",
+  "Sponsorship",
   "Spouse + children up to 34 + parents",
   "Broadest family scope in region",
   "Processing Time",
@@ -2294,6 +2683,167 @@ const EN_STRINGS = [
   'Can’t decide? The <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">NAC Comparison Tool</a>',
   'Read more in-depth analysis: <a href="https://blog.nomadassetcollective.com/malaysia-mm2h-vs-new-zealand-active-investor-plus-2026-hai-con-duong-thuong-tru-chau-a-thai-binh-duong-danh-cho-nha-dau-tu-viet-nam/" target="_blank"><strong>Malaysia MM2H vs New Zealand Active Investor Plus 2026: Two Asia-Pacific Residency Paths for Vietnamese Investors</strong></a>',
   'Can’t decide? The <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">NAC Comparison Tool</a>',
+  "Want to know more? Read more in-depth analyses on the NAC blog.",
+  "★ Active Listings",
+  "Active Listings",
+  "Book 30'",
+  "Compare",
+  "05 · Tax &amp; finance 🔒",
+  "Malaysia My Second Home (MM2H) — fully restructured from July 2024 — is a long-term residency program for foreigners wanting to live, invest, or retire in Malaysia. A 4-tier system (Silver/Gold/Platinum/SEZ) with mandatory bank deposit + real-estate requirements, the Malaysia passport ranked 6 globally (183 visa-free), and foreign-income tax exemption through end of 2026 — the leading ASEAN choice for Vietnamese HNWIs.",
+  "Top income-tax rate",
+  "MY passport ranked 6 [Henley 2026]",
+  "Data sources:",
+  "MOTAC Malaysia · mm2h.gov.my · Henley Passport Index 2026 · LHDN (Malaysia tax authority) · Budget 2026. Figures may change — contact NAC to confirm before deciding.",
+  "NAC 6-criteria score analysis — Malaysia MM2H",
+  "Residency timeline — Malaysia vs leading programs (months)",
+  "Recommended reading",
+  "NAC Insights: International Wealth-Succession Strategy for Vietnamese Investors with Multi-Country Assets",
+  "MM2H 2026 requires two mandatory components: a fixed deposit at a Malaysian bank + a real-estate purchase within 12 months of visa approval. Investment level depends on the tier — from $150K (Silver) to $1M+ (Platinum). Real estate may not be sold for 10 years.",
+  "Important 2026 note:",
+  "From July 2024, real-estate purchase is MANDATORY for all MM2H tiers (previously optional). The sales agreement (SPA) must be signed within 12 months of the visa stamp date. Property must be held for at least 10 years — early sale triggers visa revocation. Applications must be filed through a licensed MM2H agent (no self-filing).",
+  "Silver — Deposit + mandatory real estate",
+  "Deposit USD 150,000",
+  "Real estate minimum RM 600,000",
+  "Employment not permitted",
+  "Withdraw 50% deposit after real-estate purchase",
+  "Gold — 15-year visa + larger real-estate investment",
+  "15-year visa · Renewable every 5 years",
+  "Deposit USD 500,000",
+  "Real estate minimum RM 1,000,000",
+  "Deposit interest ~3–4%/year",
+  "Platinum — 20 years + business rights",
+  "20-year visa · Eligible to be a company director",
+  "Deposit USD 1,000,000",
+  "Real estate minimum RM 2,000,000",
+  "Allowed to conduct business &amp; serve as director",
+  "Hire foreign domestic help",
+  "SEZ — Forest City Johor · Lowest threshold",
+  "10-year visa · Forest City only",
+  "Deposit $65K (21–49) / $32K (50+)",
+  "Real estate from RM 600K (Forest City)",
+  "Buy direct from the developer",
+  "NAC strategy for Vietnamese investors:",
+  "Silver MM2H ($150K deposit + RM 600K real estate) is the best entry point — total budget ~$280K–$350K. Real estate in KL/Penang/Johor yields 4–6% in rent with appreciation potential. After 1 year, withdraw 50% of the deposit ($75K) for real-estate/health/education expenses. Pair MM2H + UAE Golden Visa for both ASEAN and Middle East coverage.",
+  "Learn more:",
+  "Real Investment Opportunities",
+  "RBI-Eligible Real Estate — Active Listings",
+  "These are properties NAC has vetted, qualified for Malaysia RBI applications, and ready to transact. No need to hunt — we've curated.",
+  "✓ RBI eligible",
+  "Starting Price",
+  "Freehold in central Kuala Lumpur.",
+  "View Details →",
+  "Coming Soon",
+  "More Malaysia RBI-eligible properties will be published here soon.",
+  "NAC only features properties with independent legal due diligence and confirmed Malaysia RBI eligibility.",
+  "All RBI-Eligible Properties →",
+  "From 2024, all MM2H applications must be filed through a MOTAC-licensed agent. The process from preparation to visa issuance typically takes 3–6 months, with another 12 months to complete the mandatory real-estate purchase.",
+  "Choose MM2H tier &amp; licensed agent",
+  "Assess budget, residency goals and select the appropriate tier (Silver/Gold/Platinum/SEZ). Choose a MOTAC-registered MM2H agent under the Tourism Act 1992 (Act 482). Agent fees: RM 40,000 (Silver/SEZ) to RM 70,000 (Platinum). Prepare passport (≥18 months validity), police clearance, bank statements.",
+  "Prepare &amp; file application",
+  "The MM2H agent compiles the complete file: financial proof (3–6 month bank statements, liquid-asset confirmation), passport, home-country police clearance (translated and notarised), passport photos, marriage/birth certificates (if dependents included). File online via the MOTAC portal.",
+  "MOTAC review &amp; conditional approval",
+  "MOTAC and the Malaysian Immigration Department review the file — processing time: 60–120 days. If conditionally approved, the investor receives an approval letter with instructions: travel to Malaysia, open a bank account, place the deposit, complete a medical exam, purchase health insurance (minimum RM 80,000 coverage).",
+  "Receive MM2H visa &amp; begin real-estate purchase",
+  "Complete the deposit at a Malaysian bank, the medical exam, and insurance purchase → the MM2H visa is stamped into the passport. 12 months to sign the SPA for the mandatory real-estate purchase (SEZ: 3–6 months). The property must meet BOTH the MM2H tier minimum AND the state's foreigner minimum (the higher of the two). Participation fee: RM 5,000 (principal) + RM 2,500/dependent.",
+  "Important note:",
+  "MM2H requires 90 days/year of residence for those under 50. Over 50 (and on some tiers): no minimum residency required. A significant difference from Thailand LTR (which also requires residence) but more flexible than the UK (180 days). For maximum flexibility, consider UAE Golden Visa (no residency requirement).",
+  "Read the full Malaysia MM2H Brochure?",
+  "Unlock the next 6 sections: Family, Tax, Path to Citizenship, Comparison, Pros/Cons, and NAC's strategic assessment.",
+  "Maybe later",
+  "MM2H has the widest dependent scope in the region — including spouse, unmarried children up to 34, disabled children (no age limit), and parents/in-laws (Platinum). No additional fees for dependents.",
+  "Legal Spouse",
+  "Included on the MM2H visa. Receives residency simultaneously. No gender restriction. Silver/Gold: not permitted to work. Platinum: business rights.",
+  "Unmarried children, not employed in Malaysia, up to age 34. Disabled children: no age limit. Eligible for international education in Malaysia.",
+  "Parents / Parents-in-Law",
+  "Platinum: can sponsor both sets of parents. Gold/Silver: confirm with the agent. A rare advantage — most European programs don't support this.",
+  "International schools in KL, Penang, Johor: $5K–$25K/year (British, IB, American programs). Significantly cheaper than Singapore/HK. Top Malaysian universities: UM, UKM — very low tuition for residents.",
+  "Comparison with Greece/Portugal:",
+  "MM2H sponsors children up to 34 (Greece: 21, Portugal: 26 if financially dependent). Both sets of parents may also be included (Platinum). The widest family scope in any program NAC evaluates — ideal for multi-generational Vietnamese families.",
+  "Malaysia applies a territorial tax system — only income arising in Malaysia is taxed. Foreign income remitted to Malaysia is exempt through 31 Dec 2026. No inheritance tax, wealth tax, or gift tax.",
+  "Tax type",
+  "MY rate 2026",
+  "Conditions",
+  "vs Vietnam",
+  "Personal income tax",
+  "0% (up to RM 5K) · Progressive to 26% (over RM 2M)",
+  "Foreign income",
+  "0% (exempt)",
+  "Exempt through 31 Dec 2026 — may be extended",
+  "VN: worldwide taxation",
+  "Capital gains tax (real estate)",
+  "30% (≤5 years) · 10% (&gt;5 years) for non-residents",
+  "VN: 2% of sale price",
+  "Inheritance tax",
+  "No inheritance tax in Malaysia",
+  "VN: None",
+  "Corporate tax",
+  "Replaced GST in 2018 · 8% services · 6% goods",
+  "Stamp duty — real estate (MY)",
+  "VN: 0.5% registration fee",
+  "Raised from 4% to 8% for foreigners from 1 Jan 2026",
+  "VN: Not applicable",
+  "📊 View the complete table on desktop / web view",
+  "Biggest tax advantage:",
+  "Malaysia exempts foreign income for residents through end of 2026 (with proposals to extend to 2036). For Vietnamese investors with business/dividend/rental income in VN or a third country, this is a major advantage. Pair MM2H Malaysia (0% foreign tax) + UAE (0% total tax) = the optimal tax-structuring duo for international entrepreneurs.",
+  "Top personal-income-tax comparison — Malaysia vs competing countries (%)",
+  "MM2H does NOT provide a direct path to Malaysian citizenship or permanent residency (PR). It is an indefinitely-renewable long-term residency program — not a naturalisation route. Malaysian PR is a separate application and the process is highly selective.",
+  "Receive MM2H visa (5–20 years depending on tier)",
+  "Visa renewals — unlimited",
+  "PR — separate file, highly selective",
+  "Citizenship — very rare for foreign investors",
+  "Pathway comparison:",
+  "UK Innovator: citizenship after 4 years. Portugal GV: EU citizenship after 5 years. Turkey CBI: instant citizenship. Malaysia MM2H: NO citizenship pathway. If a second citizenship is the goal, MM2H is not the right choice — but if the goal is long-term residency, real-estate investment, low cost of living, and foreign-income tax exemption, MM2H is one of the best ASEAN options.",
+  "Next step:",
+  "Malaysia MM2H's position in the overall landscape. See the full ranking at",
+  "NAC Composite Score — Top programs (2026)",
+  "Program",
+  "Min. investment",
+  "Min. investment",
+  "Mobility",
+  "Timeline",
+  "NAC score",
+  "€250K (fund)",
+  "$400K (real estate)",
+  "£50K+ (business capital)",
+  "Analytics tool",
+  "NAC Residence Index — Compare 21 Programs",
+  "Auto-ranking tailored to your family's criteria — pick the KPIs that matter, get the best-fit program.",
+  "Objective assessment for Vietnamese HNWI investors considering Malaysia MM2H in 2026.",
+  "Foreign-income tax exemption — through end of 2026 (may be extended)",
+  "No inheritance tax, wealth tax, or gift tax",
+  "World-class healthcare at very low cost (top 5 in global medical tourism)",
+  "Widest family sponsorship: children up to 34 + parents",
+  "Full real-estate ownership + 4–6% rental yield",
+  "MY passport ranked 6 globally (183 visa-free)",
+  "Close to Vietnam — 2.5-hour flight from HCMC",
+  "Indefinitely renewable visa — effectively permanent residency",
+  "NO direct citizenship/PR pathway",
+  "Fixed deposit locked — low interest (3–4%)",
+  "Mandatory real estate + 10-year lock — illiquid",
+  "Silver/Gold: NOT permitted to work or run a business",
+  "Stamp duty for non-residents rises to 8% from 2026",
+  "Must file via agent — fees RM 40K–70K",
+  "Under 50: must reside 90 days/year",
+  "Investment threshold rising sharply vs pre-2022",
+  "Administrative system can be slow &amp; change frequently",
+  "Real-estate ownership restrictions vary by state",
+  "Malaysia real-estate risk:",
+  "Stamp duty for foreigners rises from 4% to 8% from 1 Jan 2026 — significantly raising entry costs. Some states (Johor, Selangor, Penang, KL) have minimum thresholds higher than the MM2H minimum. Real estate is locked for 10 years — early sale forfeits the visa. Engage a Malaysian real-estate lawyer from the start.",
+  "In-depth analysis from the NAC Consulting team for Vietnamese HNWI investors — updated Q2/2026.",
+  "Strengths analysis — Malaysia vs competing programs (2026)",
+  "Malaysia MM2H is best suited for:",
+  'Vietnamese investors wanting to diversify Southeast Asian real estate with a budget of $250K–$500K, multi-generational families (spouse + adult children + parents), prioritising low cost of living and good healthcare/education, with foreign income they want to optimise for tax, NOT needing a second citizenship but a safe "second base" near Vietnam.',
+  "The NAC Consulting team has experience advising on Malaysia MM2H for Vietnamese HNWI investors, with a network of licensed MM2H agents, real-estate lawyers, and banks in KL, Penang, and Johor. We support the entire process — from choosing the tier, preparing the file, to real-estate purchase. Read more at",
+  "📅 Book 30' →",
+  "© 2026 NAC Consulting — Nomad Asset Collective. Information in this document is for reference only and may change in line with Malaysian government policy. Please contact the NAC consulting team for the latest updates before making any investment decisions. Not legal or financial advice.",
+  "Malaysia My Second Home (MM2H) — fully restructured from July 2024 — is a long-term residency program for foreigners wanting to live, invest, or retire in Malaysia. A 4-tier system (Silver/Gold/Platinum/SEZ) with mandatory bank deposit + real-estate requirements, the Malaysian passport ranked 6 globally (183 visa-free countries), cost of living just 1/3 of Singapore, and foreign-income tax exemption — the most attractive choice in Southeast Asia.",
+  "Complete the deposit at a Malaysian bank, medical exam, and insurance purchase → the MM2H visa is stamped into the passport. 12 months to sign the SPA for the mandatory real-estate purchase (SEZ: 3–6 months). The property must meet BOTH the MM2H tier minimum AND the state's foreigner minimum (the higher of the two). Participation fees: RM 1,000 (Silver/SEZ) / RM 3,000 (Gold) / RM 200,000 (Platinum).",
+  "Unlock the next 6 sections: Family, Tax, Path to Citizenship, Comparison, Pros/Cons, and NAC's strategic assessment.",
+  "Malaysia exempts foreign income for residents through end of 2026 (with proposals to extend to 2036). For Vietnamese investors with business/dividend/rental income in VN or a third country, this is a major advantage. Pair MM2H Malaysia (0% foreign tax) + UAE (0% total tax) = the perfect tax-structuring duo.",
+  "UK Innovator: citizenship after 4 years. Portugal GV: EU citizenship after 5 years. Türkiye CBI: instant citizenship. Malaysia MM2H: NO citizenship pathway. If a second citizenship is the goal, MM2H is not the right choice — but if the goal is long-term residency, real-estate investment, low cost of living, and foreign-income tax exemption, MM2H is excellent.",
+  "Handover",
+  "Explore Property Hub →",
+  "Children's Education",
 ];
 
 function setLang(lang) {
@@ -2301,6 +2851,20 @@ function setLang(lang) {
   document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
+
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
 
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = heroText[lang].title;
@@ -2316,8 +2880,13 @@ function setLang(lang) {
   const sbarVi = ['Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch'];
   sbarLbls.forEach((el,i) => { el.textContent = lang === 'en' ? sbarEn[i] : sbarVi[i]; });
 
-  const src = lang === 'en' ? VI_STRINGS : EN_STRINGS;
-  const dst = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _srcRaw = lang === 'en' ? VI_STRINGS : EN_STRINGS;
+  const _dstRaw = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _idx = _srcRaw.map((_, i) => i)
+    .sort((a, b) => _srcRaw[b].length - _srcRaw[a].length);
+  const src = _idx.map(i => _srcRaw[i]);
+  const dst = _idx.map(i => _dstRaw[i]);
+
   const selectors = [
     '.sec-sub','.sec-label','.sec-title',
     '.ov-label','.ov-value','.ov-note',
@@ -2327,6 +2896,7 @@ function setLang(lang) {
     '.info-text','.factcheck-box > div',
     '.chart-title','.toc-link','.toc-title',
     '.hero-badge','.article-cta-text','.article-cta-btn',
+    '.article-cta-kicker','.article-cta-title','.article-cta-desc',
     '.road-label','.road-year',
     'th','td',
     '.pros h4','.cons h4','.pros li','.cons li',
@@ -2334,7 +2904,12 @@ function setLang(lang) {
     '.score-label','.score-title',
     '.footer-t','.footer-update',
     '.float-toc-panel a','.float-toc-panel-header',
-    '.breadcrumb','.toc-cta-mini a','.cta-strip-label',
+    '.breadcrumb','.toc-cta-mini a','.cta-strip-label','.cta-text',
+    '.tax-highlight','.tax-note',
+    '.star-label','.tag','.listings-fn-text','.listings-fn-link',
+    '.listing-placeholder-title','.listing-placeholder-sub',
+    '.listing-stat-lbl','.listing-desc','.listing-cta-primary','.listing-badge',
+    '.pw-sub','.pw-title','.pw-cta-primary','.pw-cta-secondary',
     '.nac-btn','.comp-table-mobile-msg',
   ];
   document.querySelectorAll(selectors.join(',')).forEach(el => {
@@ -2348,6 +2923,36 @@ function setLang(lang) {
     });
     if (changed) el.innerHTML = content;
   });
+
+  function _decAmp(s) { return s.split('&amp;').join('&'); }
+  const plainPairs = [];
+  src.forEach((s, i) => {
+    if (s && dst[i] && s.indexOf('<') < 0 && s.indexOf('>') < 0) {
+      plainPairs.push([_decAmp(s), _decAmp(dst[i])]);
+    }
+  });
+  function walkText(n) {
+    if (!n) return;
+    if (n.nodeType === 8) return;
+    if (n.nodeType === 3) {
+      let t = n.nodeValue;
+      let changed = false;
+      for (let p = 0; p < plainPairs.length; p++) {
+        if (t.indexOf(plainPairs[p][0]) >= 0) {
+          t = t.split(plainPairs[p][0]).join(plainPairs[p][1]);
+          changed = true;
+        }
+      }
+      if (changed) n.nodeValue = t;
+      return;
+    }
+    if (n.nodeType === 1) {
+      const tag = n.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEMPLATE') return;
+      for (let c = n.firstChild; c; c = c.nextSibling) walkText(c);
+    }
+  }
+  walkText(document.body);
 }
 
 // Bind lang toggle without relying on inline onclick="" attributes.
@@ -2890,6 +3495,40 @@ function setLang(lang) {
     'Điểm tổng hợp NAC': 'NAC Composite Score',
     'Tháng xử lý trung bình': 'Average processing months',
     'Tháng xử lý': 'Processing months',
+    'Tháng đến cư trú/quốc tịch': 'Months to residency / citizenship',
+    'Thuế thu nhập cá nhân tối đa (%)': 'Top personal income tax (%)',
+    // Multi-line radar axis labels (the \n is rendered as a soft break)
+    'Chất lượng\nsống': 'Quality\nof Life',
+    'Hộ chiếu /\nDi chuyển': 'Passport /\nMobility',
+    'Lộ trình\nquốc tịch': 'Citizenship\npathway',
+    // Bar-chart axis-label country names
+    'Malaysia (ngoại)': 'Malaysia (foreign)',
+    'Malaysia (nội)': 'Malaysia (local)',
+    'Hồng Kông': 'Hong Kong',
+    'Việt Nam': 'Vietnam',
+    // Strengths-chart shortened axes
+    'Di chuyển': 'Mobility',
+    'Lộ trình QT': 'Citizenship path',
+    // ── Auto-added by fleet chart-label sweep (see CLAUDE.md §4)
+    'Pháp': 'France',
+    'Úc SIV': 'Australia SIV',
+    'Úc': 'Australia',
+    'Gia đình': 'Family',
+    'Chi phí': 'Cost',
+    'Ổn định': 'Stability',
+    'Malta non-dom (FCG)': 'Malta non-dom (FCG)',
+    'Malta thông thường': 'Malta (standard)',
+    'Thái Lan (LTR)': 'Thailand (LTR)',
+    'Bồ Đào Nha (NHR hết)': 'Portugal (NHR ended)',
+    'BĐN GV': 'Portugal GV',
+    'Thổ CBI': 'Türkiye CBI',
+    'Síp PR': 'Cyprus PR',
+    'Hộ chiếu UK': 'UK passport',
+    'Ưu đãi thuế Non-Dom': 'Non-Dom tax benefit',
+    'Diện gia đình': 'Family scope',
+    'Ngưỡng đầu tư (hiệu quả)': 'Investment threshold (effective)',
+    'Lộ trình quốc tịch EU': 'EU citizenship pathway',
+    'Tốc độ xử lý': 'Processing speed',
   };
 
   const keysByLen = Object.keys(CHART_VI_EN).sort((a, b) => b.length - a.length);
@@ -2975,5 +3614,36 @@ function setLang(lang) {
 })();
 
 </script>
+
+
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
+})();
+</script>
+
 </body>
 </html>

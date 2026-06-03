@@ -167,6 +167,88 @@ IDENTITY = {
         'wp_slug':         'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru',
         'cover':           'https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1500&q=80',  # KL Twin Towers
     },
+    'antigua': {
+        'flag':            '🇦🇬',
+        'country_vi':      'Antigua & Barbuda',
+        'country_en':      'Antigua & Barbuda',
+        'program_code':    'CBI',
+        'program_tag':     'CBI · Antigua & Barbuda',
+        'program_vi':      'Antigua & Barbuda CBI',
+        'program_en':      'Antigua & Barbuda CBI',
+        'source_filename': 'antigua-cbi.html',
+        'wp_page_id':      2158,
+        'wp_slug':         'chuong-trinh-antigua-barbuda-cbi',
+        'cover':           'https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1500&q=80',  # Caribbean coastline
+    },
+    'italy': {
+        'flag':            '🇮🇹',
+        'country_vi':      'Ý',
+        'country_en':      'Italy',
+        'program_code':    'RBI',
+        'program_tag':     'RBI · Ý',
+        'program_vi':      'Visa Đầu Tư Ý',
+        'program_en':      'Italy Investor Visa',
+        'source_filename': 'italy-investor.html',
+        'wp_page_id':      2165,
+        'wp_slug':         'chuong-trinh-y-italy-rbi-qua-dau-tu-bds',
+        'cover':           'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=1500&q=80',  # Tuscany cypress road
+    },
+    'spain': {
+        'flag':            '🇪🇸',
+        'country_vi':      'Tây Ban Nha',
+        'country_en':      'Spain',
+        'program_code':    'RBI',
+        'program_tag':     'RBI · Tây Ban Nha',
+        'program_vi':      'Tây Ban Nha Golden Visa',
+        'program_en':      'Spain Golden Visa',
+        'source_filename': 'spain-gv.html',
+        'wp_page_id':      2170,
+        'wp_slug':         'chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds',
+        'cover':           'https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=1500&q=80',  # Barcelona Sagrada Familia
+    },
+    'montenegro': {
+        'flag':            '🇲🇪',
+        'country_vi':      'Montenegro',
+        'country_en':      'Montenegro',
+        'program_code':    'RBI',
+        'program_tag':     'RBI · Montenegro',
+        'program_vi':      'Montenegro Cư Trú Qua Bất Động Sản',
+        'program_en':      'Montenegro Residence by Real Estate',
+        'source_filename': 'montenegro-rbi.html',
+        'wp_page_id':      2167,
+        'wp_slug':         'chuong-trinh-montenengro-rbi-qua-dau-tu-bds',
+        'cover':           'https://nomadassetcollective.com/wp-content/uploads/2026/05/perast-kotor-montenegro-panoramic-view-from-water-boat-in-crystal-clear-water-and-old-town-in-background.webp',  # Bay of Kotor / Perast
+    },
+    'australia': {
+        'flag':            '🇦🇺',
+        'country_vi':      'Úc',
+        'country_en':      'Australia',
+        'program_code':    'RBI',
+        'program_tag':     'RBI · Úc',
+        'program_vi':      'Visa Đầu Tư Úc',
+        'program_en':      'Australia Investor Visa',
+        'source_filename': 'australia-rbi.html',
+        'wp_page_id':      2213,
+        'wp_slug':         'chuong-trinh-uc-rbi-residency-by-investment',
+        'cover':           'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1500&q=80',  # Australia
+        'color_primary':   '#00008B',
+        'color_secondary': '#FFD700',
+    },
+    'nauru': {
+        'flag':            '🇳🇷',
+        'country_vi':      'Nauru',
+        'country_en':      'Nauru',
+        'program_code':    'CBI',
+        'program_tag':     'CBI · Nauru',
+        'program_vi':      'Nauru CBI',
+        'program_en':      'Nauru CBI',
+        'source_filename': 'nauru-cbi.html',
+        'wp_page_id':      2215,
+        'wp_slug':         'chuong-trinh-nauru-quoc-tich-cbi-citizenship-by-investment',
+        'cover':           'https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/nauru.jpeg',  # Nauru
+        'color_primary':   '#003580',
+        'color_secondary': '#FFD100',
+    },
 }
 
 

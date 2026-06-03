@@ -902,7 +902,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ============================================================ */
 .nac-tools { display:none; }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) { /*NAC-TOOLS-1024*/
   .nac-tools {
     position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
     display:flex; align-items:center; gap:.2rem;
@@ -965,22 +965,22 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ────────────────────────────────────────────── */
 /* ── NAC INDEX banner variant — animated globe canvas behind title ──
    Light lavender gradient mirrors the NAC Residence Index page hero. */
-.nac-index-banner {
+.article-cta-banner.nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 360px;
+  min-height: 300px;
   overflow: hidden;
 }
-.nac-index-banner::after {
+.article-cta-banner.nac-index-banner::after {
   /* Soft top-to-bottom fade so the title sits cleanly above the globe.
      Uses the same lavender as the bg so the corners stay airy. */
   background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
 }
 /* Default text is white — flip to dark since we're on a light background */
-.nac-index-banner .article-cta-kicker {
+.article-cta-banner.nac-index-banner .article-cta-kicker {
   color: #5b3aa8;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
-.nac-index-banner .article-cta-title {
+.article-cta-banner.nac-index-banner .article-cta-title {
   color: #1a0f5c;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
@@ -1030,7 +1030,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 }
 @media (max-width: 600px) {
   /* Mobile: CSS Grid stack — tight fit around globe. */
-  .nac-index-banner {
+  .article-cta-banner.nac-index-banner {
     display: grid !important;
     grid-template-rows: 240px auto auto;
     grid-template-columns: 1fr;
@@ -1050,24 +1050,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     opacity: .95;
     animation: none;
   }
-  .nac-index-banner .article-cta-kicker,
-  .nac-index-banner .article-cta-title {
+  .article-cta-banner.nac-index-banner .article-cta-kicker,
+  .article-cta-banner.nac-index-banner .article-cta-title {
     position: relative;
     z-index: 2;
     grid-column: 1;
     padding-left: 18px;
     padding-right: 18px;
   }
-  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
-  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+  .article-cta-banner.nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
+  .article-cta-banner.nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
   /* The pseudo-element overlay sits on top of everything — push it back */
-  .nac-index-banner::after { display: none; }
+  .article-cta-banner.nac-index-banner::after { display: none; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
   /* The pills inside the dark glass banner are hidden on mobile —
      they sit on the white body strip below instead (see below). */
-  .nac-index-banner .nac-index-pills { display: none; }
+  .article-cta-banner.nac-index-banner .nac-index-pills { display: none; }
   /* Mobile pills strip — sits in the white .article-cta-body band so
      icons get a clean, airy surface. Forced 6×2 grid (two rows of six)
      regardless of viewport width — no flex-wrap surprises. */
@@ -1177,6 +1177,245 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
+
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
+}
+/*TAX-COLLAPSE-CSS*/
+
+
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
+
+
+
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
+
+/* Breadcrumb typography lock — match "NAC BROCHURE 2026" tagline
+   look. Colors preserved (white-on-dark hero). /*BREADCRUMB-LOCK-V1*/ */
+.breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.breadcrumb a,
+.breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
+
+
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
+}
+
+
+/* Tax table mobile — pill-style disclaimer + column hiding.
+   Matches the .comp-table-mobile-msg look so the two tables read
+   alike on small screens. /*TAX-TABLE-MOBILE-V2*/ */
+.tax-table-mobile-note { display: none; }
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    text-align: center;
+    margin: 12px 0 24px;
+    line-height: 1.4;
+  }
+}
+
+
+/* Listings live-tag — small pulsing-dot indicator below the section
+   title (mirrors a status badge). /*SEC-LIVE-TAG-V1*/ */
+.sec-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 4px 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green, #10b981);
+}
+.sec-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #10b981);
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
+  animation: sec-live-pulse 2s infinite;
+  flex-shrink: 0;
+  margin-right: 9px;
+  position: relative;
+  top: 0px;
+}
+@keyframes sec-live-pulse {
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -1337,16 +1576,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- 01 OVERVIEW -->
     <section class="section" id="overview">
       <div class="sec-label">01 — Tổng Quan</div>
-      <h2 class="sec-title">Chương Trình Tổng Quan</h2>
+      <h2 class="sec-title">Tổng Quan Chương Trình</h2>
       <p class="sec-sub">St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh nhất khu vực, không yêu cầu cư trú, không thuế thu nhập toàn cầu, và có con đường đến quốc tịch EU (qua Schengen) gián tiếp. Đây là lựa chọn chiến lược cho HNWI muốn tăng tốc có thêm hộ chiếu thứ hai trong 60–90 ngày.</p>
 
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Quốc Tịch Đầu Tư</div><div class="ov-note">Citizenship by Investment (CBI)</div></div>
         <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Ra mắt</div><div class="ov-value">1984</div><div class="ov-note">Chương trình CBI lâu đời nhất thế giới</div></div>
-        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Vị trí địa chính trị</div><div class="ov-value">Caribbean · CARICOM</div><div class="ov-note">Thành viên Commonwealth &amp; OECS</div></div>
-        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Cư trú bắt buộc</div><div class="ov-value">Không yêu cầu</div><div class="ov-note">Không cần đến sống tại đảo</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">Caribbean · CARICOM</div><div class="ov-note">Thành viên Commonwealth &amp; OECS</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Không yêu cầu</div><div class="ov-note">Không cần đến sống tại đảo</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Visa-free</div><div class="ov-value">157+ quốc gia</div><div class="ov-note">Bao gồm UK, EU Schengen, Singapore</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Vợ/chồng + con + cha mẹ</div><div class="ov-note">Bao gồm anh chị em phụ thuộc</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Vợ/chồng + con + cha mẹ</div><div class="ov-note">Bao gồm anh chị em phụ thuộc</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">45–60 ngày (ALP)</div><div class="ov-note">Quy trình cấp tốc (tùy hồ sơ)</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế thu nhập toàn cầu</div><div class="ov-value">0%</div><div class="ov-note">Không đánh thuế thu nhập ngoài lãnh thổ</div></div>
         <div class="ov-card"><div class="ov-icon">🛂</div><div class="ov-label">Hộ chiếu hạng</div><div class="ov-value">Top 30 thế giới</div><div class="ov-note">Henley Passport Index 2026: #28</div></div>
@@ -1359,7 +1598,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
       <div class="chart-box">
         <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
-          <div class="chart-title" style="margin-bottom:0">Phân tích điểm 6 tiêu chí NAC — St Kitts &amp; Nevis CBI</div>
+          <div class="chart-title" style="margin-bottom:0" data-vi="6 Tiêu Chí Trọng Điểm theo NAC Index" data-en="6 Key Criteria by NAC Index">6 Tiêu Chí Trọng Điểm theo NAC Index</div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;">
             <button class="radar-btn radar-active" onclick="toggleRadar('grenada',this)">🇬🇩 Grenada</button>
             <button class="radar-btn radar-active" onclick="toggleRadar('dominica',this)">🇩🇲 Dominica</button>
@@ -1380,7 +1619,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <h3 class="article-cta-title">Tìm Hiểu thêm các nước Caribbean khác</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
           <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/chuong-trinh-overview/" target="_blank">Đọc Ngay →</a>
         </div>
       </div>
@@ -1469,9 +1708,10 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- LISTINGS START -->
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
-      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title">BĐS Đủ Điều Kiện CBI — Đang Mở Bán</h2>
-      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St Kitts và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện CBI" data-en="CBI-Eligible Properties">BĐS Đủ Điều Kiện CBI</h2>
+      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="Đang Mở Bán" data-en="Now Live">Đang Mở Bán</span></div>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St. Kitts &amp; Nevis và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the St. Kitts &amp; Nevis CBI program and ready to transact. You don&#x27;t need to hunt — we&#x27;ve curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St. Kitts &amp; Nevis và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
         <article class="listing-card">
@@ -1479,24 +1719,23 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
             <div class="listing-hero">
               <img src="https://upload.wikimedia.org/wikipedia/commons/c/cb/St._Kitts_Basseterre_Frigate_Bay.jpg" alt="Park Hyatt St Kitts" loading="lazy">
               <div class="listing-badges">
-                <span class="listing-badge listing-badge-flag">🇰🇳 St Kitts</span>
-                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện CBI</span>
+                <span class="listing-badge listing-badge-eligible" data-vi="✓ Đủ điều kiện CBI" data-en="✓ CBI Eligible">✓ Đủ điều kiện CBI</span>
               </div>
               <div class="listing-ref">NAC-20</div>
             </div>
             <div class="listing-body">
-              <div class="listing-tagline">Branded Residences</div>
-              <h3 class="listing-name">Park Hyatt St Kitts</h3>
+              <div class="listing-tagline" >Branded Residences</div>
+              <h3 class="listing-name" >Park Hyatt St Kitts</h3>
               <div class="listing-location">📍 St Kitts</div>
               <div class="listing-stats">
-                <div class="listing-stat"><div class="listing-stat-val">$400K</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">$400,000</div><div class="listing-stat-lbl" data-vi="Giá Khởi Điểm" data-en="Entry Price">Giá Khởi Điểm</div></div>
                 <div class="listing-stat"><div class="listing-stat-val">6.8%</div><div class="listing-stat-lbl">Gross Yield</div></div>
                 <div class="listing-stat"><div class="listing-stat-val">14.0%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl">Bàn Giao</div></div>
+                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl" data-vi="Bàn Giao" data-en="Handover">Bàn Giao</div></div>
               </div>
-              <p class="listing-desc">Park Hyatt trên bãi biển Christophe Harbour.</p>
+              <p class="listing-desc" data-vi="Park Hyatt trên bãi biển Christophe Harbour." data-en="Park Hyatt on Christophe Harbour.">Park Hyatt trên bãi biển Christophe Harbour.</p>
               <div class="listing-cta-row">
-                <span class="listing-cta-primary">Xem Chi Tiết →</span>
+                <span class="listing-cta-primary" data-vi="Xem Chi Tiết →" data-en="View Details →">Xem Chi Tiết →</span>
               </div>
             </div>
           </a>
@@ -1504,16 +1743,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         <article class="listing-card listing-card-placeholder">
           <div class="listing-placeholder-content">
             <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS St Kitts đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=stkitts" target="_blank" rel="noopener">Khám phá Property Hub →</a>
+            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
+            <div class="listing-placeholder-sub" data-vi="Thêm BĐS St. Kitts &amp; Nevis đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới." data-en="More CBI-eligible St. Kitts &amp; Nevis properties will be announced here soon.">Thêm BĐS St. Kitts &amp; Nevis đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới.</div>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=stkitts" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
           </div>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI St Kitts.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=stkitts" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện CBI →</a>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI St. Kitts &amp; Nevis." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the St. Kitts &amp; Nevis CBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI St. Kitts &amp; Nevis.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=cbi&country=stkitts" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện CBI →" data-en="All CBI-eligible properties →">Tất cả BĐS đủ điều kiện CBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -1746,7 +1985,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <h3 class="article-cta-title">So sánh Grenada, St Kitts và Dominica cho nhà đầu tư châu Á</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
           <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/caribbean-cbi-2026-so-sanh-grenada-st-kitts-va-dominica-cho-nha-dau-tu-chau-a/" target="_blank">Xem →</a>
         </div>
       </div>
@@ -1863,17 +2102,6 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       <div class="info-box">
         <div class="info-icon">🎯</div>
         <div class="info-text"><strong>Điểm khác biệt duy nhất của SKN:</strong> Visa-free UK — điều không có đảo Caribbean nào khác làm được (Grenada, Antigua, Dominica, St Lucia đều <em>không</em> được miễn thị thực UK). Đây là lý do SKN định giá cao nhất nhóm Caribbean và vẫn hút nhà đầu tư dù đắt hơn Dominica $50K.</div>
-      </div>
-
-      <div class="article-cta">
-        <a class="article-cta-banner" href="https://nomadassetcollective.com/so-sanh/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/18-1024x683.jpg')">
-          <span class="article-cta-kicker">Công cụ</span>
-          <h3 class="article-cta-title">Công cụ So Sánh NAC</h3>
-        </a>
-        <div class="article-cta-body">
-          <p class="article-cta-desc">Chưa quyết định được? giúp bạn chọn đúng chương trình theo mục tiêu hộ chiếu, ngân sách và ưu tiên gia đình.</p>
-          <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh →</a>
-        </div>
       </div>
     
       <div class="article-cta nac-index-cta" style="margin-top:16px">
@@ -2071,7 +2299,7 @@ const radarActive = new Set(['skn','grenada','dominica']);
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: ['skn','grenada','dominica'].map(k => radarDS[k])
   },
   options: {
@@ -2223,7 +2451,7 @@ const VI_STRINGS = [
   "07 — So Sánh",
   "08 — Ưu &amp; Nhược",
   "09 — Nhận Định NAC",
-  "Chương Trình Tổng Quan",
+  "Tổng Quan Chương Trình",
   "Các Mức Đầu Tư",
   "Quy Trình &amp; Thời Gian",
   "Gia Đình &amp; Đối Tượng Thụ Hưởng",
@@ -2241,16 +2469,16 @@ const VI_STRINGS = [
   "Ra mắt",
   "1984",
   "Chương trình CBI lâu đời nhất thế giới",
-  "Vị trí địa chính trị",
+  "Địa Lý Chính Trị",
   "Caribbean · CARICOM",
   "Thành viên Commonwealth &amp; OECS",
-  "Cư trú bắt buộc",
+  "Yêu Cầu Cư Trú",
   "Không yêu cầu",
   "Không cần đến sống tại đảo",
   "Visa-free",
   "157+ quốc gia",
   "Bao gồm UK, EU Schengen, Singapore",
-  "Gia đình",
+  "Bảo Lãnh",
   "Vợ/chồng + con + cha mẹ",
   "Bao gồm anh chị em phụ thuộc",
   "Thời gian xử lý",
@@ -2395,6 +2623,148 @@ const VI_STRINGS = [
   '<strong>Nhận định NAC:</strong> Với gia đình 2 người lớn và 2 trẻ em, tổng chi phí SGF thực tế khoảng $350K–$380K sau khi cộng phí chính phủ và ALP. So với Grenada ($220K) hay Dominica ($200K) thì đắt hơn, nhưng hộ chiếu SKN có lợi thế visa UK — duy nhất trong nhóm Caribbean. <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">Xem NAC Index →</a>',
   'Chưa quyết định được? <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">Công cụ So Sánh NAC</a> giúp bạn chọn đúng chương trình theo mục tiêu hộ chiếu, ngân sách và ưu tiên gia đình.',
   '<strong>St Kitts &amp; Nevis CBI phù hợp nhất với:</strong> Nhà đầu tư/doanh nhân cần hộ chiếu thứ hai nhanh trong 60 ngày; gia đình muốn bao gồm cha mẹ và con cái lớn; người thường xuyên cần visa UK; HNWI đang xây dựng cấu trúc tài sản quốc tế với trụ cột "zero-tax jurisdiction".',
+  "★ BĐS đang mở bán",
+  "BĐS đang mở bán",
+  "Tư Vấn 30''",
+  "So Sánh",
+  "Phân tích điểm 6 tiêu chí NAC — St Kitts &amp; Nevis CBI",
+  "Thời gian cấp quốc tịch — St Kitts vs Caribbean &amp; châu Âu (tháng)",
+  "Bài viết đề xuất",
+  "Tìm Hiểu thêm các nước Caribbean khác",
+  "Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.",
+  "SGF cho gia đình (Vợ/Chồng + Con)",
+  "Phí tăng dần theo số thành viên gia đình",
+  "Nhận định NAC:",
+  "Lợi thế ALP:",
+  "Tìm hiểu thêm:",
+  "Hành động:",
+  "Cơ Hội Đầu Tư Thực Tế",
+  "BĐS Đủ Điều Kiện CBI — Đang Mở Bán",
+  "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ CBI St Kitts và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.",
+  "✓ Đủ điều kiện CBI",
+  "Giá Khởi Điểm",
+  "Bàn Giao",
+  "Park Hyatt trên bãi biển Christophe Harbour.",
+  "Xem Chi Tiết →",
+  "Đang Cập Nhật",
+  "Thêm BĐS St Kitts đủ điều kiện CBI sẽ được công bố tại đây trong thời gian tới.",
+  "Khám phá Property Hub →",
+  "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện CBI St Kitts.",
+  "Tất cả BĐS đủ điều kiện CBI →",
+  "Agent nộp hồ sơ lên Citizenship by Investment Unit (CIU) tại St Kitts. Để dùng ALP, đóng phí $25K kèm hồ sơ. CIU sẽ xác nhận nhận hồ sơ và bắt đầu thẩm tra lý lịch (background check) qua các đối tác quốc tế. Giai đoạn này quan trọng — hồ sơ sạch sẽ không có vấn đề gì.",
+  "CIU thực hiện Due Diligence cấp chính phủ bao gồm kiểm tra INTERPOL, PEP/Sanctions list, tình trạng tư pháp tại Việt Nam và quốc tế. Đây là giai đoạn quyết định — CIU có quyền từ chối không cần nêu lý do. Tỷ lệ phê duyệt cao với hồ sơ sạch. Không cần phỏng vấn.",
+  "Sau khi nhận Letter of Approval in Principle từ CIU, nhà đầu tư chuyển tiền đóng góp SGF ($250K+) vào tài khoản chính phủ. Với BĐS: ký hợp đồng mua và chuyển tiền cho developer. Không cần đến đảo tại bước này.",
+  "CIU cấp Certificate of Naturalisation. Nộp đơn xin hộ chiếu (có thể làm qua lãnh sự quán hoặc đến đảo). Hộ chiếu được cấp trong 1–2 tuần sau certificate. Không cần lễ tuyên thệ bắt buộc tại đảo — có thể thực hiện qua lãnh sự tại UK hoặc các nước có đại diện SKN.",
+  "🔒 Còn 6 phần chuyên sâu",
+  "Đọc trọn bộ Brochure St. Kitts &amp; Nevis CBI?",
+  "Gửi tới email nào?",
+  "Đã nhận yêu cầu của bạn",
+  "OK, để sau cũng được",
+  "Family · Tax · Path to Citizenship · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.",
+  "Nhập mật khẩu để xem toàn bộ brochure ngay.",
+  "Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.",
+  "Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.",
+  "Có, gửi cho tôi →",
+  "Để sau",
+  "Brochure được gửi từ",
+  "Mở khóa",
+  "Gửi cho tôi →",
+  "← Quay lại",
+  "05 · Tax &amp; tài chính 🔒",
+  "Loại thuế",
+  "Mức thuế SKN",
+  "Điều kiện áp dụng",
+  "So với VN",
+  "Thuế thu nhập cá nhân (toàn cầu)",
+  "Không đánh thuế thu nhập phát sinh ngoài SKN",
+  "VN: 5–35%",
+  "Thuế thu nhập địa phương",
+  "Không có PIT tại SKN",
+  "Thuế lãi vốn",
+  "Không có CGT tại SKN",
+  "VN: 2% trên giá bán",
+  "Thuế thừa kế / Di sản",
+  "Không có inheritance tax",
+  "VN: Không (nhưng phí chuyển nhượng)",
+  "Thuế tài sản ròng / Wealth tax",
+  "Không có wealth tax",
+  "VN: Không (hiện tại)",
+  "Thuế doanh nghiệp (địa phương)",
+  "Chỉ áp dụng cho hoạt động kinh doanh tại SKN",
+  "VN: 20%",
+  "VAT / Consumption Tax",
+  "Hàng hóa &amp; dịch vụ nội địa",
+  "VN: 10%",
+  "Phí mua BĐS (stamp duty)",
+  "Tùy loại tài sản và người mua",
+  "VN: 2–5%",
+  "Thuế cho thuê BĐS",
+  "0% (ngoài SKN)",
+  "Thu nhập cho thuê phát sinh ở nước ngoài không bị đánh thuế",
+  "VN: 5% PIT + 5% VAT",
+  "Chương trình",
+  "Đầu tư tối thiểu",
+  "Thời gian",
+  "Điểm NAC",
+  "3–4 tháng",
+  "Lưu ý quan trọng về thuế:",
+  "Tư vấn luật sư thuế quốc tế trước khi quyết định.",
+  "Passport SKN mở được những cửa nào?",
+  "Hộ chiếu SKN mở được những cửa nào?",
+  "So sánh thuế thu nhập hiệu quả — SKN vs các trung tâm tài chính (% thu nhập $500K)",
+  "Điểm Tổng Hợp NAC (INDEX) — Caribbean CBI &amp; Châu Âu (2026)",
+  "Phân tích điểm mạnh — St Kitts &amp; Nevis vs Caribbean cạnh tranh (2026)",
+  "So sánh Grenada, St Kitts và Dominica cho nhà đầu tư châu Á",
+  "Tư vấn chiến lược:",
+  "Đổi ý lúc nào cũng được —",
+  "gửi brochure cho tôi",
+  "Nhận quốc tịch đồng thời. Hôn nhân phải được công nhận hợp pháp. Không yêu cầu sống chung — ngay cả khi ly thân nhưng chưa ly hôn vẫn có thể bao gồm.",
+  "Con chưa kết hôn đến 25 tuổi nếu đang học đại học toàn thời gian. Con bị khuyết tật không giới hạn tuổi. Phí: +$25K (dưới 18t) hoặc +$50K (18–25t).",
+  "Cha mẹ hoặc ông bà từ 55 tuổi trở lên phụ thuộc vào nhà đầu tư. Phí: +$75K mỗi người. Đây là lợi thế lớn so với UAE (chỉ từ AED 10M+) và nhiều chương trình khác.",
+  "Anh chị em phụ thuộc chưa kết hôn dưới 30 tuổi, không có nguồn thu nhập độc lập — phải chứng minh phụ thuộc tài chính. Phí: +$75K. Hiếm gặp ở các CBI khác.",
+  "St Kitts &amp; Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lãi vốn, không thuế thừa kế, không thuế tài sản toàn cầu. Đây là lý do cốt lõi khiến CBI SKN hấp dẫn không chỉ vì hộ chiếu mà còn vì cấu trúc tài sản.",
+  "Khác với các chương trình RBI (cư trú đầu tư), St Kitts &amp; Nevis CBI cấp quốc tịch trực tiếp — không qua giai đoạn cư trú. Đây là điểm khác biệt cốt lõi so với Portugal, Greece, hay Cyprus Golden Visa.",
+  "Với gia đình 2 người lớn và 2 trẻ em, tổng chi phí SGF thực tế khoảng $350K–$380K sau khi cộng phí chính phủ và ALP. So với Grenada ($220K) hay Dominica ($200K) thì đắt hơn, nhưng hộ chiếu SKN có lợi thế visa UK — duy nhất trong nhóm Caribbean.",
+  "Accelerated Lightning Process (ALP) là quy trình nhanh nhất trong nhóm Caribbean CBI — 45–60 ngày so với 3–6 tháng standard. Chi phí thêm $25K nhưng với nhà đầu tư HNWI, tốc độ có giá trị rất cao đặc biệt khi cần hộ chiếu gấp để du lịch, ký kết hợp đồng, hoặc trong bối cảnh thay đổi địa chính trị.",
+  "Việt Nam áp dụng chế độ thuế theo quốc tịch (",
+  "theo nơi cư trú). Công dân Việt Nam vẫn có nghĩa vụ khai báo thu nhập tại Việt Nam ngay cả khi đã có quốc tịch SKN. Để hưởng đầy đủ lợi thế thuế SKN, nhà đầu tư thường cần từ bỏ quốc tịch Việt Nam hoặc chứng minh không cư trú thường xuyên tại Việt Nam.",
+  "Miễn thị thực UK (VISA-FREE — duy nhất trong Caribbean Big 5!), EU Schengen 26 nước, Singapore, Hong Kong, UAE, và 157+ quốc gia. Không được miễn thị thực vào Mỹ (cần xin visa B1/B2) và Canada. Hộ chiếu SKN không trực tiếp dẫn đến quốc tịch EU nhưng mở cơ hội sống và làm việc trong Commonwealth.",
+  "Bồ Đào Nha GV",
+  "€250K (quỹ)",
+  "12–18 tháng",
+  "$400K (BĐS)",
+  "Cư Trú",
+  "Điểm khác biệt duy nhất của SKN:",
+  "Rủi ro đối xử thuế tại Việt Nam:",
+  "St Kitts &amp; Nevis CBI phù hợp nhất với:",
+  "Chiến lược kết hợp hay gặp:",
+  "Công cụ phân tích",
+  "NAC Residence Index — So Sánh 21 Chương Trình",
+  "Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất.",
+  "Chương trình CBI lâu đời nhất thế giới (1984) — uy tín &amp; ổn định",
+  "Quốc tịch trọn đời (theo luật hiện hành) — con cái thừa hưởng theo huyết thống",
+  "ALP 60–90 ngày: nhanh nhất Caribbean (thực tế tùy hồ sơ)",
+  "Không thuế thu nhập ngoài lãnh thổ SKN, không CGT, không thừa kế (nghĩa vụ thuế VN vẫn áp dụng)",
+  "Không yêu cầu cư trú hay thăm viếng tối thiểu",
+  "Dual citizenship được phép — không cần từ bỏ quốc tịch SKN",
+  "Chính phủ ổn định, luật pháp theo hệ thống Anh (Common Law)",
+  "Không miễn thị thực Mỹ và Canada — phải xin visa riêng",
+  "Thuế doanh nghiệp địa phương 33% — cao nếu có hoạt động tại SKN",
+  "Diện tích nhỏ (261 km²) — hạn chế lựa chọn BĐS và sinh sống",
+  "BĐS phải giữ 7 năm mới bán được — tính thanh khoản thấp",
+  "Việt Nam chưa có hiệp định tránh đánh thuế hai lần với SKN",
+  "Cần từ bỏ quốc tịch VN để hưởng đầy đủ lợi thế thuế (theo pháp luật VN)",
+  "quốc tịch và cư trú",
+  "không",
+  "Visa-free UK — điều không có đảo Caribbean nào khác làm được (Grenada, Antigua, Dominica, St Lucia đều ",
+  " được miễn thị thực UK). Đây là lý do SKN định giá cao nhất nhóm Caribbean và vẫn hút nhà đầu tư dù đắt hơn Dominica $50K.",
+  "Luật thuế Việt Nam (Luật TNCN 2007 và các nghị định sửa đổi) dựa trên ",
+  ". Một công dân Việt Nam có thêm quốc tịch SKN nhưng vẫn cư trú tại Việt Nam sẽ tiếp tục bị đánh thuế theo luật Việt Nam. NAC khuyến nghị tư vấn pháp lý độc lập về cấu trúc thuế trước khi đầu tư.",
+  'Nhà đầu tư/doanh nhân cần hộ chiếu thứ hai nhanh trong 60 ngày; gia đình muốn bao gồm cha mẹ và con cái lớn; người thường xuyên cần visa UK (thương nhân, sinh viên, du lịch); HNWI đang xây dựng cấu trúc tài sản quốc tế với trụ cột "zero-tax jurisdiction"; người muốn quyền thường trú/sinh sống tại UK thông qua Commonwealth route (không trực tiếp nhưng gián tiếp qua các chương trình UK). SKN là lựa chọn premium trong Caribbean — đắt hơn nhưng lợi thế UK là độc nhất.',
+  "SKN CBI + Portugal Golden Visa là combo phổ biến nhất NAC tư vấn cho HNWI Việt muốn tối đa hóa tiếp cận toàn cầu. SKN cho hộ chiếu nhanh &amp; visa UK; Portugal cho Schengen và con đường quốc tịch EU trong 5 năm. Tổng chi phí khoảng $500K–600K nhưng mở ra 200+ quốc gia miễn visa.",
+  "Chỉ nộp hồ sơ qua Authorized Agent được CIU phê duyệt — không thể tự nộp. NAC kết nối với các Authorized Agent uy tín. Bộ hồ sơ bao gồm: hộ chiếu công chứng, lý lịch tư pháp tại Việt Nam (Bộ Công An cấp, được Apostille), bằng chứng nguồn gốc tài sản, báo cáo ngân hàng 3 tháng gần nhất, giấy khai sinh (con) và giấy đăng ký kết hôn (vợ/chồng). Tất cả tài liệu phải dịch sang tiếng Anh có công chứng.",
+  "<strong>Visa-free UK</strong> — độc quyền Caribbean (tại thời điểm hiện tại), không đảo CBI nào khác có",
+  "Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC",
 ];
 
 const EN_STRINGS = [
@@ -2404,7 +2774,7 @@ const EN_STRINGS = [
   "Visa-free countries",
   "Global income tax",
   "NAC Score (INDEX)",
-  "Excellent – Best Caribbean Passport",
+  "Excellent – Best Caribbean Citizenship",
   "Investment",
   "Speed",
   "Quality of Life",
@@ -2452,16 +2822,16 @@ const EN_STRINGS = [
   "Launched",
   "1984",
   "The world's oldest CBI program",
-  "Geopolitical Position",
+  "Geopolitics",
   "Caribbean · CARICOM",
   "Commonwealth &amp; OECS member",
-  "Residency Required",
+  "Residency Requirement",
   "Not required",
   "No obligation to live on island",
   "Visa-free",
   "157+ countries",
   "Includes UK, EU Schengen, Singapore",
-  "Family",
+  "Sponsorship",
   "Spouse + children + parents",
   "Including dependent siblings",
   "Processing Time",
@@ -2606,6 +2976,148 @@ const EN_STRINGS = [
   '<strong>NAC insight:</strong> For a family of 2 adults and 2 children, the realistic SGF total is around $350K–$380K after adding government and ALP fees. More expensive than Grenada ($220K) or Dominica ($200K), but the SKN passport has the UK visa-free advantage — unique among Caribbean programs. <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">See NAC Index →</a>',
   'Can’t decide? The <a href="https://nomadassetcollective.com/so-sanh/" target="_blank">NAC Comparison Tool</a> helps you pick the right program based on passport goals, budget and family priorities.',
   '<strong>St Kitts &amp; Nevis CBI best suits:</strong> Investors/entrepreneurs needing a fast second passport in 60 days; families wanting to include parents and adult children; people who frequently need UK visa-free access; HNWIs building an international wealth structure with a "zero-tax jurisdiction" pillar.',
+  "★ Active Listings",
+  "Active Listings",
+  "Book 30'",
+  "Compare",
+  "NAC 6-criteria score analysis — St Kitts &amp; Nevis CBI",
+  "Citizenship timeline — St Kitts vs Caribbean &amp; Europe (months)",
+  "Recommended reading",
+  "Explore other Caribbean countries",
+  "Insights from the NAC team after 5+ years handling applications for Vietnamese families.",
+  "SGF for family (Spouse + Children)",
+  "Fee scales with family size",
+  "NAC analysis:",
+  "ALP advantage:",
+  "Learn more:",
+  "Action:",
+  "Real Investment Opportunities",
+  "CBI-Eligible Real Estate — Active Listings",
+  "These are properties NAC has vetted, qualified for St Kitts CBI applications, and ready to transact. No need to hunt — we've curated.",
+  "✓ CBI eligible",
+  "Starting Price",
+  "Handover",
+  "Park Hyatt on Christophe Harbour beach.",
+  "View Details →",
+  "Coming Soon",
+  "More CBI-eligible St Kitts properties will be published here soon.",
+  "Explore Property Hub →",
+  "NAC only features properties with independent legal due diligence and confirmed St Kitts CBI eligibility.",
+  "All CBI-Eligible Properties →",
+  "The Agent files the application with the Citizenship by Investment Unit (CIU) in St Kitts. To use ALP, pay the $25K fee alongside the application. CIU will acknowledge receipt and begin the background check via its international partners. This stage matters — a clean profile sails through without issues.",
+  "CIU performs government-grade Due Diligence including INTERPOL, PEP/Sanctions list, and judicial-status checks in Vietnam and internationally. This is the decisive stage — CIU may refuse without stating a reason. Approval rates are high for clean profiles. No interview required.",
+  "After receiving the Letter of Approval in Principle from CIU, the investor wires the SGF contribution ($250K+) to the government account. For the real-estate route: sign the purchase agreement and wire funds to the developer. No island visit required at this step.",
+  "CIU issues the Certificate of Naturalisation. Apply for the passport (via consulate or in-person on the island). The passport is issued 1–2 weeks after the certificate. No mandatory in-person oath ceremony on the island — it can be done at the SKN consulate in the UK or other countries with SKN representation.",
+  "🔒 6 in-depth sections remaining",
+  "Read the full St. Kitts &amp; Nevis CBI Brochure?",
+  "Send to which email?",
+  "Your request has been received",
+  "OK, maybe later",
+  "Family · Tax · Path to Citizenship · Compare · Pros &amp; cons · NAC analysis — sent to your email.",
+  "Enter the password to view the full brochure now.",
+  "One last step. NAC will send the full brochure within 24 hours.",
+  "The NAC team will send the full brochure within 24 hours. Check your Spam/Promotions folder too.",
+  "Yes, send it to me →",
+  "Maybe later",
+  "Brochure sent from",
+  "Unlock",
+  "Send to me →",
+  "← Back",
+  "05 · Tax &amp; finance 🔒",
+  "Tax type",
+  "SKN rate",
+  "Conditions",
+  "vs Vietnam",
+  "Personal income tax (worldwide)",
+  "No tax on income arising outside SKN",
+  "VN: 5–35%",
+  "Local income tax",
+  "No PIT in SKN",
+  "Capital gains tax",
+  "No CGT in SKN",
+  "VN: 2% of sale price",
+  "Inheritance / estate tax",
+  "No inheritance tax",
+  "VN: None (but transfer fees apply)",
+  "Net-worth / wealth tax",
+  "No wealth tax",
+  "VN: None (currently)",
+  "Corporate tax (local)",
+  "Applies only to business activity in SKN",
+  "VN: 20%",
+  "VAT / consumption tax",
+  "Domestic goods &amp; services",
+  "VN: 10%",
+  "Property purchase fee (stamp duty)",
+  "Depends on asset type and buyer",
+  "VN: 2–5%",
+  "Property rental tax",
+  "0% (outside SKN)",
+  "Rental income arising abroad is not taxed",
+  "VN: 5% PIT + 5% VAT",
+  "Program",
+  "Min. investment",
+  "Timeline",
+  "NAC score",
+  "3–4 months",
+  "Important tax note:",
+  "Consult an international tax lawyer before deciding.",
+  "What does the SKN passport unlock?",
+  "What does the SKN passport unlock?",
+  "Effective income-tax comparison — SKN vs financial centres (% on $500K income)",
+  "NAC Composite Score (INDEX) — Caribbean CBI &amp; Europe (2026)",
+  "Strengths analysis — St Kitts &amp; Nevis vs competing Caribbean programs (2026)",
+  "Comparing Grenada, St Kitts and Dominica for Asian investors",
+  "Strategic advisory:",
+  "Change your mind any time —",
+  "send me the brochure",
+  "Receives citizenship simultaneously. The marriage must be legally recognised. Living together is not required — even legally separated but not divorced still qualifies for inclusion.",
+  "Unmarried children up to 25 if in full-time tertiary education. Children with disabilities have no age limit. Fee: +$25K (under 18) or +$50K (18–25).",
+  "Parents or grandparents aged 55+ dependent on the investor. Fee: +$75K per person. A major advantage over UAE (only from AED 10M+) and many other programs.",
+  "Unmarried dependent siblings under 30 with no independent income — must prove financial dependence. Fee: +$75K. Rare in other CBI programs.",
+  "St Kitts &amp; Nevis is an internationally recognised tax haven — no personal income tax, no capital gains tax, no inheritance tax, no global wealth tax. This is the core reason SKN CBI is attractive not just for the passport but for asset structuring.",
+  "Unlike RBI (residency by investment) programs, St Kitts &amp; Nevis CBI grants citizenship directly — without a residency phase. This is the core distinction from Portugal, Greece, or Cyprus Golden Visa.",
+  "For a family of 2 adults and 2 children, total SGF cost lands around $350K–$380K after government and ALP fees. More expensive than Grenada ($220K) or Dominica ($200K), but the SKN passport's UK visa-free access is unique in the Caribbean group.",
+  "Accelerated Lightning Process (ALP) is the fastest in the Caribbean CBI group — 45–60 days vs the 3–6 month standard. The extra $25K cost is meaningful, but for HNWI investors, speed is highly valuable when a passport is needed urgently for travel, deal signing, or amid geopolitical shifts.",
+  "Vietnam applies a citizenship-based tax regime (",
+  "based on residence). Vietnamese citizens are still required to declare income in Vietnam even after obtaining SKN citizenship. To enjoy full SKN tax benefits, investors typically need to renounce Vietnamese citizenship or demonstrate they are not habitually resident in Vietnam.",
+  "Visa-free UK (VISA-FREE — unique in the Caribbean Big 5!), EU Schengen 26 countries, Singapore, Hong Kong, UAE, and 157+ countries. No visa-free access to the US (B1/B2 visa required) or Canada. The SKN passport doesn't lead directly to EU citizenship but opens living and working opportunities in the Commonwealth.",
+  "Portugal GV",
+  "€250K (fund)",
+  "12–18 months",
+  "$400K (real estate)",
+  "Residency",
+  "SKN's unique differentiator:",
+  "Vietnamese tax treatment risk:",
+  "St Kitts &amp; Nevis CBI is best suited for:",
+  "Common combination strategy:",
+  "Analytics tool",
+  "NAC Residence Index — Compare 21 Programs",
+  "Auto-ranking tailored to your family's criteria — pick the KPIs that matter, get the best-fit program.",
+  "World's oldest CBI program (1984) — reputation &amp; stability",
+  "Lifetime citizenship (under current law) — children inherit by descent",
+  "ALP 60–90 days: fastest in the Caribbean (actual time depends on profile)",
+  "No tax on income outside SKN territory, no CGT, no inheritance tax (Vietnamese tax obligations still apply)",
+  "No minimum residency or visit requirement",
+  "Dual citizenship permitted — no need to renounce SKN citizenship",
+  "Stable government, legal system based on English Common Law",
+  "No visa-free access to US or Canada — separate visa required",
+  "Local corporate tax 33% — high if you operate business in SKN",
+  "Small area (261 km²) — limited real-estate and lifestyle options",
+  "Real estate must be held for 7 years before resale — low liquidity",
+  "Vietnam has no double-taxation treaty with SKN",
+  "Renouncing Vietnamese citizenship is required to fully enjoy tax benefits (under Vietnamese law)",
+  "citizenship and residence",
+  "không",
+  "Visa-free UK — something no other Caribbean island offers (Grenada, Antigua, Dominica, St Lucia all ",
+  " have visa-free UK access). This is why SKN commands the highest price in the Caribbean group and still attracts investors despite being $50K more expensive than Dominica.",
+  "Vietnamese tax law (PIT Law 2007 and amending decrees) is based on ",
+  ". A Vietnamese citizen who acquires SKN citizenship but remains resident in Vietnam will continue to be taxed under Vietnamese law. NAC recommends independent legal advice on tax structuring before investing.",
+  'Investors/entrepreneurs needing a second passport within 60 days; families wanting to include parents and adult children; those who frequently need UK visas (traders, students, travel); HNWIs building international asset structures with a "zero-tax jurisdiction" pillar; those wanting UK residency/living rights via the Commonwealth route (indirectly through UK programs). SKN is the premium Caribbean choice — more expensive but the UK advantage is unique.',
+  "SKN CBI + Portugal Golden Visa is the most popular combination NAC advises for Vietnamese HNWIs aiming to maximise global access. SKN provides the fast passport &amp; UK visa; Portugal provides Schengen and an EU citizenship path in 5 years. Total cost around $500K–600K but opens 200+ visa-free countries.",
+  "Applications must be filed only through a CIU-approved Authorized Agent — you cannot apply directly. NAC connects you with reputable Authorized Agents. The document package includes: notarised passport, Vietnamese police clearance (issued by the Ministry of Public Security with Apostille), proof of source of wealth, bank statements for the last 3 months, birth certificates (for children), and marriage certificate (for spouse). All documents must be translated into English with notarisation.",
+  "<strong>Visa-free UK</strong> — unique to the Caribbean (at this point in time), no other CBI island has it",
+  "Want to know more? Read more in-depth analyses on the NAC blog.",
 ];
 
 function setLang(lang) {
@@ -2613,6 +3125,20 @@ function setLang(lang) {
   document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
+
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
 
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = heroText[lang].title;
@@ -2628,8 +3154,13 @@ function setLang(lang) {
   const sbarVi = ['Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch'];
   sbarLbls.forEach((el,i) => { el.textContent = lang === 'en' ? sbarEn[i] : sbarVi[i]; });
 
-  const src = lang === 'en' ? VI_STRINGS : EN_STRINGS;
-  const dst = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _srcRaw = lang === 'en' ? VI_STRINGS : EN_STRINGS;
+  const _dstRaw = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _idx = _srcRaw.map((_, i) => i)
+    .sort((a, b) => _srcRaw[b].length - _srcRaw[a].length);
+  const src = _idx.map(i => _srcRaw[i]);
+  const dst = _idx.map(i => _dstRaw[i]);
+
   const selectors = [
     '.sec-sub','.sec-label','.sec-title',
     '.ov-label','.ov-value','.ov-note',
@@ -2639,6 +3170,7 @@ function setLang(lang) {
     '.info-text','.factcheck-box > div',
     '.chart-title','.toc-link','.toc-title',
     '.hero-badge','.article-cta-text','.article-cta-btn',
+    '.article-cta-kicker','.article-cta-title','.article-cta-desc',
     '.road-label','.road-year',
     'th','td',
     '.pros h4','.cons h4','.pros li','.cons li',
@@ -2646,7 +3178,12 @@ function setLang(lang) {
     '.score-label','.score-title',
     '.footer-t','.footer-update',
     '.float-toc-panel a','.float-toc-panel-header',
-    '.breadcrumb','.toc-cta-mini a','.cta-strip-label',
+    '.breadcrumb','.toc-cta-mini a','.cta-strip-label','.cta-text',
+    '.tax-highlight','.tax-note',
+    '.star-label','.tag','.listings-fn-text','.listings-fn-link',
+    '.listing-placeholder-title','.listing-placeholder-sub',
+    '.listing-stat-lbl','.listing-desc','.listing-cta-primary','.listing-badge',
+    '.pw-sub','.pw-title','.pw-cta-primary','.pw-cta-secondary',
     '.nac-btn','.comp-table-mobile-msg',
   ];
   document.querySelectorAll(selectors.join(',')).forEach(el => {
@@ -2660,6 +3197,39 @@ function setLang(lang) {
     });
     if (changed) el.innerHTML = content;
   });
+
+  // Pass 2 — universal text-node fallback. Catches DOM strings whose
+  // class isn't in the selector list above. Plain-text entries only
+  // (skip ones with HTML tags — those belong to Pass 1's innerHTML).
+  function _decAmp(s) { return s.split('&amp;').join('&'); }
+  const plainPairs = [];
+  src.forEach((s, i) => {
+    if (s && dst[i] && s.indexOf('<') < 0 && s.indexOf('>') < 0) {
+      plainPairs.push([_decAmp(s), _decAmp(dst[i])]);
+    }
+  });
+  function walkText(n) {
+    if (!n) return;
+    if (n.nodeType === 8) return;
+    if (n.nodeType === 3) {
+      let t = n.nodeValue;
+      let changed = false;
+      for (let p = 0; p < plainPairs.length; p++) {
+        if (t.indexOf(plainPairs[p][0]) >= 0) {
+          t = t.split(plainPairs[p][0]).join(plainPairs[p][1]);
+          changed = true;
+        }
+      }
+      if (changed) n.nodeValue = t;
+      return;
+    }
+    if (n.nodeType === 1) {
+      const tag = n.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEMPLATE') return;
+      for (let c = n.firstChild; c; c = c.nextSibling) walkText(c);
+    }
+  }
+  walkText(document.body);
 }
 
 // Bind lang toggle without relying on inline onclick="" attributes.
@@ -3286,6 +3856,35 @@ function setLang(lang) {
     'Điểm tổng hợp NAC': 'NAC Composite Score',
     'Tháng xử lý trung bình': 'Average processing months',
     'Tháng xử lý': 'Processing months',
+    // ── Auto-added by fleet chart-label sweep (see CLAUDE.md §4)
+    'Chất lượng\nsống': 'Quality\nof Life',
+    'Hộ chiếu /\nDi chuyển': 'Passport /\nMobility',
+    'Lộ trình\nquốc tịch': 'Citizenship\npathway',
+    'Hồng Kông': 'Hong Kong',
+    'Việt Nam': 'Vietnam',
+    'Pháp': 'France',
+    'Úc SIV': 'Australia SIV',
+    'Úc': 'Australia',
+    'Di chuyển': 'Mobility',
+    'Lộ trình QT': 'Citizenship path',
+    'Gia đình': 'Family',
+    'Chi phí': 'Cost',
+    'Ổn định': 'Stability',
+    'Malaysia (ngoại)': 'Malaysia (foreign)',
+    'Malaysia (nội)': 'Malaysia (local)',
+    'Malta non-dom (FCG)': 'Malta non-dom (FCG)',
+    'Malta thông thường': 'Malta (standard)',
+    'Thái Lan (LTR)': 'Thailand (LTR)',
+    'Bồ Đào Nha (NHR hết)': 'Portugal (NHR ended)',
+    'BĐN GV': 'Portugal GV',
+    'Thổ CBI': 'Türkiye CBI',
+    'Síp PR': 'Cyprus PR',
+    'Hộ chiếu UK': 'UK passport',
+    'Ưu đãi thuế Non-Dom': 'Non-Dom tax benefit',
+    'Diện gia đình': 'Family scope',
+    'Ngưỡng đầu tư (hiệu quả)': 'Investment threshold (effective)',
+    'Lộ trình quốc tịch EU': 'EU citizenship pathway',
+    'Tốc độ xử lý': 'Processing speed',
   };
 
   const keysByLen = Object.keys(CHART_VI_EN).sort((a, b) => b.length - a.length);
@@ -3371,5 +3970,36 @@ function setLang(lang) {
 })();
 
 </script>
+
+
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
+})();
+</script>
+
 </body>
 </html>

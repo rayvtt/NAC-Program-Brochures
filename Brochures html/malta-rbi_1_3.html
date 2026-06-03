@@ -1163,7 +1163,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ============================================================ */
 .nac-tools { display:none; }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) { /*NAC-TOOLS-1024*/
   .nac-tools {
     position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
     display:flex; align-items:center; gap:.2rem;
@@ -1245,22 +1245,22 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ────────────────────────────────────────────── */
 /* ── NAC INDEX banner variant — animated globe canvas behind title ──
    Light lavender gradient mirrors the NAC Residence Index page hero. */
-.nac-index-banner {
+.article-cta-banner.nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 360px;
+  min-height: 300px;
   overflow: hidden;
 }
-.nac-index-banner::after {
+.article-cta-banner.nac-index-banner::after {
   /* Soft top-to-bottom fade so the title sits cleanly above the globe.
      Uses the same lavender as the bg so the corners stay airy. */
   background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
 }
 /* Default text is white — flip to dark since we're on a light background */
-.nac-index-banner .article-cta-kicker {
+.article-cta-banner.nac-index-banner .article-cta-kicker {
   color: #5b3aa8;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
-.nac-index-banner .article-cta-title {
+.article-cta-banner.nac-index-banner .article-cta-title {
   color: #1a0f5c;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
@@ -1310,7 +1310,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 }
 @media (max-width: 600px) {
   /* Mobile: CSS Grid stack — tight fit around globe. */
-  .nac-index-banner {
+  .article-cta-banner.nac-index-banner {
     display: grid !important;
     grid-template-rows: 240px auto auto;
     grid-template-columns: 1fr;
@@ -1330,24 +1330,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     opacity: .95;
     animation: none;
   }
-  .nac-index-banner .article-cta-kicker,
-  .nac-index-banner .article-cta-title {
+  .article-cta-banner.nac-index-banner .article-cta-kicker,
+  .article-cta-banner.nac-index-banner .article-cta-title {
     position: relative;
     z-index: 2;
     grid-column: 1;
     padding-left: 18px;
     padding-right: 18px;
   }
-  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
-  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+  .article-cta-banner.nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
+  .article-cta-banner.nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
   /* The pseudo-element overlay sits on top of everything — push it back */
-  .nac-index-banner::after { display: none; }
+  .article-cta-banner.nac-index-banner::after { display: none; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
   /* The pills inside the dark glass banner are hidden on mobile —
      they sit on the white body strip below instead (see below). */
-  .nac-index-banner .nac-index-pills { display: none; }
+  .article-cta-banner.nac-index-banner .nac-index-pills { display: none; }
   /* Mobile pills strip — sits in the white .article-cta-body band so
      icons get a clean, airy surface. Forced 6×2 grid (two rows of six)
      regardless of viewport width — no flex-wrap surprises. */
@@ -1457,6 +1457,245 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
+
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
+}
+/*TAX-COLLAPSE-CSS*/
+
+
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
+
+
+
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
+
+/* Breadcrumb typography lock — match "NAC BROCHURE 2026" tagline
+   look. Colors preserved (white-on-dark hero). /*BREADCRUMB-LOCK-V1*/ */
+.breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.breadcrumb a,
+.breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
+
+
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
+}
+
+
+/* Tax table mobile — pill-style disclaimer + column hiding.
+   Matches the .comp-table-mobile-msg look so the two tables read
+   alike on small screens. /*TAX-TABLE-MOBILE-V2*/ */
+.tax-table-mobile-note { display: none; }
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    text-align: center;
+    margin: 12px 0 24px;
+    line-height: 1.4;
+  }
+}
+
+
+/* Listings live-tag — small pulsing-dot indicator below the section
+   title (mirrors a status badge). /*SEC-LIVE-TAG-V1*/ */
+.sec-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 4px 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green, #10b981);
+}
+.sec-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #10b981);
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
+  animation: sec-live-pulse 2s infinite;
+  flex-shrink: 0;
+  margin-right: 9px;
+  position: relative;
+  top: 0px;
+}
+@keyframes sec-live-pulse {
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -1505,7 +1744,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-bg" id="heroBg" style="background-image:url('https://images.unsplash.com/photo-1527631746610-bca00a040d60?w=1600&q=85&fit=crop')"></div>
+  <div class="hero-bg" id="heroBg" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/malta.webp')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-i">
@@ -1619,16 +1858,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- 01 OVERVIEW -->
     <section class="section" id="overview">
       <div class="sec-label">01 — Tổng Quan</div>
-      <h2 class="sec-title">Chương Trình Tổng Quan</h2>
+      <h2 class="sec-title">Tổng Quan Chương Trình</h2>
       <p class="sec-sub">Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất cho phép bao gồm 4 thế hệ trong một hồ sơ. Cấp thẻ tạm thời (TRP) trong tháng đầu, không yêu cầu cư trú, và mở cánh cửa vào hộ chiếu Malta top 5 thế giới sau 5 năm cư trú thực tế.</p>
 
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Cư Trú Vĩnh Viễn</div><div class="ov-note">Indefinite, gia hạn thẻ mỗi 5 năm</div></div>
         <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Ra mắt</div><div class="ov-value">2021 (cập nhật 7/2025)</div><div class="ov-note">Thay thế MRVP cũ</div></div>
-        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Vị trí địa chính trị</div><div class="ov-value">EU · Schengen · Eurozone</div><div class="ov-note">Quốc đảo Địa Trung Hải</div></div>
-        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Cư trú bắt buộc</div><div class="ov-value">Không bắt buộc</div><div class="ov-note">Chỉ cần 1 ngày để biometrics</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">EU · Schengen · Eurozone</div><div class="ov-note">Quốc đảo Địa Trung Hải</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Không bắt buộc</div><div class="ov-note">Chỉ cần 1 ngày để biometrics</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thời hạn cư trú</div><div class="ov-value">Vĩnh viễn (không hết hạn)</div><div class="ov-note">Thẻ vật lý gia hạn 5 năm/lần</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Tới 4 thế hệ (duy nhất)</div><div class="ov-note">Vợ/chồng + con đến 28 + bố mẹ + ông bà</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Tới 4 thế hệ (duy nhất)</div><div class="ov-note">Vợ/chồng + con đến 28 + bố mẹ + ông bà</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">6–12 tháng</div><div class="ov-note">TRP cấp trong 1 tháng đầu</div></div>
         <div class="ov-card"><div class="ov-icon">💰</div><div class="ov-label">Thuế (non-dom)</div><div class="ov-value">Remittance basis</div><div class="ov-note">Lãi vốn nước ngoài miễn 100%</div></div>
         <div class="ov-card"><div class="ov-icon">✈️</div><div class="ov-label">Tiếp cận</div><div class="ov-value">Schengen 90/180</div><div class="ov-note">29 quốc gia EU/EEA miễn visa</div></div>
@@ -1640,7 +1879,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="chart-box">
-        <div class="chart-title">Phân tích điểm 6 tiêu chí NAC — Malta MPRP</div>
+        <div class="chart-title" data-vi="6 Tiêu Chí Trọng Điểm theo NAC Index" data-en="6 Key Criteria by NAC Index">6 Tiêu Chí Trọng Điểm theo NAC Index</div>
         <canvas id="radarChart" style="width:100%;max-height:300px"></canvas>
       </div>
 
@@ -1655,7 +1894,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <h3 class="article-cta-title">🇲🇹 Malta vs. Cyprus: So Sánh Hai Con Đường Cư Trú Địa Trung Hải</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc">Phân tích chuyên sâu</p>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
           <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Đọc Ngay →</a>
         </div>
       </div>
@@ -1773,51 +2012,33 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- LISTINGS START -->
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
-      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title">BĐS Đủ Điều Kiện RBI — Đang Mở Bán</h2>
-      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malta và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện RBI" data-en="RBI-Eligible Properties">BĐS Đủ Điều Kiện RBI</h2>
+      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="Đang Mở Bán" data-en="Now Live">Đang Mở Bán</span></div>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malta và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Malta RBI program and ready to transact. You don&#x27;t need to hunt — we&#x27;ve curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malta và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
-        <article class="listing-card">
-          <a class="listing-card-link" href="" target="_blank" rel="noopener">
-            <div class="listing-hero">
-              <img src="https://images.unsplash.com/photo-1558019091-2f3b153a3a05?w=800&amp;q=80" alt="Malta MEIN 2026" loading="lazy">
-              <div class="listing-badges">
-                <span class="listing-badge listing-badge-flag">🇲🇹 Malta</span>
-                <span class="listing-badge listing-badge-eligible">✓ Đủ điều kiện RBI</span>
-              </div>
-              <div class="listing-ref">NAC-33</div>
-            </div>
-            <div class="listing-body">
-              <div class="listing-tagline">Condo</div>
-              <h3 class="listing-name">Malta MEIN 2026</h3>
-              <div class="listing-location">📍 Malta</div>
-              <div class="listing-stats">
-                <div class="listing-stat"><div class="listing-stat-val">$350K</div><div class="listing-stat-lbl">Giá Khởi Điểm</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">4.8%</div><div class="listing-stat-lbl">Gross Yield</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">10.5%</div><div class="listing-stat-lbl">5-Year IRR</div></div>
-                <div class="listing-stat"><div class="listing-stat-val">—</div><div class="listing-stat-lbl">Bàn Giao</div></div>
-              </div>
-              <p class="listing-desc">Bất động sản đủ điều kiện MEIN Malta.</p>
-              <div class="listing-cta-row">
-                <span class="listing-cta-primary">Xem Chi Tiết →</span>
-              </div>
-            </div>
-          </a>
+        <article class="listing-card listing-card-placeholder">
+          <div class="listing-placeholder-content">
+            <div class="listing-placeholder-icon">+</div>
+            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
+            <div class="listing-placeholder-sub" data-vi="Thêm BĐS Malta đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới." data-en="More RBI-eligible Malta properties will be announced here soon.">Thêm BĐS Malta đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malta" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
+          </div>
         </article>
         <article class="listing-card listing-card-placeholder">
           <div class="listing-placeholder-content">
             <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Malta đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malta" target="_blank" rel="noopener">Khám phá Property Hub →</a>
+            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
+            <div class="listing-placeholder-sub" data-vi="Thêm BĐS Malta đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới." data-en="More RBI-eligible Malta properties will be announced here soon.">Thêm BĐS Malta đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malta" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
           </div>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malta.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malta" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện RBI →</a>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malta." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Malta RBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malta.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=malta" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện RBI →" data-en="All RBI-eligible properties →">Tất cả BĐS đủ điều kiện RBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -1859,13 +2080,13 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/malta-vs-cyprus-2026-so-sanh-hai-con-duong-cu-tru-dia-trung-hai-quoc-tich-eu-vs-thuong-tru-chien-luoc/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/17-1024x683.jpg')">
           <span class="article-cta-kicker">Hướng dẫn chi tiết</span>
           <h3 class="article-cta-title">📋 Quy Trình Malta MPRP 2026 — Checklist Hồ Sơ Đầy Đủ</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc">— Mọi thứ HNWI Việt cần chuẩn bị.</p>
-          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank">Xem →</a>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/malta-vs-cyprus-2026-so-sanh-hai-con-duong-cu-tru-dia-trung-hai-quoc-tich-eu-vs-thuong-tru-chien-luoc/" target="_blank">Xem →</a>
         </div>
       </div>
     </section>
@@ -2088,7 +2309,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 
       <div class="info-box amber-box">
         <div class="info-icon">ℹ️</div>
-        <div class="info-text"><strong>Yêu cầu nhập tịch (Citizenship Act):</strong> (1) 4/6 năm cư trú trước đó cộng 12 tháng liên tục ngay trước nộp đơn; (2) Tốt phẩm (clean record); (3) Ngôn ngữ: tiếng Anh hoặc tiếng Maltese; (4) 2 người bảo lãnh không phải người thân (luật sư, bác sĩ, công chứng viên cùng công dân Malta); (5) Thề trung thành (Oath of Allegiance). Tổng thời gian thực tế: 7–8 năm từ MPRP đến hộ chiếu.</div>
+        <div class="info-text"><strong>Yêu cầu nhập tịch (Citizenship Act):</strong> (1) 4/6 năm cư trú trước đó cộng 12 tháng liên tục ngay trước nộp đơn; (2) Phẩm Chất Tốt (clean record); (3) Ngôn ngữ: tiếng Anh hoặc tiếng Maltese; (4) 2 người bảo lãnh không phải người thân (luật sư, bác sĩ, công chứng viên cùng công dân Malta); (5) Chịu Thề Trung Thành với nhà nước Malta (Oath of Allegiance). Tổng thời gian thực tế: 7–8 năm từ MPRP đến hộ chiếu.</div>
       </div>
 
       <div class="info-box gold-box">
@@ -2153,17 +2374,6 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
         </tbody>
       </table>
       <div class="comp-table-mobile-msg">📊 Xem thông tin hoàn chỉnh trên desktop / web view</div>
-
-      <div class="article-cta" style="margin-top:16px">
-        <a class="article-cta-banner" href="https://nomadassetcollective.com/so-sanh/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/18-1024x683.jpg')">
-          <span class="article-cta-kicker">Công cụ</span>
-          <h3 class="article-cta-title">Công cụ So Sánh NAC</h3>
-        </a>
-        <div class="article-cta-body">
-          <p class="article-cta-desc">Chưa quyết định được? giúp bạn chọn chương trình phù hợp theo ngân sách, mục tiêu gia đình và timeline.</p>
-          <a class="article-cta-btn" href="https://nomadassetcollective.com/so-sanh/" target="_blank">So Sánh →</a>
-        </div>
-      </div>
     
       <div class="article-cta nac-index-cta" style="margin-top:16px">
         <a class="article-cta-banner nac-index-banner" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">
@@ -2378,7 +2588,7 @@ function makeRadarDataset(key, alpha1, alpha2) {
 const radarChart = new Chart(document.getElementById('radarChart'), {
   type: 'radar',
   data: {
-    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng\nsống', 'Hộ chiếu /\nDi chuyển', 'Thuế', 'Lộ trình\nquốc tịch'],
+    labels: ['Đầu tư', 'Tốc độ', 'Chất lượng sống', 'Hộ chiếu', 'Thuế', 'Quốc tịch'],
     datasets: [
       makeRadarDataset('malta', 0.18, 1),
       makeRadarDataset(radarCompare1, 0.10, 0.75),
@@ -2587,7 +2797,7 @@ const VI_STRINGS = [
   "07 — So Sánh",
   "08 — Ưu &amp; Nhược",
   "09 — Nhận Định NAC",
-  "Chương Trình Tổng Quan",
+  "Tổng Quan Chương Trình",
   "Các Mức Đầu Tư",
   "Quy Trình &amp; Thời Gian",
   "Gia Đình &amp; Đối Tượng Thụ Hưởng",
@@ -2613,16 +2823,16 @@ const VI_STRINGS = [
   "Indefinite, gia hạn thẻ mỗi 5 năm",
   "Ra mắt",
   "Thay thế MRVP cũ",
-  "Vị trí địa chính trị",
+  "Địa Lý Chính Trị",
   "EU · Schengen · Eurozone",
   "Quốc đảo Địa Trung Hải",
-  "Cư trú bắt buộc",
+  "Yêu Cầu Cư Trú",
   "Không bắt buộc",
   "Chỉ cần 1 ngày để biometrics",
   "Thời hạn cư trú",
   "Vĩnh viễn (không hết hạn)",
   "Thẻ vật lý gia hạn 5 năm/lần",
-  "Gia đình",
+  "Bảo Lãnh",
   "Tới 4 thế hệ (duy nhất)",
   "Vợ/chồng + con đến 28 + bố mẹ + ông bà",
   "Thời gian xử lý",
@@ -2677,15 +2887,270 @@ const VI_STRINGS = [
   "Malta MPRP là chương trình cư trú EU hàng đầu cho gia đình muốn hộ chiếu mạnh nhất và phạm vi gia đình rộng nhất.",
   "Sẵn sàng khởi động hồ sơ Malta MPRP?",
   "Đội ngũ NAC đã hỗ trợ gia đình Việt cơ cấu Malta MPRP kết hợp kế hoạch tài sản đa thế hệ. Đặt lịch tư vấn miễn phí để nhận lộ trình cư trú EU cá nhân hóa.",
-  "Malta MPRP phù hợp nhất cho:
-• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm
-• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)
-• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)
-• Người có thu nhập nước ngoài muốn giữ ở offshore
-• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
   'Đọc thêm phân tích chuyên sâu: <a href="https://blog.nomadassetcollective.com/malta-vs-cyprus-2026-so-sanh-hai-con-duong-cu-tru-dia-trung-hai-quoc-tich-eu-vs-thuong-tru-chien-luoc/" target="_blank"><strong>Cyprus vs. Malta 2026: So Sánh Hai Con Đường Cư Trú Địa Trung Hải — Quốc Tịch EU vs Thường Trú Chiến Lược</strong></a>',
   'Đọc thêm phân tích chuyên sâu: <a href="https://blog.nomadassetcollective.com/malta-vs-cyprus-2026-so-sanh-hai-con-duong-cu-tru-dia-trung-hai-quoc-tich-eu-vs-thuong-tru-chien-luoc/" target="_blank"><strong>Cyprus vs. Malta 2026: So Sánh Hai Con Đường Cư Trú Địa Trung Hải — Quốc Tịch EU vs Thường Trú Chiến Lược</strong></a>',
   "NAC khuyến nghị lộ trình Mua: Với tổng vốn €474K, bạn vừa có EU PR vĩnh viễn vừa sở hữu BĐS Malta đang tăng giá. Sliema, St. Julian’s, Valletta và Gozo có lợi suất cho thuê 4–6%/năm — BĐS €375K tự trả phí vận hành ~€15–22K/năm. Sau 5 năm có thể bán hoặc giữ, chỉ cần duy trì địa chỉ đăng ký tại Malta để giữ PR. LN 146/2025 cho phép thu nhập cho thuê ngay từ ngày đầu.",
+  "★ BĐS đang mở bán",
+  "BĐS đang mở bán",
+  "Xem so sánh các lộ trình EU →",
+  "Tư Vấn 30''",
+  "So Sánh",
+  "Malta Permanent Residence Programme (MPRP) — ra mắt 2021 thay thế MRVP — là chương trình cư trú vĩnh viễn EU duy nhất cho phép bao gồm 4 thế hệ trong một hồ sơ. Cấp thẻ tạm thời (TRP) trong tháng đầu, không yêu cầu cư trú, và mở cánh cửa vào hộ chiếu Malta top 5 thế giới sau 5 năm cư trú thực tế.",
+  "MPRP yêu cầu đồng thời 4 nghĩa vụ tài chính. Tổng vốn phụ thuộc vào lộ trình BĐS bạn chọn —",
+  "(linh hoạt, vốn thấp) hay",
+  "(sở hữu tài sản EU, cho thuê kiếm lợi nhuận ngay).",
+  "Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Malta và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.",
+  "MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 months, bao gồm cấp Temporary Residence Permit (TRP) trong tháng đầu — cho phép bạn vào Malta trước khi hồ sơ hoàn tất.",
+  "Malta MPRP là chương trình EU duy nhất cho phép bao gồm tới",
+  "— đây là lợi thế cạnh tranh không thể sao chép. Đặc biệt lý tưởng cho gia đình HNWI Việt Nam đa thế hệ muốn bảo vệ cả con cháu lẫn cha mẹ, ông bà.",
+  "Malta áp dụng chế độ",
+  "— hệ thống thuế hấp dẫn nhất châu Âu cho HNWI quốc tế: thu nhập nước ngoài không chuyển về Malta hoàn toàn",
+  "; lãi vốn nước ngoài",
+  "kể cả khi chuyển về; không thuế thừa kế, không thuế tài sản. Lưu ý: MPRP là visa cư trú — để hưởng flat rate 15%, cần đăng ký thêm GRP/TRP riêng.",
+  "Chương trình CBI cũ của Malta (MEIN) đã đóng vào tháng 4/2025 sau phán quyết của Tòa Công Lý EU. Hiện tại lộ trình đến quốc tịch Malta là qua nhập tịch sau 5 năm cư trú thực tế, hoặc qua chương trình Citizenship by Merit mới.",
+  "Vị trí của Malta MPRP trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại",
+  "Đánh giá khách quan dành cho nhà đầu tư HNWI người Việt đang cân nhắc Malta MPRP trong năm 2026.",
+  "Phân tích chuyên sâu của đội ngũ NAC Consulting dành cho nhà đầu tư HNWI người Việt — cập nhật Q2/2026.",
+  "2021 (cập nhật 7/2025)",
+  "Nguồn dữ liệu:",
+  "Tổng vốn tối thiểu",
+  "miễn phí",
+  "Bắt buộc chứng minh tài sản:",
+  "€150,000 dưới dạng tài sản thanh khoản",
+  "Tại sao NAC khuyến nghị lộ trình Mua BĐS?",
+  "Lợi thế đặc biệt LN 146/2025:",
+  "4 thế hệ trong cùng một hồ sơ",
+  "Tính kế thừa độc đáo:",
+  "So sánh với Bồ Đào Nha &amp; Hy Lạp:",
+  "Malta là lựa chọn duy nhất cho gia đình muốn bảo vệ 4 thế hệ với chi phí dưới €500K.",
+  "0% thuế",
+  "miễn 100%",
+  "Lợi thế thuế độc đáo Malta:",
+  "vô thời hạn",
+  "foreign capital gains hoàn toàn miễn thuế",
+  "Lưu ý:",
+  "Phân biệt MPRP vs GRP/TRP:",
+  "Cập nhật quan trọng:",
+  "Yêu cầu nhập tịch (Citizenship Act):",
+  "Citizenship by Merit (LN 159/2025) — đường nhanh hiếm:",
+  "Chiến lược kết hợp:",
+  "Xác định rõ mục tiêu trước khi nộp:",
+  "không dẫn tự động đến hộ chiếu Malta",
+  "Malta MPRP phù hợp nhất với:",
+  "Residency Malta Agency · Legal Notice 121/2021 (sửa đổi LN 57/2024, LN 310/2024, LN 146/2025) · PwC Malta · Henley Passport Index Q1/2026 · Cập nhật Q2/2026. Số liệu thay đổi có thể xảy ra — liên hệ NAC để xác nhận trước khi quyết định.",
+  "Phân tích điểm 6 tiêu chí NAC — Malta MPRP",
+  "Thời gian cấp cư trú — Malta vs các chương trình hàng đầu (tháng)",
+  "So sánh thuế thu nhập tối đa — Malta non-dom vs các quốc gia (%)",
+  "NAC Score (INDEX) — Top chương trình (2026)",
+  "Phân tích điểm mạnh — Malta vs các chương trình cạnh tranh (2026)",
+  "Bài viết đề xuất",
+  "Hướng dẫn chi tiết",
+  "Công cụ phân tích",
+  "🇲🇹 Malta vs. Cyprus: So Sánh Hai Con Đường Residency Địa Trung Hải",
+  "📋 Quy Trình Malta MPRP 2026 — Checklist Hồ Sơ Đầy Đủ",
+  "NAC Residence Index — So Sánh 21 Chương Trình",
+  "Phân tích chuyên sâu",
+  "— Mọi thứ HNWI Việt cần chuẩn bị.",
+  "Bảng xếp hạng tự động cập nhật theo tiêu chí của gia đình bạn — chọn KPI quan trọng, nhận chương trình phù hợp nhất.",
+  "Hạng mục",
+  "🏠 Lộ trình Thuê BĐS",
+  "🏛️ Lộ trình Mua BĐS",
+  "Loại thuế",
+  "Mức thuế Malta",
+  "Điều kiện",
+  "So với VN",
+  "Chương trình",
+  "Investment tối thiểu",
+  "Di chuyển",
+  "Thời gian",
+  "Thang Điểm NAC",
+  "🏠 Bất động sản",
+  "Thuê tối thiểu",
+  "Mua tối thiểu",
+  "🏛️ Phí hành chính",
+  "💰 Đóng góp Chính phủ",
+  "🤝 Quyên góp NGO",
+  "👨‍👩‍👧 Phụ thuộc người lớn (&gt;18)",
+  "· Vợ/chồng &amp; con dưới 18:",
+  "Thu nhập nước ngoài (giữ ở nước ngoài)",
+  "Non-dom — không chuyển về Malta",
+  "Thu nhập nước ngoài (chuyển về Malta)",
+  "0–35% lũy tiến",
+  "Theo bracket thông thường",
+  "Lãi vốn nước ngoài",
+  "Miễn 100% kể cả khi chuyển về Malta",
+  "VN: 2% trên giá bán",
+  "Tax tối thiểu non-dom",
+  "Chỉ áp dụng nếu thu nhập nước ngoài &gt;€35K",
+  "Tax thừa kế",
+  "Malta không có thuế thừa kế",
+  "VN: phí chuyển nhượng",
+  "Tax tài sản",
+  "Malta không có thuế tài sản (wealth tax)",
+  "VN: không có",
+  "Tax doanh nghiệp (refund system)",
+  "5% hiệu quả",
+  "35% danh nghĩa, refund 6/7 cho cổ đông nước ngoài",
+  "Hàng hóa &amp; dịch vụ thông thường",
+  "Stamp duty mua BĐS",
+  "Có ưu đãi cho người mua đầu tiên",
+  "€182K (thuê)",
+  "Bồ Đào Nha GV",
+  "€250K (quỹ)",
+  "12–18 tháng",
+  "Hy Lạp GV",
+  "1–3 tháng",
+  "Thổ Nhĩ Kỳ CBI",
+  "$400K (BĐS)",
+  "3–6 tháng",
+  "€300K (BĐS)",
+  "2–6 tháng",
+  "Giữ 5 năm = €70,000",
+  "Giữ 5 năm, được cho thuê ngay",
+  "📊 Xem bảng chi phí đầy đủ trên desktop / web view",
+  "📊 Xem thông tin hoàn chỉnh trên desktop / web view",
+  "Ngoài các khoản trên, bạn phải chứng minh sở hữu tổng tài sản ít nhất",
+  "— trong đó có",
+  "(tiền mặt, cổ phiếu, trái phiếu). Ngưỡng này được giám sát hàng năm trong 5 năm đầu. Phương án thay thế: €650,000 tổng tài sản với €75,000 thanh khoản.",
+  "Với tổng vốn €474K, bạn vừa có EU PR vĩnh viễn vừa sở hữu BĐS Malta đang tăng giá đều. Khu vực Sliema, St. Julian's, Valletta, Gozo có lợi suất cho thuê 4–6%/năm — nghĩa là BĐS €375K tự trả phí vận hành ~€15–22K/năm. Sau 5 năm có thể bán hoặc giữ, chỉ cần duy trì địa chỉ đăng ký tại Malta để giữ PR. NAC hỗ trợ kết nối BĐS trực tiếp với licensed agents tại Malta.",
+  "Chính sách mới cho phép nhà đầu tư có quyền cho thuê BĐS ngay từ đầu (immediate rental income) và quyền cho thuê lại (sublet) sau 5 năm với lộ trình thuê. TRP cấp trong tháng đầu giúp gia đình có thể đến Malta học tập, kinh doanh hoặc lưu trú trong khi chờ PR chính thức.",
+  "Sau khi nhận PR, nếu con trưởng thành trong hồ sơ kết hôn, vợ/chồng của con cũng có thể nộp đơn bổ sung vào diện cư trú vĩnh viễn (indefinite status). Đây là lộ trình duy nhất trong khối EU bảo vệ quyền lợi cư trú cho cả thế hệ kế tiếp sau khi hình thành gia đình mới.",
+  "Bồ Đào Nha GV chỉ bao gồm vợ/chồng, con phụ thuộc và bố mẹ trên 65 tuổi (cần chứng minh). Hy Lạp GV bao gồm cha mẹ cả hai bên nhưng không có ông bà. UAE chỉ bao gồm ông bà với gói AED 10M+.",
+  'Khác với UK (đã cải tổ chế độ non-dom 2025) hoặc các nước remittance khác, Malta không có "deemed domicile" — bạn có thể giữ status non-dom',
+  ". Đặc biệt:",
+  "ngay cả khi chuyển về Malta — đây là điểm khác biệt mang tính chiến lược cho nhà đầu tư có danh mục đầu tư quốc tế.",
+  "Luật thuế Việt Nam vẫn áp dụng cho công dân Việt — NAC khuyến nghị tham vấn luật sư thuế trước khi tái cơ cấu.",
+  "MPRP là chương trình cư trú — KHÔNG tự động cho mức thuế ưu đãi 15%. Để hưởng flat rate 15% trên thu nhập nước ngoài chuyển về, cần đăng ký riêng vào Global Residence Programme (GRP — non-EU) hoặc The Residence Programme (TRP — EU/EEA). GRP yêu cầu thuế tối thiểu €15,000/năm. NAC có thể tư vấn kết hợp MPRP và GRP cho hiệu quả thuế tối ưu.",
+  "(1) 4/6 năm cư trú trước đó cộng 12 tháng liên tục ngay trước nộp đơn; (2) Phẩm Chất Tốt (clean record); (3) Ngôn ngữ: tiếng Anh hoặc tiếng Maltese; (4) 2 người bảo lãnh không phải người thân (luật sư, bác sĩ, công chứng viên cùng công dân Malta); (5) Chịu Thề Trung Thành với nhà nước Malta (Oath of Allegiance). Tổng thời gian thực tế: 7–8 năm từ MPRP đến hộ chiếu.",
+  "Khoảng 15 tháng cộng 8 tháng cư trú trước đó. Dành cho cá nhân có thành tựu xuất sắc trong khoa học, công nghệ, văn hóa, nghệ thuật, thể thao, hoặc đóng góp ngoại lệ cho Malta. Không có ngưỡng đầu tư cố định — đánh giá theo merit. NAC có thể đánh giá khả năng phù hợp của bạn cho lộ trình này.",
+  'Nhiều HNWI Việt sử dụng MPRP làm "EU base" lâu dài cộng với Thổ Nhĩ Kỳ CBI (3–6 tháng) cho hộ chiếu thứ 2 nhanh và UAE Golden Visa (1–3 tháng) cho tối ưu thuế. Tổng ngân sách bộ ba: ~€700K–€1.2M. Đây là portfolio phổ biến nhất tại NAC năm 2026.',
+  "MPRP cho EU PR vĩnh viễn + Schengen ngay, nhưng",
+  '. Nếu mục tiêu cuối cùng là hộ chiếu EU, bạn cần cư trú thực tế 5 năm tại Malta — cần xem xét nghiêm túc trước khi quyết định. Nếu chỉ cần EU PR và Schengen access làm "base" lâu dài — MPRP là lựa chọn tốt nhất trong phân khúc dưới €500K.',
+  "Family HNWI Việt đa thế hệ (3–4 thế hệ) muốn EU PR vĩnh viễn cho cả nhà với chi phí dưới €500K, ngân sách BĐS tối thiểu €182K (thuê) hoặc €474K (mua), ưu tiên Schengen access và non-dom tax cho danh mục đầu tư quốc tế, không vội vàng có hộ chiếu thứ 2 (5–8 năm cho nhập tịch). Malta KHÔNG phù hợp nếu: (1) cần hộ chiếu thứ 2 trong 1–2 năm — chọn Thổ Nhĩ Kỳ CBI; (2) ngân sách dưới €180K — chọn Hy Lạp GV €250K cho căn nhỏ.",
+  "Vốn Thấp Nhất",
+  "NAC Khuyến Nghị",
+  "Lộ trình Thuê BĐS",
+  "Lộ trình Mua BĐS",
+  "Malta hoặc Gozo · Thuê tối thiểu €14,000/năm · Giữ 5 năm",
+  "Malta hoặc Gozo · Sở hữu tối thiểu €375,000 · Giữ 5 năm",
+  "✓ Vốn đầu vào thấp nhất",
+  "✓ Sau 5 năm chỉ cần địa chỉ Malta",
+  "✓ Quyền sublet sau 5 năm (LN 146/2025)",
+  "Không sở hữu tài sản",
+  "✓ Sở hữu BĐS EU thực sự",
+  "✓ Cho thuê kiếm lợi nhuận ngay (LN 146/2025)",
+  "✓ Lợi suất 4–6%/năm tại Sliema, Valletta",
+  "✓ Tài sản tính vào ngưỡng €500K",
+  "Bán sau 5 năm — giữ địa chỉ Malta",
+  "Tìm hiểu thêm:",
+  "Hành động:",
+  "Bước tiếp theo:",
+  "Tư Vấn BĐS Malta",
+  "Tư Vấn Chiến Lược Gia Đình",
+  "So Sánh Malta vs Bồ Đào Nha",
+  "Cơ Hội Đầu Tư Thực Tế",
+  "BĐS Đủ Điều Kiện RBI — Đang Mở Bán",
+  "✓ Đủ điều kiện RBI",
+  "Giá Khởi Điểm",
+  "Bàn Giao",
+  "Bất động sản đủ điều kiện MEIN Malta.",
+  "Xem Chi Tiết →",
+  "Đang Cập Nhật",
+  "Thêm BĐS Malta đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.",
+  "Khám phá Property Hub →",
+  "NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Malta.",
+  "Tất cả BĐS đủ điều kiện RBI →",
+  "Tuần 1–4",
+  "Tháng 1–2",
+  "Tháng 4–8",
+  "✓ Tháng 6–12",
+  "Due Diligence sơ bộ &amp; Chuẩn bị hồ sơ",
+  "Nộp hồ sơ + Phí ban đầu €15K + Cấp TRP",
+  "Đánh giá hồ sơ + In Principle Approval",
+  "Biometrics + Cấp Permanent Residence Certificate",
+  "NAC kết nối với Licensed Agent tại Malta. Tiến hành kiểm tra Due Diligence sơ bộ (48 giờ). Chuẩn bị bộ hồ sơ: hộ chiếu, lý lịch tư pháp (Việt Nam và bất kỳ quốc gia cư trú nào), chứng minh tài sản €500K (sao kê ngân hàng, sổ tiết kiệm, danh mục đầu tư), bảo hiểm y tế EU. Phải có thư giới thiệu từ Agent và letter of intent (tùy chọn).",
+  "Agent nộp hồ sơ MPRP cùng đơn xin TRP (Temporary Residence Permit). Trả phí hành chính ban đầu €15,000, phí Due Diligence €5,000/người lớn (13+) và €3,000/trẻ em dưới 13. Bạn nhận thẻ TRP 1 năm trong vòng 1 tháng — có thể đến Malta ngay để bắt đầu thiết lập. Đây là một trong những điểm cải tiến lớn của LN 146/2025.",
+  "Residency Malta tiến hành kiểm tra 4 cấp (4-tier vetting — nghiêm ngặt nhất EU): kiểm tra tội phạm Interpol/Europol, sàng lọc PEP, xác minh nguồn vốn, đánh giá tổng thể. Sau khi đạt yêu cầu, bạn nhận In Principle Approval — yêu cầu thanh toán phần còn lại €45,000 phí hành chính, €37,000 đóng góp Chính phủ, donation NGO €2,000, và thuê hoặc mua BĐS đủ điều kiện.",
+  "Toàn bộ gia đình (gồm trẻ em từ 14 tuổi) đến Malta để chụp biometrics tại Identity Malta. Nhận Permanent Residence Certificate vĩnh viễn cùng thẻ cư trú vật lý (gia hạn mỗi 5 năm). Status có hiệu lực vô thời hạn miễn duy trì BĐS và ngưỡng tài sản trong 5 năm đầu. Sau 5 năm có thể bán BĐS — chỉ cần địa chỉ Malta.",
+  "🔒 Còn 6 phần chuyên sâu",
+  "Đọc trọn bộ Brochure Malta MPRP?",
+  "Gửi tới email nào?",
+  "Đã nhận yêu cầu của bạn",
+  "OK, để sau cũng được",
+  "Family · Tax · Path to Citizenship · So sánh · Ưu &amp; nhược · Nhận định NAC — gửi tới email của bạn.",
+  "Nhập mật khẩu để xem toàn bộ brochure ngay.",
+  "Một bước cuối. NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ.",
+  "Đội ngũ NAC sẽ gửi brochure đầy đủ trong vòng 24 giờ. Kiểm tra cả hộp Spam/Promotions.",
+  "Đổi ý lúc nào cũng được —",
+  "Có, gửi cho tôi →",
+  "Để sau",
+  "Brochure được gửi từ",
+  "Mở khóa",
+  "Gửi cho tôi →",
+  "← Quay lại",
+  "gửi brochure cho tôi",
+  "Vợ/Chồng &amp; Đối Tác Lâu Dài",
+  "Con Phụ Thuộc (đến 28 tuổi)",
+  "Bố Mẹ Của Cả Hai Bên",
+  "Ông Bà — Lợi Thế Độc Quyền",
+  "Vợ/chồng hợp pháp hoặc đối tác trong mối quan hệ bền vững (long-and-durable relationship). Không phí phụ thuộc bổ sung. Hôn nhân phải có chứng thực Apostille.",
+  "Con chưa kết hôn, không có con riêng, phụ thuộc tài chính vào nhà đầu tư. Con dưới 18 miễn phí; con 18–28: €7,500/người. Con khuyết tật không giới hạn tuổi.",
+  "Bố mẹ của nhà đầu tư VÀ vợ/chồng đều có thể được bảo lãnh — không yêu cầu tăng đầu tư. Phí €7,500/người. Phải chứng minh phụ thuộc tài chính.",
+  "Malta là chương trình EU duy nhất cho phép bảo lãnh ông bà của cả nhà đầu tư và vợ/chồng. Không giới hạn tuổi, phí €7,500/người. Lý tưởng cho gia đình truyền thống Việt Nam.",
+  "Tháng 1–12",
+  "Năm 1–5",
+  "Năm 5–6",
+  "Năm 6–8",
+  "MPRP — TRP (1 tháng) đến PR vĩnh viễn (6–12 months)",
+  "Cư trú Malta + Schengen 90/180 + non-dom tax",
+  "Đủ điều kiện nộp đơn nhập tịch theo Citizenship Act",
+  "Citizenship Malta — hộ chiếu EU top 5 thế giới (184 quốc gia)",
+  "Quốc Tịch",
+  "EU PR vĩnh viễn — không yêu cầu cư trú thực tế để duy trì thẻ",
+  "4 thế hệ trong 1 hồ sơ — vợ/chồng + con đến 28 + bố mẹ + ông bà (cả hai bên)",
+  "Schengen 90/180 cho 29 quốc gia EU/EEA ngay khi có thẻ PR",
+  "TRP cấp trong tháng đầu — gia đình sang Malta ngay để học tập, sinh sống",
+  "Tiếng Anh là ngôn ngữ chính thức — không rào cản ngôn ngữ",
+  "Mua BĐS: được cho thuê kiếm lợi nhuận ngay từ đầu (LN 146/2025)",
+  "Non-dom: 0% thuế thu nhập ngoài Malta, 0% lãi vốn ngoài Malta (kể cả khi chuyển về)",
+  "Không thuế thừa kế, không thuế tài sản",
+  "Passport Malta sau nhập tịch: top 5 thế giới, 184 quốc gia miễn visa",
+  "Hệ thống pháp lý Anh (common law), chính trị ổn định, an ninh cao",
+  "CBI đã đóng (4/2025) — nhập tịch cần cư trú thực tế 5 năm",
+  "Phí phụ thuộc người lớn €7,500/người tích lũy nhanh với gia đình đông người",
+  "BĐS Malta diện tích nhỏ nhưng giá tương đối cao",
+  "Bắt buộc nộp qua Licensed Agent — không thể tự nộp hồ sơ",
+  "4-tier vetting nghiêm ngặt nhất EU — tỷ lệ từ chối ~10%",
+  "MPRP không tự động cho thuế 15% — cần đăng ký GRP riêng",
+  "Chứng minh tài sản €500K giám sát hàng năm trong 5 năm đầu",
+  "Đội ngũ NAC Consulting có kinh nghiệm tư vấn Malta MPRP cho các gia đình HNWI Việt Nam, làm việc trực tiếp với Licensed Agents tại Valletta và Sliema. Chúng tôi hỗ trợ toàn bộ quy trình — từ Due Diligence sơ bộ, chọn BĐS, chuẩn bị hồ sơ tài sản €500K, đến biometrics tại Malta. Đọc thêm tại",
+  '📅 Đặt 30"→',
+  "© 2026 NAC Consulting — Nomad Asset Collective. Thông tin trong tài liệu này chỉ mang tính tham khảo và có thể thay đổi theo Legal Notice của Chính phủ Malta. Vui lòng liên hệ đội ngũ tư vấn NAC để cập nhật thông tin mới nhất trước khi đưa ra quyết định đầu tư. Không phải tư vấn pháp lý hay tài chính.",
+  "Gia đình HNWI Việt đa thế hệ (3–4 thế hệ) muốn EU PR vĩnh viễn cho cả nhà với chi phí dưới €500K, ngân sách BĐS tối thiểu €182K (thuê) hoặc €474K (mua), ưu tiên Schengen access và non-dom tax cho danh mục đầu tư quốc tế, không vội vàng có hộ chiếu thứ 2 (5–8 năm cho nhập tịch). Malta KHÔNG phù hợp nếu: (1) cần hộ chiếu thứ 2 trong 1–2 năm — chọn Thổ Nhĩ Kỳ CBI; (2) ngân sách dưới €180K — chọn Hy Lạp GV €250K cho căn nhỏ.",
+  "🇲🇹 Malta vs. Cyprus: So Sánh Hai Con Đường Cư Trú Địa Trung Hải",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\\n• Người có thu nhập nước ngoài muốn giữ ở offshore\\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
+  "Malta MPRP phù hợp nhất cho:\n• Gia đình muốn quốc tịch EU đầy đủ sau 5+ năm\n• Gia đình đa thế hệ (4 thế hệ trong một hồ sơ)\n• Nhà đầu tư muốn hộ chiếu EU mạnh nhất (186 visa-free)\n• Người có thu nhập nước ngoài muốn giữ ở offshore\n• Kết hợp với UAE Golden Visa làm cơ sở thuế ngay lập tức trong khi chờ quốc tịch Malta",
 ];
 
 const EN_STRINGS = [
@@ -2751,16 +3216,16 @@ const EN_STRINGS = [
   "Indefinite, card renewed every 5 years",
   "Launched",
   "Replacing former MRVP",
-  "Geopolitical Position",
+  "Geopolitics",
   "EU · Schengen · Eurozone",
   "Mediterranean island nation",
-  "Residency Required",
+  "Residency Requirement",
   "Not mandatory",
   "Only 1 day required for biometrics",
   "Residency Term",
   "Indefinite (no expiry)",
   "Physical card renewed every 5 years",
-  "Family",
+  "Sponsorship",
   "Up to 4 generations (unique)",
   "Spouse + children to 28 + parents + grandparents",
   "Processing Time",
@@ -2815,15 +3280,270 @@ const EN_STRINGS = [
   "Malta MPRP is the top EU residency program for families wanting the strongest passport and broadest family inclusion.",
   "Ready to start your Malta MPRP application?",
   "The NAC team has helped Vietnamese families structure Malta MPRP alongside multi-generational wealth planning. Book a free consultation to receive your personalised EU residency roadmap.",
-  "Malta MPRP is best for:
-• Families wanting full EU citizenship in 5+ years
-• Multi-generational families (4 generations in one application)
-• Investors wanting the strongest EU passport (186 visa-free)
-• Those with foreign income they prefer to keep offshore
-• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
   'Read more in-depth analysis: <a href="https://blog.nomadassetcollective.com/malta-vs-cyprus-2026-so-sanh-hai-con-duong-cu-tru-dia-trung-hai-quoc-tich-eu-vs-thuong-tru-chien-luoc/" target="_blank"><strong>Cyprus vs. Malta 2026: Two Mediterranean Residency Paths Compared — EU Citizenship vs Strategic Permanent Residency</strong></a>',
   'Read more in-depth analysis: <a href="https://blog.nomadassetcollective.com/malta-vs-cyprus-2026-so-sanh-hai-con-duong-cu-tru-dia-trung-hai-quoc-tich-eu-vs-thuong-tru-chien-luoc/" target="_blank"><strong>Cyprus vs. Malta 2026: Two Mediterranean Residency Paths Compared — EU Citizenship vs Strategic Permanent Residency</strong></a>',
   "NAC recommends the Buy route: At €474K total, you get EU permanent residency AND a Malta property appreciating steadily. Sliema, St. Julian’s, Valletta and Gozo deliver 4–6% rental yield — meaning the €375K property self-funds ~€15–22K/year in operating costs. After 5 years you can sell or hold, keeping only a registered Malta address to maintain PR. LN 146/2025 now allows immediate rental income from day one.",
+  "★ Listings available",
+  "Listings available",
+  "View EU routes comparison →",
+  "30' Consult",
+  "Compare",
+  "The Malta Permanent Residence Programme (MPRP) — launched in 2021 as the successor to MRVP — is the only EU permanent residency program covering 4 generations in a single application. A Temporary Residence Permit (TRP) is issued within the first month, no physical residency is required, and it opens the door to the Malta passport (top 5 globally) after 5 years of actual residence.",
+  "MPRP requires 4 simultaneous financial obligations. Total capital depends on the property route you choose —",
+  "(flexible, low capital) or",
+  "(EU asset ownership, immediate rental income).",
+  "These are NAC-vetted assets, eligible for the Malta RBI application and ready to transact. You don't need to hunt — we've curated them.",
+  "MPRP must be filed through a Licensed Agent of Residency Malta Agency. Standard processing is 6–12 months, including issuance of a Temporary Residence Permit (TRP) in the first month — letting you enter Malta before the application finalises.",
+  "Malta MPRP is the only EU program covering up to",
+  "— a competitive advantage that can't be replicated. Especially ideal for multi-generational Vietnamese HNWI families looking to protect children, parents and grandparents together.",
+  "Malta applies a",
+  "— Europe's most attractive tax regime for international HNWIs: foreign income kept outside Malta is fully",
+  "; foreign capital gains are",
+  "even when remitted; no inheritance tax, no wealth tax. Note: MPRP is a residency visa — to access the 15% flat rate, you need to register separately under GRP/TRP.",
+  "Malta's previous CBI program (MEIN) closed in April 2025 following the EU Court of Justice ruling. The current path to Malta citizenship is naturalisation after 5 years of actual residence, or the new Citizenship by Merit programme.",
+  "Where Malta MPRP sits in the broader landscape. View the full ranking at",
+  "An objective assessment for Vietnamese HNWI investors considering Malta MPRP in 2026.",
+  "In-depth analysis from the NAC Consulting team for Vietnamese HNWI investors — updated Q2/2026.",
+  "2021 (updated 7/2025)",
+  "Data sources:",
+  "Min. total capital",
+  "free",
+  "Mandatory wealth disclosure:",
+  "€150,000 in liquid assets",
+  "Why NAC recommends the Buy route?",
+  "Special advantage of LN 146/2025:",
+  "4 generations in one application",
+  "Unique inheritability:",
+  "Compared with Portugal &amp; Greece:",
+  "Malta is the only option for families wanting to protect 4 generations under €500K.",
+  "0% tax",
+  "100% exempt",
+  "Malta's unique tax advantage:",
+  "indefinitely",
+  "foreign capital gains are fully tax-free",
+  "Note:",
+  "MPRP vs GRP/TRP — what's different:",
+  "Important update:",
+  "Naturalisation requirements (Citizenship Act):",
+  "Citizenship by Merit (LN 159/2025) — a rare fast track:",
+  "Combination strategy:",
+  "Clarify your goal before applying:",
+  "does not automatically lead to a Malta passport",
+  "Malta MPRP is best for:",
+  "Residency Malta Agency · Legal Notice 121/2021 (as amended by LN 57/2024, LN 310/2024, LN 146/2025) · PwC Malta · Henley Passport Index Q1/2026 · Updated Q2/2026. Figures may change — contact NAC to confirm before deciding.",
+  "NAC 6-Criteria Analysis — Malta MPRP",
+  "Residency timeline — Malta vs leading programs (months)",
+  "Max income tax — Malta non-dom vs other countries (%)",
+  "NAC Score (INDEX) — Top programs (2026)",
+  "Strengths analysis — Malta vs competing programs (2026)",
+  "Featured article",
+  "Detailed guide",
+  "Analytics tool",
+  "🇲🇹 Malta vs. Cyprus: Two Mediterranean Residency Paths Compared",
+  "📋 Malta MPRP 2026 Process — Full Application Checklist",
+  "NAC Residence Index — Compare 21 Programs",
+  "In-depth analysis",
+  "— Everything Vietnamese HNWIs need to prepare.",
+  "Ranking auto-updates based on your family's criteria — pick the KPIs that matter, get your best-fit program.",
+  "Item",
+  "🏠 Rental Route",
+  "🏛️ Buy Route",
+  "Tax type",
+  "Malta rate",
+  "Conditions",
+  "vs Vietnam",
+  "Program",
+  "Min. investment",
+  "Mobility",
+  "Time",
+  "NAC Score",
+  "🏠 Real Estate",
+  "Min. rental",
+  "Min. purchase",
+  "🏛️ Administrative fee",
+  "💰 Government contribution",
+  "🤝 NGO donation",
+  "👨‍👩‍👧 Adult dependants (&gt;18)",
+  "· Spouse &amp; children under 18:",
+  "Foreign income (kept abroad)",
+  "Non-dom — not remitted to Malta",
+  "Foreign income (remitted to Malta)",
+  "0–35% progressive",
+  "Per standard brackets",
+  "Foreign capital gains",
+  "100% exempt even when remitted to Malta",
+  "VN: 2% on sale price",
+  "Non-dom minimum tax",
+  "Only applies if foreign income &gt;€35K",
+  "Inheritance tax",
+  "Malta has no inheritance tax",
+  "VN: transfer fee",
+  "Wealth tax",
+  "Malta has no wealth tax",
+  "VN: none",
+  "Corporation tax (refund system)",
+  "5% effective",
+  "35% nominal, 6/7 refund to foreign shareholders",
+  "Standard goods &amp; services",
+  "Property stamp duty",
+  "First-time buyer relief available",
+  "€182K (rental)",
+  "Portugal GV",
+  "€250K (fund)",
+  "12–18 months",
+  "Greece GV",
+  "1–3 months",
+  "Türkiye CBI",
+  "$400K (property)",
+  "3–6 months",
+  "€300K (property)",
+  "2–6 months",
+  "Hold 5 years = €70,000",
+  "Hold 5 years, immediate rental allowed",
+  "📊 View full cost table on desktop / web view",
+  "📊 View full info on desktop / web view",
+  "In addition to the above, you must prove total assets of at least",
+  "— of which",
+  "(cash, stocks, bonds). This threshold is monitored annually for the first 5 years. Alternative: €650,000 total assets with €75,000 liquid.",
+  "At €474K total, you get permanent EU PR plus a Malta property appreciating steadily. Sliema, St. Julian's, Valletta and Gozo deliver 4–6% rental yield — meaning the €375K property self-funds ~€15–22K/year in operating costs. After 5 years you can sell or hold, keeping only a registered Malta address to maintain PR. NAC connects you directly with licensed agents in Malta.",
+  "The new policy lets investors earn immediate rental income from day one, and sublet after 5 years on the rental route. The TRP issued in the first month allows the family to enter Malta for school, business or living while awaiting full PR.",
+  "After PR, if an adult child included in the application marries, their spouse can also apply to be added under indefinite status. This is the only EU pathway protecting residency rights for the next generation after they form their own families.",
+  "Portugal GV covers only spouse, dependent children, and parents over 65 (subject to proof). Greece GV covers both sets of parents but not grandparents. The UAE includes grandparents only on the AED 10M+ package.",
+  'Unlike the UK (which reformed its non-dom regime in 2025) or other remittance-based countries, Malta has no "deemed domicile" — you can keep non-dom status',
+  ". Notably:",
+  "even when remitted to Malta — a strategically meaningful difference for investors with international portfolios.",
+  "Vietnamese tax law still applies to Vietnamese citizens — NAC recommends consulting a tax lawyer before restructuring.",
+  "MPRP is a residency program — it does NOT automatically grant the 15% preferential tax rate. To access the 15% flat rate on remitted foreign income, you must register separately under the Global Residence Programme (GRP — non-EU) or The Residence Programme (TRP — EU/EEA). GRP requires a €15,000/year minimum tax. NAC can advise on combining MPRP and GRP for optimal tax efficiency.",
+  "(1) 4 of the prior 6 years in residence plus 12 continuous months immediately before applying; (2) Good character (clean record); (3) Language: English or Maltese; (4) Two non-family sponsors (a Maltese-citizen lawyer, doctor, or notary); (5) Oath of Allegiance. Total real timeline: 7–8 years from MPRP to passport.",
+  "About 15 months plus 8 months of prior residency. For individuals with exceptional achievement in science, technology, culture, arts, sports, or extraordinary contribution to Malta. No fixed investment threshold — assessed on merit. NAC can evaluate your suitability for this route.",
+  'Many Vietnamese HNWIs use MPRP as a long-term "EU base" combined with Türkiye CBI (3–6 months) for a fast second passport and the UAE Golden Visa (1–3 months) for tax optimisation. Total budget for the trio: ~€700K–€1.2M. This is NAC’s most popular 2026 portfolio.',
+  "MPRP gives permanent EU PR + Schengen immediately, but",
+  '. If the end goal is an EU passport, you’ll need 5 years of actual residency in Malta — consider this seriously before deciding. If you only need EU PR and Schengen access as a long-term "base", MPRP is the best option in the under-€500K bracket.',
+  "Multi-generational Vietnamese HNWI families (3–4 generations) wanting permanent EU PR for everyone under €500K, with a property budget of at least €182K (rental) or €474K (buy), prioritising Schengen access and non-dom tax for international portfolios, and not in a hurry for a second passport (5–8 years to naturalisation). Malta is NOT a fit if: (1) you need a second passport in 1–2 years — pick Türkiye CBI; (2) your budget is under €180K — pick Greece GV €250K for a smaller unit.",
+  "Lowest capital",
+  "NAC Recommended",
+  "Rental Route",
+  "Buy Route",
+  "Malta or Gozo · Min. rental €14,000/year · Hold 5 years",
+  "Malta or Gozo · Min. ownership €375,000 · Hold 5 years",
+  "✓ Lowest entry capital",
+  "✓ After 5 years, only a Malta address is required",
+  "✓ Sublet rights after 5 years (LN 146/2025)",
+  "No asset ownership",
+  "✓ Actual EU property ownership",
+  "✓ Immediate rental income (LN 146/2025)",
+  "✓ 4–6%/year yield in Sliema, Valletta",
+  "✓ Asset counts toward the €500K threshold",
+  "Sell after 5 years — keep Malta address",
+  "Learn more:",
+  "Take action:",
+  "Next step:",
+  "Malta Property Consult",
+  "Family Strategy Consult",
+  "Compare Malta vs Portugal",
+  "Real Investment Opportunities",
+  "RBI-Eligible Properties — Available Now",
+  "✓ RBI-eligible",
+  "Starting price",
+  "Handover",
+  "MEIN Malta–eligible real estate.",
+  "View details →",
+  "Coming Soon",
+  "More Malta RBI-eligible properties will be announced here soon.",
+  "Explore Property Hub →",
+  "NAC only lists properties that have been independently legally vetted and confirmed Malta RBI-eligible.",
+  "All RBI-eligible properties →",
+  "Week 1–4",
+  "Month 1–2",
+  "Month 4–8",
+  "✓ Month 6–12",
+  "Preliminary Due Diligence &amp; Application Prep",
+  "File application + €15K initial fee + TRP issued",
+  "Application review + In Principle Approval",
+  "Biometrics + Permanent Residence Certificate issued",
+  "NAC connects you with a Licensed Agent in Malta. Preliminary Due Diligence (48 hours). Prepare the application bundle: passport, criminal-record certificate (Vietnam + any country of residence), €500K wealth evidence (bank statements, savings, investment portfolio), EU health insurance. Agent referral letter required + letter of intent (optional).",
+  "The Agent files the MPRP application together with a TRP (Temporary Residence Permit) application. Pay the initial admin fee of €15,000, Due Diligence fee of €5,000/adult (13+) and €3,000/child under 13. You receive a 1-year TRP within 1 month — you can enter Malta right away to begin setting up. This is one of LN 146/2025's major improvements.",
+  "Residency Malta runs 4-tier vetting — the strictest in the EU: Interpol/Europol criminal checks, PEP screening, source-of-funds verification, holistic review. Once cleared, you receive In Principle Approval — pay the remaining €45,000 admin fee, €37,000 government contribution, €2,000 NGO donation, and rent or buy a qualifying property.",
+  "The whole family (including children aged 14+) travels to Malta for biometrics at Identity Malta. You receive a permanent Permanent Residence Certificate along with a physical residence card (renewed every 5 years). Status is indefinite as long as you maintain the property and wealth threshold for the first 5 years. After 5 years you can sell the property — only a Malta address is required.",
+  "🔒 6 in-depth sections remaining",
+  "Read the full Malta MPRP Brochure?",
+  "Send to which email?",
+  "Request received",
+  "OK, later works too",
+  "Family · Tax · Path to Citizenship · Comparison · Pros &amp; Cons · NAC Verdict — sent to your email.",
+  "Enter password to view the full brochure now.",
+  "One last step. NAC will send the full brochure within 24 hours.",
+  "The NAC team will send the full brochure within 24 hours. Check your Spam/Promotions folder too.",
+  "Change your mind anytime —",
+  "Yes, send it to me →",
+  "Later",
+  "Brochure sent from",
+  "Unlock",
+  "Send to me →",
+  "← Back",
+  "send me the brochure",
+  "Spouse &amp; Long-Term Partner",
+  "Dependent Children (up to 28)",
+  "Both Sets of Parents",
+  "Grandparents — Unique Advantage",
+  "Legal spouse or partner in a long-and-durable relationship. No additional dependant fee. Marriage requires Apostille certification.",
+  "Unmarried children without their own children, financially dependent on the investor. Under 18 are free; 18–28: €7,500/person. Children with disabilities have no age limit.",
+  "Parents of both the investor AND spouse can be sponsored — no increased investment required. €7,500/person. Financial dependence must be proven.",
+  "Malta is the only EU program allowing grandparents of both the investor and spouse to be sponsored. No age limit, €7,500/person. Ideal for traditional Vietnamese families.",
+  "Month 1–12",
+  "Year 1–5",
+  "Year 5–6",
+  "Year 6–8",
+  "MPRP — TRP (1 month) to permanent PR (6–12 months)",
+  "Malta residency + Schengen 90/180 + non-dom tax",
+  "Eligible to apply for naturalisation under the Citizenship Act",
+  "Malta citizenship — top-5 global EU passport (184 countries)",
+  "Citizenship",
+  "Permanent EU PR — no physical residency required to keep the card",
+  "4 generations in 1 application — spouse + children up to 28 + parents + grandparents (both sides)",
+  "Schengen 90/180 access to 29 EU/EEA countries immediately upon receiving the PR card",
+  "TRP issued in the first month — family can enter Malta immediately to study and live",
+  "English is an official language — no language barrier",
+  "Buy route: immediate rental income from day one (LN 146/2025)",
+  "Non-dom: 0% tax on income outside Malta, 0% on foreign capital gains (even when remitted)",
+  "No inheritance tax, no wealth tax",
+  "Malta passport after naturalisation: top-5 globally, visa-free access to 184 countries",
+  "English-style common law system, stable politics, high safety",
+  "CBI closed (4/2025) — naturalisation requires 5 years of actual residence",
+  "Adult dependant fee of €7,500/person adds up quickly for large families",
+  "Malta property has small floor areas but relatively high prices",
+  "Application must be filed through a Licensed Agent — no self-filing",
+  "Strictest 4-tier vetting in the EU — ~10% rejection rate",
+  "MPRP does not automatically grant the 15% tax rate — separate GRP registration required",
+  "€500K wealth evidence monitored annually for the first 5 years",
+  "The NAC Consulting team has experience advising Vietnamese HNWI families on Malta MPRP, working directly with Licensed Agents in Valletta and Sliema. We support the entire process — from preliminary Due Diligence and property selection to the €500K wealth file and biometrics in Malta. Read more at",
+  "📅 Book 30'→",
+  "© 2026 NAC Consulting — Nomad Asset Collective. Information in this document is for reference only and may change with Malta government Legal Notices. Please contact the NAC consulting team for the latest updates before making any investment decisions. Not legal or financial advice.",
+  "Multi-generational Vietnamese HNWI families (3–4 generations) wanting permanent EU PR for everyone under €500K, with a property budget of at least €182K (rental) or €474K (buy), prioritising Schengen access and non-dom tax for international portfolios, and not in a hurry for a second passport (5–8 years to naturalisation). Malta is NOT a fit if: (1) you need a second passport in 1–2 years — pick Türkiye CBI; (2) your budget is under €180K — pick Greece GV €250K for a smaller unit.",
+  "🇲🇹 Malta vs. Cyprus: Two Mediterranean Residency Paths Compared",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Want to know more? Read more in-depth analyses on the NAC blog.",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\\n• Families wanting full EU citizenship in 5+ years\\n• Multi-generational families (4 generations in one application)\\n• Investors wanting the strongest EU passport (186 visa-free)\\n• Those with foreign income they prefer to keep offshore\\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
+  "Malta MPRP is best for:\n• Families wanting full EU citizenship in 5+ years\n• Multi-generational families (4 generations in one application)\n• Investors wanting the strongest EU passport (186 visa-free)\n• Those with foreign income they prefer to keep offshore\n• Paired with UAE Golden Visa for immediate tax base while waiting for Malta citizenship",
 ];
 
 function setLang(lang) {
@@ -2831,6 +3551,20 @@ function setLang(lang) {
   document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang;
+
+  /* PASS-0-DATA-ATTR */
+  // Pass 0 — toggle elements that have explicit data-vi / data-en
+  // attributes (listings section, pulsing live-tag, listing footnotes,
+  // etc). Runs before the legacy VI_STRINGS innerHTML replacement so
+  // precise bilingual attrs take priority.
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
+
+
 
   const h1 = document.querySelector('.hero h1');
   if (h1) h1.innerHTML = heroText[lang].title;
@@ -2846,8 +3580,16 @@ function setLang(lang) {
   const sbarVi = ['Đầu tư','Tốc độ','Chất lượng sống','Hộ chiếu','Thuế','Quốc tịch'];
   sbarLbls.forEach((el,i) => { el.textContent = lang === 'en' ? sbarEn[i] : sbarVi[i]; });
 
-  const src = lang === 'en' ? VI_STRINGS : EN_STRINGS;
-  const dst = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  // Sort source/dest pairs by descending VI length so longer phrases
+  // replace before their substrings (avoids country-name short-replace
+  // pre-mangling a longer sentence that contains it).
+  const _srcRaw = lang === 'en' ? VI_STRINGS : EN_STRINGS;
+  const _dstRaw = lang === 'en' ? EN_STRINGS : VI_STRINGS;
+  const _idx = _srcRaw.map((_, i) => i)
+    .sort((a, b) => _srcRaw[b].length - _srcRaw[a].length);
+  const src = _idx.map(i => _srcRaw[i]);
+  const dst = _idx.map(i => _dstRaw[i]);
+
   const selectors = [
     '.sec-sub','.sec-label','.sec-title',
     '.ov-label','.ov-value','.ov-note',
@@ -2857,6 +3599,7 @@ function setLang(lang) {
     '.info-text','.factcheck-box > div',
     '.chart-title','.toc-link','.toc-title',
     '.hero-badge','.article-cta-text','.article-cta-btn',
+    '.article-cta-kicker','.article-cta-title','.article-cta-desc',
     '.road-label','.road-year',
     'th','td',
     '.pros h4','.cons h4','.pros li','.cons li',
@@ -2864,7 +3607,14 @@ function setLang(lang) {
     '.score-label','.score-title','.star-label',
     '.footer-t','.footer-update',
     '.float-toc-panel a','.float-toc-panel-header',
-    '.breadcrumb','.toc-cta-mini a','.cta-strip-label',
+    '.toc-cta-mini a',
+    '.cta-strip-label','.cta-text',
+    '.tax-highlight','.tax-note',
+    '.fam-card .fam-title','.fam-card .fam-note',
+    '.breadcrumb',
+    '.tag','.listings-fn-text','.listings-fn-link',
+    '.listing-placeholder-title','.listing-placeholder-sub',
+    '.pw-sub','.pw-title','.pw-cta-primary','.pw-cta-secondary',
     '.nac-btn','.comp-table-mobile-msg','.tax-table-mobile-msg',
   ];
   document.querySelectorAll(selectors.join(',')).forEach(el => {
@@ -2878,6 +3628,40 @@ function setLang(lang) {
     });
     if (changed) el.innerHTML = content;
   });
+
+  // Pass 2 — universal text-node fallback. Catches DOM strings whose
+  // class isn't in the selector list above. Plain-text entries only
+  // (skip ones with HTML tags — those belong to Pass 1's innerHTML).
+  // Decode `&amp;` → `&` for text-node comparison.
+  function _decAmp(s) { return s.split('&amp;').join('&'); }
+  const plainPairs = [];
+  src.forEach((s, i) => {
+    if (s && dst[i] && s.indexOf('<') < 0 && s.indexOf('>') < 0) {
+      plainPairs.push([_decAmp(s), _decAmp(dst[i])]);
+    }
+  });
+  function walkText(n) {
+    if (!n) return;
+    if (n.nodeType === 8) return; // skip Comment
+    if (n.nodeType === 3) {
+      let t = n.nodeValue;
+      let changed = false;
+      for (let p = 0; p < plainPairs.length; p++) {
+        if (t.indexOf(plainPairs[p][0]) >= 0) {
+          t = t.split(plainPairs[p][0]).join(plainPairs[p][1]);
+          changed = true;
+        }
+      }
+      if (changed) n.nodeValue = t;
+      return;
+    }
+    if (n.nodeType === 1) {
+      const tag = n.tagName;
+      if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'TEMPLATE') return;
+      for (let c = n.firstChild; c; c = c.nextSibling) walkText(c);
+    }
+  }
+  walkText(document.body);
 }
 
 // Bind lang toggle without relying on inline onclick="" attributes.
@@ -3485,13 +4269,24 @@ function setLang(lang) {
     'Đảo Síp': 'Cyprus',
     'Thái Lan': 'Thailand',
     'Anh Quốc': 'United Kingdom',
+    'Hồng Kông': 'Hong Kong',
+    'Việt Nam': 'Vietnam',
+    'Pháp': 'France',
+    'Cyprus PR': 'Cyprus PR',
+    'Malta non-dom (FCG)': 'Malta non-dom (FCG)',
+    'Malta thông thường': 'Malta standard',
     // Reference suffixes
     ' (tham chiếu)': ' (benchmark)',
-    // Radar axes
+    // Radar axes (with embedded newlines)
+    'Chất lượng\nsống': 'Quality of\nLife',
+    'Hộ chiếu /\nDi chuyển': 'Passport /\nMobility',
+    'Lộ trình\nquốc tịch': 'Path to\ncitizenship',
+    'Lộ trình QT': 'Path to citizenship',
     'Đầu tư': 'Investment',
     'Tốc độ': 'Speed',
     'Chất lượng sống': 'Quality of Life',
     'Hộ chiếu': 'Passport',
+    'Di chuyển': 'Mobility',
     'Thuế': 'Tax',
     'Quốc tịch': 'Citizenship',
     // Axis titles
@@ -3499,11 +4294,33 @@ function setLang(lang) {
     'Sức mạnh hộ chiếu / tự do di chuyển': 'Passport strength / mobility',
     'Sức mạnh hộ chiếu / Tự do di chuyển': 'Passport strength / Mobility',
     'Sức mạnh hộ chiếu': 'Passport strength',
+    'Tháng đến cư trú/quốc tịch': 'Months to residency/citizenship',
+    'Thuế thu nhập tối đa hiệu quả (%)': 'Max effective income tax (%)',
     // Dataset labels
+    'Thang Điểm NAC': 'NAC Score',
     'Điểm NAC': 'NAC Score',
     'Điểm tổng hợp NAC': 'NAC Composite Score',
     'Tháng xử lý trung bình': 'Average processing months',
     'Tháng xử lý': 'Processing months',
+    // ── Auto-added by fleet chart-label sweep (see CLAUDE.md §4)
+    'Úc SIV': 'Australia SIV',
+    'Úc': 'Australia',
+    'Gia đình': 'Family',
+    'Chi phí': 'Cost',
+    'Ổn định': 'Stability',
+    'Malaysia (ngoại)': 'Malaysia (foreign)',
+    'Malaysia (nội)': 'Malaysia (local)',
+    'Thái Lan (LTR)': 'Thailand (LTR)',
+    'Bồ Đào Nha (NHR hết)': 'Portugal (NHR ended)',
+    'BĐN GV': 'Portugal GV',
+    'Thổ CBI': 'Türkiye CBI',
+    'Síp PR': 'Cyprus PR',
+    'Hộ chiếu UK': 'UK passport',
+    'Ưu đãi thuế Non-Dom': 'Non-Dom tax benefit',
+    'Diện gia đình': 'Family scope',
+    'Ngưỡng đầu tư (hiệu quả)': 'Investment threshold (effective)',
+    'Lộ trình quốc tịch EU': 'EU citizenship pathway',
+    'Tốc độ xử lý': 'Processing speed',
   };
 
   const keysByLen = Object.keys(CHART_VI_EN).sort((a, b) => b.length - a.length);
@@ -3589,5 +4406,36 @@ function setLang(lang) {
 })();
 
 </script>
+
+
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
+})();
+</script>
+
 </body>
 </html>

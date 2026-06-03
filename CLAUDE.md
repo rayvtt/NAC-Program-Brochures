@@ -1,10 +1,12 @@
 # NAC Program Brochures — Claude session memory
 
-> **Repo purpose:** Single-file HTML brochures for 12 country programs (RBI / CBI / LTR). HTML is the source of truth; pushes to `main` auto-sync to WordPress via REST.
+> **Repo purpose:** Single-file HTML brochures for 16 country programs (RBI / CBI / LTR). HTML is the source of truth; pushes to `main` auto-sync to WordPress via REST.
 >
-> **Master template:** `Brochures html/turkey-cbi_8.html` — every other brochure replicates from here.
+> **Master template:** `Brochures html/cyprus-rbi_3_3.html` — Cyprus is the current canonical reference after the May 2026 polish sweep (clean header lock, slim breadcrumb, pulsing live-tag on the listings section, mobile tax-table pill disclaimer, left-aligned chart Y-labels). Every other brochure replicates from here.
 >
-> **Canonical reference:** [`TURKEY-TEMPLATE.md`](./TURKEY-TEMPLATE.md) — design system, components, replication checklist.
+> Historical master: `Brochures html/turkey-cbi_8.html` (the original template that seeded the family). Turkey is still parity-compliant but the visual polish is on Cyprus.
+>
+> **Canonical reference:** [`TURKEY-TEMPLATE.md`](./TURKEY-TEMPLATE.md) — design system, components, replication checklist (still valid; updated diffs live in Cyprus).
 
 ---
 
@@ -55,11 +57,15 @@ stkitts-nevis.html       15/15  ✓
 thailand-rbi_1 (2).html  15/15  ✓
 uae-rbi_1_7.html         15/15  ✓
 uk-rbi_1 (2).html        15/15  ✓
+antigua-cbi.html         15/15  ✓
+italy-investor.html      15/15  ✓
+spain-gv.html            15/15  ✓  (LEGACY, closed 03/04/2025 — Archived in Notion)
+montenegro-rbi.html      15/15  ✓
 ```
 
-**🎉 All 12 brochures at full Turkey parity.**
+**🎉 All 16 brochures at full Turkey parity, all 16 wired to WordPress.**
 
-### What's at parity across all 12 brochures
+### What's at parity across all 16 brochures
 
 ✓ Sidebar CTA cream-glass pill (4 colour-coded chips)
 ✓ Header / sidebar booking → Google Calendar
@@ -77,7 +83,9 @@ uk-rbi_1 (2).html        15/15  ✓
 
 ### What's left
 
-Nothing critical. The 11 non-Turkey brochures still use the legacy `VI_STRINGS`/`EN_STRINGS` string-replace pattern instead of Turkey's newer `data-vi`/`data-en` attribute pattern. Both work; data-attr is just more robust to text edits. Translation content is already complete in the legacy arrays — future migration to data-attr is mechanical.
+**Bleeding VI in EN version** — UAE, UK, St Kitts still have Vietnamese text visible in non-listing sections when EN is toggled. This is the legacy `VI_STRINGS/EN_STRINGS` coverage gap (not a regression). Requires the full EN audit loop per brochure (§7 recipe). The listing section itself is now fully bilingual via `data-vi`/`data-en` + the Pass-0 data-attr walker (PR #128).
+
+**WP cache lag** — some CSS changes (breadcrumb lock, tax-table mobile) are in the HTML source but take time to appear on live WP pages. Hard-refresh or wait for the next cron tick.
 
 ### How chart bilingual works on the 11
 
@@ -90,6 +98,20 @@ Turkey uses `buildCharts(lang)` that destroys and recreates charts on toggle. Th
 
 This avoids rewriting each brochure's chart code while still flipping country names from "Thổ Nhĩ Kỳ" → "Türkiye" etc. when EN is clicked. The translator is checked by `daily_en_audit.py` (check #3).
 
+### Pass-0 data-attr walker (PR #128)
+
+All 16 brochures now have a "Pass 0" in setLang that runs BEFORE the legacy VI_STRINGS replacement:
+
+```javascript
+document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+  var val = el.getAttribute('data-' + lang);
+  if (val.indexOf('<') >= 0) el.innerHTML = val;
+  else el.textContent = val;
+});
+```
+
+This means any element with `data-vi`/`data-en` attributes (listings section, live-tag, section headers, footnotes) toggles cleanly without needing VI_STRINGS/EN_STRINGS entries. Future `apply_listings.py` renders are automatically picked up.
+
 ---
 
 ## 3. Reusable tools — all idempotent
@@ -99,34 +121,49 @@ tools/
 ├── check_brochure_parity.py            ← audit any brochure against Turkey (15 checks)
 ├── check_en_translation_coverage.py    ← static EN coverage on local HTML
 ├── check_live_en_coverage.py           ← fetch live WP, run coverage
-├── daily_en_audit.py                   ← daily 3-check: toggle / sections / charts
+├── daily_en_audit.py                   ← daily 8-check audit (incl. jsdom EN-render)
+├── simulate_en_render.js               ← jsdom truth: setLang('en') in real DOM, count VN remnants
+├── simulate_en_render.py               ← DEPRECATED (BS4 normalizes differently from browser, lies about remnants)
+├── add_translation_pairs.py            ← inject manual {vi: en} pairs into VI_STRINGS/EN_STRINGS
 ├── check_brochure_payload.py           ← JSON schema validator for data/*_payload.json
 ├── pull_from_notion.py                 ← Notion → data/<alias>_payload.json
 ├── inject_notion_en_to_html.py         ← payload → VI_STRINGS/EN_STRINGS in HTML
 ├── refresh_article_covers.py           ← pull og:image for every article-cta-banner
-├── apply_listings.py                   ← refresh Live Listings spotlight from Property Hub
+├── apply_listings.py                   ← refresh Live Listings spotlight from Property Hub (bilingual, pin curation)
 ├── build_preview_index.py              ← regenerate index.html for GitHub Pages preview
+├── pull_overview_from_notion.py        ← 🎴 NAC - Overview Deck DB → regenerate overview card deck
+├── scan_qa_tracker.py                  ← ✅ NAC - QA Tracker DB → .diagnostics/qa-status.md
+├── inject_data_attr_walker.py          ← add Pass-0 data-vi/data-en walker to all legacy setLang
+├── lock_header_style.py                ← global header style lock (Greece template values)
+├── lock_breadcrumb_v2.py               ← breadcrumb typography lock (high specificity)
+├── sec_live_tag_css.py                 ← pulsing "● ĐANG MỞ BÁN" live-tag CSS
+├── tax_table_mobile_v2.py              ← hide tax notes column on mobile + pill disclaimer
+├── chart_y_left_align.py               ← left-align Y-axis labels on horizontal bar charts
+├── listing_ref_top_small.py            ← NAC-ID pill small + top-right
+├── header_lang_only_right.py           ← hide nav-links, lang toggle only
+├── widen_nac_tools_breakpoint.py       ← CTA pill visible on iPad/tablet (720→1024px)
 └── patch_ph_catalog.py                 ← Property Hub catalog patcher
 ```
 
-Run with no argument to apply to all 12 (or all relevant). Run with `<alias>` to target one. All scripts print counts and second-run reports `0` if no upstream change.
+Run with no argument to apply to all 16 (or all relevant). Run with `<alias>` to target one. All scripts print counts and second-run reports `0` if no upstream change.
 
 ### Workflows
 
 ```
 .github/workflows/
-├── pull-notion.yml             ← cron */10 — Notion → HTML → coverage → WP push → live snapshot
+├── pull-notion.yml             ← cron */10 — Notion → HTML → listings → overview deck → coverage → WP push
 ├── daily-en-audit.yml          ← cron daily 02:00 UTC — toggle/sections/charts → GitHub Issue
-├── intel-daily.yml             ← cron daily 03:00 UTC — scrape policy/pricing/community per country
+├── intel-daily.yml             ← cron daily 03:00 UTC — scrape policy/pricing/community → daily digest Issue
 ├── intel-weekly-digest.yml     ← cron Mon 04:00 UTC — rollup → GitHub Issue with checkbox tasks
-├── intel-apply.yml             ← on issue edit — ticked boxes → PATCH Notion + payload
+├── intel-apply.yml             ← on issue edit — ticked boxes → Notion + HTML + WordPress (tick-to-live)
+├── qa-tracker-scan.yml         ← cron daily 09:00 UTC — scan Notion QA tracker → .diagnostics/qa-status.md
 ├── wp-sync.yml                 ← on push to main — apply_listings + sync_brochures to WP
 └── patch-ph-catalog.yml        ← manual dispatch — Property Hub catalog patches
 ```
 
 ### Weekly investment-migration intel (Notion auto-updates)
 
-See [`INTEL-PIPELINE.md`](./INTEL-PIPELINE.md). Daily sweep of policy / pricing / Reddit / industry press for the 12 countries → weekly digest GitHub Issue with `- [ ]` checkboxes per proposed Notion update → ticking a box auto-PATCHes Notion + the payload JSON → next pull-notion cycle pushes to live WP. WhatsApp delivery is documented as a follow-up (needs Twilio / Meta Cloud API).
+See [`INTEL-PIPELINE.md`](./INTEL-PIPELINE.md). Daily sweep of policy / pricing / Reddit / industry press for the 12 countries → daily digest GitHub Issue with `- [ ]` checkboxes per proposed Notion update → ticking a box runs the tick-to-live workflow (PATCH Notion + payload → inject HTML → push WordPress in one run). WhatsApp delivery is documented as a follow-up (needs Twilio / Meta Cloud API).
 
 ```
 tools/
@@ -134,7 +171,14 @@ tools/
 ├── intel_gather.py     ← daily scraper → .diagnostics/weekly-intel/<date>/<alias>.json
 ├── intel_digest.py     ← weekly aggregator → issue markdown with machine-readable trailers
 └── intel_apply.py      ← parses [x] checkboxes from issue body → PATCH Notion DB
-```
+
+### Notion DBs (3 total)
+
+| DB | ID | Purpose |
+|---|---|---|
+| 🔖 NAC - Brochures Meta-data | `35f48ec25e8680f69c3dc5ad538e7ca8` | Per-brochure content (hero, sections, scores) |
+| 🎴 NAC - Overview Deck | `26d8e7b69c4840f19adbac784d257330` | Cards on the overview page (editable → 10min sync) |
+| ✅ NAC - QA Tracker | `92318d9b81604764b8f620f64bcce83e` | Live QA checklist with native checkboxes + daily cron scan |
 
 ---
 
@@ -156,6 +200,16 @@ WP rewrites `\"foo\"` → `"foo"` inside `<script>` content, terminating the str
 
 **Never use `\"` in `<script>` content destined for WP.**
 
+### Trap 3: Multi-line string literals inside VI_STRINGS / EN_STRINGS arrays
+
+A literal newline inside `"..."` is a SyntaxError. UAE shipped with one — a bullet-point list typed verbatim into a `"..."` string. Because the bilingual engine, the chart constructors, and the score-bar translator all live in the same `<script>` block, the parse error silently killed EN toggle, all 5 charts, and the score bars on live.
+
+**Fix (HTML):** join to a single line with `\n` escapes. Verified by the parity check #15 (`node --check` on every `<script>` block).
+
+**Fix (root cause, May 2026):** `tools/inject_notion_en_to_html.py`'s `js_escape_string` now also escapes literal `\n` / `\r` / `\t` as JS escape sequences before wrapping in quotes — so a Notion bullet-list field with embedded newlines lands as `"…\n…\n…"` in the array, not as a raw multi-line literal. KSES does NOT strip `\n` inside `<script>` (only `\"`), so this is safe on WordPress. If this regresses, the smoke test is: after running the injector, every brochure's parity check #15 must pass.
+
+**If a brochure's audit shows EN toggle + charts both broken at once, look for a multi-line string literal first — it's almost always the cause.** This bit us on Malta + UAE + Panama in May 2026 when a new Notion bullet-list field hit all 3 in a single cron tick.
+
 ### Verification recipe
 
 ```bash
@@ -168,7 +222,7 @@ print(scripts[4])  # bilingual engine is usually script #4
 # If SyntaxError → WP has mangled something. Diff against local.
 ```
 
-The parity check (#1 and #2) catches both cases.
+The parity check (#1, #2, #15) catches all three traps.
 
 ---
 
@@ -241,6 +295,43 @@ The auto-sync covers most of it. Manual fallback steps:
 3. If text drift exists between Notion VI and HTML DOM (flagged by `check_en_translation_coverage.py`), align either side
 4. Run `python tools/check_brochure_parity.py <alias>` and `python tools/daily_en_audit.py <alias>` — both should pass
 
+### Per-brochure EN audit loop (the Portugal → Greece → Cyprus → UAE workflow)
+
+When a brochure's live EN toggle is patchy or charts are missing, this is the loop:
+
+```bash
+# 1. Truth — what does a real browser actually see on EN click?
+node tools/simulate_en_render.js "Brochures html/<file>.html"
+node tools/simulate_en_render.js "https://nomadassetcollective.com/brochures/<slug>/"
+```
+
+If eval fails → look for a syntax error in the bilingual engine (Trap 3 above).
+If many VN remnants → run setLang upgrade + add translation pairs:
+
+```bash
+# 2. Make sure setLang has descending-length sort + Pass 2 universal walker
+#    (Cyprus is the reference — copy its setLang body if needed)
+
+# 3. For each remaining VN remnant, write a {vi: en} pair using the
+#    ORIGINAL DOM text (not the post-replacement form the simulator shows).
+#    DOM has "Hy Lạp", simulator shows "Greece" — use "Hy Lạp" as the key.
+echo '{ "<original VI from DOM>": "<EN translation>" }' > /tmp/pairs.json
+python tools/add_translation_pairs.py <alias> /tmp/pairs.json
+
+# 4. Re-simulate. Iterate until 0 remnants.
+node tools/simulate_en_render.js "Brochures html/<file>.html"
+
+# 5. Verify all 8 audit checks pass
+python tools/daily_en_audit.py <alias> --local
+
+# 6. Commit → PR → squash-merge → wp-sync fires → verify on live
+```
+
+**Gotchas learned:**
+- WordPress sanitiser strips `$` followed by digits in some contexts. If your translation key uses `$500K`, the DOM might have `00K` — match the DOM-corrupted form.
+- Short pairs like `"UAE"→"United Arab Emirates"` or `"Đầu tư"→"Investment"` cause partial replacements inside longer Vietnamese sentences. The descending-length sort + adding the full-sentence pair fixes this. Or change the short pair to a no-op (`"UAE"→"UAE"`).
+- `innerHTML` returns `&amp;` for `&` in attribute and text content. Your translation key has to match the encoded form for elements where Pass 1 reads `innerHTML`.
+
 ### Watch out for
 
 - **Inline `onclick=""`** anywhere you want JS to run on WP
@@ -252,7 +343,32 @@ The auto-sync covers most of it. Manual fallback steps:
 
 ## 8. PRs shipped this session
 
-`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix · `#45` parity check recognizes legacy bilingual · `#46` chart translator → all 12 at 15/15 · `#47` non-invasive chart translator + bigger globe banner · `#48` dedupe duplicate article CTA URLs · `#49` globe mobile stack layout · `#50` globe CSS Grid bulletproof · `#51` tighten globe banner fit
+`#28` Turkey EN hero · `#29` mobile toggle fix · `#30` JS syntax fix · `#31` TOC + eyebrows · `#32` Turkey slices 3–11 · `#33` article CTA banner · `#34` listings/charts/NAC Index banner · `#35` og:image cover script · `#36` light-bg banner · `#37` globe + matrix + cross-brochure CTA · `#38` sidebar CTA pill · `#39` NAC footer CTA + green WhatsApp · `#40` matrix mobile aspectRatio + docs · `#41` EN toggle initial fix · `#42` URGENT EN toggle real fix (KSES unescape) · `#43` Turkey replication: NAC Index banner + globe + KPI pills to 11 brochures + parity workloop + `CLAUDE.md` · `#44` Article CTA banner-card migration across 11 + Portugal matrix chart fix · `#45` parity check recognizes legacy bilingual · `#46` chart translator → all 12 at 15/15 · `#47` non-invasive chart translator + bigger globe banner · `#48` dedupe duplicate article CTA URLs · `#49` globe mobile stack layout · `#50` globe CSS Grid bulletproof · `#51` tighten globe banner fit · `#72` NAC Index banner specificity (300px lock across all 12) · `#73` UAE multi-line string SyntaxError + 147 EN pairs (charts + toggle restored) · `#75` UK setLang upgrade + 87 EN pairs + chart translator (0 VN remnants) · `#76` UK mop-up bleeds (So Sánh CTA + tax cells) + widened simulator regex
+
+### May 2026 polish sweep (PRs #94–#130)
+
+`#94` Italy / Spain / Montenegro brochures + hero/listings/tax fixes · `#95–#96` mobile header: only "NAC BROCHURE 2026" · `#97` Cyprus listings refresh · `#98` listings pin curation (Cyprus Del Mar + Blu Marine) · `#99` header tagline only (all viewports) · `#100` drop "K" suffix from listing prices · `#101` header tagline 9px · `#102` UK listings + auto-refresh on 10-min cron · `#103` UK pin White City Living + London Dock · `#104` overview live cards IT/ES/MG · `#105` listings full EN translation + flag fix + `&amp;amp;` fix · `#106` remove listing location pill · `#107` Montenegro Perast image · `#108` Notion overview deck DB + cron sync · `#109` header right = lang toggle only · `#110` header global style lock (Greece template) · `#111` breadcrumb typography lock · `#112` tax table mobile (hide notes col + pill disclaimer) · `#113` §01 title VI word order · `#114` §01 card labels rephrased · `#115` radar chart title unified · `#116` NAC-ID pill top-right small · `#117` tax pill disclaimer upgrade · `#118` chart Y-axis left-align · `#119` pulsing live-tag badge · `#120` breadcrumb V2 + Cyprus master in CLAUDE.md · `#121` checklist gaps (Bảo Lãnh + radar labels + live-tag gap) · `#122` daily QA tracker scan (Google Sheets) · `#123` QA tracker migration to Notion · `#124` QA cache refresh · `#125` live-tag gap 20px · `#127` Twemoji flag emojis on overview · `#128` Pass-0 data-attr walker for listing VI bleed fix · `#129` live-tag dot structural margin fix · `#130` live-tag dot gap halved + centered
+
+## 8a. Per-brochure EN audit progress (jsdom-verified, 0 VN remnants)
+
+| Brochure | Status | Notes |
+|---|---|---|
+| Portugal | partial | live still shows VN remnants (user accepted, deprioritised) |
+| Greece | ✓ | ~95% per user; minor bleed in chart legends + tax table |
+| Cyprus | ✓ | 8/8, verified live |
+| UAE | ✓ | 8/8 locally; live has minor CTA/chart bleed per user (acceptable) |
+| UK | ✓ | 7/8 locally (only #6 is Notion data gap — `s01_article_cta_url` empty); 308 VI/EN pairs; user confirmed ~95% live then mop-up via #76 closed the rest |
+| Malta | ✓ | 8/8, verified live (Trap 3 fixed at root in injector via PR #80) |
+| St Kitts | ✓ | 8/8 locally; 141 VI/EN pairs added (155 → 0 VN remnants); setLang upgraded to Cyprus reference (desc-length sort + Pass 2 universal walker); 3 low-coverage sections flagged in Notion but those are VI/HTML text-drift, not user-visible remnants |
+| Thailand | ✓ | 8/8 fully passing locally (no section gaps); 197 VI/EN pairs added (182 → 0 VN remnants in 4 rounds); setLang upgraded; included EN translation for the random article title pushed by PR #79's fallback |
+| Panama | ✓ | 7/8 locally — Panama needed an extra round (PR #86) after user spotted bleeds the simulator's false-positive filter had hidden: `<strong>không</strong>` inside §01 info-text + a bilingual disclaimer header. Fixed with full Pass-1 innerHTML pair + EN-only disclaimer. `tools/dump_real_vn.js` (added in #86) filters to VN-only diacritics so Spanish loanwords don't drown out real bleeds. 132 VI/EN pairs added total; setLang upgraded. |
+| Malaysia | ✓ | 8/8 locally (no section gaps after final round); 160 VI/EN pairs added (163 → 0 VN remnants in 3 rounds); setLang upgraded; round 2 fixed 5 sec-sub/info-text/tl-body pairs where I had assumed truncated `dump_real_vn` output rather than checking the actual DOM (lesson: always grep the brochure for full text, not the diagnostic's first 300 chars). PR #88 also added 2 missing chart-axis CHART_VI_EN keys (`Tháng đến cư trú/quốc tịch`, `Thuế thu nhập cá nhân tối đa (%)`) — chart bleeds are a separate audit pass since the simulator doesn't see canvas-rendered text |
+| New Zealand | ✓ | 8/8 fully passing locally (no section gaps); 171 VI/EN pairs added (168 → 0 VN remnants in 2 rounds); setLang upgraded; chart-axis CHART_VI_EN keys added at the same time as the DOM pairs (lesson from Malaysia: bundle chart-label fixes into the main audit pass) |
+| Turkey | ✓ | 8/8 fully passing locally. Turkey is the master template — uses `data-vi`/`data-en` attribute pattern, not legacy `VI_STRINGS`. 22 stale paywall/tier/comp-table elements had been migrated without their attrs; added them inline. **All 12 brochures now at ✓** (Portugal still partial per user decision). |
+
+### Simulator regex gotcha (fixed in #76)
+
+The jsdom simulator's `VN_UNIQUE` regex used to match only "uniquely Vietnamese" diacritics (`ạ ậ ặ ế ề ể ễ ệ` etc.) and silently skipped common single-mark vowels (`á à ã ạ ó ò ô è í ú ý`). Strings like "So Sánh UK vs Hy Lạp" and "VN: 2% trên giá bán" passed the audit while leaving visible VN on the live page. The widened regex in `#76` covers all Vietnamese diacritics — earlier "verified" brochures (Greece, Cyprus, UAE) may have latent bleeds that the next daily-en-audit run will surface. False positives on Spanish/Portuguese names are still filtered via the `ALLOWED` set + 2-word minimum.
 
 ---
 

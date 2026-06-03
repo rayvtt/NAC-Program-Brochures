@@ -47,6 +47,12 @@ LIVE_SLUG = {
     'newzealand': 'chuong-trinh-new-zealand-rbi-dau-tu-di-tru',
     'panama':     'chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien',
     'malaysia':   'chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru',
+    'antigua':    'chuong-trinh-antigua-barbuda-cbi',
+    'italy':      'chuong-trinh-y-italy-rbi-qua-dau-tu-bds',
+    'spain':      'chuong-trinh-tay-ban-nha-golden-visa-qua-dau-tu-bds',
+    'montenegro': 'chuong-trinh-montenengro-rbi-qua-dau-tu-bds',
+    'australia':  'chuong-trinh-uc-rbi-residency-by-investment',
+    'nauru':      'chuong-trinh-nauru-quoc-tich-cbi-citizenship-by-investment',
 }
 LIVE_BASE = 'https://nomadassetcollective.com/brochures'
 

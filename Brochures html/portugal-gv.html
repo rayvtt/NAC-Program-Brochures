@@ -912,7 +912,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ============================================================ */
 .nac-tools { display:none; }
 
-@media (max-width: 720px) {
+@media (max-width: 1024px) { /*NAC-TOOLS-1024*/
   .nac-tools {
     position:fixed; bottom:1.1rem; left:50%; transform:translateX(-50%); z-index:80;
     display:flex; align-items:center; gap:.2rem;
@@ -994,22 +994,22 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
    ────────────────────────────────────────────── */
 /* ── NAC INDEX banner variant — animated globe canvas behind title ──
    Light lavender gradient mirrors the NAC Residence Index page hero. */
-.nac-index-banner {
+.article-cta-banner.nac-index-banner {
   background: linear-gradient(135deg, #f0eeff 0%, #f8f7ff 50%, #eef3ff 100%);
-  min-height: 360px;
+  min-height: 300px;
   overflow: hidden;
 }
-.nac-index-banner::after {
+.article-cta-banner.nac-index-banner::after {
   /* Soft top-to-bottom fade so the title sits cleanly above the globe.
      Uses the same lavender as the bg so the corners stay airy. */
   background: linear-gradient(to top, rgba(240,238,255,0.55) 0%, rgba(240,238,255,0.10) 55%, rgba(240,238,255,0) 100%);
 }
 /* Default text is white — flip to dark since we're on a light background */
-.nac-index-banner .article-cta-kicker {
+.article-cta-banner.nac-index-banner .article-cta-kicker {
   color: #5b3aa8;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
-.nac-index-banner .article-cta-title {
+.article-cta-banner.nac-index-banner .article-cta-title {
   color: #1a0f5c;
   text-shadow: 0 1px 6px rgba(255,255,255,.7);
 }
@@ -1059,7 +1059,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
 }
 @media (max-width: 600px) {
   /* Mobile: CSS Grid stack — tight fit around globe. */
-  .nac-index-banner {
+  .article-cta-banner.nac-index-banner {
     display: grid !important;
     grid-template-rows: 240px auto auto;
     grid-template-columns: 1fr;
@@ -1079,24 +1079,24 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     opacity: .95;
     animation: none;
   }
-  .nac-index-banner .article-cta-kicker,
-  .nac-index-banner .article-cta-title {
+  .article-cta-banner.nac-index-banner .article-cta-kicker,
+  .article-cta-banner.nac-index-banner .article-cta-title {
     position: relative;
     z-index: 2;
     grid-column: 1;
     padding-left: 18px;
     padding-right: 18px;
   }
-  .nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
-  .nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
+  .article-cta-banner.nac-index-banner .article-cta-kicker { grid-row: 2; margin-top: -8px; margin-bottom: 4px; }
+  .article-cta-banner.nac-index-banner .article-cta-title  { grid-row: 3; margin-bottom: 14px; }
   /* The pseudo-element overlay sits on top of everything — push it back */
-  .nac-index-banner::after { display: none; }
+  .article-cta-banner.nac-index-banner::after { display: none; }
   /* Hide the description paragraph on mobile — title + button is enough */
   .nac-index-cta .article-cta-desc { display: none; }
   .nac-index-cta .article-cta-body { justify-content: flex-end; padding: 12px 16px 14px; }
   /* The pills inside the dark glass banner are hidden on mobile —
      they sit on the white body strip below instead (see below). */
-  .nac-index-banner .nac-index-pills { display: none; }
+  .article-cta-banner.nac-index-banner .nac-index-pills { display: none; }
   /* Mobile pills strip — sits in the white .article-cta-body band so
      icons get a clean, airy surface. Forced 6×2 grid (two rows of six)
      regardless of viewport width — no flex-wrap surprises. */
@@ -1206,6 +1206,245 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
   .article-cta-body { flex-direction: column; align-items: stretch; gap: 10px; padding: 12px 16px 14px; }
   .article-cta-btn { align-self: flex-end; }
 }
+/* ── NAC-PREMIUM-SCROLL v1 ── Hide native scrollbars + snap + edge-fade
+   for horizontally-scrolling sections on mobile. Keeps premium feel
+   without redesigning the layout. Idempotent — guarded by the marker
+   comment above. */
+.road,
+.tax-table-wrap,
+.cta-strip {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-behavior: smooth;
+}
+.road::-webkit-scrollbar,
+.tax-table-wrap::-webkit-scrollbar,
+.cta-strip::-webkit-scrollbar { display: none; width: 0; height: 0; }
+.road {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 20px;
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+          mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.road-step { scroll-snap-align: start; }
+@media (max-width: 768px) {
+  .cta-strip {
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, #000 12px, #000 calc(100% - 12px), transparent 100%);
+  }
+}
+
+
+
+/* Tax-grid collapse — §05 tax-rate cards fold on mobile.
+   Mirrors .chart-collapse pattern. Idempotent — guarded by
+   /*TAX-COLLAPSE-CSS*/ marker. */
+.tax-collapse { width: 100%; margin-bottom: 20px; }
+.tax-collapse > summary { list-style: none; cursor: default; display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; background: var(--bg2); border: 1px solid var(--border); border-radius: var(--r); margin-bottom: 14px; }
+.tax-collapse > summary::-webkit-details-marker { display: none; }
+.tax-collapse > summary .tax-collapse-title { font-size: 12px; font-weight: 700; color: var(--text2); letter-spacing: -.1px; }
+.tax-collapse:not([open]) > summary { margin-bottom: 0; }
+.tax-collapse > .overview-grid { margin-bottom: 0 !important; }
+.tax-collapse-icon { display: none; }
+@media (max-width: 600px) {
+  .tax-collapse > summary { cursor: pointer; user-select: none; }
+  .tax-collapse-icon { display: inline-block; font-size: 14px; color: var(--text3); transition: transform .2s ease; margin-left: 8px; flex-shrink: 0; }
+  .tax-collapse[open] .tax-collapse-icon { transform: rotate(180deg); }
+}
+/*TAX-COLLAPSE-CSS*/
+
+
+
+
+/* Header: keep only the slim "NAC BROCHURE 2026" tagline. The primary
+   "Nomad Asset Collective" label is hidden everywhere (was previously
+   mobile-only). /*HEADER-TAGLINE-ONLY*/ */
+.logo-text { display: none !important; }
+.logo-sub  { font-size: 9px; letter-spacing: 1.4px; line-height: 1.2; } /*HEADER-TAGLINE-9PX*/
+
+
+
+
+/* Header right side: hide cross-site nav links + separators on every
+   viewport so only the language toggle remains. (Mobile rule below
+   600px already hid them; this lifts it to apply universally.)
+   /*NAV-RIGHT-LANG-ONLY*/ */
+.nav-right .nav-link,
+.nav-right .nav-sep { display: none !important; }
+
+
+/* Header style lock — Greece template values, applied to all 16
+   brochures for visual consistency. Wins over per-brochure CSS via
+   !important. /*HEADER-LOCK-V1*/ */
+.nav-i { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+.logo-mark { width: 32px !important; height: 32px !important; border-radius: 7px; flex-shrink: 0; overflow: hidden; }
+.logo-mark img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 0 !important; display: block; }
+.logo-text-wrap { display: flex; flex-direction: column; gap: 1px; }
+.logo-text { display: none !important; }
+.logo-sub  {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  color: var(--text4, #94a3b8) !important;
+  margin: 0 !important;
+}
+.nav-right { display: flex; align-items: center; gap: 6px !important; }
+.nav-right .nav-link, .nav-right .nav-sep { display: none !important; }
+
+
+/* Breadcrumb typography lock — match "NAC BROCHURE 2026" tagline
+   look. Colors preserved (white-on-dark hero). /*BREADCRUMB-LOCK-V1*/ */
+.breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.breadcrumb a,
+.breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
+
+
+.tax-table-mobile-note {
+  display: none;
+  font-size: 11px;
+  color: var(--text3, #6b7280);
+  font-style: italic;
+  margin: 8px 4px 20px;
+  line-height: 1.4;
+}
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note { display: block; }
+}
+
+
+/* NAC-ID pill: small + top-right + subtle (back from bottom).
+   /*LISTING-REF-TOP-V2*/ */
+.listing-ref {
+  position: absolute !important;
+  top: 8px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  font-size: 8.5px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.4px !important;
+  padding: 2px 6px !important;
+  border-radius: 4px !important;
+  background: rgba(0,0,0,0.45) !important;
+  color: rgba(255,255,255,0.92) !important;
+  line-height: 1.2 !important;
+}
+@media (max-width: 768px) {
+  .listing-ref { font-size: 8px !important; padding: 2px 5px !important; top: 6px !important; right: 6px !important; }
+}
+
+
+/* Tax table mobile — pill-style disclaimer + column hiding.
+   Matches the .comp-table-mobile-msg look so the two tables read
+   alike on small screens. /*TAX-TABLE-MOBILE-V2*/ */
+.tax-table-mobile-note { display: none; }
+@media (max-width: 600px) {
+  .tax-table { min-width: 0 !important; font-size: 12px; table-layout: fixed; }
+  .tax-table th, .tax-table td { padding: 8px 10px; word-break: break-word; }
+  .tax-table th:nth-child(3),
+  .tax-table td:nth-child(3) { display: none !important; }
+  .tax-table th:nth-child(1), .tax-table td:nth-child(1) { width: 60%; }
+  .tax-table th:nth-child(2), .tax-table td:nth-child(2) { width: 40%; text-align: left; }
+  .tax-table-mobile-note {
+    display: block;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: var(--r);
+    padding: 14px 18px;
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text3);
+    text-align: center;
+    margin: 12px 0 24px;
+    line-height: 1.4;
+  }
+}
+
+
+/* Listings live-tag — small pulsing-dot indicator below the section
+   title (mirrors a status badge). /*SEC-LIVE-TAG-V1*/ */
+.sec-live-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  margin: 4px 0 14px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--green, #10b981);
+}
+.sec-live-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green, #10b981);
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.7);
+  animation: sec-live-pulse 2s infinite;
+  flex-shrink: 0;
+  margin-right: 9px;
+  position: relative;
+  top: 0px;
+}
+@keyframes sec-live-pulse {
+  0%   { box-shadow: 0 0 0 0  rgba(16,185,129,0.7); }
+  70%  { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+  100% { box-shadow: 0 0 0 0  rgba(16,185,129,0); }
+}
+
+
+/* Breadcrumb typography lock — v2 with belt-and-braces specificity.
+   /*BREADCRUMB-LOCK-V2*/ */
+.hero .breadcrumb,
+.hero-content .breadcrumb,
+.hero-i .breadcrumb,
+body .breadcrumb {
+  font-size: 9px !important;
+  font-weight: 400 !important;
+  letter-spacing: 1.4px !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  gap: 8px !important;
+}
+.hero .breadcrumb a,
+.hero .breadcrumb span,
+.hero-content .breadcrumb a,
+.hero-content .breadcrumb span,
+.hero-i .breadcrumb a,
+.hero-i .breadcrumb span,
+body .breadcrumb a,
+body .breadcrumb span {
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: inherit !important;
+}
+
 </style>
 </head>
 <body>
@@ -1336,16 +1575,16 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- 01 OVERVIEW -->
     <section class="section" id="overview">
       <div class="sec-label">01 — Tổng Quan</div>
-      <h2 class="sec-title">Chương Trình Tổng Quan</h2>
+      <h2 class="sec-title">Tổng Quan Chương Trình</h2>
       <p class="sec-sub">Portugal Golden Visa (ARI — Autorização de Residência para Atividade de Investimento) — ra mắt 2012, cải cách toàn diện 2023 — là chương trình cư trú EU được đánh giá cao nhất toàn cầu theo NAC Composite Score. Sau cải cách 2023, BĐS không còn là lựa chọn, thay vào đó đầu tư quỹ và văn hóa trở thành lộ trình chính.</p>
 
       <div class="overview-grid">
         <div class="ov-card"><div class="ov-icon">🏛️</div><div class="ov-label">Loại chương trình</div><div class="ov-value">Thường Trú EU</div><div class="ov-note">Lộ trình quốc tịch 5 năm</div></div>
         <div class="ov-card"><div class="ov-icon">📅</div><div class="ov-label">Ra mắt</div><div class="ov-value">2012 (cải cách 2023)</div><div class="ov-note">13 năm hoạt động</div></div>
-        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Vị trí địa chính trị</div><div class="ov-value">EU · Schengen · NATO</div><div class="ov-note">Thành viên sáng lập NATO</div></div>
-        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Cư trú bắt buộc</div><div class="ov-value">Tối thiểu</div><div class="ov-note">7 ngày/năm 1, 14 ngày/2 năm tiếp</div></div>
+        <div class="ov-card"><div class="ov-icon">🌍</div><div class="ov-label">Địa Lý Chính Trị</div><div class="ov-value">EU · Schengen · NATO</div><div class="ov-note">Thành viên sáng lập NATO</div></div>
+        <div class="ov-card"><div class="ov-icon">🏠</div><div class="ov-label">Yêu Cầu Cư Trú</div><div class="ov-value">Tối thiểu</div><div class="ov-note">7 ngày/năm 1, 14 ngày/2 năm tiếp</div></div>
         <div class="ov-card"><div class="ov-icon">📋</div><div class="ov-label">Thẻ cư trú</div><div class="ov-value">2 năm, gia hạn 2 năm</div><div class="ov-note">Quốc tịch sau 5 năm</div></div>
-        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Gia đình</div><div class="ov-value">Diện rộng nhất EU</div><div class="ov-note">Bao gồm bố mẹ hai bên</div></div>
+        <div class="ov-card"><div class="ov-icon">👨‍👩‍👧‍👦</div><div class="ov-label">Bảo Lãnh</div><div class="ov-value">Diện rộng nhất EU</div><div class="ov-note">Bao gồm bố mẹ hai bên</div></div>
         <div class="ov-card"><div class="ov-icon">⏱️</div><div class="ov-label">Thời gian xử lý</div><div class="ov-value">12–18 tháng</div><div class="ov-note">AIMA — hàng đợi dài hơn</div></div>
         <div class="ov-card"><div class="ov-icon">🎓</div><div class="ov-label">Yêu cầu ngôn ngữ</div><div class="ov-value">A2 Tiếng Bồ</div><div class="ov-note">Chỉ khi xin quốc tịch (năm 5)</div></div>
         <div class="ov-card"><div class="ov-icon">🛂</div><div class="ov-label">Hộ chiếu Bồ Đào Nha</div><div class="ov-value">190+ Visa-Free</div><div class="ov-note">Top 6 thế giới · EU full access</div></div>
@@ -1357,7 +1596,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="chart-box">
-        <div class="chart-title">Phân tích điểm 6 tiêu chí NAC — Bồ Đào Nha Golden Visa</div>
+        <div class="chart-title" data-vi="6 Tiêu Chí Trọng Điểm theo NAC Index" data-en="6 Key Criteria by NAC Index">6 Tiêu Chí Trọng Điểm theo NAC Index</div>
         <canvas id="radarChart" style="max-height:300px"></canvas>
       </div>
 
@@ -1367,7 +1606,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
           <h3 class="article-cta-title" data-vi="Bất Động Sản Lisbon 2026: Phân Tích Giá Theo Quận Và Cơ Hội Đầu Tư Cho Người Xin D7 Visa" data-en="Lisbon Real Estate 2026: Price Analysis by District &amp; Investment Opportunities for D7 Visa Applicants">Bất Động Sản Lisbon 2026: Phân Tích Giá Theo Quận Và Cơ Hội Đầu Tư Cho Người Xin D7 Visa</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc" data-vi="Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt." data-en="Insights from the NAC team after 5+ years of processing applications for Vietnamese families.">Góc nhìn từ đội ngũ NAC sau hơn 5 năm xử lý hồ sơ cho gia đình Việt.</p>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
           <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/bat-dong-san-lisbon-2026-phan-tich-gia-theo-quan-va-co-hoi-dau-tu-cho-nguoi-xin-d7-visa-infographic/" target="_blank" data-vi="Đọc Ngay →" data-en="Read Now →">Đọc Ngay →</a>
         </div>
       </div>
@@ -1458,32 +1697,33 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
     <!-- LISTINGS START -->
     <!-- LIVE LISTINGS — spotlight section between #02 and #03 (PB template; generated by tools/apply_listings.py; enumeration via Worker → Notion, detail via PDP fetch) -->
     <section class="section section-spotlight" id="listings">
-      <div class="sec-label">Cơ Hội Đầu Tư Thực Tế</div>
-      <h2 class="sec-title">BĐS Đủ Điều Kiện RBI — Đang Mở Bán</h2>
-      <p class="sec-sub">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
+      <div class="sec-label" data-vi="Cơ Hội Đầu Tư Thực Tế" data-en="Real Investment Opportunities">Cơ Hội Đầu Tư Thực Tế</div>
+      <h2 class="sec-title" data-vi="BĐS Đủ Điều Kiện RBI" data-en="RBI-Eligible Properties">BĐS Đủ Điều Kiện RBI</h2>
+      <div class="sec-live-tag"><span class="sec-live-dot" aria-hidden="true"></span><span data-vi="Đang Mở Bán" data-en="Now Live">Đang Mở Bán</span></div>
+      <p class="sec-sub" data-vi="Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc." data-en="These are properties NAC has vetted, eligible for the Portugal RBI program and ready to transact. You don&#x27;t need to hunt — we&#x27;ve curated them.">Đây là tài sản đã được NAC thẩm định, đủ điều kiện cho hồ sơ RBI Bồ Đào Nha và sẵn sàng giao dịch. Bạn không cần săn tìm — chúng tôi đã chọn lọc.</p>
 
       <div class="listings-grid">
         <article class="listing-card listing-card-placeholder">
           <div class="listing-placeholder-content">
             <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Bồ Đào Nha đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=portugal" target="_blank" rel="noopener">Khám phá Property Hub →</a>
+            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
+            <div class="listing-placeholder-sub" data-vi="Thêm BĐS Bồ Đào Nha đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới." data-en="More RBI-eligible Portugal properties will be announced here soon.">Thêm BĐS Bồ Đào Nha đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=portugal" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
           </div>
         </article>
         <article class="listing-card listing-card-placeholder">
           <div class="listing-placeholder-content">
             <div class="listing-placeholder-icon">+</div>
-            <div class="listing-placeholder-title">Đang Cập Nhật</div>
-            <div class="listing-placeholder-sub">Thêm BĐS Bồ Đào Nha đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
-            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=portugal" target="_blank" rel="noopener">Khám phá Property Hub →</a>
+            <div class="listing-placeholder-title" data-vi="Đang Cập Nhật" data-en="Coming Soon">Đang Cập Nhật</div>
+            <div class="listing-placeholder-sub" data-vi="Thêm BĐS Bồ Đào Nha đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới." data-en="More RBI-eligible Portugal properties will be announced here soon.">Thêm BĐS Bồ Đào Nha đủ điều kiện RBI sẽ được công bố tại đây trong thời gian tới.</div>
+            <a class="listing-placeholder-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=portugal" target="_blank" rel="noopener" data-vi="Khám phá Property Hub →" data-en="Explore Property Hub →">Khám phá Property Hub →</a>
           </div>
         </article>
       </div>
 
       <div class="listings-footnote">
-        <span class="listings-fn-text">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Bồ Đào Nha.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=portugal" target="_blank" rel="noopener">Tất cả BĐS đủ điều kiện RBI →</a>
+        <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Bồ Đào Nha." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the Portugal RBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Bồ Đào Nha.</span>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=portugal" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện RBI →" data-en="All RBI-eligible properties →">Tất cả BĐS đủ điều kiện RBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -1530,13 +1770,13 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       </div>
 
       <div class="article-cta">
-        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
+        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/phan-tich-chien-luoc-dau-tu-quy-tai-cyprus-pr-2026-toi-uu-von-va-quyen-loi-cu-tru-eu-cho-nha-dau-tu-viet-nam/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/05/phan-tich-chien-luoc-dau-tu-quy-tai-cyprus-pr-2026-toi-uu-von-va-quyen-loi-cu-tru-eu-cho-nha-dau-tu-viet-nam-cover-8238d.jpg')">
           <span class="article-cta-kicker" data-vi="Khám phá thêm" data-en="Explore more">Khám phá thêm</span>
-          <h3 class="article-cta-title" data-vi="Đọc thêm phân tích trên Blog NAC" data-en="More analysis on the NAC Blog">Đọc thêm phân tích trên Blog NAC</h3>
+          <h3 class="article-cta-title" data-vi="Đọc thêm phân tích trên Blog NAC" data-en="More analysis on the NAC Blog">Phân Tích Chiến Lược Đầu Tư Quỹ Tại Cyprus (PR) 2026 - Tối Ưu Vốn Và Quyền Lợi Cư Trú EU Cho Nhà Đầu Tư Việt Nam</h3>
         </a>
         <div class="article-cta-body">
-          <p class="article-cta-desc" data-vi="Tất cả bài viết chuyên sâu của đội ngũ NAC dành cho nhà đầu tư HNWI Việt — cập nhật hàng tuần." data-en="All in-depth analysis from the NAC team for Vietnamese HNWI investors — updated weekly.">Tất cả bài viết chuyên sâu của đội ngũ NAC dành cho nhà đầu tư HNWI Việt — cập nhật hàng tuần.</p>
-          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank" data-vi="Tới Blog →" data-en="Visit Blog →">Tới Blog →</a>
+          <p class="article-cta-desc" data-vi="Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC" data-en="Want to know more? Read more in-depth analyses on the NAC blog.">Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC</p>
+          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/phan-tich-chien-luoc-dau-tu-quy-tai-cyprus-pr-2026-toi-uu-von-va-quyen-loi-cu-tru-eu-cho-nha-dau-tu-viet-nam/" target="_blank" data-vi="Tới Blog →" data-en="Visit Blog →">Tới Blog →</a>
         </div>
       </div>
     </section>
@@ -1739,17 +1979,6 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       <div class="info-box amber-box">
         <div class="info-icon">⚠️</div>
         <div class="info-text"><strong>NHR 2.0 vs NHR 1.0:</strong> Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 thu hẹp hơn — tập trung vào thu nhập "giá trị cao" (high value-added) và nhà đầu tư. NAC khuyến nghị tư vấn luật sư thuế Bồ Đào Nha để tối ưu cấu trúc.</div>
-      </div>
-
-      <div class="article-cta">
-        <a class="article-cta-banner" href="https://blog.nomadassetcollective.com/" target="_blank" style="background-image:url('https://blog.nomadassetcollective.com/wp-content/uploads/2026/04/vietnamese-family-day-04_1708754302.webp')">
-          <span class="article-cta-kicker" data-vi="Khám phá thêm" data-en="Explore more">Khám phá thêm</span>
-          <h3 class="article-cta-title" data-vi="Đọc thêm phân tích trên Blog NAC" data-en="More analysis on the NAC Blog">Đọc thêm phân tích trên Blog NAC</h3>
-        </a>
-        <div class="article-cta-body">
-          <p class="article-cta-desc" data-vi="Tất cả bài viết chuyên sâu của đội ngũ NAC dành cho nhà đầu tư HNWI Việt — cập nhật hàng tuần." data-en="All in-depth analysis from the NAC team for Vietnamese HNWI investors — updated weekly.">Tất cả bài viết chuyên sâu của đội ngũ NAC dành cho nhà đầu tư HNWI Việt — cập nhật hàng tuần.</p>
-          <a class="article-cta-btn" href="https://blog.nomadassetcollective.com/" target="_blank" data-vi="Tới Blog →" data-en="Visit Blog →">Tới Blog →</a>
-        </div>
       </div>
     </section>
 
@@ -2234,7 +2463,7 @@ const VI_STRINGS = [
   "07 — So Sánh",
   "08 — Ưu &amp; Nhược",
   "09 — Nhận Định NAC",
-  "Chương Trình Tổng Quan",
+  "Tổng Quan Chương Trình",
   "Các Mức Đầu Tư",
   "Quy Trình &amp; Thời Gian",
   "Gia Đình &amp; Đối Tượng Thụ Hưởng",
@@ -2258,16 +2487,16 @@ const VI_STRINGS = [
   "Ra mắt",
   "2012 (cải cách 2023)",
   "13 năm hoạt động",
-  "Vị trí địa chính trị",
+  "Địa Lý Chính Trị",
   "EU · Schengen · NATO",
   "Thành viên sáng lập NATO",
-  "Cư trú bắt buộc",
+  "Yêu Cầu Cư Trú",
   "Tối thiểu",
   "7 ngày/năm 1, 14 ngày/2 năm tiếp",
   "Thẻ cư trú",
   "2 năm, gia hạn 2 năm",
   "Quốc tịch sau 5 năm",
-  "Gia đình",
+  "Bảo Lãnh",
   "Diện rộng nhất EU",
   "Bao gồm bố mẹ hai bên",
   "Thời gian xử lý",
@@ -2533,6 +2762,7 @@ const VI_STRINGS = [
   "€250K (quỹ)",
   "$400K (BĐS)",
   "€500K (BĐS)",
+  "Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC",
 ];
 
 const EN_STRINGS = [
@@ -2592,16 +2822,16 @@ const EN_STRINGS = [
   "Launched",
   "2012 (reformed 2023)",
   "13 years in operation",
-  "Geopolitical Position",
+  "Geopolitics",
   "EU · Schengen · NATO",
   "NATO founding member",
-  "Residency Required",
+  "Residency Requirement",
   "Minimal",
   "7 days/yr 1, 14 days/next 2 yrs",
   "Residence Card",
   "2 years, renewed 2 years",
   "Citizenship after 5 years",
-  "Family",
+  "Sponsorship",
   "Broadest in EU",
   "Includes parents on both sides",
   "Processing Time",
@@ -2765,7 +2995,7 @@ const EN_STRINGS = [
   'Portugal Golden Visa’s position in the overall landscape. See full rankings at <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Residence Index →</a>',
   'The Nomad Asset Collective team has 5+ years of experience processing Portugal Golden Visa applications, with a network of lawyers, NHR tax advisors and CMVM-approved fund managers in Lisbon and Porto. We support the entire process — from fund selection to your EU residence card in hand. Read deeper analysis at <a href="https://blog.nomadassetcollective.com/" target="_blank">blog.nomadassetcollective.com</a>.',
   '<strong>NAC Score 88/100</strong> — See the full breakdown at <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank">NAC Residence Index →</a>',
-  "Properties on sale",
+  "Active Listings",
   "Process &amp; Timeline",
   "Family &amp; Dependants",
   "Tax &amp; Finance",
@@ -2783,7 +3013,7 @@ const EN_STRINGS = [
   "Compare With Greece",
   "Quick Consultation",
   "Real Investment Opportunities",
-  "RBI-Eligible Properties — On Sale",
+  "RBI-Eligible Properties — Active Listings",
   "These are properties vetted by NAC, eligible for the Portugal RBI program, and ready for transaction. No need to hunt — we have curated the selection.",
   "Updating",
   "More Portugal RBI-eligible properties will be announced here in due course.",
@@ -2867,6 +3097,7 @@ const EN_STRINGS = [
   "€250K (fund)",
   "$400K (RE)",
   "€500K (RE)",
+  "Want to know more? Read more in-depth analyses on the NAC blog.",
 ];
 
 function setLang(lang) {
@@ -2874,6 +3105,14 @@ function setLang(lang) {
   document.getElementById('btn-vi').classList.toggle('lang-active', lang === 'vi');
   document.getElementById('btn-en').classList.toggle('lang-active', lang === 'en');
   document.documentElement.lang = lang === 'en' ? 'en' : 'vi';
+
+  /* PASS-0-DATA-ATTR */
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el) {
+    var val = el.getAttribute('data-' + lang);
+    if (val === null) return;
+    if (val.indexOf('<') >= 0) el.innerHTML = val;
+    else el.textContent = val;
+  });
 
   // Hero title + desc
   const h1 = document.querySelector('.hero h1');
@@ -3588,6 +3827,35 @@ function setLang(lang) {
     'Điểm tổng hợp NAC': 'NAC Composite Score',
     'Tháng xử lý trung bình': 'Average processing months',
     'Tháng xử lý': 'Processing months',
+    // ── Auto-added by fleet chart-label sweep (see CLAUDE.md §4)
+    'Chất lượng\nsống': 'Quality\nof Life',
+    'Hộ chiếu /\nDi chuyển': 'Passport /\nMobility',
+    'Lộ trình\nquốc tịch': 'Citizenship\npathway',
+    'Hồng Kông': 'Hong Kong',
+    'Việt Nam': 'Vietnam',
+    'Pháp': 'France',
+    'Úc SIV': 'Australia SIV',
+    'Úc': 'Australia',
+    'Di chuyển': 'Mobility',
+    'Lộ trình QT': 'Citizenship path',
+    'Gia đình': 'Family',
+    'Chi phí': 'Cost',
+    'Ổn định': 'Stability',
+    'Malaysia (ngoại)': 'Malaysia (foreign)',
+    'Malaysia (nội)': 'Malaysia (local)',
+    'Malta non-dom (FCG)': 'Malta non-dom (FCG)',
+    'Malta thông thường': 'Malta (standard)',
+    'Thái Lan (LTR)': 'Thailand (LTR)',
+    'Bồ Đào Nha (NHR hết)': 'Portugal (NHR ended)',
+    'BĐN GV': 'Portugal GV',
+    'Thổ CBI': 'Türkiye CBI',
+    'Síp PR': 'Cyprus PR',
+    'Hộ chiếu UK': 'UK passport',
+    'Ưu đãi thuế Non-Dom': 'Non-Dom tax benefit',
+    'Diện gia đình': 'Family scope',
+    'Ngưỡng đầu tư (hiệu quả)': 'Investment threshold (effective)',
+    'Lộ trình quốc tịch EU': 'EU citizenship pathway',
+    'Tốc độ xử lý': 'Processing speed',
   };
 
   const keysByLen = Object.keys(CHART_VI_EN).sort((a, b) => b.length - a.length);
@@ -3673,5 +3941,36 @@ function setLang(lang) {
 })();
 
 </script>
+
+
+
+<script>
+/* CHART-Y-LEFT-ALIGN */
+/* Force LEFT-aligned (uniform indent) Y-axis labels on horizontal
+   bar charts so the legends queue up at the same X position. */
+(function () {
+  function applyLeftAlign() {
+    if (typeof Chart === 'undefined') { setTimeout(applyLeftAlign, 100); return; }
+    document.querySelectorAll('canvas').forEach(function (canvas) {
+      var c = Chart.getChart(canvas);
+      if (!c) return;
+      var opts = c.config && c.config.options;
+      if (!opts || opts.indexAxis !== 'y') return;
+      opts.scales = opts.scales || {};
+      opts.scales.y = opts.scales.y || {};
+      opts.scales.y.ticks = opts.scales.y.ticks || {};
+      opts.scales.y.ticks.crossAlign = 'far';
+      opts.scales.y.ticks.align = 'center';
+      c.update();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(applyLeftAlign, 250); });
+  } else {
+    setTimeout(applyLeftAlign, 250);
+  }
+})();
+</script>
+
 </body>
 </html>

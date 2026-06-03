@@ -44,7 +44,9 @@ INDEX_TO_ALIAS = {
 # Display order — top to bottom, left to right in the grid.
 ORDER = [
     'portugal', 'greece', 'cyprus', 'turkey', 'uae', 'uk',
-    'malta', 'stkitts', 'thailand', 'newzealand', 'panama', 'malaysia',
+    'malta', 'stkitts', 'antigua', 'thailand', 'newzealand', 'panama', 'malaysia',
+    'italy', 'spain', 'montenegro',
+    'australia', 'nauru',
 ]
 
 
@@ -116,7 +118,7 @@ def render_page():
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NAC Brochures — Program Preview Index</title>
-<meta name="description" content="Preview index for all 12 NAC Program Brochures — RBI, CBI, LTR. Each tile links to a GitHub-Pages preview and the live WordPress page.">
+<meta name="description" content="Preview index for all 13 NAC Program Brochures — RBI, CBI, LTR. Each tile links to a GitHub-Pages preview and the live WordPress page.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">

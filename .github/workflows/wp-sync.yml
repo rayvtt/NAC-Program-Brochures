@@ -119,12 +119,14 @@ jobs:
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
 
-          # apply_listings.py mutates the HTML files in place during the run.
-          # Those changes are not meant to land on main (the canonical HTML is
-          # the committed source) — discard them before switching branches so
-          # the checkout doesn't refuse.
-          git checkout -- . || true
-          git clean -fd .diagnostics/ || true
+          # Discard worktree changes before switching branches. apply_listings.py
+          # edits several brochure HTML files (and leaves an untracked
+          # .diagnostics/last-run.md), which otherwise makes the checkout below
+          # abort with "local changes would be overwritten by checkout". The WP
+          # push has already completed at this point, and last-run.md is safely
+          # copied to /tmp, so it's safe to hard-reset + clean here.
+          git reset --hard HEAD
+          git clean -fd
 
           # Switch to ci-diagnostics (create as orphan on first run)
           if git fetch origin ci-diagnostics 2>/dev/null; then
