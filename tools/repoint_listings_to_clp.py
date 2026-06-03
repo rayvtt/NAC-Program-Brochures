@@ -30,7 +30,7 @@ HTML_DIR = ROOT / "Brochures html"
 CLP_SLUG = {
     "cyprus":     "cyprus",
     "turkey":     "turkey",
-    "uk":         "united-kingdom",
+    "uk":         "uk",
     "greece":     "greece",
     "panama":     "panama",
     "uae":        "uae",
