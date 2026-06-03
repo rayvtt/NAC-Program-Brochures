@@ -2120,7 +2120,12 @@ function setLang(lang){
   const all=Array.from(s.querySelectorAll('.card'));
   const live=all.filter(c=>!c.classList.contains('coming'));
   const soon=all.filter(c=>c.classList.contains('coming'));
-  [...live,...soon].forEach((c,i)=>{c.dataset.index=i;s.appendChild(c);});
+  // Reorder the DOM only (live first, coming last). Do NOT reassign
+  // data-index — it is the stable key into cardMeta (price/tag). The deck
+  // carousel positions cards by their order in the `cards` array + an integer
+  // counter, not by data-index, so leaving the original index intact keeps the
+  // price/tag lookup aligned even when "coming" cards shift card positions.
+  [...live,...soon].forEach((c)=>{s.appendChild(c);});
 })();
 
 /* ──────────────────────────────────────

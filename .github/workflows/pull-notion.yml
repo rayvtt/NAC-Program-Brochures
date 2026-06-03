@@ -67,9 +67,15 @@ jobs:
 
       - name: Refresh Overview deck cards from Notion
         # Picks up any overview-deck card add/edit/reorder from the
-        # 🎴 NAC - Overview Deck DB (id ae0d5fde-…). Edits propagate within
-        # ≤10min same as the listings sync above.
+        # 🎴 NAC - Overview Deck DB. Edits propagate within ≤10min, same as
+        # the listings sync above.
+        #
+        # NON-FATAL: this step must never abort the whole pipeline. If the
+        # overview DB isn't shared with the NOTION_KEY integration (HTTP 404)
+        # or Notion is briefly unavailable, the brochure-content sync + WP push
+        # below should still run. The overview HTML on main is then used as-is.
         if: inputs.dry_run != 'true'
+        continue-on-error: true
         env:
           NOTION_KEY: ${{ secrets.NOTION_KEY }}
         run: python tools/pull_overview_from_notion.py
