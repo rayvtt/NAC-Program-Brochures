@@ -1,77 +1,90 @@
 # 🇸🇬 Singapore brochure — first-draft status
 
 **File:** `Brochures html/singapore-gip.html` · **Parity:** 15/15
+**WP page:** [2408 → /brochures/chuong-trinh-singapore-gip-dau-tu-quyen-cu-tru/](https://nomadassetcollective.com/brochures/chuong-trinh-singapore-gip-dau-tu-quyen-cu-tru/)
+**Notion entry:** [singapore (Draft)](https://app.notion.com/p/37548ec25e86811b89eed62e5420e9de)
 
-## What's done in this draft
+## What's wired up
 
-The brochure was scaffolded from the Cyprus master and rewritten with
-authoritative public-source Singapore facts in the **front-of-paywall**
-sections that all visitors see:
+- ✅ **Brochure HTML** — Cyprus master clone with identity swap + Singapore color
+  (#EE2536 red + gold). Hero image set to the Goway Marina-Bay-at-night photo.
+- ✅ **sync_brochures.py** — `singapore` alias registered → WP page **2408**,
+  slug `chuong-trinh-singapore-gip-dau-tu-quyen-cu-tru`. Merge to `main`
+  triggers wp-sync.
+- ✅ **Notion DB entry** — `singapore` page created in 🔖 NAC - Brochures
+  Meta-data with status `Draft`. Identity + hero + §01 overview + §02
+  investment tiers + §03 timeline fully populated in both VI and EN.
 
-| Section | Status | Source |
-|---|---|---|
-| `<title>` | ✅ Singapore GIP | rewritten |
-| Color palette | ✅ Singapore red (#EE2536) + Gold | rewritten |
-| Hero (badge, H1, desc, 4 stats) | ✅ GIP SGD 10M + ASEAN gateway | EDB |
-| §01 Overview (9 cards + data source) | ✅ GIP + EP→PR dual pathway | EDB / MOM / ICA |
-| §02 Investment (4 tiers + amber + green box) | ✅ GIP A/B/C + EP self-employed | EDB GIP factsheet |
-| §03 Process timeline (5 steps + advantage box) | ✅ EOI → EDB interview → invest → ICA → PR | EDB |
-| Breadcrumb | ✅ "Singapore" | auto-swap |
-| Paywall heading | ✅ "Brochure Singapore PR?" | auto-swap |
-| Twemoji flag fallback | ✅ wired from clone | inherited |
+## What's accurate as of this draft (visible front-of-paywall)
 
-## What still needs editorial work (paywall §04–§09)
+| Section | Source / accuracy |
+|---|---|
+| `<title>`, color palette | rewritten |
+| Hero (badge / H1 / desc / 4 stats) | EDB factsheet |
+| §01 Overview (9 cards + data source) | EDB / MOM / ICA / Henley |
+| §02 Investment (4 tiers + warning + NAC note) | EDB GIP factsheet (5 May 2025) |
+| §03 Process timeline (5 steps + GIP advantage box) | EDB |
+| Breadcrumb / paywall heading / Twemoji | auto-swapped clean |
 
-The sections behind the paywall still have **Cyprus-derived content**
-that needs NAC editorial rewrites:
+## What still needs NAC editorial input (paywall §04–§09)
 
-- §04 Tax — currently shows Cyprus's Non-Dom 17-year regime; Singapore is
-  17% flat corporate, progressive personal, no global income tax for PR.
-- §05 Family inclusion — currently shows Cyprus's "spouse + children +
-  parents" rules; Singapore EP DP requires SGD 6,000/mo for spouse+kids,
-  LTVP requires SGD 12,000/mo for parents.
-- §06 Citizenship pathway — currently shows Cyprus's 7-year path;
-  Singapore is PR → 2+ years → citizenship via ICA application.
-- §07 NAC Index / radar — currently shows Cyprus's NAC composite score
-  (8x/100) and radar values; Singapore needs its own score.
-- §08 Comparison table — currently compares Cyprus vs Greece/Turkey/etc.;
-  needs Singapore-specific competitor matrix.
-- §09 Pros & Cons + NAC verdict — currently Cyprus-specific; needs
-  Singapore editorial.
+The HTML paywall sections still hold **Cyprus content** that the wp-sync
+will push verbatim if the brochure goes live as-is. These fields are
+**empty in the Notion entry** — fill them in to override:
 
-## What's NOT yet done (infrastructure)
+| Notion field | Singapore-specific content needed |
+|---|---|
+| `④ family cards (JSON)` / `④ subtitle (VI/EN)` / `④ compare note` | EP DP rules (SGD 6,000/mo for spouse+kids); LTVP for parents (SGD 12,000/mo) |
+| `⑤ tax cards (JSON)` / `⑤ subtitle` / `⑤ inheritance note` / `⑤ special note` | 17% flat corp; progressive personal up to 24%; no global income tax for PR; no inheritance tax |
+| `⑥ roadmap (JSON)` / `⑥ subtitle` / `⑥ dual citizenship note` / `⑥ NAC strategy note` | PR → 2+ yrs → ICA citizenship application; SG requires renouncing prior citizenship |
+| `⑦ compare rows (JSON)` / `⑦ subtitle` / `⑦ CTA text` | Compare vs UAE / Malaysia / Thailand / Hong Kong |
+| `⑧ pros (JSON)` / `⑧ cons (JSON)` / `⑧ subtitle` / `⑧ risk note` | GIP raise to SGD 10M; ABSD on property; NS for boys; passport upside |
+| `⑨ CTA heading / body / recommendation / subtitle` | Who Singapore PR is best for (UHNW with Asia-Pacific business) |
 
-- **Not registered** in `sync_brochures.py` — won't auto-deploy to WP
-  on push to main. Add when ready: needs WP page ID + slug.
-- **VI_STRINGS / EN_STRINGS arrays** still hold Cyprus content. If a
-  visitor toggles VI/EN, the toggle may revert visible text to Cyprus
-  for some elements. Behavior should be tested before going live.
-- **Hero background image** is currently Cyprus's (Mediterranean
-  coastline). Needs a Singapore skyline image.
-- **WP page** doesn't exist yet — needs to be created with the right
-  slug pattern (e.g. `chuong-trinh-singapore-gip-cu-tru-dau-tu`).
+Plus the NAC composite + radar:
 
-## Authoritative source facts used
+| Field | What |
+|---|---|
+| `NAC score` (0–100) | NAC composite score |
+| `NAC score label (VI)` / `(EN)` | e.g. "★★★★★ Xuất Sắc — Trung Tâm Tài Chính Á" / "★★★★★ Excellent — Asian Financial Hub" |
+| `score · speed` / `investment` / `passport` / `lifestyle` / `tax` / `citizenship` (0–10 each) | Radar values |
+| `① article CTA URL` | Singapore PR analysis post on blog.nomadassetcollective.com |
 
-- **EDB GIP factsheet** (updated 5 May 2025) — Option A SGD 10M, Option B
-  SGD 25M GIP-approved fund, Option C SGD 200M AUM family office with
-  SGD 50M deployed; ~12-month processing; direct PR.
-- **MOM Singapore EP rules** — minimum SGD 5,600/mo (SGD 6,200 finance),
-  3–8 weeks processing; PR application via PTS after 1–2 years.
-- **ICA** — PR / Re-Entry Permit (REP) renewable every 5 years.
-- **Henley Passport Index 2026** — Singapore citizenship passport ~190
-  visa-free, top-3 globally.
+## Workflow once Notion is filled in
 
-## Next steps before going live
+1. Update fields in the [Notion page](https://app.notion.com/p/37548ec25e86811b89eed62e5420e9de)
+2. Set `status` from **Draft** → **Live**
+3. Next cron tick (every 10 min via `.github/workflows/pull-notion.yml`) runs:
+   - `tools/pull_from_notion.py` → `data/singapore_payload.json`
+   - `tools/inject_notion_en_to_html.py` → merges into `singapore-gip.html`
+   - `tools/refresh_article_covers.py` → pulls article og:image
+   - `sync_brochures.py --all` → PUTs `singapore-gip.html` to WP page 2408
+4. Live page updates at https://nomadassetcollective.com/brochures/chuong-trinh-singapore-gip-dau-tu-quyen-cu-tru/
 
-1. NAC editorial review of paywall §04–§09 — replace Cyprus content with
-   Singapore-specific.
-2. NAC set composite score + radar values for §01/§07.
-3. Pick Singapore hero image.
-4. Create WP page; add `singapore` alias to `sync_brochures.py` with
-   page ID + slug.
-5. Pull through VI_STRINGS / EN_STRINGS sync so both languages match the
-   visible Singapore content.
-6. Decide on CLP — there's already a Live CLP for Singapore in the
-   Notion "🌍 NAC - Country Listings" DB (slug `sg`); listings link can
-   be added to `tools/repoint_listings_to_clp.py` once approved.
+## ⚠️ Caveat: Cyprus content will go live if merged as-is
+
+The HTML paywall §04–§09 currently holds Cyprus-derived content. If this
+PR is merged before the Notion fields are filled in for those sections,
+the wp-sync will push the Cyprus content to WP page 2408. Two options:
+
+- **(A) Hold the merge** until NAC editorial finishes the Notion paywall fields,
+  then status → Live, then merge.
+- **(B) Merge now** to get the front-of-paywall live (the public-facing
+  sections); the paywall stays Cyprus-flavoured until Notion is filled in.
+
+## TODO: hero image hosting via Cloudflare
+
+The hero `background-image` URL currently points directly at the Goway
+production CDN:
+```
+https://images.goway.com/production/featured_images/Aerial%20view%20...
+```
+Per your note, this should be re-hosted via Cloudflare DNS (R2 bucket /
+custom-domain proxy / Worker). I haven't done this autonomously — needs
+clarification on:
+- Which Cloudflare zone (e.g. `cdn.nomadassetcollective.com`)?
+- R2 bucket (existing or new)?
+- Or a Worker that proxies + caches images?
+
+Once decided, I'll: upload the asset, set the DNS record, and swap the
+`background-image` URL in the brochure HTML to the new origin.
