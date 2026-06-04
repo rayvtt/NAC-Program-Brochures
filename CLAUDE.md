@@ -134,6 +134,8 @@ tools/
 ├── pull_overview_from_notion.py        ← 🎴 NAC - Overview Deck DB → regenerate overview card deck
 ├── scan_qa_tracker.py                  ← ✅ NAC - QA Tracker DB → .diagnostics/qa-status.md
 ├── inject_data_attr_walker.py          ← add Pass-0 data-vi/data-en walker to all legacy setLang
+├── inject_twemoji.py                   ← inject Twemoji flag-image fallback (Windows/Android show codes)
+├── repoint_listings_to_clp.py          ← repoint "All RBI properties →" link to /property-hub-bat-dong-san/<slug>/ CLP
 ├── lock_header_style.py                ← global header style lock (Greece template values)
 ├── lock_breadcrumb_v2.py               ← breadcrumb typography lock (high specificity)
 ├── sec_live_tag_css.py                 ← pulsing "● ĐANG MỞ BÁN" live-tag CSS
@@ -151,12 +153,26 @@ Run with no argument to apply to all 16 (or all relevant). Run with `<alias>` to
 
 ```
 .github/workflows/
-├── pull-notion.yml         ← cron */10 — Notion → HTML → listings → overview deck → coverage → WP push
-├── daily-en-audit.yml      ← cron daily 02:00 UTC — toggle/sections/charts → GitHub Issue
-├── wp-sync.yml             ← on push to main — apply_listings + sync_brochures to WP
-├── qa-tracker-scan.yml     ← cron daily 09:00 UTC — scan Notion QA tracker → .diagnostics/qa-status.md
-└── patch-ph-catalog.yml    ← manual dispatch — Property Hub catalog patches
+├── pull-notion.yml             ← cron */10 — Notion → HTML → listings → overview deck → coverage → WP push
+├── daily-en-audit.yml          ← cron daily 02:00 UTC — toggle/sections/charts → GitHub Issue
+├── intel-daily.yml             ← cron daily 03:00 UTC — scrape policy/pricing/community → daily digest Issue
+├── intel-weekly-digest.yml     ← cron Mon 04:00 UTC — rollup → GitHub Issue with checkbox tasks
+├── intel-apply.yml             ← on issue edit — ticked boxes → Notion + HTML + WordPress (tick-to-live)
+├── qa-tracker-scan.yml         ← cron daily 09:00 UTC — scan Notion QA tracker → .diagnostics/qa-status.md
+├── wp-sync.yml                 ← on push to main — apply_listings + sync_brochures to WP
+└── patch-ph-catalog.yml        ← manual dispatch — Property Hub catalog patches
 ```
+
+### Weekly investment-migration intel (Notion auto-updates)
+
+See [`INTEL-PIPELINE.md`](./INTEL-PIPELINE.md). Daily sweep of policy / pricing / Reddit / industry press for the 12 countries → daily digest GitHub Issue with `- [ ]` checkboxes per proposed Notion update → ticking a box runs the tick-to-live workflow (PATCH Notion + payload → inject HTML → push WordPress in one run). WhatsApp delivery is documented as a follow-up (needs Twilio / Meta Cloud API).
+
+```
+tools/
+├── intel_sources.py    ← per-country sources (official, agency, industry press, Reddit terms)
+├── intel_gather.py     ← daily scraper → .diagnostics/weekly-intel/<date>/<alias>.json
+├── intel_digest.py     ← weekly aggregator → issue markdown with machine-readable trailers
+└── intel_apply.py      ← parses [x] checkboxes from issue body → PATCH Notion DB
 
 ### Notion DBs (3 total)
 

@@ -1707,7 +1707,7 @@ body .breadcrumb span {
 
       <div class="listings-grid">
         <article class="listing-card">
-          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/united-kingdom/white-city-living-london/" target="_blank" rel="noopener">
+          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/uk/white-city-living-london/" target="_blank" rel="noopener">
             <div class="listing-hero">
               <img src="https://imagedelivery.net/qse3Pw84PrZ2S0PQOTtixw/white-city-living-london-hero/public" alt="White City Living" loading="lazy">
               <div class="listing-badges">
@@ -1733,7 +1733,7 @@ body .breadcrumb span {
           </a>
         </article>
         <article class="listing-card">
-          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/united-kingdom/london-dock-wapping-london/" target="_blank" rel="noopener">
+          <a class="listing-card-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/uk/london-dock-wapping-london/" target="_blank" rel="noopener">
             <div class="listing-hero">
               <img src="https://nomadassetcollective.com/wp-content/uploads/2026/05/london-dock-4.jpg" alt="Khu Căn Hộ London Dock, độc tọa tại Wapping" loading="lazy">
               <div class="listing-badges">
@@ -1762,7 +1762,7 @@ body .breadcrumb span {
 
       <div class="listings-footnote">
         <span class="listings-fn-text" data-vi="NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Anh Quốc." data-en="NAC only features properties that have undergone independent legal due diligence and are confirmed eligible for the United Kingdom RBI program.">NAC chỉ giới thiệu BĐS đã được thẩm định pháp lý độc lập và xác nhận đủ điều kiện RBI Anh Quốc.</span>
-        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub/?program=rbi&country=uk" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện RBI →" data-en="All RBI-eligible properties →">Tất cả BĐS đủ điều kiện RBI →</a>
+        <a class="listings-fn-link" href="https://nomadassetcollective.com/property-hub-bat-dong-san/uk/" target="_blank" rel="noopener" data-vi="Tất cả BĐS đủ điều kiện RBI →" data-en="All RBI-eligible properties →">Tất cả BĐS đủ điều kiện RBI →</a>
       </div>
     </section>
     <!-- LISTINGS END -->
@@ -3962,6 +3962,25 @@ function setLang(lang) {
   }
 })();
 </script>
+
+
+<!-- Twemoji: render flag emojis as images on platforms that show
+     country codes (Windows, some Android). CDN-hosted SVGs. -->
+<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+if (typeof twemoji !== 'undefined') {
+  twemoji.parse(document.body, {
+    folder: 'svg',
+    ext: '.svg',
+    className: 'twemoji-flag'
+  });
+}
+</script>
+<style>
+/* Size twemoji flag images to match the surrounding text */
+img.twemoji-flag { height: 1em; width: 1em; vertical-align: -0.1em; display: inline-block; }
+.card-flag img.twemoji-flag { height: 28px; width: 28px; vertical-align: baseline; }
+</style>
 
 </body>
 </html>

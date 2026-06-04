@@ -1,0 +1,137 @@
+name: Daily intel sweep + digest → GitHub Issue
+
+# Full daily pipeline:
+#   1. Scrape each country's configured sources (intel_sources.py)
+#   2. Write per-day signal files to .diagnostics/weekly-intel/<date>/
+#   3. Compose a digest issue (last 1 day) with checkbox tasks
+#   4. Open or update a GitHub Issue labelled `intel-daily`
+#
+# User ticks boxes → intel-apply.yml fires → patches Notion + payload
+# → pull-notion.yml propagates to WordPress within 10 min.
+#
+# Defensive: per-source failures skip that source, never abort the run.
+
+on:
+  schedule:
+    - cron: '0 3 * * *'      # daily 03:00 UTC
+  workflow_dispatch:
+    inputs:
+      country:
+        description: 'Single country alias (e.g. turkey). Empty = all 12'
+        required: false
+        default: ''
+
+concurrency:
+  group: intel-daily
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  gather-and-digest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      # ── Step 1: scrape ──────────────────────────────────────────────
+      - name: Run daily intel sweep
+        run: |
+          if [ -n "${{ inputs.country }}" ]; then
+            python tools/intel_gather.py "${{ inputs.country }}"
+          else
+            python tools/intel_gather.py
+          fi
+
+      - name: Commit raw signal snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .diagnostics/weekly-intel/ || true
+          if git diff --cached --quiet; then
+            echo "No new signals — nothing to commit."
+          else
+            DATE=$(date -u +%Y-%m-%d)
+            git commit -m "Intel sweep $DATE: $(ls .diagnostics/weekly-intel/$DATE/ 2>/dev/null | wc -l) countries scanned"
+            git push origin main
+          fi
+
+      # ── Step 2: compose daily digest ────────────────────────────────
+      - name: Compose daily digest
+        run: |
+          mkdir -p .diagnostics/weekly-intel
+          python tools/intel_digest.py --days=1 --out=.diagnostics/weekly-intel/DIGEST.md
+
+      # ── Step 3: open / update GitHub Issue ──────────────────────────
+      - name: Open or update daily digest issue
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const body = fs.readFileSync('.diagnostics/weekly-intel/DIGEST.md', 'utf8');
+            const today = new Date().toISOString().slice(0, 10);
+            const title = `📰 Daily program intel · ${today}`;
+            const label = 'intel-daily';
+
+            // Ensure label exists
+            try {
+              await github.rest.issues.getLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                name: label,
+              });
+            } catch (e) {
+              if (e.status === 404) {
+                await github.rest.issues.createLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  name: label,
+                  color: 'c4922c',
+                  description: 'Daily investment-migration intel digest',
+                });
+              }
+            }
+
+            // Check if today's issue already exists (cron retry / manual re-run)
+            const open = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              labels: label, state: 'open', per_page: 30,
+            });
+            const existing = open.data.find(i => i.title.includes(today));
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number,
+                body,
+              });
+              core.notice(`Updated issue #${existing.number}`);
+            } else {
+              // Close yesterday's issue if still open (keep inbox clean)
+              for (const old of open.data) {
+                if (!old.title.includes(today)) {
+                  await github.rest.issues.update({
+                    owner: context.repo.owner, repo: context.repo.repo,
+                    issue_number: old.number,
+                    state: 'closed',
+                    state_reason: 'completed',
+                  });
+                }
+              }
+              const created = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title,
+                body,
+                labels: [label],
+              });
+              core.notice(`Opened issue #${created.data.number}`);
+            }
