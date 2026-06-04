@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-03T22:43:33.236601+00:00",
+  "generated_at": "2026-06-04T05:15:44.281130+00:00",
   "source": "live WordPress fetched HTML",
   "reports": [
     {
@@ -170,11 +170,11 @@
     {
       "alias": "turkey",
       "html_file": "live_turkey.html",
-      "visible_vn_strings": 139,
-      "translated": 130,
+      "visible_vn_strings": 140,
+      "translated": 131,
       "gap": 9,
       "skip": 0,
-      "coverage_pct": 93.5,
+      "coverage_pct": 93.6,
       "gap_samples": [
         {
           "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
@@ -215,7 +215,7 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 263,
+      "data_attr_pairs": 264,
       "notion_en_fields": 29
     },
     {
@@ -268,8 +268,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 367,
-      "en_array_size": 367,
+      "vi_array_size": 369,
+      "en_array_size": 369,
       "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
@@ -378,8 +378,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 393,
-      "en_array_size": 393,
+      "vi_array_size": 395,
+      "en_array_size": 395,
       "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
@@ -598,8 +598,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 385,
-      "en_array_size": 385,
+      "vi_array_size": 387,
+      "en_array_size": 387,
       "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
