@@ -1,0 +1,72 @@
+{
+  "alias": "malaysia",
+  "gathered_at": "2026-06-07T07:10:59.092085+00:00",
+  "days_window": 1,
+  "signal_count": 8,
+  "signals": [
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "…Culture No. 2, Tower 1, Jalan P5/6, Presint 5, 62200 PUTRAJAYA Today Visitors : 1,429 Monthly Visitors : 23,525 Total Visitors : 301,503 © 2026 Ministry of Tourism, Arts and Culture. All Rights Reserved. Last Update: 10/02/2026. 1 Hi there! 👋 I'm Wira. Need help with MM2H? Wira Welc…",
+      "source": "MM2H Official",
+      "url": "https://mm2h.gov.my/",
+      "authority": 3
+    },
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "…29 Monthly Visitors : 23,525 Total Visitors : 301,503 © 2026 Ministry of Tourism, Arts and Culture. All Rights Reserved. Last Update: 10/02/2026. 1 Hi there! 👋 I'm Wira. Need help with MM2H? Wira Welcome to MM2H! Please enter your name to start chatting with our AI assistant about th…",
+      "source": "MM2H Official",
+      "url": "https://mm2h.gov.my/",
+      "authority": 3
+    },
+    {
+      "kind": "money",
+      "matched": "MYR 1 m",
+      "excerpt": "…through two options: Premium Visa Program (PVIP) Malaysia My Second Home Program (MM2H) Enquiry Factsheet Investment Minimum investment of MYR 1 million (approximately USD 248,000) Key Benefit A 20-year, multiple entry visa, which effectively serves as a residence permit enabling the a…",
+      "source": "Henley · Malaysia",
+      "url": "https://www.henleyglobal.com/residence-investment/malaysia",
+      "authority": 2
+    },
+    {
+      "kind": "money",
+      "matched": "USD 248,000",
+      "excerpt": "…Visa Program (PVIP) Malaysia My Second Home Program (MM2H) Enquiry Factsheet Investment Minimum investment of MYR 1 million (approximately USD 248,000) Key Benefit A 20-year, multiple entry visa, which effectively serves as a residence permit enabling the applicant and their family to live…",
+      "source": "Henley · Malaysia",
+      "url": "https://www.henleyglobal.com/residence-investment/malaysia",
+      "authority": 2
+    },
+    {
+      "kind": "money",
+      "matched": "MYR 1 m",
+      "excerpt": "…and a high quality of life. What is the minimum investment required for the Malaysia Premium Visa Program? The minimum investment starts at MYR 1 million into a local fixed deposit account. How long does it take to process an application for the Malaysia Premium Visa Program? Processing…",
+      "source": "Henley · Malaysia",
+      "url": "https://www.henleyglobal.com/residence-investment/malaysia",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "IMI Daily https://www.imidaily.com/ For Sovereign Individuals and Their Advisors Sat, 06 Jun 2026 11:46:26 +0000 en-US hourly 1 https://www.imidaily.com/wp-content/uploads/2019/06/imi-logo-150x150.png IMI Daily https://www.imidaily.com/…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2020",
+      "excerpt": "…22 533 1333 Email: info@investmentmigration.org Search IMC Website Search for: Search Search Results for malaysia MM2H Posted on March 12, 2020 April 14, 2021 Niu Ltd News Malaysia’s MM2H World’s Largest Investor Visa in 2019 Following Record Year Investors filed 7,904 applications…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=malaysia+MM2H",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…ail: info@investmentmigration.org Search IMC Website Search for: Search Search Results for malaysia MM2H Posted on March 12, 2020 April 14, 2021 Niu Ltd News Malaysia’s MM2H World’s Largest Investor Visa in 2019 Following Record Year Investors filed 7,904 applications for the Malaysi…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=malaysia+MM2H",
+      "authority": 2
+    }
+  ]
+}
