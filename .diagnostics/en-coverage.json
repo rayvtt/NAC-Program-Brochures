@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T21:06:03.096591Z",
+  "generated_at": "2026-06-11T22:55:02.709696Z",
   "reports": [
     {
       "alias": "portugal",
@@ -267,8 +267,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 446,
-      "en_array_size": 446,
+      "vi_array_size": 447,
+      "en_array_size": 447,
       "data_attr_pairs": 25,
       "notion_en_fields": 30
     },
@@ -377,8 +377,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 472,
-      "en_array_size": 472,
+      "vi_array_size": 473,
+      "en_array_size": 473,
       "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
@@ -597,8 +597,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 464,
-      "en_array_size": 464,
+      "vi_array_size": 465,
+      "en_array_size": 465,
       "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
