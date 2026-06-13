@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-13T08:19:45.415163+00:00",
+  "generated_at": "2026-06-13T10:45:58.121206+00:00",
   "source": "live WordPress fetched HTML",
   "reports": [
     {
@@ -268,8 +268,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 459,
-      "en_array_size": 459,
+      "vi_array_size": 460,
+      "en_array_size": 460,
       "data_attr_pairs": 25,
       "notion_en_fields": 30
     },
@@ -378,8 +378,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 485,
-      "en_array_size": 485,
+      "vi_array_size": 486,
+      "en_array_size": 486,
       "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
@@ -598,8 +598,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 477,
-      "en_array_size": 477,
+      "vi_array_size": 478,
+      "en_array_size": 478,
       "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
@@ -822,116 +822,6 @@
       "en_array_size": 35,
       "data_attr_pairs": 245,
       "notion_en_fields": 7
-    },
-    {
-      "alias": "montenegro",
-      "html_file": "live_montenegro.html",
-      "visible_vn_strings": 127,
-      "translated": 107,
-      "gap": 20,
-      "skip": 0,
-      "coverage_pct": 84.3,
-      "gap_samples": [
-        {
-          "text": "Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o strancime) — cấp giấy phép cư trú tạm th",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Không có mức đầu tư tối thiểu theo luật. Thực tế cần €100K+ cho BĐS sạch pháp lý, đã đăng ký cadastre. NAC khuyến nghị €",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nhận định NAC: Tổng chi phí bao gồm giá BĐS + thuế chuyển nhượng 3-5% + phí môi giới 2-3% + phí pháp lý 1-2% + thuế tài ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế quan trọng: Hồ sơ TRP Montenegro được xử lý ở cấp MUP địa phương (Podgorica hoặc Kotor) — không cần chờ hàng thá",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "So sánh phạm vi gia đình: Montenegro RBI bảo lãnh vợ/chồng + con nhỏ tự động — hẹp hơn Antigua CBI (4 thế hệ) nhưng phù ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Điều kiện trở thành cư dân thuế Montenegro: Ở Montenegro >183 ngày/năm. Cư dân thuế kê khai và nộp PIT 9-15% cho thu nhậ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "So sánh thuế khu vực Balkan: Montenegro 9-15% PIT, 9% CIT · Albania 15% PIT · Serbia 10-15% PIT, 15% CIT · Bulgaria 10% ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Yêu cầu nhập tịch năm 10: Cư trú hợp pháp liên tục 10 năm (không gián đoạn quá 6 tháng liên tục) · Lý lịch tư pháp sạch ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Montenegro RBI là lý tưởng cho nhà đầu tư muốn sống thực sự tại Châu Âu với chi phí thấp và lộ tr",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cập nhật quan trọng 2025–2026: Montenegro đang trong giai đoạn đàm phán cuối EU (Chương 23 & 24 — pháp quyền). Tiến trìn",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
-      "vi_array_size": 248,
-      "en_array_size": 248,
-      "data_attr_pairs": 260,
-      "notion_en_fields": 7
-    },
-    {
-      "alias": "australia",
-      "html_file": "live_australia.html",
-      "visible_vn_strings": 79,
-      "translated": 58,
-      "gap": 21,
-      "skip": 0,
-      "coverage_pct": 73.4,
-      "gap_samples": [
-        {
-          "text": "Vị trí của Úc SIV trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lưu ý quan trọng: Không được đầu tư trực tiếp vào bất động sản nhà ở, gửi tiết kiệm ngân hàng, hoặc mua trái phiếu chính",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lợi thế quan trọng: Visa 188 là thị thực tạm trú đầy đủ quyền lợi — cả gia đình được sinh sống, làm việc, học tập và dùn",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Kết hợp Úc SIV (thường trú + hộ chiếu top-tier + giáo dục hàng đầu) với Bồ Đào Nha Golden Visa (q",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Không có thuế thừa kế toàn cầu: Úc là một trong số ít quốc gia phát triển không đánh thuế thừa kế — đây là lợi thế lớn c",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lưu ý đặc biệt — Thuế toàn cầu: Cư dân thuế Úc phải khai báo thu nhập toàn cầu. Nhà đầu tư có tài sản và thu nhập từ Việ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Song tịch: Úc cho phép song tịch từ năm 2002. Nhà đầu tư Việt Nam có thể giữ cả hai hộ chiếu — tuy nhiên Luật Quốc tịch ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Úc SIV phù hợp nhất với: Gia đình ultra-HNW Việt (tài sản ròng từ USD 5M+) ưu tiên chất lượng sống + giáo dục + hộ chiếu",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Thị thực tạm trú Subclass 188 được cấp (hiệu lực khoảng 5 năm). Cả gia đình chuyển đến Úc với quyền sinh sống, làm việc ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "12 tháng). Có quyền làm việc và học tập tại Úc.\" data-en=\"Receives visa simultaneously. Includes de facto partners (coha",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
-      "vi_array_size": 0,
-      "en_array_size": 21,
-      "data_attr_pairs": 220,
-      "notion_en_fields": 3
     },
     {
       "alias": "nauru",
