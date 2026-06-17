@@ -1,1751 +1,38 @@
 {
-  "generated_at": "2026-06-16T07:28:13.781360+00:00",
+  "generated_at": "2026-06-17T07:10:21.035986+00:00",
   "source": "live",
-  "pass_count": 4,
+  "pass_count": 0,
   "total": 16,
   "reports": [
     {
       "alias": "portugal",
       "all_pass": false,
       "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 27,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 23,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 13,
-            "fixable_gap": 0,
-            "acceptable_gap": 5,
-            "gap": 5,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 13,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 19,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 3,
-            "fixable_gap": 1,
-            "acceptable_gap": 0,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 75.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": [
-          {
-            "section": "nac",
-            "text": "Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa Bồ Đào Nha, với mạng lưới luật sư, tư vấ"
-          }
-        ]
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "matrixChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
         "pass": false,
         "issues": [
-          "4 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 4,
-        "samples": [
-          {
-            "text": "Gia đình & thụ hưởng"
-          },
-          {
-            "text": "Portugal Golden Visa (ARI — Autorização de Residência para Atividade de Investimento) — launched in 2012 and comprehensi"
-          },
-          {
-            "text": "AIMA (Agência para a Integração, Migrações e Asilo) · Data updated Q2/2026 · Passport Index: Henley & Partners 2026. Fig"
-          },
-          {
-            "text": "Apply for a NIF (Número de Identificação Fiscal — Portuguese tax ID) via the consulate or an agent in Vietnam. Open a Po"
-          }
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
         ]
-      }
-    },
-    {
-      "alias": "greece",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
       },
       "sections": {
         "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 27,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 7,
-            "fixable_gap": 0,
-            "acceptable_gap": 11,
-            "gap": 11,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 20,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
+        "per_section": {},
         "low_sections": [],
         "notion_gaps": []
       },
-      "overview_ok": true,
+      "overview_ok": false,
       "charts": {
         "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
+        "has_charts": false,
         "issues": []
       },
       "globe_sizing": {
         "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 2,
-        "pdp_count": 2,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "10 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 10,
-        "samples": [
-          {
-            "text": "Tháng 2–3"
-          },
-          {
-            "text": "Tháng 3–5"
-          },
-          {
-            "text": "Góc nhìn NAC"
-          },
-          {
-            "text": "← Quay lại"
-          },
-          {
-            "text": "So Sánh Greece vs UAE"
-          }
-        ]
-      }
-    },
-    {
-      "alias": "cyprus",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 7,
-            "gap": 7,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 7,
-            "gap": 7,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 14,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 23,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 2,
-        "pdp_count": 2,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "7 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 7,
-        "samples": [
-          {
-            "text": "Type thẻ"
-          },
-          {
-            "text": "03 — Quy Trình"
-          },
-          {
-            "text": "Gia đình · Thuế · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
-          },
-          {
-            "text": "← Quay lại"
-          },
-          {
-            "text": "So Sánh Cyprus vs Hy Lạp"
-          }
-        ]
-      }
-    },
-    {
-      "alias": "turkey",
-      "all_pass": true,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 22,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 15,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 18,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 19,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": true,
-        "has_translator": false,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "citizenshipChart",
-          "compareChart",
-          "matrixChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
-      }
-    },
-    {
-      "alias": "uae",
-      "all_pass": true,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 27,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 24,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 13,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 21,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": true,
-        "issues": [],
-        "remnant_count": 0,
-        "samples": []
-      }
-    },
-    {
-      "alias": "uk",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 26,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 23,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "process": {
-            "translated": 11,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 23,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "2 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 2,
-        "samples": [
-          {
-            "text": "Góc Nhìn NAC: Passport Portfolio — Chiến Lược Đầu Tư Của Thập Kỷ Tới Cho HNWIs Việt"
-          },
-          {
-            "text": "Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
-          }
-        ]
-      }
-    },
-    {
-      "alias": "malta",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 26,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 15,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "process": {
-            "translated": 13,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 92.9
-          },
-          "family": {
-            "translated": 8,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 17,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": [
-          {
-            "section": "process",
-            "text": "MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi"
-          }
-        ]
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 2,
-        "pdp_count": 2,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "1 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 1,
-        "samples": [
-          {
-            "text": "Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
-          }
-        ]
-      }
-    },
-    {
-      "alias": "stkitts",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": false,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 21,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 95.5
-          },
-          "investment": {
-            "translated": 20,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 95.2
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 14,
-            "fixable_gap": 1,
-            "acceptable_gap": 2,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 93.3
-          },
-          "family": {
-            "translated": 7,
-            "fixable_gap": 1,
-            "acceptable_gap": 2,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 87.5
-          },
-          "tax": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 50.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 1,
-            "acceptable_gap": 0,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 66.7
-          },
-          "compare": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 50.0
-          },
-          "proscons": {
-            "translated": 20,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 95.2
-          },
-          "nac": {
-            "translated": 3,
-            "fixable_gap": 1,
-            "acceptable_gap": 1,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 75.0
-          }
-        },
-        "low_sections": [
-          "tax",
-          "citizenship",
-          "compare"
-        ],
-        "notion_gaps": [
-          {
-            "section": "overview",
-            "text": "St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh "
-          },
-          {
-            "section": "investment",
-            "text": "St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền Vững (SISC) — không hoàn lại nhưng nhanh"
-          },
-          {
-            "section": "process",
-            "text": "St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Lightning Process (ALP) — 45–60 ngày với phí "
-          },
-          {
-            "section": "family",
-            "text": "St Kitts & Nevis có chính sách bảo lãnh gia đình rộng rãi nhất trong nhóm Caribbean CBI — bao gồm vợ/chồng, con, cha mẹ,"
-          },
-          {
-            "section": "tax",
-            "text": "St Kitts & Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lã"
-          },
-          {
-            "section": "citizenship",
-            "text": "Khác với các chương trình RBI (cư trú đầu tư), St Kitts & Nevis CBI cấp quốc tịch trực tiếp — không qua giai đoạn cư trú"
-          },
-          {
-            "section": "compare",
-            "text": "So sánh St Kitts & Nevis với các chương trình Caribbean CBI khác và một số chương trình châu Âu — theo góc nhìn của nhà "
-          },
-          {
-            "section": "proscons",
-            "text": "Đánh giá khách quan của NAC dành cho nhà đầu tư HNWI người Việt đang cân nhắc St Kitts & Nevis CBI trong năm 2026."
-          },
-          {
-            "section": "nac",
-            "text": "Sẵn sàng tìm hiểu hộ chiếu St Kitts & Nevis?"
-          }
-        ]
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 2,
-        "pdp_count": 2,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "1 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 1,
-        "samples": [
-          {
-            "text": "Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
-          }
-        ]
-      }
-    },
-    {
-      "alias": "thailand",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 28,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 18,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "process": {
-            "translated": 11,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 20,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "1 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 1,
-        "samples": [
-          {
-            "text": "Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
-          }
-        ]
-      }
-    },
-    {
-      "alias": "newzealand",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 24,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 15,
-            "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "process": {
-            "translated": 12,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 8,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 12,
-            "fixable_gap": 0,
-            "acceptable_gap": 10,
-            "gap": 10,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
-        "issues": []
-      },
-      "article_urls": {
-        "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
-        "bare_homepage_count": 0,
-        "issues": []
-      },
-      "chart_rendering": {
-        "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
-        "issues": []
-      },
-      "en_render": {
-        "pass": false,
-        "issues": [
-          "1 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 1,
-        "samples": [
-          {
-            "text": "Gia đình · Tax · Path to citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
-          }
-        ]
-      }
-    },
-    {
-      "alias": "panama",
-      "all_pass": false,
-      "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
-        "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 24,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 24,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "process": {
-            "translated": 10,
-            "fixable_gap": 0,
-            "acceptable_gap": 4,
-            "gap": 4,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 8,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 20,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 3,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [],
-        "notion_gaps": []
-      },
-      "overview_ok": true,
-      "charts": {
-        "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
-        "issues": []
-      },
-      "globe_sizing": {
-        "pass": true,
-        "has_globe": true,
+        "has_globe": false,
         "issues": []
       },
       "article_urls": {
@@ -1757,197 +44,586 @@
       },
       "chart_rendering": {
         "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
+        "has_charts": false,
         "issues": []
       },
       "en_render": {
         "pass": false,
         "issues": [
-          "9 Vietnamese remnants after EN click"
+          "0 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 9,
-        "samples": [
-          {
-            "text": "Servicio Nacional de Migración Panama · Executive Decree 722 (2020) & Decree 193 (2024) · Henley Passport Index 2026 · P"
-          },
-          {
-            "text": "Panama City, Bocas del Toro, Coronado, Santa María"
-          },
-          {
-            "text": "Wire funds from abroad into Panama, complete the real-estate transaction (sign the contract, register at the Public Regi"
-          },
-          {
-            "text": "Immigration reviews the application via the Special Processing Service Division. Receive a temporary residence card whil"
-          },
-          {
-            "text": "Receive Permanent Residency & Cédula"
-          }
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "greece",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
         ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "cyprus",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "turkey",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "uae",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "uk",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "malta",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "stkitts",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "thailand",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "newzealand",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
+      }
+    },
+    {
+      "alias": "panama",
+      "all_pass": false,
+      "toggle": {
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
+      },
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
+      "charts": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "globe_sizing": {
+        "pass": true,
+        "has_globe": false,
+        "issues": []
+      },
+      "article_urls": {
+        "pass": true,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
+        "bare_homepage_count": 0,
+        "issues": []
+      },
+      "chart_rendering": {
+        "pass": true,
+        "has_charts": false,
+        "issues": []
+      },
+      "en_render": {
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
+        "remnant_count": 0,
+        "samples": []
       }
     },
     {
       "alias": "malaysia",
       "all_pass": false,
       "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
         "pass": false,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 27,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 23,
-            "fixable_gap": 0,
-            "acceptable_gap": 4,
-            "gap": 4,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "listings": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "process": {
-            "translated": 8,
-            "fixable_gap": 1,
-            "acceptable_gap": 5,
-            "gap": 6,
-            "skip": 0,
-            "coverage_pct": 88.9
-          },
-          "family": {
-            "translated": 5,
-            "fixable_gap": 0,
-            "acceptable_gap": 5,
-            "gap": 5,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "compare": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 0,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 50.0
-          },
-          "proscons": {
-            "translated": 16,
-            "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 4,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
-        "low_sections": [
-          "compare"
-        ],
-        "notion_gaps": [
-          {
-            "section": "process",
-            "text": "Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất "
-          },
-          {
-            "section": "compare",
-            "text": "Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →"
-          }
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
         ]
       },
-      "overview_ok": true,
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
       "charts": {
         "pass": true,
-        "has_charts": true,
-        "has_buildcharts": false,
-        "has_translator": true,
+        "has_charts": false,
         "issues": []
       },
       "globe_sizing": {
         "pass": true,
-        "has_globe": true,
+        "has_globe": false,
         "issues": []
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
         "bare_homepage_count": 0,
         "issues": []
       },
       "chart_rendering": {
         "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "timelineChart",
-          "taxChart",
-          "compareChart",
-          "strengthChart"
-        ],
+        "has_charts": false,
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
         "remnant_count": 0,
         "samples": []
       }
@@ -1956,325 +632,102 @@
       "alias": "antigua",
       "all_pass": false,
       "toggle": {
-        "pass": true,
-        "issues": []
-      },
-      "sections": {
         "pass": false,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 8,
-            "fixable_gap": 1,
-            "acceptable_gap": 17,
-            "gap": 18,
-            "skip": 0,
-            "coverage_pct": 88.9
-          },
-          "investment": {
-            "translated": 0,
-            "fixable_gap": 1,
-            "acceptable_gap": 14,
-            "gap": 15,
-            "skip": 0,
-            "coverage_pct": 0.0
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 14,
-            "gap": 15,
-            "skip": 0,
-            "coverage_pct": 50.0
-          },
-          "family": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 8,
-            "gap": 9,
-            "skip": 0,
-            "coverage_pct": 50.0
-          },
-          "tax": {
-            "translated": 0,
-            "fixable_gap": 1,
-            "acceptable_gap": 14,
-            "gap": 15,
-            "skip": 0,
-            "coverage_pct": 0.0
-          },
-          "citizenship": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "compare": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 18,
-            "gap": 18,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 1,
-            "fixable_gap": 1,
-            "acceptable_gap": 2,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 50.0
-          }
-        },
-        "low_sections": [
-          "investment",
-          "process",
-          "family",
-          "tax",
-          "nac"
-        ],
-        "notion_gaps": [
-          {
-            "section": "overview",
-            "text": "Antigua & Barbuda Citizenship by Investment Program (CIP) — vận hành từ 2013 — là một trong những chương trình Caribbean"
-          },
-          {
-            "section": "investment",
-            "text": "Antigua & Barbuda cung cấp hai lộ trình đầu tư chính để đủ điều kiện CBI: Đóng góp Quỹ NDF không hoàn lại ($230,000 cho "
-          },
-          {
-            "section": "process",
-            "text": "Antigua & Barbuda CBI có hai quy trình: Standard (3–6 tháng) qua đại lý được CIU cấp phép. Toàn bộ quy trình có thể thực"
-          },
-          {
-            "section": "family",
-            "text": "Antigua & Barbuda CBI có phạm vi gia đình rộng nhất nhóm Caribbean — bao gồm vợ/chồng, con đến 30 tuổi, bố mẹ từ 55 tuổi"
-          },
-          {
-            "section": "tax",
-            "text": "Antigua & Barbuda là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân toàn cầu, khô"
-          },
-          {
-            "section": "nac",
-            "text": "Sẵn sàng khởi động hồ sơ Antigua & Barbuda?"
-          }
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
         ]
       },
-      "overview_ok": true,
+      "sections": {
+        "pass": true,
+        "per_section": {},
+        "low_sections": [],
+        "notion_gaps": []
+      },
+      "overview_ok": false,
       "charts": {
         "pass": true,
-        "has_charts": true,
-        "has_buildcharts": true,
-        "has_translator": false,
+        "has_charts": false,
         "issues": []
       },
       "globe_sizing": {
         "pass": true,
-        "has_globe": true,
+        "has_globe": false,
         "issues": []
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
         "bare_homepage_count": 0,
         "issues": []
       },
       "chart_rendering": {
         "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "citizenshipChart",
-          "compareChart",
-          "matrixChart"
-        ],
+        "has_charts": false,
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
         "remnant_count": 0,
         "samples": []
       }
     },
     {
       "alias": "italy",
-      "all_pass": true,
+      "all_pass": false,
       "toggle": {
-        "pass": true,
-        "issues": []
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
       },
       "sections": {
         "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 5,
-            "fixable_gap": 0,
-            "acceptable_gap": 20,
-            "gap": 20,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "investment": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 23,
-            "gap": 23,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 16,
-            "gap": 16,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "family": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 10,
-            "gap": 10,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "tax": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 19,
-            "gap": 19,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "citizenship": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "compare": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "proscons": {
-            "translated": 13,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
+        "per_section": {},
         "low_sections": [],
         "notion_gaps": []
       },
-      "overview_ok": true,
+      "overview_ok": false,
       "charts": {
         "pass": true,
-        "has_charts": true,
-        "has_buildcharts": true,
-        "has_translator": false,
+        "has_charts": false,
         "issues": []
       },
       "globe_sizing": {
         "pass": true,
-        "has_globe": true,
+        "has_globe": false,
         "issues": []
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
         "bare_homepage_count": 0,
         "issues": []
       },
       "chart_rendering": {
         "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "citizenshipChart",
-          "compareChart",
-          "matrixChart"
-        ],
+        "has_charts": false,
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
         "remnant_count": 0,
         "samples": []
       }
@@ -2285,309 +738,100 @@
       "toggle": {
         "pass": false,
         "issues": [
-          "VI_STRINGS only 35 entries — sparse coverage"
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
         ]
       },
       "sections": {
         "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 21,
-            "gap": 21,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "investment": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 22,
-            "gap": 22,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 18,
-            "gap": 18,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "family": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 10,
-            "gap": 10,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "tax": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "citizenship": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "compare": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "proscons": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 13,
-            "gap": 13,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
+        "per_section": {},
         "low_sections": [],
         "notion_gaps": []
       },
-      "overview_ok": true,
+      "overview_ok": false,
       "charts": {
         "pass": true,
-        "has_charts": true,
-        "has_buildcharts": true,
-        "has_translator": false,
+        "has_charts": false,
         "issues": []
       },
       "globe_sizing": {
         "pass": true,
-        "has_globe": true,
+        "has_globe": false,
         "issues": []
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 2,
-        "pdp_count": 2,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
         "bare_homepage_count": 0,
         "issues": []
       },
       "chart_rendering": {
         "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "citizenshipChart",
-          "compareChart",
-          "matrixChart"
-        ],
+        "has_charts": false,
         "issues": []
       },
       "en_render": {
         "pass": false,
         "issues": [
-          "13 Vietnamese remnants after EN click"
+          "0 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 13,
-        "samples": [
-          {
-            "text": "BOE — Royal Decree-Law 1/2025 (BOE-A-2025-572) · Ley 14/2013 (Ley de Emprendedores) · Ministerio de Asuntos Exteriores ·"
-          },
-          {
-            "text": "⛔ ĐÃ ĐÓNG"
-          },
-          {
-            "text": "Không quy định"
-          },
-          {
-            "text": "Enter Spain within 1 year. Register NIE (Número de Identificación de Extranjero) at Extranjería. Open Spanish bank accou"
-          },
-          {
-            "text": "Register TIE (Tarjeta de Identidad de Extranjero) at Extranjería with the existing visa. TIE valid 3 years. Renewable ev"
-          }
-        ]
+        "remnant_count": 0,
+        "samples": []
       }
     },
     {
       "alias": "montenegro",
-      "all_pass": true,
+      "all_pass": false,
       "toggle": {
-        "pass": true,
-        "issues": []
+        "pass": false,
+        "issues": [
+          "setLang function missing",
+          "#btn-vi button missing",
+          "#btn-en button missing",
+          "btn-en has no click handler (KSES strip + no addEventListener)",
+          "VI_STRINGS array missing",
+          "EN_STRINGS array missing"
+        ]
       },
       "sections": {
         "pass": true,
-        "per_section": {
-          "hero": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "footer": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 0,
-            "gap": 0,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "overview": {
-            "translated": 6,
-            "fixable_gap": 1,
-            "acceptable_gap": 19,
-            "gap": 20,
-            "skip": 0,
-            "coverage_pct": 85.7
-          },
-          "investment": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 18,
-            "gap": 18,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "listings": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "process": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 17,
-            "gap": 17,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "family": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 8,
-            "gap": 8,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "tax": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 13,
-            "gap": 13,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "citizenship": {
-            "translated": 0,
-            "fixable_gap": 0,
-            "acceptable_gap": 3,
-            "gap": 3,
-            "skip": 0,
-            "coverage_pct": 100
-          },
-          "compare": {
-            "translated": 1,
-            "fixable_gap": 0,
-            "acceptable_gap": 1,
-            "gap": 1,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "proscons": {
-            "translated": 11,
-            "fixable_gap": 0,
-            "acceptable_gap": 6,
-            "gap": 6,
-            "skip": 0,
-            "coverage_pct": 100.0
-          },
-          "nac": {
-            "translated": 2,
-            "fixable_gap": 0,
-            "acceptable_gap": 2,
-            "gap": 2,
-            "skip": 0,
-            "coverage_pct": 100.0
-          }
-        },
+        "per_section": {},
         "low_sections": [],
-        "notion_gaps": [
-          {
-            "section": "overview",
-            "text": "Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o strancime) — cấp giấy phép cư trú tạm th"
-          }
-        ]
+        "notion_gaps": []
       },
-      "overview_ok": true,
+      "overview_ok": false,
       "charts": {
         "pass": true,
-        "has_charts": true,
-        "has_buildcharts": true,
-        "has_translator": false,
+        "has_charts": false,
         "issues": []
       },
       "globe_sizing": {
         "pass": true,
-        "has_globe": true,
+        "has_globe": false,
         "issues": []
       },
       "article_urls": {
         "pass": true,
-        "total_article_ctas": 1,
-        "pdp_count": 1,
+        "total_article_ctas": 0,
+        "pdp_count": 0,
         "bare_homepage_count": 0,
         "issues": []
       },
       "chart_rendering": {
         "pass": true,
-        "has_charts": true,
-        "canvases": [
-          "radarChart",
-          "citizenshipChart",
-          "compareChart",
-          "matrixChart"
-        ],
+        "has_charts": false,
         "issues": []
       },
       "en_render": {
-        "pass": true,
-        "issues": [],
+        "pass": false,
+        "issues": [
+          "0 Vietnamese remnants after EN click"
+        ],
         "remnant_count": 0,
         "samples": []
       }
