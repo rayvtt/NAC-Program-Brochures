@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T17:38:39.595566+00:00",
+  "generated_at": "2026-06-17T19:42:08.307325+00:00",
   "source": "live WordPress fetched HTML",
   "reports": [
     {
@@ -109,17 +109,17 @@
       ],
       "vi_array_size": 317,
       "en_array_size": 317,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
     {
       "alias": "cyprus",
       "html_file": "live_cyprus.html",
-      "visible_vn_strings": 129,
-      "translated": 105,
+      "visible_vn_strings": 127,
+      "translated": 103,
       "gap": 24,
       "skip": 0,
-      "coverage_pct": 81.4,
+      "coverage_pct": 81.1,
       "gap_samples": [
         {
           "text": "Vị trí của Cyprus PR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
@@ -164,17 +164,17 @@
       ],
       "vi_array_size": 288,
       "en_array_size": 288,
-      "data_attr_pairs": 25,
+      "data_attr_pairs": 18,
       "notion_en_fields": 28
     },
     {
       "alias": "turkey",
       "html_file": "live_turkey.html",
-      "visible_vn_strings": 140,
-      "translated": 131,
+      "visible_vn_strings": 139,
+      "translated": 130,
       "gap": 9,
       "skip": 0,
-      "coverage_pct": 93.6,
+      "coverage_pct": 93.5,
       "gap_samples": [
         {
           "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
@@ -215,7 +215,7 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 264,
+      "data_attr_pairs": 257,
       "notion_en_fields": 29
     },
     {
@@ -268,19 +268,19 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 498,
-      "en_array_size": 498,
-      "data_attr_pairs": 25,
+      "vi_array_size": 499,
+      "en_array_size": 499,
+      "data_attr_pairs": 20,
       "notion_en_fields": 30
     },
     {
       "alias": "uk",
       "html_file": "live_uk.html",
-      "visible_vn_strings": 125,
-      "translated": 106,
+      "visible_vn_strings": 124,
+      "translated": 105,
       "gap": 19,
       "skip": 0,
-      "coverage_pct": 84.8,
+      "coverage_pct": 84.7,
       "gap_samples": [
         {
           "text": "Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the",
@@ -325,7 +325,7 @@
       ],
       "vi_array_size": 309,
       "en_array_size": 309,
-      "data_attr_pairs": 23,
+      "data_attr_pairs": 17,
       "notion_en_fields": 31
     },
     {
@@ -378,8 +378,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 524,
-      "en_array_size": 524,
+      "vi_array_size": 525,
+      "en_array_size": 525,
       "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
@@ -435,7 +435,7 @@
       ],
       "vi_array_size": 350,
       "en_array_size": 350,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
     {
@@ -490,7 +490,7 @@
       ],
       "vi_array_size": 400,
       "en_array_size": 400,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
     {
@@ -545,7 +545,7 @@
       ],
       "vi_array_size": 355,
       "en_array_size": 355,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 17,
       "notion_en_fields": 28
     },
     {
@@ -598,9 +598,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 516,
-      "en_array_size": 516,
-      "data_attr_pairs": 23,
+      "vi_array_size": 517,
+      "en_array_size": 517,
+      "data_attr_pairs": 16,
       "notion_en_fields": 30
     },
     {
@@ -655,7 +655,7 @@
       ],
       "vi_array_size": 351,
       "en_array_size": 351,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 17,
       "notion_en_fields": 28
     },
     {
@@ -765,7 +765,7 @@
       ],
       "vi_array_size": 251,
       "en_array_size": 254,
-      "data_attr_pairs": 271,
+      "data_attr_pairs": 266,
       "notion_en_fields": 7
     },
     {
@@ -930,7 +930,7 @@
       ],
       "vi_array_size": 0,
       "en_array_size": 21,
-      "data_attr_pairs": 220,
+      "data_attr_pairs": 215,
       "notion_en_fields": 3
     },
     {
@@ -985,7 +985,7 @@
       ],
       "vi_array_size": 258,
       "en_array_size": 258,
-      "data_attr_pairs": 255,
+      "data_attr_pairs": 250,
       "notion_en_fields": 3
     }
   ]
