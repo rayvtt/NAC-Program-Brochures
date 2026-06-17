@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T19:39:31.001729Z",
+  "generated_at": "2026-06-17T21:34:29.382210Z",
   "reports": [
     {
       "alias": "portugal",
@@ -108,17 +108,17 @@
       ],
       "vi_array_size": 317,
       "en_array_size": 317,
-      "data_attr_pairs": 17,
+      "data_attr_pairs": 22,
       "notion_en_fields": 30
     },
     {
       "alias": "cyprus",
       "html_file": "cyprus-rbi_3_3.html",
-      "visible_vn_strings": 127,
-      "translated": 103,
+      "visible_vn_strings": 129,
+      "translated": 105,
       "gap": 24,
       "skip": 0,
-      "coverage_pct": 81.1,
+      "coverage_pct": 81.4,
       "gap_samples": [
         {
           "text": "Vị trí của Cyprus PR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
@@ -163,17 +163,17 @@
       ],
       "vi_array_size": 288,
       "en_array_size": 288,
-      "data_attr_pairs": 18,
+      "data_attr_pairs": 25,
       "notion_en_fields": 28
     },
     {
       "alias": "turkey",
       "html_file": "turkey-cbi_8.html",
-      "visible_vn_strings": 139,
-      "translated": 130,
+      "visible_vn_strings": 140,
+      "translated": 131,
       "gap": 9,
       "skip": 0,
-      "coverage_pct": 93.5,
+      "coverage_pct": 93.6,
       "gap_samples": [
         {
           "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
@@ -214,7 +214,7 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 257,
+      "data_attr_pairs": 264,
       "notion_en_fields": 29
     },
     {
@@ -267,19 +267,19 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 499,
-      "en_array_size": 499,
-      "data_attr_pairs": 20,
+      "vi_array_size": 500,
+      "en_array_size": 500,
+      "data_attr_pairs": 25,
       "notion_en_fields": 30
     },
     {
       "alias": "uk",
       "html_file": "uk-rbi_1 (2).html",
-      "visible_vn_strings": 124,
-      "translated": 105,
+      "visible_vn_strings": 125,
+      "translated": 106,
       "gap": 19,
       "skip": 0,
-      "coverage_pct": 84.7,
+      "coverage_pct": 84.8,
       "gap_samples": [
         {
           "text": "Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the",
@@ -324,7 +324,7 @@
       ],
       "vi_array_size": 309,
       "en_array_size": 309,
-      "data_attr_pairs": 17,
+      "data_attr_pairs": 23,
       "notion_en_fields": 31
     },
     {
@@ -377,8 +377,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 525,
-      "en_array_size": 525,
+      "vi_array_size": 526,
+      "en_array_size": 526,
       "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
@@ -434,7 +434,7 @@
       ],
       "vi_array_size": 350,
       "en_array_size": 350,
-      "data_attr_pairs": 17,
+      "data_attr_pairs": 22,
       "notion_en_fields": 30
     },
     {
@@ -489,7 +489,7 @@
       ],
       "vi_array_size": 400,
       "en_array_size": 400,
-      "data_attr_pairs": 17,
+      "data_attr_pairs": 22,
       "notion_en_fields": 30
     },
     {
@@ -544,7 +544,7 @@
       ],
       "vi_array_size": 355,
       "en_array_size": 355,
-      "data_attr_pairs": 17,
+      "data_attr_pairs": 22,
       "notion_en_fields": 28
     },
     {
@@ -597,9 +597,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 517,
-      "en_array_size": 517,
-      "data_attr_pairs": 16,
+      "vi_array_size": 518,
+      "en_array_size": 518,
+      "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
     {
@@ -654,7 +654,7 @@
       ],
       "vi_array_size": 351,
       "en_array_size": 351,
-      "data_attr_pairs": 17,
+      "data_attr_pairs": 22,
       "notion_en_fields": 28
     },
     {
@@ -764,7 +764,7 @@
       ],
       "vi_array_size": 251,
       "en_array_size": 254,
-      "data_attr_pairs": 266,
+      "data_attr_pairs": 271,
       "notion_en_fields": 7
     },
     {
