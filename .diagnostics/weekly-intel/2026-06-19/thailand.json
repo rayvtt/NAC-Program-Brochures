@@ -1,0 +1,32 @@
+{
+  "alias": "thailand",
+  "gathered_at": "2026-06-19T08:36:13.000396+00:00",
+  "days_window": 1,
+  "signal_count": 3,
+  "signals": [
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "IMI Daily https://www.imidaily.com/ For Sovereign Individuals and Their Advisors Thu, 18 Jun 2026 15:17:45 +0000 en-US hourly 1 https://www.imidaily.com/wp-content/uploads/2019/06/imi-logo-150x150.png IMI Daily https://www.imidaily.com/…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…533 1333 Email: info@investmentmigration.org Search IMC Website Search for: Search Search Results for thailand LTR visa Posted on April 23, 2021 April 23, 2021 Marie Cutajar News Entrepreneurs Opt for Domicile Diversification and a New Form of Global Mobility in Covid-19 Era The sign…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=thailand+LTR+visa",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…info@investmentmigration.org Search IMC Website Search for: Search Search Results for thailand LTR visa Posted on April 23, 2021 April 23, 2021 Marie Cutajar News Entrepreneurs Opt for Domicile Diversification and a New Form of Global Mobility in Covid-19 Era The significant global…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=thailand+LTR+visa",
+      "authority": 2
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "alias": "panama",
+  "gathered_at": "2026-06-19T08:36:39.973398+00:00",
+  "days_window": 1,
+  "signal_count": 4,
+  "signals": [
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "IMI Daily https://www.imidaily.com/ For Sovereign Individuals and Their Advisors Thu, 18 Jun 2026 15:17:45 +0000 en-US hourly 1 https://www.imidaily.com/wp-content/uploads/2019/06/imi-logo-150x150.png IMI Daily https://www.imidaily.com/…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2023",
+      "excerpt": "…333 Email: info@investmentmigration.org Search IMC Website Search for: Search Search Results for panama friendly nations Posted on July 13, 2023 July 13, 2023 darioa Articles Six Thoughts on Investment Migration in a Changing Landscape An article written by the Investment Migration C…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=panama+friendly+nations",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2023",
+      "excerpt": "…o@investmentmigration.org Search IMC Website Search for: Search Search Results for panama friendly nations Posted on July 13, 2023 July 13, 2023 darioa Articles Six Thoughts on Investment Migration in a Changing Landscape An article written by the Investment Migration Council Editori…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=panama+friendly+nations",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2023",
+      "excerpt": "…s on Investment Migration in a Changing Landscape An article written by the Investment Migration Council Editorial Team for the IM Yearbook 2023 While it is impossible to predict the future, it is possible to consider how current megatrends and potential future disruptions might affe…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=panama+friendly+nations",
+      "authority": 2
+    }
+  ]
+}
