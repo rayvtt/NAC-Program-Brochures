@@ -1,0 +1,72 @@
+{
+  "alias": "turkey",
+  "gathered_at": "2026-06-22T09:13:16.625612+00:00",
+  "days_window": 1,
+  "signal_count": 8,
+  "signals": [
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "IMI Daily https://www.imidaily.com/ For Sovereign Individuals and Their Advisors Sun, 21 Jun 2026 11:43:28 +0000 en-US hourly 1 https://www.imidaily.com/wp-content/uploads/2019/06/imi-logo-150x150.png IMI Daily https://www.imidaily.com/…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2020",
+      "excerpt": "…41 22 533 1333 Email: info@investmentmigration.org Search IMC Website Search for: Search Search Results for turkey CBI Posted on August 28, 2020 April 14, 2021 Niu Ltd Articles CBI after COVID – Changing needs and new opportunities By some accounts COVID-19 has just about changed eve…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=turkey+CBI",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…Email: info@investmentmigration.org Search IMC Website Search for: Search Search Results for turkey CBI Posted on August 28, 2020 April 14, 2021 Niu Ltd Articles CBI after COVID – Changing needs and new opportunities By some accounts COVID-19 has just about changed everything we know…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=turkey+CBI",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…nal mobility like no other event before. What observations about the investment migration industry during […] Read More Posted on April 23, 2021 April 23, 2021 Marie Cutajar News The Same Property Cannot Be Used Twice to Qualify for Turkish Citizenship, New Guidelines Clarify Aiming…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=turkey+CBI",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…ke no other event before. What observations about the investment migration industry during […] Read More Posted on April 23, 2021 April 23, 2021 Marie Cutajar News The Same Property Cannot Be Used Twice to Qualify for Turkish Citizenship, New Guidelines Clarify Aiming to prevent self…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=turkey+CBI",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2020",
+      "excerpt": "…bringing changes to the rules for property transactions between foreigners, particularly as it pertains to […] Read More Posted on July 27, 2020 April 14, 2021 Niu Ltd News Investment Migration And The State Of Play In Europe Investment migration refers to the attainment of citizensh…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=turkey+CBI",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…s to the rules for property transactions between foreigners, particularly as it pertains to […] Read More Posted on July 27, 2020 April 14, 2021 Niu Ltd News Investment Migration And The State Of Play In Europe Investment migration refers to the attainment of citizenship or residenti…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=turkey+CBI",
+      "authority": 2
+    },
+    {
+      "kind": "trigger",
+      "matched": "amended",
+      "excerpt": "…ycling”, Turkish authorities say a single property may henceforth only be used once to qualify for citizenship. On Monday this week, Turkey amended its Guideline Regarding the Regulation on the Application of the Turkish Citizenship Law, bringing changes to the rules for property transa…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=turkey+CBI",
+      "authority": 2
+    }
+  ]
+}
