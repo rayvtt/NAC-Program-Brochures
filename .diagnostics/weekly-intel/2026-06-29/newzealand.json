@@ -1,0 +1,64 @@
+{
+  "alias": "newzealand",
+  "gathered_at": "2026-06-29T08:18:52.039104+00:00",
+  "days_window": 1,
+  "signal_count": 7,
+  "signals": [
+    {
+      "kind": "money",
+      "matched": "NZD 5 m",
+      "excerpt": "…in permanent residence in New Zealand by making a substantial investment to the country. Enquiry Factsheet Investment Minimum investment of NZD 5 million Key Benefit Eligibility for citizenship after five years of residence New Zealand Active Investor Plus Visa Program New Zealand’s new…",
+      "source": "Henley · NZ",
+      "url": "https://www.henleyglobal.com/residence-investment/new-zealand",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2022",
+      "excerpt": "…ive years of residence New Zealand Active Investor Plus Visa Program New Zealand’s new Active Investor Plus Visa was announced in September 2022, replacing its previous investor visas. Designed to attract valuable investors and encourage investment that delivers benefits to the local…",
+      "source": "Henley · NZ",
+      "url": "https://www.henleyglobal.com/residence-investment/new-zealand",
+      "authority": 2
+    },
+    {
+      "kind": "money",
+      "matched": "NZD 5 m",
+      "excerpt": "…ty of life. What is the minimum investment required for the New Zealand Active Investor Plus Visa Program? The minimum investment starts at NZD 5 million. How long does it take to process an application for the New Zealand Active Investor Plus Visa Program? Processing times for residenc…",
+      "source": "Henley · NZ",
+      "url": "https://www.henleyglobal.com/residence-investment/new-zealand",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "IMI Daily https://www.imidaily.com/ For Sovereign Individuals and Their Advisors Sun, 28 Jun 2026 12:12:42 +0000 en-US hourly 1 https://www.imidaily.com/wp-content/uploads/2019/06/imi-logo-150x150.png IMI Daily https://www.imidaily.com/…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "money",
+      "matched": "$420",
+      "excerpt": "…tive investor plus Posted on December 10, 2015 April 14, 2021 Niu Ltd Articles Prosperity Needs Diversity NZ businesses will need more than $420b in capital by 2025 to support export growth to achieve the Government’s ambitious “Growth Agenda”. KPMG analysis suggests there will be a…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=new+zealand+active+investor+plus",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2021",
+      "excerpt": "…gration.org Search IMC Website Search for: Search Search Results for new zealand active investor plus Posted on December 10, 2015 April 14, 2021 Niu Ltd Articles Prosperity Needs Diversity NZ businesses will need more than $420b in capital by 2025 to support export growth to achieve…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=new+zealand+active+investor+plus",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2025",
+      "excerpt": "…osted on December 10, 2015 April 14, 2021 Niu Ltd Articles Prosperity Needs Diversity NZ businesses will need more than $420b in capital by 2025 to support export growth to achieve the Government’s ambitious “Growth Agenda”. KPMG analysis suggests there will be a shortfall of around…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=new+zealand+active+investor+plus",
+      "authority": 2
+    }
+  ]
+}
