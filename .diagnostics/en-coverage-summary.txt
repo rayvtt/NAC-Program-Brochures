@@ -17,7 +17,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mgreece[0m  [33m 74.6%[0m (94 translated / 32 gap / 0 skip of 126 VN strings)
-  [90mVI_STRINGS=317  EN_STRINGS=317  data-attr pairs=22  Notion EN fields=30[0m
+  [90mVI_STRINGS=317  EN_STRINGS=317  data-attr pairs=20  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →
       [90mreason: text_drift_vs_notion[0m
@@ -31,7 +31,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mcyprus[0m  [33m 81.4%[0m (105 translated / 24 gap / 0 skip of 129 VN strings)
-  [90mVI_STRINGS=288  EN_STRINGS=288  data-attr pairs=25  Notion EN fields=28[0m
+  [90mVI_STRINGS=288  EN_STRINGS=288  data-attr pairs=23  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Vị trí của Cyprus PR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →
       [90mreason: text_drift_vs_notion[0m
@@ -45,7 +45,7 @@
       [90mreason: no_en_available[0m
 
 [1mturkey[0m  [33m 93.6%[0m (131 translated / 9 gap / 0 skip of 140 VN strings)
-  [90mVI_STRINGS=247  EN_STRINGS=247  data-attr pairs=264  Notion EN fields=29[0m
+  [90mVI_STRINGS=247  EN_STRINGS=247  data-attr pairs=262  Notion EN fields=29[0m
   [33mTop gaps:[0m
     [31m•[0m 183 ngày/năm" data-en="Only if resident >183 days/year">Chỉ khi cư trú >183 ngày/năm
       [90mreason: no_en_available[0m
@@ -59,7 +59,7 @@
       [90mreason: no_en_available[0m
 
 [1muae[0m  [33m 90.5%[0m (114 translated / 12 gap / 0 skip of 126 VN strings)
-  [90mVI_STRINGS=654  EN_STRINGS=654  data-attr pairs=25  Notion EN fields=30[0m
+  [90mVI_STRINGS=655  EN_STRINGS=655  data-attr pairs=23  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)
       [90mreason: no_en_available[0m
@@ -73,7 +73,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1muk[0m  [33m 84.8%[0m (106 translated / 19 gap / 0 skip of 125 VN strings)
-  [90mVI_STRINGS=309  EN_STRINGS=309  data-attr pairs=23  Notion EN fields=31[0m
+  [90mVI_STRINGS=309  EN_STRINGS=309  data-attr pairs=21  Notion EN fields=31[0m
   [33mTop gaps:[0m
     [31m•[0m Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the
       [90mreason: no_en_available[0m
@@ -87,7 +87,7 @@
       [90mreason: no_en_available[0m
 
 [1mmalta[0m  [33m 85.2%[0m (98 translated / 17 gap / 0 skip of 115 VN strings)
-  [90mVI_STRINGS=680  EN_STRINGS=680  data-attr pairs=17  Notion EN fields=30[0m
+  [90mVI_STRINGS=681  EN_STRINGS=681  data-attr pairs=17  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi
       [90mreason: text_drift_vs_notion[0m
@@ -115,7 +115,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mthailand[0m  [33m 90.6%[0m (106 translated / 11 gap / 0 skip of 117 VN strings)
-  [90mVI_STRINGS=400  EN_STRINGS=400  data-attr pairs=22  Notion EN fields=30[0m
+  [90mVI_STRINGS=400  EN_STRINGS=400  data-attr pairs=20  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [33m•[0m Ưu đãi thuế LTR đặc biệt: Người giữ LTR Visa được miễn khai thuế trên thu nhập nước ngoài chuyển vào Thái Lan. Đây là lợ
       [90mreason: text_drift_vs_notion[0m
@@ -143,7 +143,7 @@
       [90mreason: no_en_available[0m
 
 [1mpanama[0m  [33m 81.3%[0m (100 translated / 23 gap / 0 skip of 123 VN strings)
-  [90mVI_STRINGS=672  EN_STRINGS=672  data-attr pairs=23  Notion EN fields=30[0m
+  [90mVI_STRINGS=673  EN_STRINGS=673  data-attr pairs=21  Notion EN fields=30[0m
   [33mTop gaps:[0m
     [31m•[0m Hub tài chính & thương mại quốc tế
       [90mreason: no_en_available[0m
@@ -157,7 +157,7 @@
       [90mreason: text_drift_vs_notion[0m
 
 [1mmalaysia[0m  [33m 76.0%[0m (92 translated / 29 gap / 0 skip of 121 VN strings)
-  [90mVI_STRINGS=351  EN_STRINGS=351  data-attr pairs=22  Notion EN fields=28[0m
+  [90mVI_STRINGS=351  EN_STRINGS=351  data-attr pairs=20  Notion EN fields=28[0m
   [33mTop gaps:[0m
     [33m•[0m Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất 
       [90mreason: text_drift_vs_notion[0m
