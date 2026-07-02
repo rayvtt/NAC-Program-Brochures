@@ -3,192 +3,118 @@
 [90m──────────────────────────────────────────────────────────────────────[0m
 
 [1mportugal[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m4 VN remnants[0m
-     [90m· Gia đình & thụ hưởng[0m
-     [90m· Portugal Golden Visa (ARI — Autorização de Residência para Atividade de Investim[0m
-     [90m· AIMA (Agência para a Integração, Migrações e Asilo) · Data updated Q2/2026 · Pas[0m
-     [33mNotion has EN for 1 gaps (sample):[0m
-       [nac] Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa 
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mgreece[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m10 VN remnants[0m
-     [90m· Tháng 2–3[0m
-     [90m· Tháng 3–5[0m
-     [90m· Góc nhìn NAC[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mcyprus[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m7 VN remnants[0m
-     [90m· Type thẻ[0m
-     [90m· 03 — Quy Trình[0m
-     [90m· Gia đình · Thuế · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — g[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
-[1mturkey[0m  [32m✓[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+[1mturkey[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
-[1muae[0m  [32m✓[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+[1muae[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1muk[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m2 VN remnants[0m
-     [90m· Góc Nhìn NAC: Passport Portfolio — Chiến Lược Đầu Tư Của Thập Kỷ Tới Cho HNWIs V[0m
-     [90m· Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mmalta[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
-     [90m· Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
-     [33mNotion has EN for 1 gaps (sample):[0m
-       [process] MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩ
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mstkitts[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
-     [90m· Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
-     [33mlow sections: tax, citizenship, compare[0m
-     [33mNotion has EN for 9 gaps (sample):[0m
-       [overview] St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời
-       [investment] St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền 
-       [process] St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Light
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mthailand[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
-     [90m· Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mnewzealand[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
-     [90m· Gia đình · Tax · Path to citizenship · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mpanama[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
   6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m9 VN remnants[0m
-     [90m· Servicio Nacional de Migración Panama · Executive Decree 722 (2020) & Decree 193[0m
-     [90m· Panama City, Bocas del Toro, Coronado, Santa María[0m
-     [90m· Wire funds from abroad into Panama, complete the real-estate transaction (sign t[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mmalaysia[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
-     [33mlow sections: compare[0m
-     [33mNotion has EN for 2 gaps (sample):[0m
-       [process] Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ 
-       [compare] Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC 
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mantigua[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
-     [33mlow sections: investment, process, family, tax, nac[0m
-     [33mNotion has EN for 6 gaps (sample):[0m
-       [overview] Antigua & Barbuda Citizenship by Investment Program (CIP) — vận hành từ 2013 — l
-       [investment] Antigua & Barbuda cung cấp hai lộ trình đầu tư chính để đủ điều kiện CBI: Đóng g
-       [process] Antigua & Barbuda CBI có hai quy trình: Standard (3–6 tháng) qua đại lý được CIU
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
-[1mitaly[0m  [32m✓[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
+[1mitaly[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [1mspain[0m  [31m✗[0m
-  1. Toggle:        [31m✗[0m [31mVI_STRINGS only 35 entries — sparse coverage[0m
-  2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m13 VN remnants[0m
-     [90m· BOE — Royal Decree-Law 1/2025 (BOE-A-2025-572) · Ley 14/2013 (Ley de Emprendedor[0m
-     [90m· ⛔ ĐÃ ĐÓNG[0m
-     [90m· Không quy định[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
-[1mmontenegro[0m  [32m✓[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mbuildCharts wrapper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [32m✓[0m [90mno VN remnants on EN click[0m
-     [33mNotion has EN for 1 gaps (sample):[0m
-       [overview] Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o 
+[1mmontenegro[0m  [31m✗[0m
+  1. Toggle:        [31m✗[0m [31msetLang function missing; #btn-vi button missing; #btn-en button missing; btn-en has no click handler (KSES strip + no addEventListener); VI_STRINGS array missing; EN_STRINGS array missing[0m
+  2. Charts EN:     [90mn/a (no charts)[0m
+  3. §01 Overview:  [31m✗[0m [33mcoverage too low[0m
+  6. Article URLs:  [32m✓[0m [90m0/0 → PDP[0m
+  8. EN displays:   [31m✗[0m [31m0 VN remnants[0m
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  [32m4/16 brochures fully passing[0m
-  [31mToggle issues:[0m    spain
-  [33mSection gaps:[0m    stkitts, malaysia, antigua
+[1mSummary:[0m  [32m0/16 brochures fully passing[0m
+  [31mToggle issues:[0m    portugal, greece, cyprus, turkey, uae, uk, malta, stkitts, thailand, newzealand, panama, malaysia, antigua, italy, spain, montenegro
   → JSON report: .diagnostics/daily-en-audit.json
