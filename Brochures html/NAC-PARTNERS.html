@@ -600,6 +600,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
     if (gVi && gEn){ gVi.classList.toggle('on', lang==='vi'); gEn.classList.toggle('on', lang==='en'); }
     document.documentElement.lang = lang;
     try{ localStorage.setItem('nac-partner-lang', lang); }catch(e){}
+    document.querySelectorAll('.snap-frame iframe').forEach(applyFrameLang);
   }
   window.setLang = setLang;
 
@@ -628,8 +629,28 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
       d.head.appendChild(s);
     } catch(e) {}
   }
+  // Keep each demo frame's language in lockstep with the deck: same-origin on the live site, so we
+  // can drive the framed page's own toggle. Cascade covers every NAC page family — the hub + PDPs
+  // use [data-lang-set] buttons, the brochure family uses #btn-vi/#btn-en, gateway-style pages
+  // expose window.setLang, and the WP tool pages fall back to any button labeled exactly VI/EN.
+  // Cross-origin contexts (GH Pages preview) throw and are skipped, leaving frames at their default.
+  function applyFrameLang(f){
+    try {
+      var w = f.contentWindow, d = f.contentDocument;
+      if (!w || !d || !d.body) return;
+      var lang = document.documentElement.lang === 'en' ? 'en' : 'vi';
+      var btn = d.querySelector('[data-lang-set=' + lang + ']') || d.getElementById('btn-' + lang);
+      if (btn) { btn.click(); return; }
+      if (typeof w.setLang === 'function') { w.setLang(lang); return; }
+      var want = lang.toUpperCase();
+      var cands = d.querySelectorAll('button');
+      for (var i = 0; i < cands.length; i++) {
+        if ((cands[i].textContent || '').trim().toUpperCase() === want) { cands[i].click(); return; }
+      }
+    } catch(e) {}
+  }
   document.querySelectorAll('iframe[data-src]').forEach(function(f){
-    f.addEventListener('load', function(){ deWpChrome(f); });
+    f.addEventListener('load', function(){ deWpChrome(f); applyFrameLang(f); });
   });
   function verify(code, onFail){
     return fetch(WORKER_URL + '/partner-access', {
