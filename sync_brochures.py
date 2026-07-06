@@ -77,7 +77,7 @@ BROCHURES = {
     # command-center Worker's /partner-access). pid=0 placeholder until a WP page is created
     # (WP Admin → Pages → Add New → note the id → set it here) — see cmd_sync()'s "wp_page_id=0
     # placeholder — skipping" behavior; the file syncs automatically the moment a real id lands.
-    'partners':    ('NAC-PARTNERS.html',              0, 'doi-tac-nac'),
+    'partners':    ('NAC-PARTNERS.html',              0, 'doi-tac-partner-gateway'),
 }
 
 # ── Color helpers ──────────────────────────────────────────────────────

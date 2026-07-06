@@ -35,7 +35,7 @@ URL pattern: `https://nomadassetcollective.com/brochures/<slug>/` — each broch
 
 | Page | Alias | Page ID | Live URL |
 |---|---|---|---|
-| NAC Partners — gated pitch deck for referral partners (code-entry gate, tracked in 🎯 NAC - Outreach) | `partners` | 0 (placeholder — create the WP page and set the real id in `sync_brochures.py`) | https://nomadassetcollective.com/brochures/doi-tac-nac/ (once live) |
+| NAC Partners — gated pitch deck for referral partners (code-entry gate, tracked in 🎯 NAC - Outreach) | `partners` | 0 (placeholder — create the WP page and set the real id in `sync_brochures.py`) | https://nomadassetcollective.com/brochures/doi-tac-partner-gateway/ (once live) |
 
 Local source: `Brochures html/NAC-PARTNERS.html`. The gate posts to the `nac-marketing-omnichannel` command-center Worker (`POST https://nac-marketing-cc.ray-vtt.workers.dev/partner-access`), which checks the code against each prospect's "Partner Access Code" in the 🎯 NAC - Outreach Notion DB and logs the open (Access Opens / Last Access / Stage → "👀 Opened"). Assign/regenerate a partner's code from the Command Center cockpit → Outreach → open the prospect → 🔑 Generate code.
 
