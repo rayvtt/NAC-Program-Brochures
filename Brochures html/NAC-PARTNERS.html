@@ -165,8 +165,8 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .tk-feature p{font-size:14px;color:rgba(255,255,255,.75);max-width:660px;line-height:1.65;margin-bottom:16px}
 .tk-sub{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
 .tk-chip{font-size:12px;font-weight:600;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 14px}
-.tk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:680px){.tk-grid{grid-template-columns:1fr}}
+.tk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:900px){.tk-grid{grid-template-columns:1fr}}
 
 /* Page 03 — live snapshots */
 .snap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -345,12 +345,12 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
         </div></div>
         <div class="jstep"><div class="jnum">02</div><div>
           <h3 data-vi="Chọn Chương Trình" data-en="Choose the Program">Chọn Chương Trình</h3>
-          <p data-vi="So điểm 16 chương trình đang mở trên NAC Index theo 6 tiêu chí (đầu tư · tốc độ · chất lượng sống · hộ chiếu · thuế · quốc tịch), đọc brochure phân tích chuyên sâu, rồi đặt hai lựa chọn cuối cạnh nhau." data-en="Score all 16 open programs on the NAC Index across 6 criteria (investment · speed · quality of life · passport · tax · citizenship), read the in-depth brochures, then compare the final two side by side.">So điểm 16 chương trình đang mở trên NAC Index theo 6 tiêu chí (đầu tư · tốc độ · chất lượng sống · hộ chiếu · thuế · quốc tịch), đọc brochure phân tích chuyên sâu, rồi đặt hai lựa chọn cuối cạnh nhau.</p>
-          <div class="jtools"><a class="jtool" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener">📊 NAC Index</a><a class="jtool" href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener">📚 Brochures</a><a class="jtool" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener" data-vi="⚖️ So Sánh" data-en="⚖️ Compare">⚖️ So Sánh</a></div>
+          <p data-vi="So điểm 16 chương trình đang mở trên NAC Index theo 6 tiêu chí (đầu tư · tốc độ · chất lượng sống · hộ chiếu · thuế · quốc tịch), rồi đọc brochure phân tích chuyên sâu của những lựa chọn cuối." data-en="Score all 16 open programs on the NAC Index across 6 criteria (investment · speed · quality of life · passport · tax · citizenship), then read the in-depth brochures for the shortlist.">So điểm 16 chương trình đang mở trên NAC Index theo 6 tiêu chí (đầu tư · tốc độ · chất lượng sống · hộ chiếu · thuế · quốc tịch), rồi đọc brochure phân tích chuyên sâu của những lựa chọn cuối.</p>
+          <div class="jtools"><a class="jtool" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener">📊 NAC Index</a><a class="jtool" href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener">📚 Brochures</a></div>
         </div></div>
         <div class="jstep"><div class="jnum">03</div><div>
           <h3 data-vi="Chọn Tài Sản" data-en="Select the Asset">Chọn Tài Sản</h3>
-          <p data-vi="Lọc bất động sản tuyển chọn trên Property Hub theo yield, IRR, thời gian hoàn vốn và khu vực — mỗi dự án có hồ sơ chi tiết song ngữ với điểm NAC riêng." data-en="Filter curated listings on Property Hub by yield, IRR, payback, and region — every project ships a bilingual deep-dive profile with its own NAC score.">Lọc bất động sản tuyển chọn trên Property Hub theo yield, IRR, thời gian hoàn vốn và khu vực — mỗi dự án có hồ sơ chi tiết song ngữ với điểm NAC riêng.</p>
+          <p data-vi="Lọc bất động sản tuyển chọn trên Property Hub theo yield, IRR, thời gian hoàn vốn — so yield giữa các khu vực, đặt tối đa 8 listings cạnh nhau, và mỗi dự án có hồ sơ chi tiết song ngữ với điểm NAC riêng." data-en="Filter curated listings on Property Hub by yield, IRR, and payback — compare yields across regions, line up to 8 listings side by side, and every project ships a bilingual deep-dive profile with its own NAC score.">Lọc bất động sản tuyển chọn trên Property Hub theo yield, IRR, thời gian hoàn vốn — so yield giữa các khu vực, đặt tối đa 8 listings cạnh nhau, và mỗi dự án có hồ sơ chi tiết song ngữ với điểm NAC riêng.</p>
           <div class="jtools"><a class="jtool" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener">🏠 Property Hub</a></div>
         </div></div>
         <div class="jstep"><div class="jnum">04</div><div>
@@ -372,13 +372,14 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
     <div class="wrap">
       <div style="text-align:center"><span class="pnum-chip">02 / 04</span></div>
       <div class="sec-title" data-vi="Bộ Công Cụ NAC — Đầy Đủ Trong Một Trang" data-en="The NAC Toolkit — All On One Page">Bộ Công Cụ NAC — Đầy Đủ Trong Một Trang</div>
-      <div class="sec-sub" data-vi="Năm công cụ trực tuyến, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng." data-en="Five live tools, synced from a single data source — usable mid-conversation with your client.">Năm công cụ trực tuyến, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng.</div>
+      <div class="sec-sub" data-vi="Bốn công cụ trực tuyến, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng." data-en="Four live tools, synced from a single data source — usable mid-conversation with your client.">Bốn công cụ trực tuyến, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng.</div>
       <div class="tk-feature">
         <div class="tkf-ic">🏠</div>
         <h3>Property Hub</h3>
-        <p data-vi="Danh mục bất động sản tuyển chọn gắn với từng chương trình định cư — dữ liệu tài chính thật của từng dự án, đồng bộ trực tiếp từ hệ thống NAC, kèm bộ công cụ phân tích tích hợp:" data-en="Curated real estate tied to each residency program — real per-project financials synced live from NAC&rsquo;s system, with built-in analysis tools:">Danh mục bất động sản tuyển chọn gắn với từng chương trình định cư — dữ liệu tài chính thật của từng dự án, đồng bộ trực tiếp từ hệ thống NAC, kèm bộ công cụ phân tích tích hợp:</p>
+        <p data-vi="Danh mục bất động sản tuyển chọn gắn với từng chương trình định cư — dữ liệu tài chính thật của từng dự án, đồng bộ trực tiếp từ hệ thống NAC. Hai công cụ so sánh tích hợp: <b>yield theo từng khu vực</b> và <b>so sánh yield tối đa 8 listings cạnh nhau</b> — cùng bộ phân tích đầy đủ:" data-en="Curated real estate tied to each residency program — real per-project financials synced live from NAC&rsquo;s system. Two built-in comparison tools: <b>yield by region</b> and <b>side-by-side yield comparison of up to 8 listings</b> — plus the full analysis kit:">Danh mục bất động sản tuyển chọn gắn với từng chương trình định cư — dữ liệu tài chính thật của từng dự án, đồng bộ trực tiếp từ hệ thống NAC. Hai công cụ so sánh tích hợp: <b>yield theo từng khu vực</b> và <b>so sánh yield tối đa 8 listings cạnh nhau</b> — cùng bộ phân tích đầy đủ:</p>
         <div class="tk-sub">
           <span class="tk-chip" data-vi="📈 Yield theo khu vực" data-en="📈 Yield by region">📈 Yield theo khu vực</span>
+          <span class="tk-chip" data-vi="⚖️ So sánh yield 8 listings" data-en="⚖️ 8-listing yield compare">⚖️ So sánh yield 8 listings</span>
           <span class="tk-chip" data-vi="🏙️ Listings theo thành phố" data-en="🏙️ Listings per city">🏙️ Listings theo thành phố</span>
           <span class="tk-chip" data-vi="💰 IRR &amp; hoàn vốn từng dự án" data-en="💰 IRR &amp; payback per project">💰 IRR &amp; hoàn vốn từng dự án</span>
           <span class="tk-chip" data-vi="⭐ Điểm NAC từng listing" data-en="⭐ NAC score per listing">⭐ Điểm NAC từng listing</span>
@@ -405,12 +406,6 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
           <h3 data-vi="NAC Brochures" data-en="NAC Brochures">NAC Brochures</h3>
           <p data-vi="16 chương trình đang mở — mỗi quốc gia một hồ sơ phân tích đầu tư, thuế, quy trình và lộ trình quốc tịch, song ngữ." data-en="16 open programs — one bilingual dossier per country covering investment, tax, process, and the citizenship path.">16 chương trình đang mở — mỗi quốc gia một hồ sơ phân tích đầu tư, thuế, quy trình và lộ trình quốc tịch, song ngữ.</p>
           <span class="go" data-vi="Xem Brochures →" data-en="View Brochures →">Xem Brochures →</span>
-        </a>
-        <a class="dcard" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener">
-          <div class="dicon">⚖️</div>
-          <h3 data-vi="Công Cụ So Sánh" data-en="Comparison Tool">Công Cụ So Sánh</h3>
-          <p data-vi="Hai chương trình bất kỳ, đặt cạnh nhau — cho khách còn phân vân giữa hai lựa chọn cuối." data-en="Any two programs, side by side — for the client torn between their final two options.">Hai chương trình bất kỳ, đặt cạnh nhau — cho khách còn phân vân giữa hai lựa chọn cuối.</p>
-          <span class="go" data-vi="Mở Công Cụ →" data-en="Open Tool →">Mở Công Cụ →</span>
         </a>
       </div>
     </div>
@@ -445,11 +440,11 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
             <div class="snap-pitch" data-vi="“Mỗi quốc gia một hồ sơ phân tích đầy đủ — đầu tư, thuế, quy trình, lộ trình quốc tịch.”" data-en="“One full dossier per country — investment, tax, process, and the citizenship path.”">“Mỗi quốc gia một hồ sơ phân tích đầy đủ — đầu tư, thuế, quy trình, lộ trình quốc tịch.”</div></div>
         </div>
         <div class="snap">
-          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/so-sanh/" loading="lazy" title="Comparison Tool" tabindex="-1"></iframe>
-            <a class="snap-open" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener"><span data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
-          <div class="snap-cap"><h3 data-vi="⚖️ Công Cụ So Sánh" data-en="⚖️ Comparison Tool">⚖️ Công Cụ So Sánh</h3>
-            <p data-vi="Hai chương trình, một màn hình." data-en="Two programs, one screen.">Hai chương trình, một màn hình.</p>
-            <div class="snap-pitch" data-vi="“Còn phân vân giữa hai chương trình? Đặt cạnh nhau là rõ.”" data-en="“Torn between two programs? Put them side by side and it&rsquo;s clear.”">“Còn phân vân giữa hai chương trình? Đặt cạnh nhau là rõ.”</div></div>
+          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/panama/pullman-panama-city/" loading="lazy" title="Listing deep-dive — Pullman Panama City" tabindex="-1"></iframe>
+            <a class="snap-open" href="https://nomadassetcollective.com/property-hub-bat-dong-san/panama/pullman-panama-city/" target="_blank" rel="noopener"><span data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
+          <div class="snap-cap"><h3 data-vi="🗂️ Hồ Sơ Chi Tiết Listing" data-en="🗂️ Listing Deep-Dive">🗂️ Hồ Sơ Chi Tiết Listing</h3>
+            <p data-vi="Ví dụ trực tiếp: Pullman Panama City — điểm NAC, IRR, payback, quy trình pháp lý, từng mục một." data-en="Live example: Pullman Panama City — NAC score, IRR, payback, and the legal process, section by section.">Ví dụ trực tiếp: Pullman Panama City — điểm NAC, IRR, payback, quy trình pháp lý, từng mục một.</p>
+            <div class="snap-pitch" data-vi="“Đây là hồ sơ của một dự án cụ thể — anh/chị xem được từng con số và từng bước pháp lý trước khi quyết định.”" data-en="“This is one specific project&rsquo;s dossier — you can see every number and every legal step before deciding.”">“Đây là hồ sơ của một dự án cụ thể — anh/chị xem được từng con số và từng bước pháp lý trước khi quyết định.”</div></div>
         </div>
         <div class="snap">
           <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/" loading="lazy" title="Property Hub" tabindex="-1"></iframe>
@@ -622,6 +617,20 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
     // spares locked-out visitors five full page loads.
     document.querySelectorAll('iframe[data-src]').forEach(function(f){ if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); });
   }
+  // The framed pages are same-origin on the live site, so we can strip WordPress chrome that only
+  // a logged-in admin ever sees (the black wpadminbar) — a partner demoing to a client must never
+  // show admin UI. Cross-origin contexts (e.g. the GitHub Pages preview) throw and are skipped.
+  function deWpChrome(f){
+    try {
+      var d = f.contentDocument; if (!d || !d.head) return;
+      var s = d.createElement('style');
+      s.textContent = '#wpadminbar{display:none!important} html{margin-top:0!important} html.wp-toolbar{padding-top:0!important}';
+      d.head.appendChild(s);
+    } catch(e) {}
+  }
+  document.querySelectorAll('iframe[data-src]').forEach(function(f){
+    f.addEventListener('load', function(){ deWpChrome(f); });
+  });
   function verify(code, onFail){
     return fetch(WORKER_URL + '/partner-access', {
       method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({code: code})
