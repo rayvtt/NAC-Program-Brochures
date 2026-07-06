@@ -617,7 +617,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
   function unlock(){
     document.getElementById('gate').style.display='none';
     document.getElementById('siteNav').style.display='';
-    document.getElementById('nacMain').style.display='';
+    document.getElementById('nacMain').style.display='block'; // must be explicit — the stylesheet's #nacMain{display:none} wins again if the inline style is merely cleared
     // Hydrate the live tool snapshots only after entry — keeps the gate instant and
     // spares locked-out visitors five full page loads.
     document.querySelectorAll('iframe[data-src]').forEach(function(f){ if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); });
