@@ -73,6 +73,9 @@ BROCHURES = {
     # omitted — those tool pages are NOT managed by this repo. They live in
     # WordPress directly. Re-adding them here would overwrite WP-side edits
     # on every CI deploy.
+    # 'partners': gated partner pitch-deck (code-entry gate → 🎯 NAC - Outreach via the
+    # command-center Worker's /partner-access).
+    'partners':    ('NAC-PARTNERS.html',              2493, 'doi-tac-partner-gateway'),
 }
 
 # ── Color helpers ──────────────────────────────────────────────────────
