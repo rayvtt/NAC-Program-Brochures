@@ -66,6 +66,10 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .gate-wa{display:inline-flex;align-items:center;gap:8px;color:#fff;text-decoration:none;font-size:12.5px;font-weight:600;background:rgba(37,211,102,.16);border:1px solid rgba(37,211,102,.4);border-radius:10px;padding:9px 16px}
 .gate-wa svg{width:16px;height:16px;flex-shrink:0}
 .gate-hint{margin-top:16px;font-size:11px;color:rgba(255,255,255,.4)}
+.gate-or{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:12px}
+.gate-input.email{text-transform:none;letter-spacing:normal;font-family:'Be Vietnam Pro',sans-serif;font-weight:600;font-size:15px}
+.gate-code-reveal{margin-top:10px;font-size:14px;font-weight:700;letter-spacing:1px;color:#eafff0;background:rgba(37,211,102,.18);border:1px solid rgba(37,211,102,.4);border-radius:9px;padding:10px 12px;display:none;font-family:'Be Vietnam Pro',monospace}
+.gate-code-reveal.show{display:block}
 .gate-langs{display:flex;justify-content:center;gap:6px;margin-bottom:20px}
 .gate-lang-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:4px 12px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.5px;cursor:pointer;font-family:inherit}
 .gate-lang-btn.on{background:#fff;color:var(--blue)}
@@ -192,6 +196,14 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
       <input class="gate-input" id="gateCode" type="text" placeholder="XXXX-XXXX" maxlength="20" inputmode="text" autocapitalize="characters" required>
       <button class="gate-btn" id="gateBtn" type="submit" data-vi="Mở Khóa →" data-en="Unlock →">Mở Khóa →</button>
       <div class="gate-err" id="gateErr"></div>
+    </form>
+    <div class="gate-div"></div>
+    <div class="gate-or" data-vi="Đối tác mới? Nhận mã ngay bằng email" data-en="New partner? Get instant access by email">Đối tác mới? Nhận mã ngay bằng email</div>
+    <form id="gateEmailForm" autocomplete="off">
+      <input class="gate-input email" id="gateEmail" type="email" placeholder="ban@congty.com" required>
+      <button class="gate-btn" id="gateEmailBtn" type="submit" data-vi="Nhận Mã Ngay →" data-en="Get My Code →">Nhận Mã Ngay →</button>
+      <div class="gate-err" id="gateEmailErr"></div>
+      <div class="gate-code-reveal" id="gateCodeReveal"></div>
     </form>
     <div class="gate-div"></div>
     <a class="gate-wa" id="gateWa" href="https://wa.me/447388646000?text=Xin%20ch%C3%A0o%20NAC%2C%20t%C3%B4i%20mu%E1%BB%91n%20t%C3%ACm%20hi%E1%BB%83u%20ch%C6%B0%C6%A1ng%20tr%C3%ACnh%20%C4%91%E1%BB%91i%20t%C3%A1c." target="_blank" rel="noopener">
@@ -480,6 +492,46 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
         : (lang==='en' ? 'Incorrect code. Check with your NAC contact, or message us on WhatsApp.' : 'Mã không đúng. Vui lòng kiểm tra lại với đầu mối NAC, hoặc nhắn WhatsApp.');
       err.classList.add('show');
     }).then(function(ok){ if (ok) btn.disabled = false; });
+  });
+
+  // Self-serve: visitor enters their work email instead of a code. The Worker finds-or-creates
+  // their Outreach row, assigns a code if they don't have one yet, and hands it straight back —
+  // shown briefly here, saved to localStorage, then the gate unlocks the same as a typed code.
+  function looksLikeEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(s||'').trim()); }
+  document.getElementById('gateEmailForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var input = document.getElementById('gateEmail');
+    var btn = document.getElementById('gateEmailBtn');
+    var err = document.getElementById('gateEmailErr');
+    var reveal = document.getElementById('gateCodeReveal');
+    var email = String(input.value||'').trim();
+    var lang = document.documentElement.lang === 'en' ? 'en' : 'vi';
+    err.classList.remove('show'); reveal.classList.remove('show');
+    if (!looksLikeEmail(email)){
+      err.textContent = lang==='en' ? 'Enter a valid email address.' : 'Vui lòng nhập email hợp lệ.';
+      err.classList.add('show');
+      return;
+    }
+    btn.disabled = true;
+    fetch(WORKER_URL + '/partner-access', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({email: email})
+    }).then(function(r){ return r.json().then(function(d){ return {status:r.status, data:d}; }); })
+      .then(function(res){
+        if (res.status === 200 && res.data && res.data.ok && res.data.code){
+          try{ localStorage.setItem(LS_KEY, res.data.code); }catch(e){}
+          reveal.textContent = (lang==='en' ? 'Your code: ' : 'Mã của bạn: ') + res.data.code;
+          reveal.classList.add('show');
+          setTimeout(unlock, 1400);
+          return;
+        }
+        btn.disabled = false;
+        err.textContent = lang==='en' ? 'Something went wrong — please try again or message us on WhatsApp.' : 'Có lỗi xảy ra — vui lòng thử lại hoặc nhắn WhatsApp cho NAC.';
+        err.classList.add('show');
+      }).catch(function(){
+        btn.disabled = false;
+        err.textContent = lang==='en' ? 'Connection issue — please try again or message us on WhatsApp.' : 'Lỗi kết nối — vui lòng thử lại hoặc nhắn WhatsApp cho NAC.';
+        err.classList.add('show');
+      });
   });
 
   // ===== init =====
