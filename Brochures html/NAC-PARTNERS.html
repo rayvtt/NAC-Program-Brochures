@@ -616,6 +616,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
     document.documentElement.lang = lang;
     try{ localStorage.setItem('nac-partner-lang', lang); }catch(e){}
     document.querySelectorAll('.snap-frame iframe').forEach(applyFrameLang);
+    if (typeof nacTwemoji === 'function') nacTwemoji();
   }
   window.setLang = setLang;
 
@@ -788,5 +789,18 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
   }
 })();
 </script>
+
+<!-- Twemoji: render flag emojis as images on platforms that show country codes
+     (Windows, some Android). Same pattern as the 16 brochures (PR #127).
+     Re-run after each language toggle because the walker rewrites text nodes. -->
+<script src="https://cdn.jsdelivr.net/npm/twemoji@14.0.2/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script>
+function nacTwemoji(){ if (typeof twemoji !== 'undefined') twemoji.parse(document.body, {folder:'svg', ext:'.svg', className:'twemoji-flag'}); }
+nacTwemoji();
+</script>
+<style>
+img.twemoji-flag{height:1em;width:1em;vertical-align:-0.1em;display:inline-block}
+.cflag img.twemoji-flag{height:26px;width:26px;vertical-align:baseline}
+</style>
 </body>
 </html>
