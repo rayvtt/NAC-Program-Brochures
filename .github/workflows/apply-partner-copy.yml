@@ -1,0 +1,54 @@
+name: Apply Partner Gateway Copy Edit
+
+# Receives copy edits from the Partner Gateway in-page editor (open the
+# live page with ?edit=1, click text to edit, Publish). The editor
+# dispatches this workflow with a JSON map of changed keys; the script
+# patches the data-vi/data-en attributes in NAC-PARTNERS.html and the
+# commit to main triggers wp-sync.yml which pushes the page to WordPress
+# (page 2493, alias `partners`). End-to-end latency ~2 minutes.
+
+on:
+  workflow_dispatch:
+    inputs:
+      changes:
+        description: 'JSON map of copy changes, e.g. {"pg-a788c2":{"vi":"…","en":"…"}}'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+# Publishes queue one after another — parallel runs would race each
+# other's git push and could drop an edit.
+concurrency:
+  group: partner-copy-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Apply changes to the HTML
+        env:
+          CHANGES: ${{ inputs.changes }}
+        run: python tools/apply_partner_copy.py
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet "Brochures html/NAC-PARTNERS.html"; then
+            echo "No effective changes."
+            exit 0
+          fi
+          git config user.name "nac-copy-editor"
+          git config user.email "actions@github.com"
+          git add "Brochures html/NAC-PARTNERS.html" PARTNER-COPY-LOG.md
+          git commit -m "content: partner gateway copy edit via in-page editor"
+          git push
