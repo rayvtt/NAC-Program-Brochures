@@ -368,8 +368,8 @@
     </a>
     <div class="hdr-r">
       <div class="lang-tgl">
-        <button class="lang-btn on" id="bVI" onclick="setLang('vi')">VI</button>
-        <button class="lang-btn" id="bEN" onclick="setLang('en')">EN</button>
+        <button class="lang-btn on" id="bVI" data-nac-act="setLang" data-nac-arg="vi">VI</button>
+        <button class="lang-btn" id="bEN" data-nac-act="setLang" data-nac-arg="en">EN</button>
       </div>
       <a class="cta-hdr" id="ctaTop" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank"><svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="#fff" stroke-width="0.9" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M14 9.5A6 6 0 0 0 2 6c0 1.5.55 2.9 1.5 4L2 13l3.5-1A6 6 0 0 0 14 9.5z"/></svg> Tư Vấn Ngay</a>
     </div>
@@ -387,9 +387,9 @@
       <div><div class="snum">12</div><div class="slbl" data-vi="Tiêu chí" data-en="Criteria">Tiêu chí</div></div>
       <div><div class="snum">2025</div><div class="slbl" data-vi="Cập nhật" data-en="Updated">Cập nhật</div></div>
 
-    <button class="quiz-trigger" onclick="qzOpen()">
+    <button class="quiz-trigger" data-nac-act="qzOpen">
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 1.5l5.5 2.5v4c0 3-2.5 5.5-5.5 6.5C5 13.5 2.5 11 2.5 8V4L8 1.5z"/><path d="M5.5 8l1.5 1.5 3-3"/></svg>
-      <span id="qzTrigTxt">🎯 Tìm chương trình phù hợp với tôi — 3 câu hỏi</span>
+      <span id="qzTrigTxt" data-vi="🎯 Tìm chương trình phù hợp với tôi — 3 câu hỏi" data-en="🎯 Find my matching program — 3 questions">🎯 Tìm chương trình phù hợp với tôi — 3 câu hỏi</span>
     </button>
     </div>
   </div>
@@ -403,22 +403,22 @@
 <div class="fsec">
   <div class="frow">
     <span class="flbl" id="flbl">Lọc:</span>
-    <button class="chip on" data-f="all" onclick="sf('all')"><span data-vi="Tất cả" data-en="All">Tất cả</span></button>
-    <button class="chip" data-f="europe" onclick="sf('europe')"><span data-vi="Châu Âu" data-en="Europe">Châu Âu</span></button>
-    <button class="chip" data-f="americas" onclick="sf('americas')"><span data-vi="Châu Mỹ" data-en="Americas">Châu Mỹ</span></button>
-    <button class="chip" data-f="asia" onclick="sf('asia')"><span data-vi="Châu Á" data-en="Asia">Châu Á</span></button>
-    <button class="chip" data-f="mideast" onclick="sf('mideast')"><span data-vi="Trung Đông" data-en="Middle East">Trung Đông</span></button>
-    <button class="chip" data-f="carib" onclick="sf('carib')"><span data-vi="Caribê" data-en="Caribbean">Caribê</span></button>
-<button class="chip" data-f="pacific" onclick="sf('pacific')"><span data-vi="Thái Bình Dương" data-en="Pacific">Thái Bình Dương</span></button>
-    <button class="chip" data-f="low" onclick="sf('low')"><span data-vi="Dưới $300K" data-en="Under $300K">Dưới $300K</span></button>
-    <button class="chip" data-f="cpath" onclick="sf('cpath')"><span data-vi="Lộ trình QT" data-en="Citizenship path">Lộ trình QT</span></button>
+    <button class="chip on" data-f="all" data-nac-act="sf" data-nac-arg="all"><span data-vi="Tất cả" data-en="All">Tất cả</span></button>
+    <button class="chip" data-f="europe" data-nac-act="sf" data-nac-arg="europe"><span data-vi="Châu Âu" data-en="Europe">Châu Âu</span></button>
+    <button class="chip" data-f="americas" data-nac-act="sf" data-nac-arg="americas"><span data-vi="Châu Mỹ" data-en="Americas">Châu Mỹ</span></button>
+    <button class="chip" data-f="asia" data-nac-act="sf" data-nac-arg="asia"><span data-vi="Châu Á" data-en="Asia">Châu Á</span></button>
+    <button class="chip" data-f="mideast" data-nac-act="sf" data-nac-arg="mideast"><span data-vi="Trung Đông" data-en="Middle East">Trung Đông</span></button>
+    <button class="chip" data-f="carib" data-nac-act="sf" data-nac-arg="carib"><span data-vi="Caribê" data-en="Caribbean">Caribê</span></button>
+<button class="chip" data-f="pacific" data-nac-act="sf" data-nac-arg="pacific"><span data-vi="Thái Bình Dương" data-en="Pacific">Thái Bình Dương</span></button>
+    <button class="chip" data-f="low" data-nac-act="sf" data-nac-arg="low"><span data-vi="Dưới $300K" data-en="Under $300K">Dưới $300K</span></button>
+    <button class="chip" data-f="cpath" data-nac-act="sf" data-nac-arg="cpath"><span data-vi="Lộ trình QT" data-en="Citizenship path">Lộ trình QT</span></button>
   </div>
 </div>
 
 <div class="twrap">
   <div class="tmeta">
     <div class="tmeta-t"><strong id="shn">16</strong> <span data-vi="chương trình" data-en="programs">chương trình</span></div>
-    <select class="ssel" id="ssel" onchange="ss(this.value)">
+    <select class="ssel" id="ssel" >
       <option value="score">Xếp theo điểm</option>
       <option value="invest">Vốn thấp nhất</option>
       <option value="speed">Nhanh nhất</option>
@@ -428,9 +428,9 @@
     <thead><tr>
       <th style="width:40px">#</th>
       <th data-vi="Quốc gia" data-en="Country">Quốc gia</th>
-      <th data-vi="Điểm NAC ↕" data-en="NAC Score ↕" onclick="ss('score')">Điểm NAC ↕</th>
-      <th data-vi="Đầu tư ↕" data-en="Investment ↕" onclick="ss('invest')">Đầu tư ↕</th>
-      <th data-vi="Thời gian ↕" data-en="Timeline ↕" onclick="ss('speed')">Thời gian ↕</th>
+      <th data-vi="Điểm NAC ↕" data-en="NAC Score ↕" data-nac-act="ss" data-nac-arg="score">Điểm NAC ↕</th>
+      <th data-vi="Đầu tư ↕" data-en="Investment ↕" data-nac-act="ss" data-nac-arg="invest">Đầu tư ↕</th>
+      <th data-vi="Thời gian ↕" data-en="Timeline ↕" data-nac-act="ss" data-nac-arg="speed">Thời gian ↕</th>
       <th>🛂 Visa-free</th>
       <th data-vi="Loại" data-en="Type">Loại</th>
       <th data-vi="Tiêu chí" data-en="Criteria">Tiêu chí</th>
@@ -440,9 +440,9 @@
   <div class="mlist" id="mlist"></div>
 </div>
 
-<div class="ovl" id="ovl" onclick="cpClose(event)">
+<div class="ovl" id="ovl" data-nac-act="cpCloseEv">
   <div class="panel" id="panel">
-    <div class="pclose" onclick="cpBtn()">✕</div>
+    <div class="pclose" data-nac-act="cpBtn">✕</div>
     <div id="pbody"></div>
   </div>
 </div>
@@ -849,7 +849,7 @@ renderK();renderT();
 </script>
 
 <!-- NAC CONTACT MODAL -->
-<div class="m-ovl" id="mOvl" onclick="if(event.target===this)mCloseBtn()">
+<div class="m-ovl" id="mOvl" data-nac-act="mCloseSelf">
   <div class="m-box">
     <div class="m-head">
       <div class="m-head-top">
@@ -857,11 +857,11 @@ renderK();renderT();
           <div class="m-title" id="mTitle">Tư vấn định cư</div>
           <div class="m-prog-lbl">Nomad Asset Collective &middot; Miễn phí</div>
         </div>
-        <button class="m-close" onclick="mCloseBtn()">&times;</button>
+        <button class="m-close" data-nac-act="mClose">&times;</button>
       </div>
     </div>
     <div class="m-body">
-      <form id="mForm" onsubmit="mSubmit(event)">
+      <form id="mForm" >
         <div class="m-row">
           <div class="m-grp">
             <label class="m-lbl" id="lName">Họ và tên *</label>
@@ -1440,7 +1440,7 @@ function mSuccess(name,email,phone,l){
 <!-- ══════════════════════════════════════════════════════════
      QUIZ MODAL
 ══════════════════════════════════════════════════════════ -->
-<div class="qz-ovl" id="qzOvl" onclick="if(event.target===this)qzClose()">
+<div class="qz-ovl" id="qzOvl" data-nac-act="qzCloseSelf">
   <div class="qz-box" id="qzBox">
 
     <!-- STEP 1-3: Quiz questions -->
@@ -1453,13 +1453,13 @@ function mSuccess(name,email,phone,l){
         </div>
         <div class="qz-title" id="qzQTitle">Mục tiêu chính của bạn là gì?</div>
         <div class="qz-sub" id="qzQSub">Bước 1 / 3 · Chọn tất cả phù hợp</div>
-        <button class="qz-close" onclick="qzClose()">×</button>
+        <button class="qz-close" data-nac-act="qzClose">×</button>
       </div>
       <div class="qz-body">
         <div class="qz-opts" id="qzOpts"></div>
         <div class="qz-nav">
-          <button class="qz-back" id="qzBackBtn" onclick="qzBack()" style="display:none">← Quay lại</button>
-          <button class="qz-next" id="qzNextBtn" onclick="qzNext()" disabled>Tiếp theo →</button>
+          <button class="qz-back" id="qzBackBtn" data-nac-act="qzBack" style="display:none">← Quay lại</button>
+          <button class="qz-next" id="qzNextBtn" data-nac-act="qzNext" disabled>Tiếp theo →</button>
         </div>
       </div>
     </div>
@@ -1480,7 +1480,7 @@ function mSuccess(name,email,phone,l){
         <div class="qz-share-hd" id="qzShareHd">📣 CHIA SẺ KẾT QUẢ CỦA BẠN</div>
         <div class="qz-share-row" id="qzShareRow"></div>
         <div class="qz-apply-row">
-          <button class="qz-apply-btn" onclick="qzApplyToIndex()">
+          <button class="qz-apply-btn" data-nac-act="qzApply">
             <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 8h12M8 3l5 5-5 5"/></svg>
             <span id="qzApplyTxt">Áp dụng tiêu chí vào bảng xếp hạng đầy đủ</span>
           </button>
@@ -1492,7 +1492,7 @@ function mSuccess(name,email,phone,l){
 </div>
 
 <!-- HOW TO USE floating pill -->
-<div class="how-pill" id="howPill" onclick="qzOpen()">
+<div class="how-pill" id="howPill" data-nac-act="qzOpen">
   <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="6.5"/><path d="M8 11v-3"/><circle cx="8" cy="5.5" r=".8" fill="currentColor" stroke="none"/></svg>
   <span id="howPillTxt">🎯 Tìm chương trình phù hợp với tôi</span>
 </div>
@@ -1877,5 +1877,37 @@ img.twemoji-flag { height: 1em; width: 1em; vertical-align: -0.1em; display: inl
 .card-flag img.twemoji-flag { height: 28px; width: 28px; vertical-align: baseline; }
 </style>
 
+<script>
+/* KSES-safe event wiring — WP strips inline on* attributes when this page is
+   saved via the REST ACF field, so every static handler is bound here instead.
+   Runtime-injected handlers (inside template strings) are unaffected by KSES. */
+(function(){
+  var ACT = {
+    setLang:    function(el, a){ setLang(a); },
+    qzOpen:     function(){ qzOpen(); },
+    sf:         function(el, a){ sf(a); },
+    ss:         function(el, a){ ss(a); },
+    cpBtn:      function(){ cpBtn(); },
+    cpCloseEv:  function(el, a, ev){ cpClose(ev); },
+    mClose:     function(){ mCloseBtn(); },
+    mCloseSelf: function(el, a, ev){ if(ev.target === el) mCloseBtn(); },
+    qzClose:    function(){ qzClose(); },
+    qzCloseSelf:function(el, a, ev){ if(ev.target === el) qzClose(); },
+    qzBack:     function(){ qzBack(); },
+    qzNext:     function(){ qzNext(); },
+    qzApply:    function(){ qzApplyToIndex(); }
+  };
+  document.addEventListener('click', function(ev){
+    var el = ev.target && ev.target.closest ? ev.target.closest('[data-nac-act]') : null;
+    if(!el) return;
+    var fn = ACT[el.getAttribute('data-nac-act')];
+    if(fn) fn(el, el.getAttribute('data-nac-arg'), ev);
+  });
+  var sel = document.getElementById('ssel');
+  if(sel) sel.addEventListener('change', function(){ ss(this.value); });
+  var mf = document.getElementById('mForm');
+  if(mf) mf.addEventListener('submit', function(e){ mSubmit(e); });
+})();
+</script>
 </body>
 </html>
