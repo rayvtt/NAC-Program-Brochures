@@ -184,6 +184,21 @@ html[lang="en"] .pg-vi-only{display:none}
 .pgpick-tile{display:flex;align-items:center;gap:11px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;transition:border-color .13s,background .13s}
 .pgpick-tile:hover{border-color:var(--orange);background:var(--bg2)}
 .pgpick-flag{font-size:22px;line-height:1;flex-shrink:0}
+/* Founder IMC certificate — subtle footer showcase + lightbox */
+.nf-cert{display:inline-flex;align-items:center;gap:13px;margin-top:18px;background:none;border:none;padding:0;cursor:pointer;text-align:left;font-family:inherit}
+.nf-cert-frame{flex-shrink:0;width:48px;height:66px;border-radius:4px;overflow:hidden;border:1px solid var(--border);box-shadow:0 3px 10px rgba(15,26,54,.12);background:#fff;transition:transform .18s,box-shadow .18s}
+.nf-cert:hover .nf-cert-frame{transform:translateY(-2px);box-shadow:0 8px 20px rgba(24,0,173,.16)}
+.nf-cert-frame img{width:100%;height:100%;object-fit:cover;object-position:top;display:block}
+.nf-cert-meta{display:flex;flex-direction:column;gap:1px}
+.nf-cert-t{font-size:12.5px;font-weight:700;color:var(--text)}
+.nf-cert-s{font-size:11.5px;color:var(--text3);line-height:1.42}
+.nf-cert-v{font-size:11.5px;font-weight:600;color:var(--blue);margin-top:2px}
+.nf-cert:hover .nf-cert-v{color:var(--orange)}
+.pg-certlb{position:fixed;inset:0;z-index:96;background:rgba(10,8,34,.86);display:none;align-items:center;justify-content:center;padding:28px}
+.pg-certlb.open{display:flex}
+.pg-certlb img{max-width:min(560px,92vw);max-height:90vh;width:auto;height:auto;border-radius:6px;box-shadow:0 30px 80px rgba(0,0,0,.5);background:#fff}
+.pg-certlb-x{position:absolute;top:18px;right:20px;width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:16px;cursor:pointer}
+.pg-certlb-x:hover{background:rgba(255,255,255,.24)}
 
 /* Page 03 — live snapshots */
 .snap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -755,6 +770,7 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
             </div>
           </div>
         </div>
+        <button class="nf-cert" type="button" data-pg-cert aria-label="View founder IMC certificate"><span class="nf-cert-frame"><img src="https://rayvtt.github.io/NAC-Program-Brochures/assets/ray-imc-cert.jpg" alt="IMC Certification in Investment Migration — Thanh Tu (Ray) Vu" loading="lazy"></span><span class="nf-cert-meta"><span class="nf-cert-t" data-copy="pg-cert-t" data-vi="Nhà sáng lập Ray Vũ" data-en="Founder — Ray Vũ">Nhà sáng lập Ray Vũ</span><span class="nf-cert-s" data-copy="pg-cert-s" data-vi="Chứng nhận IMC về Đầu tư Định cư · Geneva 2026" data-en="IMC-Certified in Investment Migration · Geneva 2026">Chứng nhận IMC về Đầu tư Định cư · Geneva 2026</span><span class="nf-cert-v" data-copy="pg-cert-v" data-vi="Xem chứng chỉ →" data-en="View certificate →">Xem chứng chỉ →</span></span></button>
         <p class="nf-contact-line" data-copy="pg-03b79a" data-vi="Liên hệ NAC qua email, WhatsApp hoặc gặp trực tiếp tại văn phòng Quận 1 &amp; Quận 2, TP.HCM." data-en="Reach NAC by email, WhatsApp, or in person at our Q1 &amp; Q2 offices in HCMC.">Liên hệ NAC qua email, WhatsApp hoặc gặp trực tiếp tại văn phòng Quận 1 &amp; Quận 2, TP.HCM.</p>
         <div class="nf-socials">
           <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -853,6 +869,8 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
       </div>
     </div>
   </div>
+
+  <div class="pg-certlb" id="pgCertLb" role="dialog" aria-modal="true" aria-label="IMC Certificate — Ray Vu"><button class="pg-certlb-x" type="button" aria-label="Đóng">✕</button><img src="https://rayvtt.github.io/NAC-Program-Brochures/assets/ray-imc-cert.jpg" alt="IMC Certification in Investment Migration — Thanh Tu (Ray) Vu, Geneva 2026" loading="lazy"></div>
 </div><!-- /#nacMain -->
 
 <!-- Co-branded client pack — print-only; filled by pgEnrich just before window.print() -->
@@ -1364,6 +1382,21 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
     if (trig){ e.preventDefault(); set(true); return; }
     if (e.target === scrim || (e.target.closest && e.target.closest('.pgpick-x'))){ set(false); return; }
     if (e.target.closest && e.target.closest('.pgpick-tile')){ set(false); }
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
+})();
+</script>
+
+
+<script>
+/* ===== Founder IMC certificate lightbox ===== */
+(function(){
+  var lb = document.getElementById('pgCertLb');
+  if (!lb) return;
+  function set(v){ lb.classList.toggle('open', v); }
+  document.addEventListener('click', function(e){
+    if (e.target.closest && e.target.closest('[data-pg-cert]')){ e.preventDefault(); set(true); return; }
+    if (e.target === lb || (e.target.closest && e.target.closest('.pg-certlb-x'))){ set(false); }
   });
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
 })();
