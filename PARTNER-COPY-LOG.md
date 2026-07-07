@@ -12,3 +12,9 @@ The Complete NAC Journey”
 - `pg-2b04bc` EN: “Live captures of the running site — not mockups. Each tool comes with a one-line pitch to use with your client; click to open full-screen.” → “Live demo of NAC tools.
  Each tool comes with a one-line pitch to use with your client; 
 click to open full-screen.”
+
+## 2026-07-07 18:45 UTC · in-page editor
+
+- `pg-bc6829` EN: ““One full dossier per country — investment, tax, process, and the citizenship path.”” → ““One full dossier per country — investment, dependants, tax, process, and the citizenship path.””
+- `pg-43f926` EN: ““This is one specific project&rsquo;s dossier — you can see every number and every legal step before deciding.”” → ““Listing details — you can see every number and every legal step before deciding.””
+- `pg-98f9f5` EN: ““Every project here carries real yield, IRR, and payback figures — choose on numbers, not gut feel.”” → ““Every project here carries real yield, IRR, and payback figures — explore the regional yield (updated weekly) also"”
