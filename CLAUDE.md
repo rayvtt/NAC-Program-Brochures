@@ -386,6 +386,15 @@ The jsdom simulator's `VN_UNIQUE` regex used to match only "uniquely Vietnamese"
 
 ---
 
+## 8b. Partner Gateway in-page copy editor (?edit=1)
+
+`Brochures html/NAC-PARTNERS.html` (WP page 2493, `/brochures/doi-tac-partner-gateway/`) carries the same UX/UI copy-edit module as the Homepage V2 (`NAC---Property-Hub`):
+
+- Every bilingual element has a stable `data-copy="pg-<sha1(vi)[:6]>"` key (108 editable). Open the live page with **`?edit=1`** → click text to edit (the VI/EN toggle switches which language you're editing) → **Publish**.
+- Publish dispatches `.github/workflows/apply-partner-copy.yml` via the GitHub API with a fine-grained PAT (localStorage key `nac_gh_token`, **shared with the homepage editor**; the PAT's Repository access must include `NAC-Program-Brochures` with Actions: Read and write, or Publish 404s).
+- The workflow runs `tools/apply_partner_copy.py` — patches `data-vi`/`data-en` by key, appends the `PARTNER-COPY-LOG.md` ledger, prepends the inline `<script id="copyLog">` JSON block (cap 40, powers the 📜 history panel). Commit to `main` → `wp-sync.yml` → live in ~2 min.
+- WP-safety: no inline handlers, no `\"` in scripts; the copyLog JSON escapes the `<` character as its unicode escape (u003c) so it can't close the script block. Keep parity check #15 green after any editor change.
+
 ## 9. Linked docs
 
 - [`TURKEY-TEMPLATE.md`](./TURKEY-TEMPLATE.md) — canonical design reference (component inventory + replication checklist)
