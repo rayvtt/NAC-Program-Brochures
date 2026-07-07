@@ -139,7 +139,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .pnum-chip{display:inline-block;font-family:'Playfair Display',serif;font-weight:700;font-size:13px;color:#fff;background:var(--blue);border-radius:999px;padding:5px 16px;letter-spacing:2.5px;margin-bottom:14px}
 .hero-stats{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;margin:28px 0 32px}
 .hstat{text-align:center;min-width:88px}
-.hstat b{display:block;font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;line-height:1;margin-bottom:5px}
+.hstat b{display:flex;align-items:center;justify-content:center;height:40px;font-family:'Playfair Display',serif;font-size:36px;font-weight:700;color:#fff;line-height:1;margin-bottom:5px}
 .hstat span{font-size:11px;color:rgba(255,255,255,.6);letter-spacing:.6px;text-transform:uppercase;font-weight:600}
 
 /* Page 01 — journey timeline */
@@ -274,8 +274,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .hero-ctas{animation:heroUp .75s .92s cubic-bezier(.2,.7,.3,1) both}
 .logo-mark{perspective:520px}
 .logo-mark img{animation:coinSpin 9s ease-in-out 1.6s infinite}
-.hstat-imc{width:38px;height:38px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;box-shadow:0 0 0 2px rgba(255,255,255,.25);animation:coinSpin 9s ease-in-out 2.4s infinite}
-.hstat b .hstat-imc{margin-bottom:0}
+.hstat-imc{width:38px;height:38px;border-radius:50%;object-fit:cover;display:block;flex-shrink:0;box-shadow:0 0 0 2px rgba(255,255,255,.25);animation:coinSpin 9s ease-in-out 2.4s infinite}
 @media(prefers-reduced-motion:reduce){.hero-orb,.logo-mark img,.hstat-imc,.hero .hero-eyebrow,.hero h1,.hero p,.hero-stats .hstat,.hero-ctas{animation:none!important}}
 </style>
 </head>
