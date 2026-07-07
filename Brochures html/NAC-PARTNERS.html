@@ -167,6 +167,9 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .tk-chip{font-size:12px;font-weight:600;color:#fff;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:6px 14px}
 .tk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
 @media(max-width:900px){.tk-grid{grid-template-columns:1fr}}
+/* Vietnamese-partner-only tool — badge + hide when the deck is toggled to EN */
+.pg-vionly-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--orange);background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.32);border-radius:999px;padding:2px 9px;vertical-align:middle;margin-left:7px;white-space:nowrap}
+html[lang="en"] .pg-vi-only{display:none}
 
 /* Page 03 — live snapshots */
 .snap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -491,7 +494,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
     <div class="wrap">
       <div style="text-align:center"><span class="pnum-chip">02 / 05</span></div>
       <div class="sec-title" data-copy="pg-92c009" data-vi="Bộ Công Cụ NAC — Tất Cả Trong Một Trang" data-en="The NAC Toolkit — All On One Page">Bộ Công Cụ NAC — Tất Cả Trong Một Trang</div>
-      <div class="sec-sub" data-copy="pg-f4a619" data-vi="Năm công cụ trực tuyến, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng." data-en="Five live tools, synced from a single data source — usable mid-conversation with your client.">Năm công cụ trực tuyến, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng.</div>
+      <div class="sec-sub" data-copy="pg-f4a619" data-vi="Bộ công cụ trực tuyến đầy đủ, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng." data-en="A complete suite of live tools, synced from a single data source — usable mid-conversation with your client.">Bộ công cụ trực tuyến đầy đủ, đồng bộ từ một nguồn dữ liệu duy nhất — dùng ngay trong buổi tư vấn với khách hàng.</div>
       <div class="tk-feature">
         <div class="tkf-ic"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M3 21h18M5 21V8l7-5 7 5v13M9.5 21v-5h5v5'/></svg></div>
         <h3>Property Hub</h3>
@@ -531,6 +534,18 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
           <h3 data-copy="pg-87d4b3" data-vi="The NAC Times (Blog)" data-en="The NAC Times (Blog)">The NAC Times (Blog)</h3>
           <p data-copy="pg-b672d4" data-vi="Phân tích độc quyền, góc nhìn chuyên môn, tin tức thị trường và cập nhật chương trình — nguồn nội dung để bạn chia sẻ định kỳ với khách hàng." data-en="Exclusive analysis, expert perspectives, market news and program updates — a content source you can share with clients on a regular basis.">Phân tích độc quyền, góc nhìn chuyên môn, tin tức thị trường và cập nhật chương trình — nguồn nội dung để bạn chia sẻ định kỳ với khách hàng.</p>
           <span class="go" data-copy="pg-310812" data-vi="Đọc blog →" data-en="Read the blog →">Đọc blog →</span>
+        </a>
+        <a class="dcard" href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" target="_blank" rel="noopener">
+          <div class="dicon"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18'/></svg></div>
+          <h3 data-copy="pg-mb-h" data-vi="Country Market Brief" data-en="Country Market Brief">Country Market Brief</h3>
+          <p data-copy="pg-mb-p" data-vi="Tổng quan thị trường từng quốc gia — chính sách, giá, lợi suất và các dự án tiêu biểu, cập nhật trực tiếp từ hệ thống NAC. Mỗi quốc gia một trang riêng." data-en="A per-country market brief — policy, pricing, yields and flagship projects, updated live from NAC&rsquo;s system. One page per country.">Tổng quan thị trường từng quốc gia — chính sách, giá, lợi suất và các dự án tiêu biểu, cập nhật trực tiếp từ hệ thống NAC. Mỗi quốc gia một trang riêng.</p>
+          <span class="go" data-copy="pg-mb-go" data-vi="Mở Market Brief →" data-en="Open a Market Brief →">Mở Market Brief →</span>
+        </a>
+        <a class="dcard pg-vi-only" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener">
+          <div class="dicon"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M12 4v16M7 6.5h10M9 20h6'/><path d='M7 6.5L4.5 12h5zM17 6.5L14.5 12h5z'/><path d='M4.5 12a2.5 2.5 0 005 0M14.5 12a2.5 2.5 0 005 0'/></svg></div>
+          <h3><span data-copy="pg-cmp-h" data-vi="Công Cụ So Sánh" data-en="Comparison Tool">Công Cụ So Sánh</span> <span class="pg-vionly-badge" data-copy="pg-cmp-b" data-vi="Chỉ đối tác VI" data-en="VI partners only">Chỉ đối tác VI</span></h3>
+          <p data-copy="pg-cmp-p" data-vi="So sánh nhiều chương trình cạnh nhau — chi phí, thời gian, quyền lợi và thuế — để tư vấn khách hàng nhanh, rõ ràng. Hiện dành riêng cho đối tác Việt Nam." data-en="Compare multiple programs side by side — cost, timeline, benefits and tax — to advise clients quickly and clearly. Currently for Vietnamese partners only.">So sánh nhiều chương trình cạnh nhau — chi phí, thời gian, quyền lợi và thuế — để tư vấn khách hàng nhanh, rõ ràng. Hiện dành riêng cho đối tác Việt Nam.</p>
+          <span class="go" data-copy="pg-cmp-go" data-vi="Mở Công Cụ So Sánh →" data-en="Open Comparison Tool →">Mở Công Cụ So Sánh →</span>
         </a>
       </div>
     </div>
