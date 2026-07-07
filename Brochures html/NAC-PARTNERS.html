@@ -199,7 +199,11 @@ html[lang="en"] .pg-vi-only{display:none}
 .snap-cap h3{font-size:15px;font-weight:700;margin-bottom:4px}
 .snap-cap p{font-size:12.5px;color:var(--text3);line-height:1.6}
 .snap-pitch{margin-top:10px;font-size:12.5px;color:var(--blue);background:rgba(24,0,173,.05);border-left:3px solid var(--blue);padding:9px 13px;border-radius:0 8px 8px 0;font-style:italic;line-height:1.55}
-@media(min-width:861px){.snap-grid .snap:last-child{grid-column:1/-1}.snap-grid .snap:last-child .snap-frame{height:360px}.snap-grid .snap:last-child .snap-frame iframe{height:720px}}
+.snap-live{position:absolute;top:10px;left:10px;z-index:3;display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.94);border:1px solid rgba(22,163,74,.35);border-radius:999px;padding:4px 10px 4px 8px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:#15a34a;box-shadow:0 2px 8px rgba(0,0,0,.12);pointer-events:none;animation:snapLiveBlink 2s ease-in-out infinite}
+.snap-live-dot{width:7px;height:7px;border-radius:50%;background:#22c55e;animation:snapLivePing 1.6s ease-out infinite}
+@keyframes snapLivePing{0%{box-shadow:0 0 0 0 rgba(34,197,94,.55)}70%{box-shadow:0 0 0 7px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}
+@keyframes snapLiveBlink{0%,100%{opacity:1}50%{opacity:.62}}
+@media(prefers-reduced-motion:reduce){.snap-live,.snap-live-dot{animation:none}}
 
 /* Page 04 — case studies + benefit strip */
 .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -576,42 +580,42 @@ The Complete NAC Journey">Từ Bất Động Sản Đến Thẻ Cư Trú — NAC
 click to open full-screen.">Xem trực tiếp từ website đang vận hành — không phải ảnh dựng. Mỗi công cụ kèm một câu dẫn để bạn trình bày với khách hàng; bấm để mở toàn màn hình.</div>
       <div class="snap-grid">
         <div class="snap">
-          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/nac-residence-index/" loading="lazy" title="NAC Index" tabindex="-1"></iframe>
+          <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://nomadassetcollective.com/nac-residence-index/" loading="lazy" title="NAC Index" tabindex="-1"></iframe>
             <a class="snap-open" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener"><span data-copy="pg-058d3f" data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
           <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M5 20v-6M10 20V8M15 20v-9M20 20V5M3 20h18'/></svg><span>NAC Index</span></h3>
             <p data-copy="pg-3383d0" data-vi="Bảng điểm 6 tiêu chí cho toàn bộ chương trình đang mở." data-en="The 6-criteria scorecard for every open program.">Bảng điểm 6 tiêu chí cho toàn bộ chương trình đang mở.</p>
             <div class="snap-pitch" data-copy="pg-959a8b" data-vi="“16 chương trình, 6 tiêu chí, một bảng điểm — anh/chị thấy ngay lựa chọn nào cân bằng nhất.”" data-en="“16 programs, 6 criteria, one scorecard — you can see at a glance which option is best balanced.”">“16 chương trình, 6 tiêu chí, một bảng điểm — anh/chị thấy ngay lựa chọn nào cân bằng nhất.”</div></div>
         </div>
         <div class="snap">
-          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/tu-van-nhanh/" loading="lazy" title="Quick Quiz" tabindex="-1"></iframe>
+          <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://nomadassetcollective.com/tu-van-nhanh/" loading="lazy" title="Quick Quiz" tabindex="-1"></iframe>
             <a class="snap-open" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank" rel="noopener"><span data-copy="pg-058d3f-1" data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
           <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx='12' cy='12' r='8.5'/><path d='M14.8 9.2l-1.7 4.6-4.6 1.7 1.7-4.6z'/></svg><span data-copy="pg-5e009b-1" data-vi="Công Cụ Tư Vấn" data-en="Quick Quiz">Công Cụ Tư Vấn</span></h3>
             <p data-copy="pg-6f90f7" data-vi="Trắc nghiệm nhanh khoanh vùng quốc gia phù hợp." data-en="The quick quiz that shortlists the right country.">Trắc nghiệm nhanh khoanh vùng quốc gia phù hợp.</p>
             <div class="snap-pitch" data-copy="pg-5d8abe" data-vi="“Anh/chị làm thử 2 phút — hệ thống khoanh vùng ngay quốc gia phù hợp với mục tiêu của mình.”" data-en="“Give it 2 minutes — it immediately narrows down the countries that fit your goals.”">“Anh/chị làm thử 2 phút — hệ thống khoanh vùng ngay quốc gia phù hợp với mục tiêu của mình.”</div></div>
         </div>
         <div class="snap">
-          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/brochures/" loading="lazy" title="NAC Brochures" tabindex="-1"></iframe>
+          <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://nomadassetcollective.com/brochures/" loading="lazy" title="NAC Brochures" tabindex="-1"></iframe>
             <a class="snap-open" href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener"><span data-copy="pg-058d3f-2" data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
           <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z'/><path d='M4 18a2.5 2.5 0 012.5-2.5H20'/></svg><span>NAC Brochures</span></h3>
             <p data-copy="pg-64295b" data-vi="16 hồ sơ chương trình chuyên sâu, song ngữ." data-en="16 in-depth, bilingual program dossiers.">16 hồ sơ chương trình chuyên sâu, song ngữ.</p>
             <div class="snap-pitch" data-copy="pg-bc6829" data-vi="“Mỗi quốc gia một hồ sơ phân tích đầy đủ — đầu tư, thuế, quy trình, lộ trình quốc tịch.”" data-en="“One full dossier per country — investment, dependants, tax, process, and the citizenship path.”">“Mỗi quốc gia một hồ sơ phân tích đầy đủ — đầu tư, thuế, quy trình, lộ trình quốc tịch.”</div></div>
         </div>
         <div class="snap">
-          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/panama/pullman-panama-city/" loading="lazy" title="Listing deep-dive — Pullman Panama City" tabindex="-1"></iframe>
+          <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/panama/pullman-panama-city/" loading="lazy" title="Listing deep-dive — Pullman Panama City" tabindex="-1"></iframe>
             <a class="snap-open" href="https://nomadassetcollective.com/property-hub-bat-dong-san/panama/pullman-panama-city/" target="_blank" rel="noopener"><span data-copy="pg-058d3f-3" data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
           <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M3.5 6.5a2 2 0 012-2h4l2 2.5h7a2 2 0 012 2v8.5a2 2 0 01-2 2h-13a2 2 0 01-2-2z'/></svg><span data-copy="pg-a319d6" data-vi="Hồ Sơ Chi Tiết Listing" data-en="Listing Deep-Dive">Hồ Sơ Chi Tiết Listing</span></h3>
             <p data-copy="pg-f7dc05" data-vi="Ví dụ trực tiếp: Pullman Panama City — điểm NAC, IRR, payback, quy trình pháp lý, từng mục một." data-en="Live example: Pullman Panama City — NAC score, IRR, payback, and the legal process, section by section.">Ví dụ trực tiếp: Pullman Panama City — điểm NAC, IRR, payback, quy trình pháp lý, từng mục một.</p>
             <div class="snap-pitch" data-copy="pg-43f926" data-vi="“Đây là hồ sơ của một dự án cụ thể — anh/chị xem được từng con số và từng bước pháp lý trước khi quyết định.”" data-en="“Listing details — you can see every number and every legal step before deciding.”">“Đây là hồ sơ của một dự án cụ thể — anh/chị xem được từng con số và từng bước pháp lý trước khi quyết định.”</div></div>
         </div>
         <div class="snap">
-          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/" loading="lazy" title="Property Hub" tabindex="-1"></iframe>
+          <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/" loading="lazy" title="Property Hub" tabindex="-1"></iframe>
             <a class="snap-open" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener"><span data-copy="pg-058d3f-4" data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
           <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M3 21h18M5 21V8l7-5 7 5v13M9.5 21v-5h5v5'/></svg><span>Property Hub</span></h3>
             <p data-copy="pg-0e2f40" data-vi="Danh mục bất động sản tuyển chọn — yield, IRR, hoàn vốn theo từng dự án và khu vực." data-en="The curated property catalogue — yield, IRR, and payback per project and region.">Danh mục bất động sản tuyển chọn — yield, IRR, hoàn vốn theo từng dự án và khu vực.</p>
             <div class="snap-pitch" data-copy="pg-98f9f5" data-vi="“Mỗi dự án ở đây đều có yield, IRR và thời gian hoàn vốn thật — chọn theo con số, không theo cảm tính.”" data-en="“Every project here carries real yield, IRR, and payback figures — explore the regional yield (updated weekly) also&quot;">“Mỗi dự án ở đây đều có yield, IRR và thời gian hoàn vốn thật — chọn theo con số, không theo cảm tính.”</div></div>
         </div>
         <div class="snap">
-          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" loading="lazy" title="Country Market Brief — Greece" tabindex="-1"></iframe>
+          <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" loading="lazy" title="Country Market Brief — Greece" tabindex="-1"></iframe>
             <a class="snap-open" data-pg-picker href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" target="_blank" rel="noopener"><span data-copy="pg-058d3f-5" data-vi="Chọn quốc gia →" data-en="Browse by country →">Chọn quốc gia →</span></a></div>
           <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18'/></svg><span data-copy="pg-mbd-h" data-vi="Country Market Brief" data-en="Country Market Brief">Country Market Brief</span></h3>
             <p data-copy="pg-mbd-p" data-vi="Tổng quan thị trường theo từng quốc gia — ví dụ trực tiếp: Hy Lạp." data-en="A market brief per country — live example: Greece.">Tổng quan thị trường theo từng quốc gia — ví dụ trực tiếp: Hy Lạp.</p>
