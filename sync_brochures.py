@@ -168,7 +168,14 @@ def fetch_page_meta(page_id):
     return status, data
 
 def push_page_content(page_id, content, auth, template=None):
-    payload = {'acf': {ACF_FIELD: content}}
+    # WP REST runs wp_unslash on the request body: EVERY backslash in the ACF
+    # value loses one level (\n -> n, \' -> ', \/ -> /), silently corrupting JS
+    # inside <script> blocks (verified live 2026-07-07 on the quiz/index/deck
+    # pages). Pre-double all backslashes so the stored value round-trips intact
+    # — same fix the Property Hub repo uses in sync-html-to-wordpress.yml.
+    # The response's acf field contains the stored (un-slashed) value, so
+    # callers keep comparing against the ORIGINAL content.
+    payload = {'acf': {ACF_FIELD: content.replace('\\', '\\\\')}}
     if template:
         payload['template'] = template
     body = json.dumps(payload, ensure_ascii=False)
