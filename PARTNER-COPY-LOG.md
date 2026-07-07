@@ -28,3 +28,7 @@ click to open full-screen.”
 - `pg-c39568` VI: “Dữ liệu thật” → “Dữ liệu minh bạch”
 - `pg-d6d06b` VI: “thành viên IMC kiểm định” → “thành viên hiệp hội  IMC”
 - `pg-797f7c` VI: “Năm bước, mỗi bước một công cụ đi kèm — bạn giới thiệu, NAC triển khai, khách hàng của bạn luôn theo dõi được tiến độ.” → “Năm bước, mỗi bước một công cụ đi kèm — tối ưu hóa cho quy trình tư vấn của bạn với khách hàng. NAC chỉ triển khai, khách hàng của bạn luôn …”
+
+## 2026-07-07 20:31 UTC · in-page editor
+
+- `pg-4319ba` EN: “NAc portal for our esteemed partners · 2026” → “Partner portal · 2026”
