@@ -170,6 +170,20 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 /* Vietnamese-partner-only tool — badge + hide when the deck is toggled to EN */
 .pg-vionly-badge{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;color:var(--orange);background:rgba(249,115,22,.12);border:1px solid rgba(249,115,22,.32);border-radius:999px;padding:2px 9px;vertical-align:middle;margin-left:7px;white-space:nowrap}
 html[lang="en"] .pg-vi-only{display:none}
+/* Country Market Briefs picker */
+.pgpick-scrim{position:fixed;inset:0;background:rgba(12,6,48,.55);z-index:90;display:none;align-items:center;justify-content:center;padding:20px}
+.pgpick-scrim.open{display:flex}
+.pgpick-modal{background:#fff;border-radius:20px;max-width:640px;width:100%;max-height:86vh;overflow:auto;padding:26px 24px;box-shadow:0 24px 60px rgba(0,0,0,.32);animation:pgnavIn .2s ease both}
+.pgpick-head{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px}
+.pgpick-title{font-family:'Playfair Display',serif;font-size:22px;color:var(--text);line-height:1.2}
+.pgpick-sub{font-size:13px;color:var(--text3);margin-top:4px}
+.pgpick-x{background:var(--bg2);border:none;border-radius:9px;width:34px;height:34px;font-size:15px;cursor:pointer;color:var(--text2);flex-shrink:0}
+.pgpick-x:hover{background:var(--bg3)}
+.pgpick-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.pgpick-grid{grid-template-columns:repeat(2,1fr)}}
+.pgpick-tile{display:flex;align-items:center;gap:11px;padding:12px 14px;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);font-weight:600;font-size:14px;transition:border-color .13s,background .13s}
+.pgpick-tile:hover{border-color:var(--orange);background:var(--bg2)}
+.pgpick-flag{font-size:22px;line-height:1;flex-shrink:0}
 
 /* Page 03 — live snapshots */
 .snap-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
@@ -536,11 +550,11 @@ The Complete NAC Journey">Từ Bất Động Sản Đến Thẻ Cư Trú — NAC
           <p data-copy="pg-b672d4" data-vi="Phân tích độc quyền, góc nhìn chuyên môn, tin tức thị trường và cập nhật chương trình — nguồn nội dung để bạn chia sẻ định kỳ với khách hàng." data-en="Exclusive analysis, expert perspectives, market news and program updates — a content source you can share with clients on a regular basis.">Phân tích độc quyền, góc nhìn chuyên môn, tin tức thị trường và cập nhật chương trình — nguồn nội dung để bạn chia sẻ định kỳ với khách hàng.</p>
           <span class="go" data-copy="pg-310812" data-vi="Đọc blog →" data-en="Read the blog →">Đọc blog →</span>
         </a>
-        <a class="dcard" href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" target="_blank" rel="noopener">
+        <a class="dcard" data-pg-picker href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" target="_blank" rel="noopener">
           <div class="dicon"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18'/></svg></div>
           <h3 data-copy="pg-mb-h" data-vi="Country Market Brief" data-en="Country Market Brief">Country Market Brief</h3>
           <p data-copy="pg-mb-p" data-vi="Tổng quan thị trường từng quốc gia — chính sách, giá, lợi suất và các dự án tiêu biểu, cập nhật trực tiếp từ hệ thống NAC. Mỗi quốc gia một trang riêng." data-en="A per-country market brief — policy, pricing, yields and flagship projects, updated live from NAC&rsquo;s system. One page per country.">Tổng quan thị trường từng quốc gia — chính sách, giá, lợi suất và các dự án tiêu biểu, cập nhật trực tiếp từ hệ thống NAC. Mỗi quốc gia một trang riêng.</p>
-          <span class="go" data-copy="pg-mb-go" data-vi="Mở Market Brief →" data-en="Open a Market Brief →">Mở Market Brief →</span>
+          <span class="go" data-copy="pg-mb-go" data-vi="Chọn quốc gia →" data-en="Browse by country →">Chọn quốc gia →</span>
         </a>
         <a class="dcard pg-vi-only" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener">
           <div class="dicon"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M12 4v16M7 6.5h10M9 20h6'/><path d='M7 6.5L4.5 12h5zM17 6.5L14.5 12h5z'/><path d='M4.5 12a2.5 2.5 0 005 0M14.5 12a2.5 2.5 0 005 0'/></svg></div>
@@ -595,6 +609,13 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
           <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M3 21h18M5 21V8l7-5 7 5v13M9.5 21v-5h5v5'/></svg><span>Property Hub</span></h3>
             <p data-copy="pg-0e2f40" data-vi="Danh mục bất động sản tuyển chọn — yield, IRR, hoàn vốn theo từng dự án và khu vực." data-en="The curated property catalogue — yield, IRR, and payback per project and region.">Danh mục bất động sản tuyển chọn — yield, IRR, hoàn vốn theo từng dự án và khu vực.</p>
             <div class="snap-pitch" data-copy="pg-98f9f5" data-vi="“Mỗi dự án ở đây đều có yield, IRR và thời gian hoàn vốn thật — chọn theo con số, không theo cảm tính.”" data-en="“Every project here carries real yield, IRR, and payback figures — explore the regional yield (updated weekly) also&quot;">“Mỗi dự án ở đây đều có yield, IRR và thời gian hoàn vốn thật — chọn theo con số, không theo cảm tính.”</div></div>
+        </div>
+        <div class="snap">
+          <div class="snap-frame"><iframe data-src="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" loading="lazy" title="Country Market Brief — Greece" tabindex="-1"></iframe>
+            <a class="snap-open" data-pg-picker href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" target="_blank" rel="noopener"><span data-copy="pg-058d3f-5" data-vi="Chọn quốc gia →" data-en="Browse by country →">Chọn quốc gia →</span></a></div>
+          <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx='12' cy='12' r='9'/><path d='M3 12h18M12 3a15 15 0 010 18M12 3a15 15 0 000 18'/></svg><span data-copy="pg-mbd-h" data-vi="Country Market Brief" data-en="Country Market Brief">Country Market Brief</span></h3>
+            <p data-copy="pg-mbd-p" data-vi="Tổng quan thị trường theo từng quốc gia — ví dụ trực tiếp: Hy Lạp." data-en="A market brief per country — live example: Greece.">Tổng quan thị trường theo từng quốc gia — ví dụ trực tiếp: Hy Lạp.</p>
+            <div class="snap-pitch" data-copy="pg-mbd-q" data-vi="“Mỗi quốc gia một trang tổng quan thị trường — chính sách, giá, lợi suất và dự án tiêu biểu, cập nhật realtime.”" data-en="“One market-overview page per country — policy, pricing, yields and flagship projects, updated live.”">“Mỗi quốc gia một trang tổng quan thị trường — chính sách, giá, lợi suất và dự án tiêu biểu, cập nhật realtime.”</div></div>
         </div>
       </div>
     </div>
@@ -803,6 +824,31 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
       <span class="pgnav-badge" id="pgnavBadge">01</span>
     </button>
   </nav>
+
+  <!-- Country Market Briefs picker -->
+  <div class="pgpick-scrim" id="pgpickScrim" role="dialog" aria-modal="true" aria-label="Country Market Briefs">
+    <div class="pgpick-modal">
+      <div class="pgpick-head">
+        <div>
+          <div class="pgpick-title" data-copy="pg-pick-t" data-vi="Tổng Quan Thị Trường Theo Quốc Gia" data-en="Country Market Briefs">Tổng Quan Thị Trường Theo Quốc Gia</div>
+          <div class="pgpick-sub" data-copy="pg-pick-s" data-vi="Chọn một quốc gia để mở trang tổng quan thị trường tương ứng." data-en="Pick a country to open its market brief.">Chọn một quốc gia để mở trang tổng quan thị trường tương ứng.</div>
+        </div>
+        <button class="pgpick-x" type="button" aria-label="Đóng">✕</button>
+      </div>
+      <div class="pgpick-grid">
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/greece/" target="_blank" rel="noopener"><span class="pgpick-flag">🇬🇷</span><span data-copy="pg-pk-greece" data-vi="Hy Lạp" data-en="Greece">Hy Lạp</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/cyprus/" target="_blank" rel="noopener"><span class="pgpick-flag">🇨🇾</span><span data-copy="pg-pk-cyprus" data-vi="Đảo Síp" data-en="Cyprus">Đảo Síp</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/turkey/" target="_blank" rel="noopener"><span class="pgpick-flag">🇹🇷</span><span data-copy="pg-pk-turkey" data-vi="Thổ Nhĩ Kỳ" data-en="Türkiye">Thổ Nhĩ Kỳ</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/uae/" target="_blank" rel="noopener"><span class="pgpick-flag">🇦🇪</span><span data-copy="pg-pk-uae" data-vi="UAE" data-en="UAE">UAE</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/uk/" target="_blank" rel="noopener"><span class="pgpick-flag">🇬🇧</span><span data-copy="pg-pk-uk" data-vi="Anh Quốc" data-en="United Kingdom">Anh Quốc</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/panama/" target="_blank" rel="noopener"><span class="pgpick-flag">🇵🇦</span><span data-copy="pg-pk-panama" data-vi="Panama" data-en="Panama">Panama</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/malaysia/" target="_blank" rel="noopener"><span class="pgpick-flag">🇲🇾</span><span data-copy="pg-pk-malaysia" data-vi="Malaysia" data-en="Malaysia">Malaysia</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/montenegro/" target="_blank" rel="noopener"><span class="pgpick-flag">🇲🇪</span><span data-copy="pg-pk-montenegro" data-vi="Montenegro" data-en="Montenegro">Montenegro</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/thailand/" target="_blank" rel="noopener"><span class="pgpick-flag">🇹🇭</span><span data-copy="pg-pk-thailand" data-vi="Thái Lan" data-en="Thailand">Thái Lan</span></a>
+        <a class="pgpick-tile" href="https://nomadassetcollective.com/property-hub-bat-dong-san/vietnam/" target="_blank" rel="noopener"><span class="pgpick-flag">🇻🇳</span><span data-copy="pg-pk-vietnam" data-vi="Việt Nam" data-en="Vietnam">Việt Nam</span></a>
+      </div>
+    </div>
+  </div>
 </div><!-- /#nacMain -->
 
 <!-- Co-branded client pack — print-only; filled by pgEnrich just before window.print() -->
@@ -1299,6 +1345,23 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
     }, { threshold: [0.12, 0.4, 0.75], rootMargin: '-58px 0px -42% 0px' });
     ids.forEach(function(id){ var el = document.getElementById(id); if (el) io.observe(el); });
   }
+})();
+</script>
+
+
+<script>
+/* ===== Country Market Briefs picker — open on any [data-pg-picker], close on ✕ / scrim / Esc / tile ===== */
+(function(){
+  var scrim = document.getElementById('pgpickScrim');
+  if (!scrim) return;
+  function set(v){ scrim.classList.toggle('open', v); if (v && typeof nacTwemoji === 'function') nacTwemoji(); }
+  document.addEventListener('click', function(e){
+    var trig = e.target.closest ? e.target.closest('[data-pg-picker]') : null;
+    if (trig){ e.preventDefault(); set(true); return; }
+    if (e.target === scrim || (e.target.closest && e.target.closest('.pgpick-x'))){ set(false); return; }
+    if (e.target.closest && e.target.closest('.pgpick-tile')){ set(false); }
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') set(false); });
 })();
 </script>
 
