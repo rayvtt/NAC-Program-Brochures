@@ -22,3 +22,9 @@ click to open full-screen.”
 ## 2026-07-07 18:56 UTC · in-page editor
 
 - `pg-7b84a0` VI: “Đối tác NAC” → “cổng đối tác”
+
+## 2026-07-07 18:59 UTC · in-page editor
+
+- `pg-c39568` VI: “Dữ liệu thật” → “Dữ liệu minh bạch”
+- `pg-d6d06b` VI: “thành viên IMC kiểm định” → “thành viên hiệp hội  IMC”
+- `pg-797f7c` VI: “Năm bước, mỗi bước một công cụ đi kèm — bạn giới thiệu, NAC triển khai, khách hàng của bạn luôn theo dõi được tiến độ.” → “Năm bước, mỗi bước một công cụ đi kèm — tối ưu hóa cho quy trình tư vấn của bạn với khách hàng. NAC chỉ triển khai, khách hàng của bạn luôn …”
