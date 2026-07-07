@@ -18,3 +18,7 @@ click to open full-screen.”
 - `pg-bc6829` EN: ““One full dossier per country — investment, tax, process, and the citizenship path.”” → ““One full dossier per country — investment, dependants, tax, process, and the citizenship path.””
 - `pg-43f926` EN: ““This is one specific project&rsquo;s dossier — you can see every number and every legal step before deciding.”” → ““Listing details — you can see every number and every legal step before deciding.””
 - `pg-98f9f5` EN: ““Every project here carries real yield, IRR, and payback figures — choose on numbers, not gut feel.”” → ““Every project here carries real yield, IRR, and payback figures — explore the regional yield (updated weekly) also"”
+
+## 2026-07-07 18:56 UTC · in-page editor
+
+- `pg-7b84a0` VI: “Đối tác NAC” → “cổng đối tác”
