@@ -253,6 +253,30 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .bcell b{display:flex;align-items:center;gap:7px}
 .dicon .ni{width:26px;height:26px}
 .tkf-ic .ni{width:30px;height:30px}
+
+/* ── Landing animation: staged entrance, drifting glow orbs, coin-spin logo ── */
+@keyframes heroUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes orbDriftA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(46px,-34px) scale(1.14)}}
+@keyframes orbDriftB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-54px,28px) scale(1.07)}}
+@keyframes coinSpin{0%{transform:rotateY(0)}26%{transform:rotateY(360deg)}100%{transform:rotateY(360deg)}}
+.hero-orb{position:absolute;border-radius:50%;filter:blur(64px);pointer-events:none;z-index:0}
+.hero-orb.oa{width:430px;height:430px;top:-130px;right:-90px;background:radial-gradient(circle,rgba(249,115,22,.30),transparent 65%);animation:orbDriftA 11s ease-in-out infinite}
+.hero-orb.ob{width:540px;height:540px;bottom:-200px;left:-140px;background:radial-gradient(circle,rgba(255,255,255,.13),transparent 60%);animation:orbDriftB 15s ease-in-out infinite}
+.hero-in{position:relative;z-index:1}
+.hero .hero-eyebrow{animation:heroUp .7s .05s cubic-bezier(.2,.7,.3,1) both}
+.hero h1{animation:heroUp .85s .18s cubic-bezier(.2,.7,.3,1) both}
+.hero p{animation:heroUp .8s .32s cubic-bezier(.2,.7,.3,1) both}
+.hero-stats .hstat{animation:heroUp .7s cubic-bezier(.2,.7,.3,1) both}
+.hero-stats .hstat:nth-child(1){animation-delay:.48s}
+.hero-stats .hstat:nth-child(2){animation-delay:.58s}
+.hero-stats .hstat:nth-child(3){animation-delay:.68s}
+.hero-stats .hstat:nth-child(4){animation-delay:.78s}
+.hero-ctas{animation:heroUp .75s .92s cubic-bezier(.2,.7,.3,1) both}
+.logo-mark{perspective:520px}
+.logo-mark img{animation:coinSpin 9s ease-in-out 1.6s infinite}
+.hstat-imc{width:38px;height:38px;border-radius:50%;object-fit:cover;display:inline-block;vertical-align:middle;box-shadow:0 0 0 2px rgba(255,255,255,.25);animation:coinSpin 9s ease-in-out 2.4s infinite}
+.hstat b .hstat-imc{margin-bottom:0}
+@media(prefers-reduced-motion:reduce){.hero-orb,.logo-mark img,.hstat-imc,.hero .hero-eyebrow,.hero h1,.hero p,.hero-stats .hstat,.hero-ctas{animation:none!important}}
 </style>
 </head>
 <body>
@@ -320,6 +344,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 <div id="nacMain">
 
   <section class="hero">
+    <div class="hero-orb oa"></div><div class="hero-orb ob"></div>
     <div class="wrap hero-in">
       <div class="hero-eyebrow" data-copy="pg-4319ba" data-vi="Tài Liệu Đối Tác NAC · 2026" data-en="NAC Partner Deck · 2026">Tài Liệu Đối Tác NAC · 2026</div>
       <h1 data-copy="pg-570efd" data-vi="Từ Bất Động Sản Đến Thẻ Cư Trú — NAC Đồng Hành Từng Bước" data-en="From Property to Residency — The Complete NAC Journey">Từ Bất Động Sản Đến Thẻ Cư Trú — NAC Đồng Hành Từng Bước</h1>
@@ -328,7 +353,7 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
         <div class="hstat"><b>16</b><span data-copy="pg-9f5124" data-vi="chương trình đang mở" data-en="open programs">chương trình đang mở</span></div>
         <div class="hstat"><b>60+</b><span data-copy="pg-a788c2" data-vi="BĐS tuyển chọn" data-en="curated listings">BĐS tuyển chọn</span></div>
         <div class="hstat"><b>6</b><span data-copy="pg-90983a" data-vi="tiêu chí NAC Index" data-en="Index criteria">tiêu chí NAC Index</span></div>
-        <div class="hstat"><b>IMC</b><span data-copy="pg-d6d06b" data-vi="thành viên kiểm định" data-en="accredited member">thành viên kiểm định</span></div>
+        <div class="hstat"><b><img class="hstat-imc" src="https://nomadassetcollective.com/wp-content/uploads/2026/05/OTG-Passport-Icons.png" alt="IMC accredited" loading="lazy"></b><span data-copy="pg-d6d06b" data-vi="thành viên IMC kiểm định" data-en="IMC accredited member">thành viên IMC kiểm định</span></div>
       </div>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x='3.5' y='5' width='17' height='15.5' rx='2.5'/><path d='M3.5 9.5h17M8 3v3.5M16 3v3.5'/></svg><span data-copy="pg-c7e977" data-vi="Đặt Lịch Trao Đổi" data-en="Book a Call">Đặt Lịch Trao Đổi</span></a>
@@ -633,6 +658,23 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
     // Hydrate the live tool snapshots only after entry — keeps the gate instant and
     // spares locked-out visitors five full page loads.
     document.querySelectorAll('iframe[data-src]').forEach(function(f){ if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-src')); });
+    // Hero stat count-up — plays alongside the entrance animation on every unlock.
+    try {
+      document.querySelectorAll('.hero-stats .hstat b').forEach(function(b){
+        var m = (b.textContent || '').trim().match(/^(\d+)(\+?)$/);
+        if (!m) return;
+        var target = parseInt(m[1], 10), suffix = m[2] || '', t0 = null;
+        function tick(ts){
+          if (!t0) t0 = ts;
+          var k = Math.min(1, (ts - t0) / 1100);
+          k = 1 - Math.pow(1 - k, 3);
+          b.textContent = Math.round(target * k) + suffix;
+          if (k < 1) requestAnimationFrame(tick);
+        }
+        b.textContent = '0' + suffix;
+        setTimeout(function(){ requestAnimationFrame(tick); }, 500);
+      });
+    } catch(e) {}
   }
   // The framed pages are same-origin on the live site, so we can strip WordPress chrome that only
   // a logged-in admin ever sees (the black wpadminbar) — a partner demoing to a client must never
