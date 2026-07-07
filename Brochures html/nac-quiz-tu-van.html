@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Công Cụ Tư Vấn Chương Trình Đầu Tư | NAC</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --blue:#1800ad;--blue-light:#2a10d4;--orange:#E8652D;--green:#1A8F5C;
+  --bg:#f8f7f5;--card:#ffffff;--text:#1a1a2e;--muted:#6b7280;
+  --radius:14px;--shadow:0 2px 20px rgba(24,0,173,0.06);
+}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;padding:20px}
+.nq-wrap{max-width:680px;width:100%;margin:0 auto}
+
+/* PROGRESS */
+.nq-progress{position:sticky;top:0;z-index:10;background:rgba(248,247,245,0.95);backdrop-filter:blur(8px);padding:16px 0 12px;opacity:0;transform:translateY(-10px);transition:all .3s ease}
+.nq-progress.visible{opacity:1;transform:translateY(0)}
+.nq-progress-info{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:13px;color:var(--muted)}
+.nq-progress-info strong{color:var(--blue);font-weight:600}
+.nq-bar-track{height:4px;background:#e5e7eb;border-radius:100px;overflow:hidden}
+.nq-bar-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--blue-light));border-radius:100px;transition:width .4s cubic-bezier(.4,0,.2,1)}
+
+/* HERO */
+.nq-hero{text-align:center;padding:60px 24px}
+.nq-hero-badge{display:inline-block;background:linear-gradient(135deg,var(--blue),var(--blue-light));color:#fff;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:6px 16px;border-radius:100px;margin-bottom:24px}
+.nq-hero h1{font-size:clamp(26px,5vw,36px);font-weight:700;line-height:1.25;color:var(--text);margin-bottom:16px}
+.nq-hero h1 span{color:var(--blue)}
+.nq-hero p{font-size:16px;color:var(--muted);line-height:1.6;max-width:480px;margin:0 auto 36px}
+.nq-btn-start{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:#fff;font-family:inherit;font-size:16px;font-weight:600;padding:16px 40px;border:none;border-radius:100px;cursor:pointer;transition:all .3s ease;box-shadow:0 4px 24px rgba(24,0,173,0.3)}
+.nq-btn-start:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(24,0,173,0.4)}
+.nq-btn-start svg{width:18px;height:18px}
+.nq-hero-stats{display:flex;justify-content:center;gap:24px;margin-top:24px;font-size:13px;color:var(--muted)}
+
+/* SECTIONS */
+.nq-section{display:none}.nq-section.active{display:block}
+
+/* QUIZ */
+.nq-question{background:var(--card);border-radius:var(--radius);padding:40px 32px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+.nq-q-num{font-size:13px;font-weight:600;color:var(--blue);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
+.nq-q-title{font-size:22px;font-weight:600;line-height:1.35;margin-bottom:28px}
+.nq-opts{display:grid;gap:10px}
+.nq-opt{display:flex;align-items:center;gap:14px;padding:16px 20px;border:2px solid #e5e7eb;border-radius:12px;cursor:pointer;transition:all .2s ease;font-size:15px;font-weight:500;background:#fff;text-decoration:none;color:var(--text)}
+.nq-opt:hover{border-color:var(--blue);background:rgba(24,0,173,0.02)}
+.nq-opt.sel{border-color:var(--blue);background:rgba(24,0,173,0.05);color:var(--blue)}
+.nq-opt-icon{font-size:22px;flex-shrink:0;width:36px;text-align:center}
+
+/* NAV */
+.nq-nav{display:flex;justify-content:space-between;align-items:center;margin-top:24px;padding:0 4px}
+.nq-back{font-family:inherit;font-size:14px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;padding:10px 16px;border-radius:10px;transition:all .2s;display:flex;align-items:center;gap:6px}
+.nq-back:hover{color:var(--text);background:rgba(0,0,0,0.04)}
+.nq-next{font-family:inherit;font-size:15px;font-weight:600;color:#fff;background:#cbd5e1;border:none;padding:14px 32px;border-radius:100px;cursor:not-allowed;transition:all .3s ease;display:flex;align-items:center;gap:8px}
+.nq-next.active{background:var(--blue);cursor:pointer;box-shadow:0 4px 16px rgba(24,0,173,0.25)}
+.nq-next.active:hover{transform:translateY(-1px)}
+
+/* RESULTS */
+.nq-results{padding:20px 0}
+.nq-results-title{text-align:center;font-size:24px;font-weight:700;margin-bottom:8px}
+.nq-results-sub{text-align:center;font-size:15px;color:var(--muted);margin-bottom:32px}
+.nq-match{background:var(--card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);margin-bottom:16px;position:relative;overflow:hidden}
+.nq-match::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--blue),var(--blue-light))}
+.nq-match-rank{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#fff;background:var(--blue);padding:4px 12px;border-radius:100px;margin-bottom:14px}
+.nq-match-rank.second{background:var(--green)}
+.nq-match h3{font-size:20px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.nq-match h3 .flag{font-size:28px}
+.nq-match-details{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.nq-detail{background:var(--bg);padding:12px 14px;border-radius:10px}
+.nq-detail-label{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin-bottom:3px}
+.nq-detail-val{font-size:14px;font-weight:600;color:var(--text)}
+
+/* SO SANH LINK */
+.nq-sosanhlink{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-size:14px;font-weight:600;color:var(--blue);text-decoration:none;padding:8px 16px;border:1.5px solid var(--blue);border-radius:100px;transition:all .2s}
+.nq-sosanhlink:hover{background:var(--blue);color:#fff}
+.nq-sosanhlink svg{width:14px;height:14px}
+
+/* DIVIDER */
+.nq-divider{text-align:center;margin:32px 0 24px;position:relative}
+.nq-divider::before{content:'';position:absolute;top:50%;left:0;right:0;height:1px;background:#e5e7eb}
+.nq-divider span{position:relative;background:var(--bg);padding:0 16px;font-size:13px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+/* CONTACT FORM */
+.nq-form-card{background:var(--card);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);margin-top:16px}
+.nq-form-card h3{font-size:18px;font-weight:700;margin-bottom:6px;text-align:center}
+.nq-form-card p{font-size:14px;color:var(--muted);text-align:center;margin-bottom:24px;line-height:1.5}
+.nq-field{margin-bottom:16px}
+.nq-field label{display:block;font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px}
+.nq-field label .req{color:var(--orange);margin-left:2px}
+.nq-field input,.nq-field select,.nq-field textarea{width:100%;font-family:inherit;font-size:14px;padding:12px 16px;border:2px solid #e5e7eb;border-radius:10px;background:#fff;color:var(--text);transition:border-color .2s;outline:none}
+.nq-field input:focus,.nq-field select:focus,.nq-field textarea:focus{border-color:var(--blue)}
+.nq-field textarea{resize:vertical;min-height:70px}
+.nq-submit{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;font-family:inherit;font-size:15px;font-weight:600;color:#fff;background:var(--blue);border:none;padding:14px 32px;border-radius:100px;cursor:pointer;transition:all .3s;margin-top:8px;box-shadow:0 4px 16px rgba(24,0,173,0.25)}
+.nq-submit:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(24,0,173,0.35)}
+.nq-submit:disabled{background:#cbd5e1;cursor:not-allowed;transform:none;box-shadow:none}
+.nq-submit svg{width:16px;height:16px}
+.nq-form-status{text-align:center;padding:12px;font-size:14px;margin-top:12px;border-radius:10px;display:none}
+.nq-form-status.sending{display:block;color:var(--muted);background:rgba(0,0,0,0.03)}
+.nq-form-status.success{display:block;color:var(--green);background:rgba(26,143,92,0.08);font-weight:600}
+.nq-form-status.error{display:block;color:var(--orange);background:rgba(232,101,45,0.08)}
+
+/* WA + RESTART */
+.nq-wa-row{text-align:center;margin-top:24px}
+.nq-cta-wa{display:inline-flex;align-items:center;gap:10px;background:var(--green);color:#fff;font-family:inherit;font-size:15px;font-weight:600;padding:14px 32px;border:none;border-radius:100px;cursor:pointer;text-decoration:none;transition:all .3s;box-shadow:0 4px 16px rgba(26,143,92,0.3)}
+.nq-cta-wa:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(26,143,92,0.4)}
+.nq-restart{display:block;margin:20px auto 0;font-family:inherit;font-size:14px;font-weight:500;color:var(--muted);background:none;border:none;cursor:pointer;padding:10px;transition:color .2s}
+.nq-restart:hover{color:var(--blue)}
+.nq-lock{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--muted);margin-top:12px;text-align:center}
+
+/* LANG TOGGLE */
+.nq-lang{position:fixed;top:14px;right:14px;z-index:50;display:flex;background:#fff;border:1px solid #e5e7eb;border-radius:100px;overflow:hidden;box-shadow:var(--shadow)}
+.nq-lang button{font-family:inherit;font-size:12px;font-weight:700;letter-spacing:.5px;padding:7px 14px;border:none;background:none;color:var(--muted);cursor:pointer;transition:all .15s}
+.nq-lang button.on{background:var(--blue);color:#fff}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.nq-anim{animation:fadeUp .4s ease both}
+
+/* RESPONSIVE */
+@media(max-width:640px){
+  .nq-hero{padding:40px 16px}
+  .nq-question{padding:28px 20px}
+  .nq-match{padding:24px 20px}
+  .nq-form-card{padding:24px 20px}
+  .nq-match-details{grid-template-columns:1fr}
+  .nq-q-title{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="nq-lang"><button id="btn-vi" class="on">VI</button><button id="btn-en">EN</button></div>
+<div class="nq-wrap">
+
+  <!-- PROGRESS -->
+  <div class="nq-progress" id="nqProgress">
+    <div class="nq-progress-info">
+      <span><span data-vi="Câu hỏi" data-en="Question">Câu hỏi</span> <strong id="nqCur">1</strong> / <strong id="nqTotal">8</strong></span>
+      <span id="nqPct">0%</span>
+    </div>
+    <div class="nq-bar-track"><div class="nq-bar-fill" id="nqBar" style="width:0%"></div></div>
+  </div>
+
+  <!-- HERO -->
+  <div class="nq-section active" id="secHero">
+    <div class="nq-hero">
+      <div class="nq-hero-badge">Nomad Asset Collective</div>
+      <h1 data-vi="Tìm Chương Trình <span>Đầu Tư Định Cư</span> Phù Hợp" data-en="Find the Right <span>Investment-Migration</span> Program">Tìm Chương Trình <span>Đầu Tư Định Cư</span> Phù Hợp</h1>
+      <p data-vi="Trả lời 8 câu hỏi nhanh để khám phá chương trình đầu tư phù hợp nhất với mục tiêu của bạn." data-en="Answer 8 quick questions to discover the program that best fits your goals.">Trả lời 8 câu hỏi nhanh để khám phá chương trình đầu tư phù hợp nhất với mục tiêu của bạn.</p>
+      <button class="nq-btn-start" id="btnStart">
+        <span data-vi="Bắt Đầu Ngay" data-en="Start Now">Bắt Đầu Ngay</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </button>
+      <div class="nq-hero-stats">
+        <span data-vi="⏱ 2 phút" data-en="⏱ 2 minutes">⏱ 2 phút</span><span data-vi="✦ 8 câu hỏi" data-en="✦ 8 questions">✦ 8 câu hỏi</span><span data-vi="◎ Kết quả cá nhân hóa" data-en="◎ Personalized result">◎ Kết quả cá nhân hóa</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ -->
+  <div class="nq-section" id="secQuiz">
+    <div class="nq-question" id="nqCard"></div>
+    <div class="nq-nav">
+      <button class="nq-back" id="btnBack"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> <span data-vi="Quay lại" data-en="Back">Quay lại</span></button>
+      <button class="nq-next" id="nqNext"><span data-vi="Tiếp tục" data-en="Continue">Tiếp tục</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+    </div>
+  </div>
+
+  <!-- RESULTS -->
+  <div class="nq-section" id="secResults">
+    <div class="nq-results">
+      <div class="nq-results-title nq-anim" data-vi="✓ Kết Quả Của Bạn" data-en="✓ Your Results">✓ Kết Quả Của Bạn</div>
+      <div class="nq-results-sub nq-anim" style="animation-delay:.1s" data-vi="Chương trình phù hợp với hồ sơ của bạn" data-en="Programs matched to your profile">Chương trình phù hợp với hồ sơ của bạn</div>
+
+      <!-- MATCH CARDS -->
+      <div id="nqMatchList"></div>
+
+      <!-- DIVIDER -->
+      <div class="nq-divider nq-anim" style="animation-delay:.35s"><span data-vi="Bước tiếp theo" data-en="Next step">Bước tiếp theo</span></div>
+
+      <!-- CONTACT FORM -->
+      <div class="nq-form-card nq-anim" style="animation-delay:.4s">
+        <h3 data-vi="📋 Để Lại Thông Tin — NAC Sẽ Liên Hệ" data-en="📋 Leave Your Details — NAC Will Reach Out">📋 Để Lại Thông Tin — NAC Sẽ Liên Hệ</h3>
+        <p data-vi="Chuyên viên tư vấn NAC sẽ liên hệ trong vòng 24h để phân tích hồ sơ và tư vấn chi tiết miễn phí." data-en="An NAC consultant will contact you within 24h for a free, in-depth review of your profile.">Chuyên viên tư vấn NAC sẽ liên hệ trong vòng 24h để phân tích hồ sơ và tư vấn chi tiết miễn phí.</p>
+
+        <div class="nq-field">
+          <label><span data-vi="Họ và tên" data-en="Full name">Họ và tên</span> <span class="req">*</span></label>
+          <input type="text" id="fName" placeholder="Nguyễn Văn A">
+        </div>
+        <div class="nq-field">
+          <label><span data-vi="Số điện thoại" data-en="Phone number">Số điện thoại</span> <span class="req">*</span></label>
+          <input type="tel" id="fPhone" placeholder="+84 912 345 678">
+        </div>
+        <div class="nq-field">
+          <label>Email</label>
+          <input type="email" id="fEmail" placeholder="email@example.com">
+        </div>
+        <div class="nq-field">
+          <label data-vi="Thời gian muốn bắt đầu" data-en="When do you want to start?">Thời gian muốn bắt đầu</label>
+          <select id="fTimeline">
+            <option value="" data-vi="Chọn thời gian" data-en="Choose a timeframe">Chọn thời gian</option>
+            <option value="Ngay (1–3 tháng)" data-vi="Ngay (1–3 tháng)" data-en="Right away (1–3 months)">Ngay (1–3 tháng)</option>
+            <option value="Trong vòng 6 tháng" data-vi="Trong vòng 6 tháng" data-en="Within 6 months">Trong vòng 6 tháng</option>
+            <option value="Trong vòng 1 năm" data-vi="Trong vòng 1 năm" data-en="Within 1 year">Trong vòng 1 năm</option>
+            <option value="Đang tìm hiểu" data-vi="Đang tìm hiểu" data-en="Just researching">Đang tìm hiểu</option>
+          </select>
+        </div>
+        <div class="nq-field">
+          <label data-vi="Câu hỏi hoặc ghi chú thêm" data-en="Questions or notes">Câu hỏi hoặc ghi chú thêm</label>
+          <textarea id="fNote" rows="3" placeholder="VD: Tôi muốn biết thêm về chương trình Hy Lạp..."></textarea>
+        </div>
+
+        <button class="nq-submit" id="fSubmit">
+          <span data-vi="Gửi Yêu Cầu Tư Vấn" data-en="Send Consultation Request">Gửi Yêu Cầu Tư Vấn</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+        <div class="nq-form-status" id="fStatus"></div>
+        <div class="nq-lock" data-vi="🔒 Thông tin của bạn được bảo mật tuyệt đối." data-en="🔒 Your information is kept strictly confidential.">🔒 Thông tin của bạn được bảo mật tuyệt đối.</div>
+      </div>
+
+      <!-- OR WHATSAPP -->
+      <div class="nq-divider" style="margin-top:28px"><span data-vi="hoặc" data-en="or">hoặc</span></div>
+      <div class="nq-wa-row">
+        <a class="nq-cta-wa" href="https://wa.me/84919199330?text=Xin%20ch%C3%A0o%2C%20t%C3%B4i%20v%E1%BB%ABa%20l%C3%A0m%20quiz%20v%C3%A0%20mu%E1%BB%91n%20t%C6%B0%20v%E1%BA%A5n%20th%C3%AAm" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span data-vi="Tư vấn qua WhatsApp" data-en="Chat with NAC on WhatsApp">Tư vấn qua WhatsApp</span>
+        </a>
+      </div>
+
+      <button class="nq-restart" id="btnRestart" data-vi="← Làm lại từ đầu" data-en="← Start over">← Làm lại từ đầu</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ══════════ CONFIG ══════════ */
+var CFG = {
+  PROXY: '/wp-admin/admin-ajax.php?action=nac_notion_proxy',
+  NOTION_DB: '2fe48ec25e8680efa3a3fb8113cf6657',
+  SO_SANH: 'https://nomadassetcollective.com/nac-residence-index/'
+};
+
+/* ══════════ QUESTIONS ══════════ */
+var QS = [
+  {id:'budget',q:'Ngân sách đầu tư của bạn?',qe:'What is your investment budget?',opts:[
+    {v:1,icon:'💰',t:'Dưới $200,000',te:'Under $200,000'},{v:2,icon:'💎',t:'$200,000 – $500,000',te:'$200,000 – $500,000'},
+    {v:3,icon:'🏦',t:'$500,000 – $1,000,000',te:'$500,000 – $1,000,000'},{v:4,icon:'👑',t:'Trên $1,000,000',te:'Over $1,000,000'}
+  ]},
+  {id:'goal',q:'Mục tiêu chính của bạn?',qe:'What is your primary goal?',opts:[
+    {v:'residency',icon:'🏠',t:'Quyền cư trú thứ hai',te:'A second residency'},{v:'citizenship',icon:'🛂',t:'Quốc tịch / hộ chiếu thứ hai',te:'A second citizenship / passport'},
+    {v:'lifestyle',icon:'🌴',t:'Chuyển đổi lối sống',te:'A lifestyle change'},{v:'diversify',icon:'📊',t:'Đa dạng hóa đầu tư',te:'Investment diversification'}
+  ]},
+  {id:'region',q:'Khu vực ưa thích?',qe:'Preferred region?',opts:[
+    {v:1,icon:'🇪🇺',t:'Châu Âu',te:'Europe'},{v:2,icon:'🏝️',t:'Vùng Caribe',te:'The Caribbean'},
+    {v:3,icon:'🌏',t:'Châu Á – Thái Bình Dương',te:'Asia – Pacific'},{v:4,icon:'🌎',t:'Châu Mỹ',te:'The Americas'},
+    {v:0,icon:'🔄',t:'Sẵn sàng linh hoạt',te:'Open / flexible'}
+  ]},
+  {id:'timeline',q:'Thời gian mong muốn?',qe:'Your desired timeline?',opts:[
+    {v:1,icon:'⚡',t:'Ngay lập tức (trong 6 tháng)',te:'Right away (within 6 months)'},{v:2,icon:'📅',t:'1 – 2 năm',te:'1 – 2 years'},{v:3,icon:'🕐',t:'Linh hoạt',te:'Flexible'}
+  ]},
+  {id:'property',q:'Quan tâm đầu tư bất động sản?',qe:'Interested in real-estate investment?',opts:[
+    {v:1,icon:'🏡',t:'Có, muốn sở hữu BĐS',te:'Yes, I want to own property'},{v:2,icon:'❌',t:'Không',te:'No'},{v:3,icon:'🤔',t:'Sẵn sàng xem xét',te:'Open to considering it'}
+  ]},
+  {id:'family',q:'Ai sẽ cùng tham gia?',qe:'Who will be included?',opts:[
+    {v:1,icon:'👤',t:'Chỉ bản thân',te:'Just myself'},{v:2,icon:'👫',t:'Vợ/chồng',te:'My spouse'},{v:3,icon:'👨‍👩‍👧‍👦',t:'Gia đình có con',te:'Family with children'}
+  ]},
+  {id:'stay',q:'Yêu cầu cư trú tại nước sở tại?',qe:'Physical-stay requirement in the host country?',opts:[
+    {v:1,icon:'✈️',t:'Muốn ít phải ở nhất',te:'As little stay as possible'},{v:2,icon:'🏠',t:'Sẵn sàng chuyển đến sống',te:'Ready to relocate'},{v:3,icon:'🔄',t:'Không quan trọng',te:'Not important'}
+  ]},
+  {id:'longterm',q:'Mục tiêu dài hạn?',qe:'Your long-term objective?',opts:[
+    {v:1,icon:'🌍',t:'Tự do đi lại toàn cầu',te:'Global travel freedom'},{v:2,icon:'🏛️',t:'Tối ưu thuế',te:'Tax optimization'},
+    {v:3,icon:'🎓',t:'Giáo dục con cái',te:'Children’s education'},{v:4,icon:'🏢',t:'Mở rộng kinh doanh',te:'Business expansion'}
+  ]}
+];
+
+/* ══════════ GOOGLE SHEET CONFIG ══════════ */
+var SHEET_CSV = 'https://docs.google.com/spreadsheets/d/1vwf0mUyR5-qBCTaxdpB3I4Cvyjf4VdXohFA38JS7DSA/gviz/tq?tqx=out:csv&gid=1346620411';
+
+var FLAGS = {'Hy Lạp':'🇬🇷','SÍp':'🇨🇾','Síp':'🇨🇾','Malta':'🇲🇹','Bổ Đào Nha':'🇵🇹','Bồ Đào Nha':'🇵🇹','Thổ Nhĩ Kỳ':'🇹🇷','Caribbean':'🏝️','Thái Lan':'🇹🇭','Malaysia':'🇲🇾','Úc':'🇦🇺','New Zealand':'🇳🇿','Panama':'🇵🇦','Nauru':'🇳🇷','Hungary':'🇭🇺','Mỹ':'🇺🇸','Dubai':'🇦🇪'};
+
+var REGION_MAP = {0:'',1:'Châu Âu',2:'Caribe',3:'Châu Á TBD',4:'Châu Mỹ'};
+
+var PROGRAMS = [];
+
+function parseCSV(text){
+  var rows=[],row=[],cell='',inQ=false;
+  for(var i=0;i<text.length;i++){
+    var c=text[i],n=text[i+1]||'';
+    if(inQ){if(c==='"'&&n==='"'){cell+='"';i++}else if(c==='"'){inQ=false}else{cell+=c}}
+    else{if(c==='"'){inQ=true}else if(c===','){row.push(cell);cell=''}else if(c==='\n'||c==='\r'){if(c==='\r'&&n==='\n')i++;row.push(cell);if(row.length>1)rows.push(row);row=[];cell=''}else{cell+=c}}
+  }
+  if(cell||row.length)row.push(cell);
+  if(row.length>1)rows.push(row);
+  return rows;
+}
+
+function getFlag(name){
+  for(var k in FLAGS){if(name.indexOf(k)!==-1)return FLAGS[k]}
+  return '🏳️';
+}
+
+function inferStay(txt){
+  if(!txt)return 'flexible';
+  var t=txt.toLowerCase();
+  if(t.indexOf('không')!==-1&&(t.indexOf('yêu cầu')!==-1||t.indexOf('bắt buộc')!==-1))return 'none';
+  if(t.indexOf('2 ngày')!==-1||t.indexOf('14 ngày')!==-1||t.indexOf('7 ngày')!==-1||t.indexOf('44 ngày')!==-1||t.indexOf('30 ngày')!==-1)return 'minimal';
+  if(t.indexOf('6 tháng')!==-1||t.indexOf('2 năm')!==-1||t.indexOf('cư trú')!==-1)return 'relocate';
+  return 'flexible';
+}
+
+function inferType(txt){
+  if(!txt)return 'residency';
+  var t=txt.toLowerCase();
+  if(t.indexOf('quốc tịch')!==-1||t.indexOf('cbi')!==-1)return 'citizenship';
+  return 'residency';
+}
+
+function fetchPrograms(){
+  return fetch(SHEET_CSV).then(function(r){return r.text()}).then(function(text){
+    var rows=parseCSV(text);
+    if(rows.length<2)throw new Error('No data');
+    var hdr=rows[0];
+    // Column indices: A=0 Nước, E=4 Chương trình, F=5 Property, G=6 MinUSD, I=8 Yêu cầu lưu trú
+    // K=10 Timeline, L=11 Miễn Visa, M=12 Tự Do Đi Lại, N=13 Mức đầu tư ban đầu
+    // O=15 Region, P=16..X=24 Ratings (cost,edu,global,travel,health,life,safe,diverse,tax)
+    var programs=[];
+    for(var i=1;i<rows.length;i++){
+      var r=rows[i];
+      var name=r[0]||'';
+      if(!name||!r[16])continue; // skip empty rows (Dubai etc.)
+
+      var minUSD=parseInt((r[6]||'0').replace(/[^0-9]/g,''))||0;
+      var prop=(r[5]||'').toLowerCase()==='yes';
+      var timeline=r[10]||'medium';
+      var region=r[15]||'';
+      var type=inferType(r[4]);
+      var stay=inferStay(r[8]);
+      var visafree=r[12]||'';
+      var investDetail=r[14]||r[6]||'';
+      var renewDetail=r[7]||'';
+      var stayDetail=r[8]||'';
+      var citizenDetail=r[9]||'';
+
+      programs.push({
+        name:name,
+        flag:getFlag(name),
+        region:region,
+        minUSD:minUSD,
+        type:type,
+        timeline:timeline,
+        prop:prop,
+        stay:stay,
+        cost:parseFloat(r[16])||0,
+        edu:parseFloat(r[17])||0,
+        global:parseFloat(r[18])||0,
+        travel:parseFloat(r[19])||0,
+        health:parseFloat(r[20])||0,
+        life:parseFloat(r[21])||0,
+        safe:parseFloat(r[22])||0,
+        diverse:parseFloat(r[23])||0,
+        tax:parseFloat(r[24])||0,
+        detail:{
+          invest:investDetail,
+          time:renewDetail,
+          visa:citizenDetail||visafree,
+          stay:stayDetail,
+          visafree:visafree
+        }
+      });
+    }
+    PROGRAMS=programs;
+    console.log('[NAC Quiz] Loaded '+programs.length+' programs from Google Sheet');
+    return true;
+  }).catch(function(e){
+    console.error('[NAC Quiz] Sheet fetch failed:',e);
+    return false;
+  });
+}
+
+/* ══════════ SCORING (uses live Sheet data) ══════════ */
+function scorePrograms(a){
+  var regionStr=REGION_MAP[a.region]||'';
+  var scores=PROGRAMS.map(function(p){
+    var s=0;
+    var budgetMap={1:200000,2:500000,3:1000000,4:9999999};
+    var maxB=budgetMap[a.budget]||500000;
+    if(p.minUSD<=maxB)s+=15;else s-=20;
+    s+=(p.cost/100)*8;
+    if(a.goal==='citizenship'&&p.type==='citizenship')s+=20;
+    else if(a.goal==='citizenship')s-=5;
+    else if(a.goal==='residency'&&p.type==='residency')s+=15;
+    else if(a.goal==='lifestyle')s+=(p.life/100)*18;
+    else if(a.goal==='diversify')s+=((p.diverse+p.safe)/200)*18;
+    // Region — string match from sheet
+    if(!regionStr)s+=7; // flexible = no preference, give neutral score
+    else if(p.region===regionStr)s+=14;else s+=2;
+    if(a.timeline===1&&p.timeline==='fast')s+=10;
+    else if(a.timeline===1&&p.timeline==='slow')s-=5;
+    else if(a.timeline===2&&p.timeline!=='slow')s+=7;
+    else if(a.timeline===3)s+=5;
+    if(a.property===1&&p.prop)s+=10;
+    else if(a.property===2&&!p.prop)s+=5;
+    else if(a.property===3)s+=3;
+    if(a.family===3)s+=((p.edu+p.health)/200)*12;
+    else if(a.family===2)s+=(p.life/100)*6;else s+=2;
+    if(a.stay===1&&(p.stay==='none'||p.stay==='minimal'))s+=12;
+    else if(a.stay===1&&p.stay==='relocate')s-=5;
+    else if(a.stay===2&&(p.stay==='relocate'||p.stay==='flexible'))s+=10;
+    else if(a.stay===3)s+=4;
+    if(a.longterm===1)s+=((p.travel+p.global)/200)*14;
+    else if(a.longterm===2)s+=(p.tax/100)*14;
+    else if(a.longterm===3)s+=(p.edu/100)*14;
+    else if(a.longterm===4)s+=((p.global+p.diverse)/200)*14;
+    return{program:p,score:s};
+  });
+  scores.sort(function(a,b){return b.score-a.score});
+  return scores.slice(0,2);
+}
+
+/* ══════════ UI ══════════ */
+var curQ=0,answers={},quizResults=[];
+function $(id){return document.getElementById(id)}
+
+/* ══════════ BILINGUAL ENGINE ══════════ */
+var LANG='vi';
+var PROG_EN={'Hy Lạp':'Greece','SÍp':'Cyprus','Síp':'Cyprus','Bồ Đào Nha':'Portugal','Bổ Đào Nha':'Portugal','Thổ Nhĩ Kỳ':'Türkiye','Thái Lan':'Thailand','Úc':'Australia','Mỹ':'USA','Đảo quốc':'Island nation'};
+var TERM_EN=[
+  ['Không yêu cầu lưu trú','No stay requirement'],['không yêu cầu lưu trú','no stay requirement'],
+  ['Không yêu cầu','Not required'],['không yêu cầu','not required'],
+  ['Không bắt buộc','Not mandatory'],['không bắt buộc','not mandatory'],
+  ['Miễn thị thực','Visa-free'],['miễn thị thực','visa-free'],
+  ['Miễn visa','Visa-free'],['miễn visa','visa-free'],
+  ['Thường trú nhân','Permanent residency'],['thường trú nhân','permanent residency'],
+  ['Thường trú','Permanent residency'],['thường trú','permanent residency'],
+  ['Quốc tịch sau','Citizenship after'],['quốc tịch sau','citizenship after'],
+  ['Quốc tịch','Citizenship'],['quốc tịch','citizenship'],
+  ['Gia hạn mỗi','Renew every'],['gia hạn mỗi','renew every'],
+  ['Gia hạn','Renewal'],['gia hạn','renewal'],
+  ['Bất động sản','Real estate'],['bất động sản','real estate'],
+  ['Đầu tư từ','Investment from'],['đầu tư từ','investment from'],
+  ['Đầu tư','Investment'],['đầu tư','investment'],
+  ['Quyên góp','Donation'],['quyên góp','donation'],
+  ['Trái phiếu','Bonds'],['trái phiếu','bonds'],
+  ['Tối thiểu','Minimum'],['tối thiểu','minimum'],
+  ['Trong vòng','Within'],['trong vòng','within'],
+  ['quốc gia','countries'],['toàn cầu','worldwide'],
+  ['mỗi năm','per year'],['mỗi lần','each time'],
+  ['lưu trú','stay'],['cư trú','residency'],
+  ['tháng','months'],['ngày','days'],[' năm',' years'],
+  ['Sau ','After '],['hoặc ','or '],['Hoặc ','Or '],['Từ ','From '],['từ ','from ']
+];
+TERM_EN.sort(function(a,b){return b[0].length-a[0].length});
+function trTerm(s){
+  if(LANG!=='en'||!s)return s;
+  var out=String(s);
+  for(var i=0;i<TERM_EN.length;i++){out=out.split(TERM_EN[i][0]).join(TERM_EN[i][1])}
+  return out;
+}
+function progName(name){
+  if(LANG!=='en')return name;
+  var out=String(name);
+  for(var k in PROG_EN){out=out.split(k).join(PROG_EN[k])}
+  return trTerm(out);
+}
+function setLang(l){
+  LANG=(l==='en')?'en':'vi';
+  document.documentElement.lang=LANG;
+  document.title=LANG==='en'?'Investment Program Finder | NAC':'Công Cụ Tư Vấn Chương Trình Đầu Tư | NAC';
+  document.querySelectorAll('[data-vi][data-en]').forEach(function(el){
+    var val=el.getAttribute('data-'+LANG)||'';
+    if(val.indexOf('<')>=0)el.innerHTML=val;else el.textContent=val;
+  });
+  var bv=$('btn-vi'),be=$('btn-en');
+  if(bv)bv.className=LANG==='vi'?'on':'';
+  if(be)be.className=LANG==='en'?'on':'';
+  var fn=$('fName');if(fn)fn.placeholder=LANG==='en'?'John Smith':'Nguyễn Văn A';
+  var fnote=$('fNote');if(fnote)fnote.placeholder=LANG==='en'?'e.g. I would like to know more about the Greece program...':'VD: Tôi muốn biết thêm về chương trình Hy Lạp...';
+  var wa=document.querySelector('.nq-cta-wa');
+  if(wa)wa.href='https://wa.me/84919199330?text='+encodeURIComponent(LANG==='en'?'Hello, I just completed the NAC quiz and would like a consultation':'Xin chào, tôi vừa làm quiz và muốn tư vấn thêm');
+  if($('secQuiz').classList.contains('active'))renderQ();
+  if($('secResults').classList.contains('active')&&quizResults.length)renderResults(quizResults);
+  postH();
+}
+window.setLang=setLang;
+function showSection(id){document.querySelectorAll('.nq-section').forEach(function(s){s.classList.remove('active')});$(id).classList.add('active')}
+
+function renderQ(){
+  var q=QS[curQ];
+  var pct=Math.round((curQ/QS.length)*100);
+  $('nqProgress').classList.add('visible');
+  $('nqCur').textContent=curQ+1;
+  $('nqTotal').textContent=QS.length;
+  $('nqPct').textContent=pct+'%';
+  $('nqBar').style.width=pct+'%';
+  var qword=LANG==='en'?'Question':'Câu hỏi';
+  var html='<div class="nq-q-num nq-anim">'+qword+' '+(curQ+1)+' / '+QS.length+'</div>';
+  html+='<div class="nq-q-title nq-anim" style="animation-delay:.05s">'+(LANG==='en'&&q.qe?q.qe:q.q)+'</div>';
+  html+='<div class="nq-opts">';
+  q.opts.forEach(function(o,i){
+    var sel=(answers[q.id]===o.v)?' sel':'';
+    var sv=(typeof o.v==='string')?"'"+o.v+"'":o.v;
+    html+='<a href="javascript:void(0)" class="nq-opt nq-anim'+sel+'" style="animation-delay:'+(0.1+i*0.05)+'s" onclick="NQ.pick(\''+q.id+'\','+sv+',this)">';
+    html+='<span class="nq-opt-icon">'+o.icon+'</span><span>'+(LANG==='en'&&o.te?o.te:o.t)+'</span></a>';
+  });
+  html+='</div>';
+  $('nqCard').innerHTML=html;
+  $('nqNext').className=answers[q.id]!==undefined?'nq-next active':'nq-next';
+}
+
+function renderResults(results){
+  quizResults=results;
+  var en=LANG==='en';
+  var L={
+    rank1:en?'🥇 BEST MATCH':'🥇 PHÙ HỢP NHẤT',rank2:en?'🥈 OPTION #2':'🥈 LỰA CHỌN #2',
+    invest:en?'Investment':'Đầu tư',time:en?'Processing time':'Thời gian xử lý',
+    visa:en?'Benefits':'Quyền lợi',stay:en?'Stay requirement':'Yêu cầu cư trú',
+    cmp:en?'View the NAC Index — compare all programs ':'Xem NAC Index — so sánh các chương trình '
+  };
+  var html='';
+  results.forEach(function(r,i){
+    var p=r.program,d=p.detail;
+    var rc=i===0?'':'second';
+    var rt=i===0?L.rank1:L.rank2;
+    html+='<div class="nq-match nq-anim" style="animation-delay:'+(i*0.15)+'s">';
+    html+='<span class="nq-match-rank '+rc+'">'+rt+'</span>';
+    html+='<h3><span class="flag">'+p.flag+'</span> '+progName(p.name)+'</h3>';
+    html+='<div class="nq-match-details">';
+    html+='<div class="nq-detail"><div class="nq-detail-label">'+L.invest+'</div><div class="nq-detail-val">'+trTerm(d.invest)+'</div></div>';
+    html+='<div class="nq-detail"><div class="nq-detail-label">'+L.time+'</div><div class="nq-detail-val">'+trTerm(d.time)+'</div></div>';
+    html+='<div class="nq-detail"><div class="nq-detail-label">'+L.visa+'</div><div class="nq-detail-val">'+trTerm(d.visa)+'</div></div>';
+    html+='<div class="nq-detail"><div class="nq-detail-label">'+L.stay+'</div><div class="nq-detail-val">'+trTerm(d.stay)+'</div></div>';
+    html+='</div>';
+    // ★ NAC INDEX BACKLINK
+    html+='<a class="nq-sosanhlink" href="'+CFG.SO_SANH+'" target="_blank" rel="noopener">';
+    html+=L.cmp;
+    html+='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>';
+    html+='</div>';
+  });
+  $('nqMatchList').innerHTML=html;
+  // Pre-fill programs interested in the hidden field
+  var progNames=results.map(function(r){return r.program.name}).join(', ');
+  window._quizPrograms=progNames;
+}
+
+/* ══════════ NOTION — SUBMIT CONTACT FORM ══════════ */
+function sendToNotion(formData,cb){
+  var answerLabels={
+    budget:{1:'< $200K',2:'$200K-$500K',3:'$500K-$1M',4:'$1M+'},
+    goal:{residency:'Cư trú',citizenship:'Quốc tịch',lifestyle:'Lối sống',diversify:'Đa dạng hóa'},
+    region:{0:'Linh hoạt',1:'Châu Âu',2:'Caribe',3:'Châu Á TBD',4:'Châu Mỹ'},
+    timeline:{1:'< 6 tháng',2:'1-2 năm',3:'Linh hoạt'},
+    property:{1:'Có',2:'Không',3:'Xem xét'},
+    family:{1:'Bản thân',2:'Vợ/chồng',3:'Gia đình'},
+    stay:{1:'Ít nhất',2:'Sẵn sàng',3:'Không quan trọng'},
+    longterm:{1:'Đi lại',2:'Thuế',3:'Giáo dục',4:'Kinh doanh'}
+  };
+
+  var r1=quizResults[0]?quizResults[0].program.name:'';
+  var r2=quizResults[1]?quizResults[1].program.name:'';
+
+  // Build Ghi chú from quiz answers + form note
+  var ghiChu='Quiz: Budget='+( answerLabels.budget[answers.budget]||'')+
+    ', Goal='+(answerLabels.goal[answers.goal]||'')+
+    ', Region='+(answerLabels.region[answers.region]||'')+
+    ', Stay='+(answerLabels.stay[answers.stay]||'')+
+    ', LongTerm='+(answerLabels.longterm[answers.longterm]||'');
+  if(formData.note)ghiChu+='\nGhi chú: '+formData.note;
+  if(formData.timeline)ghiChu+='\nTimeline: '+formData.timeline;
+
+  var payload={
+    parent:{database_id:CFG.NOTION_DB},
+    properties:{
+      'Tên khách hàng':{title:[{text:{content:formData.name}}]},
+      'Email':{email:formData.email||null},
+      'Số điện thoại':{phone_number:formData.phone},
+      'Ngân sách (USD)':{number: answers.budget===1?150000:answers.budget===2?350000:answers.budget===3?750000:answers.budget===4?1500000:0},
+      'Chương trình quan tâm':{multi_select:[{name:r1}].concat(r2?[{name:r2}]:[])},
+      'Ghi chú':{rich_text:[{text:{content:ghiChu}}]},
+      'Nguồn lead':{select:{name:'Quiz'}},
+      'Region':{multi_select:[{name:answerLabels.region[answers.region]||'Không rõ'}]},
+      'Budget':{rich_text:[{text:{content:answerLabels.budget[answers.budget]||''}}]},
+      'Timeline':{rich_text:[{text:{content:answerLabels.timeline[answers.timeline]||''}}]},
+      'Property':{checkbox:answers.property===1},
+      'Family':{multi_select:[{name:answerLabels.family[answers.family]||'Không rõ'}]},
+      'Stay':{multi_select:[{name:answerLabels.stay[answers.stay]||'Không rõ'}]},
+      'Long Term':{select:{name:answerLabels.longterm[answers.longterm]||'Không rõ'}},
+      'Status':{select:{name:'Mới'}},
+      'Ngày liên hệ':{date:{start:new Date().toISOString().split('T')[0]}}
+    }
+  };
+
+  // If email is empty, remove the email property (Notion rejects null email)
+  if(!formData.email){
+    delete payload.properties['Email'];
+  }
+
+  fetch(CFG.PROXY,{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(payload)
+  })
+  .then(function(r){
+    if(!r.ok)return r.text().then(function(t){throw new Error('HTTP '+r.status+': '+t)});
+    return r.json();
+  })
+  .then(function(data){
+    console.log('[NAC] Notion success',data);
+    cb(null,data);
+  })
+  .catch(function(e){
+    console.error('[NAC] Notion error',e);
+    cb(e);
+  });
+}
+
+/* ══════════ PUBLIC API ══════════ */
+window.NQ={
+  start:function(){curQ=0;answers={};showSection('secQuiz');renderQ();postH()},
+  pick:function(qid,val,el){
+    answers[qid]=val;
+    document.querySelectorAll('.nq-opt').forEach(function(o){o.classList.remove('sel')});
+    el.classList.add('sel');
+    $('nqNext').className='nq-next active';
+  },
+  next:function(){
+    if(answers[QS[curQ].id]===undefined)return;
+    if(curQ<QS.length-1){curQ++;renderQ();postH()}
+    else{
+      var res=scorePrograms(answers);
+      showSection('secResults');
+      renderResults(res);
+      $('nqProgress').classList.remove('visible');
+      postH();
+    }
+  },
+  back:function(){if(curQ>0){curQ--;renderQ();postH()}},
+  restart:function(){
+    curQ=0;answers={};quizResults=[];
+    $('fStatus').className='nq-form-status';
+    $('fSubmit').disabled=false;
+    $('fName').value='';$('fPhone').value='';$('fEmail').value='';$('fNote').value='';
+    var ts=$('fTimeline');if(ts)ts.selectedIndex=0;
+    showSection('secHero');$('nqProgress').classList.remove('visible');postH();
+  },
+  submitForm:function(){
+    var name=$('fName').value.trim();
+    var phone=$('fPhone').value.trim();
+    var email=$('fEmail').value.trim();
+    var timeline=$('fTimeline').value;
+    var note=$('fNote').value.trim();
+
+    // Validation
+    var en=LANG==='en';
+    if(!name){alert(en?'Please enter your full name':'Vui lòng nhập họ tên');$('fName').focus();return}
+    if(!phone){alert(en?'Please enter your phone number':'Vui lòng nhập số điện thoại');$('fPhone').focus();return}
+
+    $('fSubmit').disabled=true;
+    $('fStatus').className='nq-form-status sending';
+    $('fStatus').textContent=en?'Sending...':'Đang gửi...';
+
+    sendToNotion({name:name,phone:phone,email:email,timeline:timeline,note:note},function(err){
+      var en2=LANG==='en';
+      if(err){
+        $('fStatus').className='nq-form-status error';
+        $('fStatus').textContent=en2?'Something went wrong. Please try again or reach us on WhatsApp.':'Có lỗi xảy ra. Vui lòng thử lại hoặc liên hệ WhatsApp.';
+        $('fSubmit').disabled=false;
+        console.error('[NAC] Error detail:',err);
+      } else {
+        $('fStatus').className='nq-form-status success';
+        $('fStatus').textContent=en2?'✅ Request received! NAC will contact you within 24h.':'✅ Yêu cầu đã được ghi nhận! NAC sẽ liên hệ bạn trong 24h.';
+        $('fSubmit').disabled=true;
+      }
+      postH();
+    });
+  }
+};
+
+/* ══════════ IFRAME RESIZE ══════════ */
+function postH(){try{window.parent.postMessage({type:'nac-quiz-height',height:document.documentElement.scrollHeight},'*')}catch(e){}}
+setInterval(postH,500);
+
+/* ══════════ EVENT WIRING (KSES-safe — no inline onclick) ══════════ */
+function on(id,fn){var el=$(id);if(el)el.addEventListener('click',fn)}
+on('btnStart',function(){NQ.start()});
+on('btnBack',function(){NQ.back()});
+on('nqNext',function(){NQ.next()});
+on('btnRestart',function(){NQ.restart()});
+on('fSubmit',function(){NQ.submitForm()});
+on('btn-vi',function(){setLang('vi')});
+on('btn-en',function(){setLang('en')});
+
+/* ══════════ INIT — fetch Sheet data ══════════ */
+fetchPrograms().then(function(){postH();});
+
+})();
+</script>
+</body>
+</html>

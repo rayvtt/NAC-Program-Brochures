@@ -649,8 +649,45 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
       }
     } catch(e) {}
   }
+  // The Property Hub demo is a living page, not a screenshot. On load it is pinned to the
+  // pristine top state (full header + hero, exactly like arriving on the site — never the
+  // collapsed post-scroll nav), then it glides down through the hub in slow steps and
+  // returns to the top, so a partner sees the hub is scrollable and multi-state.
+  // Same-origin only; cross-origin contexts (GH Pages preview) throw and are skipped.
+  function hubDemoTour(f){
+    try {
+      var w = f.contentWindow, d = f.contentDocument;
+      if (!w || !d || !d.body) return;
+      if (f.getAttribute('data-tour')) return;
+      f.setAttribute('data-tour', '1');
+      w.scrollTo(0, 0);
+      var nav = d.querySelector('.nav');
+      if (nav) nav.classList.remove('scrolled');
+      var step = 0, steps = 4;
+      function glide(){
+        try {
+          step++;
+          if (step > steps) {
+            step = 0;
+            w.scrollTo({ top: 0, behavior: 'smooth' });
+            setTimeout(glide, 9000); // linger on the pristine top state
+            return;
+          }
+          var vh = w.innerHeight || 720;
+          w.scrollTo({ top: Math.round(step * vh * 0.9), behavior: 'smooth' });
+          setTimeout(glide, 5000);
+        } catch(e) {}
+      }
+      setTimeout(glide, 6000);
+    } catch(e) {}
+  }
   document.querySelectorAll('iframe[data-src]').forEach(function(f){
-    f.addEventListener('load', function(){ deWpChrome(f); applyFrameLang(f); });
+    var isHub = /property-hub-bat-dong-san\/?$/.test(f.getAttribute('data-src') || '');
+    f.addEventListener('load', function(){
+      deWpChrome(f);
+      applyFrameLang(f);
+      if (isHub) hubDemoTour(f);
+    });
   });
   function verify(code, onFail){
     return fetch(WORKER_URL + '/partner-access', {

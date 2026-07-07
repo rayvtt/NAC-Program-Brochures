@@ -77,13 +77,28 @@ BROCHURES = {
     'montenegro':  ('montenegro-rbi.html',            2167, 'chuong-trinh-montenengro-rbi-qua-dau-tu-bds'),
     'australia':   ('australia-rbi.html',          2213, 'chuong-trinh-uc-rbi-residency-by-investment'),
     'nauru':       ('nauru-cbi.html',              2215, 'chuong-trinh-nauru-quoc-tich-cbi-citizenship-by-investment'),
-    # 'nph' (property-hub) and 'index' (nac-residence-index) intentionally
-    # omitted — those tool pages are NOT managed by this repo. They live in
-    # WordPress directly. Re-adding them here would overwrite WP-side edits
-    # on every CI deploy.
+    # 'nph' (property-hub) intentionally omitted — managed in the
+    # NAC---Property-Hub repo, not here. Re-adding it would overwrite that
+    # repo's deploys on every CI run.
+    # 'index' re-adopted 2026-07-07: local copy verified byte-identical to the
+    # live ACF content first, then KSES-proofed (all static inline on* handlers
+    # converted to the data-nac-act delegation binder) so REST pushes can't
+    # strip its interactivity. The repo file is the source of truth again.
+    'index':       ('NAC-RESIDENCE-INDEX.html',       1800, 'nac-residence-index'),
     # 'partners': gated partner pitch-deck (code-entry gate → 🎯 NAC - Outreach via the
     # command-center Worker's /partner-access).
     'partners':    ('NAC-PARTNERS.html',              2493, 'doi-tac-partner-gateway'),
+    # 'quiz': bilingual Quick Quiz (Tư Vấn Nhanh). Page 1115 historically rendered an
+    # iframe wrapper around an uploaded static file; syncing here converts it to the
+    # ACF raw-html pattern (see PAGE_TEMPLATE below, which switches the WP template).
+    'quiz':        ('nac-quiz-tu-van.html',           1115, 'tu-van-nhanh'),
+}
+
+# alias → WP page template to enforce on push. Pages listed here did not start life
+# on the NAC Residence Index raw-HTML template, so the sync sets `template` in the
+# same POST that writes the ACF field (idempotent — WP ignores a no-op value).
+PAGE_TEMPLATE = {
+    'quiz': 'nac-residence-index.php',
 }
 
 # ── Color helpers ──────────────────────────────────────────────────────
@@ -152,8 +167,11 @@ def fetch_page_meta(page_id):
         status, data = http('GET', f'{WP_RELAY_BASE}/pages/{page_id}?_fields=id,slug,modified,title,link')
     return status, data
 
-def push_page_content(page_id, content, auth):
-    body = json.dumps({'acf': {ACF_FIELD: content}}, ensure_ascii=False)
+def push_page_content(page_id, content, auth, template=None):
+    payload = {'acf': {ACF_FIELD: content}}
+    if template:
+        payload['template'] = template
+    body = json.dumps(payload, ensure_ascii=False)
     status, data = http('POST', f'{WP_BASE}/pages/{page_id}',
         headers={'Authorization': auth, 'Content-Type': 'application/json; charset=utf-8'},
         body=body)
@@ -204,7 +222,7 @@ def cmd_sync(alias, auth=None, dry_run=False):
     if dry_run:
         print(gray(f'    (dry-run — no PUT)'))
         return True
-    status, data = push_page_content(pid, content, auth)
+    status, data = push_page_content(pid, content, auth, template=PAGE_TEMPLATE.get(alias))
     if status == 200 and isinstance(data, dict) and data.get('id'):
         # Verify ACF round-tripped — catches REST-exposure misconfig or
         # WYSIWYG sanitisers silently stripping the HTML.
