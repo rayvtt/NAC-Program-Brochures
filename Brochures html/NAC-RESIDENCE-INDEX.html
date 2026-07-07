@@ -1908,6 +1908,15 @@ img.twemoji-flag { height: 1em; width: 1em; vertical-align: -0.1em; display: inl
   var mf = document.getElementById('mForm');
   if(mf) mf.addEventListener('submit', function(e){ mSubmit(e); });
 })();
+
+/* URL language routing (?lang=en|vi) — lets the homepage toolkit demos and
+   deep links open this tool in the visitor's language. */
+(function(){
+  try {
+    var q = new URLSearchParams(location.search).get("lang");
+    if (q === "en" || q === "vi") setLang(q);
+  } catch (e) {}
+})();
 </script>
 </body>
 </html>
