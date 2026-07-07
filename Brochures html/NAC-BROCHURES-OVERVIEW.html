@@ -2945,6 +2945,15 @@ if (typeof twemoji !== 'undefined') {
     className: 'twemoji-flag'
   });
 }
+
+/* URL language routing (?lang=en|vi) — lets the homepage toolkit demos and
+   deep links open this tool in the visitor's language. */
+(function(){
+  try {
+    var q = new URLSearchParams(location.search).get("lang");
+    if (q === "en" || q === "vi") setLang(q);
+  } catch (e) {}
+})();
 </script>
 <style>
 /* Size twemoji flag images to match the surrounding text */
