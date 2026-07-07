@@ -194,13 +194,25 @@ KSES strips inline event handlers when content is saved to ACF `raw_html_code` (
 
 **Fix:** bind via `addEventListener` (already present in every brochure's bilingual engine + verified by `daily_en_audit.py` check #1).
 
-### Trap 2: Backslash-escaped quotes inside `<script>` get unescaped
+### Trap 2: WP strips ONE LEVEL OF ALL BACKSLASHES from the pushed content (wp_unslash)
 
-WP rewrites `\"foo\"` → `"foo"` inside `<script>` content, terminating the string early and producing a SyntaxError. The bilingual engine had `\"bàn đạp\"` and `\"springboard\"` — that was enough to crash the entire script block and silently kill the EN toggle.
+**Root cause identified 2026-07-07:** it is not just `\"`. WP REST runs `wp_unslash`
+on the request body, so EVERY backslash in the ACF value loses one level:
+`\"` → `"`, `\'` → `'`, `\/` → `/`, `\n` → `n`, `\s` → `s`. Verified live: the
+quiz page's `NQ.pick(\''+…)`, the index page's `icon:'<svg width=\'20\'…'`, and
+a `\/` inside a deck regex all arrived corrupted and killed their script blocks
+with SyntaxErrors. Brochure `\n` escapes in EN_STRINGS had been silently landing
+as a stray `n` for months. (Same behavior the Property Hub repo documents for
+its own WP sync.)
 
-**Fix:** use Unicode curly quotes `"…"` (U+201C / U+201D) inside JS strings. Looks identical, survives WP.
+**Fix (systemic, in `sync_brochures.py::push_page_content`):** all backslashes
+are pre-doubled (`content.replace('\\', '\\\\')`) before the POST, so the
+stored value round-trips intact. The response's `acf` field contains the
+un-slashed (original) value, so the length verification still compares against
+the original content.
 
-**Never use `\"` in `<script>` content destined for WP.**
+Historical workaround (still fine, no longer required): Unicode curly quotes
+`"…"` (U+201C / U+201D) inside JS strings instead of `\"`.
 
 ### Trap 3: Multi-line string literals inside VI_STRINGS / EN_STRINGS arrays
 
