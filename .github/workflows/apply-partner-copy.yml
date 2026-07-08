@@ -39,16 +39,28 @@ jobs:
       - name: Apply changes to the HTML
         env:
           CHANGES: ${{ inputs.changes }}
+          SKIP_FILE: /tmp/copy-apply-skipped.txt
         run: python tools/apply_partner_copy.py
 
       - name: Commit and push
         run: |
           if git diff --quiet "Brochures html/NAC-PARTNERS.html"; then
             echo "No effective changes."
-            exit 0
+          else
+            git config user.name "nac-copy-editor"
+            git config user.email "actions@github.com"
+            git add "Brochures html/NAC-PARTNERS.html" PARTNER-COPY-LOG.md
+            git commit -m "content: partner gateway copy edit via in-page editor"
+            git push
           fi
-          git config user.name "nac-copy-editor"
-          git config user.email "actions@github.com"
-          git add "Brochures html/NAC-PARTNERS.html" PARTNER-COPY-LOG.md
-          git commit -m "content: partner gateway copy edit via in-page editor"
-          git push
+
+      # A silently lost edit is the worst outcome — if any change key could
+      # not be applied, fail the run (AFTER committing what did apply) so it
+      # shows red in Actions instead of a false green.
+      - name: Fail if any edit was skipped
+        run: |
+          if [ -s /tmp/copy-apply-skipped.txt ]; then
+            echo "::error::Some edits could NOT be applied:"
+            cat /tmp/copy-apply-skipped.txt
+            exit 1
+          fi

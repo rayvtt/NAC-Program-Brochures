@@ -1470,16 +1470,21 @@ body.editing [data-copy].edited{outline:2px solid #18b26b}
   var tokEl = document.getElementById("ghTok");
   try { if (localStorage.getItem(GH_TOKEN_KEY)) tokEl.placeholder = "Token đã lưu ✓ (dán token mới để thay)"; } catch (e) {}
   function emsg(t){ msgEl.textContent = t; }
+  function flat(t){ return String(t == null ? "" : t).replace(/\s+/g, " ").trim(); }
   document.querySelectorAll("[data-copy]").forEach(function(el){
     el.setAttribute("contenteditable", "plaintext-only");
     if (el.contentEditable !== "plaintext-only") el.setAttribute("contenteditable", "true");
     el.setAttribute("spellcheck", "false");
+    // Snapshot the pre-edit values — the server uses them to find the element
+    // when its content-derived key has drifted (repo edited since last WP sync).
+    var orig = { vi: flat(el.getAttribute("data-vi")), en: flat(el.getAttribute("data-en")) };
     el.addEventListener("input", function(){
       var key = el.getAttribute("data-copy");
       var lang = curLang();
-      el.setAttribute("data-" + lang, el.textContent);
-      if (!edited[key]) edited[key] = {};
-      edited[key][lang] = el.textContent;
+      var txt = flat(el.textContent); // "" is a real edit (deletion) — always record it
+      el.setAttribute("data-" + lang, txt);
+      if (!edited[key]) edited[key] = { o_vi: orig.vi, o_en: orig.en };
+      edited[key][lang] = txt;
       el.classList.add("edited");
       countEl.textContent = String(Object.keys(edited).length);
     });
@@ -1522,7 +1527,7 @@ body.editing [data-copy].edited{outline:2px solid #18b26b}
       body: JSON.stringify({ ref: EDIT_BRANCH, inputs: { changes: JSON.stringify(edited) } })
     }).then(function(r){
       if (r.status === 204) {
-        emsg("✓ Đã gửi! Web sẽ cập nhật trong ~2 phút.");
+        emsg("✓ Đã gửi! Web sẽ cập nhật trong ~2 phút. Kiểm tra 📜 Lịch sử sau khi tải lại — nếu thiếu mục nào, xem tab Actions trên GitHub (run đỏ = mục đó không áp dụng được).");
         edited = {}; countEl.textContent = "0";
         document.querySelectorAll("[data-copy].edited").forEach(function(el){ el.classList.remove("edited"); });
       } else if (r.status === 404) {
