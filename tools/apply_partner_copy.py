@@ -100,6 +100,64 @@ def update_inline_log(html, entries, source):
         '<script type="application/json" id="copyLog">' + js + '</script>')
 
 
+def apply_overrides(html, overrides):
+    """Merge an OVERRIDES map into the #copyStyles JSON block. Mirrors
+    apply-homepage-copy.mjs::applyOverrides. Per key: shallow merge, with the
+    `style` sub-object deep-merged (empty/null props pruned) and
+    img/anim/align/href/hidden clearable via null. A key set to null is deleted
+    (reset); array / non-object values (e.g. __order) are set directly.
+    Returns (html, count). Idempotent."""
+    m = re.search(
+        r'<script type="application/json" id="copyStyles">(.*?)</script>',
+        html, re.DOTALL)
+    if not m:
+        return html, 0
+    try:
+        cur = json.loads(m.group(1) or '{}') or {}
+    except (json.JSONDecodeError, ValueError):
+        cur = {}
+    if not isinstance(cur, dict):
+        cur = {}
+    count = 0
+    for key, val in overrides.items():
+        if val is None:
+            if key in cur:
+                del cur[key]
+                count += 1
+            continue
+        if isinstance(val, list) or not isinstance(val, dict):
+            cur[key] = val
+            count += 1
+            continue
+        prev = cur.get(key) or {}
+        if not isinstance(prev, dict):
+            prev = {}
+        nxt = dict(prev)
+        nxt.update(val)
+        if val.get('style') is not None and isinstance(val.get('style'), dict):
+            merged = dict(prev.get('style') or {})
+            merged.update(val['style'])
+            for sk in list(merged.keys()):
+                if merged[sk] is None or merged[sk] == '':
+                    del merged[sk]
+            if merged:
+                nxt['style'] = merged
+            else:
+                nxt.pop('style', None)
+        # Only an EXPLICIT null clears the field (missing key leaves it alone).
+        for f in ('img', 'anim', 'align', 'href', 'hidden'):
+            if f in val and val[f] is None:
+                nxt.pop(f, None)
+        cur[key] = nxt
+        count += 1
+    # `<` must not appear raw inside a <script> block — escape as its unicode
+    # escape (same as the copyLog block does).
+    out = json.dumps(cur, ensure_ascii=False, separators=(',', ':')).replace('<', '\\u003c')
+    built = '<script type="application/json" id="copyStyles">' + out + '</script>'
+    html = html[:m.start()] + built + html[m.end():]
+    return html, count
+
+
 def find_tags(html, key):
     return [m.group(0) for m in re.finditer(TAG_RE_TPL % re.escape(key), html)]
 
@@ -144,6 +202,7 @@ def step_summary(lines):
 
 def main():
     changes = json.loads(os.environ.get('CHANGES') or '{}')
+    overrides = json.loads(os.environ.get('OVERRIDES') or '{}')
     html = FILE.read_text(encoding='utf-8')
     changed = 0
     log_entries = []
@@ -195,11 +254,24 @@ def main():
         else:
             skipped.append((key, 'value identical to current — nothing to change'))
 
-    if changed:
+    # element style / layout / image / animation overrides (#copyStyles block)
+    style_count = 0
+    if overrides:
+        html, style_count = apply_overrides(html, overrides)
+        for k, v in overrides.items():
+            # Quote-free summary: this string lands in the copyLog JSON block,
+            # and a literal " there would be escaped as \" — which WP's
+            # wp_unslash would then corrupt. Strip quotes to stay WP-safe.
+            new_val = '∅ (reset)' if v is None else clip(
+                json.dumps(v, ensure_ascii=False).replace('"', ''), 120)
+            log_entries.append({'key': k, 'lang': 'style',
+                                'oldVal': '', 'newVal': new_val})
+
+    if changed or style_count:
         html = update_inline_log(html, log_entries, 'in-page editor')
         FILE.write_text(html, encoding='utf-8')
         append_log(log_entries, 'in-page editor')
-        print(f'Applied {changed} change(s).')
+        print(f'Applied {changed} text + {style_count} style change(s).')
     else:
         print('Nothing to apply.')
 
