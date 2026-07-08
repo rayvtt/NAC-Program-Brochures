@@ -44,12 +44,6 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 
 /* ===== GATE ===== */
 .gate{position:fixed;inset:0;z-index:1000;background:var(--blue);display:flex;align-items:center;justify-content:center;padding:24px;overflow-y:auto}
-/* cinematic film behind the frosted gate card (fallback: the blue gate stands) */
-.gate-film{position:absolute;inset:0;z-index:0;overflow:hidden;opacity:0;transition:opacity 1.2s ease}
-.gate.filmed .gate-film{opacity:1}
-.gate-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s ease}
-.gate-film video.show{opacity:1}
-.gate-film::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,0,173,.66) 0%,rgba(24,0,173,.5) 45%,rgba(16,0,122,.86) 100%)}
 .gate::before{content:'';position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(620px circle at 50% 30%,rgba(255,255,255,.12) 0%,rgba(249,115,22,.08) 30%,transparent 62%),
              radial-gradient(ellipse 50% 60% at 5% 0%,rgba(255,255,255,.08) 0%,transparent 55%),
@@ -86,19 +80,6 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 
 /* Hero */
 .hero{background:var(--blue);position:relative;overflow:hidden;padding:76px 0 64px;text-align:center}
-/* cinematic film hero — reveals only when a clip actually plays; the blue+orb hero is the fallback */
-.hero{min-height:min(88vh,760px);display:flex;align-items:center}
-.hero .hero-in{width:100%}
-.pg-film{position:absolute;inset:0;z-index:0;overflow:hidden;opacity:0;transition:opacity 1.2s ease}
-.hero.filmed .pg-film{opacity:1}
-.pg-film video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.5s ease}
-.pg-film video.show{opacity:1}
-.pg-film::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,0,173,.60) 0%,rgba(24,0,173,.44) 42%,rgba(16,0,122,.86) 100%)}
-.hero.filmed .hero-orb{opacity:.4;transition:opacity 1.2s ease}
-.hero-cue{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.72);display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;animation:heroUp .8s 1.2s both}
-.hero-cue svg{width:20px;height:20px;animation:cueBob 1.8s ease-in-out infinite}
-@keyframes cueBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-@media(max-width:640px){.hero{min-height:min(84vh,600px)}}
 .hero::before{content:'';position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(620px circle at 50% 20%,rgba(255,255,255,.1) 0%,rgba(249,115,22,.08) 30%,transparent 60%),
              radial-gradient(ellipse 40% 50% at 98% 100%,rgba(249,115,22,.16) 0%,transparent 60%);}
@@ -419,10 +400,6 @@ html[lang="en"] .pg-vi-only{display:none}
 
 <!-- ===== GATE ===== -->
 <div class="gate" id="gate">
-  <div class="gate-film" id="gateFilm" aria-hidden="true">
-    <video id="gateFilmA" muted loop playsinline preload="auto"></video>
-    <video id="gateFilmB" muted loop playsinline preload="auto"></video>
-  </div>
   <div class="gate-card">
     <div class="gate-langs">
       <button class="gate-lang-btn on" id="gateLangVi">VI</button>
@@ -479,14 +456,6 @@ html[lang="en"] .pg-vi-only{display:none}
 
   <section class="hero">
     <div class="hero-orb oa"></div><div class="hero-orb ob"></div>
-    <div class="pg-film" id="pgFilm" aria-hidden="true">
-      <video id="pgFilmA" muted loop playsinline preload="auto"></video>
-      <video id="pgFilmB" muted loop playsinline preload="auto"></video>
-    </div>
-    <a class="hero-cue" href="#p1" aria-label="Scroll">
-      <span data-copy="pg-scrollcue" data-vi="Khám phá" data-en="Explore">Khám phá</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    </a>
     <div class="wrap hero-in">
       <div class="pg-greet" id="pgGreet" style="display:none">👋 <span id="pgGreetTxt"></span></div>
       <div class="hero-eyebrow" data-copy="pg-4319ba" data-vi="Tài Liệu Đối Tác NAC · 2026" data-en="Partner portal · 2026">Tài Liệu Đối Tác NAC · 2026</div>
@@ -1570,53 +1539,6 @@ body.editing [data-copy].edited{outline:2px solid #18b26b}
       }
     }).catch(function(e){ emsg("Lỗi mạng: " + e.message); });
   });
-})();
-</script>
-<script>
-/* Partner Gateway cinematic film — drives BOTH the access gate and the hero.
-   Progressive enhancement: the blue+orb/frosted fallback stands if a clip can't play. */
-(function(){
-  "use strict";
-  var save = navigator.connection && navigator.connection.saveData;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (save || reduce) return; // keep the static fallback for data-saver / reduced-motion
-  var CLIPS = [
-    "https://nomadassetcollective.com/wp-content/uploads/2026/07/nac-hero-coworkers-smile.mp4",
-    "https://nomadassetcollective.com/wp-content/uploads/2026/07/nac-hero-city-dusk.mp4",
-    "https://nomadassetcollective.com/wp-content/uploads/2026/07/nac-hero-coast-aerial.mp4",
-    "https://nomadassetcollective.com/wp-content/uploads/2026/07/nac-hero-couple-sunset-jump.mp4"
-  ];
-  function startFilm(host, a, b){
-    if (!host || !a || !b) return;
-    var cur = a, nxt = b, i = 0, started = false, switching = false;
-    function load(v, idx){ try{ var n = CLIPS.length; v.src = CLIPS[((idx % n) + n) % n]; v.load(); }catch(e){} }
-    function advance(){
-      if (switching || !started) return;
-      switching = true;
-      var np = nxt.play(); if (np && np.catch) np.catch(function(){});
-      nxt.classList.add("show"); cur.classList.remove("show");
-      var old = cur; cur = nxt; nxt = old;
-      i++;
-      setTimeout(function(){ try{ old.pause(); }catch(e){} load(nxt, i + 1); switching = false; }, 1500);
-    }
-    function onTU(e){
-      if (!started || switching) return;
-      if (e.target !== cur) return;
-      if (cur.duration && cur.currentTime >= cur.duration - 1.3) advance();
-    }
-    a.addEventListener("timeupdate", onTU);
-    b.addEventListener("timeupdate", onTU);
-    a.addEventListener("playing", function(){
-      if (started) return;
-      started = true;
-      cur.classList.add("show"); host.classList.add("filmed");
-      load(nxt, 1); i = 1;
-    });
-    load(cur, 0);
-    var p = cur.play(); if (p && p.catch) p.catch(function(){}); // autoplay blocked -> static fallback stays
-  }
-  startFilm(document.querySelector(".hero"), document.getElementById("pgFilmA"), document.getElementById("pgFilmB"));
-  startFilm(document.getElementById("gate"), document.getElementById("gateFilmA"), document.getElementById("gateFilmB"));
 })();
 </script>
 </body>
