@@ -14,6 +14,11 @@ on:
         description: 'JSON map of copy changes, e.g. {"pg-a788c2":{"vi":"…","en":"…"}}'
         required: true
         type: string
+      overrides:
+        description: 'JSON map of element style/layout overrides for the #copyStyles block'
+        required: false
+        default: '{}'
+        type: string
 
 permissions:
   contents: write
@@ -39,6 +44,7 @@ jobs:
       - name: Apply changes to the HTML
         env:
           CHANGES: ${{ inputs.changes }}
+          OVERRIDES: ${{ inputs.overrides }}
           SKIP_FILE: /tmp/copy-apply-skipped.txt
         run: python tools/apply_partner_copy.py
 
