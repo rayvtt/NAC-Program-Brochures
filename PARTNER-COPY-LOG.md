@@ -32,3 +32,7 @@ click to open full-screen.”
 ## 2026-07-07 20:31 UTC · in-page editor
 
 - `pg-4319ba` EN: “NAc portal for our esteemed partners · 2026” → “Partner portal · 2026”
+
+## 2026-07-09 14:02 UTC · in-page editor
+
+- `pg-b9f7c3` EN: “Live, Side By Side” → “NAC Toolkit - All info/ material&nbsp;<br>r<span style="font-size:clamp(24px, 3vw, 34px);">eady for your consultation!</span>”
