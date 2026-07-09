@@ -95,10 +95,24 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .pg-film video.show{opacity:1}
 .pg-film::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(24,0,173,.60) 0%,rgba(24,0,173,.44) 42%,rgba(16,0,122,.86) 100%)}
 .hero.filmed .hero-orb{opacity:.4;transition:opacity 1.2s ease}
-.hero-cue{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2;color:rgba(255,255,255,.72);display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;animation:heroUp .8s 1.2s both}
+.hero-cue{position:absolute;left:0;right:0;bottom:20px;margin:0 auto;width:max-content;z-index:2;color:rgba(255,255,255,.72);display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;animation:heroUp .8s 1.2s both}
 .hero-cue svg{width:20px;height:20px;animation:cueBob 1.8s ease-in-out infinite}
 @keyframes cueBob{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-@media(max-width:640px){.hero{min-height:min(84vh,600px)}}
+@media(max-width:640px){
+  .hero{min-height:calc(100svh - 58px);align-items:flex-start;padding:28px 0 92px}
+  .hero .hero-in{width:100%}
+  .pg-greet{font-size:12px;padding:6px 14px;margin-bottom:12px}
+  .hero-eyebrow{font-size:10px;letter-spacing:2px;margin-bottom:10px}
+  .hero h1{font-size:28px;line-height:1.16;margin-bottom:14px;max-width:none}
+  .hero p{font-size:14.5px;line-height:1.6;margin-bottom:22px;max-width:none}
+  .hero-stats{gap:18px 26px;margin:16px 0 24px}
+  .hstat{min-width:0}
+  .hstat b{font-size:30px;height:34px}
+  .hstat span{font-size:10px}
+  .hero-ctas{gap:10px}
+  .hero-ctas .btn{flex:1 1 44%;justify-content:center;min-width:0;padding-left:14px;padding-right:14px}
+  .hero-cue{bottom:26px}
+}
 .hero::before{content:'';position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(620px circle at 50% 20%,rgba(255,255,255,.1) 0%,rgba(249,115,22,.08) 30%,transparent 60%),
              radial-gradient(ellipse 40% 50% at 98% 100%,rgba(249,115,22,.16) 0%,transparent 60%);}
@@ -412,7 +426,7 @@ html[lang="en"] .pg-vi-only{display:none}
 @media(max-width:760px){.pgnav{right:14px;bottom:14px}}
 @media(prefers-reduced-motion:reduce){.pgnav-panel{animation:none}.pgnav-toggle{transition:none}}
 
-@media(prefers-reduced-motion:reduce){.hero-orb,.logo-mark img,.hstat-imc,.hero .hero-eyebrow,.hero h1,.hero p,.hero-stats .hstat,.hero-ctas{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.hero .hero-eyebrow,.hero h1,.hero p,.hero-stats .hstat,.hero-ctas{animation:none!important}}
 </style>
 </head>
 <body>
@@ -495,7 +509,7 @@ The Complete NAC Journey">Từ Bất Động Sản Đến Thẻ Cư Trú — NAC
       <p data-copy="pg-1a7377" data-vi="Dành cho kế toán, quản lý quỹ và cố vấn tài sản: đồng hành cùng khách hàng của bạn trong toàn bộ hành trình đầu tư – định cư, với bộ công cụ minh bạch, song ngữ, cập nhật theo dữ liệu thực tế." data-en="For accountants, fund managers, and wealth advisors: walk your clients through the full investment-migration journey with transparent, bilingual, live-data tools.">Dành cho kế toán, quản lý quỹ và cố vấn tài sản: đồng hành cùng khách hàng của bạn trong toàn bộ hành trình đầu tư – định cư, với bộ công cụ minh bạch, song ngữ, cập nhật theo dữ liệu thực tế.</p>
       <div class="hero-stats">
         <div class="hstat"><b>16</b><span data-copy="pg-9f5124" data-vi="chương trình đang mở" data-en="open programs">chương trình đang mở</span></div>
-        <div class="hstat"><b>60+</b><span data-copy="pg-a788c2" data-vi="BĐS tuyển chọn" data-en="curated listings">BĐS tuyển chọn</span></div>
+        <div class="hstat"><b>130+</b><span data-copy="pg-a788c2" data-vi="BĐS tuyển chọn" data-en="curated listings">BĐS tuyển chọn</span></div>
         <div class="hstat"><b>6</b><span data-copy="pg-90983a" data-vi="tiêu chí NAC Index" data-en="Index criteria">tiêu chí NAC Index</span></div>
         <div class="hstat"><b><img class="hstat-imc" src="https://nomadassetcollective.com/wp-content/uploads/2026/05/OTG-Passport-Icons.png" alt="IMC accredited" loading="lazy"></b><span data-copy="pg-d6d06b" data-vi="thành viên hiệp hội  IMC" data-en="IMC accredited member">thành viên IMC kiểm định</span></div>
       </div>
@@ -2362,8 +2376,7 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
 (function(){
   "use strict";
   var save = navigator.connection && navigator.connection.saveData;
-  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (save || reduce) return; // keep the static fallback for data-saver / reduced-motion
+  if (save) return; // only Data-Saver keeps the static fallback; reduced-motion still gets the (muted) film
   var CLIPS = [
     "https://nomadassetcollective.com/wp-content/uploads/2026/07/nac-hero-coworkers-smile.mp4",
     "https://nomadassetcollective.com/wp-content/uploads/2026/07/nac-hero-city-dusk.mp4",
