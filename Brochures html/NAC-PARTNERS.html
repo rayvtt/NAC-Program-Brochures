@@ -1132,14 +1132,9 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
     if (!m || !m.n) return;
     var el = document.getElementById('pgGreet'), txt = document.getElementById('pgGreetTxt');
     if (!el || !txt) return;
-    var vi, en;
-    if (m.c && m.c !== m.n) {
-      vi = 'Chào ' + m.c + ' — cổng này được chuẩn bị riêng cho ' + m.n + '.';
-      en = 'Welcome ' + m.c + ' — this gateway is prepared for ' + m.n + '.';
-    } else {
-      vi = 'Chào ' + m.n + ' — cổng này được chuẩn bị riêng cho bạn.';
-      en = 'Welcome ' + m.n + ' — this gateway is prepared for you.';
-    }
+    var who = (m.c && m.c !== m.n) ? m.c : m.n;
+    var vi = 'Chào ' + who;
+    var en = 'Welcome ' + who;
     txt.setAttribute('data-vi', vi);
     txt.setAttribute('data-en', en);
     txt.textContent = lang() === 'en' ? en : vi;
