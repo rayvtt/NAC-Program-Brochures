@@ -1,991 +1,257 @@
 {
-  "generated_at": "2026-07-11T14:09:24.459239+00:00",
+  "generated_at": "2026-07-11T15:12:24.090936+00:00",
   "source": "live WordPress fetched HTML",
   "reports": [
     {
       "alias": "portugal",
       "html_file": "live_portugal.html",
-      "visible_vn_strings": 129,
-      "translated": 107,
-      "gap": 22,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 82.9,
-      "gap_samples": [
-        {
-          "text": "Cải cách 2023 — Quan trọng: Kể từ 07/10/2023, đầu tư BĐS nhà ở không còn đủ điều kiện cho Golden Visa. Quỹ đầu tư đã đượ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế quan trọng: Trong khi chờ ARI Card, nhà đầu tư và gia đình có thể đăng ký visa Schengen ngắn hạn qua đại sứ quán",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Ưu điểm nổi bật vs. các chương trình khác: Bồ Đào Nha là chương trình duy nhất trong Top EU bảo lãnh cả bố mẹ hai bên và",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "NHR 2.0 vs NHR 1.0: Phiên bản NHR gốc (2009–2023) miễn thuế rộng hơn cho hầu hết thu nhập nước ngoài. NHR 2.0 từ 2024 th",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Yêu cầu xin quốc tịch sau 5 năm: • Hoàn thành 5 năm cư trú hợp lệ (với 7–14 ngày/năm tại Bồ Đào Nha) • Đạt trình độ tiến",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Hộ chiếu Bồ Đào Nha mở ra toàn bộ EU — quyền sống, làm việc và học tập ở 27 nước EU + Schengen + ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Rủi ro chính sách: Bồ Đào Nha đã cải cách chương trình 3 lần từ 2012. Mặc dù khó có thể bãi bỏ hoàn toàn, nhưng tiếp tục",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "NAC Score 88/100 — Xem đầy đủ tại NAC Residence Index →",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "R&D công nhận",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chuẩn bị hồ sơ & NIF / Tài khoản ngân hàng",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 332,
-      "en_array_size": 332,
-      "data_attr_pairs": 23,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 28
     },
     {
       "alias": "greece",
       "html_file": "live_greece.html",
-      "visible_vn_strings": 126,
-      "translated": 94,
-      "gap": 32,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 74.6,
-      "gap_samples": [
-        {
-          "text": "Vị trí của Hy Lạp Golden Visa trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Thay đổi quan trọng — Luật 5100/2024 (hiệu lực 09/2024): Ngưỡng cũ €250K cho BĐS nhà ở thông thường đã hết hiệu lực hoàn",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Nhận định NAC — Đường €250K: Đây là lựa chọn chiến lược nhất — cho phép sở hữu BĐS ngay tại Athens với ngưỡng thấp nhất ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cải thiện xử lý 2025–2026: Hy Lạp đã đầu tư mạnh vào hệ thống Digital Residency Portal từ 2025, giảm thời gian xử lý từ ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lợi thế gia đình Hy Lạp: Với một khoản đầu tư duy nhất €250K–€800K, gia đình có thể bao gồm vợ/chồng + con + bố mẹ hai b",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Non-Dom HNWI Regime (Điều 5A — Luật 4646/2019): Nhà đầu tư nước ngoài chuyển tư cách cư trú thuế sang Hy Lạp có thể đăng",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Golden Visa ≠ Cư trú thuế Hy Lạp: Sở hữu BĐS và giữ giấy phép cư trú Hy Lạp không tự động tạo nghĩa vụ thuế tại Hy Lạp —",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Yêu cầu nhập tịch — hiểu đúng để lập kế hoạch: Thứ nhất, 7 năm cư trú thực tế nghĩa là bạn phải thực sự sống tại Hy Lạp ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chiến lược kết hợp tối ưu: Hy Lạp Golden Visa (EU Schengen + BĐS) + Thổ Nhĩ Kỳ CBI (quốc tịch thứ 2 nhanh trong 3–6 thán",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Hai rủi ro chính sách cần theo dõi sát: (1) Ngưỡng đầu tư: Hy Lạp đã thay đổi 3 lần trong 2023–2024 — từ €250K → €500K →",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
-      "vi_array_size": 317,
-      "en_array_size": 317,
-      "data_attr_pairs": 22,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 30
     },
     {
       "alias": "cyprus",
       "html_file": "live_cyprus.html",
-      "visible_vn_strings": 129,
-      "translated": 105,
-      "gap": 24,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 81.4,
-      "gap_samples": [
-        {
-          "text": "Vị trí của Cyprus PR trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cư Trú Vĩnh Viễn",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Không",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Loại chương trình",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Loại thẻ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Thời gian xử lý",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lưu ý quan trọng 2025–2026: Kể từ cải cách 2021, Chương trình CBI (Citizenship by Investment) của Síp đã bị đóng cửa hoà",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Nhận định NAC: Limassol là thị trường BĐS sôi động nhất Síp — được mệnh danh \"Monaco của Địa Trung Hải\". Tỷ suất cho thu",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế đặc biệt: Cyprus PR xử lý hồ sơ trong 2–3 tháng — nhanh gấp 3–6 lần so với Hy Lạp. Cả gia đình bắt buộc nhập cản",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Cyprus PR là lựa chọn lý tưởng cho gia đình muốn có cư trú EU hợp pháp trong thời gian ngắn nhất,",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
-      "vi_array_size": 288,
-      "en_array_size": 288,
-      "data_attr_pairs": 25,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 28
     },
     {
       "alias": "turkey",
       "html_file": "live_turkey.html",
-      "visible_vn_strings": 140,
-      "translated": 131,
-      "gap": 9,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 93.6,
-      "gap_samples": [
-        {
-          "text": "183 ngày/năm\" data-en=\"Only if resident >183 days/year\">Chỉ khi cư trú >183 ngày/năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Sử dụng hộ chiếu Thổ Nhĩ Kỳ như “bàn đạp” — miễn visa Nhật Bản, Hàn Quốc, Singapore và nhiều nước",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "/* ============================================================ NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v2 Country: Tu",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "02 Các mức đầu tư",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "03 Quy trình & thời gian",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "04 Gia đình & thụ hưởng",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "05 Thuế & tài chính",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "08 Ưu & nhược điểm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "09 Nhận định của NAC",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 247,
-      "en_array_size": 247,
-      "data_attr_pairs": 264,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 29
     },
     {
       "alias": "uae",
       "html_file": "live_uae.html",
-      "visible_vn_strings": 126,
-      "translated": 114,
-      "gap": 12,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 90.5,
-      "gap_samples": [
-        {
-          "text": "Con từ 25 tuổi trở xuống (luật mới 2022, nâng từ 18 lên 25 cho con trai).)",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế thuế đặc biệt: Nhà đầu tư Việt cư trú tại UAE (hơn 183 ngày/năm) có thể xem xét chuyển đổi tư cách cư trú thuế s",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Dubai, Abu Dhabi, Sharjah & các tiểu vương quốc",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Đăng ký tại Cơ Quan Đất Đai (DLD) & nhận Title Deed",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Phân Tích BĐS Lisbon & Porto 2026: Chi Phí Thực Tế Và Cơ Hội Cư Trú D7 Cho Nhà Đầu Tư Việt",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "/* ============================================================ NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v3 Country: UA",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "02 Các mức đầu tư",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "03 Quy trình & thời gian",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "04 Gia đình & thụ hưởng",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "05 Thuế & tài chính",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 766,
-      "en_array_size": 766,
-      "data_attr_pairs": 25,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 30
     },
     {
       "alias": "uk",
       "html_file": "live_uk.html",
-      "visible_vn_strings": 125,
-      "translated": 106,
-      "gap": 19,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 84.8,
-      "gap_samples": [
-        {
-          "text": "Lưu ý quan trọng 2026: Từ tháng 4/2023, UK đã bỏ ngưỡng £50,000 cố định — tổ chức bảo trợ quyết định mức vốn phù hợp the",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chiến lược NAC cho nhà đầu tư Việt: Kết hợp Innovator Founder Visa (£50K–£100K vốn kinh doanh) + Đầu tư BĐS song song (£",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "So sánh với Hy Lạp/Bồ Đào Nha: Greece Golden Visa bảo lãnh bố mẹ cả hai bên mà không tăng mức đầu tư. Bồ Đào Nha cũng bả",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chi phí BĐS thực tế cho NĐT Việt: Nhà đầu tư Việt mua BĐS UK £500,000 (BĐS thứ 2, chưa cư trú) sẽ trả SDLT: £12,500 (chu",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế thuế BĐS cho thuê UK: Thu nhập cho thuê BĐS UK chịu thuế thu nhập (20–45%), nhưng được khấu trừ nhiều chi phí: b",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lộ trình ILR 3 năm — lợi thế hiếm có: Hầu hết visa làm việc UK đang đề xuất tăng lên 10 năm cho ILR (từ 2026). Innovator",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Rủi ro BĐS UK cho nhà đầu tư nước ngoài: Phụ thu SDLT tổng cộng 7% (5% BĐS thứ 2 + 2% phụ thu người nước ngoài) làm tăng",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "UK Innovator Founder phù hợp nhất với: Doanh nhân Việt có ý tưởng kinh doanh thực sự muốn mở rộng ra thị trường UK/quốc ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Xây dựng kế hoạch kinh doanh & chọn tổ chức bảo trợ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nộp hồ sơ phê duyệt & nhận thư bảo trợ",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 309,
-      "en_array_size": 309,
-      "data_attr_pairs": 23,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 31
     },
     {
       "alias": "malta",
       "html_file": "live_malta.html",
-      "visible_vn_strings": 115,
-      "translated": 98,
-      "gap": 17,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 85.2,
-      "gap_samples": [
-        {
-          "text": "MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩn 6–12 tháng, bao gồm cấp Temporary Resi",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Malta MPRP là chương trình EU duy nhất cho phép bao gồm tới 4 thế hệ trong cùng một hồ sơ — đây là lợi thế cạnh tranh kh",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Malta áp dụng chế độ Non-Domiciled (Remittance Basis) — hệ thống thuế hấp dẫn nhất châu Âu cho HNWI quốc tế: thu nhập nư",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Bắt buộc chứng minh tài sản: Ngoài các khoản trên, bạn phải chứng minh sở hữu tổng tài sản ít nhất €500,000 — trong đó c",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "So sánh với Bồ Đào Nha & Hy Lạp: Bồ Đào Nha GV chỉ bao gồm vợ/chồng, con phụ thuộc và bố mẹ trên 65 tuổi (cần chứng minh",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lợi thế thuế độc đáo Malta: Khác với UK (đã cải tổ chế độ non-dom 2025) hoặc các nước remittance khác, Malta không có \"d",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Xác định rõ mục tiêu trước khi nộp: MPRP cho EU PR vĩnh viễn + Schengen ngay, nhưng không dẫn tự động đến hộ chiếu Malta",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Due Diligence sơ bộ & Chuẩn bị hồ sơ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Vợ/Chồng & Đối Tác Lâu Dài",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "{ \"@context\": \"https://schema.org\", \"@graph\": [ { \"@type\": \"Article\", \"@id\": \"https://blog.nomadassetcollective.com/malt",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
-      "vi_array_size": 792,
-      "en_array_size": 792,
-      "data_attr_pairs": 17,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 30
     },
     {
       "alias": "stkitts",
       "html_file": "live_stkitts.html",
-      "visible_vn_strings": 123,
-      "translated": 94,
-      "gap": 29,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 76.4,
-      "gap_samples": [
-        {
-          "text": "St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời nhất thế giới. Hộ chiếu Caribbean mạnh ",
-          "reason": "notion_has_en_not_injected"
-        },
-        {
-          "text": "St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền Vững (SISC) — không hoàn lại nhưng nhanh",
-          "reason": "notion_has_en_not_injected"
-        },
-        {
-          "text": "St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Lightning Process (ALP) — 45–60 ngày với phí ",
-          "reason": "notion_has_en_not_injected"
-        },
-        {
-          "text": "St Kitts & Nevis có chính sách bảo lãnh gia đình rộng rãi nhất trong nhóm Caribbean CBI — bao gồm vợ/chồng, con, cha mẹ,",
-          "reason": "notion_has_en_not_injected"
-        },
-        {
-          "text": "St Kitts & Nevis là một trong những thiên đường thuế được công nhận quốc tế — không thuế thu nhập cá nhân, không thuế lã",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Khác với các chương trình RBI (cư trú đầu tư), St Kitts & Nevis CBI cấp quốc tịch trực tiếp — không qua giai đoạn cư trú",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "So sánh St Kitts & Nevis với các chương trình Caribbean CBI khác và một số chương trình châu Âu — theo góc nhìn của nhà ",
-          "reason": "notion_has_en_not_injected"
-        },
-        {
-          "text": "Đánh giá khách quan của NAC dành cho nhà đầu tư HNWI người Việt đang cân nhắc St Kitts & Nevis CBI trong năm 2026.",
-          "reason": "notion_has_en_not_injected"
-        },
-        {
-          "text": "Thành viên Commonwealth & OECS",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Cập nhật quan trọng 2023–2026: St Kitts & Nevis đã tăng mức đóng góp SGF từ $150K lên $250K (đơn độc) vào tháng 6/2023. ",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
-      "vi_array_size": 350,
-      "en_array_size": 350,
-      "data_attr_pairs": 22,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 30
     },
     {
       "alias": "thailand",
       "html_file": "live_thailand.html",
-      "visible_vn_strings": 117,
-      "translated": 106,
-      "gap": 11,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 90.6,
-      "gap_samples": [
-        {
-          "text": "Ưu đãi thuế LTR đặc biệt: Người giữ LTR Visa được miễn khai thuế trên thu nhập nước ngoài chuyển vào Thái Lan. Đây là lợ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chuẩn bị hồ sơ & đầu tư đủ điều kiện",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Hẹn tại TIESC — Sinh trắc học & cấp visa",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Hoàn tất — Bắt đầu cư trú Thái Lan",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "/* ============================================================ NAC CONSULTING — COUNTRY PROGRAM TEMPLATE v3 Country: Th",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "02 Các mức đầu tư",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "03 Quy trình & thời gian",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "04 Gia đình & thụ hưởng",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "05 Thuế & tài chính",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "08 Ưu & nhược điểm",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 400,
-      "en_array_size": 400,
-      "data_attr_pairs": 22,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 30
     },
     {
       "alias": "newzealand",
       "html_file": "live_newzealand.html",
-      "visible_vn_strings": 118,
-      "translated": 89,
-      "gap": 29,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 75.4,
-      "gap_samples": [
-        {
-          "text": "Lợi thế gia đình đặc biệt: Con phụ thuộc đến 24 tuổi (cao hơn UK ≤18 hoặc Hy Lạp ≤21). Công dân NZ có quyền sống và làm ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lộ trình quốc tịch rõ ràng: Quốc tịch NZ = hộ chiếu hạng 6 thế giới (183 visa-free) + quyền sống & làm việc tại Australi",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Growth Category — Đầu tư tăng trưởng",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Balanced Category — Đầu tư đa dạng",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Thời hạn: 3 năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Cư trú: 21 ngày / 3 năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Thời hạn: 5 năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Cư trú: 105 ngày / 5 năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chuẩn bị hồ sơ & chọn chiến lược đầu tư",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chuyển vốn & nhận Resident Visa",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 355,
-      "en_array_size": 355,
-      "data_attr_pairs": 22,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 28
     },
     {
       "alias": "panama",
       "html_file": "live_panama.html",
-      "visible_vn_strings": 123,
-      "translated": 100,
-      "gap": 23,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 81.3,
-      "gap_samples": [
-        {
-          "text": "Hub tài chính & thương mại quốc tế",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Hộ chiếu Panama hạng 26 [Henley 2026]",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lưu ý quan trọng cho nhà đầu tư Việt Nam: Việt Nam không nằm trong danh sách 50+ quốc gia của diện Friendly Nations Visa",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chiến lược NAC cho nhà đầu tư Việt: Ưu tiên QIV BĐS $300K (vốn tự có — equity) trước deadline 10/2026 — mua căn hộ cho t",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lưu ý nhập tịch: Yêu cầu gồm tiếng Tây Ban Nha (phỏng vấn), thi kiến thức lịch sử/địa lý Panama, chứng minh gắn bó thực ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "50+ quốc gia đủ điều kiện (US, EU, UK, JP, KR...) · ⚠️ VN không đủ điều kiện",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "PR tức thì — từ 30 ngày",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lựa chọn phương thức đầu tư & chuẩn bị hồ sơ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Hoàn tất đầu tư & nộp hồ sơ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Xét duyệt & nhận thẻ tạm thời",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 784,
-      "en_array_size": 784,
-      "data_attr_pairs": 23,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 30
     },
     {
       "alias": "malaysia",
       "html_file": "live_malaysia.html",
-      "visible_vn_strings": 121,
-      "translated": 92,
-      "gap": 29,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 76.0,
-      "gap_samples": [
-        {
-          "text": "Từ 2024, tất cả hồ sơ MM2H phải nộp qua đại lý có giấy phép MOTAC. Quy trình từ chuẩn bị hồ sơ đến nhận visa thường mất ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Vị trí của Malaysia MM2H trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Visa 5 năm · Gia hạn không giới hạn",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Visa 15 năm · Gia hạn mỗi 5 năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Visa 10 năm · Chỉ áp dụng tại Forest City",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Được phép kinh doanh & làm giám đốc",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chọn bậc MM2H & đại lý có giấy phép",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chuẩn bị & nộp hồ sơ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "MOTAC xét duyệt & phê duyệt có điều kiện",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nhận visa MM2H & bắt đầu mua BĐS",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 351,
-      "en_array_size": 351,
-      "data_attr_pairs": 22,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 28
     },
     {
       "alias": "antigua",
       "html_file": "live_antigua.html",
-      "visible_vn_strings": 125,
-      "translated": 103,
-      "gap": 22,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 82.4,
-      "gap_samples": [
-        {
-          "text": "Antigua & Barbuda cấp quốc tịch trực tiếp qua đầu tư — không qua giai đoạn cư trú. Hộ chiếu trọn đời, con cái thừa kế th",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cập nhật quan trọng 2024: Mức đóng góp NDF cho gia đình ≤4 người đã tăng từ $100,000 lên $230,000 từ tháng 7/2024 (cùng ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nhận định NAC: Với gia đình 2 người lớn + 2 con, lộ trình NDF $230K + phí chính phủ ~$30K + thẩm định ~$15K = tổng khoản",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế quan trọng: Antigua là một trong rất ít CBI cho phép tuyên thệ ngoài đảo — qua lãnh sự quán tại London, Toronto,",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "So sánh phạm vi gia đình: Antigua bao phủ 4 thế hệ trong một hồ sơ duy nhất — vợ/chồng, con đến 30, bố mẹ/ông bà từ 55, ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lưu ý quan trọng về thuế VN: Việt Nam áp dụng chế độ thuế theo quốc tịch và cư trú (Luật TNCN 2007). Công dân Việt Nam v",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Hộ chiếu Antigua mở những cửa nào? Miễn thị thực UK (6 tháng/lần ghé thăm) — một trong số ít CBI Caribbean có quyền này,",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Song tịch (Dual citizenship): Antigua & Barbuda cho phép song tịch — nhà đầu tư Việt Nam giữ nguyên quốc tịch VN. Hộ chi",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Kết hợp Antigua CBI (hộ chiếu Caribbean với UK + Schengen visa-free + tax haven) + Bồ Đào Nha Gol",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cập nhật quan trọng 2024: Tháng 7/2024, 5 quốc gia Caribbean CBI (Antigua, St Kitts, Dominica, Grenada, St Lucia) đồng t",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 258,
-      "en_array_size": 258,
-      "data_attr_pairs": 250,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 17
     },
     {
       "alias": "italy",
       "html_file": "live_italy.html",
-      "visible_vn_strings": 134,
-      "translated": 101,
-      "gap": 33,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 75.4,
-      "gap_samples": [
-        {
-          "text": "Ý có hệ thống thuế lũy tiến tiêu chuẩn (23–43%) cho thu nhập từ Ý. Điểm khác biệt là chế độ neo-residenti — flat tax €20",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Vị trí của Visa Đầu Tư Ý trong bức tranh EU RBI. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Người mới đăng ký sau 11/8/2024 · tối đa 15 năm",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Không gia hạn sau 15 năm",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Thu nhập nguồn Ý luôn chịu thuế bình thường",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Thu nhập Ý (không flat tax)",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cập nhật quan trọng tháng 8/2024: Thuế flat tax neo-residenti cho người đăng ký mới đã tăng từ €100.000 lên €200.000/năm",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Nhận định NAC — Chi phí tổng hợp gia đình 4 người: Mức startup €250K + phí pháp lý ~€10K + phí chính phủ ~€16K = tổng ~ ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lợi thế quan trọng: Italy IV là chương trình EU RBI duy nhất với lộ trình startup đổi mới sáng tạo — ngưỡng €250K thấp n",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "So sánh phạm vi gia đình: Italy IV bao gồm vợ/chồng, con dưới 18, con phụ thuộc trên 18, và bố mẹ phụ thuộc trên 65 tuổi",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 251,
-      "en_array_size": 254,
-      "data_attr_pairs": 271,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 7
     },
     {
       "alias": "spain",
       "html_file": "live_spain.html",
-      "visible_vn_strings": 111,
-      "translated": 43,
-      "gap": 68,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 38.7,
-      "gap_samples": [
-        {
-          "text": "Dưới đây là các mức đầu tư lịch sử của Spain Golden Visa. Chương trình đã đóng cửa ngày 03/04/2025 — chỉ mang tính tham ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Quy trình lịch sử của Spain Golden Visa — từ nộp đơn tại lãnh sự đến nhận TIE. Thông tin chỉ mang tính tham khảo.",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Phạm vi gia đình của Spain Golden Visa (quy định lịch sử).",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Thông tin thuế cho holders permit GV còn hiệu lực và người chuyển về Tây Ban Nha.",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Holders permit trước 03/04/2025 vẫn có thể theo lộ trình này. Lưu ý quan trọng về song tịch.",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Spain GV (lịch sử) so với các chương trình đang hoạt động. Xem toàn bộ tại NAC Residence Index →",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Đánh giá khách quan — lịch sử, chương trình đã đóng cửa 03/04/2025.",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Phân tích đội ngũ NAC — Q2/2026. Dưới đây là các lựa chọn tốt nhất thay thế Spain GV.",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Tối thiểu để duy trì",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Holders cũ được gia hạn",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 35,
-      "en_array_size": 35,
-      "data_attr_pairs": 245,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 7
     },
     {
       "alias": "montenegro",
       "html_file": "live_montenegro.html",
-      "visible_vn_strings": 127,
-      "translated": 107,
-      "gap": 20,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 84.3,
-      "gap_samples": [
-        {
-          "text": "Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o strancime) — cấp giấy phép cư trú tạm th",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Không có mức đầu tư tối thiểu theo luật. Thực tế cần €100K+ cho BĐS sạch pháp lý, đã đăng ký cadastre. NAC khuyến nghị €",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nhận định NAC: Tổng chi phí bao gồm giá BĐS + thuế chuyển nhượng 3-5% + phí môi giới 2-3% + phí pháp lý 1-2% + thuế tài ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế quan trọng: Hồ sơ TRP Montenegro được xử lý ở cấp MUP địa phương (Podgorica hoặc Kotor) — không cần chờ hàng thá",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "So sánh phạm vi gia đình: Montenegro RBI bảo lãnh vợ/chồng + con nhỏ tự động — hẹp hơn Antigua CBI (4 thế hệ) nhưng phù ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Điều kiện trở thành cư dân thuế Montenegro: Ở Montenegro >183 ngày/năm. Cư dân thuế kê khai và nộp PIT 9-15% cho thu nhậ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "So sánh thuế khu vực Balkan: Montenegro 9-15% PIT, 9% CIT · Albania 15% PIT · Serbia 10-15% PIT, 15% CIT · Bulgaria 10% ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Yêu cầu nhập tịch năm 10: Cư trú hợp pháp liên tục 10 năm (không gián đoạn quá 6 tháng liên tục) · Lý lịch tư pháp sạch ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Montenegro RBI là lý tưởng cho nhà đầu tư muốn sống thực sự tại Châu Âu với chi phí thấp và lộ tr",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Cập nhật quan trọng 2025–2026: Montenegro đang trong giai đoạn đàm phán cuối EU (Chương 23 & 24 — pháp quyền). Tiến trìn",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
-      "vi_array_size": 248,
-      "en_array_size": 248,
-      "data_attr_pairs": 260,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 7
     },
     {
       "alias": "australia",
       "html_file": "live_australia.html",
-      "visible_vn_strings": 79,
-      "translated": 58,
-      "gap": 21,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 73.4,
-      "gap_samples": [
-        {
-          "text": "Vị trí của Úc SIV trong bức tranh tổng thể. Xem toàn bộ xếp hạng tại NAC Residence Index →",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lưu ý quan trọng: Không được đầu tư trực tiếp vào bất động sản nhà ở, gửi tiết kiệm ngân hàng, hoặc mua trái phiếu chính",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lợi thế quan trọng: Visa 188 là thị thực tạm trú đầy đủ quyền lợi — cả gia đình được sinh sống, làm việc, học tập và dùn",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Kết hợp Úc SIV (thường trú + hộ chiếu top-tier + giáo dục hàng đầu) với Bồ Đào Nha Golden Visa (q",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Không có thuế thừa kế toàn cầu: Úc là một trong số ít quốc gia phát triển không đánh thuế thừa kế — đây là lợi thế lớn c",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Lưu ý đặc biệt — Thuế toàn cầu: Cư dân thuế Úc phải khai báo thu nhập toàn cầu. Nhà đầu tư có tài sản và thu nhập từ Việ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Song tịch: Úc cho phép song tịch từ năm 2002. Nhà đầu tư Việt Nam có thể giữ cả hai hộ chiếu — tuy nhiên Luật Quốc tịch ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Úc SIV phù hợp nhất với: Gia đình ultra-HNW Việt (tài sản ròng từ USD 5M+) ưu tiên chất lượng sống + giáo dục + hộ chiếu",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "Thị thực tạm trú Subclass 188 được cấp (hiệu lực khoảng 5 năm). Cả gia đình chuyển đến Úc với quyền sinh sống, làm việc ",
-          "reason": "text_drift_vs_notion"
-        },
-        {
-          "text": "12 tháng). Có quyền làm việc và học tập tại Úc.\" data-en=\"Receives visa simultaneously. Includes de facto partners (coha",
-          "reason": "text_drift_vs_notion"
-        }
-      ],
+      "coverage_pct": 100,
+      "gap_samples": [],
       "vi_array_size": 0,
-      "en_array_size": 21,
-      "data_attr_pairs": 220,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 3
     },
     {
       "alias": "nauru",
       "html_file": "live_nauru.html",
-      "visible_vn_strings": 125,
-      "translated": 103,
-      "gap": 22,
+      "visible_vn_strings": 0,
+      "translated": 0,
+      "gap": 0,
       "skip": 0,
-      "coverage_pct": 82.4,
-      "gap_samples": [
-        {
-          "text": "Antigua & Barbuda cấp quốc tịch trực tiếp qua đầu tư — không qua giai đoạn cư trú. Hộ chiếu trọn đời, con cái thừa kế th",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Cập nhật quan trọng 2024: Mức đóng góp NDF cho gia đình ≤4 người đã tăng từ $100,000 lên $230,000 từ tháng 7/2024 (cùng ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Nhận định NAC: Với gia đình 2 người lớn + 2 con, lộ trình NDF $230K + phí chính phủ ~$30K + thẩm định ~$15K = tổng khoản",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lợi thế quan trọng: Antigua là một trong rất ít CBI cho phép tuyên thệ ngoài đảo — qua lãnh sự quán tại London, Toronto,",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "So sánh phạm vi gia đình: Antigua bao phủ 4 thế hệ trong một hồ sơ duy nhất — vợ/chồng, con đến 30, bố mẹ/ông bà từ 55, ",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Lưu ý quan trọng về thuế VN: Việt Nam áp dụng chế độ thuế theo quốc tịch và cư trú (Luật TNCN 2007). Công dân Việt Nam v",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Hộ chiếu Antigua mở những cửa nào? Miễn thị thực UK (6 tháng/lần ghé thăm) — một trong số ít CBI Caribbean có quyền này,",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Song tịch (Dual citizenship): Antigua & Barbuda cho phép song tịch — nhà đầu tư Việt Nam giữ nguyên quốc tịch VN. Hộ chi",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Chiến lược tối ưu NAC: Kết hợp Antigua CBI (hộ chiếu Caribbean với UK + Schengen visa-free + tax haven) + Bồ Đào Nha Gol",
-          "reason": "no_en_available"
-        },
-        {
-          "text": "Cập nhật quan trọng 2024: Tháng 7/2024, 5 quốc gia Caribbean CBI (Antigua, St Kitts, Dominica, Grenada, St Lucia) đồng t",
-          "reason": "no_en_available"
-        }
-      ],
-      "vi_array_size": 258,
-      "en_array_size": 258,
-      "data_attr_pairs": 255,
+      "coverage_pct": 100,
+      "gap_samples": [],
+      "vi_array_size": 0,
+      "en_array_size": 0,
+      "data_attr_pairs": 0,
       "notion_en_fields": 3
     }
   ]
