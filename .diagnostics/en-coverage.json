@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-12T08:37:16.023927Z",
+  "generated_at": "2026-07-12T10:12:11.493611Z",
   "reports": [
     {
       "alias": "portugal",
@@ -108,7 +108,7 @@
       ],
       "vi_array_size": 317,
       "en_array_size": 317,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 20,
       "notion_en_fields": 30
     },
     {
@@ -163,7 +163,7 @@
       ],
       "vi_array_size": 288,
       "en_array_size": 288,
-      "data_attr_pairs": 25,
+      "data_attr_pairs": 23,
       "notion_en_fields": 28
     },
     {
@@ -214,7 +214,7 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 264,
+      "data_attr_pairs": 262,
       "notion_en_fields": 29
     },
     {
@@ -267,9 +267,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 779,
-      "en_array_size": 779,
-      "data_attr_pairs": 25,
+      "vi_array_size": 780,
+      "en_array_size": 780,
+      "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
     {
@@ -324,7 +324,7 @@
       ],
       "vi_array_size": 309,
       "en_array_size": 309,
-      "data_attr_pairs": 23,
+      "data_attr_pairs": 21,
       "notion_en_fields": 31
     },
     {
@@ -377,8 +377,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 805,
-      "en_array_size": 805,
+      "vi_array_size": 806,
+      "en_array_size": 806,
       "data_attr_pairs": 17,
       "notion_en_fields": 30
     },
@@ -489,7 +489,7 @@
       ],
       "vi_array_size": 400,
       "en_array_size": 400,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 20,
       "notion_en_fields": 30
     },
     {
@@ -597,9 +597,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 797,
-      "en_array_size": 797,
-      "data_attr_pairs": 23,
+      "vi_array_size": 798,
+      "en_array_size": 798,
+      "data_attr_pairs": 21,
       "notion_en_fields": 30
     },
     {
@@ -654,7 +654,7 @@
       ],
       "vi_array_size": 351,
       "en_array_size": 351,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 20,
       "notion_en_fields": 28
     },
     {
