@@ -2968,5 +2968,29 @@ img.twemoji-flag { height: 1em; width: 1em; vertical-align: -0.1em; display: inl
 .card-flag img.twemoji-flag { height: 28px; width: 28px; vertical-align: baseline; }
 </style>
 
+<script>
+/* EN-LANDING-DEFAULT — land in English unless ?lang=vi. Also binds the
+   VI/EN toggle via addEventListener: the buttons only carried inline
+   onclick, which WordPress KSES strips on the live page. */
+(function () {
+  function init() {
+    if (typeof setLang !== 'function') return;
+    var vi = document.getElementById('btn-vi');
+    var en = document.getElementById('btn-en');
+    if (vi && !vi._nacLangBound) { vi._nacLangBound = true; vi.addEventListener('click', function () { setLang('vi'); }); }
+    if (en && !en._nacLangBound) { en._nacLangBound = true; en.addEventListener('click', function () { setLang('en'); }); }
+    try {
+      if (new URLSearchParams(location.search).get('lang') === 'vi') return;
+    } catch (e) {}
+    setLang('en');
+    if (en) en.click();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(init, 60); });
+  } else {
+    setTimeout(init, 60);
+  }
+})();
+</script>
 </body>
 </html>

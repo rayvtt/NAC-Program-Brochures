@@ -1214,7 +1214,7 @@ body .breadcrumb span {
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-i">
-    <a class="logo" href="https://nomadassetcollective.com" target="_blank">
+    <a class="logo" href="https://nomadassetcollective.com/brochures/" target="_blank">
       <div class="logo-mark">
         <img src="https://nomadassetcollective.com/wp-content/uploads/2026/02/OTG-Passport-Icons-2-1024x1024.jpg" alt="NAC" style="width:32px;height:32px;object-fit:cover;border-radius:7px;">
       </div>
@@ -3682,5 +3682,22 @@ img.twemoji-flag { height: 1em; width: 1em; vertical-align: -0.1em; display: inl
 .card-flag img.twemoji-flag { height: 28px; width: 28px; vertical-align: baseline; }
 </style>
 
+<script>
+/* EN-LANDING-DEFAULT — land in English unless the visitor deep-links ?lang=vi */
+(function () {
+  function goEn() {
+    try {
+      if (new URLSearchParams(location.search).get('lang') === 'vi') return;
+    } catch (e) {}
+    var b = document.getElementById('btn-en');
+    if (b) b.click();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(goEn, 60); });
+  } else {
+    setTimeout(goEn, 60);
+  }
+})();
+</script>
 </body>
 </html>

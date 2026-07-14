@@ -2404,5 +2404,22 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
   startFilm(document.getElementById("gate"), document.getElementById("gateFilmA"), document.getElementById("gateFilmB"));
 })();
 </script>
+<script>
+/* EN-LANDING-DEFAULT — land in English unless the visitor deep-links ?lang=vi */
+(function () {
+  function goEn() {
+    try {
+      if (new URLSearchParams(location.search).get('lang') === 'vi') return;
+    } catch (e) {}
+    var b = document.getElementById('navLangEn');
+    if (b) b.click();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(goEn, 60); });
+  } else {
+    setTimeout(goEn, 60);
+  }
+})();
+</script>
 </body>
 </html>
