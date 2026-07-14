@@ -80,6 +80,30 @@ body{background:var(--bg);color:var(--text);font-family:'Be Vietnam Pro',sans-se
 .gate-lang-btn{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:4px 12px;border-radius:7px;font-size:11px;font-weight:700;letter-spacing:.5px;cursor:pointer;font-family:inherit}
 .gate-lang-btn.on{background:#fff;color:var(--blue)}
 
+/* Mobile gate — scale the whole form ~30% down so it fits an iPhone, and TOP-align
+   the (scrollable) card so a card taller than the screen never clips its top. The old
+   align-items:center clipped the language toggle off the top edge on short screens. */
+@media(max-width:640px){
+  .gate{align-items:flex-start;justify-content:center;
+    padding:max(14px,env(safe-area-inset-top)) 14px max(14px,env(safe-area-inset-bottom))}
+  .gate-card{max-width:360px;padding:22px 20px 20px;border-radius:16px;margin:auto}
+  .gate-langs{margin-bottom:12px;gap:5px}
+  .gate-lang-btn{padding:4px 11px;font-size:10.5px}
+  .gate-logo{width:52px;height:52px;margin-bottom:12px}
+  .gate-eyebrow{font-size:9px;letter-spacing:2px;margin-bottom:7px}
+  .gate-title{font-size:20px;margin-bottom:8px}
+  .gate-sub{font-size:12px;line-height:1.5;margin-bottom:16px}
+  .gate-input{padding:12px 14px;font-size:15px}
+  .gate-input.email{font-size:13.5px}
+  .gate-btn{padding:12px;font-size:13.5px;margin-top:10px}
+  .gate-err,.gate-code-reveal{font-size:11.5px;margin-top:9px;padding:8px 10px}
+  .gate-div{margin:16px 0 12px}
+  .gate-or{font-size:9.5px;margin-bottom:10px}
+  .gate-wa{font-size:11.5px;padding:8px 13px}
+  .gate-wa svg{width:15px;height:15px}
+  .gate-hint{font-size:10px;margin-top:12px}
+}
+
 /* ===== MAIN (hidden until unlocked) ===== */
 #nacMain{display:none}
 .wrap{max-width:1100px;margin:0 auto;padding:0 24px}
