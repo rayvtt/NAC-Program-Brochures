@@ -2390,26 +2390,9 @@ const matrixChartInstance = new Chart(matrixCtx, {
   });
 })();
 
-new Chart(cmpCtx, {
-  type: 'bar',
-  data: {
-    labels: ['🇲🇹 Malta CBI', '🇵🇹 Bồ Đào Nha', '🇦🇪 UAE GV', '🇬🇷 Hy Lạp GV', '🇪🇸 Tây Ban Nha', '🇹🇷 Thổ Nhĩ Kỳ'],
-    datasets: [{
-      label: 'NAC Score',
-      data: [91, 88, 79, 78, 75, 74],
-      backgroundColor: ['#1a7a4a', country, '#9ca3af','#9ca3af','#9ca3af','#9ca3af'],
-      borderRadius: 6,
-    }]
-  },
-  options: {
-    responsive: true,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { grid: { display: false }, ticks: { font: { size: 11 } } },
-      y: { min: 60, max: 100, grid: { color: '#f3f4f6' }, ticks: { font: { size: 11 } } }
-    }
-  }
-});
+// (Removed dead comparison chart: it referenced an undeclared `cmpCtx` — the
+// page has no comparison canvas — and the resulting ReferenceError aborted
+// this whole script block, killing the bilingual engine below.)
 
 // ── BILINGUAL ──
 let currentLang = 'vi';
@@ -2763,6 +2746,8 @@ const VI_STRINGS = [
   "$400K (BĐS)",
   "€500K (BĐS)",
   "Muốn biết thêm thông tin? Đọc thêm các bài Phân Tích Chuyên Sâu từ blog của NAC",
+  "Gia đình &amp; thụ hưởng",
+  "Gia đình &amp; thụ hưởng",
 ];
 
 const EN_STRINGS = [
@@ -3098,6 +3083,8 @@ const EN_STRINGS = [
   "$400K (RE)",
   "€500K (RE)",
   "Want to know more? Read more in-depth analyses on the NAC blog.",
+  "Family &amp; dependents",
+  "Family &amp; dependents",
 ];
 
 function setLang(lang) {
@@ -3991,5 +3978,22 @@ img.twemoji-flag { height: 1em; width: 1em; vertical-align: -0.1em; display: inl
 .card-flag img.twemoji-flag { height: 28px; width: 28px; vertical-align: baseline; }
 </style>
 
+<script>
+/* EN-LANDING-DEFAULT — land in English unless the visitor deep-links ?lang=vi */
+(function () {
+  function goEn() {
+    try {
+      if (new URLSearchParams(location.search).get('lang') === 'vi') return;
+    } catch (e) {}
+    var b = document.getElementById('btn-en');
+    if (b) b.click();
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(goEn, 60); });
+  } else {
+    setTimeout(goEn, 60);
+  }
+})();
+</script>
 </body>
 </html>
