@@ -463,9 +463,9 @@ html[lang="en"] .pg-vi-only{display:none}
       <div class="gate-err" id="gateErr"></div>
     </form>
     <div class="gate-div"></div>
-    <div class="gate-or" data-copy="pg-4608ca" data-vi="Đối tác mới? Nhận mã ngay bằng email" data-en="New partner? Get instant access by email">Đối tác mới? Nhận mã ngay bằng email</div>
+    <div class="gate-or" data-copy="pg-4608ca" data-vi="Đã là đối tác? Lấy mã bằng email công ty của bạn" data-en="Already a partner? Retrieve your code with your company email">Đã là đối tác? Lấy mã bằng email công ty của bạn</div>
     <form id="gateEmailForm" autocomplete="off">
-      <input class="gate-input email" id="gateEmail" type="email" placeholder="ban@congty.com" required>
+      <input class="gate-input email" id="gateEmail" type="email" placeholder="you@company.com" required>
       <button class="gate-btn" id="gateEmailBtn" type="submit" data-copy="pg-c834e5" data-vi="Nhận Mã Ngay →" data-en="Get My Code →">Nhận Mã Ngay →</button>
       <div class="gate-err" id="gateEmailErr"></div>
       <div class="gate-code-reveal" id="gateCodeReveal"></div>
@@ -1102,7 +1102,13 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
           return;
         }
         btn.disabled = false;
-        err.textContent = lang==='en' ? 'Something went wrong — please try again or message us on WhatsApp.' : 'Có lỗi xảy ra — vui lòng thử lại hoặc nhắn WhatsApp cho NAC.';
+        if (res.data && res.data.reason === 'unknown'){
+          err.textContent = lang==='en'
+            ? "This email isn't on NAC's partner list yet. Use your registered company email, or message us on WhatsApp."
+            : 'Email này chưa có trong danh sách đối tác của NAC. Vui lòng dùng email công ty đã đăng ký, hoặc nhắn WhatsApp cho NAC.';
+        } else {
+          err.textContent = lang==='en' ? 'Something went wrong — please try again or message us on WhatsApp.' : 'Có lỗi xảy ra — vui lòng thử lại hoặc nhắn WhatsApp cho NAC.';
+        }
         err.classList.add('show');
       }).catch(function(){
         btn.disabled = false;
