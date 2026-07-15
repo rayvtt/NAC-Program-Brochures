@@ -9,10 +9,10 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m1/1 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m4 VN remnants[0m
-     [90m· Gia đình & thụ hưởng[0m
+  8. EN displays:   [31m✗[0m [31m3 VN remnants[0m
      [90m· Portugal Golden Visa (ARI — Autorização de Residência para Atividade de Investim[0m
      [90m· AIMA (Agência para a Integração, Migrações e Asilo) · Data updated Q2/2026 · Pas[0m
+     [90m· Apply for a NIF (Número de Identificação Fiscal — Portuguese tax ID) via the con[0m
      [33mNotion has EN for 1 gaps (sample):[0m
        [nac] Đội ngũ Nomad Asset Collective có hơn 5 năm kinh nghiệm xử lý hồ sơ Golden Visa 
 

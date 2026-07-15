@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T04:52:08.947787+00:00",
+  "generated_at": "2026-07-15T04:52:19.750799+00:00",
   "source": "live",
   "pass_count": 4,
   "total": 16,
@@ -152,13 +152,10 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "4 Vietnamese remnants after EN click"
+          "3 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 4,
+        "remnant_count": 3,
         "samples": [
-          {
-            "text": "Gia đình & thụ hưởng"
-          },
           {
             "text": "Portugal Golden Visa (ARI — Autorização de Residência para Atividade de Investimento) — launched in 2012 and comprehensi"
           },
