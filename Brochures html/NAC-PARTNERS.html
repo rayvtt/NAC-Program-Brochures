@@ -341,8 +341,12 @@ html[lang="en"] .pg-vi-only{display:none}
 /* Refined line icons (emoji -> SVG). Emoji kept only where playful/informative: spotlight flame + country flags. */
 .ni{width:1.06em;height:1.06em;flex-shrink:0}
 .jtool,.tk-chip{display:inline-flex;align-items:center;gap:6px}
-.snap-cap h3{display:flex;align-items:center;gap:7px}
+.snap-cap h3{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
 .snap-cap h3 .ni,.dicon .ni{color:var(--blue)}
+/* "Vietnamese only" tag on VN-only tools (The NAC Times, Comparison) */
+.snap-vn{flex-shrink:0;font-size:9px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
+  color:var(--blue);background:rgba(24,0,173,.09);border:1px solid rgba(24,0,173,.2);
+  border-radius:6px;padding:2px 7px;line-height:1.5}
 .bcell b{display:flex;align-items:center;gap:7px}
 .dicon .ni{width:26px;height:26px}
 .tkf-ic .ni{width:30px;height:30px}
@@ -634,7 +638,7 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
         <div class="snap">
           <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://blog.nomadassetcollective.com" loading="lazy" title="The NAC Times" tabindex="-1"></iframe>
             <a class="snap-open" href="https://blog.nomadassetcollective.com" target="_blank" rel="noopener"><span data-copy="pg-058d3f-6" data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
-          <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M4 4h13v16H6a2 2 0 01-2-2z'/><path d='M17 8h3v10a2 2 0 01-2 2'/><path d='M7.5 8.5h6M7.5 12h6M7.5 15.5h4'/></svg><span data-copy="pg-blog2-h" data-vi="The NAC Times (Blog)" data-en="The NAC Times">The NAC Times (Blog)</span></h3>
+          <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M4 4h13v16H6a2 2 0 01-2-2z'/><path d='M17 8h3v10a2 2 0 01-2 2'/><path d='M7.5 8.5h6M7.5 12h6M7.5 15.5h4'/></svg><span data-copy="pg-blog2-h" data-vi="The NAC Times (Blog)" data-en="The NAC Times">The NAC Times (Blog)</span><span class="snap-vn" data-copy="pg-vnonly" data-vi="Chỉ tiếng Việt" data-en="Vietnamese only">Chỉ tiếng Việt</span></h3>
             <p data-copy="pg-blog2-p" data-vi="Phân tích độc quyền, tin tức thị trường và cập nhật chương trình — nguồn nội dung để chia sẻ định kỳ với khách hàng." data-en="Exclusive analysis, market news and program updates — a content source to share with clients regularly.">Phân tích độc quyền, tin tức thị trường và cập nhật chương trình — nguồn nội dung để chia sẻ định kỳ với khách hàng.</p>
             <div class="snap-pitch" data-copy="pg-blog2-q" data-vi="“Em gửi anh/chị vài bài phân tích mới nhất — nội dung để anh/chị chia sẻ lại với khách hàng của mình.”" data-en="“I&rsquo;ll send you the latest analysis pieces — content you can reshare with your own clients.”">“Em gửi anh/chị vài bài phân tích mới nhất — nội dung để anh/chị chia sẻ lại với khách hàng của mình.”</div></div>
         </div>
@@ -648,7 +652,7 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
         <div class="snap pg-vi-only">
           <div class="snap-frame"><span class="snap-live"><span class="snap-live-dot"></span><span data-copy="pg-live" data-vi="TRỰC TIẾP" data-en="LIVE">TRỰC TIẾP</span></span><iframe data-src="https://nomadassetcollective.com/so-sanh/" loading="lazy" title="Comparison Tool" tabindex="-1"></iframe>
             <a class="snap-open" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener"><span data-copy="pg-058d3f-7" data-vi="Mở toàn màn hình →" data-en="Open full-screen →">Mở toàn màn hình →</span></a></div>
-          <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M12 4v16M7 6.5h10M9 20h6'/><path d='M7 6.5L4.5 12h5zM17 6.5L14.5 12h5z'/><path d='M4.5 12a2.5 2.5 0 005 0M14.5 12a2.5 2.5 0 005 0'/></svg><span data-copy="pg-cmp2-h" data-vi="Công Cụ So Sánh" data-en="Comparison Tool">Công Cụ So Sánh</span></h3>
+          <div class="snap-cap"><h3><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M12 4v16M7 6.5h10M9 20h6'/><path d='M7 6.5L4.5 12h5zM17 6.5L14.5 12h5z'/><path d='M4.5 12a2.5 2.5 0 005 0M14.5 12a2.5 2.5 0 005 0'/></svg><span data-copy="pg-cmp2-h" data-vi="Công Cụ So Sánh" data-en="Comparison Tool">Công Cụ So Sánh</span><span class="snap-vn" data-copy="pg-vnonly" data-vi="Chỉ tiếng Việt" data-en="Vietnamese only">Chỉ tiếng Việt</span></h3>
             <p data-copy="pg-cmp2-p" data-vi="So sánh nhiều chương trình cạnh nhau — chi phí, thời gian, quyền lợi và thuế. Hiện dành riêng cho đối tác Việt Nam." data-en="Compare programs side by side — cost, timeline, benefits and tax. Currently for Vietnamese partners.">So sánh nhiều chương trình cạnh nhau — chi phí, thời gian, quyền lợi và thuế. Hiện dành riêng cho đối tác Việt Nam.</p>
             <div class="snap-pitch" data-copy="pg-cmp2-q" data-vi="“Anh/chị muốn so sánh 2-3 chương trình cạnh nhau? Em mở bảng so sánh chi phí, thời gian và thuế ngay tại đây.”" data-en="“Want to compare 2–3 programs side by side? I&rsquo;ll pull up cost, timeline and tax right here.”">“Anh/chị muốn so sánh 2-3 chương trình cạnh nhau? Em mở bảng so sánh chi phí, thời gian và thuế ngay tại đây.”</div></div>
         </div>
