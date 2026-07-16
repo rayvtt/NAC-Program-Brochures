@@ -10972,3 +10972,28 @@
 [90m──────────────────────────────────────────────────────────────────────[0m
 [1mSummary:[0m  avg 79.4%  ·  [32m0 ≥95%[0m  ·  [33m17 70-94%[0m  ·  [31m1 <70%[0m
   → JSON report: .diagnostics/live-en-coverage.json
+
+[1mLive EN Translation Coverage Report[0m
+[90m──────────────────────────────────────────────────────────────────────[0m
+  [1mportugal    [0m [33m 82.9%[0m [90m(107 translated / 22 gap)[0m [90m(in sync)[0m
+  [1mgreece      [0m [33m 74.6%[0m [90m(94 translated / 32 gap)[0m [90m(in sync)[0m
+  [1mcyprus      [0m [33m 81.4%[0m [90m(105 translated / 24 gap)[0m [90m(in sync)[0m
+  [1mturkey      [0m [33m 93.6%[0m [90m(131 translated / 9 gap)[0m [90m(in sync)[0m
+  [1muae         [0m [33m 90.5%[0m [90m(114 translated / 12 gap)[0m [90m(in sync)[0m
+  [1muk          [0m [33m 84.8%[0m [90m(106 translated / 19 gap)[0m [90m(in sync)[0m
+  [1mmalta       [0m [33m 85.2%[0m [90m(98 translated / 17 gap)[0m [90m(in sync)[0m
+  [1mstkitts     [0m [33m 76.4%[0m [90m(94 translated / 29 gap)[0m [90m(in sync)[0m
+  [1mthailand    [0m [33m 90.6%[0m [90m(106 translated / 11 gap)[0m [90m(in sync)[0m
+  [1mnewzealand  [0m [33m 75.4%[0m [90m(89 translated / 29 gap)[0m [90m(in sync)[0m
+  [1mpanama      [0m [33m 81.3%[0m [90m(100 translated / 23 gap)[0m [90m(in sync)[0m
+  [1mmalaysia    [0m [33m 76.0%[0m [90m(92 translated / 29 gap)[0m [90m(in sync)[0m
+  [1mantigua     [0m [33m 82.4%[0m [90m(103 translated / 22 gap)[0m [90m(in sync)[0m
+  [1mitaly       [0m [33m 75.4%[0m [90m(101 translated / 33 gap)[0m [90m(in sync)[0m
+  [1mspain       [0m [31m 38.7%[0m [90m(43 translated / 68 gap)[0m [90m(in sync)[0m
+  [1mmontenegro  [0m [33m 84.3%[0m [90m(107 translated / 20 gap)[0m [90m(in sync)[0m
+  [1maustralia   [0m [33m 73.4%[0m [90m(58 translated / 21 gap)[0m
+  [1mnauru       [0m [33m 82.4%[0m [90m(103 translated / 22 gap)[0m
+
+[90m──────────────────────────────────────────────────────────────────────[0m
+[1mSummary:[0m  avg 79.4%  ·  [32m0 ≥95%[0m  ·  [33m17 70-94%[0m  ·  [31m1 <70%[0m
+  → JSON report: .diagnostics/live-en-coverage.json
