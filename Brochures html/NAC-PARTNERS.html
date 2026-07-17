@@ -1717,6 +1717,31 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
 @media(max-width:640px){
   .inspp{top:auto;left:0;right:0;bottom:0;width:auto;max-height:64vh;border-left:0;border-top:1px solid var(--border);border-radius:18px 18px 0 0;box-shadow:0 -14px 40px rgba(0,10,34,.18);padding-bottom:calc(16px + env(safe-area-inset-bottom))}
 }
+/* ============ Consulting monitor (staff/partner only: add ?consulting=1 to the URL) ============ */
+.consultov{display:none;position:fixed;inset:0;z-index:9999;background:rgba(28,28,26,.6);align-items:center;justify-content:center;padding:20px}
+.consultov.on{display:flex}
+.consultp{background:#fff;border-radius:var(--r);box-shadow:0 24px 60px rgba(0,10,34,.2);width:100%;max-width:920px;max-height:88vh;overflow-y:auto;padding:24px;color:var(--text);font-family:'Be Vietnam Pro',sans-serif}
+.consultp h5{font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--blue);margin:0 0 4px}
+.consultp .sub{color:var(--text3);font-size:12px;margin-bottom:16px}
+.consultp label{display:block;font-size:11px;font-weight:600;color:var(--text3);margin:10px 0 4px}
+.consultp input,.consultp select,.consultp textarea{width:100%;border:1px solid var(--border);border-radius:10px;padding:9px 12px;font-size:13px;background:var(--bg2);color:var(--text);box-sizing:border-box;font-family:'Be Vietnam Pro',sans-serif}
+.consultp textarea{min-height:70px;resize:vertical}
+.consultp select[multiple]{min-height:100px}
+.consult-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.consult-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:600px){.consult-row,.consult-row3{grid-template-columns:1fr}}
+.consultp button{border:0;border-radius:99px;padding:10px 20px;font-size:12.5px;font-weight:700;cursor:pointer;margin-top:14px;font-family:'Be Vietnam Pro',sans-serif}
+.consult-btn-primary{background:var(--orange);color:#fff}
+.consult-btn-ghost{background:var(--bg2);color:var(--text3);margin-left:8px}
+.consult-close{position:absolute;top:16px;right:20px;background:transparent;color:var(--text3);font-size:20px;cursor:pointer;margin:0;padding:4px}
+.consult-msg{font-size:12px;color:var(--text3);margin-top:8px}
+.consult-table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
+.consult-table th{text-align:left;padding:6px 8px;border-bottom:2px solid var(--border);color:var(--text3);font-weight:700;font-size:10.5px;text-transform:uppercase;letter-spacing:.4px}
+.consult-table td{padding:7px 8px;border-bottom:1px solid var(--bg2);vertical-align:top}
+.consult-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;font-weight:600;background:var(--bg2);color:var(--text3)}
+.consult-section-head{display:flex;align-items:center;gap:8px;margin-top:26px;margin-bottom:6px}
+.consult-section-head h5{margin:0}
+.consult-section-head button{margin:0;padding:5px 12px;font-size:11px}
 </style>
 <aside class="editp" id="editp" aria-label="Copy editor">
   <h6>Chỉnh sửa nội dung</h6>
@@ -1734,6 +1759,109 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
   <div class="editp-log" id="editLogBox"></div>
   <div class="editp-msg" id="editMsg"></div>
 </aside>
+<!-- ============ Consulting monitor (staff/partner only: ?consulting=1) ============ -->
+<div class="consultov" id="consultOv">
+  <div class="consultp" id="consultPanel" style="position:relative">
+    <button type="button" class="consult-close" id="consultClose">&times;</button>
+
+    <div id="consultLock">
+      <h5>NAC Consulting Monitor</h5>
+      <div class="sub">Staff/partner access only. Enter the access key to view initial consultations and questionnaire submissions.</div>
+      <label>Access Key</label>
+      <input type="password" id="consultKeyInput" placeholder="Access key">
+      <button type="button" class="consult-btn-primary" id="consultUnlock">Unlock</button>
+      <div class="consult-msg" id="consultLockMsg"></div>
+    </div>
+
+    <div id="consultBody" style="display:none">
+      <h5>Stage 1 — Log Initial Consultation</h5>
+      <div class="sub">Advisor logs the first NAC meeting with a prospect.</div>
+
+      <div class="consult-row">
+        <div>
+          <label>Client Name</label>
+          <input id="chName" placeholder="Client name">
+        </div>
+        <div>
+          <label>Consultation Date</label>
+          <input id="chDate" type="date">
+        </div>
+      </div>
+      <div class="consult-row">
+        <div>
+          <label>Email</label>
+          <input id="chEmail" type="email" placeholder="email@example.com">
+        </div>
+        <div>
+          <label>Phone / WhatsApp</label>
+          <input id="chPhone" placeholder="+84...">
+        </div>
+      </div>
+      <div class="consult-row3">
+        <div>
+          <label>Meeting Format</label>
+          <select id="chFormat">
+            <option value="In-person">In-person</option>
+            <option value="Video Call">Video Call</option>
+            <option value="Phone">Phone</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
+        </div>
+        <div>
+          <label>Outcome</label>
+          <select id="chOutcome">
+            <option value="Proceed to Questionnaire">Proceed to Questionnaire</option>
+            <option value="Needs more info">Needs more info</option>
+            <option value="Follow-up scheduled">Follow-up scheduled</option>
+            <option value="Not a fit">Not a fit</option>
+          </select>
+        </div>
+        <div>
+          <label>Follow-up Date</label>
+          <input id="chFollowup" type="date">
+        </div>
+      </div>
+      <label>Programs Discussed</label>
+      <select id="chPrograms" multiple>
+        <option value="🇰🇳 St. Kitts &amp; Nevis">St. Kitts &amp; Nevis</option>
+        <option value="🇬🇩 Grenada">Grenada</option>
+        <option value="🇹🇷 Thổ Nhĩ Kỳ">Turkey</option>
+        <option value="🇬🇷 Hy Lạp">Greece</option>
+        <option value="🇵🇹 Bồ Đào Nha">Portugal</option>
+        <option value="🇨🇾 Síp">Cyprus</option>
+        <option value="🇭🇺 Hungary">Hungary</option>
+        <option value="🇦🇪 Dubai UAE">Dubai UAE</option>
+        <option value="🇬🇧 Vương quốc Anh">United Kingdom</option>
+        <option value="🇹🇭 Thái Lan">Thailand</option>
+        <option value="🇲🇾 Malaysia">Malaysia</option>
+        <option value="🇲🇹 Malta">Malta</option>
+        <option value="🇵🇦 Panama">Panama</option>
+        <option value="🇻🇳 Việt Nam">Vietnam</option>
+        <option value="🔍 Chưa xác định">Not yet determined</option>
+      </select>
+      <label>Client Goals / Notes</label>
+      <textarea id="chNotes" placeholder="What the client is looking for, key concerns, next steps..."></textarea>
+      <div>
+        <button type="button" class="consult-btn-primary" id="chSave">Save Consultation</button>
+        <button type="button" class="consult-btn-ghost" id="chClear">Clear</button>
+      </div>
+      <div class="consult-msg" id="chMsg"></div>
+
+      <div class="consult-section-head">
+        <h5>Initial Consultations</h5>
+        <button type="button" class="consult-btn-ghost" id="chRefresh1">Refresh</button>
+      </div>
+      <div id="chTable1" style="overflow-x:auto"></div>
+
+      <div class="consult-section-head">
+        <h5>Stage 2 — Questionnaire Submissions</h5>
+        <button type="button" class="consult-btn-ghost" id="chRefresh2">Refresh</button>
+      </div>
+      <div class="sub">Clients fill this in directly via the shared KYC Intake Notion form. Read-only here.</div>
+      <div id="chTable2" style="overflow-x:auto"></div>
+    </div>
+  </div>
+</div>
 <!-- ============ floating rich-text format toolbar (admin: ?edit=1) ============ -->
 <div class="fmtbar" id="fmtbar" aria-hidden="true">
   <button type="button" data-cmd="bold" title="Đậm / Bold"><b>B</b></button>
@@ -2512,6 +2640,173 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
       }
     }).catch(function(e){ emsg("Lỗi mạng: " + e.message); });
   });
+})();
+</script>
+<script>
+/* ============ Consulting monitor (?consulting=1) ============
+   Staff/partner-only view over the same NAC-Dashboard worker + Notion DBs
+   used by the internal dashboard Consulting page. The access key is checked
+   server-side by the worker (requireConsultingKey) — this panel is just the
+   UI, never the security boundary. */
+(function(){
+  if (window.location.search.indexOf("consulting=1") < 0) return;
+
+  var CONSULT_WORKER = "https://nac-dashboard.ray-vtt.workers.dev";
+  var CONSULT_KEY_STORAGE = "nac_consult_key";
+
+  var ov     = document.getElementById("consultOv");
+  var lockEl = document.getElementById("consultLock");
+  var bodyEl = document.getElementById("consultBody");
+  var lockMsg = document.getElementById("consultLockMsg");
+  ov.classList.add("on");
+
+  function escC(s){
+    s = String(s == null ? "" : s);
+    return s.split("&").join("&amp;").split("<").join("&lt;").split(">").join("&gt;").split(String.fromCharCode(34)).join("&quot;");
+  }
+
+  function consultHeaders(){
+    return { "Content-Type": "application/json", "X-Consulting-Key": sessionStorage.getItem(CONSULT_KEY_STORAGE) || "" };
+  }
+
+  document.getElementById("consultClose").addEventListener("click", function(){
+    ov.classList.remove("on");
+  });
+
+  function unlockPanel(){
+    lockEl.style.display = "none";
+    bodyEl.style.display = "block";
+    var today = new Date().toISOString().slice(0,10);
+    var dateEl = document.getElementById("chDate");
+    if (dateEl && !dateEl.value) dateEl.value = today;
+    loadConsultations();
+    loadQuestionnaires();
+  }
+
+  document.getElementById("consultUnlock").addEventListener("click", function(){
+    var key = document.getElementById("consultKeyInput").value.trim();
+    if (!key) { lockMsg.textContent = "Enter the access key."; return; }
+    lockMsg.textContent = "Checking...";
+    fetch(CONSULT_WORKER + "/api/consulting-auth", { headers: { "X-Consulting-Key": key } })
+      .then(function(r){
+        if (r.status === 200) {
+          sessionStorage.setItem(CONSULT_KEY_STORAGE, key);
+          unlockPanel();
+        } else if (r.status === 401) {
+          lockMsg.textContent = "Invalid access key.";
+        } else {
+          lockMsg.textContent = "Server error (" + r.status + ").";
+        }
+      })
+      .catch(function(e){ lockMsg.textContent = "Network error: " + e.message; });
+  });
+
+  // Already unlocked earlier this session
+  if (sessionStorage.getItem(CONSULT_KEY_STORAGE)) {
+    fetch(CONSULT_WORKER + "/api/consulting-auth", { headers: { "X-Consulting-Key": sessionStorage.getItem(CONSULT_KEY_STORAGE) } })
+      .then(function(r){ if (r.status === 200) unlockPanel(); })
+      .catch(function(e){});
+  }
+
+  document.getElementById("chClear").addEventListener("click", function(){
+    ["chName","chEmail","chPhone","chFollowup","chNotes"].forEach(function(id){
+      var el = document.getElementById(id);
+      if (el) el.value = "";
+    });
+    document.getElementById("chFormat").selectedIndex = 0;
+    document.getElementById("chOutcome").selectedIndex = 0;
+    var opts = document.getElementById("chPrograms").options;
+    for (var i = 0; i < opts.length; i++) opts[i].selected = false;
+  });
+
+  document.getElementById("chSave").addEventListener("click", function(){
+    var name = document.getElementById("chName").value.trim();
+    var msgEl = document.getElementById("chMsg");
+    if (!name) { msgEl.textContent = "Client Name is required."; msgEl.style.color = "#c0392b"; return; }
+
+    var selected = [];
+    var opts = document.getElementById("chPrograms").selectedOptions;
+    for (var i = 0; i < opts.length; i++) selected.push(opts[i].value);
+
+    var payload = {
+      name: name,
+      email: document.getElementById("chEmail").value.trim(),
+      phone: document.getElementById("chPhone").value.trim(),
+      date: document.getElementById("chDate").value || undefined,
+      format: document.getElementById("chFormat").value,
+      outcome: document.getElementById("chOutcome").value,
+      followUp: document.getElementById("chFollowup").value || undefined,
+      notes: document.getElementById("chNotes").value.trim(),
+      programs: selected
+    };
+
+    var btn = document.getElementById("chSave");
+    btn.disabled = true;
+    btn.textContent = "Saving...";
+    msgEl.style.color = "#6b7280";
+    msgEl.textContent = "";
+
+    fetch(CONSULT_WORKER + "/api/notion/consultations", {
+      method: "POST", headers: consultHeaders(), body: JSON.stringify(payload)
+    }).then(function(r){ return r.json(); }).then(function(data){
+      btn.disabled = false;
+      btn.textContent = "Save Consultation";
+      if (data.created) {
+        msgEl.textContent = "Saved.";
+        document.getElementById("chClear").click();
+        loadConsultations();
+      } else {
+        msgEl.style.color = "#c0392b";
+        msgEl.textContent = data.error || "Unknown error";
+      }
+    }).catch(function(e){
+      btn.disabled = false;
+      btn.textContent = "Save Consultation";
+      msgEl.style.color = "#c0392b";
+      msgEl.textContent = e.message;
+    });
+  });
+
+  function loadConsultations(){
+    var target = document.getElementById("chTable1");
+    target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">Loading...</div>";
+    fetch(CONSULT_WORKER + "/api/notion/consultations", { headers: consultHeaders() }).then(function(r){
+      if (r.status === 401) { target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">Access key rejected.</div>"; return null; }
+      return r.json();
+    }).then(function(data){
+      if (!data) return;
+      var rows = data.consultations || [];
+      if (!rows.length) { target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">No consultations logged yet.</div>"; return; }
+      var html = "<table class=" + String.fromCharCode(34) + "consult-table" + String.fromCharCode(34) + "><thead><tr><th>Client</th><th>Contact</th><th>Date</th><th>Outcome</th><th>Advisor</th></tr></thead><tbody>";
+      rows.forEach(function(r){
+        html += "<tr><td>" + escC(r.name) + "</td><td>" + escC(r.email || r.phone || "-") + "</td><td>" + escC(r.date || "-") + "</td><td><span class=" + String.fromCharCode(34) + "consult-badge" + String.fromCharCode(34) + ">" + escC(r.outcome || "-") + "</span></td><td>" + escC(r.advisor || "-") + "</td></tr>";
+      });
+      html += "</tbody></table>";
+      target.innerHTML = html;
+    }).catch(function(e){ target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">" + escC(e.message) + "</div>"; });
+  }
+
+  function loadQuestionnaires(){
+    var target = document.getElementById("chTable2");
+    target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">Loading...</div>";
+    fetch(CONSULT_WORKER + "/api/notion/questionnaires", { headers: consultHeaders() }).then(function(r){
+      if (r.status === 401) { target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">Access key rejected.</div>"; return null; }
+      return r.json();
+    }).then(function(data){
+      if (!data) return;
+      var rows = data.questionnaires || [];
+      if (!rows.length) { target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">No submissions yet.</div>"; return; }
+      var html = "<table class=" + String.fromCharCode(34) + "consult-table" + String.fromCharCode(34) + "><thead><tr><th>Client</th><th>Nationality</th><th>Stage</th><th>Submitted</th></tr></thead><tbody>";
+      rows.forEach(function(r){
+        html += "<tr><td>" + escC(r.name || r.nameVi) + "</td><td>" + escC(r.nationality || "-") + "</td><td><span class=" + String.fromCharCode(34) + "consult-badge" + String.fromCharCode(34) + ">" + escC(r.stage || "-") + "</span></td><td>" + escC(r.submitted || "-") + "</td></tr>";
+      });
+      html += "</tbody></table>";
+      target.innerHTML = html;
+    }).catch(function(e){ target.innerHTML = "<div class=" + String.fromCharCode(34) + "sub" + String.fromCharCode(34) + ">" + escC(e.message) + "</div>"; });
+  }
+
+  document.getElementById("chRefresh1").addEventListener("click", loadConsultations);
+  document.getElementById("chRefresh2").addEventListener("click", loadQuestionnaires);
 })();
 </script>
 <script>
