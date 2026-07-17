@@ -363,31 +363,39 @@
 <body>
 <style>header.hdr{display:none !important}</style>
 <style>
-.tkbar{position:sticky;top:0;z-index:2000;background:#fff;border-bottom:1px solid #e6e8f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&display=swap");
+.tkbar{position:sticky;top:0;z-index:2000;background:rgba(255,255,255,.82);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid rgba(226,230,242,.9);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;animation:tkDrop .7s cubic-bezier(.16,.84,.44,1) both}
+.tkbar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,transparent,#F4622A,#1800ad,#F4622A,transparent);background-size:200% 100%;animation:tkSheen 7s linear infinite;opacity:.9;pointer-events:none}
 .tkbar *{box-sizing:border-box}
 .tkbar-in{max-width:1200px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:16px}
-.tkbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.tkbar-img{width:34px;height:34px;object-fit:contain;border-radius:6px}
-.tkbar-txt b{display:block;font-size:14px;font-weight:700;color:#0b1024;line-height:1.15}
-.tkbar-txt i{display:block;font-size:9px;font-style:normal;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#F4622A;margin-top:2px}
+.tkbar-logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
+.tkbar-img{width:36px;height:36px;object-fit:contain;border-radius:8px;animation:tkSpin 6s cubic-bezier(.45,0,.25,1) infinite}
+.tkbar-logo:hover .tkbar-img{animation-duration:2.4s}
+.tkbar-txt b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;font-weight:600;letter-spacing:.2px;color:#0b1024;line-height:1.05}
+.tkbar-txt i{display:block;font-size:9px;font-style:normal;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#F4622A;margin-top:1px}
 .tkbar-r{margin-left:auto;display:flex;align-items:center;gap:10px}
 .tkbar-tools{position:relative}
-.tkbar-toolbtn{display:inline-flex;align-items:center;gap:7px;background:#f2f4fb;border:1px solid #e2e6f2;border-radius:99px;padding:8px 14px;font-size:13px;font-weight:600;color:#0b1024;cursor:pointer}
-.tkbar-toolbtn:hover{background:#e9edfb}
+.tkbar-toolbtn{display:inline-flex;align-items:center;gap:7px;background:rgba(242,244,251,.8);border:1px solid #e2e6f2;border-radius:99px;padding:8px 14px;font-size:13px;font-weight:600;color:#0b1024;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s}
+.tkbar-toolbtn:hover{background:#e9edfb;transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,10,34,.1)}
 .tkbar-caret{transition:transform .2s}
 .tkbar-toolbtn[aria-expanded="true"] .tkbar-caret{transform:rotate(180deg)}
-.tkbar-pop{position:absolute;top:calc(100% + 8px);right:0;width:272px;background:#fff;border:1px solid #e6e8f0;border-radius:14px;box-shadow:0 20px 50px rgba(0,10,34,.16);padding:8px;display:none}
+.tkbar-pop{position:absolute;top:calc(100% + 8px);right:0;width:272px;background:#fff;border:1px solid #e6e8f0;border-radius:14px;box-shadow:0 20px 50px rgba(0,10,34,.16);padding:8px;display:none;transform-origin:top right;animation:tkPop .18s cubic-bezier(.16,.84,.44,1)}
 .tkbar-pop.open{display:block}
 .tkbar-pop-h{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9aa0b4;padding:6px 10px 4px;font-weight:700}
-.tkbar-pop a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;text-decoration:none;color:#0b1024;font-size:13px;font-weight:500}
-.tkbar-pop a:hover{background:#f2f4fb}
+.tkbar-pop a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;text-decoration:none;color:#0b1024;font-size:13px;font-weight:500;transition:background .15s,transform .15s}
+.tkbar-pop a:hover{background:#f2f4fb;transform:translateX(2px)}
 .tkbar-pop a .ti{width:16px;height:16px;flex-shrink:0;color:#F4622A}
 .tkbar-lang{display:flex;border:1px solid #d7dbe8;border-radius:99px;overflow:hidden}
-.tkbar-lng{background:#fff;border:0;padding:6px 11px;font-size:12px;font-weight:700;color:#6b7280;cursor:pointer}
+.tkbar-lng{background:#fff;border:0;padding:6px 11px;font-size:12px;font-weight:700;color:#6b7280;cursor:pointer;transition:background .2s,color .2s}
 .tkbar-lng.on{background:#0b1024;color:#fff}
-.tkbar-cta{display:inline-flex;align-items:center;gap:6px;background:#F4622A;color:#fff;text-decoration:none;border-radius:99px;padding:8px 16px;font-size:13px;font-weight:700;white-space:nowrap}
-.tkbar-cta:hover{background:#ff6f35}
-@media(max-width:640px){.tkbar-txt b{font-size:12.5px}.tkbar-cta{display:none}.tkbar-toolbtn>span{display:none}.tkbar-pop{width:244px}}
+.tkbar-cta{display:inline-flex;align-items:center;gap:6px;background:#F4622A;color:#fff;text-decoration:none;border-radius:99px;padding:8px 16px;font-size:13px;font-weight:700;white-space:nowrap;box-shadow:0 4px 14px rgba(244,98,42,.32);transition:background .2s,transform .2s,box-shadow .2s}
+.tkbar-cta:hover{background:#ff6f35;transform:translateY(-1px);box-shadow:0 8px 22px rgba(244,98,42,.42)}
+@keyframes tkSpin{0%{transform:perspective(300px) rotateY(0)}60%{transform:perspective(300px) rotateY(360deg)}100%{transform:perspective(300px) rotateY(360deg)}}
+@keyframes tkSheen{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes tkDrop{0%{transform:translateY(-100%);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes tkPop{0%{opacity:0;transform:scale(.96) translateY(-4px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+@media(max-width:640px){.tkbar-txt b{font-size:18px}.tkbar-cta{display:none}.tkbar-toolbtn>span{display:none}.tkbar-pop{width:244px}}
+@media(prefers-reduced-motion:reduce){.tkbar,.tkbar-img,.tkbar::after,.tkbar-pop{animation:none!important}}
 </style>
 <header class="tkbar" id="tkbar">
   <div class="tkbar-in">
