@@ -222,6 +222,13 @@ body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--te
       }catch(e){}
     });
   });
+  var initLang="vi";try{var q=(location.search.match(/[?&]lang=(vi|en)/)||[])[1];if(q)initLang=q;}catch(e){}
+  apply(initLang);
+  function langFromDom(){var pr=bar.querySelector("[data-vi][data-en]");if(!pr)return null;var c=(pr.textContent||"").trim();if(c===pr.getAttribute("data-en"))return "en";if(c===pr.getAttribute("data-vi"))return "vi";return null;}
+  function syncPill(){var l=langFromDom();if(l)bar.querySelectorAll(".tkbar-lng").forEach(function(x){x.classList.toggle("on",x.getAttribute("data-lang")===l);});}
+  var probe=bar.querySelector("[data-vi][data-en]");
+  if(probe&&window.MutationObserver){new MutationObserver(syncPill).observe(probe,{childList:true,characterData:true,subtree:true});}
+  setTimeout(syncPill,120);setTimeout(syncPill,450);
 })();
 </script>
 
