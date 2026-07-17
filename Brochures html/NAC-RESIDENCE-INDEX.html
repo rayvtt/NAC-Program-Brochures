@@ -361,6 +361,93 @@
 </style>
 </head>
 <body>
+<style>header.hdr{display:none !important}</style>
+<style>
+.tkbar{position:sticky;top:0;z-index:2000;background:#fff;border-bottom:1px solid #e6e8f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.tkbar *{box-sizing:border-box}
+.tkbar-in{max-width:1200px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:16px}
+.tkbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.tkbar-img{width:34px;height:34px;object-fit:contain;border-radius:6px}
+.tkbar-txt b{display:block;font-size:14px;font-weight:700;color:#0b1024;line-height:1.15}
+.tkbar-txt i{display:block;font-size:9px;font-style:normal;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#F4622A;margin-top:2px}
+.tkbar-r{margin-left:auto;display:flex;align-items:center;gap:10px}
+.tkbar-tools{position:relative}
+.tkbar-toolbtn{display:inline-flex;align-items:center;gap:7px;background:#f2f4fb;border:1px solid #e2e6f2;border-radius:99px;padding:8px 14px;font-size:13px;font-weight:600;color:#0b1024;cursor:pointer}
+.tkbar-toolbtn:hover{background:#e9edfb}
+.tkbar-caret{transition:transform .2s}
+.tkbar-toolbtn[aria-expanded="true"] .tkbar-caret{transform:rotate(180deg)}
+.tkbar-pop{position:absolute;top:calc(100% + 8px);right:0;width:272px;background:#fff;border:1px solid #e6e8f0;border-radius:14px;box-shadow:0 20px 50px rgba(0,10,34,.16);padding:8px;display:none}
+.tkbar-pop.open{display:block}
+.tkbar-pop-h{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#9aa0b4;padding:6px 10px 4px;font-weight:700}
+.tkbar-pop a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;text-decoration:none;color:#0b1024;font-size:13px;font-weight:500}
+.tkbar-pop a:hover{background:#f2f4fb}
+.tkbar-pop a .ti{width:16px;height:16px;flex-shrink:0;color:#F4622A}
+.tkbar-lang{display:flex;border:1px solid #d7dbe8;border-radius:99px;overflow:hidden}
+.tkbar-lng{background:#fff;border:0;padding:6px 11px;font-size:12px;font-weight:700;color:#6b7280;cursor:pointer}
+.tkbar-lng.on{background:#0b1024;color:#fff}
+.tkbar-cta{display:inline-flex;align-items:center;gap:6px;background:#F4622A;color:#fff;text-decoration:none;border-radius:99px;padding:8px 16px;font-size:13px;font-weight:700;white-space:nowrap}
+.tkbar-cta:hover{background:#ff6f35}
+@media(max-width:640px){.tkbar-txt b{font-size:12.5px}.tkbar-cta{display:none}.tkbar-toolbtn>span{display:none}.tkbar-pop{width:244px}}
+</style>
+<header class="tkbar" id="tkbar">
+  <div class="tkbar-in">
+    <a class="tkbar-logo" href="https://nomadassetcollective.com" target="_blank" rel="noopener">
+      <img class="tkbar-img" src="https://nomadassetcollective.com/wp-content/uploads/2026/04/OTG-Passport-Icons-1.png" alt="NAC">
+      <span class="tkbar-txt"><b>Nomad Asset Collective</b><i data-vi="Bộ công cụ NAC" data-en="NAC Toolkit">NAC Toolkit</i></span>
+    </a>
+    <div class="tkbar-r">
+      <div class="tkbar-tools">
+        <button type="button" class="tkbar-toolbtn" id="tkToolsBtn" aria-expanded="false" aria-haspopup="true">
+          <svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span data-vi="Công cụ" data-en="Tools">Công cụ</span>
+          <svg class="tkbar-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <div class="tkbar-pop" id="tkToolsPop" role="menu">
+          <div class="tkbar-pop-h" data-vi="Công cụ NAC" data-en="NAC tools">Công cụ NAC</div>
+          <a href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4.5l8 6.7"/><path d="M6 10v9.5h12V10"/></svg><span data-vi="NAC Property Hub" data-en="NAC Property Hub">NAC Property Hub</span></a>
+          <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20v-8M9.5 20V5M14.5 20v-6M19.5 20V9M3 20.5h18"/></svg><span data-vi="NAC Residence Index" data-en="NAC Residence Index">NAC Residence Index</span></a>
+          <a href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 2.8V12c0 4.6-3.2 7.6-7.5 9-4.3-1.4-7.5-4.4-7.5-9V5.8L12 3z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg><span data-vi="Tư vấn nhanh" data-en="Advisor quiz">Tư vấn nhanh</span></a>
+          <a href="https://nomadassetcollective.com/#calc" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01M8.5 19h3.5"/></svg><span data-vi="Máy tính chi phí" data-en="Cost calculator">Máy tính chi phí</span></a>
+          <a href="https://nomadassetcollective.com/property-hub-bat-dong-san/vietnam/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15.5" rx="2"/><path d="M7 9h6M7 12.5h10M7 16h10"/></svg><span data-vi="Market Brief theo quốc gia" data-en="Country Market Briefs">Market Brief theo quốc gia</span></a>
+          <a href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v15M8.5 19.5h7M3.5 13.5a3 3 0 0 0 6 0L6.5 8.6 3.5 13.5zM14.5 13.5a3 3 0 0 0 6 0l-3-4.9-3 4.9z"/></svg><span data-vi="So Sánh chương trình" data-en="Program comparison">So Sánh chương trình</span></a>
+          <a href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18.5v-13A2.5 2.5 0 0 1 6.5 3H20v15.5H6.5A2.5 2.5 0 0 0 4 21v-2.5z"/></svg><span data-vi="Tổng quan chương trình" data-en="Program overview">Tổng quan chương trình</span></a>
+          <a href="https://blog.nomadassetcollective.com/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15.5" rx="2"/><path d="M7 9h6M7 12.5h10M7 16h10"/></svg><span data-vi="NAC Times — blog" data-en="NAC Times — blog">NAC Times — blog</span></a>
+        </div>
+      </div>
+      <div class="tkbar-lang" role="group" aria-label="Language">
+        <button type="button" class="tkbar-lng on" data-lang="vi">VI</button>
+        <button type="button" class="tkbar-lng" data-lang="en">EN</button>
+      </div>
+      <a class="tkbar-cta" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank" rel="noopener"><span data-vi="Tư Vấn Ngay" data-en="Book a Call">Tư Vấn Ngay</span></a>
+    </div>
+  </div>
+</header>
+<script>
+(function(){
+  var btn=document.getElementById("tkToolsBtn"),pop=document.getElementById("tkToolsPop"),bar=document.getElementById("tkbar");
+  if(btn&&pop){
+    btn.addEventListener("click",function(e){e.stopPropagation();var o=pop.classList.toggle("open");btn.setAttribute("aria-expanded",o?"true":"false");});
+    document.addEventListener("click",function(e){if(!pop.contains(e.target)&&e.target!==btn){pop.classList.remove("open");btn.setAttribute("aria-expanded","false");}});
+    document.addEventListener("keydown",function(e){if(e.key==="Escape"){pop.classList.remove("open");btn.setAttribute("aria-expanded","false");}});
+  }
+  if(!bar)return;
+  function apply(l){
+    bar.querySelectorAll("[data-vi][data-en]").forEach(function(el){var v=el.getAttribute("data-"+l);if(v!=null)el.textContent=v;});
+    bar.querySelectorAll(".tkbar-lng").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-lang")===l);});
+  }
+  bar.querySelectorAll(".tkbar-lng").forEach(function(b){
+    b.addEventListener("click",function(){
+      var l=b.getAttribute("data-lang");apply(l);
+      try{
+        var sel=l==="en"?["#bEN",".lang-btn[data-lang=en]","#btn-en"]:["#bVI",".lang-btn[data-lang=vi]","#btn-vi"];
+        for(var i=0;i<sel.length;i++){var t=document.querySelector(sel[i]);if(t&&!bar.contains(t)){t.click();break;}}
+        if(typeof window.setLang==="function")window.setLang(l);
+      }catch(e){}
+    });
+  });
+})();
+</script>
+
 
 <header class="hdr">
   <div class="hdr-i">
