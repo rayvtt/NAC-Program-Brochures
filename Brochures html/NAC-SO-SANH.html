@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>NAC So Sánh — Công Cụ So Sánh Chương Trình Định Cư &amp; Đầu Tư</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1800ad; --blue-dk:#13008a; --blue-lt:#f0eeff; --blue-mid:#c5bcf5;
+  --orange:#F4622A; --orange-lt:#fef0e9;
+  --teal:#0d9488; --teal-lt:#e6f7f5;
+  --bg:#f7f7fc; --card:#ffffff; --text:#0a0a1a; --text2:#3f3f5a; --text3:#8a8aa3;
+  --border:#e3e3f0; --gold:#b8860b; --gold-lt:#fdf6e3;
+  --green:#16a34a; --green-lt:#dcfce7; --red:#dc2626; --red-lt:#fee2e2;
+  --amber:#b45309; --amber-lt:#fef3c7;
+  --r:14px; --sh:0 1px 3px rgba(24,0,173,.06),0 8px 28px rgba(24,0,173,.05);
+  --c1:#1800ad; --c2:#F4622A; --c3:#0d9488;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Be Vietnam Pro',sans-serif;background:var(--bg);color:var(--text);line-height:1.55;-webkit-font-smoothing:antialiased}
+img.emoji{height:1em;width:1em;vertical-align:-.12em;margin:0 .05em}
+
+/* ============ GATE ============ */
+#gate{position:fixed;inset:0;z-index:1000;background:radial-gradient(1200px 700px at 50% 20%,#241396 0%,#0d0640 60%,#070324 100%);display:flex;align-items:center;justify-content:center;padding:24px;transition:opacity .5s ease}
+#gate.off{opacity:0;pointer-events:none}
+.gate-card{max-width:420px;width:100%;text-align:center;color:#fff;animation:gateIn .7s ease both}
+@keyframes gateIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.gate-mono{width:74px;height:74px;border-radius:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;font-family:'Playfair Display',serif;font-size:30px;font-weight:700;letter-spacing:1px}
+.gate-t{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:6px}
+.gate-s{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:26px}
+.gate-row{display:flex;gap:10px}
+#gateIn{flex:1;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.07);color:#fff;font-size:15px;font-family:inherit;letter-spacing:2px;text-align:center;outline:none;transition:border .2s}
+#gateIn:focus{border-color:rgba(255,255,255,.6)}
+#gateIn::placeholder{color:rgba(255,255,255,.35);letter-spacing:1px}
+#gateBtn{padding:14px 22px;border-radius:12px;border:none;background:var(--orange);color:#fff;font-weight:700;font-size:14px;cursor:pointer;font-family:inherit;transition:transform .15s}
+#gateBtn:hover{transform:translateY(-1px)}
+.gate-err{margin-top:12px;font-size:12.5px;color:#ffb4b4;min-height:18px;opacity:0;transition:opacity .3s}
+.gate-err.on{opacity:1}
+.gate-card.shake{animation:shk .4s}
+@keyframes shk{0%,100%{transform:none}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.gate-foot{margin-top:34px;font-size:11px;color:rgba(255,255,255,.4);letter-spacing:.5px}
+
+/* ============ HEADER ============ */
+header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.hd-i{max-width:1180px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px}
+.hd-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.hd-mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--blue),#4b2fe0);display:flex;align-items:center;justify-content:center;color:#fff;font-family:'Playfair Display',serif;font-weight:700;font-size:15px}
+.hd-tt{font-weight:700;font-size:14px;letter-spacing:.3px;line-height:1.2}
+.hd-sub{font-size:9.5px;color:var(--text3);letter-spacing:1.6px;text-transform:uppercase}
+.hd-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.upd-pill{display:none;font-size:10.5px;color:var(--text3);background:var(--blue-lt);border-radius:20px;padding:5px 11px;white-space:nowrap}
+@media(min-width:720px){.upd-pill{display:inline-flex;gap:5px;align-items:center}}
+.upd-dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pl 2s infinite}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:.35}}
+.lang-seg{display:flex;background:var(--blue-lt);border-radius:20px;padding:3px}
+.lang-b{border:none;background:transparent;padding:6px 14px;border-radius:16px;font-size:12px;font-weight:700;color:var(--text2);cursor:pointer;font-family:inherit;transition:all .2s}
+.lang-b.on{background:var(--blue);color:#fff}
+#printBtn{border:1px solid var(--border);background:#fff;border-radius:20px;padding:7px 13px;font-size:12px;cursor:pointer;font-family:inherit;color:var(--text2);display:none}
+@media(min-width:720px){#printBtn{display:block}}
+
+/* ============ HERO ============ */
+.hero{max-width:1180px;margin:0 auto;padding:46px 20px 8px;text-align:center}
+.hero-bc{font-size:10.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);font-weight:700;margin-bottom:14px}
+.hero-t{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,50px);font-weight:700;line-height:1.12;margin-bottom:14px}
+.hero-t em{font-style:italic;color:var(--blue)}
+.hero-s{max-width:640px;margin:0 auto 8px;color:var(--text2);font-size:15px;font-weight:300}
+.hero-stamp{font-size:11.5px;color:var(--text3);margin-top:10px}
+.hero-stamp b{color:var(--amber);font-weight:600}
+
+/* ============ PICKER ============ */
+.duel{max-width:940px;margin:26px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+.slot{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);padding:18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border .2s,transform .2s;text-align:left;font-family:inherit}
+.slot:hover{border-color:var(--blue-mid);transform:translateY(-2px)}
+.slot .fl{font-size:38px;line-height:1}
+.slot .fl img.emoji{height:40px;width:40px}
+.slot-n{font-weight:700;font-size:17px}
+.slot-p{font-size:12px;color:var(--text3);margin-top:1px}
+.slot-score{margin-left:auto;text-align:center;min-width:56px}
+.slot-score .v{font-size:22px;font-weight:800;color:var(--blue)}
+.slot-score .l{font-size:9px;letter-spacing:1px;color:var(--text3);text-transform:uppercase}
+.slot[data-slot="2"] .slot-score .v{color:var(--orange)}
+.vs{align-self:center;width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;font-style:italic;font-family:'Playfair Display',serif;box-shadow:0 6px 18px rgba(24,0,173,.3)}
+.duel-note{max-width:940px;margin:12px auto 0;padding:0 20px;text-align:center;font-size:11.5px;color:var(--text3)}
+@media(max-width:680px){
+  .duel{grid-template-columns:1fr;gap:10px}
+  .vs{justify-self:center;width:38px;height:38px;font-size:11px;margin:-4px 0}
+  .slot{padding:14px}
+  .slot .fl{font-size:30px}
+}
+
+/* ============ PICK SHEET ============ */
+#sheetBg{position:fixed;inset:0;background:rgba(10,6,40,.5);backdrop-filter:blur(3px);z-index:200;opacity:0;pointer-events:none;transition:opacity .25s}
+#sheetBg.on{opacity:1;pointer-events:auto}
+#sheet{position:fixed;left:50%;transform:translate(-50%,30px);bottom:-100%;width:min(520px,94vw);max-height:76vh;background:#fff;border-radius:20px 20px 0 0;z-index:201;transition:bottom .35s cubic-bezier(.2,.8,.2,1),transform .35s;overflow:hidden;display:flex;flex-direction:column}
+#sheet.on{bottom:0;transform:translate(-50%,0)}
+@media(min-width:720px){
+  #sheet{border-radius:20px;bottom:auto;top:50%;transform:translate(-50%,-45%) scale(.97);opacity:0;transition:opacity .25s,transform .25s}
+  #sheet.on{transform:translate(-50%,-50%) scale(1);opacity:1;bottom:auto}
+}
+.sheet-h{padding:18px 20px 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.sheet-t{font-weight:700;font-size:15px}
+#sheetX{border:none;background:var(--blue-lt);width:30px;height:30px;border-radius:50%;cursor:pointer;font-size:14px;color:var(--text2)}
+.sheet-list{overflow-y:auto;padding:10px 12px 20px}
+.pick{width:100%;display:flex;align-items:center;gap:12px;padding:12px 12px;border:none;background:transparent;border-radius:12px;cursor:pointer;font-family:inherit;text-align:left;transition:background .15s}
+.pick:hover{background:var(--blue-lt)}
+.pick.sel{background:var(--blue-lt);outline:1.5px solid var(--blue-mid)}
+.pick.dis{opacity:.45;cursor:not-allowed}
+.pick .fl{font-size:26px}
+.pick .fl img.emoji{height:28px;width:28px}
+.pick-n{font-weight:600;font-size:14px}
+.pick-p{font-size:11px;color:var(--text3)}
+.pick-tag{margin-left:auto;font-size:9.5px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;padding:3px 9px;border-radius:12px;background:var(--green-lt);color:var(--green)}
+.pick-tag.soon{background:var(--amber-lt);color:var(--amber)}
+.sheet-cap{padding:4px 16px 0;font-size:10px;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);font-weight:700;margin-top:8px}
+
+/* ============ STICKY MINI ============ */
+#mini{position:fixed;top:0;left:0;right:0;z-index:95;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);transform:translateY(-110%);transition:transform .3s ease}
+#mini.on{transform:none}
+.mini-i{max-width:1180px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:12px;font-size:13px;font-weight:700}
+.mini-c{display:flex;align-items:center;gap:7px}
+.mini-c .dot{width:8px;height:8px;border-radius:2px}
+.mini-vs{color:var(--text3);font-style:italic;font-size:11px}
+#miniSwap{margin-left:auto;border:1px solid var(--border);background:#fff;border-radius:16px;padding:5px 12px;font-size:11px;cursor:pointer;font-family:inherit;color:var(--blue);font-weight:700}
+
+/* ============ SECTIONS ============ */
+main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
+.sec{background:var(--card);border:1px solid var(--border);border-radius:18px;box-shadow:var(--sh);margin-bottom:26px;overflow:hidden}
+.sec-h{padding:22px 26px 16px;display:flex;align-items:baseline;gap:14px;border-bottom:1px solid var(--border)}
+.sec-no{font-family:'Playfair Display',serif;font-style:italic;font-size:15px;color:var(--blue-mid);font-weight:700}
+.sec-t{font-family:'Playfair Display',serif;font-size:22px;font-weight:700}
+.sec-note{margin-left:auto;font-size:10.5px;color:var(--text3);display:none}
+@media(min-width:720px){.sec-note{display:block}}
+.cols-h{display:grid;grid-template-columns:var(--gcols);gap:0;padding:12px 26px;background:var(--blue-lt);font-size:12.5px;font-weight:700;align-items:center}
+.cols-h .ch{display:flex;align-items:center;gap:7px;justify-content:center}
+.cols-h .ch .cdot{width:9px;height:9px;border-radius:3px}
+.rows{padding:6px 0}
+.row{display:grid;grid-template-columns:var(--gcols);align-items:center;padding:13px 26px;border-bottom:1px dashed var(--border)}
+.row:last-child{border-bottom:none}
+.row:hover{background:#fbfbff}
+.rl{font-size:12.5px;color:var(--text2);font-weight:600;padding-right:14px}
+.rl .sub{display:block;font-size:10px;color:var(--text3);font-weight:400;margin-top:1px}
+.cell{padding:0 10px;text-align:center;font-size:13.5px;position:relative}
+.cell.txt{text-align:left;font-size:12.5px;color:var(--text2)}
+.cell .big{font-size:21px;font-weight:800;letter-spacing:-.3px}
+.cell .unit{font-size:11px;color:var(--text3);font-weight:500;margin-left:2px}
+.cell.win .big{color:var(--gold)}
+.win-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--gold);margin-left:7px;vertical-align:2px;box-shadow:0 0 0 3px var(--gold-lt)}
+.bar-tr{height:6px;border-radius:4px;background:var(--blue-lt);margin-top:7px;overflow:hidden}
+.bar{height:100%;border-radius:4px;width:0;transition:width 1.1s cubic-bezier(.2,.8,.2,1)}
+.badges{display:flex;flex-wrap:wrap;gap:5px;justify-content:center}
+.bdg{font-size:10px;font-weight:700;letter-spacing:.4px;padding:3px 9px;border-radius:12px;background:var(--blue-lt);color:var(--blue)}
+.chip-upd{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--amber);background:var(--amber-lt);border-radius:10px;padding:2px 7px;margin-left:6px;vertical-align:1px;cursor:help}
+.tick{color:var(--green);font-weight:700}
+.cross{color:var(--red);font-weight:700}
+
+/* needs cards */
+.needs{display:grid;grid-template-columns:var(--gcols);padding:6px 26px 20px;gap:0}
+.needs .nc-l{padding-right:14px}
+.nc-stack{display:flex;flex-direction:column;gap:10px;padding:0 10px}
+.nc{border:1px solid var(--border);border-radius:12px;padding:13px 14px;background:#fdfdff}
+.nc-t{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;margin-bottom:5px}
+.nc-r{margin-left:auto;font-size:11px;font-weight:800;color:var(--blue);background:var(--blue-lt);padding:2px 8px;border-radius:10px}
+.nc-x{font-size:11.5px;color:var(--text2)}
+.nc-ex{font-size:10.5px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px dashed var(--border);font-style:italic}
+
+/* ratings duel */
+.rt-row{padding:11px 26px;border-bottom:1px dashed var(--border)}
+.rt-row:last-child{border:none}
+.rt-l{font-size:12.5px;font-weight:600;color:var(--text2);margin-bottom:6px;display:flex;justify-content:space-between}
+.rt-l .wl{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.5px}
+.rt-bars{display:flex;flex-direction:column;gap:5px}
+.rt-b{display:flex;align-items:center;gap:9px}
+.rt-b .nm{width:70px;font-size:10px;color:var(--text3);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rt-b .tr{flex:1;height:9px;background:var(--blue-lt);border-radius:5px;overflow:hidden}
+.rt-b .fill{height:100%;width:0;border-radius:5px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
+.rt-b .vv{width:38px;font-size:11.5px;font-weight:800;text-align:right}
+
+/* verdict */
+.verd{display:grid;grid-template-columns:var(--gcols-nolabel);gap:16px;padding:20px 26px 26px}
+.vc{border:1.5px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden}
+.vc:before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--vc)}
+.vc-h{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.vc-h .fl{font-size:26px}
+.vc-h .fl img.emoji{height:28px;width:28px}
+.vc-n{font-weight:800;font-size:16px}
+.vc-fit{margin-left:auto;text-align:center}
+.vc-fit .v{font-size:20px;font-weight:800;color:var(--vc)}
+.vc-fit .l{font-size:8.5px;letter-spacing:1px;color:var(--text3);text-transform:uppercase}
+.vc-str{font-size:10.5px;letter-spacing:1.2px;text-transform:uppercase;color:var(--text3);font-weight:700;margin:10px 0 6px}
+.vc li{font-size:12.5px;color:var(--text2);margin-left:16px;margin-bottom:5px}
+.vc .rsn li::marker{color:var(--vc);font-weight:700}
+.vc-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.vc-tag{font-size:10px;font-weight:700;background:var(--gold-lt);color:var(--gold);border-radius:10px;padding:3px 9px}
+@media(max-width:680px){.verd{grid-template-columns:1fr}}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,var(--blue) 0%,#3a1fd0 60%,#5636e8 100%);border-radius:18px;padding:38px 28px;text-align:center;color:#fff;margin-bottom:26px}
+.cta-t{font-family:'Playfair Display',serif;font-size:26px;font-weight:700;margin-bottom:8px}
+.cta-s{font-size:13.5px;opacity:.85;max-width:520px;margin:0 auto 22px;font-weight:300}
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.nac-btn{display:inline-flex;align-items:center;gap:9px;padding:13px 26px;border-radius:30px;font-weight:700;font-size:14px;text-decoration:none;transition:transform .15s}
+.nac-btn:hover{transform:translateY(-2px)}
+.nac-btn.cal{background:#fff;color:var(--blue)}
+.nac-btn.wa{background:rgba(255,255,255,.12);color:#fff;border:1px solid rgba(255,255,255,.3)}
+.nac-btn.wa svg{fill:#25D366}
+
+footer{border-top:1px solid var(--border);background:#fff}
+.ft-i{max-width:1180px;margin:0 auto;padding:26px 20px;text-align:center}
+.ft-t{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--blue);margin-bottom:6px}
+.ft-s{font-size:11.5px;color:var(--text3);max-width:560px;margin:0 auto}
+.ft-c{font-size:10.5px;color:var(--text3);margin-top:14px;letter-spacing:.5px}
+
+/* reveal animation */
+.rev{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.rev.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rev{opacity:1;transform:none;transition:none}
+  .bar,.rt-b .fill{transition:none}
+  .upd-dot{animation:none}
+}
+
+/* mobile table adjustments */
+@media(max-width:680px){
+  .sec-h{padding:16px 16px 12px}
+  .sec-t{font-size:18px}
+  .cols-h{padding:10px 12px;font-size:11px}
+  .row{padding:12px 12px;grid-template-columns:1fr;gap:8px}
+  .row .rl{padding:0}
+  .row-cells{display:grid;grid-template-columns:var(--gcols-nolabel);gap:8px}
+  .cell{padding:0 4px}
+  .cell .big{font-size:17px}
+  .cell.txt{font-size:11.5px}
+  .needs{grid-template-columns:1fr;padding:6px 12px 16px;gap:10px}
+  .needs .nc-l{display:none}
+  .rt-row{padding:10px 12px}
+  main{padding:22px 12px 30px}
+  .mini-i{padding:8px 12px;font-size:12px}
+}
+/* desktop: cells wrapper is contents */
+@media(min-width:681px){
+  .row-cells{display:contents}
+  .cols-h .ch-l{display:block}
+}
+@media(max-width:680px){
+  .cols-h{grid-template-columns:var(--gcols-nolabel)}
+  .cols-h .ch-l{display:none}
+}
+
+@media print{
+  #gate,header,#mini,.duel-note,#printBtn,.cta,#sheetBg,#sheet{display:none !important}
+  body{background:#fff}
+  .sec{break-inside:avoid;box-shadow:none}
+  .rev{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================= GATE ================= -->
+<div id="gate">
+  <div class="gate-card" id="gateCard">
+    <div class="gate-mono">N·A·C</div>
+    <div class="gate-t" data-i18n="gateT">Khu Vực Tư Vấn Riêng</div>
+    <div class="gate-s" data-i18n="gateS">Nhập mã truy cập được NAC cung cấp để mở công cụ so sánh.</div>
+    <div class="gate-row">
+      <input id="gateIn" type="password" autocomplete="off" placeholder="••••••" aria-label="Access code">
+      <button id="gateBtn" data-i18n="gateB">Mở khóa</button>
+    </div>
+    <div class="gate-err" id="gateErr" data-i18n="gateE">Mã chưa đúng — vui lòng thử lại hoặc liên hệ NAC.</div>
+    <div class="gate-foot">NOMAD ASSET COLLECTIVE · SO SÁNH 2026</div>
+  </div>
+</div>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="hd-i">
+    <a class="hd-logo" href="https://nomadassetcollective.com/" target="_blank" rel="noopener">
+      <div class="hd-mark">N</div>
+      <div>
+        <div class="hd-tt">NAC So Sánh</div>
+        <div class="hd-sub">Compare Intelligence</div>
+      </div>
+    </a>
+    <div class="hd-right">
+      <span class="upd-pill"><span class="upd-dot"></span><span id="updTxt" data-i18n="live">Dữ liệu trực tiếp · NAC Research</span></span>
+      <button id="printBtn" data-i18n="print">🖨 Lưu PDF</button>
+      <div class="lang-seg" id="langSeg">
+        <button class="lang-b on" data-lang="vi">VI</button>
+        <button class="lang-b" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ================= STICKY MINI ================= -->
+<div id="mini"><div class="mini-i" id="miniIn"></div></div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-bc" data-i18n="bc">Nomad Asset Collective — Công Cụ So Sánh 2026</div>
+  <h1 class="hero-t" data-i18n-html="heroT">So sánh chương trình <em>định cư &amp; đầu tư</em> theo dữ liệu thật</h1>
+  <p class="hero-s" data-i18n="heroS">Kinh tế vĩ mô, chính sách, điều kiện, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu nguồn chính thống.</p>
+  <div class="hero-stamp"><span data-i18n="stamp1">Số liệu làm mới 2 tuần/lần ·</span> <b id="stampDate">—</b></div>
+</section>
+
+<!-- ================= PICKER ================= -->
+<div class="duel" id="duelBar">
+  <button class="slot" data-slot="1" id="slot1"></button>
+  <div class="vs">VS</div>
+  <button class="slot" data-slot="2" id="slot2"></button>
+</div>
+<div class="duel-note" data-i18n="pickNote">Chạm vào từng thẻ để đổi quốc gia · Hy Lạp &amp; Malta mở trước — các chương trình khác đang được NAC thẩm định lại số liệu</div>
+
+<div id="sheetBg"></div>
+<div id="sheet" role="dialog" aria-modal="true">
+  <div class="sheet-h">
+    <div class="sheet-t" data-i18n="sheetT">Chọn quốc gia</div>
+    <button id="sheetX" aria-label="Close">✕</button>
+  </div>
+  <div class="sheet-list" id="sheetList"></div>
+</div>
+
+<!-- ================= MAIN ================= -->
+<main id="cmp"></main>
+
+<footer>
+  <div class="ft-i">
+    <div class="ft-t">Nomad Asset Collective</div>
+    <div class="ft-s" data-i18n="ftS">Dữ liệu tổng hợp từ nguồn chính thống (IMF, Eurostat, cơ quan di trú từng nước, Henley Index) và được NAC Research đối chiếu định kỳ. Thông tin mang tính tham khảo, không thay thế tư vấn pháp lý.</div>
+    <div class="ft-c">© 2026 NAC · Private Access</div>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+<script id="nacss-app">
+(function(){
+'use strict';
+var NL = String.fromCharCode(10);
+var Q = function(s,r){ return (r||document).querySelector(s); };
+var QA = function(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); };
+
+/* ---------------- CONFIG ---------------- */
+var SHEET = { id:'1Jj15bdZqDOH1JiMZgKKLoaL2l7kmos8Mw-tmmJlYGp4', gid:'1064639058' };
+var GATE_CODE = 'nomad';
+var CAL_URL = 'https://calendar.app.google/gnbtNBTBDKuHUasw7';
+var WA_URL = 'https://wa.me/447388646000';
+var LANGS = ['vi','en'];            /* 'es' ready — add dict + button when data lands */
+var COLORS = ['#1800ad','#F4622A','#0d9488'];
+
+/* Countries currently enabled in the picker. Roll-out = add keys here (data
+   already lives in the sheet). Key = prefix match on column A of the sheet. */
+var LIVE_KEYS = ['Hy Lạp','Malta'];
+
+var META = {
+  'Hy Lạp':      { code:'gr', flag:'🇬🇷', vi:'Hy Lạp',            en:'Greece' },
+  'SÍp':         { code:'cy', flag:'🇨🇾', vi:'Síp',               en:'Cyprus' },
+  'Malta':       { code:'mt', flag:'🇲🇹', vi:'Malta',             en:'Malta' },
+  'Bổ Đào Nha':  { code:'pt', flag:'🇵🇹', vi:'Bồ Đào Nha',        en:'Portugal' },
+  'Thổ Nhĩ Kỳ':  { code:'tr', flag:'🇹🇷', vi:'Thổ Nhĩ Kỳ',        en:'Türkiye' },
+  'Caribbean':   { code:'kn', flag:'🇰🇳', vi:'Caribbean',         en:'Caribbean' },
+  'Thái Lan':    { code:'th', flag:'🇹🇭', vi:'Thái Lan',          en:'Thailand' },
+  'Malaysia':    { code:'my', flag:'🇲🇾', vi:'Malaysia',          en:'Malaysia' },
+  'Úc':          { code:'au', flag:'🇦🇺', vi:'Úc',                en:'Australia' },
+  'New Zealand': { code:'nz', flag:'🇳🇿', vi:'New Zealand',       en:'New Zealand' },
+  'Panama':      { code:'pa', flag:'🇵🇦', vi:'Panama',            en:'Panama' },
+  'St. Nevis':   { code:'kn', flag:'🇰🇳', vi:'St. Kitts & Nevis', en:'St. Kitts & Nevis' },
+  'Nauru':       { code:'nr', flag:'🇳🇷', vi:'Nauru',             en:'Nauru' },
+  'Mỹ':          { code:'us', flag:'🇺🇸', vi:'Mỹ (EB-5)',         en:'USA (EB-5)' }
+};
+
+/* Column contract — index into the sheet row (0-based), mirrors row 2 */
+var C = {
+  name:0, bloc:2, econ:3, rank:4, gdp:5, infl:6, debt:7, polstab:8, corrupt:9,
+  nEdu:12, nGlobal:13, nMove:14, nHealth:15, nQol:16, nSafe:17, nDiv:18, nTax:19,
+  curr:22, capEcon:23, econChar:24, infra:25, tourism:26, othNews:27,
+  vat:29, pit:30, cit:31, inherit:32, bankSafe:33, fx:34,
+  prog:37, progInv:38, minCost:39, renew:40, stay:41, citiz:42, sof:43,
+  sponsor:46, deps:47, addMem:48, heir:49, dual:50, vfree:51, mobility:52, e2:53,
+  growth:56, liquid:57, maintain:58,
+  feeInit:61, feeGov:62, feeDD:63, feeAnnual:64, feeTotal1:65, feeTotal2:66, feeNote:67,
+  r1:70, r2:71, r3:72, r4:73, r5:74,
+  rtCost:77, rtEdu:78, rtGlobal:79, rtMove:80, rtHealth:81, rtQol:82, rtSafe:83, rtDiv:84, rtTax:85
+};
+var RT_DIMS = [
+  { c:C.rtCost,   vi:'Chi phí đầu tư',        en:'Entry cost' },
+  { c:C.rtEdu,    vi:'Giáo dục',              en:'Education' },
+  { c:C.rtGlobal, vi:'Toàn cầu hóa',          en:'Global access' },
+  { c:C.rtMove,   vi:'Tự do đi lại',          en:'Mobility' },
+  { c:C.rtHealth, vi:'Y tế',                  en:'Healthcare' },
+  { c:C.rtQol,    vi:'Chất lượng cuộc sống',  en:'Quality of life' },
+  { c:C.rtSafe,   vi:'Đầu tư an toàn',        en:'Investment safety' },
+  { c:C.rtDiv,    vi:'Đa dạng hóa danh mục',  en:'Diversification' },
+  { c:C.rtTax,    vi:'Tối ưu thuế',           en:'Tax efficiency' }
+];
+var NEED_DIMS = [
+  { c:C.nEdu,    rt:C.rtEdu,    ic:'🎓', vi:'Giáo dục',             en:'Education' },
+  { c:C.nGlobal, rt:C.rtGlobal, ic:'🌐', vi:'Toàn cầu hóa',         en:'Globalization' },
+  { c:C.nMove,   rt:C.rtMove,   ic:'✈️', vi:'Tự do đi lại',         en:'Mobility' },
+  { c:C.nHealth, rt:C.rtHealth, ic:'🏥', vi:'Y tế',                 en:'Healthcare' },
+  { c:C.nQol,    rt:C.rtQol,    ic:'🌿', vi:'Chất lượng cuộc sống', en:'Quality of life' },
+  { c:C.nSafe,   rt:C.rtSafe,   ic:'🛡️', vi:'Đầu tư an toàn',       en:'Investment safety' },
+  { c:C.nDiv,    rt:C.rtDiv,    ic:'📊', vi:'Đa dạng hóa',          en:'Diversification' },
+  { c:C.nTax,    rt:C.rtTax,    ic:'🧾', vi:'Thuế',                 en:'Tax' }
+];
+
+/* NAC Research corrections — applied ONLY while the live sheet cell still
+   equals the stale value recorded here (self-retiring once the sheet is
+   updated). Each carries source + month for the ⓘ chip. */
+var FIXES = [{"country":"Hy Lạp","col":5,"when":"07/2026","ifOld":"2.20%","use":"2,1% (2025 — IMF/Eurostat)","src":"Eurostat (tec00115) — ELSTAT điều chỉnh 10/2025"},{"country":"Hy Lạp","col":6,"when":"07/2026","ifOld":"3.20%","use":"2,9% (HICP 2025)","src":"Eurostat HICP (tec00118)"},{"country":"Hy Lạp","col":7,"when":"07/2026","ifOld":"162%","use":"146% (cuối 2025 — giảm từ 154% năm 2024)","src":"Eurostat — nợ chính phủ chung"},{"country":"Hy Lạp","col":34,"when":"07/2026","ifOld":"1 EUR = 1.16 USD","use":"1 EUR = 1.15 USD","src":"ECB tỷ giá tham chiếu 16/07/2026"},{"country":"Hy Lạp","col":51,"when":"07/2026","ifOld":"186","use":"185 (hạng 4 thế giới, Henley 2026)","src":"Henley Passport Index 2026 (cập nhật 07/2026)"},{"country":"Hy Lạp","col":39,"when":"07/2026","ifOld":"EUR 250,000","use":"EUR 250,000 (cải tạo di sản / chuyển đổi thương mại) · EUR 400,000 đa số khu vực (≥120m²) · EUR 800,000 tại Attica, Thessaloniki, Mykonos, Santorini","src":"Luật 5100/2024 + Luật 5275/2026 — Hellenic Law Firm"},{"country":"Hy Lạp","col":40,"when":"07/2026","ifOld":"10 năm","use":"5 năm (gia hạn mỗi 5 năm, vô thời hạn nếu giữ khoản đầu tư)","src":"Luật 5275/2026 — thẻ 5 năm tính từ ngày cấp thẻ"},{"country":"Hy Lạp","col":41,"when":"07/2026","ifOld":"Ở 6 tháng/năm","use":"Không yêu cầu lưu trú tối thiểu để giữ và gia hạn Golden Visa","src":"Chương trình Golden Visa Hy Lạp — quy định gia hạn"},{"country":"Hy Lạp","col":42,"when":"07/2026","ifOld":"6 năm (ở 6 tháng/năm)","use":"7 năm cư trú thực tế (183+ ngày/năm) + thi tiếng Hy Lạp B1","src":"Luật quốc tịch Hy Lạp — nhập tịch"},{"country":"Hy Lạp","col":62,"when":"07/2026","ifOld":"€2,000–€5,000 / hộ gia đình","use":"€2,000 người nộp chính + €150 mỗi người thân trưởng thành + €16 phí in thẻ mỗi người (hộ 3 người khoảng €2,350)","src":"Varnavas Law (văn phòng luật Hy Lạp)"},{"country":"Hy Lạp","col":70,"when":"07/2026","ifOld":"Miễn VAT 24% cho đến hết 2025","use":"Miễn VAT 24% nhà xây mới — đã gia hạn đến hết 2026 (Luật 5246/2025)","src":"KPMG TaxNewsFlash + Luật 5246/2025"},{"country":"Hy Lạp","col":53,"when":"07/2026","ifOld":"Hiệp ước đầu tư & thương mại (1951) – cho phép xin E2 Visa.","use":"Hiệp ước 1951 chỉ hỗ trợ visa E-1 (Treaty Trader) — không áp dụng E-2","src":"US State Dept — danh sách Treaty Countries"},{"country":"Hy Lạp","col":26,"when":"07/2026","ifOld":"Thu nhập du lịch đạt 21,4 tỷ EUR năm 2024, tăng 10% so với 2023 (Bank of Greece).","use":"2025 đón 37,98 triệu khách (+5,6%), thu du lịch 23,6 tỷ EUR (Bank of Greece)","src":"Bank of Greece — cán cân dịch vụ du lịch 2025"},{"country":"Hy Lạp","col":17,"when":"07/2026","ifOld":"BĐS giá thấp, pháp lý ổn định. 👉 Ex: Giá căn hộ trung tâm Athens từ €2,500/m² tăng đều 8–10%/năm.","use":"BĐS giá hợp lý, pháp lý ổn định. 👉 Ex: Giá nhà Athens tăng 6,2% năm 2025 (cả nước +7,8%), hạ nhiệt từ ~9% năm 2024.","src":"Bank of Greece — chỉ số giá căn hộ Q4/2025"},{"country":"Hy Lạp","col":27,"when":"07/2026","ifOld":"GDP dự báo tăng 2,2% năm 2024 (IMF).","use":"Luật di trú mới 5275/2026: giữ khung Golden Visa 5 năm, thêm lộ trình startup €250K (02/2026)","src":"Luật 5275/2026 — tổng hợp pháp lý"},{"country":"Malta","col":5,"when":"07/2026","ifOld":"4.00%","use":"6,2% (2024) · 4,0% (2025) — Eurostat","src":"Eurostat tec00115 (cập nhật 15/07/2026) + EC Spring 2026 Forecast"},{"country":"Malta","col":6,"when":"07/2026","ifOld":"2.50%","use":"2,4% (HICP 2025)","src":"Eurostat tec00118 — HICP annual average rate of change"},{"country":"Malta","col":7,"when":"07/2026","ifOld":"53%","use":"46% (cuối 2025)","src":"NSO Malta — thông báo EDP Maastricht đầu tiên cho 2026 (04/2026); trùng khớp EC "},{"country":"Malta","col":34,"when":"07/2026","ifOld":"1 EUR = 1.16 USD","use":"1 EUR = 1.15 USD","src":"ECB euro foreign exchange reference rate, ngày 16/07/2026"},{"country":"Malta","col":51,"when":"07/2026","ifOld":"184","use":"185","src":"Henley Passport Index 2026 (bản cập nhật tháng 6/2026, công bố 03/07/2026)"},{"country":"Malta","col":39,"when":"07/2026","ifOld":"EUR 375,000","use":"Mua BĐS từ €375,000 (toàn Malta & Gozo) HOẶC thuê từ €14,000/năm","src":"L.N. 310/2024 hiệu lực 01/01/2025 (GVZH); giữ nguyên sau L.N. 146/2025"},{"country":"Malta","col":62,"when":"07/2026","ifOld":"€15,000–€28,000","use":"Đóng góp €37,000 (hợp nhất từ 22/07/2025) + phí hành chính €60,000 + quyên góp NGO €2,000 (+€7,500 mỗi người phụ thuộc trưởng thành)","src":"L.N. 146 of 2025 (hiệu lực 22/07/2025), thay L.N. 310/2024"},{"country":"Malta","col":63,"when":"07/2026","ifOld":"€10,000","use":"Không còn phí DD riêng — thẩm định nằm trong phí hành chính €60,000 (€15,000 nộp trước, không hoàn lại)","src":"L.N. 146 of 2025 — Camilleri Preziosi"},{"country":"Malta","col":40,"when":"07/2026","ifOld":"2 năm","use":"Chứng nhận thường trú trọn đời · thẻ cư trú gia hạn mỗi 5 năm","src":"Residency Malta Agency — MPRP FAQ chính thức"},{"country":"Malta","col":41,"when":"07/2026","ifOld":"14 ngày / 1 năm","use":"Không yêu cầu lưu trú tối thiểu","src":"Residency Malta MPRP FAQ; CSB Group (đại lý được cấp phép)"},{"country":"Malta","col":42,"when":"07/2026","ifOld":"5 năm (chương trình định cư lâu dài)","use":"Nhập tịch sau 5 năm cư trú thực tế (12 tháng liên tục trước khi nộp + 4/6 năm trước đó) — xét duyệt tùy quyết","src":"Maltese Citizenship Act (Cap. 188), Điều 10 — Komunità Malta"},{"country":"Malta","col":47,"when":"07/2026","ifOld":"< 25 tuổi","use":"Con dưới 29 tuổi (chưa kết hôn, phụ thuộc tài chính) + cha mẹ / ông bà","src":"L.N. 310/2024 (GVZH) + hướng dẫn 2026 của các đại lý"},{"country":"Malta","col":53,"when":"07/2026","ifOld":"Có hiệp ước E2 với Mỹ (1961).","use":"Không có hiệp ước E-2 với Mỹ","src":"US State Department — Treaty Countries list (đối chiếu danh sách 2026 của NNU Im"},{"country":"Malta","col":27,"when":"07/2026","ifOld":"GDP tăng 4,1% năm 2024 (IMF).","use":"MEIN (quốc tịch theo đầu tư) đã bãi bỏ sau phán quyết ECJ 04/2025 — thay bằng cơ chế theo công trạng; MPRP không bị ảnh hưởng","src":"ECJ C-181/23 + Act XXI of 2025 + L.N. 159/2025"},{"country":"Malta","col":26,"when":"07/2026","ifOld":"Chi tiêu du lịch đạt 3,3 tỷ EUR (+11% YoY, NSO 2024).","use":"2025 đón 4,02 triệu khách (+12,9%), chi tiêu 3,9 tỷ EUR · iGaming ~13% GDP","src":"NSO Malta — Inbound Tourism 12/2025; NSO/MGA về ngành gaming"},{"country":"Malta","col":56,"when":"07/2026","ifOld":"3–5% (short-term rentals & premium rental market)","use":"≈5,8%/năm (RPPI 2025) — cho thuê ngắn hạn & phân khúc cao cấp","src":"NSO Malta RPPI (tổng hợp qua Global Property Guide); Eurostat HPI khu vực euro +"},{"country":"Malta","col":67,"when":"07/2026","ifOld":"MPRP – quyền cư trú lâu dài, có thể xin quốc tịch sau 1–3 năm","use":"MPRP mở bình thường — cải cách LN 146/2025 (07/2025) hợp nhất mức đóng góp €37,000; giữ BĐS đủ chuẩn 5 năm","src":"L.N. 146 of 2025 — Residency Malta Agency; IMI Daily"}];
+
+/* Embedded snapshot (fallback + instant first paint). Injected at build time. */
+var SNAP = {"asOf":"17/07/2026","grid":[["3","","Tổng quan ","","","","","","","","","","Hoạch Định Nhu Cầu ","","","","","","","","","","Đặc Điểm nổi bật kinh tế ","","","","","","","Thuế System","","","","","","","","Điều Kiện","","","","","","","","","Lợi Ích (cho người sở hữu)","","","","","","","","","","Lợi Ích (cho khoản đầu tư)","","","","","Bạ Phí","","","","","","","","","Deal Closing","","","","","","","Rating cho mỗi nhu cầu đầu tư (1 - 100)","","","","","","","",""],["Nước ❗","","Thuộc Khối:","Kinh Tế","Xếp Hạng","Tăng trưởng GDP  (2024)","Lạm Phát (2024)","Nợ (% GDP)","CS Chính trị bền vững (0–10)","CS Chống Tham Nhũng (0–100)","","","Giáo Dục","Toàn Cầu Hóa","Tự Do Đi Lại","Y Tế","Chất Lượng Cuộc Sống","Đầu Tư Án Toàn","Đa Dạng Hóa Danh Mục Đầu Tư","Thuế","","","Tiền Tệ","Kinh tế thủ đô","Đặc thù kinh tế","Dự án hạ tầng tương lai","Kinh tế du lịch tăng trường mạnh","Tin nổi bật khác","","VAT","TNCN","TNDN","Thừa Kế","Mức độ an toàn ngân hàng","Tỷ Giá","","Oct-2025","Chương trình ","Chương trình đầu tư","Kinh Phí từ","Gia hạn sau","Yêu cầu lưu trú","Quy trình lấy quốc tịch","Chứng minh nguồn tiền","","Oct-2025","Bảo Lãnh cho:","Ngượi phụ thuộc","Thêm Thành Viên","Di truyền","Quốc Tịch kép ?","Visa-free ","Tự Do Đi Lại","Quan hệ với nước Mỹ (E2-Visa)","","","Tăng trường ","Điều kiện thanh khoản","Điều kiện duy trì (status)","","","Mức đầu tư ban đầu","Phí chính phủ","Phí xử lý hồ sơ / Thẩm định (Due Diligence)","Phí duy trì hằng năm","Tổng phí cho 1 bộ hồ sơ","Tống phí cho 2+ bộ hồ sơ","Ghi chú","","","Reason 1","Reason 2","Reason 3","Reason 4","Reason 5","","Oct-2025","Chi Phí Đầu Tư (ít vs. nhiều)","Giáo Dục","Toàn Cầu Hóa","Tự Do Đi Lại","Y Tế","Chất Lượng Cuộc Sống","Đầu Tư Án Toàn","Đa Dạng Hóa Danh Mục Đầu Tư","Tối Ưu Thuế (TNCN, TNDN, Thừa Kế, "],["Hy Lạp (GR)","","EEA - Kinh tế Châu Âu¶EU - Liên minh Châu Âu¶Schengen - Khu vực tự do đi lại, an ninh, công lý Châu Âu¶NATO - Tổ chức quân sự Bắc Đại Tây Dương","Du lịch","186th","2.20%","3.20%","162%","7.1","52","","","Học phí miễn phí (public), đại học công lập EU. 👉 Ex: Đại học Athens cấp bằng châu Âu miễn phí cho cư dân.","Thành viên EU, Schengen, hội nhập toàn cầu. 👉 Ex: Có thể mở công ty và làm việc tại bất kỳ nước EU nào.","Tự do đi lại 186 quốc gia. 👉 Ex: Cư dân Hy Lạp bay đến Paris, Milan không cần visa.","Y tế công tiêu chuẩn EU. 👉 Ex: Thẻ cư trú Hy Lạp cho phép sử dụng hệ thống bệnh viện công quốc gia.","Khí hậu Địa Trung Hải, chi phí thấp. 👉 Ex: Athens có chi phí sống thấp hơn 40% so với Madrid.","BĐS giá thấp, pháp lý ổn định. 👉 Ex: Giá căn hộ trung tâm Athens từ €2,500/m² tăng đều 8–10%/năm.","BĐS nghỉ dưỡng ven biển và cho thuê ngắn hạn. 👉 Ex: Airbnb ở Santorini có tỉ suất lợi nhuận 6–8%/năm."," 👉 Ex: Lợi nhuận cho thuê nhà chịu thuế suất tối đa 33%.","","","Euro (EUR). Lạm phát duy trì ở mức thấp ~2,5% trong quý II/2024 (ECB report).","Athens chiếm hơn 45% GDP quốc gia; năm 2024, đầu tư công nghệ sạch tăng 18% (Eurostat).","Du lịch chiếm ~20% GDP; 2024 đón 33,3 triệu khách, tăng 8% so với 2023 (Greek Tourism Org).","Dự án mở rộng sân bay Athens (1,3 tỷ EUR) hoàn thành giai đoạn 1 vào cuối 2024.","Thu nhập du lịch đạt 21,4 tỷ EUR năm 2024, tăng 10% so với 2023 (Bank of Greece).","GDP dự báo tăng 2,2% năm 2024 (IMF).","","24%","9–44% (lũy tiến)","22%","Có, tùy theo giá trị tài sản","Rất cao (EU Deposit Insurance)","1 EUR = 1.16 USD","","","Thường Trú Nhân","Bất động sản","EUR 250,000","10 năm","Ở 6 tháng/năm","6 năm (ở 6 tháng/năm)","Ko cần chúng mình nguồn tiền","","","3 thế hệ"," <21 tuổi","Có thể thêm vợ/chồng, con phụ thuộc","Có (di truyền cho con)","Có (cho phép song tịch)","186","Khối Schengen (29 nước)","Hiệp ước đầu tư & thương mại (1951) – cho phép xin E2 Visa.","","","4–6% (tourism rentals, islands)","Tự do bán lại; thường dễ bán cho người EU","Residency (Golden Visa) -> PR/CI","","","Tối thiểu €250,000 (mua BĐS)","€2,000–€5,000 / hộ gia đình","€2,000 / đương đơn chính","Không yêu cầu","USD 290,080","USD 292,600","Golden Visa; gia hạn mỗi 5 năm; phí luật sư ~€10,000","","","Miễn VAT 24% cho đến hết 2025","Không chứng minh tài chính/ kinh nghiệm knh doanh","không yêu cầu lưu trú/ trình độ ngoài ngữ","thời gian xét duyệt 2-3 tháng","miễn chi phí y tế và giáo dục cho người ","","","87.6","38.1","67","61","41.1","53.7","54.3","35.5","16.2"],["Malta (MT)","","¶EU - Liên minh Châu Âu¶Schengen - Khu vực tự do đi lại, an ninh, công lý Châu Âu¶NATO - Tổ chức quân sự Bắc Đại Tây Dương","Du lịch","185th","4.00%","2.50%","53%","7.7","51","","","Học bằng tiếng Anh, chuẩn Anh quốc. 👉 Ex: University of Malta liên kết đào tạo với UK.","EU & Commonwealth, tiếng Anh chính thức. 👉 Ex: Doanh nhân dễ dàng mở chi nhánh sang London.","Visa-free 184 nước. 👉 Ex: Hộ chiếu Malta được Henley Index xếp hạng top 10 toàn cầu.","Y tế công + tư top đầu châu Âu. 👉 Ex: Mater Dei Hospital được EU tài trợ trực tiếp.","Môi trường thân thiện, khí hậu lý tưởng. 👉 Ex: 300 ngày nắng/năm, chi phí thấp hơn Bắc Âu.","Chính trị ổn định, tài chính minh bạch. 👉 Ex: Malta quy định chống rửa tiền chuẩn OECD.","Thu hút startup công nghệ & fintech. 👉 Ex: Binance & Revolut từng đặt trụ sở tại Malta.","Thuế 35% nhưng hoàn tiền 6/7 cho nhà đầu tư nước ngoài. 👉 Ex: Doanh nghiệp chỉ chịu thực tế 5–10% thuế.","","","Euro (EUR). GDP đầu người đạt 38.000 EUR (Eurostat 2024).","Valletta và khu vực trung tâm chiếm 70% GDP; ngành dịch vụ chiếm 85% tổng sản lượng.","iGaming đóng góp 13% GDP; du lịch 2024 đạt 3,56 triệu khách (+8% YoY).","Đầu tư 90 triệu EUR vào dự án mở rộng sân bay quốc tế (Times of Malta, 2024).","Chi tiêu du lịch đạt 3,3 tỷ EUR (+11% YoY, NSO 2024).","GDP tăng 4,1% năm 2024 (IMF).","","18%","0–35% (lũy tiến, chế độ remittance)","35%","Không có thuế thừa kế chính thức","Cao (chính sách bảo hiểm tiền gửi EU)","1 EUR = 1.16 USD","","","Thường Trú Nhân","Bất động sản","EUR 375,000","2 năm","14 ngày / 1 năm","5 năm (chương trình định cư lâu dài)","Lịch sử nguồn tiền","","","4 thế hệ","< 25 tuổi","Có thể thêm vợ/chồng, con phụ thuộc","Có","Có (cho phép song tịch)","184","Khối Schengen (29 nước)","Có hiệp ước E2 với Mỹ (1961).","","","3–5% (short-term rentals & premium rental market)","Thị trường nhỏ, bán lại được nhưng tính thanh khoản thấp hơn EU lớn","Residency (MPRP) -> citizenship sau 7 năm","","","€370,000 (mua BĐS) hoặc €700,000 (quyên góp + đầu tư)","€15,000–€28,000","€10,000","Không yêu cầu","USD 711,200","USD 721,000","MPRP – quyền cư trú lâu dài, có thể xin quốc tịch sau 1–3 năm","","","Ổn định chính trị & pháp lý (EU)","Chương trình thu hút đầu tư tài chính & doanh nhân","Hệ thống y tế và giáo dục chất lượng cao","Cơ chế thuế hợp lý cho cá nhân doanh nhân (ưu đãi)","Mạng lưới tiếng Anh rộng — dễ hội nhập thị trường dịch vụ","","","62.9","62.9","83.5","40","54.5","60","58.1","47","31.5"]]}; /*__SNAP__*/
+
+/* ---------------- I18N (chrome) ---------------- */
+var I18N = {
+  gateT:{vi:'Khu Vực Tư Vấn Riêng',en:'Private Advisory Access'},
+  gateS:{vi:'Nhập mã truy cập được NAC cung cấp để mở công cụ so sánh.',en:'Enter the access code provided by NAC to open the comparison tool.'},
+  gateB:{vi:'Mở khóa',en:'Unlock'},
+  gateE:{vi:'Mã chưa đúng — vui lòng thử lại hoặc liên hệ NAC.',en:'Incorrect code — try again or contact NAC.'},
+  live:{vi:'Dữ liệu trực tiếp · NAC Research',en:'Live data · NAC Research'},
+  offline:{vi:'Bản lưu gần nhất · NAC Research',en:'Latest snapshot · NAC Research'},
+  print:{vi:'🖨 Lưu PDF',en:'🖨 Save PDF'},
+  bc:{vi:'Nomad Asset Collective — Công Cụ So Sánh 2026',en:'Nomad Asset Collective — Comparison Intelligence 2026'},
+  heroT:{vi:'So sánh chương trình <em>định cư &amp; đầu tư</em> theo dữ liệu thật',en:'Compare residency &amp; investment programs <em>on real data</em>'},
+  heroS:{vi:'Kinh tế vĩ mô, chính sách, điều kiện, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu nguồn chính thống.',en:'Macro economics, policy, requirements, benefits and all-in costs — continuously refreshed by NAC Research against primary sources.'},
+  stamp1:{vi:'Số liệu làm mới 2 tuần/lần ·',en:'Data refreshed bi-weekly ·'},
+  pickNote:{vi:'Chạm vào từng thẻ để đổi quốc gia · Hy Lạp & Malta mở trước — các chương trình khác đang được NAC thẩm định lại số liệu',en:'Tap a card to switch country · Greece & Malta first — other programs are being re-verified by NAC Research'},
+  sheetT:{vi:'Chọn quốc gia',en:'Choose a country'},
+  avail:{vi:'Sẵn sàng',en:'Ready'},
+  soon:{vi:'Sắp mở',en:'Soon'},
+  secOverview:{vi:'Tổng quan vĩ mô',en:'Macro overview'},
+  secNeeds:{vi:'Hoạch định theo nhu cầu',en:'Planning by need'},
+  secEcon:{vi:'Điểm sáng kinh tế',en:'Economic highlights'},
+  secTax:{vi:'Hệ thống thuế',en:'Tax system'},
+  secReq:{vi:'Điều kiện chương trình',en:'Program requirements'},
+  secBenOwn:{vi:'Quyền lợi cho người sở hữu',en:'Benefits for the holder'},
+  secBenInv:{vi:'Quyền lợi cho khoản đầu tư',en:'Benefits for the investment'},
+  secFees:{vi:'Bạ phí — tổng chi phí thật',en:'Fees — the real all-in cost'},
+  secWhy:{vi:'Vì sao NAC chốt được deal này',en:'Why NAC closes this deal'},
+  secFit:{vi:'Chấm điểm theo nhu cầu đầu tư',en:'Fit rating by investor need'},
+  fitCap:{vi:'Thang 1–100 do NAC Research chấm, cập nhật theo chu kỳ dữ liệu',en:'1–100 scale scored by NAC Research, refreshed with each data cycle'},
+  swap:{vi:'Đổi cặp',en:'Swap'},
+  strengths:{vi:'Điểm mạnh nổi bật',en:'Top strengths'},
+  reasons:{vi:'Lý do chốt deal',en:'Closing reasons'},
+  nacFit:{vi:'NAC Fit',en:'NAC Fit'},
+  ctaT:{vi:'Chọn đúng chương trình ngay từ đầu',en:'Choose the right program the first time'},
+  ctaS:{vi:'Đặt lịch 30 phút với NAC — đối chiếu hồ sơ, mục tiêu thuế và lộ trình quốc tịch của gia đình bạn trên chính bảng so sánh này.',en:'Book 30 minutes with NAC — we map your family profile, tax goals and citizenship path onto this exact comparison.'},
+  ctaCal:{vi:'Đặt lịch tư vấn miễn phí',en:'Book a free consultation'},
+  ctaWa:{vi:'Chat WhatsApp',en:'Chat on WhatsApp'},
+  ftS:{vi:'Dữ liệu tổng hợp từ nguồn chính thống (IMF, Eurostat, cơ quan di trú từng nước, Henley Index) và được NAC Research đối chiếu định kỳ. Thông tin mang tính tham khảo, không thay thế tư vấn pháp lý.',en:'Data aggregated from primary sources (IMF, Eurostat, national migration authorities, Henley Index), periodically re-verified by NAC Research. For reference only — not legal advice.'},
+  updated:{vi:'NAC cập nhật',en:'NAC updated'},
+  viOnly:{vi:'',en:'Detailed data is shown in Vietnamese — English data layer is in progress.'},
+  lbl_bloc:{vi:'Thuộc khối',en:'Member of'},
+  lbl_econ:{vi:'Nền kinh tế',en:'Economy'},
+  lbl_rank:{vi:'Xếp hạng kinh tế',en:'Economic rank'},
+  lbl_gdp:{vi:'Tăng trưởng GDP',en:'GDP growth'},
+  lbl_infl:{vi:'Lạm phát',en:'Inflation'},
+  lbl_debt:{vi:'Nợ công (% GDP)',en:'Public debt (% GDP)'},
+  lbl_polstab:{vi:'Ổn định chính trị (0–10)',en:'Political stability (0–10)'},
+  lbl_corrupt:{vi:'Chỉ số minh bạch (0–100)',en:'Transparency index (0–100)'},
+  lbl_curr:{vi:'Tiền tệ',en:'Currency'},
+  lbl_capEcon:{vi:'Kinh tế thủ đô',en:'Capital economy'},
+  lbl_econChar:{vi:'Đặc thù kinh tế',en:'Economic character'},
+  lbl_infra:{vi:'Hạ tầng tương lai',en:'Future infrastructure'},
+  lbl_tourism:{vi:'Du lịch tăng trưởng',en:'Tourism growth'},
+  lbl_othNews:{vi:'Tin nổi bật khác',en:'Other highlights'},
+  lbl_vat:{vi:'VAT',en:'VAT'},
+  lbl_pit:{vi:'Thuế thu nhập cá nhân',en:'Personal income tax'},
+  lbl_cit:{vi:'Thuế doanh nghiệp',en:'Corporate tax'},
+  lbl_inherit:{vi:'Thuế thừa kế',en:'Inheritance tax'},
+  lbl_bankSafe:{vi:'An toàn ngân hàng',en:'Banking safety'},
+  lbl_fx:{vi:'Tỷ giá',en:'FX rate'},
+  lbl_prog:{vi:'Loại chương trình',en:'Program type'},
+  lbl_progInv:{vi:'Hình thức đầu tư',en:'Investment route'},
+  lbl_minCost:{vi:'Kinh phí từ',en:'Entry from'},
+  lbl_renew:{vi:'Gia hạn sau',en:'Renewal cycle'},
+  lbl_stay:{vi:'Yêu cầu lưu trú',en:'Stay requirement'},
+  lbl_citiz:{vi:'Lộ trình quốc tịch',en:'Citizenship path'},
+  lbl_sof:{vi:'Chứng minh nguồn tiền',en:'Source of funds'},
+  lbl_sponsor:{vi:'Bảo lãnh cho',en:'Sponsorship for'},
+  lbl_deps:{vi:'Người phụ thuộc',en:'Dependents'},
+  lbl_addMem:{vi:'Thêm thành viên',en:'Adding members'},
+  lbl_heir:{vi:'Di truyền cho thế hệ sau',en:'Inheritable status'},
+  lbl_dual:{vi:'Quốc tịch kép',en:'Dual citizenship'},
+  lbl_vfree:{vi:'Visa-free (số nước)',en:'Visa-free (countries)'},
+  lbl_mobility:{vi:'Tự do đi lại',en:'Mobility zone'},
+  lbl_e2:{vi:'Quan hệ với Mỹ (E-2)',en:'US relations (E-2)'},
+  lbl_growth:{vi:'Tăng trưởng kỳ vọng',en:'Expected growth'},
+  lbl_liquid:{vi:'Thanh khoản',en:'Liquidity'},
+  lbl_maintain:{vi:'Điều kiện duy trì',en:'Status maintenance'},
+  lbl_feeInit:{vi:'Mức đầu tư ban đầu',en:'Initial investment'},
+  lbl_feeGov:{vi:'Phí chính phủ',en:'Government fees'},
+  lbl_feeDD:{vi:'Phí hồ sơ / thẩm định',en:'Processing / due diligence'},
+  lbl_feeAnnual:{vi:'Phí duy trì hằng năm',en:'Annual maintenance'},
+  lbl_feeTotal1:{vi:'Tổng cho 1 bộ hồ sơ',en:'Total — 1 application'},
+  lbl_feeTotal2:{vi:'Tổng cho 2+ bộ hồ sơ',en:'Total — 2+ applications'},
+  lbl_feeNote:{vi:'Ghi chú',en:'Notes'}
+};
+
+var lang = 'vi';
+var qsLang = (function(){ try{ var m = location.search.indexOf('lang=en'); return m >= 0 ? 'en' : 'vi'; }catch(e){ return 'vi'; } })();
+lang = qsLang;
+
+function t(k){ var e = I18N[k]; return e ? (e[lang] || e.vi) : k; }
+
+/* ---------------- STATE ---------------- */
+var DB = null;          /* parsed sheet: {countries:[{key,label,cells[]}], live:bool} */
+var sel = [null, null]; /* selected country keys */
+var pickTarget = 1;
+
+/* ---------------- HELPERS ---------------- */
+function esc(s){
+  s = String(s == null ? '' : s);
+  return s.split('&').join('&amp;').split('<').join('&lt;').split('>').join('&gt;');
+}
+function br(s){ return esc(String(s == null ? '' : s)).split('¶').join('<br>').split(NL).join('<br>'); }
+function cellOf(ct, idx){
+  var v = ct.cells[idx];
+  return (v == null ? '' : String(v)).trim();
+}
+function numOf(s){
+  s = String(s == null ? '' : s);
+  var tt = '', started = false, i, ch;
+  for(i = 0; i < s.length; i++){
+    ch = s.charAt(i);
+    if((ch >= '0' && ch <= '9') || ch === '.'){ tt += ch; started = true; }
+    else if(ch === ',' ){ if(started){ continue; } }
+    else if(started){ break; }
+  }
+  if(!tt){ return null; }
+  var n = parseFloat(tt);
+  return isNaN(n) ? null : n;
+}
+function metaOf(key){
+  var k;
+  for(k in META){ if(key.indexOf(k) === 0){ return META[k]; } }
+  return { code:'', flag:'🌍', vi:key, en:key };
+}
+function lines(s){ return String(s || '').split('¶').join(NL).split(NL); }
+function firstLine(s){ return lines(s)[0]; }
+function blocBadges(s){
+  var out = [], parts = lines(s), i, p, name;
+  for(i = 0; i < parts.length; i++){
+    p = parts[i].trim();
+    if(!p){ continue; }
+    name = p.split(' - ')[0].split(' – ')[0].trim();
+    if(name && name.length <= 22){ out.push(name); }
+  }
+  return out;
+}
+function splitEx(s){
+  var ix = String(s || '').indexOf('👉');
+  if(ix < 0){ return { main:String(s || '').trim(), ex:'' }; }
+  return { main:s.slice(0, ix).trim(), ex:s.slice(ix + 1).replace('Ex:', '').trim() };
+}
+function fixFor(key, colIdx, liveVal){
+  var i, f;
+  for(i = 0; i < FIXES.length; i++){
+    f = FIXES[i];
+    if(key.indexOf(f.country) === 0 && f.col === colIdx && String(liveVal).trim() === f.ifOld){ return f; }
+  }
+  return null;
+}
+function valOf(ct, idx){
+  var raw = cellOf(ct, idx);
+  var f = fixFor(ct.key, idx, raw);
+  if(f){ return { v:f.use, fixed:f }; }
+  return { v:raw, fixed:null };
+}
+
+/* ---------------- SHEET FEED (JSONP) ---------------- */
+function parseGviz(tbl){
+  var rows = tbl.rows || [], out = [], r, i, j, cells, cr;
+  for(i = 0; i < rows.length; i++){
+    cr = rows[i].c || []; cells = [];
+    for(j = 0; j < cr.length; j++){
+      var c = cr[j];
+      cells.push(c == null ? '' : (c.f != null ? String(c.f) : (c.v != null ? String(c.v) : '')));
+    }
+    out.push(cells);
+  }
+  return out;
+}
+function buildDB(grid, live){
+  var countries = [], i, row, key;
+  for(i = 2; i < grid.length; i++){
+    row = grid[i] || [];
+    key = String(row[0] || '').trim();
+    if(!key){ continue; }
+    var filled = 0, j;
+    for(j = 0; j < row.length; j++){ if(String(row[j]).trim()){ filled++; } }
+    countries.push({ key:key, cells:row, filled:filled });
+  }
+  return { countries:countries, live:live };
+}
+function findCountry(db, key){
+  var i;
+  for(i = 0; i < db.countries.length; i++){
+    if(db.countries[i].key.indexOf(key) === 0){ return db.countries[i]; }
+  }
+  return null;
+}
+window.NACSS_FEED = function(resp){
+  try{
+    if(resp && resp.table){
+      DB = buildDB(parseGviz(resp.table), true);
+      Q('#updTxt').textContent = t('live');
+      render();
+    }
+  }catch(e){ /* keep snapshot */ }
+};
+function loadFeed(){
+  try{
+    var s = document.createElement('script');
+    s.src = 'https://docs.google.com/spreadsheets/d/' + SHEET.id + '/gviz/tq?tqx=responseHandler%3ANACSS_FEED&gid=' + SHEET.gid + '&t=' + Date.now();
+    s.onerror = function(){ Q('#updTxt').textContent = t('offline'); };
+    document.head.appendChild(s);
+  }catch(e){}
+}
+
+/* ---------------- RENDER ---------------- */
+function colVars(n){
+  document.documentElement.style.setProperty('--gcols', '220px ' + 'repeat(' + n + ',1fr)');
+  document.documentElement.style.setProperty('--gcols-nolabel', 'repeat(' + n + ',1fr)');
+}
+function headCols(cs){
+  var h = '<div class="ch-l"></div>', i, m;
+  for(i = 0; i < cs.length; i++){
+    m = metaOf(cs[i].key);
+    h += '<div class="ch"><span class="cdot" style="background:' + COLORS[i] + '"></span>' + m.flag + ' ' + esc(m[lang] || m.vi) + '</div>';
+  }
+  return '<div class="cols-h">' + h + '</div>';
+}
+function rowTxt(lblKey, idx, cs, opts){
+  opts = opts || {};
+  var cellsH = '', i, vv, chip;
+  for(i = 0; i < cs.length; i++){
+    vv = valOf(cs[i], idx);
+    chip = vv.fixed ? '<span class="chip-upd" title="' + esc(vv.fixed.src) + '">✦ ' + t('updated') + ' ' + esc(vv.fixed.when) + '</span>' : '';
+    var body = vv.v ? br(vv.v) : '<span style="color:var(--text3)">—</span>';
+    if(opts.yesno){
+      var low = vv.v.toLowerCase();
+      if(low.indexOf('có') === 0 || low.indexOf('yes') === 0){ body = '<span class="tick">✓</span> ' + br(vv.v); }
+    }
+    cellsH += '<div class="cell txt">' + body + chip + '</div>';
+  }
+  return '<div class="row"><div class="rl">' + t(lblKey) + '</div><div class="row-cells">' + cellsH + '</div></div>';
+}
+function rowNum(lblKey, idx, cs, cfg){
+  cfg = cfg || {};
+  var vals = [], i, best = null, bi = -1;
+  for(i = 0; i < cs.length; i++){ vals.push(numOf(valOf(cs[i], idx).v)); }
+  for(i = 0; i < vals.length; i++){
+    if(vals[i] == null){ continue; }
+    if(best == null || (cfg.dir < 0 ? vals[i] < best : vals[i] > best)){ best = vals[i]; bi = i; }
+  }
+  var allSame = true;
+  for(i = 1; i < vals.length; i++){ if(vals[i] !== vals[0]){ allSame = false; } }
+  var mx = 0;
+  for(i = 0; i < vals.length; i++){ if(vals[i] != null && vals[i] > mx){ mx = vals[i]; } }
+  if(cfg.max){ mx = cfg.max; }
+  var cellsH = '';
+  for(i = 0; i < cs.length; i++){
+    var vv = valOf(cs[i], idx), n = vals[i];
+    var win = (!allSame && i === bi);
+    var chip = vv.fixed ? '<span class="chip-upd" title="' + esc(vv.fixed.src) + '">✦ ' + esc(vv.fixed.when) + '</span>' : '';
+    var disp = (n == null) ? (vv.v ? esc(vv.v) : '—')
+      : '<span class="big" data-cnt="' + n + '" data-dec="' + (cfg.dec || 0) + '">' + n.toFixed(cfg.dec || 0) + '</span><span class="unit">' + (cfg.unit || '') + '</span>';
+    var bar = (n != null && mx > 0) ? '<div class="bar-tr"><div class="bar" data-w="' + Math.min(100, Math.round(n / mx * 100)) + '" style="background:' + COLORS[i] + '"></div></div>' : '';
+    cellsH += '<div class="cell' + (win ? ' win' : '') + '">' + disp + (win ? '<span class="win-dot"></span>' : '') + chip + bar + '</div>';
+  }
+  var sub = cfg.sub ? '<span class="sub">' + esc(cfg.sub) + '</span>' : '';
+  return '<div class="row"><div class="rl">' + t(lblKey) + sub + '</div><div class="row-cells">' + cellsH + '</div></div>';
+}
+function rowBadges(lblKey, idx, cs){
+  var cellsH = '', i, bs, j, h;
+  for(i = 0; i < cs.length; i++){
+    bs = blocBadges(valOf(cs[i], idx).v); h = '';
+    for(j = 0; j < bs.length; j++){ h += '<span class="bdg">' + esc(bs[j]) + '</span>'; }
+    cellsH += '<div class="cell"><div class="badges">' + (h || '—') + '</div></div>';
+  }
+  return '<div class="row"><div class="rl">' + t(lblKey) + '</div><div class="row-cells">' + cellsH + '</div></div>';
+}
+function secShell(no, titleKey, inner, noteKey){
+  return '<section class="sec rev"><div class="sec-h"><span class="sec-no">' + no + '</span><h2 class="sec-t">' + t(titleKey) + '</h2>' +
+    (noteKey ? '<span class="sec-note">' + t(noteKey) + '</span>' : '') + '</div>' + inner + '</section>';
+}
+function needsSec(cs){
+  var colsH = '', i, j;
+  var inner = '<div class="needs"><div class="nc-l"></div>';
+  for(i = 0; i < cs.length; i++){
+    var stack = '';
+    for(j = 0; j < NEED_DIMS.length; j++){
+      var d = NEED_DIMS[j];
+      var se = splitEx(valOf(cs[i], d.c).v);
+      var rt = numOf(cellOf(cs[i], d.rt));
+      if(!se.main && !se.ex && rt == null){ continue; }
+      stack += '<div class="nc"><div class="nc-t">' + d.ic + ' ' + esc(d[lang] || d.vi) +
+        (rt != null ? '<span class="nc-r">' + rt + '</span>' : '') + '</div>' +
+        (se.main ? '<div class="nc-x">' + br(se.main) + '</div>' : '') +
+        (se.ex ? '<div class="nc-ex">' + br(se.ex) + '</div>' : '') + '</div>';
+    }
+    inner += '<div class="nc-stack">' + stack + '</div>';
+  }
+  inner += '</div>';
+  return secShell('§02', 'secNeeds', headCols(cs) + inner);
+}
+function ratingsSec(cs){
+  var inner = '<div style="padding:8px 0 14px">', i, j;
+  for(j = 0; j < RT_DIMS.length; j++){
+    var d = RT_DIMS[j], best = -1, bi = -1, vals = [];
+    for(i = 0; i < cs.length; i++){
+      var n = numOf(cellOf(cs[i], d.c)); vals.push(n);
+      if(n != null && n > best){ best = n; bi = i; }
+    }
+    var bars = '';
+    for(i = 0; i < cs.length; i++){
+      var m = metaOf(cs[i].key);
+      bars += '<div class="rt-b"><span class="nm">' + esc(m[lang] || m.vi) + '</span><div class="tr"><div class="fill" data-w="' + (vals[i] || 0) + '" style="background:' + COLORS[i] + '"></div></div><span class="vv" style="color:' + COLORS[i] + '">' + (vals[i] == null ? '—' : vals[i]) + '</span></div>';
+    }
+    var wm = bi >= 0 ? metaOf(cs[bi].key) : null;
+    inner += '<div class="rt-row"><div class="rt-l"><span>' + esc(d[lang] || d.vi) + '</span>' +
+      (wm ? '<span class="wl">◆ ' + esc(wm[lang] || wm.vi) + '</span>' : '') + '</div><div class="rt-bars">' + bars + '</div></div>';
+  }
+  inner += '</div>';
+  return secShell('§10', 'secFit', inner, 'fitCap');
+}
+function fitOf(ct){
+  var s = 0, n = 0, i, v;
+  for(i = 0; i < RT_DIMS.length; i++){
+    v = numOf(cellOf(ct, RT_DIMS[i].c));
+    if(v != null){ s += v; n++; }
+  }
+  return n ? Math.round(s / n) : null;
+}
+function verdictSec(cs){
+  var inner = '<div class="verd">', i, j;
+  for(i = 0; i < cs.length; i++){
+    var ct = cs[i], m = metaOf(ct.key), fit = fitOf(ct);
+    var dims = [];
+    for(j = 0; j < RT_DIMS.length; j++){
+      var v = numOf(cellOf(ct, RT_DIMS[j].c));
+      if(v != null){ dims.push({ d:RT_DIMS[j], v:v }); }
+    }
+    dims.sort(function(a, b){ return b.v - a.v; });
+    var tags = '';
+    for(j = 0; j < Math.min(3, dims.length); j++){
+      tags += '<span class="vc-tag">' + esc(dims[j].d[lang] || dims[j].d.vi) + ' · ' + dims[j].v + '</span>';
+    }
+    var rs = '';
+    var rIdx = [C.r1, C.r2, C.r3, C.r4, C.r5];
+    for(j = 0; j < rIdx.length; j++){
+      var rv = valOf(ct, rIdx[j]);
+      if(rv.v){ rs += '<li>' + esc(rv.v) + (rv.fixed ? ' <span class="chip-upd" title="' + esc(rv.fixed.src) + '">✦ ' + esc(rv.fixed.when) + '</span>' : '') + '</li>'; }
+    }
+    inner += '<div class="vc" style="--vc:' + COLORS[i] + '"><div class="vc-h"><span class="fl">' + m.flag + '</span><span class="vc-n">' + esc(m[lang] || m.vi) + '</span>' +
+      (fit != null ? '<span class="vc-fit"><span class="v" data-cnt="' + fit + '">' + fit + '</span><span class="l">' + t('nacFit') + '</span></span>' : '') + '</div>' +
+      '<div class="vc-str">' + t('strengths') + '</div><div class="vc-tags">' + tags + '</div>' +
+      '<div class="vc-str">' + t('reasons') + '</div><ul class="rsn">' + rs + '</ul></div>';
+  }
+  inner += '</div>';
+  return secShell('§09', 'secWhy', inner);
+}
+function ctaSec(){
+  return '<section class="cta rev"><div class="cta-t">' + t('ctaT') + '</div><div class="cta-s">' + t('ctaS') + '</div>' +
+    '<div class="cta-row"><a class="nac-btn cal" href="' + CAL_URL + '" target="_blank" rel="noopener">📅 ' + t('ctaCal') + '</a>' +
+    '<a class="nac-btn wa" href="' + WA_URL + '" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8m-3.1 4c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-2.9c-.1-.2 0-.4.1-.5l.5-.6c.1-.2.2-.3.1-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4z"></path></svg>' + t('ctaWa') + '</a></div></section>';
+}
+function render(){
+  if(!DB){ return; }
+  var cs = [], i;
+  for(i = 0; i < sel.length; i++){
+    if(sel[i]){
+      var ct = findCountry(DB, sel[i]);
+      if(ct){ cs.push(ct); }
+    }
+  }
+  if(cs.length < 2){ return; }
+  colVars(cs.length);
+
+  /* slots */
+  for(i = 0; i < 2; i++){
+    var m = metaOf(cs[i].key), fit = fitOf(cs[i]);
+    var progLbl = firstLine(cellOf(cs[i], C.prog)) || '';
+    Q('#slot' + (i + 1)).innerHTML = '<span class="fl">' + m.flag + '</span><span><span class="slot-n">' + esc(m[lang] || m.vi) + '</span><br><span class="slot-p">' + esc(progLbl) + ' · ' + esc(firstLine(cellOf(cs[i], C.progInv))) + '</span></span>' +
+      (fit != null ? '<span class="slot-score"><span class="v">' + fit + '</span><span class="l">' + t('nacFit') + '</span></span>' : '');
+  }
+  /* mini */
+  var mh = '', vsTxt = '<span class="mini-vs">vs</span>';
+  for(i = 0; i < cs.length; i++){
+    var mm = metaOf(cs[i].key);
+    mh += (i ? vsTxt : '') + '<span class="mini-c"><span class="dot" style="background:' + COLORS[i] + '"></span>' + mm.flag + ' ' + esc(mm[lang] || mm.vi) + '</span>';
+  }
+  Q('#miniIn').innerHTML = mh + '<button id="miniSwap">' + t('swap') + '</button>';
+  Q('#miniSwap').addEventListener('click', function(){ openSheet(1); });
+
+  /* sections */
+  var h = '';
+  var enNote = (lang !== 'vi') ? '<div style="text-align:center;font-size:11px;color:var(--amber);background:var(--amber-lt);border-radius:12px;padding:8px 14px;margin-bottom:18px">' + t('viOnly') + '</div>' : '';
+  h += enNote;
+
+  h += secShell('§01', 'secOverview', headCols(cs) + '<div class="rows">' +
+    rowBadges('lbl_bloc', C.bloc, cs) +
+    rowTxt('lbl_econ', C.econ, cs) +
+    rowTxt('lbl_rank', C.rank, cs) +
+    rowNum('lbl_gdp', C.gdp, cs, { dir:1, unit:'%', dec:1, max:6 }) +
+    rowNum('lbl_infl', C.infl, cs, { dir:-1, unit:'%', dec:1, max:6 }) +
+    rowNum('lbl_debt', C.debt, cs, { dir:-1, unit:'%', dec:0, max:170 }) +
+    rowNum('lbl_polstab', C.polstab, cs, { dir:1, dec:1, max:10 }) +
+    rowNum('lbl_corrupt', C.corrupt, cs, { dir:1, dec:0, max:100 }) + '</div>');
+
+  h += needsSec(cs);
+
+  h += secShell('§03', 'secEcon', headCols(cs) + '<div class="rows">' +
+    rowTxt('lbl_curr', C.curr, cs) +
+    rowTxt('lbl_capEcon', C.capEcon, cs) +
+    rowTxt('lbl_econChar', C.econChar, cs) +
+    rowTxt('lbl_infra', C.infra, cs) +
+    rowTxt('lbl_tourism', C.tourism, cs) +
+    rowTxt('lbl_othNews', C.othNews, cs) + '</div>');
+
+  h += secShell('§04', 'secTax', headCols(cs) + '<div class="rows">' +
+    rowNum('lbl_vat', C.vat, cs, { dir:-1, unit:'%', dec:0, max:27 }) +
+    rowTxt('lbl_pit', C.pit, cs) +
+    rowTxt('lbl_cit', C.cit, cs) +
+    rowTxt('lbl_inherit', C.inherit, cs) +
+    rowTxt('lbl_bankSafe', C.bankSafe, cs) +
+    rowTxt('lbl_fx', C.fx, cs) + '</div>');
+
+  h += secShell('§05', 'secReq', headCols(cs) + '<div class="rows">' +
+    rowTxt('lbl_prog', C.prog, cs) +
+    rowTxt('lbl_progInv', C.progInv, cs) +
+    rowTxt('lbl_minCost', C.minCost, cs) +
+    rowTxt('lbl_renew', C.renew, cs) +
+    rowTxt('lbl_stay', C.stay, cs) +
+    rowTxt('lbl_citiz', C.citiz, cs) +
+    rowTxt('lbl_sof', C.sof, cs) + '</div>');
+
+  h += secShell('§06', 'secBenOwn', headCols(cs) + '<div class="rows">' +
+    rowTxt('lbl_sponsor', C.sponsor, cs) +
+    rowTxt('lbl_deps', C.deps, cs) +
+    rowTxt('lbl_addMem', C.addMem, cs) +
+    rowTxt('lbl_heir', C.heir, cs, { yesno:1 }) +
+    rowTxt('lbl_dual', C.dual, cs, { yesno:1 }) +
+    rowNum('lbl_vfree', C.vfree, cs, { dir:1, dec:0, max:195 }) +
+    rowTxt('lbl_mobility', C.mobility, cs) +
+    rowTxt('lbl_e2', C.e2, cs) + '</div>');
+
+  h += secShell('§07', 'secBenInv', headCols(cs) + '<div class="rows">' +
+    rowTxt('lbl_growth', C.growth, cs) +
+    rowTxt('lbl_liquid', C.liquid, cs) +
+    rowTxt('lbl_maintain', C.maintain, cs) + '</div>');
+
+  h += secShell('§08', 'secFees', headCols(cs) + '<div class="rows">' +
+    rowTxt('lbl_feeInit', C.feeInit, cs) +
+    rowTxt('lbl_feeGov', C.feeGov, cs) +
+    rowTxt('lbl_feeDD', C.feeDD, cs) +
+    rowTxt('lbl_feeAnnual', C.feeAnnual, cs) +
+    rowTxt('lbl_feeTotal1', C.feeTotal1, cs) +
+    rowTxt('lbl_feeTotal2', C.feeTotal2, cs) +
+    rowTxt('lbl_feeNote', C.feeNote, cs) + '</div>');
+
+  h += verdictSec(cs);
+  h += ratingsSec(cs);
+  h += ctaSec();
+  Q('#cmp').innerHTML = h;
+
+  applyI18nChrome();
+  observeAll();
+  if(window.twemoji){ try{ twemoji.parse(document.body, { folder:'svg', ext:'.svg' }); }catch(e){} }
+}
+
+/* ---------------- ANIMATIONS ---------------- */
+var io = null;
+function observeAll(){
+  var reduce = false;
+  try{ reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+  if(io){ io.disconnect(); }
+  if(!('IntersectionObserver' in window) || reduce){
+    QA('.rev').forEach(function(el){ el.classList.add('in'); });
+    QA('.bar,.rt-b .fill').forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
+    return;
+  }
+  io = new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(!en.isIntersecting){ return; }
+      var el = en.target;
+      el.classList.add('in');
+      QA('.bar,.rt-b .fill', el).forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
+      QA('[data-cnt]', el).forEach(countUp);
+      io.unobserve(el);
+    });
+  }, { threshold:0.18 });
+  QA('.rev').forEach(function(el){ io.observe(el); });
+}
+function countUp(el){
+  if(el.getAttribute('data-done')){ return; }
+  el.setAttribute('data-done', '1');
+  var target = parseFloat(el.getAttribute('data-cnt'));
+  var dec = parseInt(el.getAttribute('data-dec') || '0', 10);
+  if(isNaN(target)){ return; }
+  var t0 = null, dur = 1000;
+  function step(ts){
+    if(!t0){ t0 = ts; }
+    var p = Math.min(1, (ts - t0) / dur);
+    var eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = (target * eased).toFixed(dec);
+    if(p < 1){ requestAnimationFrame(step); }
+  }
+  requestAnimationFrame(step);
+}
+
+/* ---------------- PICKER ---------------- */
+function openSheet(target){
+  pickTarget = target;
+  var list = Q('#sheetList'), h = '', i, ct, m, isLive, isSel, k;
+  h += '<div class="sheet-cap">' + t('avail') + '</div>';
+  var soonH = '';
+  if(DB){
+    for(i = 0; i < DB.countries.length; i++){
+      ct = DB.countries[i];
+      m = metaOf(ct.key);
+      isLive = false;
+      for(k = 0; k < LIVE_KEYS.length; k++){ if(ct.key.indexOf(LIVE_KEYS[k]) === 0){ isLive = true; } }
+      isSel = (sel[0] && ct.key.indexOf(sel[0]) === 0) || (sel[1] && ct.key.indexOf(sel[1]) === 0);
+      var progLbl = esc(firstLine(cellOf(ct, C.prog)) || '');
+      var btn = '<button class="pick' + (isLive ? '' : ' dis') + (isSel ? ' sel' : '') + '" data-key="' + esc(ct.key) + '" ' + (isLive ? '' : 'disabled') + '>' +
+        '<span class="fl">' + m.flag + '</span><span><span class="pick-n">' + esc(m[lang] || m.vi) + '</span><br><span class="pick-p">' + progLbl + '</span></span>' +
+        '<span class="pick-tag' + (isLive ? '' : ' soon') + '">' + (isLive ? t('avail') : t('soon')) + '</span></button>';
+      if(isLive){ h += btn; } else { soonH += btn; }
+    }
+  }
+  if(soonH){ h += '<div class="sheet-cap">' + t('soon') + ' — NAC Research</div>' + soonH; }
+  list.innerHTML = h;
+  QA('.pick:not(.dis)', list).forEach(function(b){
+    b.addEventListener('click', function(){
+      var key = b.getAttribute('data-key');
+      var other = pickTarget === 1 ? sel[1] : sel[0];
+      if(other && key.indexOf(other) === 0){
+        sel = [sel[1], sel[0]];
+      } else {
+        sel[pickTarget - 1] = key;
+      }
+      closeSheet();
+      render();
+    });
+  });
+  Q('#sheetBg').classList.add('on');
+  Q('#sheet').classList.add('on');
+  if(window.twemoji){ try{ twemoji.parse(list, { folder:'svg', ext:'.svg' }); }catch(e){} }
+}
+function closeSheet(){
+  Q('#sheetBg').classList.remove('on');
+  Q('#sheet').classList.remove('on');
+}
+
+/* ---------------- CHROME I18N ---------------- */
+function applyI18nChrome(){
+  QA('[data-i18n]').forEach(function(el){ el.textContent = t(el.getAttribute('data-i18n')); });
+  QA('[data-i18n-html]').forEach(function(el){ el.innerHTML = t(el.getAttribute('data-i18n-html')); });
+  Q('#stampDate').textContent = 'NAC Research · ' + (SNAP && SNAP.asOf ? SNAP.asOf : '2026');
+}
+
+/* ---------------- BOOT ---------------- */
+function boot(){
+  /* gate */
+  var authed = false;
+  try{ authed = sessionStorage.getItem('nacss') === '1'; }catch(e){}
+  if(authed){ Q('#gate').classList.add('off'); }
+  function tryGate(){
+    var v = (Q('#gateIn').value || '').trim().toLowerCase();
+    if(v === GATE_CODE){
+      try{ sessionStorage.setItem('nacss', '1'); }catch(e){}
+      Q('#gate').classList.add('off');
+    } else {
+      Q('#gateErr').classList.add('on');
+      var card = Q('#gateCard');
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+    }
+  }
+  Q('#gateBtn').addEventListener('click', tryGate);
+  Q('#gateIn').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ tryGate(); } });
+
+  /* lang */
+  QA('.lang-b').forEach(function(b){
+    b.addEventListener('click', function(){
+      lang = b.getAttribute('data-lang');
+      QA('.lang-b').forEach(function(x){ x.classList.toggle('on', x === b); });
+      render();
+    });
+  });
+  if(lang === 'en'){
+    QA('.lang-b').forEach(function(x){ x.classList.toggle('on', x.getAttribute('data-lang') === 'en'); });
+  }
+
+  Q('#printBtn').addEventListener('click', function(){ window.print(); });
+  Q('#slot1').addEventListener('click', function(){ openSheet(1); });
+  Q('#slot2').addEventListener('click', function(){ openSheet(2); });
+  Q('#sheetX').addEventListener('click', closeSheet);
+  Q('#sheetBg').addEventListener('click', closeSheet);
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeSheet(); } });
+
+  /* sticky mini */
+  var duel = Q('#duelBar');
+  window.addEventListener('scroll', function(){
+    var r = duel.getBoundingClientRect();
+    Q('#mini').classList.toggle('on', r.bottom < 0);
+  }, { passive:true });
+
+  /* default selection via ?c=greece,malta or fallback */
+  var KEY_BY_SLUG = { greece:'Hy Lạp', malta:'Malta', cyprus:'SÍp', portugal:'Bổ Đào Nha', turkey:'Thổ Nhĩ Kỳ' };
+  try{
+    var qs = location.search;
+    var ci = qs.indexOf('c=');
+    if(ci >= 0){
+      var raw = qs.slice(ci + 2).split('&')[0];
+      var parts = decodeURIComponent(raw).split(',');
+      if(parts.length >= 2 && KEY_BY_SLUG[parts[0]] && KEY_BY_SLUG[parts[1]]){
+        sel = [KEY_BY_SLUG[parts[0]], KEY_BY_SLUG[parts[1]]];
+      }
+    }
+  }catch(e){}
+  if(!sel[0] || !sel[1]){ sel = ['Hy Lạp', 'Malta']; }
+
+  /* data: instant paint from snapshot, then live refresh */
+  if(SNAP && SNAP.grid){
+    DB = buildDB(SNAP.grid, false);
+    render();
+  }
+  loadFeed();
+  applyI18nChrome();
+  if(window.twemoji){ try{ twemoji.parse(document.body, { folder:'svg', ext:'.svg' }); }catch(e){} }
+}
+if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', boot); } else { boot(); }
+})();
+</script>
+</body>
+</html>

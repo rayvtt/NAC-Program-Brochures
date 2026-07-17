@@ -92,6 +92,11 @@ BROCHURES = {
     # iframe wrapper around an uploaded static file; syncing here converts it to the
     # ACF raw-html pattern (see PAGE_TEMPLATE below, which switches the WP template).
     'quiz':        ('nac-quiz-tu-van.html',           1115, 'tu-van-nhanh'),
+    # 'sosanh': gated (code-entry) interactive VI/EN compare tool, replacing the
+    # legacy WP-native compare.js/ACF-relationship page. Page 145 previously ran
+    # on page-blank.php (theme's own `compare` CPT + compare.js) — PAGE_TEMPLATE
+    # below switches it to the raw-html pattern, same conversion as 'quiz' above.
+    'sosanh':      ('NAC-SO-SANH.html',               145,  'so-sanh'),
 }
 
 # alias → WP page template to enforce on push. Pages listed here did not start life
@@ -99,6 +104,7 @@ BROCHURES = {
 # same POST that writes the ACF field (idempotent — WP ignores a no-op value).
 PAGE_TEMPLATE = {
     'quiz': 'nac-residence-index.php',
+    'sosanh': 'nac-residence-index.php',
 }
 
 # ── Color helpers ──────────────────────────────────────────────────────
