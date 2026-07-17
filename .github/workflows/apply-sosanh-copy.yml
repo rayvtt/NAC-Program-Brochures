@@ -1,0 +1,70 @@
+name: Apply So Sánh Copy Edit
+
+# Receives copy edits from the So Sánh in-page editor (open the live page
+# with ?edit=1, click text to edit, Publish). The editor dispatches this
+# workflow with a JSON map of changed I18N keys; the script patches the
+# `var I18N = {...}` object literal in NAC-SO-SANH.html (not per-element
+# attributes — every render() call re-reads from that one object, so it's
+# the only patch point that survives a language toggle or country swap),
+# best-effort mirrors the change into the 🔀 NAC - So Sánh Copy Notion DB,
+# and the commit to main triggers wp-sync.yml which pushes the page to
+# WordPress (page 145, alias `sosanh`). End-to-end latency ~2-3 minutes.
+
+on:
+  workflow_dispatch:
+    inputs:
+      changes:
+        description: 'JSON map of copy changes, e.g. {"heroS":{"vi":"…","en":"…"}}'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+# Publishes queue one after another — parallel runs would race each
+# other's git push and could drop an edit.
+concurrency:
+  group: sosanh-copy-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Apply changes to the HTML + sync to Notion
+        env:
+          CHANGES: ${{ inputs.changes }}
+          SKIP_FILE: /tmp/copy-apply-skipped.txt
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: python tools/apply_sosanh_copy.py
+
+      - name: Commit and push
+        run: |
+          if git diff --quiet "Brochures html/NAC-SO-SANH.html"; then
+            echo "No effective changes."
+          else
+            git config user.name "nac-copy-editor"
+            git config user.email "actions@github.com"
+            git add "Brochures html/NAC-SO-SANH.html" SOSANH-COPY-LOG.md
+            git commit -m "content: so sanh copy edit via in-page editor"
+            git push
+          fi
+
+      # A silently lost edit is the worst outcome — if any change key could
+      # not be applied, fail the run (AFTER committing what did apply) so it
+      # shows red in Actions instead of a false green.
+      - name: Fail if any edit was skipped
+        run: |
+          if [ -s /tmp/copy-apply-skipped.txt ]; then
+            echo "::error::Some edits could NOT be applied:"
+            cat /tmp/copy-apply-skipped.txt
+            exit 1
+          fi
