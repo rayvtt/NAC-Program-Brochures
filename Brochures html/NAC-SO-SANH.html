@@ -73,8 +73,8 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.86);backdro
 .hero-stamp b{color:var(--amber);font-weight:600}
 
 /* ============ PICKER ============ */
-.duel{max-width:940px;margin:26px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
-.slot{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);padding:18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border .2s,transform .2s;text-align:left;font-family:inherit}
+.duel{max-width:1180px;margin:26px auto 0;padding:0 20px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:14px;align-items:stretch}
+.slot{background:var(--card);border:1.5px solid var(--border);border-radius:var(--r);box-shadow:var(--sh);padding:18px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:border .2s,transform .2s;text-align:left;font-family:inherit;width:100%}
 .slot:hover{border-color:var(--blue-mid);transform:translateY(-2px)}
 .slot .fl{font-size:38px;line-height:1}
 .slot .fl img.emoji{height:40px;width:40px}
@@ -84,8 +84,20 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.86);backdro
 .slot-score .v{font-size:22px;font-weight:800;color:var(--blue)}
 .slot-score .l{font-size:9px;letter-spacing:1px;color:var(--text3);text-transform:uppercase}
 .slot[data-slot="2"] .slot-score .v{color:var(--orange)}
-.vs{align-self:center;width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;font-style:italic;font-family:'Playfair Display',serif;box-shadow:0 6px 18px rgba(24,0,173,.3)}
-.duel-note{max-width:940px;margin:12px auto 0;padding:0 20px;text-align:center;font-size:11.5px;color:var(--text3)}
+.slot[data-slot="3"] .slot-score .v{color:var(--teal)}
+.vs{align-self:center;width:46px;height:46px;border-radius:50%;background:var(--blue);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px;font-style:italic;font-family:'Playfair Display',serif;box-shadow:0 6px 18px rgba(24,0,173,.3);flex-shrink:0}
+.vs-opt{background:var(--card);color:var(--text3);border:1.5px dashed var(--border);box-shadow:none;font-style:normal;font-size:18px;font-weight:400;transition:all .2s}
+.vs-opt.vs-filled{background:var(--teal);color:#fff;border-style:solid;border-color:transparent;font-size:13px;font-style:italic;box-shadow:0 6px 18px rgba(13,148,136,.3)}
+.slot-wrap{position:relative}
+.slot-add{border-style:dashed;border-color:var(--border);justify-content:center;color:var(--text3)}
+.slot-add:hover{border-color:var(--teal);color:var(--teal)}
+.slot-add-ic{font-size:20px;font-weight:300;line-height:1}
+.slot-add-tx{font-size:13px;font-weight:600}
+.slot-x{position:absolute;top:-8px;right:-8px;width:24px;height:24px;border-radius:50%;background:#fff;border:1px solid var(--border);align-items:center;justify-content:center;font-size:11px;color:var(--text3);cursor:pointer;box-shadow:var(--sh);display:none;padding:0;font-family:inherit}
+.slot-x:hover{color:var(--red);border-color:var(--red)}
+.slot-x::before{content:'✕'}
+.slot-wrap.filled .slot-x{display:flex}
+.duel-note{max-width:1180px;margin:12px auto 0;padding:0 20px;text-align:center;font-size:11.5px;color:var(--text3)}
 @media(max-width:680px){
   .duel{grid-template-columns:1fr;gap:10px}
   .vs{justify-self:center;width:38px;height:38px;font-size:11px;margin:-4px 0}
@@ -318,6 +330,11 @@ footer{border-top:1px solid var(--border);background:#fff}
   <button class="slot" data-slot="1" id="slot1"></button>
   <div class="vs">VS</div>
   <button class="slot" data-slot="2" id="slot2"></button>
+  <div class="vs vs-opt" id="vs2">+</div>
+  <div class="slot-wrap" id="slot3wrap">
+    <button class="slot slot-add" data-slot="3" id="slot3"></button>
+    <button class="slot-x" id="slot3x" type="button"></button>
+  </div>
 </div>
 <div class="duel-note" data-i18n="pickNote">Chạm vào từng thẻ để đổi quốc gia · Hy Lạp &amp; Malta mở trước — các chương trình khác đang được NAC thẩm định lại số liệu</div>
 
@@ -439,10 +456,12 @@ var I18N = {
   heroT:{vi:'So sánh chương trình <em>định cư &amp; đầu tư</em> theo dữ liệu thật',en:'Compare residency &amp; investment programs <em>on real data</em>'},
   heroS:{vi:'Kinh tế vĩ mô, chính sách, điều kiện, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu nguồn chính thống.',en:'Macro economics, policy, requirements, benefits and all-in costs — continuously refreshed by NAC Research against primary sources.'},
   stamp1:{vi:'Số liệu làm mới 2 tuần/lần ·',en:'Data refreshed bi-weekly ·'},
-  pickNote:{vi:'Chạm vào từng thẻ để đổi quốc gia · Hy Lạp & Malta mở trước — các chương trình khác đang được NAC thẩm định lại số liệu',en:'Tap a card to switch country · Greece & Malta first — other programs are being re-verified by NAC Research'},
+  pickNote:{vi:'Chạm vào từng thẻ để đổi quốc gia · thêm thẻ thứ 3 để so sánh 3 chương trình cùng lúc — các chương trình còn lại đang được NAC thẩm định lại số liệu',en:'Tap a card to switch country · add a 3rd card to compare three programs at once — the remaining programs are being re-verified by NAC Research'},
   sheetT:{vi:'Chọn quốc gia',en:'Choose a country'},
   avail:{vi:'Sẵn sàng',en:'Ready'},
   soon:{vi:'Sắp mở',en:'Soon'},
+  addThird:{vi:'Thêm chương trình thứ 3',en:'Add a 3rd program'},
+  removeThird:{vi:'Bỏ khỏi so sánh',en:'Remove from comparison'},
   secOverview:{vi:'Tổng quan vĩ mô',en:'Macro overview'},
   secNeeds:{vi:'Hoạch định theo nhu cầu',en:'Planning by need'},
   secEcon:{vi:'Điểm sáng kinh tế',en:'Economic highlights'},
@@ -520,7 +539,7 @@ function t(k){ var e = I18N[k]; return e ? (e[lang] || e.vi) : k; }
 
 /* ---------------- STATE ---------------- */
 var DB = null;          /* parsed sheet: {countries:[{key,label,cells[]}], live:bool} */
-var sel = [null, null]; /* selected country keys */
+var sel = [null, null, null]; /* selected country keys — slot 3 is optional */
 var pickTarget = 1;
 
 /* ---------------- HELPERS ---------------- */
@@ -800,13 +819,23 @@ function render(){
   if(cs.length < 2){ return; }
   colVars(cs.length);
 
-  /* slots */
-  for(i = 0; i < 2; i++){
+  /* slots — 2 required, 3rd optional (ghost "add" card when empty) */
+  for(i = 0; i < cs.length; i++){
     var m = metaOf(cs[i].key), fit = fitOf(cs[i]);
     var progLbl = firstLine(cellOf(cs[i], C.prog)) || '';
+    Q('#slot' + (i + 1)).classList.remove('slot-add');
     Q('#slot' + (i + 1)).innerHTML = '<span class="fl">' + m.flag + '</span><span><span class="slot-n">' + esc(m[lang] || m.vi) + '</span><br><span class="slot-p">' + esc(progLbl) + ' · ' + esc(firstLine(cellOf(cs[i], C.progInv))) + '</span></span>' +
       (fit != null ? '<span class="slot-score"><span class="v">' + fit + '</span><span class="l">' + t('nacFit') + '</span></span>' : '');
   }
+  var hasThird = cs.length > 2;
+  if(!hasThird){
+    Q('#slot3').classList.add('slot-add');
+    Q('#slot3').innerHTML = '<span class="slot-add-ic">+</span><span class="slot-add-tx">' + t('addThird') + '</span>';
+  }
+  Q('#slot3wrap').classList.toggle('filled', hasThird);
+  Q('#slot3x').title = t('removeThird');
+  Q('#vs2').classList.toggle('vs-filled', hasThird);
+  Q('#vs2').textContent = hasThird ? 'VS' : '+';
   /* mini */
   var mh = '', vsTxt = '<span class="mini-vs">vs</span>';
   for(i = 0; i < cs.length; i++){
@@ -944,7 +973,8 @@ function openSheet(target){
       m = metaOf(ct.key);
       isLive = false;
       for(k = 0; k < LIVE_KEYS.length; k++){ if(ct.key.indexOf(LIVE_KEYS[k]) === 0){ isLive = true; } }
-      isSel = (sel[0] && ct.key.indexOf(sel[0]) === 0) || (sel[1] && ct.key.indexOf(sel[1]) === 0);
+      isSel = false;
+      for(var si = 0; si < sel.length; si++){ if(sel[si] && ct.key.indexOf(sel[si]) === 0){ isSel = true; } }
       var progLbl = esc(firstLine(cellOf(ct, C.prog)) || '');
       var btn = '<button class="pick' + (isLive ? '' : ' dis') + (isSel ? ' sel' : '') + '" data-key="' + esc(ct.key) + '" ' + (isLive ? '' : 'disabled') + '>' +
         '<span class="fl">' + m.flag + '</span><span><span class="pick-n">' + esc(m[lang] || m.vi) + '</span><br><span class="pick-p">' + progLbl + '</span></span>' +
@@ -957,9 +987,17 @@ function openSheet(target){
   QA('.pick:not(.dis)', list).forEach(function(b){
     b.addEventListener('click', function(){
       var key = b.getAttribute('data-key');
-      var other = pickTarget === 1 ? sel[1] : sel[0];
-      if(other && key.indexOf(other) === 0){
-        sel = [sel[1], sel[0]];
+      var dupIdx = -1, si2;
+      for(si2 = 0; si2 < sel.length; si2++){
+        if(sel[si2] && key.indexOf(sel[si2]) === 0 && si2 !== (pickTarget - 1)){ dupIdx = si2; }
+      }
+      if(dupIdx >= 0){
+        var incoming = sel[pickTarget - 1];
+        var wouldNullRequired = dupIdx < 2 && !incoming;
+        if(!wouldNullRequired){
+          sel[dupIdx] = incoming;
+          sel[pickTarget - 1] = key;
+        } /* else: picking a country already required elsewhere into an empty slot 3 — no-op */
       } else {
         sel[pickTarget - 1] = key;
       }
@@ -1023,6 +1061,8 @@ function boot(){
   Q('#printBtn').addEventListener('click', function(){ window.print(); });
   Q('#slot1').addEventListener('click', function(){ openSheet(1); });
   Q('#slot2').addEventListener('click', function(){ openSheet(2); });
+  Q('#slot3').addEventListener('click', function(){ openSheet(3); });
+  Q('#slot3x').addEventListener('click', function(e){ e.stopPropagation(); sel[2] = null; render(); });
   Q('#sheetX').addEventListener('click', closeSheet);
   Q('#sheetBg').addEventListener('click', closeSheet);
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeSheet(); } });
@@ -1064,11 +1104,11 @@ function boot(){
       var raw = qs.slice(ci + 2).split('&')[0];
       var parts = decodeURIComponent(raw).split(',');
       if(parts.length >= 2 && KEY_BY_SLUG[parts[0]] && KEY_BY_SLUG[parts[1]]){
-        sel = [KEY_BY_SLUG[parts[0]], KEY_BY_SLUG[parts[1]]];
+        sel = [KEY_BY_SLUG[parts[0]], KEY_BY_SLUG[parts[1]], (parts[2] && KEY_BY_SLUG[parts[2]]) ? KEY_BY_SLUG[parts[2]] : null];
       }
     }
   }catch(e){}
-  if(!sel[0] || !sel[1]){ sel = ['Hy Lạp', 'Malta']; }
+  if(!sel[0] || !sel[1]){ sel = ['Hy Lạp', 'Malta', null]; }
 
   /* data: instant paint from snapshot, then live refresh */
   if(SNAP && SNAP.grid){
