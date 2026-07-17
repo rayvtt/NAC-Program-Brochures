@@ -274,6 +274,16 @@ footer{border-top:1px solid var(--border);background:#fff}
   .sec{break-inside:avoid;box-shadow:none}
   .rev{opacity:1;transform:none}
 }
+
+/* ============ IN-PAGE EDITOR (?edit=1) ============ */
+body.nac-edit [data-edit-key]{outline:1px dashed var(--border);outline-offset:3px;border-radius:4px;cursor:text;transition:outline-color .15s}
+body.nac-edit [data-edit-key]:hover{outline-color:var(--teal)}
+body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:solid}
+#editBar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:500;background:#0a0a1a;color:#fff;border-radius:30px;padding:8px 8px 8px 18px;display:flex;align-items:center;gap:10px;font-size:12.5px;font-family:'Be Vietnam Pro',sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:.6;transition:opacity .2s}
+#editBar.has-changes{opacity:1}
+#editPublish{background:var(--teal);color:#fff;border:none;border-radius:20px;padding:8px 18px;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit}
+#editPublish:disabled{opacity:.6;cursor:wait}
+#editDiscard{background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:8px 14px;font-size:11.5px;cursor:pointer;font-family:inherit}
 </style>
 </head>
 <body>
@@ -548,6 +558,11 @@ var I18N = {
   avail:{vi:'Sẵn sàng',en:'Ready'},
   soon:{vi:'Sắp mở',en:'Soon'},
   addThird:{vi:'Thêm chương trình thứ 3',en:'Add a 3rd program'},
+  editPublish:{vi:'Xuất bản',en:'Publish'},
+  editDiscard:{vi:'Hủy',en:'Discard'},
+  editTokenPrompt:{vi:'Dán GitHub Personal Access Token — cần quyền Actions Read/Write trên repo NAC-Program-Brochures',en:'Paste a GitHub Personal Access Token — needs Actions Read/Write on the NAC-Program-Brochures repo'},
+  editSent:{vi:'✓ Đã gửi — có hiệu lực sau khoảng 2 phút',en:'✓ Sent — live in about 2 minutes'},
+  editFailed:{vi:'Xuất bản thất bại',en:'Publish failed'},
   removeThird:{vi:'Bỏ khỏi so sánh',en:'Remove from comparison'},
   secOverview:{vi:'Tổng quan vĩ mô',en:'Macro overview'},
   secNeeds:{vi:'Hoạch định theo nhu cầu',en:'Planning by need'},
@@ -890,9 +905,9 @@ function verdictSec(cs){
   return secShell('§09', 'secWhy', inner);
 }
 function ctaSec(){
-  return '<section class="cta rev"><div class="cta-t">' + t('ctaT') + '</div><div class="cta-s">' + t('ctaS') + '</div>' +
-    '<div class="cta-row"><a class="nac-btn cal" href="' + CAL_URL + '" target="_blank" rel="noopener">📅 ' + t('ctaCal') + '</a>' +
-    '<a class="nac-btn wa" href="' + WA_URL + '" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8m-3.1 4c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-2.9c-.1-.2 0-.4.1-.5l.5-.6c.1-.2.2-.3.1-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4z"></path></svg>' + t('ctaWa') + '</a></div></section>';
+  return '<section class="cta rev"><div class="cta-t" data-i18n="ctaT">' + t('ctaT') + '</div><div class="cta-s" data-i18n="ctaS">' + t('ctaS') + '</div>' +
+    '<div class="cta-row"><a class="nac-btn cal" href="' + CAL_URL + '" target="_blank" rel="noopener">📅 <span data-i18n="ctaCal">' + t('ctaCal') + '</span></a>' +
+    '<a class="nac-btn wa" href="' + WA_URL + '" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2m0 1.8a8.2 8.2 0 1 1-4.2 15.3l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 0 1 12 3.8m-3.1 4c-.2 0-.5 0-.7.3-.2.3-.9.9-.9 2.1s.9 2.4 1 2.6c.1.2 1.8 2.9 4.5 3.9 2.2.9 2.7.7 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2l-.4-.3-1.5-.7c-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.4-2.9c-.1-.2 0-.4.1-.5l.5-.6c.1-.2.2-.3.1-.5l-.7-1.7c-.2-.5-.4-.4-.5-.4z"></path></svg><span data-i18n="ctaWa">' + t('ctaWa') + '</span></a></div></section>';
 }
 function render(){
   if(!DB){ return; }
@@ -1006,6 +1021,7 @@ function render(){
   applyI18nChrome();
   observeAll();
   if(window.twemoji){ try{ twemoji.parse(document.body, { folder:'svg', ext:'.svg' }); }catch(e){} }
+  if(EDIT_MODE){ wireEditableEls(); } /* #cmp was just rebuilt — re-wire its editable spans (ctaT/ctaS/ctaCal/ctaWa) */
 }
 
 /* ---------------- ANIMATIONS ---------------- */
@@ -1205,6 +1221,108 @@ function boot(){
   loadFeed();
   applyI18nChrome();
   if(window.twemoji){ try{ twemoji.parse(document.body, { folder:'svg', ext:'.svg' }); }catch(e){} }
+  initEditor();
+}
+
+/* ---------------- IN-PAGE EDITOR (?edit=1 → click text to fix it) ----------------
+   Only the static marketing chrome is editable here (hero, gate, footer, CTA,
+   duel-note) — table row labels and section titles stay code-owned since
+   they're structural, not copy. Publish dispatches apply-sosanh-copy.yml,
+   which patches the I18N object literal (not per-element attributes — every
+   render() re-reads I18N, so that's the only patch point that survives a
+   language toggle) and mirrors the edit into the 🔀 NAC - So Sánh Copy
+   Notion DB as an audit trail. */
+var EDIT_MODE = /(?:^|[?&])edit=1(?:&|$)/.test(location.search);
+var EDITABLE_KEYS = ['gateT','gateS','gateB','bc','heroT','heroS','stamp1','pickNote','ctaT','ctaS','ctaCal','ctaWa','ftS'];
+var GH_OWNER = 'rayvtt', GH_REPO = 'NAC-Program-Brochures', GH_WORKFLOW = 'apply-sosanh-copy.yml';
+var dirtyKeys = {};
+
+function initEditor(){
+  if(!EDIT_MODE){ return; }
+  document.body.classList.add('nac-edit');
+  if(!Q('#editBar')){ injectPublishBar(); }
+  wireEditableEls();
+}
+function wireEditableEls(){
+  QA('[data-i18n],[data-i18n-html]').forEach(function(el){
+    var key = el.getAttribute('data-i18n') || el.getAttribute('data-i18n-html');
+    if(EDITABLE_KEYS.indexOf(key) < 0 || el.hasAttribute('data-edit-key')){ return; }
+    var isHtmlKey = el.hasAttribute('data-i18n-html');
+    el.setAttribute('contenteditable', isHtmlKey ? 'true' : 'plaintext-only');
+    el.setAttribute('data-edit-key', key);
+    el.addEventListener('blur', function(){ captureEdit(el, key, isHtmlKey); });
+    el.addEventListener('keydown', function(e){ if(e.key === 'Enter' && !isHtmlKey){ e.preventDefault(); el.blur(); } });
+  });
+}
+function collapseWs(s){
+  /* No whitespace regex shorthand here — a backslash character anywhere in
+     this file gets silently stripped by WP's wp_unslash on every push,
+     which would turn the shorthand into a broken plain-letter pattern. */
+  var out = '', prevWs = false, i, code;
+  for(i = 0; i < s.length; i++){
+    code = s.charCodeAt(i);
+    var isWs = (code === 32 || code === 9 || code === 10 || code === 13);
+    if(isWs){ if(!prevWs){ out += ' '; } prevWs = true; }
+    else { out += s.charAt(i); prevWs = false; }
+  }
+  var start = 0, end = out.length;
+  while(start < end && out.charAt(start) === ' '){ start++; }
+  while(end > start && out.charAt(end - 1) === ' '){ end--; }
+  return out.slice(start, end);
+}
+function captureEdit(el, key, isHtmlKey){
+  var val = collapseWs(isHtmlKey ? el.innerHTML : el.textContent);
+  if(!I18N[key]){ return; }
+  I18N[key][lang] = val;
+  dirtyKeys[key] = true;
+  updatePublishBar();
+}
+function injectPublishBar(){
+  var bar = document.createElement('div');
+  bar.id = 'editBar';
+  bar.innerHTML = '<span id="editCount">0</span>' +
+    '<button id="editPublish" type="button">' + t('editPublish') + '</button>' +
+    '<button id="editDiscard" type="button">' + t('editDiscard') + '</button>';
+  document.body.appendChild(bar);
+  Q('#editPublish').addEventListener('click', publishEdits);
+  Q('#editDiscard').addEventListener('click', function(){ location.reload(); });
+}
+function updatePublishBar(){
+  var n = Object.keys(dirtyKeys).length;
+  Q('#editCount').textContent = n + ' ' + (lang === 'vi' ? 'thay đổi' : (n === 1 ? 'change' : 'changes'));
+  Q('#editBar').classList.toggle('has-changes', n > 0);
+}
+function publishEdits(){
+  var keys = Object.keys(dirtyKeys);
+  if(!keys.length){ return; }
+  var token = localStorage.getItem('nac_gh_token');
+  if(!token){
+    token = window.prompt(t('editTokenPrompt'));
+    if(!token){ return; }
+    localStorage.setItem('nac_gh_token', token);
+  }
+  var payload = {};
+  keys.forEach(function(k){ payload[k] = { vi: I18N[k].vi, en: I18N[k].en }; });
+  var btn = Q('#editPublish');
+  btn.disabled = true;
+  btn.textContent = '…';
+  fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/actions/workflows/' + GH_WORKFLOW + '/dispatches', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ref: 'main', inputs: { changes: JSON.stringify(payload) } })
+  }).then(function(r){
+    if(r.status === 204){
+      btn.textContent = t('editSent');
+      dirtyKeys = {};
+      setTimeout(updatePublishBar, 3000);
+    } else {
+      return r.text().then(function(body){ throw new Error(r.status + ': ' + body.slice(0, 200)); });
+    }
+  }).catch(function(e){
+    window.alert(t('editFailed') + ' — ' + e.message);
+    btn.disabled = false;
+    btn.textContent = t('editPublish');
+  });
 }
 if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', boot); } else { boot(); }
 })();
