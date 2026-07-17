@@ -439,7 +439,7 @@
     b.addEventListener("click",function(){
       var l=b.getAttribute("data-lang");apply(l);
       try{
-        var sel=l==="en"?["#bEN",".lang-btn[data-lang=en]","#btn-en"]:["#bVI",".lang-btn[data-lang=vi]","#btn-vi"];
+        var sel=l==="en"?["#bEN",".lang-btn[data-lang=en]",".lang-b[data-lang=en]","#btn-en"]:["#bVI",".lang-btn[data-lang=vi]",".lang-b[data-lang=vi]","#btn-vi"];
         for(var i=0;i<sel.length;i++){var t=document.querySelector(sel[i]);if(t&&!bar.contains(t)){t.click();break;}}
         if(typeof window.setLang==="function")window.setLang(l);
       }catch(e){}
