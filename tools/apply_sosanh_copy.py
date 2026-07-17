@@ -48,14 +48,6 @@ KEY_RE = re.compile(r'^[a-zA-Z0-9_]+$')
 ENTRY_RE_TPL = r"(  %s:\{vi:')(.*?)(',en:')(.*?)('\},?)"
 
 
-def esc_html(t: str) -> str:
-    return t.replace('&', '&amp;').replace('<', '&lt;').replace('>', '&gt;')
-
-
-def unesc_html(t: str) -> str:
-    return t.replace('&lt;', '<').replace('&gt;', '>').replace('&amp;', '&')
-
-
 def norm(t) -> str:
     if not isinstance(t, str):
         return ''
@@ -68,10 +60,22 @@ def to_js_single_quoted(t: str) -> str:
     this repo's Trap 2). A straight apostrophe would otherwise terminate the
     string early, so swap it for the Unicode curly apostrophe, the same
     workaround this repo already uses elsewhere for the identical class of
-    problem. Also strips any literal newline (contenteditable can insert
-    one) since these are single-line JS string values."""
-    return (t.replace('\n', ' ').replace('\r', '')
-             .replace("'", '’'))
+    problem. Strips literal newlines (contenteditable can insert them) since
+    these are single-line JS string values.
+
+    Deliberately NO HTML-entity escaping here: <script> content is raw text
+    to the HTML parser, and these values are rendered via textContent
+    (data-i18n keys, where a literal `&` must stay `&`) or innerHTML
+    (data-i18n-html keys, where the editor already sends serialized HTML
+    like `<em>` / `&amp;`). Escaping again double-encodes — this shipped
+    once and turned the hero title into visible `&lt;em&gt;` text. The one
+    sequence that genuinely cannot appear is `</script`, which would
+    terminate the block early — a zero-width space is inserted after its
+    `<` (legit inline closers like `</em>` are unaffected)."""
+    t = t.replace('\n', ' ').replace('\r', '').replace("'", '’')
+    for bad in ('</script', '</SCRIPT', '</Script'):
+        t = t.replace(bad, '<' + chr(0x200b) + bad[1:])
+    return t
 
 
 def clip(t: str, n: int) -> str:
@@ -176,10 +180,10 @@ def main():
             skipped.append((key, 'key not found in I18N object — was it renamed or removed?'))
             continue
         old_vi_raw, old_en_raw = m.group(2), m.group(4)
-        old_vi = unesc_html(old_vi_raw.replace('’', "'"))
-        old_en = unesc_html(old_en_raw.replace('’', "'"))
-        new_vi_raw = to_js_single_quoted(esc_html(vi)) if vi is not None else old_vi_raw
-        new_en_raw = to_js_single_quoted(esc_html(en)) if en is not None else old_en_raw
+        old_vi = old_vi_raw.replace('’', "'")
+        old_en = old_en_raw.replace('’', "'")
+        new_vi_raw = to_js_single_quoted(vi) if vi is not None else old_vi_raw
+        new_en_raw = to_js_single_quoted(en) if en is not None else old_en_raw
         if vi is not None and new_vi_raw != old_vi_raw:
             log_entries.append({'key': key, 'lang': 'vi', 'oldVal': old_vi, 'newVal': vi})
         if en is not None and new_en_raw != old_en_raw:
