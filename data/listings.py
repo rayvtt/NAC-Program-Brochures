@@ -32,7 +32,12 @@ COUNTRIES = {
                    # London Dock (id 87, £790K). Overrides auto-pair which
                    # would anchor on Bermondsey Place (cheapest at £499,950).
                    'pin': [91, 87]},
-    'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI', 'currency': '€'},
+    'malta':      {'notion_country': 'Malta',                      'program_code': 'RBI', 'currency': '€',
+                   # Curation: feature Portomaso (id 203, St Julian's flagship €3.7M) +
+                   # Fortress Gardens (id 204, Tigné Point/Sliema €1.4M). The Ibragg
+                   # Project (id 205, boutique €895K) is a 3rd new Malta listing but
+                   # the template only has 2 card slots — pin only takes the first two.
+                   'pin': [203, 204]},
     'stkitts':    {'notion_country': 'St Kitts',                   'program_code': 'CBI', 'currency': '$'},
     'thailand':   {'notion_country': 'Thái Lan',                   'program_code': 'LTR', 'currency': '$'},
     'newzealand': {'notion_country': 'New Zealand',                'program_code': 'RBI', 'currency': '$'},
