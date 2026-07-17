@@ -97,6 +97,7 @@
   .sb{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),#6b5aed);transition:width .4s ease}
   .im{font-weight:600;font-size:13px;color:var(--text);white-space:nowrap}
   .is{font-size:11px;color:var(--text3);margin-top:2px}
+  .re-pill{display:inline-flex;align-items:center;gap:3px;font-size:10px;font-weight:600;color:var(--amber);background:var(--amber-lt);border-radius:20px;padding:2px 8px;margin-top:4px;white-space:nowrap}
   .tc{font-size:13px;color:var(--text2);white-space:nowrap}
   .vfn{font-weight:600;font-size:13px}
   .tag{display:inline-block;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;white-space:nowrap}
@@ -139,6 +140,10 @@
   .ib{background:var(--bg2);border-radius:8px;padding:10px;border:1px solid var(--border)}
   .ibl{font-size:10px;color:var(--text3);letter-spacing:.5px;margin-bottom:3px;text-transform:uppercase}
   .ibv{font-size:13px;font-weight:600;color:var(--text)}
+  .re-note{background:var(--amber-lt);border:1px solid #fde68a;border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:9px}
+  .re-note-ic{font-size:16px;flex-shrink:0;line-height:1.3}
+  .re-note-t{font-size:10px;font-weight:700;color:var(--amber);letter-spacing:.5px;text-transform:uppercase;margin-bottom:3px}
+  .re-note-v{font-size:12.5px;font-weight:600;color:var(--text);line-height:1.4}
   .krows{display:flex;flex-direction:column;gap:8px}
   .krow{display:flex;align-items:center;gap:8px}
   .krn{font-size:12px;color:var(--text2);min-width:150px}
@@ -478,6 +483,7 @@ const P=[
   {id:'malta',flag:'🇲🇹',region:'europe',low:true,cpath:true,
    name:{vi:'Malta',en:'Malta'},prog:{vi:'MPRP',en:'MPRP'},
    inv:{vi:'€150K+',en:'€150K+'},invT:{vi:'Đóng góp + Thuê nhà',en:'Contribution + Rental'},
+   re:{vi:'Mua BĐS từ €375K (giữ 5 năm)',en:'Buy RE from €375K (5-yr hold)'},
    invA:150000,tl:6,tll:{vi:'6–8 tháng',en:'6–8 months'},
    vf:185,cY:5,tax:true,sch:true,
    type:'tr',tlab:{vi:'Thường trú nhân',en:'Resident'},tcls:'tp',
@@ -560,6 +566,7 @@ const P=[
   {id:'thailand',flag:'🇹🇭',region:'asia',low:true,cpath:false,
    name:{vi:'Thái Lan',en:'Thailand'},prog:{vi:'LTR / Thailand Elite',en:'LTR / Thailand Elite'},
    inv:{vi:'฿600K+',en:'฿600K+'},invT:{vi:'Phí thành viên',en:'Membership fee'},
+   re:{vi:'LTR Wealthy Global Citizen: mua BĐS (condo) từ ฿17.5M (~$500K)',en:'LTR Wealthy Global Citizen: buy RE (condo) from ฿17.5M (~$500K)'},
    invA:17000,tl:1,tll:{vi:'1–2 tháng',en:'1–2 months'},
    vf:80,cY:null,tax:true,sch:false,
    type:'gv',tlab:{vi:'Golden Visa',en:'Golden Visa'},tcls:'tb',
@@ -570,6 +577,7 @@ const P=[
   {id:'malaysia',flag:'🇲🇾',region:'asia',low:true,cpath:false,
    name:{vi:'Malaysia',en:'Malaysia'},prog:{vi:'MM2H Premium',en:'MM2H Premium'},
    inv:{vi:'~$135K',en:'~$135K'},invT:{vi:'Tiền gửi + Tài sản',en:'Fixed Deposit + Asset'},
+   re:{vi:'Bắt buộc mua BĐS từ RM 600K (~$130K, bậc Silver)',en:'Mandatory RE purchase from RM 600K (~$130K, Silver tier)'},
    invA:135000,tl:3,tll:{vi:'3–6 tháng',en:'3–6 months'},
    vf:171,cY:null,tax:true,sch:false,
    type:'gv',tlab:{vi:'Golden Visa',en:'Golden Visa'},tcls:'tb',
@@ -643,6 +651,7 @@ const P=[
   {id:'antigua',flag:'🇦🇬',region:'carib',low:true,cpath:true,
    name:{vi:'Antigua & Barbuda',en:'Antigua & Barbuda'},prog:{vi:'Citizenship by Investment',en:'Citizenship by Investment'},
    inv:{vi:'$230K',en:'$230K'},invT:{vi:'Quỹ nhà nước',en:'Government Fund'},
+   re:{vi:'Mua BĐS từ $300K (giữ 5 năm)',en:'Buy RE from $300K (5-yr hold)'},
    invA:230000,tl:3,tll:{vi:'3–6 tháng',en:'3–6 months'},
    vf:151,cY:0,tax:true,sch:false,
    type:'qt',tlab:{vi:'Quốc tịch',en:'Citizenship'},tcls:'tg',
@@ -653,6 +662,7 @@ const P=[
   {id:'stkitts',flag:'🇰🇳',region:'carib',low:false,cpath:true,
    name:{vi:'St. Kitts & Nevis',en:'St. Kitts & Nevis'},prog:{vi:'Citizenship by Investment',en:'Citizenship by Investment'},
    inv:{vi:'$250K',en:'$250K'},invT:{vi:'Quỹ Phát triển Bền vững',en:'Sustainable Growth Fund'},
+   re:{vi:'Mua BĐS từ $325K (giữ 7 năm)',en:'Buy RE from $325K (7-yr hold)'},
    invA:250000,tl:2,tll:{vi:'2–6 tháng',en:'2–6 months'},
    vf:157,cY:0,tax:true,sch:false,
    type:'qt',tlab:{vi:'Quốc tịch',en:'Citizenship'},tcls:'tg',
@@ -778,7 +788,7 @@ function renderT(){
       <td><div class="rnum ${i<3?'t3':''}">${i+1}</div></td>
       <td><div class="cc"><span class="flag">${p.flag}</span><div><div class="cn">${p.name[lang]}</div><div class="cp">${p.prog[lang]}</div></div></div></td>
       <td><div class="sw"><div class="sn">${s}</div><div class="sbb"><div class="sb" style="width:${s}%"></div></div></div></td>
-      <td><div class="im">${p.inv[lang]}</div><div class="is">${p.invT[lang]}</div></td>
+      <td><div class="im">${p.inv[lang]}</div><div class="is">${p.invT[lang]}</div>${p.re?`<div class="re-pill">🏠 ${p.re[lang]}</div>`:''}</td>
       <td class="tc">${p.tll[lang]}</td>
       <td class="vfn">${p.vf}</td>
       <td><span class="tag ${p.tcls}">${p.tlab[lang]}</span></td>
@@ -790,6 +800,7 @@ function renderT(){
     return `<div class="mc" style="animation-delay:${i*18}ms" onclick="op('${p.id}')">
       <div class="mt"><div class="mr ${i<3?'t3':''}">${i+1}</div><span style="font-size:24px">${p.flag}</span><div><div style="font-weight:600;font-size:14px">${p.name[lang]}</div><div style="font-size:11px;color:var(--text3)">${p.prog[lang]}</div></div><div class="ms">${s}</div></div>
       <div class="mb2"><span>${p.inv[lang]}</span><span>•</span><span>${p.tll[lang]}</span><span class="tag ${p.tcls}">${p.tlab[lang]}</span></div>
+      ${p.re?`<div class="re-pill">🏠 ${p.re[lang]}</div>`:''}
     </div>`;
   }).join('');
 }
@@ -821,6 +832,7 @@ function op(id){
       <div class="ib"><div class="ibl">Schengen</div><div class="ibv">${sch}</div></div>
       <div class="ib"><div class="ibl">${lang==='vi'?'Thuế':'Tax'}</div><div class="ibv">${tax}</div></div>
     </div></div>
+    ${p.re?`<div class="ps"><div class="pst">${lang==='vi'?'Lộ Trình Mua Bất Động Sản':'Real Estate Purchase Route'}</div><div class="re-note"><div class="re-note-ic">🏠</div><div><div class="re-note-t">${lang==='vi'?'NAC: đầu tư qua bất động sản':'NAC: invest via real estate'}</div><div class="re-note-v">${p.re[lang]}</div></div></div></div>`:''}
     <div class="ps"><div class="pst">${lang==='vi'?'Điểm theo tiêu chí bạn chọn':'Score by Your Criteria'}</div><div class="krows">${kr}</div></div>
     <div class="ps"><div class="pst">${lang==='vi'?'Ưu & Nhược điểm':'Pros & Cons'}</div>
     <div class="pcgrid">
