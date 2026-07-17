@@ -364,59 +364,78 @@
 <style>header.hdr{display:none !important}</style>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
-.tkbar{position:sticky;top:0;z-index:2000;background:rgba(255,255,255,.82);backdrop-filter:blur(14px) saturate(1.4);-webkit-backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid rgba(227,227,240,.9);font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;animation:tkDrop .7s cubic-bezier(.16,.84,.44,1) both}
+.tkbar{position:sticky;top:0;left:0;right:0;z-index:2000;background:rgba(0,10,34,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(0,10,34,.3);padding:10px 0;font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .tkbar *{box-sizing:border-box}
-.tkbar-in{max-width:1200px;margin:0 auto;padding:9px 20px;display:flex;align-items:center;gap:16px}
-.tkbar-logo{display:flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
-.tkbar-img{width:38px;height:38px;object-fit:contain;animation:tkSpin 5.5s cubic-bezier(.45,0,.25,1) infinite}
-.tkbar-logo:hover .tkbar-img{animation-duration:2.4s}
-.tkbar-txt b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:17px;font-weight:700;letter-spacing:.2px;color:#1800ad;line-height:1.1}
-.tkbar-txt i{display:block;font-size:9px;font-style:normal;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#F4622A;margin-top:2px}
-.tkbar-r{margin-left:auto;display:flex;align-items:center;gap:10px}
-.tkbar-chips{display:grid;text-decoration:none;min-width:0}
-.tkbar-chip{grid-area:1/1;justify-self:end;align-self:center;display:inline-flex;align-items:center;gap:7px;font-size:11.5px;font-weight:500;color:#3f3f5a;padding:7px 13px;border:1px solid #e3e3f0;border-radius:99px;background:rgba(247,247,252,.9);white-space:nowrap;max-width:340px;overflow:hidden;text-overflow:ellipsis;opacity:0;transform:translateY(6px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
-.tkbar-chip.on{opacity:1;transform:none;pointer-events:auto}
-.tkbar-chip::before{content:"✓";display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:15px;height:15px;border-radius:5px;background:rgba(244,98,42,.14);color:#F4622A;font-weight:700;font-size:10px}
-.tkbar-chip.on::before{animation:tkChipTick .6s cubic-bezier(.2,.8,.2,1)}
-.tkbar-tools{position:relative}
-.tkbar-toolbtn{display:inline-flex;align-items:center;gap:7px;background:rgba(240,238,255,.85);border:1px solid #dcd6f7;border-radius:99px;padding:8px 14px;font-family:inherit;font-size:13px;font-weight:600;color:#1800ad;cursor:pointer;transition:background .2s,transform .2s,box-shadow .2s}
-.tkbar-toolbtn:hover{background:#e6e2fb;transform:translateY(-1px);box-shadow:0 6px 16px rgba(24,0,173,.12)}
+.tkbar-in{display:flex;align-items:center;gap:28px;max-width:1240px;margin:0 auto;padding:0 24px}
+.tkbar-logo{display:flex;align-items:center;gap:10px;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:19px;color:#fff;letter-spacing:.4px;flex-shrink:0;text-decoration:none}
+.tkbar-logo span{white-space:nowrap}
+@media(min-width:901px) and (max-width:1180px){.tkbar-logo span{display:none}}
+.tkbar-logo img{width:38px;height:38px;object-fit:contain}
+.tkbar-nav{display:flex;gap:34px;margin-left:auto;align-items:center}
+.tkbar-nav a,.tkbar-navbtn{position:relative;color:rgba(255,255,255,.78);font-family:inherit;font-size:11.5px;font-weight:500;letter-spacing:2.2px;text-transform:uppercase;padding:4px 0;transition:color .25s;white-space:nowrap;text-decoration:none;background:transparent;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.tkbar-nav a::after,.tkbar-navbtn::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:#F4622A;transition:right .3s cubic-bezier(.2,.7,.3,1)}
+.tkbar-nav a:hover,.tkbar-navbtn:hover{color:#fff}
+.tkbar-nav a:hover::after,.tkbar-navbtn:hover::after{right:0}
+.tkbar-nav a.tk-hub{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1;padding:2px 4px;transition:transform .25s}
+.tkbar-nav a.tk-hub::after{display:none}
+.tkbar-nav a.tk-hub:hover{transform:translateY(-1px)}
+.tk-the{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:8px;font-weight:500;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.62)}
+.tk-nac{font-family:"Playfair Display",Georgia,serif;font-size:17px;font-weight:600;letter-spacing:.4px;color:#fff}
+.tk-sub{font-family:"Playfair Display",Georgia,serif;font-size:8px;font-weight:600;letter-spacing:3.2px;text-transform:uppercase;color:#f8825b}
+@media(min-width:901px) and (max-width:1120px){.tkbar-nav{gap:22px}}
 .tkbar-caret{transition:transform .2s}
-.tkbar-toolbtn[aria-expanded="true"] .tkbar-caret{transform:rotate(180deg)}
-.tkbar-pop{position:absolute;top:calc(100% + 8px);right:0;width:272px;background:#fff;border:1px solid #e3e3f0;border-radius:14px;box-shadow:0 20px 50px rgba(24,0,173,.14);padding:8px;display:none;transform-origin:top right;animation:tkPop .18s cubic-bezier(.16,.84,.44,1)}
+.tkbar-navbtn[aria-expanded="true"] .tkbar-caret{transform:rotate(180deg)}
+.tkbar-tools{position:relative;display:flex}
+.tkbar-pop{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:272px;background:#fff;border:1px solid #e3e3f0;border-radius:14px;box-shadow:0 20px 50px rgba(0,10,34,.28);padding:8px;display:none}
 .tkbar-pop.open{display:block}
 .tkbar-pop-h{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#8a8aa3;padding:6px 10px 4px;font-weight:700}
-.tkbar-pop a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;text-decoration:none;color:#3f3f5a;font-size:13px;font-weight:500;transition:background .15s,color .15s,transform .15s}
-.tkbar-pop a:hover{background:#f0eeff;color:#1800ad;transform:translateX(2px)}
+.tkbar-pop a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;text-decoration:none;color:#3f3f5a;font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;transition:background .15s,color .15s}
+.tkbar-pop a::after{display:none}
+.tkbar-pop a:hover{background:#f0eeff;color:#1800ad}
 .tkbar-pop a .ti{width:16px;height:16px;flex-shrink:0;color:#F4622A}
-.tkbar-lang{display:flex;border:1px solid #dcd6f7;border-radius:99px;overflow:hidden}
-.tkbar-lng{background:#fff;border:0;padding:6px 11px;font-family:inherit;font-size:12px;font-weight:700;color:#8a8aa3;cursor:pointer;transition:background .2s,color .2s}
-.tkbar-lng.on{background:#1800ad;color:#fff}
-@keyframes tkSpin{0%{transform:perspective(300px) rotateY(0)}60%{transform:perspective(300px) rotateY(360deg)}100%{transform:perspective(300px) rotateY(360deg)}}
-@keyframes tkDrop{0%{transform:translateY(-100%);opacity:0}100%{transform:translateY(0);opacity:1}}
-@keyframes tkPop{0%{opacity:0;transform:scale(.96) translateY(-4px)}100%{opacity:1;transform:scale(1) translateY(0)}}
-@keyframes tkChipTick{0%{transform:scale(0) rotate(-25deg)}55%{transform:scale(1.3)}100%{transform:scale(1)}}
-@media(max-width:980px){.tkbar-chips{display:none}}
-@media(max-width:640px){.tkbar-txt b{font-size:14.5px}.tkbar-toolbtn>span{display:none}.tkbar-pop{width:244px}}
-@media(prefers-reduced-motion:reduce){.tkbar,.tkbar-pop{animation:none!important}}
+.tkbar-book{display:inline-flex;align-items:center;gap:7px;background:#F4622A;color:#fff;font-family:inherit;font-size:13px;font-weight:700;border-radius:99px;box-shadow:0 6px 18px rgba(244,98,42,.35);white-space:nowrap;flex-shrink:0;padding:9px 18px;margin:0 12px 0 6px;text-decoration:none;transition:box-shadow .2s}
+.tkbar-book:hover{box-shadow:0 9px 24px rgba(244,98,42,.45)}
+.tkbar-book svg{width:14px;height:14px}
+@media(max-width:960px){.tkbar-book{display:none}}
+.tkbar-lang{display:flex;border:1.5px solid rgba(255,255,255,.5);border-radius:99px;overflow:hidden;margin-left:8px;flex-shrink:0}
+.tkbar-lng{border:0;background:transparent;color:rgba(255,255,255,.85);font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 15px;cursor:pointer;transition:background .2s,color .2s}
+.tkbar-lng.on{background:#F4622A;color:#fff}
+.tkbar-burger{display:none;margin-left:auto;background:transparent;border:0;cursor:pointer;width:40px;height:40px;position:relative;z-index:95}
+.tkbar-burger span{display:block;width:22px;height:2px;background:#fff;margin:5px auto;transition:transform .3s,opacity .3s}
+@media(max-width:900px){
+  .tkbar-in{gap:14px}
+  .tkbar-logo span{font-size:15px;display:inline}
+  .tkbar-lng{padding:7px 12px}
+  .tkbar{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,10,34,.97)}
+  .tkbar-nav{position:absolute;top:100%;left:0;right:0;background:rgba(0,10,34,.98);flex-direction:column;align-items:center;gap:26px;margin-left:0;max-height:0;overflow:hidden;padding:0 24px;box-shadow:0 22px 40px rgba(0,3,14,.45);transition:max-height .5s cubic-bezier(.7,0,.3,1),padding .5s cubic-bezier(.7,0,.3,1)}
+  .tkbar-nav.open{max-height:calc(100vh - 58px);padding:30px 24px 40px;overflow:auto}
+  .tkbar-nav a,.tkbar-navbtn{font-size:15px;letter-spacing:3px}
+  .tk-the{font-size:10px;letter-spacing:5px}
+  .tk-nac{font-size:28px}
+  .tk-sub{font-size:10.5px;letter-spacing:4.2px}
+  .tkbar-burger{display:block}
+  .tkbar-burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .tkbar-burger.x span:nth-child(2){opacity:0}
+  .tkbar-burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .tkbar-lang{position:relative;z-index:95}
+  .tkbar-tools{flex-direction:column;align-items:center}
+  .tkbar-pop{position:static;transform:none;width:min(320px,84vw);margin-top:10px}
+}
 </style>
 <header class="tkbar" id="tkbar">
   <div class="tkbar-in">
-    <a class="tkbar-logo" href="https://nomadassetcollective.com" target="_blank" rel="noopener">
-      <img class="tkbar-img" src="https://nomadassetcollective.com/wp-content/uploads/2026/07/nac-logo-wordmark.png" alt="NAC">
-      <span class="tkbar-txt"><b>Nomad Asset Collective</b><i data-vi="Bộ công cụ NAC" data-en="NAC Toolkit">Bộ công cụ NAC</i></span>
+    <a class="tkbar-logo" href="https://nomadassetcollective.com/">
+      <img src="https://nomadassetcollective.com/wp-content/uploads/2026/04/OTG-Passport-Icons-1.png" alt="NAC">
+      <span>Nomad Asset Collective</span>
     </a>
-    <div class="tkbar-r">
-      <a class="tkbar-chips" href="https://nomadassetcollective.com" target="_blank" rel="noopener" aria-label="Nomad Asset Collective">
-        <span class="tkbar-chip on" data-vi="Chủ đầu tư đã được kiểm duyệt" data-en="Fully vetted world-wide developers">Chủ đầu tư đã được kiểm duyệt</span>
-        <span class="tkbar-chip" data-vi="Đối tác phân phối &amp; quản lý BĐS của iQi Global" data-en="Distribution &amp; management partner of iQi Global">Đối tác phân phối &amp; quản lý BĐS của iQi Global</span>
-        <span class="tkbar-chip" data-vi="Đội ngũ chuyên gia đạt chuẩn IMC" data-en="IMC-certified expert team">Đội ngũ chuyên gia đạt chuẩn IMC</span>
-      </a>
+    <button class="tkbar-burger" id="tkBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <nav class="tkbar-nav" id="tkNav">
+      <a href="https://nomadassetcollective.com/#dest" data-vi="Điểm Đến" data-en="Destinations">Điểm Đến</a>
+      <a href="https://nomadassetcollective.com/#programs" data-vi="Chương Trình" data-en="Programs">Chương Trình</a>
       <div class="tkbar-tools">
-        <button type="button" class="tkbar-toolbtn" id="tkToolsBtn" aria-expanded="false" aria-haspopup="true">
-          <svg class="ti" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
-          <span data-vi="Công cụ" data-en="Tools">Công cụ</span>
-          <svg class="tkbar-caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+        <button type="button" class="tkbar-navbtn" id="tkToolsBtn" aria-expanded="false" aria-haspopup="true">
+          <span data-vi="Bộ Công Cụ" data-en="Toolkit">Bộ Công Cụ</span>
+          <svg class="tkbar-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
         </button>
         <div class="tkbar-pop" id="tkToolsPop" role="menu">
           <div class="tkbar-pop-h" data-vi="Công cụ NAC" data-en="NAC tools">Công cụ NAC</div>
@@ -430,10 +449,14 @@
           <a href="https://blog.nomadassetcollective.com/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15.5" rx="2"/><path d="M7 9h6M7 12.5h10M7 16h10"/></svg><span data-vi="NAC Times — blog" data-en="NAC Times — blog">NAC Times — blog</span></a>
         </div>
       </div>
-      <div class="tkbar-lang" role="group" aria-label="Language">
-        <button type="button" class="tkbar-lng on" data-lang="vi">VI</button>
-        <button type="button" class="tkbar-lng" data-lang="en">EN</button>
-      </div>
+      <a class="tk-hub" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener" aria-label="NAC Property Hub"><span class="tk-the">The</span><span class="tk-nac">NAC</span><span class="tk-sub">Property Hub</span></a>
+      <a href="https://nomadassetcollective.com/brochures/doi-tac-partner-gateway/" data-vi="Đối Tác" data-en="Partners">Đối Tác</a>
+      <a href="https://nomadassetcollective.com/#contact" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a>
+    </nav>
+    <a class="tkbar-book" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span data-vi="Đặt lịch" data-en="Book">Đặt lịch</span></a>
+    <div class="tkbar-lang" role="group" aria-label="Language">
+      <button type="button" class="tkbar-lng on" data-lang="vi">VI</button>
+      <button type="button" class="tkbar-lng" data-lang="en">EN</button>
     </div>
   </div>
 </header>
@@ -446,10 +469,10 @@
     document.addEventListener("keydown",function(e){if(e.key==="Escape"){pop.classList.remove("open");btn.setAttribute("aria-expanded","false");}});
   }
   if(!bar)return;
-  var chips=bar.querySelectorAll(".tkbar-chip");
-  if(chips.length>1){
-    var ci=0;
-    setInterval(function(){chips[ci].classList.remove("on");ci=(ci+1)%chips.length;chips[ci].classList.add("on");},3800);
+  var burger=document.getElementById("tkBurger"),nav=document.getElementById("tkNav");
+  if(burger&&nav){
+    burger.addEventListener("click",function(){nav.classList.toggle("open");burger.classList.toggle("x");});
+    nav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){nav.classList.remove("open");burger.classList.remove("x");});});
   }
   function apply(l){
     bar.querySelectorAll("[data-vi][data-en]").forEach(function(el){var v=el.getAttribute("data-"+l);if(v!=null)el.textContent=v;});
