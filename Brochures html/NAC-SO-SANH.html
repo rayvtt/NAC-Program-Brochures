@@ -290,10 +290,10 @@ body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:
 <style>body>header:not(.tkbar){display:none!important}</style>
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
-.tkbar{position:sticky;top:0;left:0;right:0;z-index:2000;background:rgba(0,10,34,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(0,10,34,.3);padding:10px 0;font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+.tkbar{position:sticky;top:0;left:0;right:0;z-index:2000;background:rgba(18,12,64,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(18,12,64,.28);padding:10px 0;font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
 .tkbar *{box-sizing:border-box}
 .tkbar-in{display:flex;align-items:center;gap:16px;max-width:1240px;margin:0 auto;padding:0 24px}
-.tkbar-logo{display:flex;align-items:center;gap:10px;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:19px;color:#fff;letter-spacing:.4px;flex-shrink:0;text-decoration:none}
+.tkbar-logo{display:flex;align-items:center;gap:10px;font-family:"Playfair Display",Georgia,serif;font-weight:600;font-size:15.5px;color:#fff;letter-spacing:1.2px;flex-shrink:0;text-decoration:none}
 .tkbar-logo span{white-space:nowrap}
 .tkbar-logo img{width:38px;height:38px;object-fit:contain}
 .tkbar-burger{display:block;margin-left:auto;background:transparent;border:0;cursor:pointer;width:40px;height:40px;position:relative;z-index:95;flex-shrink:0}
@@ -304,7 +304,7 @@ body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:
 .tkbar-lang{display:flex;border:1.5px solid rgba(255,255,255,.5);border-radius:99px;overflow:hidden;flex-shrink:0;position:relative;z-index:95}
 .tkbar-lng{border:0;background:transparent;color:rgba(255,255,255,.85);font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 15px;cursor:pointer;transition:background .2s,color .2s}
 .tkbar-lng.on{background:#F4622A;color:#fff}
-.tkbar-nav{position:absolute;top:100%;left:0;right:0;background:rgba(0,10,34,.98);display:flex;flex-direction:column;align-items:center;gap:26px;max-height:0;overflow:hidden;padding:0 24px;box-shadow:0 22px 40px rgba(0,3,14,.45);transition:max-height .5s cubic-bezier(.7,0,.3,1),padding .5s cubic-bezier(.7,0,.3,1)}
+.tkbar-nav{position:absolute;top:100%;left:0;right:0;background:rgba(16,10,58,.98);display:flex;flex-direction:column;align-items:center;gap:26px;max-height:0;overflow:hidden;padding:0 24px;box-shadow:0 22px 40px rgba(10,6,40,.45);transition:max-height .5s cubic-bezier(.7,0,.3,1),padding .5s cubic-bezier(.7,0,.3,1)}
 .tkbar-nav.open{max-height:calc(100vh - 58px);padding:30px 24px 40px;overflow:auto}
 .tkbar-nav a,.tkbar-navbtn{position:relative;color:rgba(255,255,255,.78);font-family:inherit;font-size:15px;font-weight:500;letter-spacing:3px;text-transform:uppercase;padding:4px 0;transition:color .25s;white-space:nowrap;text-decoration:none;background:transparent;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
 .tkbar-nav a::after,.tkbar-navbtn::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:#F4622A;transition:right .3s cubic-bezier(.2,.7,.3,1)}
@@ -319,7 +319,7 @@ body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:
 .tkbar-caret{transition:transform .2s}
 .tkbar-navbtn[aria-expanded="true"] .tkbar-caret{transform:rotate(180deg)}
 .tkbar-tools{position:relative;display:flex;flex-direction:column;align-items:center}
-.tkbar-pop{position:static;width:min(320px,84vw);background:#fff;border:1px solid #e3e3f0;border-radius:14px;box-shadow:0 20px 50px rgba(0,10,34,.28);padding:8px;display:none;margin-top:10px}
+.tkbar-pop{position:static;width:min(320px,84vw);background:#fff;border:1px solid #e3e3f0;border-radius:14px;box-shadow:0 20px 50px rgba(18,12,64,.25);padding:8px;display:none;margin-top:10px}
 .tkbar-pop.open{display:block}
 .tkbar-pop-h{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#8a8aa3;padding:6px 10px 4px;font-weight:700}
 .tkbar-pop a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;text-decoration:none;color:#3f3f5a;font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;transition:background .15s,color .15s}
@@ -327,9 +327,11 @@ body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:
 .tkbar-pop a:hover{background:#f0eeff;color:#1800ad}
 .tkbar-pop a .ti{width:16px;height:16px;flex-shrink:0;color:#F4622A}
 @media(max-width:900px){
-  .tkbar{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,10,34,.97)}
-  .tkbar-logo span{font-size:15px}
+  .tkbar{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(16,10,58,.97)}
   .tkbar-lng{padding:7px 12px}
+}
+@media(max-width:640px){
+  .tkbar-logo span{display:none}
 }
 </style>
 <header class="tkbar" id="tkbar">
