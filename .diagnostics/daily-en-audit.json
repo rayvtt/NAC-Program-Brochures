@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-17T05:14:26.198522+00:00",
+  "generated_at": "2026-07-18T04:49:48.093110+00:00",
   "source": "live",
   "pass_count": 4,
   "total": 16,
@@ -1106,12 +1106,15 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "1 Vietnamese remnants after EN click"
+          "2 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 1,
+        "remnant_count": 2,
         "samples": [
           {
-            "text": "Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gửi tới email của bạn."
+            "text": "📍 Tigné Point · Malta"
+          },
+          {
+            "text": "Fortress Gardens (Q3) is the final phase of the Tigné Point regeneration — a 380+ unit masterplan developed since 2000 b"
           }
         ]
       }

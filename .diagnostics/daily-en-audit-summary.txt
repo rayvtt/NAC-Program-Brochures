@@ -76,8 +76,9 @@
   4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
   6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
   7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
-     [90m· Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
+  8. EN displays:   [31m✗[0m [31m2 VN remnants[0m
+     [90m· 📍 Tigné Point · Malta[0m
+     [90m· Fortress Gardens (Q3) is the final phase of the Tigné Point regeneration — a 380[0m
      [33mNotion has EN for 1 gaps (sample):[0m
        [process] MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩ
 
