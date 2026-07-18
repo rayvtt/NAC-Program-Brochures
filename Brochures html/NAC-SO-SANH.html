@@ -174,6 +174,8 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .chip-upd{color:var(--amber);cursor:help;font-size:10px;margin-left:4px;text-decoration:none;border-bottom:1px dotted var(--amber)}
 .tick{color:var(--green);font-weight:700}
 .cross{color:var(--red);font-weight:700}
+/* de-emphasised inline example — main point stays prominent, the "👉 Ex" note sits under it, small + muted */
+.cell-ex{display:block;font-size:10.5px;line-height:1.45;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px dashed var(--border);font-style:italic;text-align:left}
 
 /* needs cards */
 .needs{display:grid;grid-template-columns:var(--gcols);padding:6px 26px 20px;gap:0}
@@ -231,6 +233,12 @@ footer{border-top:1px solid var(--border);background:#fff}
 .ft-t{font-family:'Playfair Display',serif;font-weight:700;font-size:16px;color:var(--blue);margin-bottom:6px}
 .ft-s{font-size:11.5px;color:var(--text3);max-width:560px;margin:0 auto}
 .ft-c{font-size:10.5px;color:var(--text3);margin-top:14px;letter-spacing:.5px}
+
+/* language notice — shown only in EN, catches the "labels EN / data VI" state early */
+.lang-note{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(135deg,var(--blue-lt),#eef0ff);border:1px solid var(--blue-mid);border-radius:14px;padding:14px 16px;margin-bottom:20px}
+.lang-note .ico{font-size:20px;line-height:1.2;flex-shrink:0}
+.lang-note .lt{font-weight:700;font-size:13px;color:var(--blue);margin-bottom:2px}
+.lang-note .lx{font-size:12px;color:var(--text2);line-height:1.5}
 
 /* reveal animation */
 .rev{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
@@ -585,9 +593,9 @@ var I18N = {
   print:{vi:'🖨 Lưu PDF',en:'🖨 Save PDF'},
   bc:{vi:'Nomad Asset Collective — Công Cụ So Sánh 2026',en:'Nomad Asset Collective — Comparison Intelligence 2026'},
   heroT:{vi:'So sánh chương trình <em>định cư &amp; đầu tư</em> theo dữ liệu thật',en:'Compare residency &amp; investment programs <em>on real data</em>'},
-  heroS:{vi:'Kinh tế vĩ mô, chính sách, điều kiện, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu nguồn chính thống.',en:'Macro geopolitical, economics, policy, requirements, benefits and all-in costs — refreshed forthnightly by NAC Research Agents !'},
-  stamp1:{vi:'Số liệu làm mới 2 tuần/lần ·',en:''},
-  pickNote:{vi:'Chạm vào từng thẻ để đổi quốc gia · thêm thẻ thứ 3 để so sánh 3 chương trình cùng lúc — các chương trình còn lại đang được NAC thẩm định lại số liệu',en:'Tap a card to switch country ·'},
+  heroS:{vi:'Kinh tế vĩ mô, chính sách, điều kiện, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu nguồn chính thống.',en:'Macro-economics, geopolitics, policy, eligibility, benefits and all-in cost — refreshed fortnightly by the NAC Research team and cross-checked against primary sources.'},
+  stamp1:{vi:'Số liệu làm mới 2 tuần/lần ·',en:'Data refreshed fortnightly ·'},
+  pickNote:{vi:'Chạm vào từng thẻ để đổi quốc gia · thêm thẻ thứ 3 để so sánh 3 chương trình cùng lúc — các chương trình còn lại đang được NAC thẩm định lại số liệu',en:'Tap a card to switch country · add a third card to compare three programs at once — the remaining programs are being re-verified by NAC Research.'},
   sheetT:{vi:'Chọn quốc gia',en:'Choose a country'},
   avail:{vi:'Sẵn sàng',en:'Ready'},
   soon:{vi:'Sắp mở',en:'Soon'},
@@ -607,19 +615,20 @@ var I18N = {
   secBenInv:{vi:'Quyền lợi cho khoản đầu tư',en:'Benefits for the investment'},
   secFees:{vi:'Bạ phí — tổng chi phí thật',en:'Fees — the real all-in cost'},
   secWhy:{vi:'Vì sao NAC chốt được deal này',en:'Why NAC closes this deal'},
-  secFit:{vi:'Chấm điểm theo nhu cầu đầu tư',en:'Fit rating by investor need'},
+  secFit:{vi:'Chấm điểm theo nhu cầu đầu tư',en:'Rating by investor need'},
   fitCap:{vi:'Thang 1–100 do NAC Research chấm, cập nhật theo chu kỳ dữ liệu',en:'1–100 scale scored by NAC Research, refreshed with each data cycle'},
   swap:{vi:'Đổi cặp',en:'Swap'},
   strengths:{vi:'Điểm mạnh nổi bật',en:'Top strengths'},
   reasons:{vi:'Lý do chốt deal',en:'Closing reasons'},
-  nacFit:{vi:'NAC Fit',en:'NAC Fit'},
-  ctaT:{vi:'Chọn đúng chương trình ngay từ đầu !',en:'Choose the right program the first time'},
-  ctaS:{vi:'NAC —sẽ đối chiếu hồ sơ, mục tiêu thuế và lộ trình quốc tịch của gia đình bạn trên chính bảng so sánh này.',en:'Book 30 minutes with NAC — we map your family profile, tax goals and citizenship path onto this exact comparison.'},
+  nacFit:{vi:'Điểm /100',en:'Score /100'},
+  ctaT:{vi:'Chọn đúng chương trình ngay từ đầu.',en:'Choose the right program, the first time.'},
+  ctaS:{vi:'Đặt lịch 30 phút với NAC — chúng tôi đối chiếu hồ sơ gia đình, mục tiêu thuế và lộ trình quốc tịch của bạn ngay trên bảng so sánh này.',en:'Book 30 minutes with NAC — we map your family profile, tax goals and citizenship path onto this exact comparison.'},
   ctaCal:{vi:'Đặt lịch tư vấn miễn phí',en:'Book a free consultation'},
   ctaWa:{vi:'Chat WhatsApp',en:'Chat on WhatsApp'},
   ftS:{vi:'Dữ liệu tổng hợp từ nguồn chính thống (IMF, Eurostat, cơ quan di trú từng nước, Henley Index) và được NAC Research đối chiếu định kỳ. Thông tin mang tính tham khảo, không thay thế tư vấn pháp lý.',en:'Data aggregated from primary sources (IMF, Eurostat, national migration authorities, Henley Index), periodically re-verified by NAC Research. For reference only — not legal advice.'},
   updated:{vi:'NAC cập nhật',en:'NAC updated'},
-  viOnly:{vi:'',en:'Detailed data is shown in Vietnamese — English data layer is in progress.'},
+  viOnlyT:{vi:'',en:'English labels · Vietnamese data'},
+  viOnly:{vi:'',en:'Section titles, labels and navigation are in English. The detailed research inside each section is currently in Vietnamese while our English data layer rolls out — book a free consultation for a full walkthrough in English.'},
   lbl_bloc:{vi:'Thuộc khối',en:'Member of'},
   lbl_econ:{vi:'Nền kinh tế',en:'Economy'},
   lbl_rank:{vi:'Xếp hạng kinh tế',en:'Economic rank'},
@@ -807,14 +816,19 @@ function rowTxt(lblKey, idx, cs, opts){
   for(i = 0; i < cs.length; i++){
     vv = valOf(cs[i], idx);
     chip = vv.fixed ? '<sup class="chip-upd" title="' + esc(vv.fixed.src) + ' · ' + esc(vv.fixed.when) + '">●</sup>' : '';
-    var body = vv.v ? br(vv.v) : '<span style="color:var(--text3)">—</span>';
-    if(opts.yesno){
-      var low = vv.v.toLowerCase();
-      if(low.indexOf('có') === 0 || low.indexOf('yes') === 0){ body = '<span class="tick">✓</span> ' + br(vv.v); }
+    /* split the leading fact from any "👉 Ex:" example so the essential point
+       reads first and the illustration sits under it, small + muted */
+    var se = splitEx(vv.v);
+    var main = se.main || vv.v;
+    var body = main ? br(main) : '<span style="color:var(--text3)">—</span>';
+    if(opts.yesno && main){
+      var low = main.toLowerCase();
+      if(low.indexOf('có') === 0 || low.indexOf('yes') === 0){ body = '<span class="tick">✓</span> ' + br(main); }
     }
-    cellsH += '<div class="cell txt">' + body + chip + '</div>';
+    var exH = se.ex ? '<span class="cell-ex">' + br(se.ex) + '</span>' : '';
+    cellsH += '<div class="cell txt">' + body + chip + exH + '</div>';
   }
-  return '<div class="row"><div class="rl">' + t(lblKey) + '</div><div class="row-cells">' + cellsH + '</div></div>';
+  return '<div class="row"><div class="rl"><span data-i18n="' + lblKey + '">' + t(lblKey) + '</span></div><div class="row-cells">' + cellsH + '</div></div>';
 }
 function rowNum(lblKey, idx, cs, cfg){
   cfg = cfg || {};
@@ -840,7 +854,7 @@ function rowNum(lblKey, idx, cs, cfg){
     cellsH += '<div class="cell' + (win ? ' win' : '') + '">' + disp + (win ? '<span class="win-dot"></span>' : '') + chip + bar + '</div>';
   }
   var sub = cfg.sub ? '<span class="sub">' + esc(cfg.sub) + '</span>' : '';
-  return '<div class="row"><div class="rl">' + t(lblKey) + sub + '</div><div class="row-cells">' + cellsH + '</div></div>';
+  return '<div class="row"><div class="rl"><span data-i18n="' + lblKey + '">' + t(lblKey) + '</span>' + sub + '</div><div class="row-cells">' + cellsH + '</div></div>';
 }
 function rowBadges(lblKey, idx, cs){
   var cellsH = '', i, bs;
@@ -848,15 +862,15 @@ function rowBadges(lblKey, idx, cs){
     bs = blocBadges(valOf(cs[i], idx).v);
     cellsH += '<div class="cell"><div class="badges">' + (bs.length ? esc(bs.join(' · ')) : '—') + '</div></div>';
   }
-  return '<div class="row"><div class="rl">' + t(lblKey) + '</div><div class="row-cells">' + cellsH + '</div></div>';
+  return '<div class="row"><div class="rl"><span data-i18n="' + lblKey + '">' + t(lblKey) + '</span></div><div class="row-cells">' + cellsH + '</div></div>';
 }
 var secSeq = 0;
 function secShell(no, titleKey, inner, noteKey, openByDefault){
   secSeq++;
   return '<section class="sec rev' + (openByDefault ? ' open' : '') + '" id="sec-' + secSeq + '">' +
     '<button class="sec-h" type="button" aria-expanded="' + (openByDefault ? 'true' : 'false') + '">' +
-      '<span class="sec-no">' + no + '</span><h2 class="sec-t">' + t(titleKey) + '</h2>' +
-      (noteKey ? '<span class="sec-note">' + t(noteKey) + '</span>' : '') +
+      '<span class="sec-no">' + no + '</span><h2 class="sec-t" data-i18n="' + titleKey + '">' + t(titleKey) + '</h2>' +
+      (noteKey ? '<span class="sec-note" data-i18n="' + noteKey + '">' + t(noteKey) + '</span>' : '') +
       '<span class="sec-chev">▾</span>' +
     '</button>' +
     '<div class="sec-body">' + inner + '</div>' +
@@ -931,9 +945,9 @@ function verdictSec(cs){
       if(rv.v){ rs += '<li>' + esc(rv.v) + (rv.fixed ? ' <sup class="chip-upd" title="' + esc(rv.fixed.src) + ' · ' + esc(rv.fixed.when) + '">●</sup>' : '') + '</li>'; }
     }
     inner += '<div class="vc" style="--vc:' + COLORS[i] + '"><div class="vc-h"><span class="fl">' + m.flag + '</span><span class="vc-n">' + esc(m[lang] || m.vi) + '</span>' +
-      (fit != null ? '<span class="vc-fit"><span class="v" data-cnt="' + fit + '">' + fit + '</span><span class="l">' + t('nacFit') + '</span></span>' : '') + '</div>' +
-      '<div class="vc-str">' + t('strengths') + '</div><div class="vc-tags">' + tags + '</div>' +
-      '<div class="vc-str">' + t('reasons') + '</div><ul class="rsn">' + rs + '</ul></div>';
+      (fit != null ? '<span class="vc-fit"><span class="v" data-cnt="' + fit + '">' + fit + '</span><span class="l" data-i18n="nacFit">' + t('nacFit') + '</span></span>' : '') + '</div>' +
+      '<div class="vc-str" data-i18n="strengths">' + t('strengths') + '</div><div class="vc-tags">' + tags + '</div>' +
+      '<div class="vc-str" data-i18n="reasons">' + t('reasons') + '</div><ul class="rsn">' + rs + '</ul></div>';
   }
   inner += '</div>';
   return secShell('§09', 'secWhy', inner);
@@ -961,7 +975,7 @@ function render(){
     var progLbl = firstLine(cellOf(cs[i], C.prog)) || '';
     Q('#slot' + (i + 1)).classList.remove('slot-add');
     Q('#slot' + (i + 1)).innerHTML = '<span class="fl">' + m.flag + '</span><span><span class="slot-n">' + esc(m[lang] || m.vi) + '</span><br><span class="slot-p">' + esc(progLbl) + ' · ' + esc(firstLine(cellOf(cs[i], C.progInv))) + '</span></span>' +
-      (fit != null ? '<span class="slot-score"><span class="v">' + fit + '</span><span class="l">' + t('nacFit') + '</span></span>' : '');
+      (fit != null ? '<span class="slot-score"><span class="v">' + fit + '</span><span class="l" data-i18n="nacFit">' + t('nacFit') + '</span></span>' : '');
   }
   var hasThird = cs.length > 2;
   if(!hasThird){
@@ -983,7 +997,7 @@ function render(){
 
   /* sections */
   var h = '';
-  var enNote = (lang !== 'vi') ? '<div style="text-align:center;font-size:11px;color:var(--amber);background:var(--amber-lt);border-radius:12px;padding:8px 14px;margin-bottom:18px">' + t('viOnly') + '</div>' : '';
+  var enNote = (lang !== 'vi') ? '<div class="lang-note"><span class="ico">🌐</span><div><div class="lt" data-i18n="viOnlyT">' + t('viOnlyT') + '</div><div class="lx" data-i18n="viOnly">' + t('viOnly') + '</div></div></div>' : '';
   h += enNote;
 
   h += secShell('§01', 'secOverview', headCols(cs) + '<div class="rows">' +
@@ -1215,6 +1229,7 @@ function boot(){
 
   /* collapsible dossier sections — one delegated listener survives re-render */
   Q('#cmp').addEventListener('click', function(e){
+    if(EDIT_MODE && e.target.closest('[data-edit-key]')){ return; } /* clicking a title/label to edit it must not collapse the section */
     var h = e.target.closest('.sec-h');
     if(!h){ return; }
     var sec = h.closest('.sec');
@@ -1268,7 +1283,13 @@ function boot(){
    language toggle) and mirrors the edit into the 🔀 NAC - So Sánh Copy
    Notion DB as an audit trail. */
 var EDIT_MODE = /(?:^|[?&])edit=1(?:&|$)/.test(location.search);
-var EDITABLE_KEYS = ['gateT','gateS','gateB','bc','heroT','heroS','stamp1','pickNote','ctaT','ctaS','ctaCal','ctaWa','ftS'];
+/* Full copy control: every I18N chrome string is editable in ?edit=1 except the
+   editor's own control-bar labels. Rendered section titles / row labels / verdict
+   labels carry data-i18n (see secShell / rowTxt / rowNum / rowBadges / verdictSec)
+   so wireEditableEls can reach them; apply-sosanh-copy.yml patches the I18N literal,
+   which every render() re-reads — so the edit survives a language toggle or swap. */
+var EDIT_EXCLUDE = { editPublish:1, editDiscard:1, editTokenPrompt:1, editSent:1, editFailed:1 };
+var EDITABLE_KEYS = Object.keys(I18N).filter(function(k){ return !EDIT_EXCLUDE[k]; });
 var GH_OWNER = 'rayvtt', GH_REPO = 'NAC-Program-Brochures', GH_WORKFLOW = 'apply-sosanh-copy.yml';
 var dirtyKeys = {};
 
