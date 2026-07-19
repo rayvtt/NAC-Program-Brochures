@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T08:35:32.799081Z",
+  "generated_at": "2026-07-19T10:10:05.391704Z",
   "reports": [
     {
       "alias": "portugal",
@@ -108,7 +108,7 @@
       ],
       "vi_array_size": 317,
       "en_array_size": 317,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 20,
       "notion_en_fields": 30
     },
     {
@@ -163,7 +163,7 @@
       ],
       "vi_array_size": 288,
       "en_array_size": 288,
-      "data_attr_pairs": 25,
+      "data_attr_pairs": 23,
       "notion_en_fields": 28
     },
     {
@@ -214,7 +214,7 @@
       ],
       "vi_array_size": 247,
       "en_array_size": 247,
-      "data_attr_pairs": 264,
+      "data_attr_pairs": 262,
       "notion_en_fields": 29
     },
     {
@@ -267,9 +267,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 888,
-      "en_array_size": 888,
-      "data_attr_pairs": 25,
+      "vi_array_size": 889,
+      "en_array_size": 889,
+      "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
     {
@@ -324,7 +324,7 @@
       ],
       "vi_array_size": 309,
       "en_array_size": 309,
-      "data_attr_pairs": 23,
+      "data_attr_pairs": 21,
       "notion_en_fields": 31
     },
     {
@@ -377,9 +377,9 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 914,
-      "en_array_size": 914,
-      "data_attr_pairs": 30,
+      "vi_array_size": 915,
+      "en_array_size": 915,
+      "data_attr_pairs": 28,
       "notion_en_fields": 30
     },
     {
@@ -489,7 +489,7 @@
       ],
       "vi_array_size": 400,
       "en_array_size": 400,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 20,
       "notion_en_fields": 30
     },
     {
@@ -597,9 +597,9 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 906,
-      "en_array_size": 906,
-      "data_attr_pairs": 23,
+      "vi_array_size": 907,
+      "en_array_size": 907,
+      "data_attr_pairs": 21,
       "notion_en_fields": 30
     },
     {
@@ -654,7 +654,7 @@
       ],
       "vi_array_size": 351,
       "en_array_size": 351,
-      "data_attr_pairs": 22,
+      "data_attr_pairs": 20,
       "notion_en_fields": 28
     },
     {
