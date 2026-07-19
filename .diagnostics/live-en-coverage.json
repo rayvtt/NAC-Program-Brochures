@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T17:41:08.937640+00:00",
+  "generated_at": "2026-07-19T18:37:20.943137+00:00",
   "source": "live WordPress fetched HTML",
   "reports": [
     {
@@ -268,8 +268,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 896,
-      "en_array_size": 896,
+      "vi_array_size": 897,
+      "en_array_size": 897,
       "data_attr_pairs": 25,
       "notion_en_fields": 30
     },
@@ -378,8 +378,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 922,
-      "en_array_size": 922,
+      "vi_array_size": 923,
+      "en_array_size": 923,
       "data_attr_pairs": 30,
       "notion_en_fields": 30
     },
@@ -598,8 +598,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 914,
-      "en_array_size": 914,
+      "vi_array_size": 915,
+      "en_array_size": 915,
       "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
