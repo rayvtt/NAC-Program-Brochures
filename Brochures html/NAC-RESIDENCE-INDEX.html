@@ -379,14 +379,9 @@
 .tkbar.scrolled .tkbar-bar{max-width:760px;margin:0 auto;padding:9px 12px 9px 16px;border-radius:99px;
   border:1px solid rgba(255,255,255,.13);box-shadow:0 22px 55px -22px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.03)}
 .tkbar.scrolled .tkbar-bar::before{left:40px;right:40px}
-.tkbar-logo{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--tkc-tx);flex:0 0 auto}
-.tkbar-mk{width:30px;height:30px;border-radius:8px;background:#0c0a1c;border:1px solid rgba(255,255,255,.14);
-  display:grid;place-items:center;font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:14px;color:var(--tkc-ac);flex:0 0 auto;position:relative}
-.tkbar-mk::after{content:"";position:absolute;right:-2px;top:-2px;width:7px;height:7px;border-radius:50%;
-  background:var(--tkc-ac);box-shadow:0 0 0 2px var(--tkc-bg2);animation:tkPulse 2.4s ease-in-out infinite}
-@keyframes tkPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
-.tkbar-wm{font-family:"Space Grotesk",sans-serif;font-size:14px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1;white-space:nowrap}
-.tkbar-wm b{color:#fff;font-weight:700}.tkbar-wm i{color:var(--tkc-faint);font-style:normal;font-weight:500}
+.tkbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:0 0 auto}
+.tkbar-logo img{width:34px;height:34px;object-fit:contain;flex:0 0 auto}
+.tkbar-wm{font-family:"Playfair Display",Georgia,serif;font-size:19px;font-weight:700;letter-spacing:.3px;line-height:1;white-space:nowrap;color:#fff}
 .tkbar-sp{flex:1}
 .tkbar-tools{position:relative}
 .tk-trigger{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;
@@ -433,14 +428,14 @@
 .tk-item .hot{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10px;color:var(--tkc-faint);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:2px 6px}
 .tk-nav .nm{font-weight:500}
 .tk-empty{padding:20px;text-align:center;color:var(--tkc-faint);font-size:12.5px;display:none}
-@media(max-width:640px){.tkbar-bar{padding:13px 16px}.tkbar-wm i{display:none}.tk-trigger>span.lbl{display:none}}
-@media(prefers-reduced-motion:reduce){.tkbar-mk::after{animation:none}.tkbar,.tkbar-bar,.tkbar-bar::before,.tk-trigger,.grid4 i,.tkbar-pop{transition:none}}
+@media(max-width:640px){.tkbar-bar{padding:13px 16px}.tkbar-wm{display:none}.tk-trigger>span.lbl{display:none}}
+@media(prefers-reduced-motion:reduce){.tkbar,.tkbar-bar,.tkbar-bar::before,.tk-trigger,.grid4 i,.tkbar-pop{transition:none}}
 </style>
 <header class="tkbar" id="tkbar">
   <div class="tkbar-bar">
     <a class="tkbar-logo" href="https://nomadassetcollective.com/">
-      <span class="tkbar-mk">N</span>
-      <span class="tkbar-wm"><b>NAC</b> <i>/ toolkit</i></span>
+      <img src="https://nomadassetcollective.com/wp-content/uploads/2026/04/OTG-Passport-Icons-1.png" alt="Nomad Asset Collective">
+      <span class="tkbar-wm">Nomad Asset Collective</span>
     </a>
     <span class="tkbar-sp"></span>
     <div class="tkbar-tools">
