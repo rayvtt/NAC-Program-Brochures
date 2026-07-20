@@ -1,0 +1,4 @@
+{
+  "_comment": "Chat-driven on-demand trigger for pull-sosanh-notion.yml — fires within seconds via the push:paths(.github/triggers/**) path added in #261.",
+  "fired": "2026-07-20T19:00:00Z-verify"
+}
