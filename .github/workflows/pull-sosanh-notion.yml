@@ -1,0 +1,112 @@
+name: Pull So Sánh data from Notion (fortnightly)
+
+# Fortnightly sync pipeline for the gated So Sánh comparison tool:
+#   1. Pull all 14 country rows from Notion → data/sosanh_payload.json
+#   2. Patch the payload into `var DB_STATIC = {...}` in NAC-SO-SANH.html
+#   3. Diff old vs new payload → append a digest to SOSANH-SYNC-LOG.md
+#      (+ post to NOTIFY_WEBHOOK if that secret is configured)
+#   4. Commit + push to main, then inline-push to WordPress (page 145,
+#      alias `sosanh`) — GITHUB_TOKEN commits don't cascade-trigger
+#      wp-sync.yml, so the WP push is inlined here (same workaround as
+#      pull-notion.yml uses for the brochure family).
+#
+# Runs on the 1st and 15th of every month, plus manual workflow_dispatch.
+# Requires NOTION_KEY in repo secrets. NOTIFY_WEBHOOK is optional (a
+# Google Chat incoming-webhook URL, same shape nac-marketing-omnichannel's
+# scripts/notify.mjs posts to) — announcements are skipped, not failed,
+# when it isn't set.
+
+on:
+  schedule:
+    # 03:00 UTC on the 1st and 15th — fortnightly
+    - cron: '0 3 1,15 * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run only (show diff, no write/commit)'
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: pull-sosanh-notion
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Pull country data from Notion
+        if: inputs.dry_run != 'true'
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: python tools/pull_sosanh_from_notion.py
+
+      - name: Pull country data from Notion (dry-run preview)
+        if: inputs.dry_run == 'true'
+        env:
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: python tools/pull_sosanh_from_notion.py --dry-run
+
+      - name: Patch DB_STATIC in NAC-SO-SANH.html
+        if: inputs.dry_run != 'true'
+        run: python tools/patch_sosanh_snap.py
+
+      - name: Patch DB_STATIC in NAC-SO-SANH.html (dry-run preview)
+        if: inputs.dry_run == 'true'
+        run: python tools/patch_sosanh_snap.py --dry-run
+
+      - name: Build changelog digest + announce
+        # Must run AFTER the payload is refreshed on disk but BEFORE it's
+        # committed — it diffs the working tree against `git show HEAD:...`.
+        # Skipped entirely in dry-run mode so a preview run never fires a
+        # real webhook post.
+        if: inputs.dry_run != 'true'
+        env:
+          NOTIFY_WEBHOOK: ${{ secrets.NOTIFY_WEBHOOK }}
+        run: python tools/sosanh_changelog.py
+
+      - name: Commit refreshed payload + HTML + sync log
+        if: inputs.dry_run != 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/sosanh_payload.json "Brochures html/NAC-SO-SANH.html" SOSANH-SYNC-LOG.md || true
+          if git diff --cached --quiet; then
+            echo "No changes — Notion content already matched the live tool."
+            echo "SKIP_WP_SYNC=true" >> $GITHUB_ENV
+          else
+            git commit -m "So Sánh: fortnightly Notion sync
+
+            Refreshed data/sosanh_payload.json and patched var DB_STATIC in
+            NAC-SO-SANH.html. See SOSANH-SYNC-LOG.md for what changed."
+            git push origin main
+            echo "Pushed to main."
+            echo "SKIP_WP_SYNC=false" >> $GITHUB_ENV
+          fi
+
+      # WORKFLOW-CHAIN WORKAROUND (same as pull-notion.yml):
+      # Commits made by GITHUB_TOKEN don't trigger other workflows, so
+      # wp-sync.yml won't fire on the commit above. Inline the WP push here
+      # so the fortnightly sync actually reaches WordPress.
+      - name: Push to WordPress (inline — workflow-chain limitation)
+        if: inputs.dry_run != 'true' && env.SKIP_WP_SYNC != 'true'
+        env:
+          WP_USER: ${{ secrets.WP_USER }}
+          WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+        run: |
+          python sync_brochures.py sosanh
+          echo "So Sánh synced to WordPress."
