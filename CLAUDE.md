@@ -395,6 +395,69 @@ The jsdom simulator's `VN_UNIQUE` regex used to match only "uniquely Vietnamese"
 - The workflow runs `tools/apply_partner_copy.py` — patches `data-vi`/`data-en` by key, appends the `PARTNER-COPY-LOG.md` ledger, prepends the inline `<script id="copyLog">` JSON block (cap 40, powers the 📜 history panel). Commit to `main` → `wp-sync.yml` → live in ~2 min.
 - WP-safety: no inline handlers, no `\"` in scripts; the copyLog JSON escapes the `<` character as its unicode escape (u003c) so it can't close the script block. Keep parity check #15 green after any editor change.
 
+## 8c. So Sánh comparison tool — Notion-backed data + fortnightly sync
+
+`Brochures html/NAC-SO-SANH.html` (WP page 145, `/brochures/so-sanh/`) is a gated,
+standalone 3-way country-comparison tool — access-code landing page (`#gate`),
+then pick up to 3 of the 14 live countries and compare economics, immigration
+terms, tax, costs, and NAC's own ratings side by side. It does **not** belong to
+the 16-brochure parity family (§1–§2 above don't apply to it) and is not part of
+the generic brochure `tools/pull_from_notion.py` pipeline — it has its own
+Notion DB, its own payload shape, and its own sync tooling:
+
+- **Notion DB**: 🔀 NAC - So Sánh Data — id `6383f817314241a1abbabee6b1be7409`. One
+  row per country; schema (identity fields, bilingual `<key> (VI)`/`(EN)` text
+  field prefixes, plain-number fields) is the single source of truth in
+  [`data/sosanh_schema.py`](./data/sosanh_schema.py) — shared by the pull + patch
+  tools below so the two never drift apart. Adding a country: create a Notion
+  row with a new, globally-unique 2-letter `code` and tick `live in picker`
+  once its data is real (`code` collisions silently overwrite one country's
+  lookup with another's in the client's `findCountry()`).
+- **Data flow**: Notion → `data/sosanh_payload.json` (semantic shape:
+  `{asOf, countries:{<code>:{...}}}`) → regex-patched into `var DB_STATIC = {...};`
+  inside `NAC-SO-SANH.html`. The client reads everything by `code` + field key —
+  no positional column indexing (that fragility, plus the old Google-Sheet
+  `FIXES` override ledger, was retired when this moved off the Sheet).
+- **Tools** (mirror the brochure family's `pull_from_notion.py` →
+  `inject_notion_en_to_html.py` two-step, adapted for So Sánh's own schema):
+  - `tools/pull_sosanh_from_notion.py` — Notion → `data/sosanh_payload.json`.
+    Hard-fails on a duplicate `code` or on any literal backslash in the output
+    (would corrupt on the next WP push — see §4 Trap 2). `--dry-run` prints
+    without writing.
+  - `tools/patch_sosanh_snap.py` — payload → `var DB_STATIC` in the HTML via a
+    single surgical regex replace (never a full-file regenerate). Re-validates
+    zero backslashes on the *patched HTML*, not just the payload. `--dry-run`
+    validates without writing.
+  - `tools/sosanh_changelog.py` — diffs the git-committed payload against the
+    freshly-pulled one on disk (must run **after** the pull, **before** the
+    commit), appends a human-readable digest to `SOSANH-SYNC-LOG.md` (newest
+    first — the durable "what changed this sync" record), and optionally posts
+    the same digest to `NOTIFY_WEBHOOK` (a Google Chat incoming-webhook URL,
+    same `cardsV2` shape `nac-marketing-omnichannel`'s `scripts/notify.mjs`
+    already posts to) if that secret is set. A missing secret or a failed POST
+    is non-fatal — the log entry is the durable record either way.
+- **Workflow**: `.github/workflows/pull-sosanh-notion.yml` — cron `0 3 1,15 * *`
+  (fortnightly: 1st + 15th of every month, 03:00 UTC) + `workflow_dispatch` with
+  a `dry_run` input. Chains pull → patch → changelog → commit → **inline**
+  `python sync_brochures.py sosanh` (the `sosanh` alias targets this one page).
+  The inline WP push is required, not optional — same GITHUB_TOKEN-commits-
+  don't-cascade-trigger-`wp-sync.yml` limitation documented in §4/§5 for
+  `pull-notion.yml`.
+- **Two independent write paths into the same HTML file, by design**: the
+  `?edit=1` in-page copy editor (`apply-sosanh-copy.yml`, §8b's sibling —
+  patches the `var I18N = {...}` chrome-copy object literal: hero, nav labels,
+  gate strings) and this fortnightly Notion sync (patches `var DB_STATIC`, the
+  country data blob) touch disjoint regions of the file, so they never
+  conflict structurally — but both commit straight to `main`, so a real git
+  merge conflict is still possible if both land in the same short window (seen
+  once — resolved by taking whichever side changed the I18N chrome strings,
+  since `?edit=1` edits are Ray's explicit live-editor actions).
+- **Gate page** (`#gate`): access-code landing screen, styled with a slowly
+  twinkling starfield backdrop, an orbiting-dot ring around the "N·A·C" seal
+  (spinning conic-gradient ring + a slower counter-rotating dashed ring), and a
+  breathing brand-orange radial glow — all `prefers-reduced-motion`-aware
+  (animations disabled, falls back to a static seal).
+
 ## 9. Linked docs
 
 - [`TURKEY-TEMPLATE.md`](./TURKEY-TEMPLATE.md) — canonical design reference (component inventory + replication checklist)
