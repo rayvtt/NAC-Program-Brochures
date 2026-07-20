@@ -361,105 +361,161 @@
 </style>
 </head>
 <body>
-<style>header.hdr{display:none !important}</style>
+<style>header.hdr{display:none !important}.tkbar{--tk-bg:#080a24;--tk-bg2:#111433;--tk-accent:#F4622A}</style>
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
-.tkbar{position:sticky;top:0;left:0;right:0;z-index:2000;background:rgba(0,10,34,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 6px 24px rgba(0,10,34,.3);padding:10px 0;font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+@import url("https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap");
+.tkbar{position:sticky;top:0;left:0;right:0;z-index:2000;padding:0;
+  --tkc-bg:var(--tk-bg,#0b0826);--tkc-bg2:var(--tk-bg2,#141031);--tkc-ac:var(--tk-accent,#F4622A);
+  --tkc-tx:#ecebf6;--tkc-dim:#a6a2c6;--tkc-faint:#6f6b91;--tkc-line:rgba(255,255,255,.09);
+  font-family:"Be Vietnam Pro",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  transition:padding .45s cubic-bezier(.2,.8,.2,1)}
 .tkbar *{box-sizing:border-box}
-.tkbar-in{display:flex;align-items:center;gap:16px;max-width:1240px;margin:0 auto;padding:0 24px}
-.tkbar-logo{display:flex;align-items:center;gap:10px;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:19px;color:#fff;letter-spacing:.4px;flex-shrink:0;text-decoration:none}
-.tkbar-logo span{white-space:nowrap}
-.tkbar-logo img{width:38px;height:38px;object-fit:contain}
-.tkbar-burger{display:block;margin-left:auto;background:transparent;border:0;cursor:pointer;width:40px;height:40px;position:relative;z-index:95;flex-shrink:0}
-.tkbar-burger span{display:block;width:22px;height:2px;background:#fff;margin:5px auto;transition:transform .3s,opacity .3s}
-.tkbar-burger.x span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.tkbar-burger.x span:nth-child(2){opacity:0}
-.tkbar-burger.x span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.tkbar-lang{display:flex;border:1.5px solid rgba(255,255,255,.5);border-radius:99px;overflow:hidden;flex-shrink:0;position:relative;z-index:95}
-.tkbar-lng{border:0;background:transparent;color:rgba(255,255,255,.85);font-family:inherit;font-size:12.5px;font-weight:600;padding:7px 15px;cursor:pointer;transition:background .2s,color .2s}
-.tkbar-lng.on{background:#F4622A;color:#fff}
-.tkbar-nav{position:absolute;top:100%;left:0;right:0;background:rgba(0,10,34,.98);display:flex;flex-direction:column;align-items:center;gap:26px;max-height:0;overflow:hidden;padding:0 24px;box-shadow:0 22px 40px rgba(0,3,14,.45);transition:max-height .5s cubic-bezier(.7,0,.3,1),padding .5s cubic-bezier(.7,0,.3,1)}
-.tkbar-nav.open{max-height:calc(100vh - 58px);padding:30px 24px 40px;overflow:auto}
-.tkbar-nav a,.tkbar-navbtn{position:relative;color:rgba(255,255,255,.78);font-family:inherit;font-size:15px;font-weight:500;letter-spacing:3px;text-transform:uppercase;padding:4px 0;transition:color .25s;white-space:nowrap;text-decoration:none;background:transparent;border:0;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
-.tkbar-nav a::after,.tkbar-navbtn::after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:#F4622A;transition:right .3s cubic-bezier(.2,.7,.3,1)}
-.tkbar-nav a:hover,.tkbar-navbtn:hover{color:#fff}
-.tkbar-nav a:hover::after,.tkbar-navbtn:hover::after{right:0}
-.tkbar-nav a.tk-hub{display:flex;flex-direction:column;align-items:center;gap:2px;line-height:1;padding:2px 4px;transition:transform .25s}
-.tkbar-nav a.tk-hub::after{display:none}
-.tkbar-nav a.tk-hub:hover{transform:translateY(-1px)}
-.tk-the{font-family:"Playfair Display",Georgia,serif;font-style:italic;font-size:10px;font-weight:500;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.62)}
-.tk-nac{font-family:"Playfair Display",Georgia,serif;font-size:28px;font-weight:600;letter-spacing:.4px;color:#fff}
-.tk-sub{font-family:"Playfair Display",Georgia,serif;font-size:10.5px;font-weight:600;letter-spacing:4.2px;text-transform:uppercase;color:#f8825b}
-.tkbar-caret{transition:transform .2s}
-.tkbar-navbtn[aria-expanded="true"] .tkbar-caret{transform:rotate(180deg)}
-.tkbar-tools{position:relative;display:flex;flex-direction:column;align-items:center}
-.tkbar-pop{position:static;width:min(320px,84vw);background:#fff;border:1px solid #e3e3f0;border-radius:14px;box-shadow:0 20px 50px rgba(0,10,34,.28);padding:8px;display:none;margin-top:10px}
-.tkbar-pop.open{display:block}
-.tkbar-pop-h{font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:#8a8aa3;padding:6px 10px 4px;font-weight:700}
-.tkbar-pop a{display:flex;align-items:center;gap:11px;padding:9px 10px;border-radius:9px;text-decoration:none;color:#3f3f5a;font-size:13px;font-weight:500;letter-spacing:0;text-transform:none;transition:background .15s,color .15s}
-.tkbar-pop a::after{display:none}
-.tkbar-pop a:hover{background:#f0eeff;color:#1800ad}
-.tkbar-pop a .ti{width:16px;height:16px;flex-shrink:0;color:#F4622A}
-@media(max-width:900px){
-  .tkbar{backdrop-filter:none;-webkit-backdrop-filter:none;background:rgba(0,10,34,.97)}
-  .tkbar-logo span{font-size:15px}
-  .tkbar-lng{padding:7px 12px}
-}
+.tkbar-bar{position:relative;display:flex;align-items:center;gap:14px;max-width:100%;margin:0;
+  padding:15px 24px;background:var(--tkc-bg2);color:var(--tkc-tx);border-bottom:1px solid var(--tkc-line);
+  transition:margin .45s cubic-bezier(.2,.8,.2,1),max-width .45s cubic-bezier(.2,.8,.2,1),border-radius .45s,border-color .45s,box-shadow .45s,padding .45s}
+.tkbar-bar::before{content:"";position:absolute;left:24px;right:24px;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--tkc-ac),transparent);opacity:.7;transition:left .45s,right .45s}
+.tkbar.scrolled{padding:12px 16px}
+.tkbar.scrolled .tkbar-bar{max-width:760px;margin:0 auto;padding:9px 12px 9px 16px;border-radius:99px;
+  border:1px solid rgba(255,255,255,.13);box-shadow:0 22px 55px -22px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.03)}
+.tkbar.scrolled .tkbar-bar::before{left:40px;right:40px}
+.tkbar-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff;flex:0 0 auto}
+.tkbar-logo img{width:34px;height:34px;object-fit:contain;flex:0 0 auto}
+.tkbar-wm{font-family:"Playfair Display",Georgia,serif;font-size:19px;font-weight:700;letter-spacing:.3px;line-height:1;white-space:nowrap;color:#fff}
+.tkbar-sp{flex:1}
+.tkbar-tools{position:relative}
+.tk-trigger{display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:inherit;font-size:12.5px;font-weight:600;
+  letter-spacing:.02em;color:var(--tkc-tx);padding:9px 13px;border-radius:10px;border:1px solid rgba(255,255,255,.16);
+  background:rgba(255,255,255,.04);transition:background .2s,border-color .2s,box-shadow .2s}
+.tk-trigger:hover{background:rgba(255,255,255,.09);border-color:var(--tkc-ac)}
+.tk-trigger[aria-expanded="true"]{border-color:var(--tkc-ac);background:color-mix(in srgb,var(--tkc-ac) 15%,transparent);
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--tkc-ac) 14%,transparent)}
+.grid4{width:16px;height:16px;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:3px;flex:0 0 auto}
+.grid4 i{display:block;border-radius:2.5px;background:currentColor;transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.tk-trigger:hover .grid4 i:nth-child(1){transform:translate(-1.4px,-1.4px)}
+.tk-trigger:hover .grid4 i:nth-child(2){transform:translate(1.4px,-1.4px)}
+.tk-trigger:hover .grid4 i:nth-child(3){transform:translate(-1.4px,1.4px)}
+.tk-trigger:hover .grid4 i:nth-child(4){transform:translate(1.4px,1.4px)}
+.tk-trigger[aria-expanded="true"] .grid4{color:var(--tkc-ac)}
+.tk-trigger[aria-expanded="true"] .grid4 i:nth-child(1){transform:translate(1.4px,1.4px)}
+.tk-trigger[aria-expanded="true"] .grid4 i:nth-child(2){transform:translate(-1.4px,1.4px)}
+.tk-trigger[aria-expanded="true"] .grid4 i:nth-child(3){transform:translate(1.4px,-1.4px)}
+.tk-trigger[aria-expanded="true"] .grid4 i:nth-child(4){transform:translate(-1.4px,-1.4px)}
+.tk-kbd{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:10.5px;color:var(--tkc-faint);
+  border:1px solid rgba(255,255,255,.16);border-radius:5px;padding:2px 6px;line-height:1}
+.tkbar-lang{display:flex;gap:3px;flex:0 0 auto;position:relative;z-index:5}
+.tkbar-lng{border:1px solid rgba(255,255,255,.14);background:transparent;color:var(--tkc-dim);
+  font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:11px;font-weight:600;padding:7px 10px;border-radius:7px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tkbar-lng.on{background:var(--tkc-ac);border-color:transparent;color:#fff}
+.tkbar-pop{position:absolute;top:calc(100% + 14px);right:0;width:min(440px,92vw);background:color-mix(in srgb,var(--tkc-bg) 92%,#000);
+  border:1px solid rgba(255,255,255,.14);border-radius:14px;overflow:hidden;
+  box-shadow:0 44px 90px -30px rgba(0,0,0,.92),0 0 0 1px rgba(255,255,255,.04);
+  opacity:0;transform:translateY(-8px) scale(.98);transform-origin:top right;pointer-events:none;
+  transition:opacity .24s,transform .24s;z-index:80}
+.tkbar-pop.open{opacity:1;transform:none;pointer-events:auto}
+.tk-search{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.1);color:var(--tkc-faint)}
+.tk-search svg{width:16px;height:16px;flex:0 0 auto;stroke-width:1.8}
+.tk-search input{flex:1;background:transparent;border:0;outline:0;color:#fff;font-family:inherit;font-size:13.5px}
+.tk-search input::placeholder{color:var(--tkc-faint)}
+.tk-list{padding:8px;max-height:min(64vh,440px);overflow:auto}
+.tk-list::-webkit-scrollbar{width:8px}.tk-list::-webkit-scrollbar-thumb{background:rgba(255,255,255,.16);border-radius:8px}
+.tk-sec{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--tkc-faint);padding:10px 10px 6px}
+.tk-item{display:flex;align-items:center;gap:12px;padding:10px 11px;border-radius:9px;text-decoration:none;color:var(--tkc-tx);transition:background .14s}
+.tk-item:hover,.tk-item.on{background:color-mix(in srgb,var(--tkc-ac) 14%,transparent)}
+.tk-item svg{width:18px;height:18px;flex:0 0 auto;stroke-width:1.7;color:var(--tkc-ac)}
+.tk-item .nm{font-size:13px;font-weight:600;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tk-item .ds{font-size:11px;color:var(--tkc-dim);white-space:nowrap}
+.tk-item .hot{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10px;color:var(--tkc-faint);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:2px 6px}
+.tk-nav .nm{font-weight:500}
+.tk-empty{padding:20px;text-align:center;color:var(--tkc-faint);font-size:12.5px;display:none}
+@media(max-width:640px){.tkbar-bar{padding:13px 16px}.tkbar-wm{display:none}.tk-trigger>span.lbl{display:none}}
+@media(prefers-reduced-motion:reduce){.tkbar,.tkbar-bar,.tkbar-bar::before,.tk-trigger,.grid4 i,.tkbar-pop{transition:none}}
 </style>
 <header class="tkbar" id="tkbar">
-  <div class="tkbar-in">
+  <div class="tkbar-bar">
     <a class="tkbar-logo" href="https://nomadassetcollective.com/">
-      <img src="https://nomadassetcollective.com/wp-content/uploads/2026/04/OTG-Passport-Icons-1.png" alt="NAC">
-      <span>Nomad Asset Collective</span>
+      <img src="https://nomadassetcollective.com/wp-content/uploads/2026/04/OTG-Passport-Icons-1.png" alt="Nomad Asset Collective">
+      <span class="tkbar-wm">Nomad Asset Collective</span>
     </a>
-    <button class="tkbar-burger" id="tkBurger" aria-label="Menu"><span></span><span></span><span></span></button>
+    <span class="tkbar-sp"></span>
+    <div class="tkbar-tools">
+      <button type="button" class="tk-trigger" id="tkToolsBtn" aria-expanded="false" aria-haspopup="true">
+        <span class="grid4"><i></i><i></i><i></i><i></i></span>
+        <span class="lbl" data-vi="Bộ Công Cụ" data-en="Toolkit">Bộ Công Cụ</span>
+        <span class="tk-kbd">⌘K</span>
+      </button>
+      <div class="tkbar-pop" id="tkToolsPop" role="menu">
+        <div class="tk-search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input id="tkSearch" data-ph-vi="Tìm công cụ…" data-ph-en="Jump to a tool…" placeholder="Tìm công cụ…" aria-label="Search">
+        </div>
+        <div class="tk-list" id="tkList">
+          <div class="tk-sec" data-vi="Công cụ · 8" data-en="Tools · 8">Công cụ · 8</div>
+          <a class="tk-item" data-q="property hub bat dong san" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4.5l8 6.7"/><path d="M6 10v9.5h12V10"/></svg><span class="nm">NAC Property Hub</span><span class="ds" data-vi="Sàn BĐS" data-en="Property">Sàn BĐS</span><span class="hot">⌘1</span></a>
+          <a class="tk-item" data-q="residence index chi so" href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20v-8M9.5 20V5M14.5 20v-6M19.5 20V9M3 20.5h18"/></svg><span class="nm">NAC Residence Index</span><span class="ds" data-vi="Chỉ số" data-en="Index">Chỉ số</span><span class="hot">⌘2</span></a>
+          <a class="tk-item" data-q="tu van nhanh advisor quiz" href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 2.8V12c0 4.6-3.2 7.6-7.5 9-4.3-1.4-7.5-4.4-7.5-9V5.8L12 3z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/></svg><span class="nm" data-vi="Tư vấn nhanh" data-en="Advisor quiz">Tư vấn nhanh</span><span class="ds" data-vi="Quiz" data-en="Quiz">Quiz</span><span class="hot">⌘3</span></a>
+          <a class="tk-item" data-q="may tinh chi phi cost calculator" href="https://nomadassetcollective.com/#calc" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M8.5 19h3.5"/></svg><span class="nm" data-vi="Máy tính chi phí" data-en="Cost calculator">Máy tính chi phí</span><span class="ds" data-vi="Chi phí" data-en="Cost">Chi phí</span><span class="hot">⌘4</span></a>
+          <a class="tk-item" data-q="market brief tong quan thi truong" href="https://nomadassetcollective.com/property-hub-bat-dong-san/vietnam/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15.5" rx="2"/><path d="M7 9h6M7 12.5h10M7 16h10"/></svg><span class="nm" data-vi="Market Brief" data-en="Market Brief">Market Brief</span><span class="ds" data-vi="Thị trường" data-en="Market">Thị trường</span><span class="hot">⌘5</span></a>
+          <a class="tk-item" data-q="so sanh chuong trinh program comparison" href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v15M8.5 19.5h7M3.5 13.5a3 3 0 0 0 6 0L6.5 8.6 3.5 13.5zM14.5 13.5a3 3 0 0 0 6 0l-3-4.9-3 4.9z"/></svg><span class="nm" data-vi="So Sánh chương trình" data-en="Program comparison">So Sánh chương trình</span><span class="ds" data-vi="So sánh" data-en="Compare">So sánh</span><span class="hot">⌘6</span></a>
+          <a class="tk-item" data-q="tong quan chuong trinh program overview" href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18.5v-13A2.5 2.5 0 0 1 6.5 3H20v15.5H6.5A2.5 2.5 0 0 0 4 21v-2.5z"/></svg><span class="nm" data-vi="Tổng quan chương trình" data-en="Program overview">Tổng quan chương trình</span><span class="ds" data-vi="Tổng quan" data-en="Overview">Tổng quan</span><span class="hot">⌘7</span></a>
+          <a class="tk-item" data-q="nac times blog" href="https://blog.nomadassetcollective.com/" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15.5" rx="2"/><path d="M7 9h4M7 12.5h10M7 16h10"/></svg><span class="nm">NAC Times</span><span class="ds" data-vi="Blog" data-en="Blog">Blog</span><span class="hot">⌘8</span></a>
+          <div class="tk-sec" data-vi="Điều hướng" data-en="Navigate">Điều hướng</div>
+          <a class="tk-item tk-nav" data-q="diem den destinations" href="https://nomadassetcollective.com/#dest"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.4"/></svg><span class="nm" data-vi="Điểm Đến" data-en="Destinations">Điểm Đến</span></a>
+          <a class="tk-item tk-nav" data-q="chuong trinh programs" href="https://nomadassetcollective.com/#programs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg><span class="nm" data-vi="Chương Trình" data-en="Programs">Chương Trình</span></a>
+          <a class="tk-item tk-nav" data-q="doi tac partners" href="https://nomadassetcollective.com/brochures/doi-tac-partner-gateway/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-8 0v2M12 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/></svg><span class="nm" data-vi="Đối Tác" data-en="Partners">Đối Tác</span></a>
+          <a class="tk-item tk-nav" data-q="dat lich tu van book call" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span class="nm" data-vi="Đặt Lịch Tư Vấn" data-en="Book a Call">Đặt Lịch Tư Vấn</span></a>
+          <div class="tk-empty" data-vi="Không tìm thấy công cụ" data-en="No tools found">Không tìm thấy công cụ</div>
+        </div>
+      </div>
+    </div>
     <div class="tkbar-lang" role="group" aria-label="Language">
       <button type="button" class="tkbar-lng on" data-lang="vi">VI</button>
       <button type="button" class="tkbar-lng" data-lang="en">EN</button>
     </div>
-    <nav class="tkbar-nav" id="tkNav">
-      <a href="https://nomadassetcollective.com/#dest" data-vi="Điểm Đến" data-en="Destinations">Điểm Đến</a>
-      <a href="https://nomadassetcollective.com/#programs" data-vi="Chương Trình" data-en="Programs">Chương Trình</a>
-      <div class="tkbar-tools">
-        <button type="button" class="tkbar-navbtn" id="tkToolsBtn" aria-expanded="false" aria-haspopup="true">
-          <span data-vi="Bộ Công Cụ" data-en="Toolkit">Bộ Công Cụ</span>
-          <svg class="tkbar-caret" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="tkbar-pop" id="tkToolsPop" role="menu">
-          <div class="tkbar-pop-h" data-vi="Công cụ NAC" data-en="NAC tools">Công cụ NAC</div>
-          <a href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11.2 12 4.5l8 6.7"/><path d="M6 10v9.5h12V10"/></svg><span data-vi="NAC Property Hub" data-en="NAC Property Hub">NAC Property Hub</span></a>
-          <a href="https://nomadassetcollective.com/nac-residence-index/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 20v-8M9.5 20V5M14.5 20v-6M19.5 20V9M3 20.5h18"/></svg><span data-vi="NAC Residence Index" data-en="NAC Residence Index">NAC Residence Index</span></a>
-          <a href="https://nomadassetcollective.com/tu-van-nhanh/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 2.8V12c0 4.6-3.2 7.6-7.5 9-4.3-1.4-7.5-4.4-7.5-9V5.8L12 3z"/><path d="M8.8 12l2.2 2.2 4.2-4.4"/></svg><span data-vi="Tư vấn nhanh" data-en="Advisor quiz">Tư vấn nhanh</span></a>
-          <a href="https://nomadassetcollective.com/#calc" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5.5" y="3" width="13" height="18" rx="2"/><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 15.5h.01M12 15.5h.01M15.5 15.5h.01M8.5 19h3.5"/></svg><span data-vi="Máy tính chi phí" data-en="Cost calculator">Máy tính chi phí</span></a>
-          <a href="https://nomadassetcollective.com/property-hub-bat-dong-san/vietnam/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15.5" rx="2"/><path d="M7 9h6M7 12.5h10M7 16h10"/></svg><span data-vi="Market Brief theo quốc gia" data-en="Country Market Briefs">Market Brief theo quốc gia</span></a>
-          <a href="https://nomadassetcollective.com/so-sanh/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4.5v15M8.5 19.5h7M3.5 13.5a3 3 0 0 0 6 0L6.5 8.6 3.5 13.5zM14.5 13.5a3 3 0 0 0 6 0l-3-4.9-3 4.9z"/></svg><span data-vi="So Sánh chương trình" data-en="Program comparison">So Sánh chương trình</span></a>
-          <a href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18.5v-13A2.5 2.5 0 0 1 6.5 3H20v15.5H6.5A2.5 2.5 0 0 0 4 21v-2.5z"/></svg><span data-vi="Tổng quan chương trình" data-en="Program overview">Tổng quan chương trình</span></a>
-          <a href="https://blog.nomadassetcollective.com/" target="_blank" rel="noopener"><svg class="ti" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="15.5" rx="2"/><path d="M7 9h6M7 12.5h10M7 16h10"/></svg><span data-vi="NAC Times — blog" data-en="NAC Times — blog">NAC Times — blog</span></a>
-        </div>
-      </div>
-      <a class="tk-hub" href="https://nomadassetcollective.com/property-hub-bat-dong-san/" target="_blank" rel="noopener" aria-label="NAC Property Hub"><span class="tk-the">The</span><span class="tk-nac">NAC</span><span class="tk-sub">Property Hub</span></a>
-      <a href="https://nomadassetcollective.com/brochures/doi-tac-partner-gateway/" data-vi="Đối Tác" data-en="Partners">Đối Tác</a>
-      <a href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener" data-vi="Đặt Lịch Tư Vấn" data-en="Book a Call">Đặt Lịch Tư Vấn</a>
-      <a href="https://nomadassetcollective.com/#contact" data-vi="Liên Hệ" data-en="Contact">Liên Hệ</a>
-    </nav>
   </div>
 </header>
 <script>
 (function(){
-  var btn=document.getElementById("tkToolsBtn"),pop=document.getElementById("tkToolsPop"),bar=document.getElementById("tkbar");
+  var bar=document.getElementById("tkbar");if(!bar)return;
+  var btn=document.getElementById("tkToolsBtn"),pop=document.getElementById("tkToolsPop"),
+      search=document.getElementById("tkSearch"),list=document.getElementById("tkList"),
+      empty=list?list.querySelector(".tk-empty"):null;
+  var items=list?Array.prototype.slice.call(list.querySelectorAll(".tk-item")):[];
+  var active=-1;
+  function vis(){return items.filter(function(it){return it.style.display!=="none";});}
+  function clearActive(){items.forEach(function(it){it.classList.remove("on");});active=-1;}
+  function setActive(i){var v=vis();if(!v.length)return;active=(i+v.length)%v.length;
+    items.forEach(function(it){it.classList.remove("on");});v[active].classList.add("on");
+    v[active].scrollIntoView({block:"nearest"});}
+  function openPop(){pop.classList.add("open");btn.setAttribute("aria-expanded","true");
+    if(search){search.value="";filter("");setTimeout(function(){search.focus();},30);}clearActive();}
+  function closePop(){pop.classList.remove("open");btn.setAttribute("aria-expanded","false");clearActive();}
+  function filter(q){q=(q||"").trim().toLowerCase();var any=false;
+    items.forEach(function(it){var t=(it.getAttribute("data-q")||"")+" "+(it.textContent||"");
+      var show=t.toLowerCase().indexOf(q)>=0;it.style.display=show?"":"none";if(show)any=true;});
+    list.querySelectorAll(".tk-sec").forEach(function(sec){var n=sec.nextElementSibling,has=false;
+      while(n&&!n.classList.contains("tk-sec")){if(n.classList.contains("tk-item")&&n.style.display!=="none")has=true;n=n.nextElementSibling;}
+      sec.style.display=has?"":"none";});
+    if(empty)empty.style.display=any?"none":"block";clearActive();}
   if(btn&&pop){
-    btn.addEventListener("click",function(e){e.stopPropagation();var o=pop.classList.toggle("open");btn.setAttribute("aria-expanded",o?"true":"false");});
-    document.addEventListener("keydown",function(e){if(e.key==="Escape"){pop.classList.remove("open");btn.setAttribute("aria-expanded","false");}});
+    btn.addEventListener("click",function(e){e.stopPropagation();if(pop.classList.contains("open"))closePop();else openPop();});
+    pop.addEventListener("click",function(e){e.stopPropagation();});
+    if(search)search.addEventListener("input",function(){filter(this.value);});
+    document.addEventListener("click",function(){closePop();});
+    document.addEventListener("keydown",function(e){
+      if((e.metaKey||e.ctrlKey)&&(e.key==="k"||e.key==="K")){e.preventDefault();if(pop.classList.contains("open"))closePop();else openPop();return;}
+      if(!pop.classList.contains("open"))return;
+      if(e.key==="Escape"){closePop();btn.focus();}
+      else if(e.key==="ArrowDown"){e.preventDefault();setActive(active+1);}
+      else if(e.key==="ArrowUp"){e.preventDefault();setActive(active-1);}
+      else if(e.key==="Enter"&&active>=0){var v=vis();if(v[active]){if(v[active].target==="_blank")window.open(v[active].href,"_blank");else location.href=v[active].href;}}
+    });
   }
-  if(!bar)return;
-  var burger=document.getElementById("tkBurger"),nav=document.getElementById("tkNav");
-  if(burger&&nav){
-    burger.addEventListener("click",function(){nav.classList.toggle("open");burger.classList.toggle("x");});
-    nav.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){nav.classList.remove("open");burger.classList.remove("x");});});
-    document.addEventListener("click",function(e){if(!bar.contains(e.target)){nav.classList.remove("open");burger.classList.remove("x");if(pop){pop.classList.remove("open");}if(btn){btn.setAttribute("aria-expanded","false");}}});
-  }
+  var onScroll=function(){bar.classList.toggle("scrolled",window.scrollY>24);};
+  window.addEventListener("scroll",onScroll,{passive:true});onScroll();
   function apply(l){
     bar.querySelectorAll("[data-vi][data-en]").forEach(function(el){var v=el.getAttribute("data-"+l);if(v!=null)el.textContent=v;});
+    bar.querySelectorAll("[data-ph-vi][data-ph-en]").forEach(function(el){var v=el.getAttribute("data-ph-"+l);if(v!=null)el.setAttribute("placeholder",v);});
     bar.querySelectorAll(".tkbar-lng").forEach(function(b){b.classList.toggle("on",b.getAttribute("data-lang")===l);});
   }
   bar.querySelectorAll(".tkbar-lng").forEach(function(b){

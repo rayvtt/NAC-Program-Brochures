@@ -1742,6 +1742,16 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
 .consult-section-head{display:flex;align-items:center;gap:8px;margin-top:26px;margin-bottom:6px}
 .consult-section-head h5{margin:0}
 .consult-section-head button{margin:0;padding:5px 12px;font-size:11px}
+.consult-kyc-sec{border:1px solid var(--border);border-radius:12px;margin-bottom:10px;overflow:hidden}
+.consult-kyc-sech{padding:10px 13px;font-size:12px;font-weight:700;background:var(--bg2);color:var(--text)}
+.consult-kyc-grid{padding:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.consult-kyc-grid{grid-template-columns:1fr}}
+.consult-kyc-f label{margin-top:0}
+.consult-kyc-f.wide{grid-column:1/-1}
+.consult-kyc-prog{display:flex;align-items:center;gap:10px;margin:6px 0 2px}
+.consult-kyc-bar{flex:1;height:6px;background:var(--bg2);border-radius:99px;overflow:hidden}
+.consult-kyc-bar>i{display:block;height:100%;width:0;background:var(--orange);transition:width .25s}
+.consult-kyc-pct{font-size:11px;color:var(--text3);white-space:nowrap}
 </style>
 <aside class="editp" id="editp" aria-label="Copy editor">
   <h6>Chỉnh sửa nội dung</h6>
@@ -1846,6 +1856,13 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
         <button type="button" class="consult-btn-ghost" id="chClear">Clear</button>
       </div>
       <div class="consult-msg" id="chMsg"></div>
+
+      <div class="consult-section-head">
+        <h5>Guided KYC Intake</h5>
+        <button type="button" class="consult-btn-ghost" id="chKycToggle">+ New intake</button>
+      </div>
+      <div class="sub">Walk a client through the full profile — saves &amp; auto-links a consultation with a follow-up date.</div>
+      <div id="chKycWrap" style="display:none"></div>
 
       <div class="consult-section-head">
         <h5>Initial Consultations</h5>
@@ -2807,6 +2824,111 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
 
   document.getElementById("chRefresh1").addEventListener("click", loadConsultations);
   document.getElementById("chRefresh2").addEventListener("click", loadQuestionnaires);
+
+  // ---- Guided KYC intake (built from the worker schema) ----
+  var kycSchema = null;
+  var kycToggle = document.getElementById("chKycToggle");
+  if (kycToggle) kycToggle.addEventListener("click", function(){
+    var wrap = document.getElementById("chKycWrap");
+    if (wrap.style.display === "none") {
+      wrap.style.display = "block";
+      kycToggle.textContent = "- Hide intake";
+      if (!kycSchema) loadKycSchema();
+    } else {
+      wrap.style.display = "none";
+      kycToggle.textContent = "+ New intake";
+    }
+  });
+
+  function loadKycSchema(){
+    var wrap = document.getElementById("chKycWrap");
+    wrap.innerHTML = "<div class='sub'>Loading form...</div>";
+    fetch(CONSULT_WORKER + "/api/consulting/kyc-schema", { headers: consultHeaders() })
+      .then(function(r){ if (r.status === 401){ wrap.innerHTML = "<div class='sub'>Access key rejected.</div>"; return null; } return r.json(); })
+      .then(function(data){ if (!data) return; kycSchema = data.sections || []; renderKyc(); })
+      .catch(function(e){ wrap.innerHTML = "<div class='sub'>" + escC(e.message) + "</div>"; });
+  }
+
+  function renderKyc(){
+    var wrap = document.getElementById("chKycWrap");
+    var html = "";
+    kycSchema.forEach(function(sec){
+      html += "<div class='consult-kyc-sec'><div class='consult-kyc-sech'>" + escC(sec.id) + " · " + escC(sec.en) + " — " + escC(sec.vi) + "</div><div class='consult-kyc-grid'>";
+      sec.fields.forEach(function(f){
+        var wide = (f.t === "multi") ? " wide" : "";
+        html += "<div class='consult-kyc-f" + wide + "'><label>" + escC(f.en) + " · " + escC(f.vi) + "</label>";
+        if (f.t === "multi") {
+          html += "<select multiple data-k='" + escC(f.k) + "' class='consult-kyc-in'>";
+          (f.options || []).forEach(function(o){ html += "<option value='" + escC(o) + "'>" + escC(o) + "</option>"; });
+          html += "</select>";
+        } else {
+          var itype = (f.k === "email") ? "email" : "text";
+          html += "<input type='" + itype + "' data-k='" + escC(f.k) + "' class='consult-kyc-in'>";
+        }
+        html += "</div>";
+      });
+      html += "</div></div>";
+    });
+    html += "<div class='consult-kyc-prog'><div class='consult-kyc-bar'><i id='chkBar'></i></div><span class='consult-kyc-pct' id='chkPct'>0%</span></div>";
+    html += "<div class='consult-row3'><div><label>Consultation Date</label><input type='date' id='chkConsultDate'></div><div><label>Meeting Format</label><select id='chkFormat'><option>In-person</option><option>Video Call</option><option>Phone</option><option>WhatsApp</option></select></div><div><label>Follow-up Date</label><input type='date' id='chkFollowUp'></div></div>";
+    html += "<label>Advisor notes / next steps</label><textarea id='chkNotes'></textarea>";
+    html += "<div><button type='button' class='consult-btn-primary' id='chkSave'>Save intake + create consultation</button></div><div class='consult-msg' id='chkMsg'></div>";
+    wrap.innerHTML = html;
+    var ins = wrap.querySelectorAll(".consult-kyc-in");
+    for (var i = 0; i < ins.length; i++) ins[i].addEventListener("input", updateKycProgress);
+    document.getElementById("chkSave").addEventListener("click", saveKyc);
+    updateKycProgress();
+  }
+
+  function collectKyc(){
+    var out = {};
+    var ins = document.querySelectorAll("#chKycWrap .consult-kyc-in");
+    for (var i = 0; i < ins.length; i++) {
+      var el = ins[i], k = el.getAttribute("data-k");
+      if (el.multiple) {
+        var vs = [];
+        for (var j = 0; j < el.selectedOptions.length; j++) vs.push(el.selectedOptions[j].value);
+        if (vs.length) out[k] = vs;
+      } else if (el.value.trim()) { out[k] = el.value.trim(); }
+    }
+    return out;
+  }
+
+  function updateKycProgress(){
+    if (!kycSchema) return;
+    var total = 0;
+    kycSchema.forEach(function(s){ total += s.fields.length; });
+    var filled = Object.keys(collectKyc()).length;
+    var pct = total ? Math.round(filled / total * 100) : 0;
+    var bar = document.getElementById("chkBar"), pctEl = document.getElementById("chkPct");
+    if (bar) bar.style.width = pct + "%";
+    if (pctEl) pctEl.textContent = pct + "% · " + filled + "/" + total;
+  }
+
+  function saveKyc(){
+    var msgEl = document.getElementById("chkMsg");
+    var payload = collectKyc();
+    if (!payload.namePassport && !payload.nameEn && !payload.nameVi) {
+      msgEl.style.color = "#c0392b"; msgEl.textContent = "At least a client name is required (section A)."; return;
+    }
+    payload.consultDate = document.getElementById("chkConsultDate").value || undefined;
+    payload.format = document.getElementById("chkFormat").value;
+    payload.followUp = document.getElementById("chkFollowUp").value || undefined;
+    payload.notes = document.getElementById("chkNotes").value.trim();
+    var btn = document.getElementById("chkSave");
+    btn.disabled = true; btn.textContent = "Saving..."; msgEl.style.color = "var(--text3)"; msgEl.textContent = "";
+    fetch(CONSULT_WORKER + "/api/notion/questionnaires", { method: "POST", headers: consultHeaders(), body: JSON.stringify(payload) })
+      .then(function(r){ if (r.status === 401) throw new Error("Invalid access key"); return r.json(); })
+      .then(function(data){
+        btn.disabled = false; btn.textContent = "Save intake + create consultation";
+        if (data.created) {
+          msgEl.style.color = "var(--text3)";
+          msgEl.textContent = data.consultationError ? ("KYC saved; consultation link failed: " + data.consultationError) : ("Saved. Follow-up " + (data.followUp || "") + ".");
+          loadQuestionnaires(); loadConsultations();
+        } else { msgEl.style.color = "#c0392b"; msgEl.textContent = data.error || "Unknown error"; }
+      })
+      .catch(function(e){ btn.disabled = false; btn.textContent = "Save intake + create consultation"; msgEl.style.color = "#c0392b"; msgEl.textContent = e.message; });
+  }
 })();
 </script>
 <script>
