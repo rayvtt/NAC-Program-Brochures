@@ -10,7 +10,11 @@ name: Pull So Sánh data from Notion (fortnightly)
 #      wp-sync.yml, so the WP push is inlined here (same workaround as
 #      pull-notion.yml uses for the brochure family).
 #
-# Runs on the 1st and 15th of every month, plus manual workflow_dispatch.
+# Runs on the 1st and 15th of every month, plus manual workflow_dispatch,
+# plus a push to .github/triggers/** (same chat-driven/cockpit-driven
+# on-demand path the PDP repo's sync-notion.yml uses — a commit fires this
+# within seconds, no PAT beyond ordinary repo-write access, and it works
+# even when the caller's own token can't hit the workflow_dispatch API).
 # Requires NOTION_KEY in repo secrets. NOTIFY_WEBHOOK is optional (a
 # Google Chat incoming-webhook URL, same shape nac-marketing-omnichannel's
 # scripts/notify.mjs posts to) — announcements are skipped, not failed,
@@ -27,6 +31,10 @@ on:
         type: boolean
         required: false
         default: false
+  push:
+    branches: [main]
+    paths:
+      - '.github/triggers/**'
 
 concurrency:
   group: pull-sosanh-notion
