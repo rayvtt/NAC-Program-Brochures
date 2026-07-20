@@ -1,11 +1,10 @@
 {
- "asOf": "20/07/2026",
  "countries": {
   "gr": {
    "code": "gr",
-   "flag": "🇬🇷",
    "vi": "Hy Lạp",
    "en": "Greece",
+   "flag": "🇬🇷",
    "liveInPicker": true,
    "sortOrder": 1,
    "bloc": [
@@ -231,240 +230,11 @@
    "rtDiv": 35.5,
    "rtTax": 16.2
   },
-  "mt": {
-   "code": "mt",
-   "flag": "🇲🇹",
-   "vi": "Malta",
-   "en": "Malta",
-   "liveInPicker": true,
-   "sortOrder": 2,
-   "bloc": [
-    "EU",
-    "Schengen",
-    "NATO"
-   ],
-   "econ": {
-    "vi": "Du lịch",
-    "en": "Tourism"
-   },
-   "rank": {
-    "vi": "185th",
-    "en": "185th"
-   },
-   "nDiv": {
-    "vi": "Thu hút startup công nghệ & fintech.<br>Ví dụ: Binance & Revolut từng đặt trụ sở tại Malta.",
-    "en": "Attracts tech and fintech startups.<br>Example: Binance and Revolut have both had headquarters in Malta."
-   },
-   "nEdu": {
-    "vi": "Học bằng tiếng Anh, chuẩn Anh quốc.<br>Ví dụ: University of Malta liên kết đào tạo với UK.",
-    "en": "Education in English, to British standards.<br>Example: University of Malta partners with UK institutions."
-   },
-   "nGlobal": {
-    "vi": "EU & Commonwealth, tiếng Anh chính thức.<br>Ví dụ: Doanh nhân dễ dàng mở chi nhánh sang London.",
-    "en": "EU & Commonwealth member, English is an official language.<br>Example: Entrepreneurs can easily open a branch in London."
-   },
-   "nHealth": {
-    "vi": "Y tế công + tư top đầu châu Âu.<br>Ví dụ: Mater Dei Hospital được EU tài trợ trực tiếp.",
-    "en": "Public + private healthcare among the best in Europe.<br>Example: Mater Dei Hospital receives direct EU funding."
-   },
-   "nMove": {
-    "vi": "Visa-free 184 nước.<br>Ví dụ: Hộ chiếu Malta được Henley Index xếp hạng top 10 toàn cầu.",
-    "en": "Visa-free access to 184 countries.<br>Example: The Malta passport is ranked top 10 globally by the Henley Index."
-   },
-   "nQol": {
-    "vi": "Môi trường thân thiện, khí hậu lý tưởng.<br>Ví dụ: 300 ngày nắng/năm, chi phí thấp hơn Bắc Âu.",
-    "en": "Friendly environment, ideal climate.<br>Example: 300 sunny days a year, lower cost of living than Northern Europe."
-   },
-   "nSafe": {
-    "vi": "Chính trị ổn định, tài chính minh bạch.<br>Ví dụ: Malta quy định chống rửa tiền chuẩn OECD.",
-    "en": "Politically stable, financially transparent.<br>Example: Malta's anti-money-laundering regulations meet OECD standards."
-   },
-   "nTax": {
-    "vi": "Thuế 35% nhưng hoàn tiền 6/7 cho nhà đầu tư nước ngoài.<br>Ví dụ: Doanh nghiệp chỉ chịu thực tế 5–10% thuế.",
-    "en": "35% tax rate, but foreign investors receive a 6/7 refund.<br>Example: Companies effectively pay only 5–10% tax."
-   },
-   "curr": {
-    "vi": "Euro (EUR). GDP đầu người đạt 38.000 EUR (Eurostat 2024).",
-    "en": "Euro (EUR). GDP per capita reached EUR 38,000 (Eurostat 2024)."
-   },
-   "capEcon": {
-    "vi": "Valletta và khu vực trung tâm chiếm 70% GDP; ngành dịch vụ chiếm 85% tổng sản lượng.",
-    "en": "Valletta and the central region account for 70% of GDP; the services sector makes up 85% of total output."
-   },
-   "econChar": {
-    "vi": "iGaming đóng góp 13% GDP; du lịch 2024 đạt 3,56 triệu khách (+8% YoY).",
-    "en": "iGaming contributes 13% of GDP; tourism reached 3.56 million visitors in 2024 (+8% YoY)."
-   },
-   "infra": {
-    "vi": "Đầu tư 90 triệu EUR vào dự án mở rộng sân bay quốc tế (Times of Malta, 2024).",
-    "en": "EUR 90 million invested in the international airport expansion project (Times of Malta, 2024)."
-   },
-   "tourism": {
-    "vi": "2025 đón 4,02 triệu khách (+12,9%), chi tiêu 3,9 tỷ EUR · iGaming ~13% GDP",
-    "en": "2025 welcomed 4.02 million visitors (+12.9%), spending EUR 3.9 billion · iGaming ~13% of GDP"
-   },
-   "othNews": {
-    "vi": "MEIN (quốc tịch theo đầu tư) đã bãi bỏ sau phán quyết ECJ 04/2025 — thay bằng cơ chế theo công trạng; MPRP không bị ảnh hưởng",
-    "en": "MEIN (citizenship by investment) was abolished following the ECJ ruling in 04/2025 — replaced by a merit-based mechanism; the MPRP is unaffected."
-   },
-   "pit": {
-    "vi": "0–35% (lũy tiến, chế độ remittance)",
-    "en": "0–35% (progressive, remittance-basis regime)"
-   },
-   "cit": {
-    "vi": "35%",
-    "en": "35%"
-   },
-   "inherit": {
-    "vi": "Không có thuế thừa kế chính thức",
-    "en": "No formal inheritance tax"
-   },
-   "bankSafe": {
-    "vi": "Cao (chính sách bảo hiểm tiền gửi EU)",
-    "en": "High (EU deposit insurance scheme)"
-   },
-   "fx": {
-    "vi": "1 EUR = 1.15 USD",
-    "en": "1 EUR = 1.15 USD"
-   },
-   "prog": {
-    "vi": "Thường Trú Nhân",
-    "en": "Permanent Residence"
-   },
-   "progInv": {
-    "vi": "Bất động sản",
-    "en": "Real Estate"
-   },
-   "minCost": {
-    "vi": "Mua BĐS từ €375,000 (toàn Malta & Gozo) HOẶC thuê từ €14,000/năm",
-    "en": "Purchase real estate from €375,000 (all of Malta & Gozo) OR lease from €14,000/year"
-   },
-   "renew": {
-    "vi": "Chứng nhận thường trú trọn đời · thẻ cư trú gia hạn mỗi 5 năm",
-    "en": "Lifetime permanent residence certificate · residence card renewed every 5 years"
-   },
-   "stay": {
-    "vi": "Không yêu cầu lưu trú tối thiểu",
-    "en": "No minimum stay requirement"
-   },
-   "citiz": {
-    "vi": "Nhập tịch sau 5 năm cư trú thực tế (12 tháng liên tục trước khi nộp + 4/6 năm trước đó) — xét duyệt tùy quyết",
-    "en": "Naturalization after 5 years of actual residence (12 continuous months immediately before application + 4 of the preceding 6 years) — approval is discretionary"
-   },
-   "sof": {
-    "vi": "Lịch sử nguồn tiền",
-    "en": "Verified source of funds"
-   },
-   "sponsor": {
-    "vi": "4 thế hệ",
-    "en": "Up to 4 generations"
-   },
-   "deps": {
-    "vi": "Con dưới 29 tuổi (chưa kết hôn, phụ thuộc tài chính) + cha mẹ / ông bà",
-    "en": "Children under 29 (unmarried, financially dependent) + parents / grandparents"
-   },
-   "addMem": {
-    "vi": "Có thể thêm vợ/chồng, con phụ thuộc",
-    "en": "May include spouse and dependent children"
-   },
-   "heir": {
-    "vi": "Có",
-    "en": "Yes"
-   },
-   "dual": {
-    "vi": "Có (cho phép song tịch)",
-    "en": "Yes (dual citizenship allowed)"
-   },
-   "mobility": {
-    "vi": "Khối Schengen (29 nước)",
-    "en": "Schengen Zone (29 countries)"
-   },
-   "e2": {
-    "vi": "Không có hiệp ước E-2 với Mỹ",
-    "en": "No E-2 Treaty with the US"
-   },
-   "growth": {
-    "vi": "≈5,8%/năm (RPPI 2025) — cho thuê ngắn hạn & phân khúc cao cấp",
-    "en": "≈5.8%/year (RPPI 2025) — short-term rentals & the premium segment"
-   },
-   "liquid": {
-    "vi": "Thị trường nhỏ, bán lại được nhưng tính thanh khoản thấp hơn EU lớn",
-    "en": "Small market; resale possible but lower liquidity than larger EU markets"
-   },
-   "maintain": {
-    "vi": "Residency (MPRP) -> citizenship sau 7 năm",
-    "en": "Residency (MPRP) → Citizenship after 7 years"
-   },
-   "feeInit": {
-    "vi": "€370,000 (mua BĐS) hoặc €700,000 (quyên góp + đầu tư)",
-    "en": "€370,000 (real estate) or €700,000 (donation + investment)"
-   },
-   "feeGov": {
-    "vi": "Đóng góp €37,000 (hợp nhất từ 22/07/2025) + phí hành chính €60,000 + quyên góp NGO €2,000 (+€7,500 mỗi người phụ thuộc trưởng thành)",
-    "en": "€37,000 contribution (unified as of 22/07/2025) + €60,000 administrative fee + €2,000 NGO donation (+€7,500 per adult dependent)"
-   },
-   "feeDD": {
-    "vi": "Không còn phí DD riêng — thẩm định nằm trong phí hành chính €60,000 (€15,000 nộp trước, không hoàn lại)",
-    "en": "No separate DD fee — due diligence is included in the €60,000 administrative fee (€15,000 payable upfront, non-refundable)"
-   },
-   "feeAnnual": {
-    "vi": "Không yêu cầu",
-    "en": "Not required"
-   },
-   "feeTotal1": {
-    "vi": "USD 711,200",
-    "en": "USD 711,200"
-   },
-   "feeTotal2": {
-    "vi": "USD 721,000",
-    "en": "USD 721,000"
-   },
-   "feeNote": {
-    "vi": "MPRP mở bình thường — cải cách LN 146/2025 (07/2025) hợp nhất mức đóng góp €37,000; giữ BĐS đủ chuẩn 5 năm",
-    "en": "MPRP is open as normal — reform LN 146/2025 (07/2025) unified the contribution at €37,000; qualifying real estate must be held for 5 years"
-   },
-   "r1": {
-    "vi": "Ổn định chính trị & pháp lý (EU)",
-    "en": "Political and legal stability (EU)"
-   },
-   "r2": {
-    "vi": "Chương trình thu hút đầu tư tài chính & doanh nhân",
-    "en": "Investment program geared toward financiers and entrepreneurs"
-   },
-   "r3": {
-    "vi": "Hệ thống y tế và giáo dục chất lượng cao",
-    "en": "High-quality healthcare and education systems"
-   },
-   "r4": {
-    "vi": "Cơ chế thuế hợp lý cho cá nhân doanh nhân (ưu đãi)",
-    "en": "Favourable tax regime for entrepreneurial individuals (incentives available)"
-   },
-   "r5": {
-    "vi": "Mạng lưới tiếng Anh rộng — dễ hội nhập thị trường dịch vụ",
-    "en": "Widespread English use — easy integration into the services market"
-   },
-   "gdp": 4,
-   "infl": 2.4,
-   "debt": 46,
-   "polstab": 7.7,
-   "corrupt": 51,
-   "vat": 18,
-   "vfree": 185,
-   "rtCost": 62.9,
-   "rtEdu": 62.9,
-   "rtGlobal": 83.5,
-   "rtMove": 40,
-   "rtHealth": 54.5,
-   "rtQol": 60,
-   "rtSafe": 58.1,
-   "rtDiv": 47,
-   "rtTax": 31.5
-  },
   "cy": {
    "code": "cy",
-   "flag": "🇨🇾",
    "vi": "Síp",
    "en": "Cyprus",
+   "flag": "🇨🇾",
    "liveInPicker": true,
    "sortOrder": 3,
    "bloc": [
@@ -691,9 +461,9 @@
   },
   "pt": {
    "code": "pt",
-   "flag": "🇵🇹",
    "vi": "Bồ Đào Nha",
    "en": "Portugal",
+   "flag": "🇵🇹",
    "liveInPicker": true,
    "sortOrder": 5,
    "bloc": [
@@ -919,11 +689,240 @@
    "rtDiv": 63.2,
    "rtTax": 39.1
   },
+  "mt": {
+   "code": "mt",
+   "vi": "Malta",
+   "en": "Malta",
+   "flag": "🇲🇹",
+   "liveInPicker": true,
+   "sortOrder": 2,
+   "bloc": [
+    "EU",
+    "Schengen",
+    "NATO"
+   ],
+   "econ": {
+    "vi": "Du lịch",
+    "en": "Tourism"
+   },
+   "rank": {
+    "vi": "185th",
+    "en": "185th"
+   },
+   "nDiv": {
+    "vi": "Thu hút startup công nghệ & fintech.<br>Ví dụ: Binance & Revolut từng đặt trụ sở tại Malta.",
+    "en": "Attracts tech and fintech startups.<br>Example: Binance and Revolut have both had headquarters in Malta."
+   },
+   "nEdu": {
+    "vi": "Học bằng tiếng Anh, chuẩn Anh quốc.<br>Ví dụ: University of Malta liên kết đào tạo với UK.",
+    "en": "Education in English, to British standards.<br>Example: University of Malta partners with UK institutions."
+   },
+   "nGlobal": {
+    "vi": "EU & Commonwealth, tiếng Anh chính thức.<br>Ví dụ: Doanh nhân dễ dàng mở chi nhánh sang London.",
+    "en": "EU & Commonwealth member, English is an official language.<br>Example: Entrepreneurs can easily open a branch in London."
+   },
+   "nHealth": {
+    "vi": "Y tế công + tư top đầu châu Âu.<br>Ví dụ: Mater Dei Hospital được EU tài trợ trực tiếp.",
+    "en": "Public + private healthcare among the best in Europe.<br>Example: Mater Dei Hospital receives direct EU funding."
+   },
+   "nMove": {
+    "vi": "Visa-free 184 nước.<br>Ví dụ: Hộ chiếu Malta được Henley Index xếp hạng top 10 toàn cầu.",
+    "en": "Visa-free access to 184 countries.<br>Example: The Malta passport is ranked top 10 globally by the Henley Index."
+   },
+   "nQol": {
+    "vi": "Môi trường thân thiện, khí hậu lý tưởng.<br>Ví dụ: 300 ngày nắng/năm, chi phí thấp hơn Bắc Âu.",
+    "en": "Friendly environment, ideal climate.<br>Example: 300 sunny days a year, lower cost of living than Northern Europe."
+   },
+   "nSafe": {
+    "vi": "Chính trị ổn định, tài chính minh bạch.<br>Ví dụ: Malta quy định chống rửa tiền chuẩn OECD.",
+    "en": "Politically stable, financially transparent.<br>Example: Malta's anti-money-laundering regulations meet OECD standards."
+   },
+   "nTax": {
+    "vi": "Thuế 35% nhưng hoàn tiền 6/7 cho nhà đầu tư nước ngoài.<br>Ví dụ: Doanh nghiệp chỉ chịu thực tế 5–10% thuế.",
+    "en": "35% tax rate, but foreign investors receive a 6/7 refund.<br>Example: Companies effectively pay only 5–10% tax."
+   },
+   "curr": {
+    "vi": "Euro (EUR). GDP đầu người đạt 38.000 EUR (Eurostat 2024).",
+    "en": "Euro (EUR). GDP per capita reached EUR 38,000 (Eurostat 2024)."
+   },
+   "capEcon": {
+    "vi": "Valletta và khu vực trung tâm chiếm 70% GDP; ngành dịch vụ chiếm 85% tổng sản lượng.",
+    "en": "Valletta and the central region account for 70% of GDP; the services sector makes up 85% of total output."
+   },
+   "econChar": {
+    "vi": "iGaming đóng góp 13% GDP; du lịch 2024 đạt 3,56 triệu khách (+8% YoY).",
+    "en": "iGaming contributes 13% of GDP; tourism reached 3.56 million visitors in 2024 (+8% YoY)."
+   },
+   "infra": {
+    "vi": "Đầu tư 90 triệu EUR vào dự án mở rộng sân bay quốc tế (Times of Malta, 2024).",
+    "en": "EUR 90 million invested in the international airport expansion project (Times of Malta, 2024)."
+   },
+   "tourism": {
+    "vi": "2025 đón 4,02 triệu khách (+12,9%), chi tiêu 3,9 tỷ EUR · iGaming ~13% GDP",
+    "en": "2025 welcomed 4.02 million visitors (+12.9%), spending EUR 3.9 billion · iGaming ~13% of GDP"
+   },
+   "othNews": {
+    "vi": "MEIN (quốc tịch theo đầu tư) đã bãi bỏ sau phán quyết ECJ 04/2025 — thay bằng cơ chế theo công trạng; MPRP không bị ảnh hưởng",
+    "en": "MEIN (citizenship by investment) was abolished following the ECJ ruling in 04/2025 — replaced by a merit-based mechanism; the MPRP is unaffected."
+   },
+   "pit": {
+    "vi": "0–35% (lũy tiến, chế độ remittance)",
+    "en": "0–35% (progressive, remittance-basis regime)"
+   },
+   "cit": {
+    "vi": "35%",
+    "en": "35%"
+   },
+   "inherit": {
+    "vi": "Không có thuế thừa kế chính thức",
+    "en": "No formal inheritance tax"
+   },
+   "bankSafe": {
+    "vi": "Cao (chính sách bảo hiểm tiền gửi EU)",
+    "en": "High (EU deposit insurance scheme)"
+   },
+   "fx": {
+    "vi": "1 EUR = 1.15 USD",
+    "en": "1 EUR = 1.15 USD"
+   },
+   "prog": {
+    "vi": "Thường Trú Nhân",
+    "en": "Permanent Residence"
+   },
+   "progInv": {
+    "vi": "Bất động sản",
+    "en": "Real Estate"
+   },
+   "minCost": {
+    "vi": "Mua BĐS từ €375,000 (toàn Malta & Gozo) HOẶC thuê từ €14,000/năm",
+    "en": "Purchase real estate from €375,000 (all of Malta & Gozo) OR lease from €14,000/year"
+   },
+   "renew": {
+    "vi": "Chứng nhận thường trú trọn đời · thẻ cư trú gia hạn mỗi 5 năm",
+    "en": "Lifetime permanent residence certificate · residence card renewed every 5 years"
+   },
+   "stay": {
+    "vi": "Không yêu cầu lưu trú tối thiểu",
+    "en": "No minimum stay requirement"
+   },
+   "citiz": {
+    "vi": "Nhập tịch sau 5 năm cư trú thực tế (12 tháng liên tục trước khi nộp + 4/6 năm trước đó) — xét duyệt tùy quyết",
+    "en": "Naturalization after 5 years of actual residence (12 continuous months immediately before application + 4 of the preceding 6 years) — approval is discretionary"
+   },
+   "sof": {
+    "vi": "Lịch sử nguồn tiền",
+    "en": "Verified source of funds"
+   },
+   "sponsor": {
+    "vi": "4 thế hệ",
+    "en": "Up to 4 generations"
+   },
+   "deps": {
+    "vi": "Con dưới 29 tuổi (chưa kết hôn, phụ thuộc tài chính) + cha mẹ / ông bà",
+    "en": "Children under 29 (unmarried, financially dependent) + parents / grandparents"
+   },
+   "addMem": {
+    "vi": "Có thể thêm vợ/chồng, con phụ thuộc",
+    "en": "May include spouse and dependent children"
+   },
+   "heir": {
+    "vi": "Có",
+    "en": "Yes"
+   },
+   "dual": {
+    "vi": "Có (cho phép song tịch)",
+    "en": "Yes (dual citizenship allowed)"
+   },
+   "mobility": {
+    "vi": "Khối Schengen (29 nước)",
+    "en": "Schengen Zone (29 countries)"
+   },
+   "e2": {
+    "vi": "Không có hiệp ước E-2 với Mỹ",
+    "en": "No E-2 Treaty with the US"
+   },
+   "growth": {
+    "vi": "≈5,8%/năm (RPPI 2025) — cho thuê ngắn hạn & phân khúc cao cấp",
+    "en": "≈5.8%/year (RPPI 2025) — short-term rentals & the premium segment"
+   },
+   "liquid": {
+    "vi": "Thị trường nhỏ, bán lại được nhưng tính thanh khoản thấp hơn EU lớn",
+    "en": "Small market; resale possible but lower liquidity than larger EU markets"
+   },
+   "maintain": {
+    "vi": "Residency (MPRP) -> citizenship sau 7 năm",
+    "en": "Residency (MPRP) → Citizenship after 7 years"
+   },
+   "feeInit": {
+    "vi": "€370,000 (mua BĐS) hoặc €700,000 (quyên góp + đầu tư)",
+    "en": "€370,000 (real estate) or €700,000 (donation + investment)"
+   },
+   "feeGov": {
+    "vi": "Đóng góp €37,000 (hợp nhất từ 22/07/2025) + phí hành chính €60,000 + quyên góp NGO €2,000 (+€7,500 mỗi người phụ thuộc trưởng thành)",
+    "en": "€37,000 contribution (unified as of 22/07/2025) + €60,000 administrative fee + €2,000 NGO donation (+€7,500 per adult dependent)"
+   },
+   "feeDD": {
+    "vi": "Không còn phí DD riêng — thẩm định nằm trong phí hành chính €60,000 (€15,000 nộp trước, không hoàn lại)",
+    "en": "No separate DD fee — due diligence is included in the €60,000 administrative fee (€15,000 payable upfront, non-refundable)"
+   },
+   "feeAnnual": {
+    "vi": "Không yêu cầu",
+    "en": "Not required"
+   },
+   "feeTotal1": {
+    "vi": "USD 711,200",
+    "en": "USD 711,200"
+   },
+   "feeTotal2": {
+    "vi": "USD 721,000",
+    "en": "USD 721,000"
+   },
+   "feeNote": {
+    "vi": "MPRP mở bình thường — cải cách LN 146/2025 (07/2025) hợp nhất mức đóng góp €37,000; giữ BĐS đủ chuẩn 5 năm",
+    "en": "MPRP is open as normal — reform LN 146/2025 (07/2025) unified the contribution at €37,000; qualifying real estate must be held for 5 years"
+   },
+   "r1": {
+    "vi": "Ổn định chính trị & pháp lý (EU)",
+    "en": "Political and legal stability (EU)"
+   },
+   "r2": {
+    "vi": "Chương trình thu hút đầu tư tài chính & doanh nhân",
+    "en": "Investment program geared toward financiers and entrepreneurs"
+   },
+   "r3": {
+    "vi": "Hệ thống y tế và giáo dục chất lượng cao",
+    "en": "High-quality healthcare and education systems"
+   },
+   "r4": {
+    "vi": "Cơ chế thuế hợp lý cho cá nhân doanh nhân (ưu đãi)",
+    "en": "Favourable tax regime for entrepreneurial individuals (incentives available)"
+   },
+   "r5": {
+    "vi": "Mạng lưới tiếng Anh rộng — dễ hội nhập thị trường dịch vụ",
+    "en": "Widespread English use — easy integration into the services market"
+   },
+   "gdp": 4,
+   "infl": 2.4,
+   "debt": 46,
+   "polstab": 7.7,
+   "corrupt": 51,
+   "vat": 18,
+   "vfree": 185,
+   "rtCost": 62.9,
+   "rtEdu": 62.9,
+   "rtGlobal": 83.5,
+   "rtMove": 40,
+   "rtHealth": 54.5,
+   "rtQol": 60,
+   "rtSafe": 58.1,
+   "rtDiv": 47,
+   "rtTax": 31.5
+  },
   "tr": {
    "code": "tr",
-   "flag": "🇹🇷",
    "vi": "Thổ Nhĩ Kỳ",
    "en": "Türkiye",
+   "flag": "🇹🇷",
    "liveInPicker": true,
    "sortOrder": 4,
    "bloc": [
@@ -1046,7 +1045,7 @@
     "en": "3 generations"
    },
    "deps": {
-    "vi": "<18 tuổi",
+    "vi": "< 18 tuổi",
     "en": "Under 18 years old"
    },
    "addMem": {
@@ -1146,11 +1145,441 @@
    "rtDiv": 80,
    "rtTax": 55
   },
+  "cb": {
+   "code": "cb",
+   "vi": "Caribbean",
+   "en": "Caribbean",
+   "flag": "🇰🇳",
+   "liveInPicker": true,
+   "sortOrder": 10,
+   "bloc": [
+    "CARICOM",
+    "Commonwealth"
+   ],
+   "econ": {
+    "vi": "Du lịch, Dịch vụ tài chính",
+    "en": "Tourism, Financial Services"
+   },
+   "rank": {
+    "vi": "75th",
+    "en": "75th"
+   },
+   "nDiv": {
+    "vi": "Đa dạng hóa danh mục: hộ chiếu + quỹ tài chính.<br>Ví dụ: Nhà đầu tư VN dùng CBI để tránh giới hạn EU/US.",
+    "en": "Portfolio diversification: passport + financial funds.<br>Example: Vietnamese investors use CBI to bypass EU/US restrictions."
+   },
+   "nEdu": {
+    "vi": "Học phí thấp, chương trình Anh ngữ.<br>Ví dụ: Ross University (Dominica) đào tạo y khoa quốc tế.",
+    "en": "Low tuition, English-language programs.<br>Example: Ross University (Dominica) provides international medical education."
+   },
+   "nGlobal": {
+    "vi": "Commonwealth, kết nối rộng toàn cầu.<br>Ví dụ: Dễ xin visa dài hạn Canada & UK.",
+    "en": "Commonwealth membership, broad global connections.<br>Example: Easier long-term visas for Canada and the UK."
+   },
+   "nHealth": {
+    "vi": "Dịch vụ y tế cơ bản, tư nhân phát triển.<br>Ví dụ: Hospital St. Lucia phục vụ tiêu chuẩn Mỹ.",
+    "en": "Basic healthcare services, developed private sector.<br>Example: Hospitals in St. Lucia operate to US standards."
+   },
+   "nMove": {
+    "vi": "Visa-free ~150 quốc gia.<br>Ví dụ: Hộ chiếu St. Kitts hoặc Grenada cho phép nhập cảnh Anh, EU, Singapore.",
+    "en": "Visa-free access to ~150 countries.<br>Example: St. Kitts or Grenada passports allow entry to the UK, EU, and Singapore."
+   },
+   "nSafe": {
+    "vi": "Hộ chiếu thứ hai giúp bảo vệ tài sản.<br>Ví dụ: Dễ mở tài khoản offshore tại Singapore.",
+    "en": "A second passport helps protect assets.<br>Example: Easier to open offshore accounts in Singapore."
+   },
+   "nTax": {
+    "vi": "Không thuế thu nhập, không thuế thừa kế.<br>Ví dụ: Dominica miễn thuế thu nhập toàn cầu.",
+    "en": "No income tax, no inheritance tax.<br>Example: Dominica exempts worldwide income from tax."
+   },
+   "curr": {
+    "vi": "USD hoặc nội tệ neo theo USD; lạm phát khu vực ~ 3,5% (IMF 2024).",
+    "en": "USD (Caribbean)"
+   },
+   "capEcon": {
+    "vi": "Thủ đô kinh tế (Barbados, Bahamas) chiếm hơn 40% GDP dịch vụ.",
+    "en": "Barbados, Bahamas: over 40% of GDP from services, tourism, and banking."
+   },
+   "econChar": {
+    "vi": "Du lịch chiếm 35–80% GDP tùy quốc gia; lượng khách toàn vùng 2024 đạt 34 triệu (+7% YoY).",
+    "en": "Tourism accounts for 35–80% of GDP depending on the country; regional visitor arrivals reached 34 million in 2024 (+7% YoY)."
+   },
+   "infra": {
+    "vi": "Đầu tư 1,1 tỷ USD vào hạ tầng khách sạn và sân bay khu vực (CTO 2024).",
+    "en": "USD 1.1 billion invested in regional hotel and airport infrastructure (CTO 2024)."
+   },
+   "tourism": {
+    "vi": "Chi tiêu du khách trung bình 1.560 USD/người (Caribbean Tourism Org).",
+    "en": "Average visitor spending of USD 1,560 per person (Caribbean Tourism Organization)."
+   },
+   "othNews": {
+    "vi": "Tăng trưởng khu vực 3,2% năm 2024 (World Bank).",
+    "en": "Regional growth of 3.2% in 2024 (World Bank)."
+   },
+   "pit": {
+    "vi": "0–25% (tùy nước, thường thấp)",
+    "en": "0–25% (tourism/exports)"
+   },
+   "cit": {
+    "vi": "25%",
+    "en": "25%"
+   },
+   "inherit": {
+    "vi": "Không có thuế thừa kế hoặc tài sản",
+    "en": "No inheritance or estate tax"
+   },
+   "bankSafe": {
+    "vi": "Ổn định, chịu giám sát FATF & IMF",
+    "en": "Stable, subject to FATF and IMF oversight"
+   },
+   "fx": {
+    "vi": "1 USD = 2.70 XCD (cố định từ 1976, áp dụng cả hai)",
+    "en": "1 USD = 2.70 XCD (fixed since 1976, applies to both)"
+   },
+   "prog": {
+    "vi": "Quốc Tịch",
+    "en": "Citizenship"
+   },
+   "progInv": {
+    "vi": "Bất động sản",
+    "en": "Real Estate"
+   },
+   "minCost": {
+    "vi": "Dominica: đóng góp EDF từ USD 200,000 (hoặc BĐS từ USD 200,000, giữ 3-5 năm) · St Lucia: Quỹ Kinh tế từ USD 240,000",
+    "en": "Dominica: EDF contribution from USD 200,000 (or real estate from USD 200,000, held 3–5 years) · St Lucia: Economic Fund from USD 240,000"
+   },
+   "renew": {
+    "vi": "Không yêu cầu",
+    "en": "Lifetime"
+   },
+   "stay": {
+    "vi": "Không yêu cầu lưu trú (cả hai chương trình)",
+    "en": "Not required"
+   },
+   "citiz": {
+    "vi": "Dominica: ~6-9 tháng · St Lucia: mục tiêu 90-120 ngày",
+    "en": "Dominica: ~6–9 months · St Lucia: target 90–120 days"
+   },
+   "sof": {
+    "vi": "Chứng minh nguồn tiền sạch & lý lịch tư pháp",
+    "en": "Verified financial origin"
+   },
+   "sponsor": {
+    "vi": "4 thế hệ",
+    "en": "Up to 4 generations"
+   },
+   "deps": {
+    "vi": "< 25 tuổi",
+    "en": "Under 25 years old"
+   },
+   "addMem": {
+    "vi": "Có thể thêm vợ/chồng, con phụ thuộc",
+    "en": "May include spouse, children, and dependents"
+   },
+   "heir": {
+    "vi": "Không",
+    "en": "No"
+   },
+   "dual": {
+    "vi": "Có (đa số các quốc gia Caribbean cho phép)",
+    "en": "Most Caribbean states allow dual citizenship"
+   },
+   "mobility": {
+    "vi": "Visa-free Anh, EU, Singapore, Hong Kong",
+    "en": "Visa-free UK, EU, Singapore, Hong Kong"
+   },
+   "e2": {
+    "vi": "Không có hiệp ước E-2 với Mỹ — cả Dominica và St Lucia đều không đủ điều kiện",
+    "en": "No E-2 Treaty with the US — neither Dominica nor St Lucia qualifies"
+   },
+   "growth": {
+    "vi": "2–6% (varies by island; often low yield but stable demand)",
+    "en": "2–6% (varies by island; often low yield but stable demand)"
+   },
+   "liquid": {
+    "vi": "Một số chương trình yêu cầu giữ quyền sở hữu 3–5 năm trước khi bán",
+    "en": "Resalable after a 3–5 year holding period (varies by program)"
+   },
+   "maintain": {
+    "vi": "Citizenship (vĩnh viễn)",
+    "en": "Citizenship (permanent)"
+   },
+   "feeInit": {
+    "vi": "USD 150,000 (quyên góp) hoặc USD 190,000 (BĐS)",
+    "en": "USD 150,000 (donation) or USD 190,000 (real estate)"
+   },
+   "feeGov": {
+    "vi": "Dominica: phí thẩm định USD 7,500 (chính) + USD 4,000/người phụ thuộc từ 16 tuổi",
+    "en": "Dominica: due diligence fee USD 7,500 (main applicant) + USD 4,000 per dependent aged 16 and above"
+   },
+   "feeDD": {
+    "vi": "USD 7,500",
+    "en": "USD 7,500"
+   },
+   "feeAnnual": {
+    "vi": "Không yêu cầu",
+    "en": "Not required"
+   },
+   "feeTotal1": {
+    "vi": "USD 295,000",
+    "en": "USD 295,000"
+   },
+   "feeTotal2": {
+    "vi": "USD 306,250",
+    "en": "USD 306,250"
+   },
+   "feeNote": {
+    "vi": "Citizenship (CBI) trong 3–6 tháng; không yêu cầu cư trú",
+    "en": "Citizenship by Investment (CBI) within 3–6 months; no residency requirement"
+   },
+   "r1": {
+    "vi": "Citizenship by Investment: thời gian cấp nhanh",
+    "en": "Citizenship by Investment: fast processing time"
+   },
+   "r2": {
+    "vi": "Quyền đi lại/visa-free tốt cho nhiều nước",
+    "en": "Strong visa-free travel to many countries"
+   },
+   "r3": {
+    "vi": "Hệ thống thuế thân thiện (thuế thu nhập/di sản thấp)",
+    "en": "Tax-friendly system (low income/estate taxes)"
+   },
+   "r4": {
+    "vi": "Gia đình được bao gồm (vợ/chồng, con phụ thuộc)",
+    "en": "Family inclusion (spouse, dependent children)"
+   },
+   "r5": {
+    "vi": "Thủ tục minh bạch, bảo mật thông tin, thích hợp người cần speed-to-passport",
+    "en": "Transparent, confidential process — ideal for those needing speed-to-passport"
+   },
+   "gdp": 2.8,
+   "infl": 2,
+   "debt": 89,
+   "polstab": 6.5,
+   "corrupt": 55,
+   "vat": 15,
+   "vfree": 137,
+   "rtCost": 89,
+   "rtEdu": 13.4,
+   "rtGlobal": 17.5,
+   "rtMove": 68,
+   "rtHealth": 14.4,
+   "rtQol": 11.5,
+   "rtSafe": 20,
+   "rtDiv": 7.9,
+   "rtTax": 100
+  },
+  "my": {
+   "code": "my",
+   "vi": "Malaysia",
+   "en": "Malaysia",
+   "flag": "🇲🇾",
+   "liveInPicker": true,
+   "sortOrder": 7,
+   "bloc": [
+    "ASEAN",
+    "APEC",
+    "RCEP",
+    "Commonwealth"
+   ],
+   "econ": {
+    "vi": "Sản xuất, tài chính, dầu khí, công nghệ",
+    "en": "Manufacturing, Trade, Technology"
+   },
+   "rank": {
+    "vi": "35th",
+    "en": "35th"
+   },
+   "nDiv": {
+    "vi": "Đầu tư Hồi giáo (Sukuk), năng lượng tái tạo, tài chính xanh 🌱.",
+    "en": "Islamic investment (Sukuk), renewable energy, and green finance 🌱."
+   },
+   "nEdu": {
+    "vi": "Hệ thống giáo dục đa ngôn ngữ 🌏.<br>Ví dụ: University of Malaya, Taylor’s University.",
+    "en": "Multilingual education system 🌏.<br>Example: University of Malaya, Taylor’s University."
+   },
+   "nGlobal": {
+    "vi": "ASEAN, APEC, RCEP, trung tâm tài chính & công nghiệp khu vực.",
+    "en": "Member of ASEAN, APEC, and RCEP; a regional financial and industrial hub."
+   },
+   "nHealth": {
+    "vi": "Hệ thống y tế công & tư tốt 🏥; du lịch y tế phát triển (top ASEAN).",
+    "en": "Strong public & private healthcare system 🏥; a leading medical tourism destination (top in ASEAN)."
+   },
+   "nMove": {
+    "vi": "Chương trình MM2H Visa cho cư trú 5–10 năm, linh hoạt cho gia đình.",
+    "en": "The MM2H Visa program offers 5–10 years of residency, flexible for families."
+   },
+   "nQol": {
+    "vi": "Khung pháp lý ổn định, đất & BĐS dễ tiếp cận 🏗️.",
+    "en": "Stable legal framework; accessible land and real estate 🏗️."
+   },
+   "nSafe": {
+    "vi": "Khung pháp lý ổn định, đất & BĐS dễ tiếp cận 🏗️.",
+    "en": "Stable legal framework; accessible land and real estate 🏗️."
+   },
+   "nTax": {
+    "vi": "Thuế DN 24%, miễn thuế cổ tức đầu tư nước ngoài 💸.",
+    "en": "24% corporate tax; foreign investment dividends are tax-exempt 💸."
+   },
+   "curr": {
+    "vi": "Ringgit (MYR). Tỷ giá trung bình 4,7 MYR/USD; lạm phát ~ 2,2% (BNM 2024).",
+    "en": "Ringgit (MYR)"
+   },
+   "capEcon": {
+    "vi": "Kuala Lumpur chiếm 45% GDP; FDI 2024 đạt USD 17,2 tỷ (+6,5%).",
+    "en": "Kuala Lumpur accounts for 45% of GDP; 2024 FDI reached USD 17.2 billion (+6.5%)."
+   },
+   "econChar": {
+    "vi": "Xuất khẩu điện tử tăng 5,9%; du lịch 2024 đạt 26 triệu khách.",
+    "en": "Electronics exports grew 5.9%; tourism reached 26 million visitors in 2024."
+   },
+   "infra": {
+    "vi": "Dự án khu công nghiệp Bandar Malaysia (2,6 tỷ USD) khởi công 2024.",
+    "en": "The Bandar Malaysia industrial project (USD 2.6 billion) broke ground in 2024."
+   },
+   "tourism": {
+    "vi": "Du lịch đóng góp RM 95,7 tỷ (+13% YoY, Tourism Malaysia).",
+    "en": "Tourism contributed RM 95.7 billion (+13% YoY, Tourism Malaysia)."
+   },
+   "othNews": {
+    "vi": "Thêm bậc SEZ tại Forest City (từ 01/2025); thuế trước bạ 8% cho người nước ngoài mua BĐS từ 01/2026; mốc lưu trú giữ nguyên 90 ngày (tin đồn giảm còn 60 ngày không xảy ra)",
+    "en": "An additional SEZ tier launched at Forest City (from 01/2025); an 8% stamp duty applies to foreign property buyers starting 01/2026; the 90-day stay threshold remains unchanged (the rumored reduction to 60 days did not happen)."
+   },
+   "pit": {
+    "vi": "0–30% (lũy tiến, cao nhất ~30%)",
+    "en": "0–30% (progressive, up to ~30%)"
+   },
+   "inherit": {
+    "vi": "Không có thuế thừa kế phổ biến; một số quy định về chuyển giao tài sản",
+    "en": "No inheritance tax"
+   },
+   "bankSafe": {
+    "vi": "Cao (hệ thống ngân hàng được giám sát, thanh khoản tốt)",
+    "en": "High (top ASEAN banking rank)"
+   },
+   "fx": {
+    "vi": "1 USD = 4.09 MYR",
+    "en": "1 USD = 4.09 MYR"
+   },
+   "prog": {
+    "vi": "Thường Trú Nhân",
+    "en": "Permanent Residence"
+   },
+   "progInv": {
+    "vi": "MM2H (cư trú dài hạn) hoặc đầu tư/doanh nghiệp - BĐS người nước ngoài được phép mua)",
+    "en": "MM2H (long-term residency) or investment/business — foreign buyers are permitted to purchase real estate."
+   },
+   "minCost": {
+    "vi": "MM2H Platinum: tiền gửi USD 1,000,000 (rút tối đa 50%) + bắt buộc mua BĐS từ RM 2,000,000 (giữ 10 năm) + phí chính phủ RM 200,000 — không yêu cầu chứng minh thu nhập",
+    "en": "MM2H Platinum: a USD 1,000,000 fixed deposit (up to 50% withdrawable) + a mandatory RM 2,000,000+ property purchase (held for 10 years) + a RM 200,000 government fee — no proof of income required."
+   },
+   "renew": {
+    "vi": "5–10 năm (gia hạn được)",
+    "en": "5–10 years"
+   },
+   "stay": {
+    "vi": "90 ngày/năm (cộng dồn, không cần liên tục) — áp dụng cả Platinum/Gold/Silver",
+    "en": "90 days/year (cumulative, not required to be consecutive) — applies to the Platinum/Gold/Silver tiers alike."
+   },
+   "citiz": {
+    "vi": "Không có lộ trình PR/quốc tịch qua MM2H (đã hủy năm 2024) — nhập tịch tổng quát cần 10 năm cư trú riêng biệt, không liên quan MM2H",
+    "en": "No PR/citizenship pathway via MM2H (cancelled in 2024) — general naturalization requires 10 years of separate residency, unrelated to MM2H."
+   },
+   "sof": {
+    "vi": "Chứng minh tài sản ≥ MYR 1.5 triệu + thu nhập ≥ MYR 40,000/tháng",
+    "en": "Proof of assets ≥ MYR 1.5 million + income ≥ MYR 40,000/month."
+   },
+   "sponsor": {
+    "vi": "3 thế hệ",
+    "en": "Up to 3 generations"
+   },
+   "deps": {
+    "vi": "< 18 tuổi",
+    "en": "Under 18 years old"
+   },
+   "addMem": {
+    "vi": "Có thể thêm vợ/chồng, con phụ thuộc",
+    "en": "May include spouse, children, and dependents"
+   },
+   "heir": {
+    "vi": "Không",
+    "en": "No"
+   },
+   "dual": {
+    "vi": "Không (phải từ bỏ quốc tịch gốc)",
+    "en": "Not allowed (based on country of origin)"
+   },
+   "mobility": {
+    "vi": "ASEAN, Commonwealth",
+    "en": "ASEAN, Commonwealth"
+   },
+   "e2": {
+    "vi": "Không có hiệp ước E-2 với Mỹ",
+    "en": "No E2 Treaty with the US"
+   },
+   "growth": {
+    "vi": "5–7% (KL, Penang – thị trường đô thị & nghỉ dưỡng)",
+    "en": "5–7% (Kuala Lumpur, Penang — urban & resort markets)"
+   },
+   "liquid": {
+    "vi": "Tự do bán lại nếu tuân thủ quy định người nước ngoài (nếu > 1 triệu RM)",
+    "en": "Resale to locals & foreigners (≥1M RM)"
+   },
+   "maintain": {
+    "vi": "MM2H Residency -> duy trì tài chính & lưu trú",
+    "en": "MM2H Residency -> maintain financial and stay requirements"
+   },
+   "feeInit": {
+    "vi": "MYR 1,000,000 (BĐS) + MYR 500,000 (ký quỹ ngân hàng)",
+    "en": "MYR 1,000,000 (real estate) + MYR 500,000 (bank deposit)."
+   },
+   "feeGov": {
+    "vi": "Phí chính phủ (một lần): Platinum RM 200,000 · Gold RM 3,000 · Silver RM 1,000 — phí gia hạn 5 năm: RM 5,000/3,000/1,500",
+    "en": "Government fee (one-time): Platinum RM 200,000 · Gold RM 3,000 · Silver RM 1,000 — 5-year renewal fee: RM 5,000/3,000/1,500."
+   },
+   "feeDD": {
+    "vi": "MYR 2,000",
+    "en": "MYR 2,000"
+   },
+   "feeAnnual": {
+    "vi": "MYR 500–1,000",
+    "en": "MYR 500–1,000/year"
+   },
+   "feeTotal1": {
+    "vi": "USD 233,450",
+    "en": "USD 233,450"
+   },
+   "feeTotal2": {
+    "vi": "USD 234,312.50",
+    "en": "USD 234,312.50"
+   },
+   "feeNote": {
+    "vi": "MM2H; visa 5–10 năm, có thể gia hạn; yêu cầu chứng minh tài chính",
+    "en": "MM2H Visa: renewable 5–10 years, not automatic PR"
+   },
+   "gdp": 5.2,
+   "infl": 1.4,
+   "debt": 63.1,
+   "polstab": 7,
+   "corrupt": 47,
+   "vat": 6,
+   "vfree": 180,
+   "rtCost": 87.6,
+   "rtEdu": 38.1,
+   "rtGlobal": 50.5,
+   "rtMove": 31,
+   "rtHealth": 41.1,
+   "rtQol": 38.9,
+   "rtSafe": 39.1,
+   "rtDiv": 24,
+   "rtTax": 8.6
+  },
   "th": {
    "code": "th",
-   "flag": "🇹🇭",
    "vi": "Thái Lan",
    "en": "Thailand",
+   "flag": "🇹🇭",
    "liveInPicker": true,
    "sortOrder": 6,
    "bloc": [
@@ -1271,7 +1700,7 @@
     "en": "Up to 3 generations"
    },
    "deps": {
-    "vi": "<18 tuổi",
+    "vi": "< 18 tuổi",
     "en": "Under 18 years old"
    },
    "addMem": {
@@ -1351,423 +1780,11 @@
    "rtDiv": 12.5,
    "rtTax": 1
   },
-  "my": {
-   "code": "my",
-   "flag": "🇲🇾",
-   "vi": "Malaysia",
-   "en": "Malaysia",
-   "liveInPicker": true,
-   "sortOrder": 7,
-   "bloc": [
-    "ASEAN",
-    "APEC",
-    "RCEP",
-    "Commonwealth"
-   ],
-   "econ": {
-    "vi": "Sản xuất, tài chính, dầu khí, công nghệ",
-    "en": "Manufacturing, Trade, Technology"
-   },
-   "rank": {
-    "vi": "35th",
-    "en": "35th"
-   },
-   "nDiv": {
-    "vi": "Đầu tư Hồi giáo (Sukuk), năng lượng tái tạo, tài chính xanh 🌱.",
-    "en": "Islamic investment (Sukuk), renewable energy, and green finance 🌱."
-   },
-   "nEdu": {
-    "vi": "Hệ thống giáo dục đa ngôn ngữ 🌏.<br>Ví dụ: University of Malaya, Taylor's University.",
-    "en": "Multilingual education system 🌏.<br>Example: University of Malaya, Taylor's University."
-   },
-   "nGlobal": {
-    "vi": "ASEAN, APEC, RCEP, trung tâm tài chính & công nghiệp khu vực.",
-    "en": "Member of ASEAN, APEC, and RCEP; a regional financial and industrial hub."
-   },
-   "nHealth": {
-    "vi": "Hệ thống y tế công & tư tốt 🏥; du lịch y tế phát triển (top ASEAN).",
-    "en": "Strong public & private healthcare system 🏥; a leading medical tourism destination (top in ASEAN)."
-   },
-   "nMove": {
-    "vi": "Chương trình MM2H Visa cho cư trú 5–10 năm, linh hoạt cho gia đình.",
-    "en": "The MM2H Visa program offers 5–10 years of residency, flexible for families."
-   },
-   "nQol": {
-    "vi": "Khung pháp lý ổn định, đất & BĐS dễ tiếp cận 🏗️.",
-    "en": "Stable legal framework; accessible land and real estate 🏗️."
-   },
-   "nSafe": {
-    "vi": "Khung pháp lý ổn định, đất & BĐS dễ tiếp cận 🏗️.",
-    "en": "Stable legal framework; accessible land and real estate 🏗️."
-   },
-   "nTax": {
-    "vi": "Thuế DN 24%, miễn thuế cổ tức đầu tư nước ngoài 💸.",
-    "en": "24% corporate tax; foreign investment dividends are tax-exempt 💸."
-   },
-   "curr": {
-    "vi": "Ringgit (MYR). Tỷ giá trung bình 4,7 MYR/USD; lạm phát ~ 2,2% (BNM 2024).",
-    "en": "Ringgit (MYR)"
-   },
-   "capEcon": {
-    "vi": "Kuala Lumpur chiếm 45% GDP; FDI 2024 đạt USD 17,2 tỷ (+6,5%).",
-    "en": "Kuala Lumpur accounts for 45% of GDP; 2024 FDI reached USD 17.2 billion (+6.5%)."
-   },
-   "econChar": {
-    "vi": "Xuất khẩu điện tử tăng 5,9%; du lịch 2024 đạt 26 triệu khách.",
-    "en": "Electronics exports grew 5.9%; tourism reached 26 million visitors in 2024."
-   },
-   "infra": {
-    "vi": "Dự án khu công nghiệp Bandar Malaysia (2,6 tỷ USD) khởi công 2024.",
-    "en": "The Bandar Malaysia industrial project (USD 2.6 billion) broke ground in 2024."
-   },
-   "tourism": {
-    "vi": "Du lịch đóng góp RM 95,7 tỷ (+13% YoY, Tourism Malaysia).",
-    "en": "Tourism contributed RM 95.7 billion (+13% YoY, Tourism Malaysia)."
-   },
-   "othNews": {
-    "vi": "Thêm bậc SEZ tại Forest City (từ 01/2025); thuế trước bạ 8% cho người nước ngoài mua BĐS từ 01/2026; mốc lưu trú giữ nguyên 90 ngày (tin đồn giảm còn 60 ngày không xảy ra)",
-    "en": "An additional SEZ tier launched at Forest City (from 01/2025); an 8% stamp duty applies to foreign property buyers starting 01/2026; the 90-day stay threshold remains unchanged (the rumored reduction to 60 days did not happen)."
-   },
-   "pit": {
-    "vi": "0–30% (lũy tiến, cao nhất ~30%)",
-    "en": "0–30% (progressive, up to ~30%)"
-   },
-   "inherit": {
-    "vi": "Không có thuế thừa kế phổ biến; một số quy định về chuyển giao tài sản",
-    "en": "No inheritance tax"
-   },
-   "bankSafe": {
-    "vi": "Cao (hệ thống ngân hàng được giám sát, thanh khoản tốt)",
-    "en": "High (top ASEAN banking rank)"
-   },
-   "fx": {
-    "vi": "1 USD = 4.09 MYR",
-    "en": "1 USD = 4.09 MYR"
-   },
-   "prog": {
-    "vi": "Thường Trú Nhân",
-    "en": "Permanent Residence"
-   },
-   "progInv": {
-    "vi": "MM2H (cư trú dài hạn) hoặc đầu tư/doanh nghiệp - BĐS người nước ngoài được phép mua)",
-    "en": "MM2H (long-term residency) or investment/business — foreign buyers are permitted to purchase real estate."
-   },
-   "minCost": {
-    "vi": "MM2H Platinum: tiền gửi USD 1,000,000 (rút tối đa 50%) + bắt buộc mua BĐS từ RM 2,000,000 (giữ 10 năm) + phí chính phủ RM 200,000 — không yêu cầu chứng minh thu nhập",
-    "en": "MM2H Platinum: a USD 1,000,000 fixed deposit (up to 50% withdrawable) + a mandatory RM 2,000,000+ property purchase (held for 10 years) + a RM 200,000 government fee — no proof of income required."
-   },
-   "renew": {
-    "vi": "5–10 năm (gia hạn được)",
-    "en": "5–10 years"
-   },
-   "stay": {
-    "vi": "90 ngày/năm (cộng dồn, không cần liên tục) — áp dụng cả Platinum/Gold/Silver",
-    "en": "90 days/year (cumulative, not required to be consecutive) — applies to the Platinum/Gold/Silver tiers alike."
-   },
-   "citiz": {
-    "vi": "Không có lộ trình PR/quốc tịch qua MM2H (đã hủy năm 2024) — nhập tịch tổng quát cần 10 năm cư trú riêng biệt, không liên quan MM2H",
-    "en": "No PR/citizenship pathway via MM2H (cancelled in 2024) — general naturalization requires 10 years of separate residency, unrelated to MM2H."
-   },
-   "sof": {
-    "vi": "Chứng minh tài sản ≥ MYR 1.5 triệu + thu nhập ≥ MYR 40,000/tháng",
-    "en": "Proof of assets ≥ MYR 1.5 million + income ≥ MYR 40,000/month."
-   },
-   "sponsor": {
-    "vi": "3 thế hệ",
-    "en": "Up to 3 generations"
-   },
-   "deps": {
-    "vi": "<18 tuổi",
-    "en": "Under 18 years old"
-   },
-   "addMem": {
-    "vi": "Có thể thêm vợ/chồng, con phụ thuộc",
-    "en": "May include spouse, children, and dependents"
-   },
-   "heir": {
-    "vi": "Không",
-    "en": "No"
-   },
-   "dual": {
-    "vi": "Không (phải từ bỏ quốc tịch gốc)",
-    "en": "Not allowed (based on country of origin)"
-   },
-   "mobility": {
-    "vi": "ASEAN, Commonwealth",
-    "en": "ASEAN, Commonwealth"
-   },
-   "e2": {
-    "vi": "Không có hiệp ước E-2 với Mỹ",
-    "en": "No E2 Treaty with the US"
-   },
-   "growth": {
-    "vi": "5–7% (KL, Penang – thị trường đô thị & nghỉ dưỡng)",
-    "en": "5–7% (Kuala Lumpur, Penang — urban & resort markets)"
-   },
-   "liquid": {
-    "vi": "Tự do bán lại nếu tuân thủ quy định người nước ngoài (nếu > 1 triệu RM)",
-    "en": "Resale to locals & foreigners (≥1M RM)"
-   },
-   "maintain": {
-    "vi": "MM2H Residency -> duy trì tài chính & lưu trú",
-    "en": "MM2H Residency -> maintain financial and stay requirements"
-   },
-   "feeInit": {
-    "vi": "MYR 1,000,000 (BĐS) + MYR 500,000 (ký quỹ ngân hàng)",
-    "en": "MYR 1,000,000 (real estate) + MYR 500,000 (bank deposit)."
-   },
-   "feeGov": {
-    "vi": "Phí chính phủ (một lần): Platinum RM 200,000 · Gold RM 3,000 · Silver RM 1,000 — phí gia hạn 5 năm: RM 5,000/3,000/1,500",
-    "en": "Government fee (one-time): Platinum RM 200,000 · Gold RM 3,000 · Silver RM 1,000 — 5-year renewal fee: RM 5,000/3,000/1,500."
-   },
-   "feeDD": {
-    "vi": "MYR 2,000",
-    "en": "MYR 2,000"
-   },
-   "feeAnnual": {
-    "vi": "MYR 500–1,000",
-    "en": "MYR 500–1,000/year"
-   },
-   "feeTotal1": {
-    "vi": "USD 233,450",
-    "en": "USD 233,450"
-   },
-   "feeTotal2": {
-    "vi": "USD 234,312.50",
-    "en": "USD 234,312.50"
-   },
-   "feeNote": {
-    "vi": "MM2H; visa 5–10 năm, có thể gia hạn; yêu cầu chứng minh tài chính",
-    "en": "MM2H Visa: renewable 5–10 years, not automatic PR"
-   },
-   "gdp": 5.2,
-   "infl": 1.4,
-   "debt": 63.1,
-   "polstab": 7,
-   "corrupt": 47,
-   "vat": 6,
-   "vfree": 180,
-   "rtCost": 87.6,
-   "rtEdu": 38.1,
-   "rtGlobal": 50.5,
-   "rtMove": 31,
-   "rtHealth": 41.1,
-   "rtQol": 38.9,
-   "rtSafe": 39.1,
-   "rtDiv": 24,
-   "rtTax": 8.6
-  },
-  "au": {
-   "code": "au",
-   "flag": "🇦🇺",
-   "vi": "Úc",
-   "en": "Australia",
-   "liveInPicker": true,
-   "sortOrder": 8,
-   "bloc": [
-    "OECD",
-    "Commonwealth",
-    "APEC",
-    "QUAD"
-   ],
-   "econ": {
-    "vi": "Giáo dục, tài chính, khai khoáng, công nghệ",
-    "en": "Education, finance, mining, technology"
-   },
-   "rank": {
-    "vi": "13th",
-    "en": "13th"
-   },
-   "nDiv": {
-    "vi": "Đa dạng: BĐS đô thị, giáo dục (student housing), năng lượng xanh 🌿.",
-    "en": "Diverse: urban real estate, education (student housing), green energy 🌿."
-   },
-   "nEdu": {
-    "vi": "Top 5 hệ thống giáo dục thế giới 🎓.<br>Ví dụ: ANU, Melbourne, Sydney University.",
-    "en": "Among the world's top 5 education systems 🎓.<br>Example: ANU, Melbourne, Sydney University."
-   },
-   "nGlobal": {
-    "vi": "Thành viên OECD, APEC, QUAD; kết nối toàn cầu mạnh mẽ 🌍.",
-    "en": "Member of OECD, APEC, and QUAD; strong global connectivity 🌍."
-   },
-   "nHealth": {
-    "vi": "Dịch vụ y tế công Medicare hàng đầu 🏥.",
-    "en": "Leading Medicare public healthcare system 🏥."
-   },
-   "nMove": {
-    "vi": "Visa du học, lao động & đầu tư hấp dẫn.<br>Ví dụ: Subclass 188/888 Visa.",
-    "en": "Attractive study, work, and investment visas.<br>Example: Subclass 188/888 Visa."
-   },
-   "nQol": {
-    "vi": "Thị trường đầu tư minh bạch, giám sát bởi FIRB 🔒.",
-    "en": "Transparent investment market, regulated by FIRB 🔒."
-   },
-   "nSafe": {
-    "vi": "Thị trường đầu tư minh bạch, giám sát bởi FIRB 🔒.",
-    "en": "Transparent investment market, regulated by FIRB 🔒."
-   },
-   "nTax": {
-    "vi": "Thuế lũy tiến cao (19–45%), miễn thuế cổ tức nước ngoài nhất định.",
-    "en": "High progressive tax (19–45%), certain foreign dividend tax exemptions."
-   },
-   "curr": {
-    "vi": "AUD. Lạm phát Q2/2024 ~ 3,4% (ABS).",
-    "en": "AUD. Inflation Q2 2024 ~3.4% (ABS)."
-   },
-   "capEcon": {
-    "vi": "Sydney & Melbourne chiếm ~45% GDP quốc gia.",
-    "en": "Sydney & Melbourne account for ~45% of national GDP."
-   },
-   "econChar": {
-    "vi": "Khai khoáng, nông nghiệp, du lịch nội địa và giáo dục quốc tế.",
-    "en": "Mining, agriculture, domestic tourism, and international education."
-   },
-   "infra": {
-    "vi": "Dự án Metro West (25 tỷ AUD) dự kiến hoàn thành 2028.",
-    "en": "Metro West project (AUD 25 billion) expected to complete in 2028."
-   },
-   "tourism": {
-    "vi": "Chi tiêu du lịch quốc tế 2024 = 49 tỷ AUD (+12% YoY).",
-    "en": "2024 international tourism spending = AUD 49 billion (+12% YoY)."
-   },
-   "othNews": {
-    "vi": "BIIP đóng vĩnh viễn 31/07/2024; NIV/858 xét theo lời mời (chỉ 146/1,815 hồ sơ được mời quý 1/2026); chỉ tiêu diện Tài năng & Đổi mới giảm từ 5,300 xuống 3,500 suất (2026-27)",
-    "en": "BIIP permanently closed 31/07/2024; NIV/858 assessed by invitation only (just 146 of 1,815 applications invited in Q1 2026); Talent & Innovation stream quota cut from 5,300 to 3,500 places (2026–27)"
-   },
-   "pit": {
-    "vi": "Thuế thu nhập cá nhân lũy tiến lên tới ~45% (+ Medicare levy)",
-    "en": "Progressive personal income tax up to ~45% (+ Medicare levy)"
-   },
-   "inherit": {
-    "vi": "Không áp dụng thuế thừa kế trực tiếp (estate taxes abolished)",
-    "en": "No direct inheritance tax applies (estate taxes abolished)"
-   },
-   "bankSafe": {
-    "vi": "Rất cao (ngân hàng mạnh, giám sát chặt bởi APRA)",
-    "en": "Very high (strong banks, tightly regulated by APRA)"
-   },
-   "fx": {
-    "vi": "1 AUD = 0.70 USD (~1 USD = 1.43 AUD)",
-    "en": "1 AUD = 0.70 USD (~1 USD = 1.43 AUD)"
-   },
-   "prog": {
-    "vi": "Thường Trú Nhân",
-    "en": "Permanent Residency"
-   },
-   "progInv": {
-    "vi": "Đầu tư (Investor Visas, tùy loại visa 188B / 188C)) – không phải mua nhà trực tiếp",
-    "en": "Investment (Investor Visas, depending on subclass 188B / 188C) – not direct property purchase"
-   },
-   "minCost": {
-    "vi": "Chương trình đầu tư BIIP đã ĐÓNG hoàn toàn từ 31/07/2024 — thay bằng National Innovation Visa (diện 858): xét theo thành tích xuất sắc được đề cử, KHÔNG có ngưỡng vốn đầu tư hay tài sản tối thiểu",
-    "en": "The BIIP investment program CLOSED completely as of 31/07/2024 — replaced by the National Innovation Visa (subclass 858): assessed on nominated exceptional achievement, with NO minimum investment or asset threshold"
-   },
-   "renew": {
-    "vi": "4 năm (có thể gia hạn)",
-    "en": "4 years (renewable)"
-   },
-   "stay": {
-    "vi": "Cấp thường trú ngay khi duyệt (không qua giai đoạn tạm trú) — cần hiện diện 2/5 năm để gia hạn Visa Trở Lại (RRV)",
-    "en": "Permanent residency is granted immediately upon approval (no temporary-residence stage) — requires presence for 2 of the following 5 years to renew the Resident Return Visa (RRV)"
-   },
-   "citiz": {
-    "vi": "4 năm cư trú (12 tháng liền trước là thường trú nhân) — vắng mặt tối đa 12 tháng trong 4 năm, tối đa 90 ngày trong 12 tháng cuối",
-    "en": "4 years of residence (the last 12 months as a permanent resident) — maximum 12 months absence within the 4 years, and maximum 90 days absence in the final 12 months"
-   },
-   "sof": {
-    "vi": "Nguồn vốn minh bạch, chuyển qua tài khoản được phê duyệt bởi FIRB & ngân hàng Úc",
-    "en": "Transparent source of funds, transferred via accounts approved by FIRB and Australian banks"
-   },
-   "sponsor": {
-    "vi": "Ko cho phép",
-    "en": "Not permitted"
-   },
-   "deps": {
-    "vi": "Ko cho phép",
-    "en": "Not permitted"
-   },
-   "addMem": {
-    "vi": "Có thể thêm vợ/chồng, con phụ thuộc, cha mẹ phụ thuộc",
-    "en": "Spouse, dependent children, and dependent parents may be added"
-   },
-   "heir": {
-    "vi": "Có thể truyền cho con sinh sau khi đã nhập tịch",
-    "en": "Transmissible to children born after the parent's naturalization"
-   },
-   "dual": {
-    "vi": "Có (Úc cho phép song tịch)",
-    "en": "Yes (Australia permits dual citizenship)"
-   },
-   "mobility": {
-    "vi": "Khối Commonwealth, OECD",
-    "en": "Commonwealth and OECD bloc"
-   },
-   "e2": {
-    "vi": "Có — E-1 (từ 16/12/1991) và E-2 (từ 27/12/1991) theo Đạo luật Di trú Mỹ 1990; riêng có thêm E-3 (từ FTA 2005, dành lao động tay nghề, giới hạn 10,500 suất/năm)",
-    "en": "Yes — E-1 (since 16/12/1991) and E-2 (since 27/12/1991) under the US Immigration Act of 1990; additionally E-3 (from the 2005 FTA, for skilled workers, capped at 10,500 places/year)"
-   },
-   "growth": {
-    "vi": "3–5% (long-term urban rental yields)",
-    "en": "3–5% (long-term urban rental yields)"
-   },
-   "liquid": {
-    "vi": "Tự do bán lại ; cần FIRB approval",
-    "en": "Freely resalable; requires FIRB approval"
-   },
-   "maintain": {
-    "vi": "Investor Visa -> PR -> citizenship",
-    "en": "Investor Visa -> PR -> citizenship"
-   },
-   "feeInit": {
-    "vi": "AUD 2.5–5 triệu (đầu tư vào quỹ được cấp phép)",
-    "en": "AUD 2.5–5 million (investment into an approved fund)"
-   },
-   "feeGov": {
-    "vi": "Phí visa diện 858 (người nộp chính): AUD 6,235 (từ 01/07/2026, tăng ~25%)",
-    "en": "Subclass 858 visa fee (primary applicant): AUD 6,235 (effective 01/07/2026, ~25% increase)"
-   },
-   "feeDD": {
-    "vi": "AUD 3,500",
-    "en": "AUD 3,500"
-   },
-   "feeAnnual": {
-    "vi": "Không yêu cầu",
-    "en": "Not required"
-   },
-   "feeTotal1": {
-    "vi": "USD 1,614,720",
-    "en": "USD 1,614,720"
-   },
-   "feeTotal2": {
-    "vi": "USD 1,618,400",
-    "en": "USD 1,618,400"
-   },
-   "feeNote": {
-    "vi": "Visa 188 (Investor / Significant Investor Stream); có thể xin PR sau 4 năm",
-    "en": "Visa 188 (Investor / Significant Investor Stream); PR may be applied for after 4 years"
-   },
-   "gdp": 2.6,
-   "infl": 3.8,
-   "debt": 34,
-   "polstab": 9,
-   "corrupt": 75,
-   "vat": 10,
-   "vfree": 182,
-   "rtCost": 13.4,
-   "rtEdu": 87.6,
-   "rtGlobal": 100,
-   "rtMove": 94,
-   "rtHealth": 94.6,
-   "rtQol": 95.8,
-   "rtSafe": 96.2,
-   "rtDiv": 93.1,
-   "rtTax": 31.5
-  },
   "nz": {
    "code": "nz",
-   "flag": "🇳🇿",
    "vi": "New Zealand",
    "en": "New Zealand",
+   "flag": "🇳🇿",
    "liveInPicker": true,
    "sortOrder": 9,
    "bloc": [
@@ -1969,375 +1986,217 @@
    "rtDiv": 100,
    "rtTax": 34.5
   },
-  "cb": {
-   "code": "cb",
-   "flag": "🇰🇳",
-   "vi": "Caribbean",
-   "en": "Caribbean",
+  "au": {
+   "code": "au",
+   "vi": "Úc",
+   "en": "Australia",
+   "flag": "🇦🇺",
    "liveInPicker": true,
-   "sortOrder": 10,
+   "sortOrder": 8,
    "bloc": [
-    "CARICOM",
-    "Commonwealth"
+    "OECD",
+    "Commonwealth",
+    "APEC",
+    "QUAD"
    ],
    "econ": {
-    "vi": "Du lịch, Dịch vụ tài chính",
-    "en": "Tourism, Financial Services"
+    "vi": "Giáo dục, tài chính, khai khoáng, công nghệ",
+    "en": "Education, finance, mining, technology"
    },
    "rank": {
-    "vi": "75th",
-    "en": "75th"
+    "vi": "13th",
+    "en": "13th"
    },
    "nDiv": {
-    "vi": "Đa dạng hóa danh mục: hộ chiếu + quỹ tài chính.<br>Ví dụ: Nhà đầu tư VN dùng CBI để tránh giới hạn EU/US.",
-    "en": "Portfolio diversification: passport + financial funds.<br>Example: Vietnamese investors use CBI to bypass EU/US restrictions."
+    "vi": "Đa dạng: BĐS đô thị, giáo dục (student housing), năng lượng xanh 🌿.",
+    "en": "Diverse: urban real estate, education (student housing), green energy 🌿."
    },
    "nEdu": {
-    "vi": "Học phí thấp, chương trình Anh ngữ.<br>Ví dụ: Ross University (Dominica) đào tạo y khoa quốc tế.",
-    "en": "Low tuition, English-language programs.<br>Example: Ross University (Dominica) provides international medical education."
+    "vi": "Top 5 hệ thống giáo dục thế giới 🎓.<br>Ví dụ: ANU, Melbourne, Sydney University.",
+    "en": "Among the world's top 5 education systems 🎓.<br>Example: ANU, Melbourne, Sydney University."
    },
    "nGlobal": {
-    "vi": "Commonwealth, kết nối rộng toàn cầu.<br>Ví dụ: Dễ xin visa dài hạn Canada & UK.",
-    "en": "Commonwealth membership, broad global connections.<br>Example: Easier long-term visas for Canada and the UK."
+    "vi": "Thành viên OECD, APEC, QUAD; kết nối toàn cầu mạnh mẽ 🌍.",
+    "en": "Member of OECD, APEC, and QUAD; strong global connectivity 🌍."
    },
    "nHealth": {
-    "vi": "Dịch vụ y tế cơ bản, tư nhân phát triển.<br>Ví dụ: Hospital St. Lucia phục vụ tiêu chuẩn Mỹ.",
-    "en": "Basic healthcare services, developed private sector.<br>Example: Hospitals in St. Lucia operate to US standards."
+    "vi": "Dịch vụ y tế công Medicare hàng đầu 🏥.",
+    "en": "Leading Medicare public healthcare system 🏥."
    },
    "nMove": {
-    "vi": "Visa-free ~150 quốc gia.<br>Ví dụ: Hộ chiếu St. Kitts hoặc Grenada cho phép nhập cảnh Anh, EU, Singapore.",
-    "en": "Visa-free access to ~150 countries.<br>Example: St. Kitts or Grenada passports allow entry to the UK, EU, and Singapore."
+    "vi": "Visa du học, lao động & đầu tư hấp dẫn.<br>Ví dụ: Subclass 188/888 Visa.",
+    "en": "Attractive study, work, and investment visas.<br>Example: Subclass 188/888 Visa."
+   },
+   "nQol": {
+    "vi": "Thị trường đầu tư minh bạch, giám sát bởi FIRB 🔒.",
+    "en": "Transparent investment market, regulated by FIRB 🔒."
    },
    "nSafe": {
-    "vi": "Hộ chiếu thứ hai giúp bảo vệ tài sản.<br>Ví dụ: Dễ mở tài khoản offshore tại Singapore.",
-    "en": "A second passport helps protect assets.<br>Example: Easier to open offshore accounts in Singapore."
+    "vi": "Thị trường đầu tư minh bạch, giám sát bởi FIRB 🔒.",
+    "en": "Transparent investment market, regulated by FIRB 🔒."
    },
    "nTax": {
-    "vi": "Không thuế thu nhập, không thuế thừa kế.<br>Ví dụ: Dominica miễn thuế thu nhập toàn cầu.",
-    "en": "No income tax, no inheritance tax.<br>Example: Dominica exempts worldwide income from tax."
+    "vi": "Thuế lũy tiến cao (19–45%), miễn thuế cổ tức nước ngoài nhất định.",
+    "en": "High progressive tax (19–45%), certain foreign dividend tax exemptions."
    },
    "curr": {
-    "vi": "USD hoặc nội tệ neo theo USD; lạm phát khu vực ~ 3,5% (IMF 2024).",
-    "en": "USD (Caribbean)"
+    "vi": "AUD. Lạm phát Q2/2024 ~ 3,4% (ABS).",
+    "en": "AUD. Inflation Q2 2024 ~3.4% (ABS)."
    },
    "capEcon": {
-    "vi": "Thủ đô kinh tế (Barbados, Bahamas) chiếm hơn 40% GDP dịch vụ.",
-    "en": "Barbados, Bahamas: over 40% of GDP from services, tourism, and banking."
+    "vi": "Sydney & Melbourne chiếm ~45% GDP quốc gia.",
+    "en": "Sydney & Melbourne account for ~45% of national GDP."
    },
    "econChar": {
-    "vi": "Du lịch chiếm 35–80% GDP tùy quốc gia; lượng khách toàn vùng 2024 đạt 34 triệu (+7% YoY).",
-    "en": "Tourism accounts for 35–80% of GDP depending on the country; regional visitor arrivals reached 34 million in 2024 (+7% YoY)."
+    "vi": "Khai khoáng, nông nghiệp, du lịch nội địa và giáo dục quốc tế.",
+    "en": "Mining, agriculture, domestic tourism, and international education."
    },
    "infra": {
-    "vi": "Đầu tư 1,1 tỷ USD vào hạ tầng khách sạn và sân bay khu vực (CTO 2024).",
-    "en": "USD 1.1 billion invested in regional hotel and airport infrastructure (CTO 2024)."
+    "vi": "Dự án Metro West (25 tỷ AUD) dự kiến hoàn thành 2028.",
+    "en": "Metro West project (AUD 25 billion) expected to complete in 2028."
    },
    "tourism": {
-    "vi": "Chi tiêu du khách trung bình 1.560 USD/người (Caribbean Tourism Org).",
-    "en": "Average visitor spending of USD 1,560 per person (Caribbean Tourism Organization)."
+    "vi": "Chi tiêu du lịch quốc tế 2024 = 49 tỷ AUD (+12% YoY).",
+    "en": "2024 international tourism spending = AUD 49 billion (+12% YoY)."
    },
    "othNews": {
-    "vi": "Tăng trưởng khu vực 3,2% năm 2024 (World Bank).",
-    "en": "Regional growth of 3.2% in 2024 (World Bank)."
+    "vi": "BIIP đóng vĩnh viễn 31/07/2024; NIV/858 xét theo lời mời (chỉ 146/1,815 hồ sơ được mời quý 1/2026); chỉ tiêu diện Tài năng & Đổi mới giảm từ 5,300 xuống 3,500 suất (2026-27)",
+    "en": "BIIP permanently closed 31/07/2024; NIV/858 assessed by invitation only (just 146 of 1,815 applications invited in Q1 2026); Talent & Innovation stream quota cut from 5,300 to 3,500 places (2026–27)"
    },
    "pit": {
-    "vi": "0–25% (tùy nước, thường thấp)",
-    "en": "0–25% (tourism/exports)"
-   },
-   "cit": {
-    "vi": "25%",
-    "en": "25%"
+    "vi": "Thuế thu nhập cá nhân lũy tiến lên tới ~45% (+ Medicare levy)",
+    "en": "Progressive personal income tax up to ~45% (+ Medicare levy)"
    },
    "inherit": {
-    "vi": "Không có thuế thừa kế hoặc tài sản",
-    "en": "No inheritance or estate tax"
+    "vi": "Không áp dụng thuế thừa kế trực tiếp (estate taxes abolished)",
+    "en": "No direct inheritance tax applies (estate taxes abolished)"
    },
    "bankSafe": {
-    "vi": "Ổn định, chịu giám sát FATF & IMF",
-    "en": "Stable, subject to FATF and IMF oversight"
+    "vi": "Rất cao (ngân hàng mạnh, giám sát chặt bởi APRA)",
+    "en": "Very high (strong banks, tightly regulated by APRA)"
    },
    "fx": {
-    "vi": "1 USD = 2.70 XCD (cố định từ 1976, áp dụng cả hai)",
-    "en": "1 USD = 2.70 XCD (fixed since 1976, applies to both)"
+    "vi": "1 AUD = 0.70 USD (~1 USD = 1.43 AUD)",
+    "en": "1 AUD = 0.70 USD (~1 USD = 1.43 AUD)"
    },
    "prog": {
-    "vi": "Quốc Tịch",
-    "en": "Citizenship"
+    "vi": "Thường Trú Nhân",
+    "en": "Permanent Residency"
    },
    "progInv": {
-    "vi": "Bất động sản",
-    "en": "Real Estate"
+    "vi": "Đầu tư (Investor Visas, tùy loại visa 188B / 188C)) – không phải mua nhà trực tiếp",
+    "en": "Investment (Investor Visas, depending on subclass 188B / 188C) – not direct property purchase"
    },
    "minCost": {
-    "vi": "Dominica: đóng góp EDF từ USD 200,000 (hoặc BĐS từ USD 200,000, giữ 3-5 năm) · St Lucia: Quỹ Kinh tế từ USD 240,000",
-    "en": "Dominica: EDF contribution from USD 200,000 (or real estate from USD 200,000, held 3–5 years) · St Lucia: Economic Fund from USD 240,000"
+    "vi": "Chương trình đầu tư BIIP đã ĐÓNG hoàn toàn từ 31/07/2024 — thay bằng National Innovation Visa (diện 858): xét theo thành tích xuất sắc được đề cử, KHÔNG có ngưỡng vốn đầu tư hay tài sản tối thiểu",
+    "en": "The BIIP investment program CLOSED completely as of 31/07/2024 — replaced by the National Innovation Visa (subclass 858): assessed on nominated exceptional achievement, with NO minimum investment or asset threshold"
    },
    "renew": {
-    "vi": "Không yêu cầu",
-    "en": "Lifetime"
+    "vi": "4 năm (có thể gia hạn)",
+    "en": "4 years (renewable)"
    },
    "stay": {
-    "vi": "Không yêu cầu lưu trú (cả hai chương trình)",
-    "en": "Not required"
+    "vi": "Cấp thường trú ngay khi duyệt (không qua giai đoạn tạm trú) — cần hiện diện 2/5 năm để gia hạn Visa Trở Lại (RRV)",
+    "en": "Permanent residency is granted immediately upon approval (no temporary-residence stage) — requires presence for 2 of the following 5 years to renew the Resident Return Visa (RRV)"
    },
    "citiz": {
-    "vi": "Dominica: ~6-9 tháng · St Lucia: mục tiêu 90-120 ngày",
-    "en": "Dominica: ~6–9 months · St Lucia: target 90–120 days"
+    "vi": "4 năm cư trú (12 tháng liền trước là thường trú nhân) — vắng mặt tối đa 12 tháng trong 4 năm, tối đa 90 ngày trong 12 tháng cuối",
+    "en": "4 years of residence (the last 12 months as a permanent resident) — maximum 12 months absence within the 4 years, and maximum 90 days absence in the final 12 months"
    },
    "sof": {
-    "vi": "Chứng minh nguồn tiền sạch & lý lịch tư pháp",
-    "en": "Verified financial origin"
+    "vi": "Nguồn vốn minh bạch, chuyển qua tài khoản được phê duyệt bởi FIRB & ngân hàng Úc",
+    "en": "Transparent source of funds, transferred via accounts approved by FIRB and Australian banks"
    },
    "sponsor": {
-    "vi": "4 thế hệ",
-    "en": "Up to 4 generations"
+    "vi": "Ko cho phép",
+    "en": "Not permitted"
    },
    "deps": {
-    "vi": "<25 tuổi",
-    "en": "Under 25 years old"
+    "vi": "Ko cho phép",
+    "en": "Not permitted"
    },
    "addMem": {
-    "vi": "Có thể thêm vợ/chồng, con phụ thuộc",
-    "en": "May include spouse, children, and dependents"
+    "vi": "Có thể thêm vợ/chồng, con phụ thuộc, cha mẹ phụ thuộc",
+    "en": "Spouse, dependent children, and dependent parents may be added"
    },
    "heir": {
-    "vi": "Không",
-    "en": "No"
+    "vi": "Có thể truyền cho con sinh sau khi đã nhập tịch",
+    "en": "Transmissible to children born after the parent's naturalization"
    },
    "dual": {
-    "vi": "Có (đa số các quốc gia Caribbean cho phép)",
-    "en": "Most Caribbean states allow dual citizenship"
+    "vi": "Có (Úc cho phép song tịch)",
+    "en": "Yes (Australia permits dual citizenship)"
    },
    "mobility": {
-    "vi": "Visa-free Anh, EU, Singapore, Hong Kong",
-    "en": "Visa-free UK, EU, Singapore, Hong Kong"
+    "vi": "Khối Commonwealth, OECD",
+    "en": "Commonwealth and OECD bloc"
    },
    "e2": {
-    "vi": "Không có hiệp ước E-2 với Mỹ — cả Dominica và St Lucia đều không đủ điều kiện",
-    "en": "No E-2 Treaty with the US — neither Dominica nor St Lucia qualifies"
+    "vi": "Có — E-1 (từ 16/12/1991) và E-2 (từ 27/12/1991) theo Đạo luật Di trú Mỹ 1990; riêng có thêm E-3 (từ FTA 2005, dành lao động tay nghề, giới hạn 10,500 suất/năm)",
+    "en": "Yes — E-1 (since 16/12/1991) and E-2 (since 27/12/1991) under the US Immigration Act of 1990; additionally E-3 (from the 2005 FTA, for skilled workers, capped at 10,500 places/year)"
    },
    "growth": {
-    "vi": "2–6% (varies by island; often low yield but stable demand)",
-    "en": "2–6% (varies by island; often low yield but stable demand)"
+    "vi": "3–5% (long-term urban rental yields)",
+    "en": "3–5% (long-term urban rental yields)"
    },
    "liquid": {
-    "vi": "Một số chương trình yêu cầu giữ quyền sở hữu 3–5 năm trước khi bán",
-    "en": "Resalable after a 3–5 year holding period (varies by program)"
+    "vi": "Tự do bán lại ; cần FIRB approval",
+    "en": "Freely resalable; requires FIRB approval"
    },
    "maintain": {
-    "vi": "Citizenship (vĩnh viễn)",
-    "en": "Citizenship (permanent)"
+    "vi": "Investor Visa -> PR -> citizenship",
+    "en": "Investor Visa -> PR -> citizenship"
    },
    "feeInit": {
-    "vi": "USD 150,000 (quyên góp) hoặc USD 190,000 (BĐS)",
-    "en": "USD 150,000 (donation) or USD 190,000 (real estate)"
+    "vi": "AUD 2.5–5 triệu (đầu tư vào quỹ được cấp phép)",
+    "en": "AUD 2.5–5 million (investment into an approved fund)"
    },
    "feeGov": {
-    "vi": "Dominica: phí thẩm định USD 7,500 (chính) + USD 4,000/người phụ thuộc từ 16 tuổi",
-    "en": "Dominica: due diligence fee USD 7,500 (main applicant) + USD 4,000 per dependent aged 16 and above"
+    "vi": "Phí visa diện 858 (người nộp chính): AUD 6,235 (từ 01/07/2026, tăng ~25%)",
+    "en": "Subclass 858 visa fee (primary applicant): AUD 6,235 (effective 01/07/2026, ~25% increase)"
    },
    "feeDD": {
-    "vi": "USD 7,500",
-    "en": "USD 7,500"
+    "vi": "AUD 3,500",
+    "en": "AUD 3,500"
    },
    "feeAnnual": {
     "vi": "Không yêu cầu",
     "en": "Not required"
    },
    "feeTotal1": {
-    "vi": "USD 295,000",
-    "en": "USD 295,000"
+    "vi": "USD 1,614,720",
+    "en": "USD 1,614,720"
    },
    "feeTotal2": {
-    "vi": "USD 306,250",
-    "en": "USD 306,250"
+    "vi": "USD 1,618,400",
+    "en": "USD 1,618,400"
    },
    "feeNote": {
-    "vi": "Citizenship (CBI) trong 3–6 tháng; không yêu cầu cư trú",
-    "en": "Citizenship by Investment (CBI) within 3–6 months; no residency requirement"
+    "vi": "Visa 188 (Investor / Significant Investor Stream); có thể xin PR sau 4 năm",
+    "en": "Visa 188 (Investor / Significant Investor Stream); PR may be applied for after 4 years"
    },
-   "r1": {
-    "vi": "Citizenship by Investment: thời gian cấp nhanh",
-    "en": "Citizenship by Investment: fast processing time"
-   },
-   "r2": {
-    "vi": "Quyền đi lại/visa-free tốt cho nhiều nước",
-    "en": "Strong visa-free travel to many countries"
-   },
-   "r3": {
-    "vi": "Hệ thống thuế thân thiện (thuế thu nhập/di sản thấp)",
-    "en": "Tax-friendly system (low income/estate taxes)"
-   },
-   "r4": {
-    "vi": "Gia đình được bao gồm (vợ/chồng, con phụ thuộc)",
-    "en": "Family inclusion (spouse, dependent children)"
-   },
-   "r5": {
-    "vi": "Thủ tục minh bạch, bảo mật thông tin, thích hợp người cần speed-to-passport",
-    "en": "Transparent, confidential process — ideal for those needing speed-to-passport"
-   },
-   "gdp": 2.8,
-   "infl": 2,
-   "debt": 89,
-   "polstab": 6.5,
-   "corrupt": 55,
-   "vat": 15,
-   "vfree": 137,
-   "rtCost": 89,
-   "rtEdu": 13.4,
-   "rtGlobal": 17.5,
-   "rtMove": 68,
-   "rtHealth": 14.4,
-   "rtQol": 11.5,
-   "rtSafe": 20,
-   "rtDiv": 7.9,
-   "rtTax": 100
-  },
-  "pa": {
-   "code": "pa",
-   "flag": "🇵🇦",
-   "vi": "Panama",
-   "en": "Panama",
-   "liveInPicker": true,
-   "sortOrder": 11,
-   "bloc": [],
-   "othNews": {
-    "vi": "QUAN TRỌNG: ngưỡng BĐS Nhà đầu tư Đủ điều kiện tăng từ USD 300,000 lên USD 500,000 từ 15/10/2026",
-    "en": "IMPORTANT: the Qualified Investor real-estate threshold rises from USD 300,000 to USD 500,000 on 15 October 2026"
-   },
-   "fx": {
-    "vi": "1 USD = 1 Balboa (PAB) — cố định tuyệt đối, USD lưu hành trực tiếp",
-    "en": "1 USD = 1 Balboa (PAB) — an absolute peg; the USD circulates directly as legal tender"
-   },
-   "minCost": {
-    "vi": "Rừng tái sinh: từ USD 80,000 (≥5ha rừng chứng nhận) · Nhà đầu tư Đủ điều kiện: BĐS từ USD 500,000 (tăng từ USD 300,000 từ 15/10/2026)",
-    "en": "Reforestation route: from USD 80,000 (≥5 ha of certified forest) · Qualified Investor route: real estate from USD 500,000 (up from USD 300,000 effective 15 October 2026)"
-   },
-   "stay": {
-    "vi": "Không quy định số ngày cư trú cụ thể để giữ thẻ thường trú",
-    "en": "No specific number of residency days is required to keep the permanent-residence card"
-   },
-   "citiz": {
-    "vi": "Thường trú: vài tuần đến vài tháng tùy diện · nhập tịch sau đó theo luật chung",
-    "en": "Permanent residence: a few weeks to a few months depending on the route · naturalization afterward follows general law"
-   },
-   "e2": {
-    "vi": "Có — Hiệp ước Đầu tư Song phương Mỹ-Panama (1982, hiệu lực 1991)",
-    "en": "Yes — the US–Panama Bilateral Investment Treaty (signed 1982, in force since 1991)"
-   },
-   "feeGov": {
-    "vi": "Rừng tái sinh: ~USD 1,500-2,900 (giai đoạn 1) · Nhà đầu tư Đủ điều kiện: phí luật sư + nhà nước riêng",
-    "en": "Reforestation route: ~USD 1,500–2,900 (stage 1) · Qualified Investor route: attorney and government fees quoted separately"
-   },
-   "gdp": 4.5,
-   "infl": -0.7,
-   "debt": 55.8,
-   "vfree": 139
-  },
-  "kn": {
-   "code": "kn",
-   "flag": "🇰🇳",
-   "vi": "St. Nevis",
-   "en": "St. Kitts & Nevis",
-   "liveInPicker": true,
-   "sortOrder": 12,
-   "bloc": [],
-   "othNews": {
-    "vi": "Từ 14/04/2026: bắt buộc thu sinh trắc học (vân tay + nhận diện khuôn mặt) cho người nộp đơn",
-    "en": "From 14 April 2026: biometric collection (fingerprints + facial recognition) becomes mandatory for applicants"
-   },
-   "fx": {
-    "vi": "1 USD = 2.70 XCD (cố định từ 1976)",
-    "en": "1 USD = 2.70 XCD (pegged since 1976)"
-   },
-   "minCost": {
-    "vi": "Đóng góp SISC từ USD 250,000 (cá nhân hoặc gia đình tới 4 người) hoặc mua BĐS căn hộ/dự án được duyệt",
-    "en": "SISC contribution from USD 250,000 (single applicant or family of up to 4) or purchase of an approved real-estate unit/project"
-   },
-   "stay": {
-    "vi": "Không yêu cầu lưu trú",
-    "en": "No residency requirement"
-   },
-   "citiz": {
-    "vi": "Quốc tịch trực tiếp (không qua thường trú) — xử lý 120-180 ngày",
-    "en": "Direct citizenship (no residency stage) — processing takes 120–180 days"
-   },
-   "e2": {
-    "vi": "Không có hiệp ước E-2 với Mỹ",
-    "en": "No E-2 treaty with the US"
-   },
-   "feeGov": {
-    "vi": "Phí thẩm định USD 10,000 (chính) + USD 7,500/người phụ thuộc từ 16 tuổi",
-    "en": "Due-diligence fee: USD 10,000 (main applicant) + USD 7,500 per dependent aged 16 and over"
-   },
-   "gdp": 2,
-   "infl": 2,
-   "debt": 61,
-   "vfree": 147
-  },
-  "nr": {
-   "code": "nr",
-   "flag": "🇳🇷",
-   "vi": "Nauru",
-   "en": "Nauru",
-   "liveInPicker": true,
-   "sortOrder": 13,
-   "bloc": [],
-   "curr": {
-    "vi": "AUD. GDP bình quân ~ 13.200 USD/người (World Bank 2024).",
-    "en": "AUD. GDP per capita ~USD 13,200 (World Bank, 2024)."
-   },
-   "capEcon": {
-    "vi": "Yaren là trung tâm hành chính và kinh tế chính.",
-    "en": "Yaren is the main administrative and economic center."
-   },
-   "econChar": {
-    "vi": "Thu nhập chính từ phí đánh bắt và viện trợ quốc tế (~70% ngân sách).",
-    "en": "Primary income comes from fishing licence fees and international aid (~70% of the budget)."
-   },
-   "infra": {
-    "vi": "Dự án nâng cấp cảng Aiwo (31 triệu USD) tài trợ bởi ADB 2024.",
-    "en": "Aiwo port upgrade project (USD 31 million), funded by the ADB in 2024."
-   },
-   "tourism": {
-    "vi": "GDP 2024 tăng 3,1% (ADB).",
-    "en": "2024 GDP grew 3.1% (ADB)."
-   },
-   "othNews": {
-    "vi": "Xác nhận: KHÔNG có lựa chọn bất động sản thay thế — chỉ một lộ trình đóng góp trực tiếp",
-    "en": "Confirmed: there is NO alternative real-estate option — only a single direct-contribution route"
-   },
-   "fx": {
-    "vi": "Không có nội tệ riêng — dùng AUD; 1 AUD ≈ 0.70 USD",
-    "en": "No separate national currency — uses AUD; 1 AUD ≈ 0.70 USD"
-   },
-   "minCost": {
-    "vi": "Tiêu chuẩn USD 115,000 · Giá khuyến mãi (đến 31/12/2026): USD 90,000 cho người nộp đơn độc lập",
-    "en": "Standard price: USD 115,000 · Promotional price (through 31 December 2026): USD 90,000 for a single applicant"
-   },
-   "stay": {
-    "vi": "Không yêu cầu lưu trú",
-    "en": "No residency requirement"
-   },
-   "citiz": {
-    "vi": "Quốc tịch trực tiếp — xử lý khoảng 3-4 tháng",
-    "en": "Direct citizenship — processing takes approximately 3–4 months"
-   },
-   "e2": {
-    "vi": "Không có hiệp ước E-2 với Mỹ",
-    "en": "No E-2 treaty with the US"
-   },
-   "feeGov": {
-    "vi": "Phí nộp đơn USD 5,000 (chính) + USD 2,000/người phụ thuộc · phí thẩm định USD 6,000 (chính) + USD 3,000/người phụ thuộc",
-    "en": "Application fee: USD 5,000 (main applicant) + USD 2,000 per dependent · due-diligence fee: USD 6,000 (main applicant) + USD 3,000 per dependent"
-   },
-   "vfree": 86
+   "gdp": 2.6,
+   "infl": 3.8,
+   "debt": 34,
+   "polstab": 9,
+   "corrupt": 75,
+   "vat": 10,
+   "vfree": 182,
+   "rtCost": 13.4,
+   "rtEdu": 87.6,
+   "rtGlobal": 100,
+   "rtMove": 94,
+   "rtHealth": 94.6,
+   "rtQol": 95.8,
+   "rtSafe": 96.2,
+   "rtDiv": 93.1,
+   "rtTax": 31.5
   },
   "us": {
    "code": "us",
-   "flag": "🇺🇸",
    "vi": "Mỹ (EB-5)",
    "en": "USA (EB-5)",
+   "flag": "🇺🇸",
    "liveInPicker": true,
    "sortOrder": 14,
    "bloc": [],
@@ -2493,6 +2352,146 @@
    "infl": 2.7,
    "debt": 124,
    "vfree": 179
+  },
+  "nr": {
+   "code": "nr",
+   "vi": "Nauru",
+   "en": "Nauru",
+   "flag": "🇳🇷",
+   "liveInPicker": true,
+   "sortOrder": 13,
+   "bloc": [],
+   "curr": {
+    "vi": "AUD. GDP bình quân ~ 13.200 USD/người (World Bank 2024).",
+    "en": "AUD. GDP per capita ~USD 13,200 (World Bank, 2024)."
+   },
+   "capEcon": {
+    "vi": "Yaren là trung tâm hành chính và kinh tế chính.",
+    "en": "Yaren is the main administrative and economic center."
+   },
+   "econChar": {
+    "vi": "Thu nhập chính từ phí đánh bắt và viện trợ quốc tế (~70% ngân sách).",
+    "en": "Primary income comes from fishing licence fees and international aid (~70% of the budget)."
+   },
+   "infra": {
+    "vi": "Dự án nâng cấp cảng Aiwo (31 triệu USD) tài trợ bởi ADB 2024.",
+    "en": "Aiwo port upgrade project (USD 31 million), funded by the ADB in 2024."
+   },
+   "tourism": {
+    "vi": "GDP 2024 tăng 3,1% (ADB).",
+    "en": "2024 GDP grew 3.1% (ADB)."
+   },
+   "othNews": {
+    "vi": "Xác nhận: KHÔNG có lựa chọn bất động sản thay thế — chỉ một lộ trình đóng góp trực tiếp",
+    "en": "Confirmed: there is NO alternative real-estate option — only a single direct-contribution route"
+   },
+   "fx": {
+    "vi": "Không có nội tệ riêng — dùng AUD; 1 AUD ≈ 0.70 USD",
+    "en": "No separate national currency — uses AUD; 1 AUD ≈ 0.70 USD"
+   },
+   "minCost": {
+    "vi": "Tiêu chuẩn USD 115,000 · Giá khuyến mãi (đến 31/12/2026): USD 90,000 cho người nộp đơn độc lập",
+    "en": "Standard price: USD 115,000 · Promotional price (through 31 December 2026): USD 90,000 for a single applicant"
+   },
+   "stay": {
+    "vi": "Không yêu cầu lưu trú",
+    "en": "No residency requirement"
+   },
+   "citiz": {
+    "vi": "Quốc tịch trực tiếp — xử lý khoảng 3-4 tháng",
+    "en": "Direct citizenship — processing takes approximately 3–4 months"
+   },
+   "e2": {
+    "vi": "Không có hiệp ước E-2 với Mỹ",
+    "en": "No E-2 treaty with the US"
+   },
+   "feeGov": {
+    "vi": "Phí nộp đơn USD 5,000 (chính) + USD 2,000/người phụ thuộc · phí thẩm định USD 6,000 (chính) + USD 3,000/người phụ thuộc",
+    "en": "Application fee: USD 5,000 (main applicant) + USD 2,000 per dependent · due-diligence fee: USD 6,000 (main applicant) + USD 3,000 per dependent"
+   },
+   "vfree": 86
+  },
+  "pa": {
+   "code": "pa",
+   "vi": "Panama",
+   "en": "Panama",
+   "flag": "🇵🇦",
+   "liveInPicker": true,
+   "sortOrder": 11,
+   "bloc": [],
+   "othNews": {
+    "vi": "QUAN TRỌNG: ngưỡng BĐS Nhà đầu tư Đủ điều kiện tăng từ USD 300,000 lên USD 500,000 từ 15/10/2026",
+    "en": "IMPORTANT: the Qualified Investor real-estate threshold rises from USD 300,000 to USD 500,000 on 15 October 2026"
+   },
+   "fx": {
+    "vi": "1 USD = 1 Balboa (PAB) — cố định tuyệt đối, USD lưu hành trực tiếp",
+    "en": "1 USD = 1 Balboa (PAB) — an absolute peg; the USD circulates directly as legal tender"
+   },
+   "minCost": {
+    "vi": "Rừng tái sinh: từ USD 80,000 (≥5ha rừng chứng nhận) · Nhà đầu tư Đủ điều kiện: BĐS từ USD 500,000 (tăng từ USD 300,000 từ 15/10/2026)",
+    "en": "Reforestation route: from USD 80,000 (≥5 ha of certified forest) · Qualified Investor route: real estate from USD 500,000 (up from USD 300,000 effective 15 October 2026)"
+   },
+   "stay": {
+    "vi": "Không quy định số ngày cư trú cụ thể để giữ thẻ thường trú",
+    "en": "No specific number of residency days is required to keep the permanent-residence card"
+   },
+   "citiz": {
+    "vi": "Thường trú: vài tuần đến vài tháng tùy diện · nhập tịch sau đó theo luật chung",
+    "en": "Permanent residence: a few weeks to a few months depending on the route · naturalization afterward follows general law"
+   },
+   "e2": {
+    "vi": "Có — Hiệp ước Đầu tư Song phương Mỹ-Panama (1982, hiệu lực 1991)",
+    "en": "Yes — the US–Panama Bilateral Investment Treaty (signed 1982, in force since 1991)"
+   },
+   "feeGov": {
+    "vi": "Rừng tái sinh: ~USD 1,500-2,900 (giai đoạn 1) · Nhà đầu tư Đủ điều kiện: phí luật sư + nhà nước riêng",
+    "en": "Reforestation route: ~USD 1,500–2,900 (stage 1) · Qualified Investor route: attorney and government fees quoted separately"
+   },
+   "gdp": 4.5,
+   "infl": -0.7,
+   "debt": 55.8,
+   "vfree": 139
+  },
+  "kn": {
+   "code": "kn",
+   "vi": "St. Nevis",
+   "en": "St. Kitts & Nevis",
+   "flag": "🇰🇳",
+   "liveInPicker": true,
+   "sortOrder": 12,
+   "bloc": [],
+   "othNews": {
+    "vi": "Từ 14/04/2026: bắt buộc thu sinh trắc học (vân tay + nhận diện khuôn mặt) cho người nộp đơn",
+    "en": "From 14 April 2026: biometric collection (fingerprints + facial recognition) becomes mandatory for applicants"
+   },
+   "fx": {
+    "vi": "1 USD = 2.70 XCD (cố định từ 1976)",
+    "en": "1 USD = 2.70 XCD (pegged since 1976)"
+   },
+   "minCost": {
+    "vi": "Đóng góp SISC từ USD 250,000 (cá nhân hoặc gia đình tới 4 người) hoặc mua BĐS căn hộ/dự án được duyệt",
+    "en": "SISC contribution from USD 250,000 (single applicant or family of up to 4) or purchase of an approved real-estate unit/project"
+   },
+   "stay": {
+    "vi": "Không yêu cầu lưu trú",
+    "en": "No residency requirement"
+   },
+   "citiz": {
+    "vi": "Quốc tịch trực tiếp (không qua thường trú) — xử lý 120-180 ngày",
+    "en": "Direct citizenship (no residency stage) — processing takes 120–180 days"
+   },
+   "e2": {
+    "vi": "Không có hiệp ước E-2 với Mỹ",
+    "en": "No E-2 treaty with the US"
+   },
+   "feeGov": {
+    "vi": "Phí thẩm định USD 10,000 (chính) + USD 7,500/người phụ thuộc từ 16 tuổi",
+    "en": "Due-diligence fee: USD 10,000 (main applicant) + USD 7,500 per dependent aged 16 and over"
+   },
+   "gdp": 2,
+   "infl": 2,
+   "debt": 61,
+   "vfree": 147
   }
  }
 }
