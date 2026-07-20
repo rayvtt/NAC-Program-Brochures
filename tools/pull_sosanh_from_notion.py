@@ -41,14 +41,27 @@ def http(method, url, *, token, body=None):
         return e.code, e.read().decode('utf-8', errors='replace')
 
 
+def normalize_text(s):
+    """Real Notion line breaks (Enter/Shift+Enter typed straight into the
+    property in the Notion UI) become the literal <br> substring — the
+    convention NAC-SO-SANH.html's needsSec() splits on to separate a §02
+    field's main clause from its "Ví dụ: / Example:" sub-clause. This also
+    keeps a raw newline from ever reaching json.dumps(), which would escape
+    it as a literal backslash-n in the payload text and trip the WP
+    wp_unslash safety guard below (see CLAUDE.md §4 Trap 2) — caught live on
+    every one of the 8 need-dimensions × VI/EN × 14 countries after Notion
+    editing replaced the original <br> text with real line breaks."""
+    return s.strip().replace('\r\n', '<br>').replace('\r', '<br>').replace('\n', '<br>')
+
+
 def decode_property(prop):
     if not prop:
         return None
     t = prop['type']
     if t == 'title':
-        return ''.join(rt['plain_text'] for rt in prop['title']).strip()
+        return normalize_text(''.join(rt['plain_text'] for rt in prop['title']))
     if t == 'rich_text':
-        return ''.join(rt['plain_text'] for rt in prop['rich_text']).strip()
+        return normalize_text(''.join(rt['plain_text'] for rt in prop['rich_text']))
     if t == 'number':
         return prop.get('number')
     if t == 'checkbox':
