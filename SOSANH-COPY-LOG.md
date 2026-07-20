@@ -12,3 +12,7 @@
 
 - `ctaT` VI: “Chọn đúng chương trình ngay từ đầu” → “Chọn đúng chương trình ngay từ đầu !”
 - `ctaS` VI: “Đặt lịch 30 phút với NAC — đối chiếu hồ sơ, mục tiêu thuế và lộ trình quốc tịch của gia đình bạn trên chính bảng so sánh này.” → “NAC —sẽ đối chiếu hồ sơ, mục tiêu thuế và lộ trình quốc tịch của gia đình bạn trên chính bảng so sánh này.”
+
+## 2026-07-20 13:35 UTC · in-page editor
+
+- `heroT` VI: “So sánh chương trình <em>định cư &amp; đầu tư</em> theo dữ liệu thật” → “So sánh chương trình <em>định cư &amp; đầu tư</em>”
