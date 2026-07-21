@@ -1,0 +1,32 @@
+{
+  "alias": "uk",
+  "gathered_at": "2026-07-21T05:54:50.124548+00:00",
+  "days_window": 1,
+  "signal_count": 3,
+  "signals": [
+    {
+      "kind": "date",
+      "matched": "2026",
+      "excerpt": "IMI Daily https://www.imidaily.com/ For Sovereign Individuals and Their Advisors Mon, 20 Jul 2026 15:51:09 +0000 en-US hourly 1 https://www.imidaily.com/wp-content/uploads/2019/06/imi-logo-150x150.png IMI Daily https://www.imidaily.com/…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2024",
+      "excerpt": "…3 Email: info@investmentmigration.org Search IMC Website Search for: Search Search Results for UK innovator founder visa Posted on March 6, 2024 March 6, 2024 darioa Articles Unpacking Policy Intentions: A Closer Look at UK Immigration Changes The IM Yearbook sat down with Fragomen’s…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=UK+innovator+founder+visa",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2024",
+      "excerpt": "…investmentmigration.org Search IMC Website Search for: Search Search Results for UK innovator founder visa Posted on March 6, 2024 March 6, 2024 darioa Articles Unpacking Policy Intentions: A Closer Look at UK Immigration Changes The IM Yearbook sat down with Fragomen’s Nadine Goldfo…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=UK+innovator+founder+visa",
+      "authority": 2
+    }
+  ]
+}
