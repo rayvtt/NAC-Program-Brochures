@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-21T05:21:20.291022+00:00",
+  "generated_at": "2026-07-22T05:20:26.085576+00:00",
   "source": "live",
-  "pass_count": 3,
+  "pass_count": 4,
   "total": 16,
   "reports": [
     {
@@ -503,7 +503,7 @@
     },
     {
       "alias": "turkey",
-      "all_pass": false,
+      "all_pass": true,
       "toggle": {
         "pass": true,
         "issues": []
@@ -643,16 +643,10 @@
         "issues": []
       },
       "en_render": {
-        "pass": false,
-        "issues": [
-          "1 Vietnamese remnants after EN click"
-        ],
-        "remnant_count": 1,
-        "samples": [
-          {
-            "text": "📍 Thổ Nhĩ Kỳ"
-          }
-        ]
+        "pass": true,
+        "issues": [],
+        "remnant_count": 0,
+        "samples": []
       }
     },
     {
@@ -1112,12 +1106,15 @@
       "en_render": {
         "pass": false,
         "issues": [
-          "1 Vietnamese remnants after EN click"
+          "2 Vietnamese remnants after EN click"
         ],
-        "remnant_count": 1,
+        "remnant_count": 2,
         "samples": [
           {
-            "text": "2-bedroom residence at Fortress Gardens, Tigné Point, Sliema."
+            "text": "📍 Tigné Point · Malta"
+          },
+          {
+            "text": "Fortress Gardens (Q3) is the final phase of the Tigné Point regeneration — a 380+ unit masterplan developed since 2000 b"
           }
         ]
       }
