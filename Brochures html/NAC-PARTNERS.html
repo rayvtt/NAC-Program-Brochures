@@ -473,6 +473,43 @@ html[lang="en"] .pg-vi-only{display:none}
 @media(prefers-reduced-motion:reduce){.pgnav-panel{animation:none}.pgnav-toggle{transition:none}}
 
 @media(prefers-reduced-motion:reduce){.hero .hero-eyebrow,.hero h1,.hero p,.hero-stats .hstat,.hero-ctas{animation:none!important}}
+
+/* ===== Partner tool — ROI & Exit Projector ===== */
+.roi-wrap{display:grid;grid-template-columns:minmax(0,360px) 1fr;gap:22px;align-items:start;max-width:980px;margin:0 auto}
+.roi-inputs{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:18px}
+.roi-presets{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px}
+.roi-preset{border:1px solid var(--border);background:#fff;border-radius:999px;padding:6px 12px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;font-family:inherit;transition:border-color .15s,color .15s,background .15s}
+.roi-preset:hover{border-color:var(--orange);color:var(--orange)}
+.roi-preset.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.roi-field{margin-bottom:13px}
+.roi-field>label{display:block;font-size:12px;font-weight:600;color:var(--text3);margin-bottom:5px}
+.roi-in{display:flex;gap:8px}
+.roi-in input,.roi-in select{width:100%;border:1px solid var(--border);border-radius:9px;padding:9px 11px;font-size:14px;font-family:inherit;color:var(--text);background:#fff}
+.roi-in input:focus,.roi-in select:focus{outline:none;border-color:var(--blue)}
+.roi-in select{width:auto;flex:0 0 96px}
+.roi-two{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.roi-out{background:#fff;border:1px solid var(--border);border-radius:var(--r);padding:20px}
+.roi-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.roi-metric{background:var(--bg2);border-radius:11px;padding:13px 14px}
+.roi-metric.roi-lead{grid-column:1 / -1;background:linear-gradient(135deg,var(--blue),var(--blue-dk));color:#fff}
+.roi-k{font-size:10.5px;font-weight:600;letter-spacing:.3px;color:var(--text3);text-transform:uppercase}
+.roi-metric.roi-lead .roi-k{color:rgba(255,255,255,.82)}
+.roi-v{font-family:'Playfair Display',serif;font-size:21px;font-weight:700;color:var(--text);margin-top:3px;line-height:1.1}
+.roi-metric.roi-lead .roi-v{color:#fff;font-size:27px}
+.roi-u{font-size:11px;color:var(--text4);font-weight:500;margin-left:3px}
+.roi-metric.roi-lead .roi-u{color:rgba(255,255,255,.7)}
+.roi-chart{margin-top:16px}
+.roi-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.roi-legend{display:flex;gap:16px;justify-content:center;margin-top:10px;font-size:11px;color:var(--text3)}
+.roi-legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:5px;vertical-align:-1px}
+.roi-actions{display:flex;gap:10px;margin-top:18px;flex-wrap:wrap}
+.roi-actions .btn{flex:1 1 auto}
+.roi-copy{background:var(--blue);color:#fff}
+.roi-copy:hover{background:var(--blue-dk)}
+.roi-disc{font-size:11px;color:var(--text4);margin-top:13px;line-height:1.5;text-align:center}
+.roi-toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--black);color:#fff;font-size:13px;font-weight:600;padding:11px 20px;border-radius:999px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:200}
+.roi-toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(max-width:760px){.roi-wrap{grid-template-columns:1fr}.roi-metric.roi-lead .roi-v{font-size:24px}}
 </style>
 </head>
 <body>
@@ -812,6 +849,69 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
       <div class="kit-foot">
         <a class="kit-logo-btn" href="https://nomadassetcollective.com/wp-content/uploads/2026/05/OTG-Passport-Icons.png" target="_blank" rel="noopener" download><img src="https://nomadassetcollective.com/wp-content/uploads/2026/04/cropped-OTG-Passport-Icons.png" alt="NAC"><span data-copy="pg-kit-logo" data-vi="Tải logo NAC (PNG)" data-en="Download NAC logo (PNG)">Tải logo NAC (PNG)</span></a>
         <a class="kit-logo-btn" href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z'/><path d='M4 18a2.5 2.5 0 012.5-2.5H20'/></svg><span data-copy="pg-kit-broch" data-vi="Bộ 16 brochure chương trình" data-en="All 16 program brochures">Bộ 16 brochure chương trình</span></a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Partner tool — ROI & Exit Projector -->
+  <section class="sec" id="roiTool" style="background:var(--bg2)">
+    <div class="wrap">
+      <div style="text-align:center"><span class="pnum-chip" data-vi="CÔNG CỤ" data-en="TOOL">CÔNG CỤ</span></div>
+      <div class="sec-title" data-vi="Máy Tính Lợi Nhuận &amp; Thoái Vốn" data-en="ROI &amp; Exit Projector">Máy Tính Lợi Nhuận &amp; Thoái Vốn</div>
+      <div class="sec-sub" data-vi="Nhập giả định của bạn — công cụ ước tính giá trị thoái vốn, thu nhập cho thuê, IRR và thời gian hoàn vốn để bạn trình bày rõ ràng cho khách hàng." data-en="Enter your assumptions — the tool projects exit value, rental income, IRR and payback so you can present the numbers to your client with confidence.">Nhập giả định của bạn — công cụ ước tính giá trị thoái vốn, thu nhập cho thuê, IRR và thời gian hoàn vốn để bạn trình bày rõ ràng cho khách hàng.</div>
+      <div class="roi-wrap">
+        <div class="roi-inputs">
+          <div class="roi-presets" id="roiPresets"></div>
+          <div class="roi-field">
+            <label data-vi="Giá tài sản" data-en="Property price">Giá tài sản</label>
+            <div class="roi-in">
+              <input type="number" id="roiPrice" min="0" step="1000" value="300000" inputmode="decimal">
+              <select id="roiCur" aria-label="Currency">
+                <option value="USD">USD $</option><option value="EUR">EUR €</option><option value="GBP">GBP £</option>
+                <option value="AUD">AUD A$</option><option value="SGD">SGD S$</option><option value="THB">THB ฿</option>
+                <option value="AED">AED</option><option value="VND">VND ₫</option>
+              </select>
+            </div>
+          </div>
+          <div class="roi-two">
+            <div class="roi-field">
+              <label data-vi="Lợi suất gộp/năm" data-en="Gross yield / yr">Lợi suất gộp/năm</label>
+              <div class="roi-in"><input type="number" id="roiYield" min="0" step="0.1" value="6" inputmode="decimal"></div>
+            </div>
+            <div class="roi-field">
+              <label data-vi="Chi phí vận hành" data-en="Operating costs">Chi phí vận hành</label>
+              <div class="roi-in"><input type="number" id="roiOp" min="0" max="100" step="1" value="25" inputmode="decimal"></div>
+            </div>
+          </div>
+          <div class="roi-two">
+            <div class="roi-field">
+              <label data-vi="Tăng giá/năm" data-en="Appreciation / yr">Tăng giá/năm</label>
+              <div class="roi-in"><input type="number" id="roiAppr" min="0" step="0.1" value="7" inputmode="decimal"></div>
+            </div>
+            <div class="roi-field">
+              <label data-vi="Thời gian nắm giữ" data-en="Hold period">Thời gian nắm giữ</label>
+              <div class="roi-in"><input type="number" id="roiHold" min="1" max="40" step="1" value="7" inputmode="numeric"></div>
+            </div>
+          </div>
+          <div class="roi-field">
+            <label data-vi="Chi phí mua ban đầu (% giá)" data-en="Upfront purchase costs (% price)">Chi phí mua ban đầu (% giá)</label>
+            <div class="roi-in"><input type="number" id="roiPcost" min="0" max="30" step="0.5" value="6" inputmode="decimal"></div>
+          </div>
+        </div>
+        <div class="roi-out">
+          <div class="roi-metrics" id="roiMetrics"></div>
+          <div class="roi-chart" id="roiChart"></div>
+          <div class="roi-legend">
+            <span><i style="background:#1800ad"></i><span data-vi="Giá trị tài sản" data-en="Property value">Giá trị tài sản</span></span>
+            <span><i style="background:#f97316"></i><span data-vi="Thu nhập cho thuê tích lũy" data-en="Cumulative rent">Thu nhập cho thuê tích lũy</span></span>
+          </div>
+          <div class="roi-actions">
+            <button type="button" class="btn roi-copy" id="roiCopy" data-vi="Sao chép tóm tắt" data-en="Copy summary">Sao chép tóm tắt</button>
+            <a class="btn btn-primary" href="https://calendar.app.google/gnbtNBTBDKuHUasw7" target="_blank" rel="noopener" data-vi="Đặt lịch tư vấn" data-en="Book a consult">Đặt lịch tư vấn</a>
+          </div>
+          <div class="roi-disc" data-vi="Ước tính minh hoạ dựa trên giả định của bạn — không phải cam kết lợi nhuận hay tư vấn tài chính. Chưa gồm thuế và phí thoái vốn." data-en="An illustrative projection based on your assumptions — not a guarantee of returns or financial advice. Taxes and selling costs are not included.">Ước tính minh hoạ dựa trên giả định của bạn — không phải cam kết lợi nhuận hay tư vấn tài chính. Chưa gồm thuế và phí thoái vốn.</div>
+        </div>
       </div>
     </div>
   </section>
@@ -2991,6 +3091,238 @@ body.layoutmode [data-el]:hover{outline:1.5px dashed rgba(24,0,173,.5);outline-o
     document.addEventListener('DOMContentLoaded', function () { setTimeout(goEn, 60); });
   } else {
     setTimeout(goEn, 60);
+  }
+})();
+</script>
+
+<script>
+(function(){
+  var root = document.getElementById('roiTool');
+  if (!root) return;
+  var $ = function(id){ return document.getElementById(id); };
+  var SYM = { USD:'$', EUR:'€', GBP:'£', AUD:'A$', SGD:'S$', THB:'฿', AED:'AED ', VND:'₫' };
+  var PRESETS = [
+    { vi:'Việt Nam', en:'Vietnam', cur:'USD', price:300000, y:6, op:25, ap:8 },
+    { vi:'Đảo Síp', en:'Cyprus', cur:'EUR', price:500000, y:5, op:22, ap:5 },
+    { vi:'Hy Lạp', en:'Greece', cur:'EUR', price:300000, y:4.5, op:22, ap:6 },
+    { vi:'Thái Lan', en:'Thailand', cur:'USD', price:250000, y:6, op:25, ap:5 },
+    { vi:'Anh Quốc', en:'United Kingdom', cur:'GBP', price:600000, y:5, op:24, ap:4 },
+    { vi:'Dubai', en:'Dubai', cur:'AED', price:2000000, y:7, op:22, ap:6 },
+    { vi:'Panama', en:'Panama', cur:'USD', price:350000, y:7, op:25, ap:4 },
+    { vi:'Úc', en:'Australia', cur:'AUD', price:900000, y:4, op:24, ap:5 }
+  ];
+  function lang(){
+    var en = document.getElementById('navLangEn');
+    if (en && en.classList.contains('lang-active')) return 'en';
+    var ge = document.getElementById('gateLangEn');
+    if (ge && ge.classList.contains('on')) return 'en';
+    return 'vi';
+  }
+  function t(vi, en){ return lang() === 'en' ? en : vi; }
+  function num(id){ var v = parseFloat($(id).value); return isFinite(v) ? v : 0; }
+  function money(v, cur){
+    var s = SYM[cur] || '$';
+    var neg = v < 0; v = Math.abs(v);
+    var out;
+    if (v >= 1e9) out = (Math.round(v/1e8)/10) + 'B';
+    else if (v >= 1e6) out = (Math.round(v/1e5)/10) + 'M';
+    else if (v >= 1e3) out = Math.round(v/1e3) + 'K';
+    else out = String(Math.round(v));
+    return (neg ? '-' : '') + s + out;
+  }
+  function irr(cf){
+    function npv(r){ var s = 0; for (var i=0;i<cf.length;i++){ s += cf[i]/Math.pow(1+r, i); } return s; }
+    var lo = -0.9, hi = 5;
+    if (npv(lo) * npv(hi) > 0) return null;
+    for (var k=0;k<200;k++){ var mid=(lo+hi)/2, f=npv(mid); if (Math.abs(f) < 1e-4) return mid; if (npv(lo)*f < 0) hi=mid; else lo=mid; }
+    return (lo+hi)/2;
+  }
+  function calc(){
+    var price = num('roiPrice'), cur = $('roiCur').value;
+    var y = num('roiYield')/100, op = num('roiOp')/100, ap = num('roiAppr')/100;
+    var N = Math.max(1, Math.min(40, Math.round(num('roiHold'))));
+    var pc = num('roiPcost')/100;
+    var outlay = price * (1 + pc);
+    var cf = [ -outlay ], totRent = 0, vals = [ price ], cumRent = [ 0 ], acc = 0;
+    for (var ti=1; ti<=N; ti++){
+      var startVal = price * Math.pow(1+ap, ti-1);
+      var rent = startVal * y * (1-op);
+      totRent += rent; acc += rent;
+      var flow = rent;
+      if (ti === N) flow += price * Math.pow(1+ap, N);
+      cf.push(flow);
+      vals.push(price * Math.pow(1+ap, ti));
+      cumRent.push(acc);
+    }
+    var exitVal = price * Math.pow(1+ap, N);
+    var capGain = exitVal - price;
+    var purchaseCost = price * pc;
+    var totProfit = totRent + capGain - purchaseCost;
+    var roiPct = outlay > 0 ? totProfit / outlay * 100 : 0;
+    var r = irr(cf);
+    var irrPct = r === null ? null : r * 100;
+    var multiple = outlay > 0 ? (totRent + exitVal) / outlay : 0;
+    var pb = null, c = 0;
+    for (var pt=1; pt<=60; pt++){
+      var sv = price * Math.pow(1+ap, pt-1);
+      var rr = sv * y * (1-op);
+      if (rr <= 0) break;
+      if (c + rr >= outlay){ pb = (pt-1) + (outlay - c)/rr; break; }
+      c += rr;
+    }
+    return { price:price, cur:cur, y:num('roiYield'), op:num('roiOp'), ap:num('roiAppr'), N:N, pc:num('roiPcost'),
+      outlay:outlay, exitVal:exitVal, capGain:capGain, totRent:totRent, totProfit:totProfit,
+      roiPct:roiPct, irrPct:irrPct, multiple:multiple, payback:pb, vals:vals, cumRent:cumRent };
+  }
+  function metric(k, v, u, hero){
+    return '<div class="roi-metric' + (hero ? ' roi-lead' : '') + '">' +
+      '<div class="roi-k">' + k + '</div>' +
+      '<div class="roi-v">' + v + (u ? '<span class="roi-u">' + u + '</span>' : '') + '</div></div>';
+  }
+  function pct(v){ return v === null ? '—' : (Math.round(v*10)/10) + '%'; }
+  function renderMetrics(d){
+    var h = '';
+    h += metric(t('Tổng lợi nhuận (khi thoái vốn)','Total profit at exit'), money(d.totProfit, d.cur), '', true);
+    h += metric(t('ROI tổng','Total ROI'), pct(d.roiPct), '');
+    h += metric(t('IRR (lợi nhuận/năm)','IRR (annualised)'), pct(d.irrPct), '');
+    h += metric(t('Giá trị thoái vốn','Exit value'), money(d.exitVal, d.cur), t('năm ' + d.N, 'yr ' + d.N));
+    h += metric(t('Thu nhập cho thuê ròng','Net rental income'), money(d.totRent, d.cur), '');
+    h += metric(t('Tăng giá vốn','Capital gain'), money(d.capGain, d.cur), '');
+    h += metric(t('Số lần vốn','Money multiple'), (Math.round(d.multiple*100)/100) + 'x', '');
+    h += metric(t('Hoàn vốn từ cho thuê','Rental payback'), d.payback === null ? '60+' : (Math.round(d.payback*10)/10), t('năm','yrs'));
+    $('roiMetrics').innerHTML = h;
+  }
+  function renderChart(d){
+    var W = 520, H = 190, padB = 22, padT = 8, padL = 4, padR = 4;
+    var n = d.vals.length;
+    var idxs = [];
+    if (n <= 13){ for (var i=0;i<n;i++) idxs.push(i); }
+    else { var step = (n-1)/11; for (var j=0;j<=11;j++) idxs.push(Math.round(j*step)); idxs[idxs.length-1] = n-1; }
+    var maxT = 0;
+    idxs.forEach(function(ix){ var tot = d.vals[ix] + d.cumRent[ix]; if (tot > maxT) maxT = tot; });
+    if (maxT <= 0) maxT = 1;
+    var plotH = H - padB - padT, plotW = W - padL - padR;
+    var bw = plotW / idxs.length * 0.62;
+    var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Projection chart" preserveAspectRatio="xMidYMid meet">';
+    svg += '<line x1="' + padL + '" y1="' + (H-padB) + '" x2="' + (W-padR) + '" y2="' + (H-padB) + '" stroke="#e5e7eb" stroke-width="1"/>';
+    idxs.forEach(function(ix, k){
+      var cx = padL + (k + 0.5) * (plotW / idxs.length);
+      var vH = d.vals[ix] / maxT * plotH;
+      var rH = d.cumRent[ix] / maxT * plotH;
+      var x = cx - bw/2;
+      var yVal = (H - padB) - vH;
+      var yRent = yVal - rH;
+      svg += '<rect x="' + x.toFixed(1) + '" y="' + yVal.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + vH.toFixed(1) + '" rx="2" fill="#1800ad"/>';
+      if (rH > 0.6) svg += '<rect x="' + x.toFixed(1) + '" y="' + yRent.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + rH.toFixed(1) + '" rx="2" fill="#f97316"/>';
+      svg += '<text x="' + cx.toFixed(1) + '" y="' + (H-8) + '" text-anchor="middle" font-size="9" fill="#9ca3af">' + ix + '</text>';
+    });
+    svg += '</svg>';
+    $('roiChart').innerHTML = svg;
+  }
+  function summaryText(d){
+    var nl = String.fromCharCode(10);
+    var L = [];
+    var cal = 'https://calendar.app.google/gnbtNBTBDKuHUasw7';
+    if (lang() === 'en'){
+      L.push('NAC — Investment ROI projection');
+      L.push('Property price: ' + money(d.price, d.cur));
+      L.push('Gross yield ' + d.y + '% · Operating costs ' + d.op + '% · Appreciation ' + d.ap + '%/yr · Hold ' + d.N + ' yrs');
+      L.push('');
+      L.push('Exit value (yr ' + d.N + '): ' + money(d.exitVal, d.cur));
+      L.push('Net rental income: ' + money(d.totRent, d.cur));
+      L.push('Capital gain: ' + money(d.capGain, d.cur));
+      L.push('Total profit at exit: ' + money(d.totProfit, d.cur));
+      L.push('Total ROI ' + pct(d.roiPct) + ' · IRR ' + pct(d.irrPct) + '/yr · Rental payback ' + (d.payback === null ? '60+' : Math.round(d.payback*10)/10) + ' yrs');
+      L.push('');
+      L.push('Illustrative only — not a guarantee. Book a consult: ' + cal);
+    } else {
+      L.push('NAC — Dự phóng lợi nhuận đầu tư');
+      L.push('Giá tài sản: ' + money(d.price, d.cur));
+      L.push('Lợi suất gộp ' + d.y + '% · Chi phí vận hành ' + d.op + '% · Tăng giá ' + d.ap + '%/năm · Nắm giữ ' + d.N + ' năm');
+      L.push('');
+      L.push('Giá trị thoái vốn (năm ' + d.N + '): ' + money(d.exitVal, d.cur));
+      L.push('Thu nhập cho thuê ròng: ' + money(d.totRent, d.cur));
+      L.push('Tăng giá vốn: ' + money(d.capGain, d.cur));
+      L.push('Tổng lợi nhuận khi thoái vốn: ' + money(d.totProfit, d.cur));
+      L.push('ROI tổng ' + pct(d.roiPct) + ' · IRR ' + pct(d.irrPct) + '/năm · Hoàn vốn từ cho thuê ' + (d.payback === null ? '60+' : Math.round(d.payback*10)/10) + ' năm');
+      L.push('');
+      L.push('Ước tính minh hoạ — không phải cam kết. Đặt lịch tư vấn: ' + cal);
+    }
+    return L.join(nl);
+  }
+  var lastD = null;
+  function syncUrl(d){
+    try {
+      var q = [ d.cur, d.price, d.y, d.op, d.ap, d.N, d.pc ].join('.');
+      history.replaceState(null, '', location.pathname + '?roi=' + q + location.hash);
+    } catch(e){}
+  }
+  function render(){
+    var d = calc(); lastD = d;
+    renderMetrics(d); renderChart(d); syncUrl(d);
+  }
+  function renderPresets(){
+    var box = $('roiPresets'); box.innerHTML = '';
+    PRESETS.forEach(function(p, i){
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'roi-preset';
+      b.setAttribute('data-vi', p.vi); b.setAttribute('data-en', p.en);
+      b.textContent = t(p.vi, p.en);
+      b.addEventListener('click', function(){
+        $('roiPrice').value = p.price; $('roiCur').value = p.cur;
+        $('roiYield').value = p.y; $('roiOp').value = p.op; $('roiAppr').value = p.ap;
+        box.querySelectorAll('.roi-preset').forEach(function(x){ x.classList.remove('on'); });
+        b.classList.add('on');
+        render();
+      });
+      box.appendChild(b);
+    });
+  }
+  var toast = null;
+  function showToast(msg){
+    if (!toast){ toast = document.createElement('div'); toast.className = 'roi-toast'; document.body.appendChild(toast); }
+    toast.textContent = msg; toast.classList.add('show');
+    setTimeout(function(){ toast.classList.remove('show'); }, 1800);
+  }
+  function copySummary(){
+    var txt = summaryText(lastD || calc());
+    function done(){ showToast(t('Đã sao chép tóm tắt', 'Summary copied')); }
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(txt).then(done, function(){ fallback(txt); done(); });
+    } else { fallback(txt); done(); }
+  }
+  function fallback(txt){
+    var ta = document.createElement('textarea'); ta.value = txt;
+    ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta);
+    ta.select(); try { document.execCommand('copy'); } catch(e){}
+    document.body.removeChild(ta);
+  }
+  function readUrl(){
+    try {
+      var m = new URLSearchParams(location.search).get('roi');
+      if (!m) return;
+      var p = m.split('.');
+      if (p.length < 7) return;
+      if (SYM[p[0]]) $('roiCur').value = p[0];
+      $('roiPrice').value = p[1]; $('roiYield').value = p[2]; $('roiOp').value = p[3];
+      $('roiAppr').value = p[4]; $('roiHold').value = p[5]; $('roiPcost').value = p[6];
+    } catch(e){}
+  }
+  ['roiPrice','roiCur','roiYield','roiOp','roiAppr','roiHold','roiPcost'].forEach(function(id){
+    var el = $(id); if (el) el.addEventListener('input', render);
+    if (el) el.addEventListener('change', render);
+  });
+  $('roiCopy').addEventListener('click', copySummary);
+  ['gateLangVi','gateLangEn','navLangVi','navLangEn'].forEach(function(id){
+    var b = document.getElementById(id); if (b) b.addEventListener('click', function(){ setTimeout(function(){ renderPresets(); render(); }, 0); });
+  });
+  renderPresets();
+  var hasUrl = false;
+  try { hasUrl = !!new URLSearchParams(location.search).get('roi'); } catch(e){}
+  if (hasUrl){ readUrl(); render(); }
+  else {
+    var first = $('roiPresets').querySelector('.roi-preset');
+    if (first){ first.click(); } else { render(); }
   }
 })();
 </script>
