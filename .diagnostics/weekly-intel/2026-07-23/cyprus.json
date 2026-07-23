@@ -1,0 +1,24 @@
+{
+  "alias": "cyprus",
+  "gathered_at": "2026-07-23T05:57:53.722441+00:00",
+  "days_window": 1,
+  "signal_count": 2,
+  "signals": [
+    {
+      "kind": "date",
+      "matched": "2022",
+      "excerpt": "…: info@investmentmigration.org Search IMC Website Search for: Search Search Results for cyprus residence permit investor Posted on June 17, 2022 July 4, 2022 darioa Articles European Residence and Citizenship Pathways Prevail in Henley & Partners’ 7th Investment Migration Pathways Re…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=cyprus+residence+permit+investor",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2022",
+      "excerpt": "…mentmigration.org Search IMC Website Search for: Search Search Results for cyprus residence permit investor Posted on June 17, 2022 July 4, 2022 darioa Articles European Residence and Citizenship Pathways Prevail in Henley & Partners’ 7th Investment Migration Pathways Report The arti…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=cyprus+residence+permit+investor",
+      "authority": 2
+    }
+  ]
+}
