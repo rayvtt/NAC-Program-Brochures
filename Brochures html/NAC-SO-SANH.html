@@ -207,14 +207,55 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
    "Education" card for Greece and Turkey always end at the same height,
    whatever the example-sentence length, because grid rows auto-size to
    their tallest item and stretch every sibling to match. */
-.needs{padding:6px 26px 20px}
-.needs-row{display:grid;grid-template-columns:var(--gcols-nolabel);gap:10px;margin-bottom:10px}
+.needs{padding:26px 26px 20px}
+.needs-row{display:grid;grid-template-columns:var(--gcols-nolabel);gap:24px;margin-bottom:24px}
 .needs-row:last-child{margin-bottom:0}
-.nc{border:1px solid var(--border);border-radius:12px;padding:13px 14px;background:#fdfdff;position:relative;display:flex;flex-direction:column}
-.nc-t{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:700;margin-bottom:5px}
+.nc{border:1px solid var(--border);border-radius:12px;padding:14px 14px 13px 20px;background:#fdfdff;position:relative;display:flex;flex-direction:column}
+.nc-t{font-size:12px;font-weight:700;margin-bottom:5px;display:flex;align-items:center}
 .nc-r{margin-left:auto;font-size:11px;font-weight:800;color:var(--blue);background:var(--blue-lt);padding:2px 8px;border-radius:10px}
 .nc-x{font-size:11.5px;color:var(--text2)}
 .nc-ex{font-size:10.5px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px dashed var(--border);font-style:italic}
+
+/* dimension icon — floats outside the card's top-left corner (not inline
+   with the title) so it reads as a distinct, badge-like marker. Bespoke
+   inline SVG per dimension (never emoji — cross-platform rendering is
+   inconsistent, and these need per-icon animation hooks emoji can't take). */
+.nc-ic{position:absolute;top:-15px;left:-15px;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--border);box-shadow:0 3px 9px rgba(24,0,173,.16);display:flex;align-items:center;justify-content:center;color:var(--blue);z-index:2}
+.nc-ic svg{width:17px;height:17px;display:block;overflow:visible}
+
+/* Card entrance + per-icon signature animation — both gated behind
+   `.sec.open` so they only fire once the §02 accordion is actually expanded
+   (never while collapsed/off-screen), staggered dimension-by-dimension via
+   the --i custom property set per .needs-row (inherited by its children). */
+@keyframes ncPop{0%{opacity:0;transform:scale(.72) translateY(12px)}55%{opacity:1;transform:scale(1.04) translateY(-2px)}100%{opacity:1;transform:scale(1) translateY(0)}}
+.sec.open .needs-row .nc{animation:ncPop .5s cubic-bezier(.25,.9,.35,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
+
+@keyframes icSpin{to{transform:rotate(360deg)}}
+.sec.open .ic-nGlobal svg{animation:icSpin 7s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+
+@keyframes icPlaneGo{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(4px,-5px) rotate(-16deg)}}
+.sec.open .ic-nMove svg{animation:icPlaneGo .6s cubic-bezier(.3,.6,.3,1) both;animation-delay:calc(var(--i,0) * 110ms + 130ms)}
+
+@keyframes icShake{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-11deg)}75%{transform:rotate(11deg)}}
+.sec.open .ic-nQol svg{animation:icShake 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+
+@keyframes icToss{0%{transform:rotate(0deg) translateY(0)}45%{transform:rotate(220deg) translateY(-6px)}75%{transform:rotate(380deg) translateY(1px)}100%{transform:rotate(360deg) translateY(0)}}
+.sec.open .ic-nEdu svg{animation:icToss .75s cubic-bezier(.3,.4,.25,1) both;animation-delay:calc(var(--i,0) * 110ms)}
+
+@keyframes icPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.sec.open .ic-nHealth svg{animation:icPulse 1.6s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+
+@keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+.sec.open .ic-nSafe svg{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
+
+@keyframes icBarGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom;animation:icBarGrow .4s ease-out both}
+.sec.open .ic-nDiv svg rect:nth-child(1){animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-nDiv svg rect:nth-child(2){animation-delay:calc(var(--i,0) * 110ms + 90ms)}
+.sec.open .ic-nDiv svg rect:nth-child(3){animation-delay:calc(var(--i,0) * 110ms + 180ms)}
+
+@keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}70%{transform:translateY(2px) rotate(3deg);opacity:1}100%{transform:translateY(0) rotate(0)}}
+.sec.open .ic-nTax svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
 
 /* freshness dot — small hoverable "last updated" marker on any row/card.
    Muted by default; brightens + pulses when the field was touched in the
@@ -619,15 +660,28 @@ var RT_DIMS = [
   { key:'rtTax',    vi:'Tối ưu thuế',           en:'Tax efficiency' }
 ];
 var NEED_DIMS = [
-  { key:'nEdu',    rt:'rtEdu',    ic:'🎓', vi:'Giáo dục',             en:'Education' },
-  { key:'nGlobal', rt:'rtGlobal', ic:'🌐', vi:'Toàn cầu hóa',         en:'Globalization' },
-  { key:'nMove',   rt:'rtMove',   ic:'✈️', vi:'Tự do đi lại',         en:'Mobility' },
-  { key:'nHealth', rt:'rtHealth', ic:'🏥', vi:'Y tế',                 en:'Healthcare' },
-  { key:'nQol',    rt:'rtQol',    ic:'🌿', vi:'Chất lượng cuộc sống', en:'Quality of life' },
-  { key:'nSafe',   rt:'rtSafe',   ic:'🛡️', vi:'Đầu tư an toàn',       en:'Investment safety' },
-  { key:'nDiv',    rt:'rtDiv',    ic:'📊', vi:'Đa dạng hóa',          en:'Diversification' },
-  { key:'nTax',    rt:'rtTax',    ic:'🧾', vi:'Thuế',                 en:'Tax' }
+  { key:'nEdu',    rt:'rtEdu',    vi:'Giáo dục',             en:'Education' },
+  { key:'nGlobal', rt:'rtGlobal', vi:'Toàn cầu hóa',         en:'Globalization' },
+  { key:'nMove',   rt:'rtMove',   vi:'Tự do đi lại',         en:'Mobility' },
+  { key:'nHealth', rt:'rtHealth', vi:'Y tế',                 en:'Healthcare' },
+  { key:'nQol',    rt:'rtQol',    vi:'Chất lượng cuộc sống', en:'Quality of life' },
+  { key:'nSafe',   rt:'rtSafe',   vi:'Đầu tư an toàn',       en:'Investment safety' },
+  { key:'nDiv',    rt:'rtDiv',    vi:'Đa dạng hóa',          en:'Diversification' },
+  { key:'nTax',    rt:'rtTax',    vi:'Thuế',                 en:'Tax' }
 ];
+/* Bespoke inline SVG per need-dimension — never emoji (inconsistent across
+   platforms, and can't take the per-dimension animation hooks in the CSS
+   above: .ic-<key> targets each one's signature motion when §02 opens). */
+var NEED_ICON_SVG = {
+  nEdu:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 1 9l11 6 11-6-11-6Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v7"/><circle cx="22" cy="17.4" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  nGlobal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/></svg>',
+  nMove:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 10.2l6.3 2.4"/><path d="M21 3 13.6 20l-2.3-6.6"/><path d="M21 3 9.3 13.6"/></svg>',
+  nHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg>',
+  nQol:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4C10 4 4 10.5 4 18.3c0 .7.1 1.4.3 2 .7.2 1.4.3 2.1.3C15 20.6 20 14.4 20 5.2c0-.4 0-.8 0-1.2Z"/><path d="M6.2 19.8C10 14 14 10 19.4 6.3"/></svg>',
+  nSafe:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 20 6v6c0 5-3.5 8.3-8 9.1-4.5-.8-8-4.1-8-9.1V6l8-2.8Z"/><path d="m8.6 12 2.2 2.2 4.6-4.6"/></svg>',
+  nDiv:    '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="3.5" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="7" width="3.6" height="13" rx="1"/><rect x="16.9" y="3" width="3.6" height="17" rx="1"/></svg>',
+  nTax:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.3h9l3 3v16.4l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V2.3Z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>'
+};
 
 /* Embedded dataset — synced from the 🔀 NAC - So Sánh Data Notion DB by
    tools/pull_sosanh_from_notion.py + tools/patch_sosanh_snap.py (fortnightly
@@ -866,6 +920,7 @@ function needsSec(cs){
      the row keeps exactly N cells and the grid stays aligned; the row itself
      is only skipped when NO selected country has any data for it. */
   var inner = '<div class="needs">';
+  var rowIdx = 0; /* only counts ROWS THAT ACTUALLY RENDER — stagger index must not skip when a dimension is empty for every selected country */
   for(j = 0; j < NEED_DIMS.length; j++){
     var d = NEED_DIMS[j];
     var any = false, cards = '';
@@ -880,7 +935,8 @@ function needsSec(cs){
       var has = !!(main || ex || rt != null);
       if(has){ any = true; }
       cards += '<div class="nc">' + freshBadge(cs[i], [d.key, d.rt]) +
-        '<div class="nc-t">' + d.ic + ' ' + esc(d[lang] || d.vi) +
+        '<span class="nc-ic ic-' + d.key + '">' + (NEED_ICON_SVG[d.key] || '') + '</span>' +
+        '<div class="nc-t">' + esc(d[lang] || d.vi) +
         (rt != null ? '<span class="nc-r">' + rt + '</span>' : '') + '</div>' +
         (has
           ? (main ? '<div class="nc-x">' + br(main) + '</div>' : '') + (ex ? '<div class="nc-ex">' + br(ex) + '</div>' : '')
@@ -888,7 +944,12 @@ function needsSec(cs){
         '</div>';
     }
     if(!any){ continue; }
-    inner += '<div class="needs-row">' + cards + '</div>';
+    /* --i drives the row's entrance stagger (CSS custom props inherit, so
+       every .nc/.nc-ic svg inside reads the same row-level index) — cards
+       within a row pop together (they're the same dimension, side by side),
+       the NEXT dimension's row starts 110ms later: "one after another". */
+    inner += '<div class="needs-row" style="--i:' + rowIdx + '">' + cards + '</div>';
+    rowIdx++;
   }
   inner += '</div>';
   return secShell('§02', 'secNeeds', headCols(cs) + inner);
