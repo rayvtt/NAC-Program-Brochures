@@ -430,19 +430,51 @@ Notion DB, its own payload shape, and its own sync tooling:
     validates without writing.
   - `tools/sosanh_changelog.py` — diffs the git-committed payload against the
     freshly-pulled one on disk (must run **after** the pull, **before** the
-    commit), appends a human-readable digest to `SOSANH-SYNC-LOG.md` (newest
-    first — the durable "what changed this sync" record), and optionally posts
-    the same digest to `NOTIFY_WEBHOOK` (a Google Chat incoming-webhook URL,
-    same `cardsV2` shape `nac-marketing-omnichannel`'s `scripts/notify.mjs`
-    already posts to) if that secret is set. A missing secret or a failed POST
-    is non-fatal — the log entry is the durable record either way.
+    patch/commit), appends a human-readable digest to `SOSANH-SYNC-LOG.md`
+    (newest first — the durable "what changed this sync" record), and
+    optionally posts the same digest to `NOTIFY_WEBHOOK` (a Google Chat
+    incoming-webhook URL, same `cardsV2` shape `nac-marketing-omnichannel`'s
+    `scripts/notify.mjs` already posts to) if that secret is set. A missing
+    secret or a failed POST is non-fatal — the log entry is the durable record
+    either way. **Also owns the per-field freshness ledger**: every country
+    gets an `_updated` map (`{field_key: "DD/MM/YYYY"}`, scoped to exactly the
+    `TEXT_FIELDS`/`NUM_FIELDS` in `data/sosanh_schema.py` — never identity
+    fields) written back into `data/sosanh_payload.json` itself. A field named
+    in this run's diff gets its date bumped to today; everything else carries
+    its previous date forward unchanged; a field with a real value but no
+    prior entry (first run after this shipped, or a brand-new field/country)
+    is baseline-stamped today rather than left blank. This is *why* patch runs
+    **after** changelog in the pipeline now, not before — see below.
+- **Per-field freshness badges** (`NAC-SO-SANH.html`): every rendered row/card
+  (§01 overview, §02 needs, §09 verdict reasons, §10 ratings — everything
+  driven by `rowTxt`/`rowNum`/`needsSec`/`ratingsSec`/`verdictSec`) shows a
+  small hoverable dot reading its `_updated` date (`freshBadge(ct, key)` in the
+  HTML's own JS — no server round-trip, just reads what patch already embedded
+  into `var DB_STATIC`). Muted/gray by default; bright green + pulsing
+  ("hot") when that date matches the payload's own `asOf`, i.e. touched in the
+  sync that just landed. §02's cards combine a need-dimension's text field and
+  its paired `⑩` rating field into one badge (`freshBadge(ct,[d.key,d.rt])`);
+  §09's verdict cards show the freshest of their 5 reasons.
+- **§02 needs section is a per-dimension grid, not per-country stacks**: each
+  of the 8 need-dimensions (`NEED_DIMS`) is its own CSS grid row
+  (`.needs-row{display:grid;grid-template-columns:var(--gcols-nolabel)}`)
+  spanning every selected country's card — so e.g. Greece's and Turkey's
+  "Education" cards always end at the same height, whatever their example
+  sentence's length, because grid rows stretch every cell in the row to the
+  tallest one. (The old layout gave each country its own independent
+  `.nc-stack` flex column, so cards never aligned across countries.) A country
+  missing that one dimension still gets an em-dash placeholder card, not a
+  gap, so the row always has exactly N cells. Mobile (`≤680px`) collapses each
+  `.needs-row` to a single column — dimension-major stacking (Education for
+  every country, then Globalization for every country, …), which reads better
+  for comparison than the old country-major order anyway.
 - **Workflow**: `.github/workflows/pull-sosanh-notion.yml` — cron `0 3 1,15 * *`
   (fortnightly: 1st + 15th of every month, 03:00 UTC) + `workflow_dispatch` with
-  a `dry_run` input. Chains pull → patch → changelog → commit → **inline**
-  `python sync_brochures.py sosanh` (the `sosanh` alias targets this one page).
-  The inline WP push is required, not optional — same GITHUB_TOKEN-commits-
-  don't-cascade-trigger-`wp-sync.yml` limitation documented in §4/§5 for
-  `pull-notion.yml`.
+  a `dry_run` input. Chains pull → **changelog (bumps the freshness ledger)** →
+  patch → commit → **inline** `python sync_brochures.py sosanh` (the `sosanh`
+  alias targets this one page). The inline WP push is required, not optional —
+  same GITHUB_TOKEN-commits-don't-cascade-trigger-`wp-sync.yml` limitation
+  documented in §4/§5 for `pull-notion.yml`.
 - **Two independent write paths into the same HTML file, by design**: the
   `?edit=1` in-page copy editor (`apply-sosanh-copy.yml`, §8b's sibling —
   patches the `var I18N = {...}` chrome-copy object literal: hero, nav labels,
