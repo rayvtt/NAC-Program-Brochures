@@ -468,6 +468,27 @@ Notion DB, its own payload shape, and its own sync tooling:
   `.needs-row` to a single column — dimension-major stacking (Education for
   every country, then Globalization for every country, …), which reads better
   for comparison than the old country-major order anyway.
+- **§02 dimension icons are bespoke inline SVG, never emoji** (`NEED_ICON_SVG`
+  in the HTML, keyed by `NEED_DIMS[].key`) — cross-platform emoji rendering is
+  inconsistent, and only real DOM elements can take the per-dimension
+  animation hooks below. Each icon floats as a round badge outside the card's
+  top-left corner (`.nc-ic`, absolute-positioned with a negative offset —
+  `.needs-row`'s 24px gap/margin exists specifically to give these room
+  without colliding with the neighbouring country's card) rather than sitting
+  inline with the title. Every dimension has a signature animation, all gated
+  behind `.sec.open .ic-<key> svg` so they only fire once §02 is actually
+  expanded, staggered row-by-row via the `--i` custom property set on each
+  `.needs-row` (dimension N+1 starts 110ms after dimension N — "one after
+  another"): globe (`nGlobal`) spins continuously, leaf (`nQol`) shakes
+  continuously, heart/cross (`nHealth`) pulses continuously — these three loop
+  for as long as the section stays open. Cap (`nEdu`) tosses/spins, plane
+  (`nMove`) "takes off" (translate + rotate), shield (`nSafe`) settles with a
+  bounce, bar chart (`nDiv`) grows its 3 bars staggered, receipt (`nTax`)
+  drops into place — these six are one-shot (`animation-fill-mode:both`,
+  finite duration) and hold their end state. The card itself also has its own
+  `ncPop` entrance (scale+fade) on the same stagger. Closing and reopening the
+  section replays the whole sequence (removing then re-adding `.open` resets
+  every animation on it, confirmed in testing).
 - **Workflow**: `.github/workflows/pull-sosanh-notion.yml` — cron `0 3 1,15 * *`
   (fortnightly: 1st + 15th of every month, 03:00 UTC) + `workflow_dispatch` with
   a `dry_run` input. Chains pull → **changelog (bumps the freshness ledger)** →
