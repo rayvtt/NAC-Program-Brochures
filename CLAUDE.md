@@ -457,38 +457,70 @@ Notion DB, its own payload shape, and its own sync tooling:
   §09's verdict cards show the freshest of their 5 reasons.
 - **§02 needs section is a per-dimension grid, not per-country stacks**: each
   of the 8 need-dimensions (`NEED_DIMS`) is its own CSS grid row
-  (`.needs-row{display:grid;grid-template-columns:var(--gcols-nolabel)}`)
-  spanning every selected country's card — so e.g. Greece's and Turkey's
-  "Education" cards always end at the same height, whatever their example
-  sentence's length, because grid rows stretch every cell in the row to the
-  tallest one. (The old layout gave each country its own independent
-  `.nc-stack` flex column, so cards never aligned across countries.) A country
-  missing that one dimension still gets an em-dash placeholder card, not a
-  gap, so the row always has exactly N cells. Mobile (`≤680px`) collapses each
-  `.needs-row` to a single column — dimension-major stacking (Education for
-  every country, then Globalization for every country, …), which reads better
-  for comparison than the old country-major order anyway.
+  (`.needs-row{display:grid;grid-template-columns:var(--gcols)}` — the same
+  `220px repeat(n,1fr)` label-column template every other section's rows use,
+  not the label-less `--gcols-nolabel`) spanning every selected country's card
+  — so e.g. Greece's and Turkey's "Education" cards always end at the same
+  height, whatever their example sentence's length, because grid rows stretch
+  every cell in the row to the tallest one. (The old layout gave each country
+  its own independent `.nc-stack` flex column, so cards never aligned across
+  countries.) A country missing that one dimension still gets an em-dash
+  placeholder card, not a gap, so the row always has exactly N cells. Mobile
+  (`≤680px`) collapses each `.needs-row` to a single column — dimension-major
+  stacking (Education for every country, then Globalization for every
+  country, …), which reads better for comparison than the old country-major
+  order anyway.
 - **§02 dimension icons are bespoke inline SVG, never emoji** (`NEED_ICON_SVG`
   in the HTML, keyed by `NEED_DIMS[].key`) — cross-platform emoji rendering is
   inconsistent, and only real DOM elements can take the per-dimension
-  animation hooks below. Each icon floats as a round badge outside the card's
-  top-left corner (`.nc-ic`, absolute-positioned with a negative offset —
-  `.needs-row`'s 24px gap/margin exists specifically to give these room
-  without colliding with the neighbouring country's card) rather than sitting
-  inline with the title. Every dimension has a signature animation, all gated
+  animation hooks below. **One shared icon per ROW, not one per country
+  card** (a per-card icon read as three duplicate spinners side by side when
+  comparing 3 countries — confusing, and not what "make the icon pop out"
+  meant). The icon (`.needs-ic`, a 46px round badge, bigger than the old
+  per-card `.nc-ic`) sits as the row's first grid child, landing in the same
+  220px label column every other section's rows use — so all 8 icons line up
+  in one clean vertical column on the far left, flush with the rest of the
+  page's left-label edge (this is what fixed the "icons should sit on this
+  vertical line" screenshot feedback — annotated with hand-drawn marks in one
+  column, one per row). Every dimension has a signature animation, all gated
   behind `.sec.open .ic-<key> svg` so they only fire once §02 is actually
   expanded, staggered row-by-row via the `--i` custom property set on each
   `.needs-row` (dimension N+1 starts 110ms after dimension N — "one after
-  another"): globe (`nGlobal`) spins continuously, leaf (`nQol`) shakes
-  continuously, heart/cross (`nHealth`) pulses continuously — these three loop
-  for as long as the section stays open. Cap (`nEdu`) tosses/spins, plane
-  (`nMove`) "takes off" (translate + rotate), shield (`nSafe`) settles with a
-  bounce, bar chart (`nDiv`) grows its 3 bars staggered, receipt (`nTax`)
-  drops into place — these six are one-shot (`animation-fill-mode:both`,
-  finite duration) and hold their end state. The card itself also has its own
-  `ncPop` entrance (scale+fade) on the same stagger. Closing and reopening the
-  section replays the whole sequence (removing then re-adding `.open` resets
-  every animation on it, confirmed in testing).
+  another"): globe (`nGlobal`) spins continuously — a plain circle + symmetric
+  meridian lines looked static/wobbly under rotation, so the icon has 3
+  filled "landmass" dots at asymmetric positions to make the 360° turn
+  visually unambiguous (linear timing, one direction only — verified by
+  sampling the computed transform matrix every 300ms: angle increases by
+  exactly 18°/300ms with zero reversal, i.e. a true one-directional spin, not
+  a left-right wobble); leaf (`nQol`) rotates **and scales up to 1.2×**
+  ("expand further" — a bigger amplitude than a plain shake); heart/cross
+  (`nHealth`) pulses continuously — these three loop for as long as the
+  section stays open. Cap (`nEdu`) tosses/spins, plane (`nMove`) "takes off"
+  (translate + rotate), shield (`nSafe`) settles with a bounce, bar chart
+  (`nDiv`) grows its 3 bars staggered, receipt (`nTax`) drops into place —
+  these six are one-shot (`animation-fill-mode:both`, finite duration) and
+  hold their end state. The card itself also has its own `ncPop` entrance
+  (scale+fade) on the same stagger. Closing and reopening the section replays
+  the whole sequence (removing then re-adding `.open` resets every animation
+  on it, confirmed in testing).
+  **Reduced-motion trap:** the `prefers-reduced-motion:reduce` override
+  (`.needs-row .nc,.needs-ic,.needs-ic svg,...{animation:none}`) MUST carry
+  `!important` on every property. Without it, the override silently loses —
+  `.sec.open .ic-nGlobal svg{animation:...}` has 3+ classes of specificity vs.
+  the override's 1-2, so CSS specificity beats source order regardless of the
+  media query appearing later in the file, and the icons keep spinning for
+  reduced-motion users. Caught by explicitly reading `getComputedStyle(...).
+  animationName` under `page.emulateMedia({reducedMotion:'reduce'})` in
+  Playwright — every value came back as the live keyframe name instead of
+  `'none'` before the fix.
+- **§02 winner highlight** (`needsSec()`): the highest `⑩` rating in each
+  dimension row gets a green `.nc-r.win` badge with a small bouncing up-arrow
+  (`WIN_ARROW_SVG`, continuous `winArrowUp` animation, same `--i` stagger
+  gating as everything else in the row) instead of the default blue-on-cream
+  badge. Mirrors `rowNum()`'s existing `best`/`bi`/`allSame` winner-detection
+  pattern (§01/§10 gold `.win-dot`) but reimplemented locally in `needsSec()`
+  since it operates on `cs[i][d.rt]` per dimension rather than a single row
+  value — no highlight at all when every selected country ties (`allSame`).
 - **Workflow**: `.github/workflows/pull-sosanh-notion.yml` — cron `0 3 1,15 * *`
   (fortnightly: 1st + 15th of every month, 03:00 UTC) + `workflow_dispatch` with
   a `dry_run` input. Chains pull → **changelog (bumps the freshness ledger)** →
