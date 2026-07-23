@@ -207,43 +207,52 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
    "Education" card for Greece and Turkey always end at the same height,
    whatever the example-sentence length, because grid rows auto-size to
    their tallest item and stretch every sibling to match. */
-.needs{padding:26px 26px 20px}
-.needs-row{display:grid;grid-template-columns:var(--gcols-nolabel);gap:24px;margin-bottom:24px}
+.needs{padding:16px 26px 20px}
+.needs-row{display:grid;grid-template-columns:var(--gcols);gap:14px;margin-bottom:20px}
 .needs-row:last-child{margin-bottom:0}
-.nc{border:1px solid var(--border);border-radius:12px;padding:14px 14px 13px 20px;background:#fdfdff;position:relative;display:flex;flex-direction:column}
+.nc{border:1px solid var(--border);border-radius:12px;padding:13px 14px;background:#fdfdff;position:relative;display:flex;flex-direction:column}
 .nc-t{font-size:12px;font-weight:700;margin-bottom:5px;display:flex;align-items:center}
-.nc-r{margin-left:auto;font-size:11px;font-weight:800;color:var(--blue);background:var(--blue-lt);padding:2px 8px;border-radius:10px}
+.nc-r{margin-left:auto;font-size:11px;font-weight:800;color:var(--blue);background:var(--blue-lt);padding:2px 7px;border-radius:10px;display:inline-flex;align-items:center;gap:3px}
+.nc-r.win{color:#fff;background:var(--green)}
+.nc-r.win svg{width:8px;height:8px;flex-shrink:0}
 .nc-x{font-size:11.5px;color:var(--text2)}
 .nc-ex{font-size:10.5px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px dashed var(--border);font-style:italic}
 
-/* dimension icon — floats outside the card's top-left corner (not inline
-   with the title) so it reads as a distinct, badge-like marker. Bespoke
-   inline SVG per dimension (never emoji — cross-platform rendering is
-   inconsistent, and these need per-icon animation hooks emoji can't take). */
-.nc-ic{position:absolute;top:-15px;left:-15px;width:32px;height:32px;border-radius:50%;background:#fff;border:1px solid var(--border);box-shadow:0 3px 9px rgba(24,0,173,.16);display:flex;align-items:center;justify-content:center;color:var(--blue);z-index:2}
-.nc-ic svg{width:17px;height:17px;display:block;overflow:visible}
+/* dimension icon — ONE per row (not per country), sitting in the same
+   220px label column every other section's rows use (`--gcols`), so every
+   row in the page — needs cards included — lines up along the same left
+   edge. A round, floating, shadowed badge with bespoke inline SVG (never
+   emoji — cross-platform rendering is inconsistent, and only real DOM
+   elements can take the per-dimension animation hooks below). */
+.needs-ic{align-self:center;justify-self:center;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--border);box-shadow:0 4px 13px rgba(24,0,173,.18);display:flex;align-items:center;justify-content:center;color:var(--blue)}
+.needs-ic svg{width:25px;height:25px;display:block;overflow:visible}
 
-/* Card entrance + per-icon signature animation — both gated behind
-   `.sec.open` so they only fire once the §02 accordion is actually expanded
-   (never while collapsed/off-screen), staggered dimension-by-dimension via
-   the --i custom property set per .needs-row (inherited by its children). */
+/* Card + icon entrance, both gated behind `.sec.open` so nothing fires
+   until §02 is actually expanded, staggered dimension-by-dimension via the
+   --i custom property set per .needs-row (inherited by its children):
+   Education's row pops in, then 110ms later Globalization's, and so on. */
 @keyframes ncPop{0%{opacity:0;transform:scale(.72) translateY(12px)}55%{opacity:1;transform:scale(1.04) translateY(-2px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 .sec.open .needs-row .nc{animation:ncPop .5s cubic-bezier(.25,.9,.35,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
+@keyframes icBadgeIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.1)}100%{transform:scale(1)}}
+.sec.open .needs-ic{animation:icBadgeIn .4s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
 
-@keyframes icSpin{to{transform:rotate(360deg)}}
-.sec.open .ic-nGlobal svg{animation:icSpin 7s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+/* Each dimension's signature move, played by the icon's own <svg> (the
+   badge itself just pops in above) — globe/leaf/heart loop for as long as
+   the section stays open; the rest are one-shot and hold their end state. */
+@keyframes icGlobeSpin{to{transform:rotate(360deg)}}
+.sec.open .ic-nGlobal svg{animation:icGlobeSpin 6s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
-@keyframes icPlaneGo{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(4px,-5px) rotate(-16deg)}}
+@keyframes icPlaneGo{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(5px,-6px) rotate(-18deg)}}
 .sec.open .ic-nMove svg{animation:icPlaneGo .6s cubic-bezier(.3,.6,.3,1) both;animation-delay:calc(var(--i,0) * 110ms + 130ms)}
 
-@keyframes icShake{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-11deg)}75%{transform:rotate(11deg)}}
-.sec.open .ic-nQol svg{animation:icShake 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+@keyframes icLeafGrow{0%,100%{transform:rotate(0deg) scale(1)}30%{transform:rotate(-17deg) scale(1.14)}70%{transform:rotate(15deg) scale(1.2)}}
+.sec.open .ic-nQol svg{animation:icLeafGrow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
 @keyframes icToss{0%{transform:rotate(0deg) translateY(0)}45%{transform:rotate(220deg) translateY(-6px)}75%{transform:rotate(380deg) translateY(1px)}100%{transform:rotate(360deg) translateY(0)}}
 .sec.open .ic-nEdu svg{animation:icToss .75s cubic-bezier(.3,.4,.25,1) both;animation-delay:calc(var(--i,0) * 110ms)}
 
-@keyframes icPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-.sec.open .ic-nHealth svg{animation:icPulse 1.6s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+@keyframes icPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
+.sec.open .ic-nHealth svg{animation:icPulse 1.5s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
 @keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 .sec.open .ic-nSafe svg{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
@@ -256,6 +265,9 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 
 @keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}70%{transform:translateY(2px) rotate(3deg);opacity:1}100%{transform:translateY(0) rotate(0)}}
 .sec.open .ic-nTax svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
+
+@keyframes winArrowUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+.sec.open .nc-r.win svg{animation:winArrowUp 1.3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
 /* freshness dot — small hoverable "last updated" marker on any row/card.
    Muted by default; brightens + pulses when the field was touched in the
@@ -320,6 +332,12 @@ footer{border-top:1px solid var(--border);background:#fff}
   .upd-dot{animation:none}
   #gate::before,#gate::after,.gate-mono::before,.gate-mono::after,.gate-orbit{animation:none}
   .gate-card{animation:none}
+  /* !important required — these override per-dimension rules like
+     `.sec.open .ic-nGlobal svg{animation:...}` (3+ classes) which outrank
+     a plain `.needs-ic svg` selector (1 class + type) on specificity alone;
+     without !important the media query loses despite coming later in the
+     stylesheet, and the "spin/grow/bounce" animations still fire. */
+  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important}
 }
 
 /* mobile table adjustments */
@@ -334,7 +352,8 @@ footer{border-top:1px solid var(--border);background:#fff}
   .cell .big{font-size:17px}
   .cell.txt{font-size:11.5px}
   .needs{padding:6px 12px 16px}
-  .needs-row{grid-template-columns:1fr;gap:8px;margin-bottom:8px}
+  .needs-row{grid-template-columns:1fr;gap:8px;margin-bottom:16px}
+  .needs-ic{margin:0 auto 6px}
   .rt-row{padding:10px 12px}
   main{padding:22px 12px 30px}
   .mini-i{padding:8px 12px;font-size:12px}
@@ -674,7 +693,11 @@ var NEED_DIMS = [
    above: .ic-<key> targets each one's signature motion when §02 opens). */
 var NEED_ICON_SVG = {
   nEdu:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 1 9l11 6 11-6-11-6Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v7"/><circle cx="22" cy="17.4" r="1.1" fill="currentColor" stroke="none"/></svg>',
-  nGlobal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/></svg>',
+  /* 3 filled "landmass" dots at asymmetric positions — a plain circle +
+     symmetric meridian lines looks static/wobbly under rotation (nothing
+     visually distinguishes one angle from another); the dots make a full
+     360° turn unambiguous to the eye. */
+  nGlobal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/><circle cx="7.4" cy="7.8" r="1" fill="currentColor" stroke="none"/><circle cx="16.2" cy="15.6" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.8" cy="16.8" r=".8" fill="currentColor" stroke="none"/></svg>',
   nMove:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 10.2l6.3 2.4"/><path d="M21 3 13.6 20l-2.3-6.6"/><path d="M21 3 9.3 13.6"/></svg>',
   nHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg>',
   nQol:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4C10 4 4 10.5 4 18.3c0 .7.1 1.4.3 2 .7.2 1.4.3 2.1.3C15 20.6 20 14.4 20 5.2c0-.4 0-.8 0-1.2Z"/><path d="M6.2 19.8C10 14 14 10 19.4 6.3"/></svg>',
@@ -682,6 +705,10 @@ var NEED_ICON_SVG = {
   nDiv:    '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="3.5" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="7" width="3.6" height="13" rx="1"/><rect x="16.9" y="3" width="3.6" height="17" rx="1"/></svg>',
   nTax:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.3h9l3 3v16.4l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V2.3Z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>'
 };
+/* Small up-arrow appended to whichever country has the best rating in a
+   §02 dimension row (needsSec()) — mirrors the .win/.win-dot "highlight the
+   best value" pattern rowNum() already uses elsewhere in this tool. */
+var WIN_ARROW_SVG = '<svg viewBox="0 0 10 10" fill="currentColor"><path d="M5 0.6 9 6H6.4v3.4h-2.8V6H1Z"/></svg>';
 
 /* Embedded dataset — synced from the 🔀 NAC - So Sánh Data Notion DB by
    tools/pull_sosanh_from_notion.py + tools/patch_sosanh_snap.py (fortnightly
@@ -923,6 +950,16 @@ function needsSec(cs){
   var rowIdx = 0; /* only counts ROWS THAT ACTUALLY RENDER — stagger index must not skip when a dimension is empty for every selected country */
   for(j = 0; j < NEED_DIMS.length; j++){
     var d = NEED_DIMS[j];
+    /* Best rating in this row (mirrors rowNum()'s win/win-dot logic) — the
+       winning country's score badge goes green with a small up-arrow. */
+    var vals = [], best = null, bi = -1;
+    for(i = 0; i < cs.length; i++){
+      var v = cs[i][d.rt];
+      vals.push(v == null ? null : v);
+      if(v != null && (best == null || v > best)){ best = v; bi = i; }
+    }
+    var allSame = true;
+    for(i = 1; i < vals.length; i++){ if(vals[i] !== vals[0]){ allSame = false; } }
     var any = false, cards = '';
     for(i = 0; i < cs.length; i++){
       /* main statement and its "Example:" line are stored as one field joined
@@ -934,10 +971,10 @@ function needsSec(cs){
       var rt = cs[i][d.rt];
       var has = !!(main || ex || rt != null);
       if(has){ any = true; }
+      var win = (!allSame && i === bi && rt != null);
       cards += '<div class="nc">' + freshBadge(cs[i], [d.key, d.rt]) +
-        '<span class="nc-ic ic-' + d.key + '">' + (NEED_ICON_SVG[d.key] || '') + '</span>' +
         '<div class="nc-t">' + esc(d[lang] || d.vi) +
-        (rt != null ? '<span class="nc-r">' + rt + '</span>' : '') + '</div>' +
+        (rt != null ? '<span class="nc-r' + (win ? ' win' : '') + '">' + rt + (win ? WIN_ARROW_SVG : '') + '</span>' : '') + '</div>' +
         (has
           ? (main ? '<div class="nc-x">' + br(main) + '</div>' : '') + (ex ? '<div class="nc-ex">' + br(ex) + '</div>' : '')
           : '<div class="nc-x" style="color:var(--text3)">—</div>') +
@@ -945,10 +982,13 @@ function needsSec(cs){
     }
     if(!any){ continue; }
     /* --i drives the row's entrance stagger (CSS custom props inherit, so
-       every .nc/.nc-ic svg inside reads the same row-level index) — cards
+       every .nc/.needs-ic svg inside reads the same row-level index) — cards
        within a row pop together (they're the same dimension, side by side),
-       the NEXT dimension's row starts 110ms later: "one after another". */
-    inner += '<div class="needs-row" style="--i:' + rowIdx + '">' + cards + '</div>';
+       the NEXT dimension's row starts 110ms later: "one after another".
+       One shared icon per ROW (not per card) sits in the row's own label
+       column — matches every other section's 220px left-label layout. */
+    var icon = '<span class="needs-ic ic-' + d.key + '">' + (NEED_ICON_SVG[d.key] || '') + '</span>';
+    inner += '<div class="needs-row" style="--i:' + rowIdx + '">' + icon + cards + '</div>';
     rowIdx++;
   }
   inner += '</div>';
