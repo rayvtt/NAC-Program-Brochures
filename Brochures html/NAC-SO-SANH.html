@@ -239,52 +239,49 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .needs-ic{align-self:center;justify-self:center;width:46px;height:46px;display:flex;align-items:center;justify-content:center;color:var(--blue)}
 .needs-ic svg{width:36px;height:36px;display:block;overflow:visible;filter:drop-shadow(0 3px 6px rgba(24,0,173,.28))}
 
-/* Card + icon entrance, both gated behind `.sec.open` so nothing fires
-   until §02 is actually expanded, staggered dimension-by-dimension via the
-   --i custom property set per .needs-row (inherited by its children):
-   Education's row pops in, then 110ms later Globalization's, and so on. */
+/* §02 icons: the CARD text still pops in on .sec.open (staggered per row
+   via --i), but each ICON reveals only when IT actually scrolls into view
+   — the .seen class is added per-icon by an IntersectionObserver in
+   observeAll(), NOT on .sec.open. That is the whole point: the reveals
+   (bars grow 1-by-1, leaves bloom 1-by-1, "+" draws, receipt lines print,
+   plane flies) are reliably SEEN even when the section was opened via
+   "Mở tất cả" while it was still below the fold, or scrolled to after it
+   was already open. Each icon's core shape plays its entrance ONCE and
+   holds (both fill-mode); a subtle continuous animation keeps it alive
+   without the icon ever disappearing. */
 @keyframes ncPop{0%{opacity:0;transform:scale(.72) translateY(12px)}55%{opacity:1;transform:scale(1.04) translateY(-2px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 .sec.open .needs-row .nc{animation:ncPop .5s cubic-bezier(.25,.9,.35,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
-@keyframes icPopIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.1)}100%{transform:scale(1)}}
-.sec.open .needs-ic{animation:icPopIn .4s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
+@keyframes icPopIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.1)}100%{opacity:1;transform:scale(1)}}
+.needs-ic{opacity:0}
+.needs-ic.seen{animation:icPopIn .45s cubic-bezier(.3,.7,.3,1.3) both}
 
-/* Each dimension's signature move, played by the icon's own <svg> (the
-   icon itself just pops in above) — globe/leaf/heart loop for as long as
-   the section stays open; the rest are one-shot and hold their end state. */
+/* Each dimension's signature move plays when its icon scrolls into view
+   (.seen). Globe spins continuously; the rest reveal once and hold, each
+   with a subtle continuous detail underneath. */
 @keyframes icGlobeSpin{to{transform:rotate(360deg)}}
-.sec.open .ic-nGlobal svg{animation:icGlobeSpin 6s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.ic-nGlobal.seen svg{animation:icGlobeSpin 6s linear infinite;animation-delay:.25s}
 
-/* plane never disappears — it stays on screen the whole time and just
-   keeps flying: right with one loop-the-loop swirl (rotate genuinely
-   sweeps a full 360°, not a wobble), a brief hold, then banks around
-   (another 180°, continuing the SAME rotation direction rather than
-   reversing — 360deg to 720deg is a further smooth turn, not a snap) and
-   glides back left to repeat. Ending at rotate(720deg) — visually
-   identical to 0deg, since rotation is periodic mod 360 — means the loop
-   wraps with zero jump. .ic-trail reuses this exact keyframe (a circle
-   looks the same at any rotation) with a plain static opacity instead of
-   animated — nothing here ever touches opacity, so the trail's dimness
-   holds constant throughout while it lags 100ms behind the plane. */
-@keyframes icPlaneSwirl{
-  0%{transform:translate(-8px,2px) rotate(0deg)}
-  9%{transform:translate(-3px,-3px) rotate(-10deg)}
-  14%{transform:translate(1px,-7px) rotate(90deg)}
-  18%{transform:translate(4px,-9px) rotate(180deg)}
-  22%{transform:translate(3px,-6px) rotate(270deg)}
-  26%{transform:translate(2px,-3px) rotate(360deg)}
-  30%,45%{transform:translate(9px,-4px) rotate(360deg)}
-  60%{transform:translate(2px,-6px) rotate(540deg)}
-  75%,100%{transform:translate(-8px,2px) rotate(720deg)}
-}
-.sec.open .ic-nMove .ic-plane{animation:icPlaneSwirl 3.2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-nMove .ic-trail{opacity:.4;animation:icPlaneSwirl 3.2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 100ms)}
+/* plane — NO spin. Per feedback "the plane doesn't need to spin; it just
+   goes from bottom left to top right with a dotted draw". The plane
+   translates once along the diagonal from bottom-left up to its natural
+   top-right resting spot (no rotation), and holds. Behind it, the 5
+   .ic-tdot circles fade in one after another from bottom-left to top-right
+   — so the dotted trail appears to draw itself as the plane passes over
+   it. Both hold their end state (both fill-mode); replays when the icon
+   scrolls back into view. */
+@keyframes icPlaneFly{0%{transform:translate(-13px,13px);opacity:0}18%{opacity:1}100%{transform:translate(0,0);opacity:1}}
+@keyframes icDotIn{0%{opacity:0;transform:scale(.2)}100%{opacity:.55;transform:scale(1)}}
+.ic-nMove .ic-plane{opacity:0}
+.ic-nMove.seen .ic-plane{animation:icPlaneFly 1.5s cubic-bezier(.35,.15,.2,1) both;animation-delay:.05s}
+.ic-nMove .ic-tdot{opacity:0;transform-box:fill-box;transform-origin:center}
+.ic-nMove.seen .ic-tdot1{animation:icDotIn .3s ease-out both;animation-delay:.35s}
+.ic-nMove.seen .ic-tdot2{animation:icDotIn .3s ease-out both;animation-delay:.6s}
+.ic-nMove.seen .ic-tdot3{animation:icDotIn .3s ease-out both;animation-delay:.85s}
+.ic-nMove.seen .ic-tdot4{animation:icDotIn .3s ease-out both;animation-delay:1.1s}
+.ic-nMove.seen .ic-tdot5{animation:icDotIn .3s ease-out both;animation-delay:1.35s}
 
-/* 3-leaf bundle: each leaf pops in (scale+fade) in turn, the whole trio
-   holds together for a beat, then all three fade out and the bundle
-   re-grows from nothing — "appear one by one", on an endless loop. All
-   three share one 3s cycle so their appear/hold/fade phases stay locked
-   together; only the START of each leaf's pop-in is offset. */
-/* leaves bloom in once, one after another, and then STAY — the bundle
+/* leaves bloom in once, one after another (when nQol scrolls into view),
+   and then STAY — the bundle
    doesn't fade away and regrow. Each leaf's own bloom is a one-shot
    (`icLeafBloom`); once it's done, a second, independent, continuous
    animation (`icLeafSway`, a gentle rotate — like a light breeze) takes
@@ -296,10 +293,10 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
    robotic unison. */
 @keyframes icLeafBloom{0%{opacity:0;transform:scale(.3) rotate(0deg)}70%{opacity:1;transform:scale(1.15) rotate(0deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
 @keyframes icLeafSway{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1) rotate(7deg)}}
-.sec.open .ic-leaf{transform-box:fill-box;transform-origin:bottom center;opacity:0}
-.sec.open .ic-leaf1{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.6s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms), calc(var(--i,0) * 110ms + 500ms)}
-.sec.open .ic-leaf2{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.8s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 150ms), calc(var(--i,0) * 110ms + 650ms)}
-.sec.open .ic-leaf3{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 300ms), calc(var(--i,0) * 110ms + 800ms)}
+.ic-leaf{transform-box:fill-box;transform-origin:bottom center;opacity:0}
+.ic-nQol.seen .ic-leaf1{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.6s ease-in-out infinite;animation-delay:.1s, .6s}
+.ic-nQol.seen .ic-leaf2{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.8s ease-in-out infinite;animation-delay:.28s, .78s}
+.ic-nQol.seen .ic-leaf3{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.4s ease-in-out infinite;animation-delay:.46s, .96s}
 
 /* Education cap is intentionally still — it reveals once via the shared
    .needs-ic icPopIn (whole-icon pop-in) and then holds. The old continuous
@@ -316,10 +313,11 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 @keyframes icPlusV{to{stroke-dashoffset:0}}
 @keyframes icPlusH{to{stroke-dashoffset:0}}
 @keyframes icCrossPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
-.sec.open .ic-plusln{stroke-dasharray:8}
-.sec.open .ic-plusln:nth-of-type(1){animation:icPlusV .7s ease-in-out both;animation-delay:calc(var(--i,0) * 110ms + 150ms)}
-.sec.open .ic-plusln:nth-of-type(2){animation:icPlusH .7s ease-in-out both;animation-delay:calc(var(--i,0) * 110ms + 850ms)}
-.sec.open .ic-cross{transform-box:fill-box;transform-origin:center;animation:icCrossPulse 1.6s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 1550ms)}
+.ic-plusln{stroke-dasharray:8;stroke-dashoffset:8}
+.ic-nHealth.seen .ic-plusln:nth-of-type(1){animation:icPlusV .85s ease-in-out both;animation-delay:.15s}
+.ic-nHealth.seen .ic-plusln:nth-of-type(2){animation:icPlusH .85s ease-in-out both;animation-delay:1s}
+.ic-cross{transform-box:fill-box;transform-origin:center}
+.ic-nHealth.seen .ic-cross{animation:icCrossPulse 1.6s ease-in-out infinite;animation-delay:2s}
 
 /* shield settles in ONCE and stays — it doesn't fade away and re-settle.
    The halo below is the icon's "continuously looping element"; the
@@ -327,12 +325,14 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
    Targets .ic-shield (not the whole svg) so it stays independent of the
    halo living in the same <svg> (see the SVG comment above). */
 @keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
-.sec.open .ic-nSafe .ic-shield{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
+.ic-nSafe .ic-shield{opacity:0}
+.ic-nSafe.seen .ic-shield{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:.05s}
 /* halo — a protective ring that pops outward from the shield and fades,
    on a continuous loop (independent of the shield's own loop above:
    different element, no conflict). */
 @keyframes icHaloPop{0%{transform:scale(.65);opacity:.85}70%{opacity:0}100%{transform:scale(1.6);opacity:0}}
-.sec.open .ic-halo{transform-box:fill-box;transform-origin:center;opacity:0;animation:icHaloPop 1.8s cubic-bezier(.2,.6,.35,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 200ms)}
+.ic-halo{transform-box:fill-box;transform-origin:center;opacity:0}
+.ic-nSafe.seen .ic-halo{animation:icHaloPop 1.8s cubic-bezier(.2,.6,.35,1) infinite;animation-delay:.5s}
 
 /* bars APPEAR one by one, left to right (grow from nothing + a bright
    glow flash as each lands), then STAY — they don't shrink back down and
@@ -344,15 +344,16 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
    plus the infinite glow starting right as the grow finishes. */
 @keyframes icBarGrow{0%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}70%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}100%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}}
 @keyframes icBarGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(24,0,173,0))}50%{filter:drop-shadow(0 0 4px rgba(24,0,173,.55))}}
-.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom;opacity:.15}
-.sec.open .ic-nDiv svg rect:nth-child(1){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms), calc(var(--i,0) * 110ms + 500ms)}
-.sec.open .ic-nDiv svg rect:nth-child(2){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 150ms), calc(var(--i,0) * 110ms + 650ms)}
-.sec.open .ic-nDiv svg rect:nth-child(3){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 300ms), calc(var(--i,0) * 110ms + 800ms)}
+.ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom;opacity:0}
+.ic-nDiv.seen svg rect:nth-child(1){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:.15s, .65s}
+.ic-nDiv.seen svg rect:nth-child(2){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:.4s, .9s}
+.ic-nDiv.seen svg rect:nth-child(3){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:.65s, 1.15s}
 
 /* the receipt shell drops in ONCE and stays — it doesn't lift away and
    drop in again. */
 @keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}70%{transform:translateY(2px) rotate(3deg);opacity:1}100%{transform:translateY(0) rotate(0);opacity:1}}
-.sec.open .ic-nTax svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
+.ic-nTax svg{opacity:0}
+.ic-nTax.seen svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:.05s}
 /* Receipt text lines "print" themselves left-to-right, one line after
    another — a real dash-draw, not a fade — and then STAY printed; they
    don't clear and reprint. Each <line>'s dasharray equals its own length
@@ -366,9 +367,12 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 @keyframes icTaxL2{to{stroke-dashoffset:0}}
 @keyframes icTaxL3{to{stroke-dashoffset:0}}
 @keyframes icTaxGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(24,0,173,0))}50%{filter:drop-shadow(0 0 3px rgba(24,0,173,.5))}}
-.sec.open .ic-taxln:nth-of-type(1){stroke-dasharray:6;animation:icTaxL1 .5s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 150ms), calc(var(--i,0) * 110ms + 650ms)}
-.sec.open .ic-taxln:nth-of-type(2){stroke-dasharray:6;animation:icTaxL2 .5s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 650ms), calc(var(--i,0) * 110ms + 1150ms)}
-.sec.open .ic-taxln:nth-of-type(3){stroke-dasharray:3;animation:icTaxL3 .5s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 1150ms), calc(var(--i,0) * 110ms + 1650ms)}
+.ic-taxln:nth-of-type(1){stroke-dasharray:6;stroke-dashoffset:6}
+.ic-taxln:nth-of-type(2){stroke-dasharray:6;stroke-dashoffset:6}
+.ic-taxln:nth-of-type(3){stroke-dasharray:3;stroke-dashoffset:3}
+.ic-nTax.seen .ic-taxln:nth-of-type(1){animation:icTaxL1 .55s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:.55s, 1.1s}
+.ic-nTax.seen .ic-taxln:nth-of-type(2){animation:icTaxL2 .55s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:1s, 1.55s}
+.ic-nTax.seen .ic-taxln:nth-of-type(3){animation:icTaxL3 .55s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:1.45s, 2s}
 
 @keyframes winArrowUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 .sec.open .nc-r.win svg{animation:winArrowUp 1.3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
@@ -441,13 +445,13 @@ footer{border-top:1px solid var(--border);background:#fff}
      a plain `.needs-ic svg` selector (1 class + type) on specificity alone;
      without !important the media query loses despite coming later in the
      stylesheet, and the "spin/grow/bounce" animations still fire. */
-  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-plusln,.ic-shield,.ic-cross,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
-  /* the halo/trail's entire purpose IS the motion — a frozen ring or a
-     frozen trailing dot is clutter, not information, so these hide outright
-     instead of defaulting to the opacity:1 fallback above (which is right
-     for elements that still mean something held static, like a fully-drawn
-     "+" or a plane at rest). */
-  .ic-halo,.ic-trail{animation:none!important;opacity:0!important}
+  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-tdot,.ic-plusln,.ic-shield,.ic-cross,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
+  /* the halo's entire purpose IS the pulse — a frozen ring is clutter, not
+     information, so it hides outright instead of defaulting to the
+     opacity:1 fallback above (which is right for elements that still mean
+     something held static, like a fully-drawn "+", a plane at rest, or the
+     dotted trail). */
+  .ic-halo{animation:none!important;opacity:0!important}
 }
 
 /* mobile table adjustments */
@@ -816,12 +820,17 @@ var NEED_ICON_SVG = {
      visually distinguishes one angle from another); the dots make a full
      360° turn unambiguous to the eye. */
   nGlobal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/><circle cx="7.4" cy="7.8" r="1" fill="currentColor" stroke="none"/><circle cx="16.2" cy="15.6" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.8" cy="16.8" r=".8" fill="currentColor" stroke="none"/></svg>',
-  /* trailing dot (.ic-trail) shares the SAME translate+rotate keyframe as
-     the plane itself (.ic-plane) — a circle looks identical at any
-     rotation, so reusing one keyframe for both is safe — just started
-     later and faded, so it visibly lags behind like a contrail. */
+  /* 5 dotted-trail circles (.ic-tdot1..5) laid along the diagonal from
+     bottom-left to top-right; they fade in one after another so the dotted
+     trail "draws" itself as the plane (.ic-plane) flies up over it. No
+     rotation on the plane — it just travels bottom-left -> top-right and
+     holds (see icPlaneFly / icDotIn). */
   nMove: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-    '<circle class="ic-trail" cx="12" cy="11" r="1" fill="currentColor" stroke="none"/>' +
+    '<circle class="ic-tdot ic-tdot1" cx="5" cy="18.6" r=".9" fill="currentColor" stroke="none"/>' +
+    '<circle class="ic-tdot ic-tdot2" cx="7.6" cy="16" r=".9" fill="currentColor" stroke="none"/>' +
+    '<circle class="ic-tdot ic-tdot3" cx="10.2" cy="13.4" r=".9" fill="currentColor" stroke="none"/>' +
+    '<circle class="ic-tdot ic-tdot4" cx="12.8" cy="10.8" r=".9" fill="currentColor" stroke="none"/>' +
+    '<circle class="ic-tdot ic-tdot5" cx="15.4" cy="8.2" r=".9" fill="currentColor" stroke="none"/>' +
     '<g class="ic-plane"><path d="M21 3 3 10.2l6.3 2.4"/><path d="M21 3 13.6 20l-2.3-6.6"/><path d="M21 3 9.3 13.6"/></g>' +
     '</svg>',
   /* the "+" is now 2 separate <line>s (was one combined <path>) so each
@@ -842,11 +851,13 @@ var NEED_ICON_SVG = {
      positions the leaf (a CSS transform on an element always wins over
      its own presentation-attribute transform, so a static rotate + an
      animated scale can never safely share one element). Scale bumped up
-     (.82->.94, 1->1.15) per feedback — "make the leaves slightly bigger". */
+     again (.94->1.2 side, 1.15->1.5 centre) per repeat feedback — "the
+     leaves still look small"; base moved to y=20 so the taller centre leaf
+     has room within the viewBox. */
   nQol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-    '<g transform="translate(12,19) rotate(-30) scale(.94)"><g class="ic-leaf ic-leaf1"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
-    '<g transform="translate(12,19) scale(1.15)"><g class="ic-leaf ic-leaf2"><path d="M0,0 C-3.4,-2.8 -3.4,-7.8 0,-11.2 C3.4,-7.8 3.4,-2.8 0,0 Z"/><path d="M0,-1 L0,-9.7"/></g></g>' +
-    '<g transform="translate(12,19) rotate(30) scale(.94)"><g class="ic-leaf ic-leaf3"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
+    '<g transform="translate(12,20) rotate(-30) scale(1.2)"><g class="ic-leaf ic-leaf1"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
+    '<g transform="translate(12,20) scale(1.5)"><g class="ic-leaf ic-leaf2"><path d="M0,0 C-3.4,-2.8 -3.4,-7.8 0,-11.2 C3.4,-7.8 3.4,-2.8 0,0 Z"/><path d="M0,-1 L0,-9.7"/></g></g>' +
+    '<g transform="translate(12,20) rotate(30) scale(1.2)"><g class="ic-leaf ic-leaf3"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
     '</svg>',
   /* Halo ring (.ic-halo) is a SEPARATE circle behind the shield, pulsing
      outward on its own loop. The shield's own paths live inside their own
@@ -1346,6 +1357,7 @@ function observeAll(){
   if(io){ io.disconnect(); }
   if(!('IntersectionObserver' in window) || reduce){
     QA('.rev').forEach(function(el){ el.classList.add('in'); });
+    QA('.needs-ic').forEach(function(el){ el.classList.add('seen'); });
     QA('.bar,.rt-b .fill').forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
     return;
   }
@@ -1353,6 +1365,15 @@ function observeAll(){
     es.forEach(function(en){
       if(!en.isIntersecting){ return; }
       var el = en.target;
+      /* §02 icons: reveal each icon's signature animation only once IT is
+         actually on screen (not merely once the section is open) — so a
+         "Mở tất cả" while §02 is below the fold, or scrolling to an
+         already-open section, still shows the reveal. */
+      if(el.classList.contains('needs-ic')){
+        el.classList.add('seen');
+        io.unobserve(el);
+        return;
+      }
       el.classList.add('in');
       QA('.bar,.rt-b .fill', el).forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
       QA('[data-cnt]', el).forEach(countUp);
@@ -1360,6 +1381,7 @@ function observeAll(){
     });
   }, { threshold:0.18 });
   QA('.rev').forEach(function(el){ io.observe(el); });
+  QA('.needs-ic').forEach(function(el){ io.observe(el); });
 }
 function countUp(el){
   if(el.getAttribute('data-done')){ return; }
