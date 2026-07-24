@@ -68,3 +68,7 @@
 - `stamp1` EN: “Data refreshed every 2 weeks ·” → “Last update:”
 - `heroS` EN: “Macro economics, policy, requirements, benefits and all-in costs — continuously updated by the NAC research team, cross-checked against auth…” → “Macro economics, policy, requirements, benefits and all-in costs — continuously updated by the NAC research team, cross-checked against gov.…”
 - `secFit` EN: “Rating by investor need” → “NAC Index”
+
+## 2026-07-24 20:59 UTC · in-page editor
+
+- `secWhy` EN: “Why NAC closes this deal” → “NAC assessment”
