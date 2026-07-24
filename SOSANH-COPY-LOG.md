@@ -24,3 +24,7 @@
 ## 2026-07-24 20:13 UTC · in-page editor
 
 - `stamp1` VI: “Cập nhật:” → “Cập nhât:”
+
+## 2026-07-24 20:23 UTC · in-page editor
+
+- `heroS` VI: “Kinh tế vĩ mô, chính sách, điều kiện, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu nguồn chính thống.” → “Kinh tế vĩ mô, chính sách chương trình, điều kiện hồ sơ, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu…”
