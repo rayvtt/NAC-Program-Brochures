@@ -46,3 +46,9 @@
 ## 2026-07-24 20:37 UTC · in-page editor
 
 - `secFees` VI: “Bạ phí — tổng chi phí thật” → “Bạ phí - Dự kiến tổng chi phí”
+
+## 2026-07-24 20:38 UTC · in-page editor
+
+- `secWhy` VI: “Vì sao NAC chốt được deal này” → “Đánh giá từ NAC”
+- `reasons` VI: “Lý do chốt deal” → “Lý do xứng đáng”
+- `secFit` VI: “Chấm điểm theo nhu cầu đầu tư” → “NAC Index”
