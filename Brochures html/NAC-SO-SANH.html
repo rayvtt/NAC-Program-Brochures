@@ -301,16 +301,10 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .sec.open .ic-leaf2{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.8s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 150ms), calc(var(--i,0) * 110ms + 650ms)}
 .sec.open .ic-leaf3{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 300ms), calc(var(--i,0) * 110ms + 800ms)}
 
-/* toss + firework now both loop on a shared 2.4s cycle instead of firing
-   once — a one-shot fires the instant the row opens, so if you scroll to
-   §02 even a moment later you'd only ever see the icon sitting static
-   ("not animating"). Percentages below are the original .75s toss /
-   .6s burst (starting 350ms in) rescaled onto the 2.4s cycle, followed by
-   a hold, so the shape of each motion is unchanged — it just repeats. */
-@keyframes icToss{0%{transform:rotate(0deg) translateY(0)}14%{transform:rotate(220deg) translateY(-6px)}23%{transform:rotate(380deg) translateY(1px)}31%,100%{transform:rotate(360deg) translateY(0)}}
-.sec.open .ic-nEdu svg{animation:icToss 2.4s cubic-bezier(.3,.4,.25,1) infinite;animation-delay:calc(var(--i,0) * 110ms)}
-@keyframes icSpark{0%,15%{transform:translateY(0) scale(.5);opacity:1}32%{opacity:.75}40%,100%{transform:translateY(-7px) scale(.2);opacity:0}}
-.sec.open .ic-spark{stroke:var(--orange);stroke-width:1.3;animation:icSpark 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+/* Education cap is intentionally still — it reveals once via the shared
+   .needs-ic icPopIn (whole-icon pop-in) and then holds. The old continuous
+   toss + firework burst were removed per feedback ("the cap shouldn't
+   move", "fireworks not showing"). No per-dimension rule needed. */
 
 /* the "+" draws itself in stroke by stroke ONCE — vertical first, then
    horizontal, like actually drawing a plus sign — and then STAYS drawn:
@@ -448,12 +442,12 @@ footer{border-top:1px solid var(--border);background:#fff}
      without !important the media query loses despite coming later in the
      stylesheet, and the "spin/grow/bounce" animations still fire. */
   .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-plusln,.ic-shield,.ic-cross,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
-  /* the halo/spark/trail's entire purpose IS the motion — a frozen ring,
-     a frozen burst, or a frozen trailing dot is clutter, not information,
-     so these hide outright instead of defaulting to the opacity:1
-     fallback above (which is right for elements that still mean something
-     held static, like a fully-drawn "+" or a plane at rest). */
-  .ic-halo,.ic-spark,.ic-trail{animation:none!important;opacity:0!important}
+  /* the halo/trail's entire purpose IS the motion — a frozen ring or a
+     frozen trailing dot is clutter, not information, so these hide outright
+     instead of defaulting to the opacity:1 fallback above (which is right
+     for elements that still mean something held static, like a fully-drawn
+     "+" or a plane at rest). */
+  .ic-halo,.ic-trail{animation:none!important;opacity:0!important}
 }
 
 /* mobile table adjustments */
@@ -811,19 +805,10 @@ var NEED_DIMS = [
    platforms, and can't take the per-dimension animation hooks in the CSS
    above: .ic-<key> targets each one's signature motion when §02 opens). */
 var NEED_ICON_SVG = {
-  /* 6 spark lines fanned around the cap's centre, EARLIER in DOM order so
-     they paint behind the cap (SVG paint order follows document order).
-     Static fan-out rotation on the outer <g>, animated burst-outward on
-     the <line> itself — no inner-<g> indirection needed here (unlike the
-     leaf bundle below) because the <line> has no static transform of its
-     own to conflict with. */
+  /* Plain mortarboard cap — pops in once via the shared .needs-ic icPopIn
+     and then holds still. No toss, no firework (both removed per feedback:
+     the burst never rendered cleanly and the spinning cap read as busy). */
   nEdu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-    '<g transform="translate(12,9) rotate(0)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
-    '<g transform="translate(12,9) rotate(60)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
-    '<g transform="translate(12,9) rotate(120)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
-    '<g transform="translate(12,9) rotate(180)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
-    '<g transform="translate(12,9) rotate(240)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
-    '<g transform="translate(12,9) rotate(300)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
     '<path d="M12 3 1 9l11 6 11-6-11-6Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v7"/><circle cx="22" cy="17.4" r="1.1" fill="currentColor" stroke="none"/>' +
     '</svg>',
   /* 3 filled "landmass" dots at asymmetric positions — a plain circle +

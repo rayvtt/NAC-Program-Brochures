@@ -586,18 +586,19 @@ Notion DB, its own payload shape, and its own sync tooling:
 - **Second elevation round** (further direct feedback on the same 8 icons —
   "firework blew up behind the cap", "leaves slightly bigger", "plane fly
   left to right - 1 swirl - with trailing dot", "the plus slowly appear"):
-  - **Education (`nEdu`)** — 6 `.ic-spark` lines fanned around the cap's
-    centre, placed EARLIER in the SVG than the cap's own `<path>`s so they
-    paint behind it (SVG paint order follows document order — no z-index
-    needed). One-shot burst-outward + fade (`icSpark`, .6s, starts 350ms
-    into the cap's own .75s `icToss` so the "boom" lands as the toss
-    settles) — verified via computed-style sampling: opacity 1 (held
-    through the pre-burst delay via `both` fill-mode) → interpolates down
-    to 0 while `translateY` grows from 0 to -7px and `scale` shrinks from
-    .5 to .2, landing exactly on the keyframe's own end values. Colour is
-    `var(--orange)`, not the icon's usual blue — a monochrome "explosion"
-    reads flat; the brand's existing celebratory accent (same colour as
-    the gate's spinning bezel ring) makes it pop.
+  - **Education (`nEdu`)** — originally: 6 `.ic-spark` lines fanned around
+    the cap's centre painting behind it, bursting outward (`icSpark`) as the
+    cap tossed (`icToss`). **Reverted 2026-07-24 per direct feedback ("the
+    fireworks behind the cap … is not showing - the cap shouldn't move …
+    revert - cuz this looks bad"):** the burst never rendered cleanly and
+    the spinning cap read as busy. The `.ic-spark` lines, the `icSpark` and
+    `icToss` keyframes, and the `.sec.open .ic-nEdu svg` per-dimension rule
+    were all removed. Education is now the **one deliberately-still icon** —
+    a plain mortarboard cap (`<path>`s only) that reveals once via the shared
+    `.needs-ic` `icPopIn` pop-in and then holds, with no continuous motion of
+    its own. Verified: `getComputedStyle('.ic-nEdu svg').animationName ===
+    'none'` and the cap's transform matrix stays `none` across a full 2.5s
+    sample (never moves); `.ic-spark` count is 0.
   - **Quality of life (`nQol`)** — leaf scale bumped again per "make the
     leaves slightly bigger": side leaves `.82→.94`, centre leaf `1→1.15`
     (same static-vs-animated-transform split as before, just larger
@@ -642,10 +643,13 @@ Notion DB, its own payload shape, and its own sync tooling:
     one that happened to look sequential from timing alone.
   - All new elements get the same reduced-motion treatment established
     above: `.ic-plane`/`.ic-plusln` fall back to static-and-visible (a
-    plane at rest, a fully-drawn "+"); `.ic-spark`/`.ic-trail` hide outright
-    like `.ic-halo` (their entire purpose is motion that isn't there).
+    plane at rest, a fully-drawn "+"); `.ic-trail` hides outright like
+    `.ic-halo` (its entire purpose is motion that isn't there). (`.ic-spark`
+    was in this list too before the Education revert removed it.)
 - **Every icon keeps a small element animating forever, but the icon
-  itself never disappears** (this went through two rounds). Round one, per
+  itself never disappears** (this went through two rounds — *with one later
+  exception: Education, which was reverted to a fully-still cap on
+  2026-07-24, see above*). Round one, per
   "all animations should be in endless loop / diversification icon is not
   animating": a one-shot fires the instant `.sec.open` is added regardless
   of viewport visibility, so scrolling to §02 even a moment later shows an
