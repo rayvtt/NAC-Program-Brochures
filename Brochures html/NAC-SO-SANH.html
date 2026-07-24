@@ -396,6 +396,61 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .rt-b .fill{height:100%;width:0;border-radius:5px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
 .rt-b .vv{width:38px;font-size:11.5px;font-weight:800;text-align:right}
 
+/* §10 display-mode switcher — the same 9 ratings drawn six different ways,
+   because "which country is stronger where" reads very differently depending
+   on whether you want shape (radar), density (heatmap), margin (gap plot) or
+   raw numbers (table). Choice persists in localStorage. */
+.rt-tools{display:flex;align-items:center;gap:8px;justify-content:flex-end;padding:12px 26px 2px}
+.rt-vl{font-size:11px;color:var(--text3);font-weight:600}
+.rt-sel{border:1px solid var(--border);background:#fff;border-radius:20px;padding:7px 12px;font-size:11.5px;font-weight:700;color:var(--blue);font-family:inherit;cursor:pointer}
+.rt-leg{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px}
+.rt-leg span{display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:var(--text2)}
+.rt-leg i{width:10px;height:10px;border-radius:3px;display:block;flex-shrink:0}
+
+/* vertical columns — the literal "flip" of the default horizontal bars */
+.rtv-cols{overflow-x:auto;padding:12px 26px 18px}
+.rtc-grid{display:flex;gap:12px;align-items:flex-end;min-width:min-content}
+.rtc-g{flex:1 0 76px;display:flex;flex-direction:column;align-items:center;gap:7px}
+.rtc-bars{display:flex;align-items:flex-end;gap:5px;height:150px}
+.rtc-b{width:16px;border-radius:5px 5px 0 0;height:0;transition:height 1s cubic-bezier(.2,.8,.2,1);position:relative}
+.rtc-v{position:absolute;top:-15px;left:50%;transform:translateX(-50%);font-size:10px;font-weight:800}
+.rtc-l{font-size:9.5px;color:var(--text2);text-align:center;line-height:1.25;font-weight:600}
+
+/* radar — overlaid polygons, the fastest read of overall shape */
+.rtv-radar{padding:10px 14px 16px;text-align:center}
+.rtv-radar svg{width:100%;max-width:430px;height:auto;overflow:visible}
+
+/* heatmap — densest view, every score on one screen */
+.rtv-heat{padding:12px 26px 18px;overflow-x:auto}
+/* fixed layout + an explicit label width, otherwise the browser hands the
+   label column all the slack and squeezes the cells against the right edge */
+.rth{width:100%;border-collapse:separate;border-spacing:3px;table-layout:fixed}
+.rth td.l,.rth th:first-child{width:30%}
+.rth th{font-size:11px;font-weight:800;padding:5px 4px;text-align:center;color:var(--text2)}
+.rth td.l{font-size:11.5px;color:var(--text2);font-weight:600;text-align:left;padding-right:8px}
+.rth td.c{text-align:center;font-size:12.5px;font-weight:800;border-radius:8px;padding:10px 4px;color:#fff}
+
+/* gap plot — dots on a shared 0–100 track, the margin is the point */
+.rtv-dots{padding:12px 26px 18px}
+.rtd-row{padding:10px 0;border-bottom:1px dashed var(--border)}
+.rtd-row:last-child{border-bottom:none}
+.rtd-l{font-size:11.5px;color:var(--text2);font-weight:600;margin-bottom:9px;display:flex;justify-content:space-between;gap:10px}
+.rtd-gap{font-size:10px;color:var(--text3);font-weight:700;white-space:nowrap}
+.rtd-tr{position:relative;height:16px}
+.rtd-ax{position:absolute;left:0;right:0;top:7px;height:2px;background:var(--blue-lt);border-radius:2px}
+.rtd-link{position:absolute;top:7px;height:2px;border-radius:2px;background:var(--text3);opacity:.4}
+.rtd-dot{position:absolute;top:2px;width:12px;height:12px;border-radius:50%;margin-left:-6px;border:2px solid #fff;box-shadow:0 1px 3px rgba(0,0,0,.18)}
+
+/* table — raw numbers, with a row average so overall fit is visible */
+.rtv-table{padding:12px 26px 18px;overflow-x:auto}
+.rtt{width:100%;border-collapse:collapse}
+.rtt th,.rtt td{padding:9px 8px;font-size:12px;border-bottom:1px dashed var(--border)}
+.rtt th{font-size:11px;font-weight:800;text-align:center;color:var(--text2)}
+.rtt td.l{color:var(--text2);font-weight:600;text-align:left}
+.rtt td.v{text-align:center;font-weight:700}
+.rtt td.v.w{color:var(--gold);font-weight:800}
+.rtt tr.avg td{border-top:2px solid var(--border);border-bottom:none;font-weight:800;padding-top:11px}
+
 /* verdict */
 .verd{display:grid;grid-template-columns:var(--gcols-nolabel);gap:16px;padding:20px 26px 26px}
 .vc{border:1.5px solid var(--border);border-radius:16px;padding:20px;position:relative;overflow:hidden}
@@ -513,6 +568,13 @@ body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:
 #editPublish{background:var(--teal);color:#fff;border:none;border-radius:20px;padding:8px 18px;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit}
 #editPublish:disabled{opacity:.6;cursor:wait}
 #editDiscard{background:transparent;color:rgba(255,255,255,.65);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:8px 14px;font-size:11.5px;cursor:pointer;font-family:inherit}
+/* set/replace the GitHub token WITHOUT having to make an edit first — the
+   publish flow only prompts once there are dirty keys, so opening ?edit=1 on
+   a fresh device otherwise gives you no way to enter the token at all. Green
+   dot = a token is stored on this device. */
+#editToken{background:transparent;border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:7px 11px;font-size:12.5px;line-height:1;cursor:pointer;font-family:inherit;color:rgba(255,255,255,.75);position:relative}
+#editToken.has-token{border-color:rgba(13,148,136,.9)}
+#editToken.has-token::after{content:'';position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--teal)}
 </style>
 </head>
 <body>
@@ -823,6 +885,21 @@ var WA_URL = 'https://wa.me/447388646000';
 var LANGS = ['vi','en'];            /* 'es' ready — add dict + button when data lands */
 var COLORS = ['#1800ad','#F4622A','#0d9488'];
 
+/* §10 display modes. Same nine ratings, six readings — the default stacked
+   bars answer "what is each score", but not "who is stronger overall"
+   (radar), "where is the margin" (gap plot) or "show me the numbers"
+   (table). The user picks; the choice is remembered per browser. */
+var RT_VIEWS = [
+  { k:'bars',  vi:'Thanh ngang',   en:'Bars' },
+  { k:'cols',  vi:'Cột dọc',       en:'Columns' },
+  { k:'radar', vi:'Radar',         en:'Radar' },
+  { k:'heat',  vi:'Bản đồ nhiệt',  en:'Heatmap' },
+  { k:'dots',  vi:'Khoảng cách',   en:'Gap plot' },
+  { k:'table', vi:'Bảng số',       en:'Table' }
+];
+var rtView = 'bars';
+var curCs = null;
+try{ var rtSaved = localStorage.getItem('nac_rt_view'); if(rtSaved){ rtView = rtSaved; } }catch(e){}
 var RT_DIMS = [
   { key:'rtCost',   vi:'Chi phí đầu tư',        en:'Entry cost' },
   { key:'rtEdu',    vi:'Giáo dục',              en:'Education' },
@@ -956,6 +1033,8 @@ var I18N = {
   editPublish:{vi:'Xuất bản',en:'Publish'},
   editDiscard:{vi:'Hủy',en:'Discard'},
   editTokenPrompt:{vi:'Dán GitHub Personal Access Token — cần quyền Actions Read/Write trên repo NAC-Program-Brochures',en:'Paste a GitHub Personal Access Token — needs Actions Read/Write on the NAC-Program-Brochures repo'},
+  editTokenBtn:{vi:'Đặt / thay GitHub token',en:'Set or replace GitHub token'},
+  editTokenHas:{vi:'Đã có token trên thiết bị này. Dán token mới để thay, hoặc để trống rồi OK để xoá',en:'A token is already stored on this device. Paste a new one to replace it, or leave blank and press OK to clear it'},
   editSent:{vi:'✓ Đã gửi — có hiệu lực sau khoảng 2 phút',en:'✓ Sent — live in about 2 minutes'},
   editFailed:{vi:'Xuất bản thất bại',en:'Publish failed'},
   removeThird:{vi:'Bỏ khỏi so sánh',en:'Remove from comparison'},
@@ -970,6 +1049,9 @@ var I18N = {
   secWhy:{vi:'Vì sao NAC chốt được deal này',en:'Why NAC closes this deal'},
   secFit:{vi:'Chấm điểm theo nhu cầu đầu tư',en:'Rating by investor need'},
   fitCap:{vi:'Thang 1–100 do NAC Research chấm, cập nhật theo chu kỳ dữ liệu',en:'1–100 scale scored by NAC Research, refreshed with each data cycle'},
+  rtViewL:{vi:'Hiển thị',en:'Display'},
+  rtAvg:{vi:'Trung bình',en:'Average'},
+  rtGap:{vi:'chênh',en:'gap'},
   swap:{vi:'Đổi cặp',en:'Swap'},
   strengths:{vi:'Điểm mạnh nổi bật',en:'Top strengths'},
   reasons:{vi:'Lý do chốt deal',en:'Closing reasons'},
@@ -1213,24 +1295,190 @@ function needsSec(cs){
   inner += '</div>';
   return secShell('§02', 'secNeeds', headCols(cs) + inner);
 }
-function ratingsSec(cs){
-  var inner = '<div style="padding:8px 0 14px">', i, j;
+/* one row of the §10 matrix: the dimension plus each country's score, with
+   the leader resolved once so every view can highlight it the same way */
+function rtRows(cs){
+  var out = [], i, j;
   for(j = 0; j < RT_DIMS.length; j++){
-    var d = RT_DIMS[j], best = -1, bi = -1, vals = [];
+    var d = RT_DIMS[j], best = -1, bi = -1, worst = null, vals = [];
     for(i = 0; i < cs.length; i++){
-      var n = cs[i][d.key] == null ? null : cs[i][d.key]; vals.push(n);
+      var n = cs[i][d.key] == null ? null : cs[i][d.key];
+      vals.push(n);
       if(n != null && n > best){ best = n; bi = i; }
+      if(n != null && (worst == null || n < worst)){ worst = n; }
     }
-    var bars = '';
+    out.push({ d:d, vals:vals, bi:bi, best:(bi >= 0 ? best : null), worst:worst });
+  }
+  return out;
+}
+function hex2rgb(h){
+  var n = parseInt(h.slice(1), 16);
+  return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+}
+function rtLegend(cs){
+  var h = '<div class="rt-leg">', i;
+  for(i = 0; i < cs.length; i++){
+    h += '<span><i style="background:' + COLORS[i] + '"></i>' + esc(cs[i][lang] || cs[i].vi) + '</span>';
+  }
+  return h + '</div>';
+}
+function rtvBars(cs, rows){
+  var h = '<div style="padding:8px 0 14px">', i, j;
+  for(j = 0; j < rows.length; j++){
+    var r = rows[j], bars = '';
     for(i = 0; i < cs.length; i++){
-      var ct = cs[i];
-      bars += '<div class="rt-b"><span class="nm">' + esc(ct[lang] || ct.vi) + '</span><div class="tr"><div class="fill" data-w="' + (vals[i] || 0) + '" style="background:' + COLORS[i] + '"></div></div><span class="vv" style="color:' + COLORS[i] + '">' + (vals[i] == null ? '—' : vals[i]) + '</span>' + freshBadge(ct, d.key) + '</div>';
+      bars += '<div class="rt-b"><span class="nm">' + esc(cs[i][lang] || cs[i].vi) + '</span><div class="tr"><div class="fill" data-w="' + (r.vals[i] || 0) + '" style="background:' + COLORS[i] + '"></div></div><span class="vv" style="color:' + COLORS[i] + '">' + (r.vals[i] == null ? '—' : r.vals[i]) + '</span>' + freshBadge(cs[i], r.d.key) + '</div>';
     }
-    var wm = bi >= 0 ? cs[bi] : null;
-    inner += '<div class="rt-row"><div class="rt-l"><span>' + esc(d[lang] || d.vi) + '</span>' +
+    var wm = r.bi >= 0 ? cs[r.bi] : null;
+    h += '<div class="rt-row"><div class="rt-l"><span>' + esc(r.d[lang] || r.d.vi) + '</span>' +
       (wm ? '<span class="wl">◆ ' + esc(wm[lang] || wm.vi) + '</span>' : '') + '</div><div class="rt-bars">' + bars + '</div></div>';
   }
-  inner += '</div>';
+  return h + '</div>';
+}
+function rtvCols(cs, rows){
+  var h = '<div class="rtv-cols"><div class="rtc-grid">', i, j;
+  for(j = 0; j < rows.length; j++){
+    var r = rows[j], b = '';
+    for(i = 0; i < cs.length; i++){
+      var v = r.vals[i];
+      b += '<div class="rtc-b" data-h="' + (v || 0) + '" style="background:' + COLORS[i] + '">' +
+        '<span class="rtc-v" style="color:' + COLORS[i] + '">' + (v == null ? '—' : v) + '</span></div>';
+    }
+    h += '<div class="rtc-g"><div class="rtc-bars">' + b + '</div><div class="rtc-l">' + esc(r.d[lang] || r.d.vi) + '</div></div>';
+  }
+  return h + '</div></div>' + rtLegend(cs);
+}
+function rtvRadar(cs, rows){
+  var cx = 170, cy = 158, R = 104, n = rows.length, i, j;
+  var pt = function(idx, frac){
+    var a = -Math.PI / 2 + idx * 2 * Math.PI / n;
+    return [cx + Math.cos(a) * R * frac, cy + Math.sin(a) * R * frac];
+  };
+  var g = '', ring, p;
+  for(ring = 1; ring <= 4; ring++){
+    p = '';
+    for(i = 0; i < n; i++){ var q = pt(i, ring / 4); p += (i ? ' ' : '') + q[0].toFixed(1) + ',' + q[1].toFixed(1); }
+    g += '<polygon points="' + p + '" fill="none" stroke="#e6e6f2" stroke-width="1"/>';
+  }
+  for(i = 0; i < n; i++){
+    var e = pt(i, 1);
+    g += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0].toFixed(1) + '" y2="' + e[1].toFixed(1) + '" stroke="#e6e6f2" stroke-width="1"/>';
+    var lp = pt(i, 1.17), ang = -90 + i * 360 / n, anc = 'middle';
+    if(ang > -85 && ang < 85){ anc = 'start'; } else if(ang > 95 || ang < -95){ anc = 'end'; }
+    g += '<text x="' + lp[0].toFixed(1) + '" y="' + lp[1].toFixed(1) + '" text-anchor="' + anc + '" dominant-baseline="middle" font-size="8.5" font-weight="700" fill="#5a5a72">' + esc(rows[i].d[lang] || rows[i].d.vi) + '</text>';
+  }
+  for(j = 0; j < cs.length; j++){
+    var rgb = hex2rgb(COLORS[j]), pts = '', any = false;
+    for(i = 0; i < n; i++){
+      var v = rows[i].vals[j];
+      if(v != null){ any = true; }
+      var q2 = pt(i, (v == null ? 0 : v) / 100);
+      pts += (i ? ' ' : '') + q2[0].toFixed(1) + ',' + q2[1].toFixed(1);
+    }
+    if(!any){ continue; }
+    g += '<polygon points="' + pts + '" fill="rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',.17)" stroke="' + COLORS[j] + '" stroke-width="2" stroke-linejoin="round"/>';
+    for(i = 0; i < n; i++){
+      var v2 = rows[i].vals[j];
+      if(v2 == null){ continue; }
+      var q3 = pt(i, v2 / 100);
+      g += '<circle cx="' + q3[0].toFixed(1) + '" cy="' + q3[1].toFixed(1) + '" r="3" fill="' + COLORS[j] + '"/>';
+    }
+  }
+  return '<div class="rtv-radar"><svg viewBox="0 0 340 320" role="img">' + g + '</svg>' + rtLegend(cs) + '</div>';
+}
+function rtvHeat(cs, rows){
+  var h = '<div class="rtv-heat"><table class="rth"><thead><tr><th></th>', i, j;
+  for(i = 0; i < cs.length; i++){ h += '<th>' + cs[i].flag + ' ' + esc(cs[i][lang] || cs[i].vi) + '</th>'; }
+  h += '</tr></thead><tbody>';
+  for(j = 0; j < rows.length; j++){
+    var r = rows[j];
+    h += '<tr><td class="l">' + esc(r.d[lang] || r.d.vi) + '</td>';
+    for(i = 0; i < cs.length; i++){
+      var v = r.vals[i];
+      if(v == null){ h += '<td class="c" style="background:#f2f2f7;color:var(--text3)">—</td>'; continue; }
+      var rgb = hex2rgb(COLORS[i]), a = 0.14 + 0.76 * (v / 100);
+      /* keep the number legible: dark text on the pale end of the ramp */
+      var tc = a > 0.55 ? '#fff' : '#2a2a3c';
+      h += '<td class="c" style="background:rgba(' + rgb[0] + ',' + rgb[1] + ',' + rgb[2] + ',' + a.toFixed(2) + ');color:' + tc + '">' + v + '</td>';
+    }
+    h += '</tr>';
+  }
+  return h + '</tbody></table></div>';
+}
+function rtvDots(cs, rows){
+  var h = '<div class="rtv-dots">', i, j;
+  for(j = 0; j < rows.length; j++){
+    var r = rows[j];
+    var gap = (r.best != null && r.worst != null) ? Math.round((r.best - r.worst) * 10) / 10 : null;
+    var lead = r.bi >= 0 ? cs[r.bi] : null;
+    h += '<div class="rtd-row"><div class="rtd-l"><span>' + esc(r.d[lang] || r.d.vi) + '</span>' +
+      (lead && gap ? '<span class="rtd-gap" style="color:' + COLORS[r.bi] + '">◆ ' + esc(lead[lang] || lead.vi) + ' +' + gap + '</span>' : '') +
+      '</div><div class="rtd-tr"><div class="rtd-ax"></div>';
+    if(r.best != null && r.worst != null && r.best !== r.worst){
+      h += '<div class="rtd-link" style="left:' + r.worst + '%;width:' + (r.best - r.worst) + '%"></div>';
+    }
+    for(i = 0; i < cs.length; i++){
+      var v = r.vals[i];
+      if(v == null){ continue; }
+      h += '<div class="rtd-dot" style="left:' + v + '%;background:' + COLORS[i] + '" title="' + esc(cs[i][lang] || cs[i].vi) + ': ' + v + '"></div>';
+    }
+    h += '</div></div>';
+  }
+  return h + '</div>' + rtLegend(cs);
+}
+function rtvTable(cs, rows){
+  var h = '<div class="rtv-table"><table class="rtt"><thead><tr><th style="text-align:left"></th>', i, j;
+  for(i = 0; i < cs.length; i++){ h += '<th>' + cs[i].flag + ' ' + esc(cs[i][lang] || cs[i].vi) + '</th>'; }
+  h += '</tr></thead><tbody>';
+  for(j = 0; j < rows.length; j++){
+    var r = rows[j];
+    h += '<tr><td class="l">' + esc(r.d[lang] || r.d.vi) + '</td>';
+    for(i = 0; i < cs.length; i++){
+      var v = r.vals[i];
+      h += '<td class="v' + (i === r.bi ? ' w' : '') + '">' + (v == null ? '—' : v) + (i === r.bi ? ' ◆' : '') + '</td>';
+    }
+    h += '</tr>';
+  }
+  /* average across the nine dimensions — the overall-fit line the stacked
+     bars never showed */
+  h += '<tr class="avg"><td class="l">' + esc(t('rtAvg')) + '</td>';
+  var avgs = [], bestAvg = null, bestAi = -1;
+  for(i = 0; i < cs.length; i++){
+    var s = 0, c = 0;
+    for(j = 0; j < rows.length; j++){ if(rows[j].vals[i] != null){ s += rows[j].vals[i]; c++; } }
+    var a = c ? Math.round(s / c * 10) / 10 : null;
+    avgs.push(a);
+    if(a != null && (bestAvg == null || a > bestAvg)){ bestAvg = a; bestAi = i; }
+  }
+  for(i = 0; i < cs.length; i++){
+    h += '<td class="v' + (i === bestAi ? ' w' : '') + '">' + (avgs[i] == null ? '—' : avgs[i]) + '</td>';
+  }
+  return h + '</tr></tbody></table></div>';
+}
+function rtRender(cs){
+  var rows = rtRows(cs);
+  if(rtView === 'cols'){ return rtvCols(cs, rows); }
+  if(rtView === 'radar'){ return rtvRadar(cs, rows); }
+  if(rtView === 'heat'){ return rtvHeat(cs, rows); }
+  if(rtView === 'dots'){ return rtvDots(cs, rows); }
+  if(rtView === 'table'){ return rtvTable(cs, rows); }
+  return rtvBars(cs, rows);
+}
+/* fills/heights start at 0 so they animate; call after any (re)render */
+function rtPaint(){
+  var b = Q('#rtBody');
+  if(!b){ return; }
+  QA('.rt-b .fill', b).forEach(function(el){ el.style.width = el.getAttribute('data-w') + '%'; });
+  QA('.rtc-b', b).forEach(function(el){ el.style.height = el.getAttribute('data-h') + '%'; });
+}
+function ratingsSec(cs){
+  var opts = '', i;
+  for(i = 0; i < RT_VIEWS.length; i++){
+    opts += '<option value="' + RT_VIEWS[i].k + '"' + (RT_VIEWS[i].k === rtView ? ' selected' : '') + '>' + esc(RT_VIEWS[i][lang] || RT_VIEWS[i].vi) + '</option>';
+  }
+  var inner = '<div class="rt-tools"><label class="rt-vl" for="rtView" data-i18n="rtViewL">' + t('rtViewL') + '</label>' +
+    '<select id="rtView" class="rt-sel" aria-label="' + esc(t('rtViewL')) + '">' + opts + '</select></div>' +
+    '<div id="rtBody">' + rtRender(cs) + '</div>';
   return secShell('§10', 'secFit', inner, 'fitCap');
 }
 function fitOf(ct){
@@ -1284,6 +1532,7 @@ function render(){
     }
   }
   if(cs.length < 2){ return; }
+  curCs = cs; /* kept so the §10 view switcher can re-render without a full render() */
   colVars(cs.length);
 
   /* slots — 2 required, 3rd optional (ghost "add" card when empty) */
@@ -1415,6 +1664,7 @@ function observeAll(){
       }
       el.classList.add('in');
       QA('.bar,.rt-b .fill', el).forEach(function(b){ b.style.width = b.getAttribute('data-w') + '%'; });
+      QA('.rtc-b', el).forEach(function(b){ b.style.height = b.getAttribute('data-h') + '%'; });
       QA('[data-cnt]', el).forEach(countUp);
       io.unobserve(el);
     });
@@ -1670,6 +1920,21 @@ function boot(){
     Q('#mini').style.transform = show ? ('translateY(' + Q('header').offsetHeight + 'px)') : '';
   }, { passive:true });
 
+  /* §10 display-mode switcher — delegated so it survives every re-render.
+     Only #rtBody is rebuilt (not the whole page), so the section stays open
+     and the scroll position is kept; rtPaint then fills the bars, which the
+     IntersectionObserver would otherwise never do again for this section. */
+  Q('#cmp').addEventListener('change', function(e){
+    var sl = e.target.closest ? e.target.closest('#rtView') : null;
+    if(!sl || !curCs){ return; }
+    rtView = sl.value;
+    try{ localStorage.setItem('nac_rt_view', rtView); }catch(err){}
+    var body = Q('#rtBody');
+    if(!body){ return; }
+    body.innerHTML = rtRender(curCs);
+    requestAnimationFrame(rtPaint);
+  });
+
   /* collapsible dossier sections — one delegated listener survives re-render */
   Q('#cmp').addEventListener('click', function(e){
     if(EDIT_MODE && e.target.closest('[data-edit-key]')){ return; } /* clicking a title/label to edit it must not collapse the section */
@@ -1730,7 +1995,7 @@ var EDIT_MODE = /(?:^|[?&])edit=1(?:&|$)/.test(location.search);
    labels carry data-i18n (see secShell / rowTxt / rowNum / rowBadges / verdictSec)
    so wireEditableEls can reach them; apply-sosanh-copy.yml patches the I18N literal,
    which every render() re-reads — so the edit survives a language toggle or swap. */
-var EDIT_EXCLUDE = { editPublish:1, editDiscard:1, editTokenPrompt:1, editSent:1, editFailed:1 };
+var EDIT_EXCLUDE = { editPublish:1, editDiscard:1, editTokenPrompt:1, editTokenBtn:1, editTokenHas:1, editSent:1, editFailed:1 };
 var EDITABLE_KEYS = Object.keys(I18N).filter(function(k){ return !EDIT_EXCLUDE[k]; });
 var GH_OWNER = 'rayvtt', GH_REPO = 'NAC-Program-Brochures', GH_WORKFLOW = 'apply-sosanh-copy.yml';
 var dirtyKeys = {};
@@ -1788,11 +2053,35 @@ function injectPublishBar(){
   var bar = document.createElement('div');
   bar.id = 'editBar';
   bar.innerHTML = '<span id="editCount">0</span>' +
+    '<button id="editToken" type="button" title="' + esc(t('editTokenBtn')) + '" aria-label="' + esc(t('editTokenBtn')) + '">🔑</button>' +
     '<button id="editPublish" type="button">' + t('editPublish') + '</button>' +
     '<button id="editDiscard" type="button">' + t('editDiscard') + '</button>';
   document.body.appendChild(bar);
   Q('#editPublish').addEventListener('click', publishEdits);
   Q('#editDiscard').addEventListener('click', function(){ location.reload(); });
+  Q('#editToken').addEventListener('click', setTokenPrompt);
+  markTokenBtn();
+}
+/* stored token is never echoed back into the prompt — pre-filling it would
+   put the credential in the DOM and in the browser's prompt history */
+function setTokenPrompt(){
+  var had = false;
+  try{ had = !!localStorage.getItem('nac_gh_token'); }catch(e){}
+  var v = window.prompt((had ? t('editTokenHas') + ' — ' : '') + t('editTokenPrompt'), '');
+  if(v === null){ return; }
+  v = v.trim();
+  try{
+    if(v){ localStorage.setItem('nac_gh_token', v); }
+    else { localStorage.removeItem('nac_gh_token'); }
+  }catch(e){}
+  markTokenBtn();
+}
+function markTokenBtn(){
+  var b = Q('#editToken');
+  if(!b){ return; }
+  var has = false;
+  try{ has = !!localStorage.getItem('nac_gh_token'); }catch(e){}
+  b.classList.toggle('has-token', has);
 }
 function updatePublishBar(){
   var n = Object.keys(dirtyKeys).length;
@@ -1833,6 +2122,7 @@ function publishEdits(){
        publish attempt re-prompt instead of repeating the same dead token. */
     if(e.message.indexOf('401') === 0){
       localStorage.removeItem('nac_gh_token');
+      markTokenBtn();
       window.alert(t('editFailed') + ' — ' + e.message + ' — ' + t('editTokenPrompt'));
     } else {
       window.alert(t('editFailed') + ' — ' + e.message);
