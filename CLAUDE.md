@@ -466,10 +466,12 @@ Notion DB, its own payload shape, and its own sync tooling:
   its own independent `.nc-stack` flex column, so cards never aligned across
   countries.) A country missing that one dimension still gets an em-dash
   placeholder card, not a gap, so the row always has exactly N cells. Mobile
-  (`≤680px`) collapses each `.needs-row` to a single column — dimension-major
-  stacking (Education for every country, then Globalization for every
-  country, …), which reads better for comparison than the old country-major
-  order anyway.
+  (`≤680px`) keeps §02 **side-by-side** (updated 2026-07-24 — see the mobile
+  redesign note below): the shared dimension icon spans a full-width header
+  row (`.needs-ic{grid-column:1/-1}`) and each country's card sits in its own
+  column beneath it (`.needs-row{grid-template-columns:var(--gcols-nolabel)}`).
+  (It previously collapsed to a single dimension-major stack; direct feedback
+  asked for a real side-by-side comparison on phones.)
 - **§02 dimension icons are bespoke inline SVG, never emoji** (`NEED_ICON_SVG`
   in the HTML, keyed by `NEED_DIMS[].key`) — cross-platform emoji rendering is
   inconsistent, and only real DOM elements can take the per-dimension
@@ -763,6 +765,27 @@ Notion DB, its own payload shape, and its own sync tooling:
   pattern (§01/§10 gold `.win-dot`) but reimplemented locally in `needsSec()`
   since it operates on `cs[i][d.rt]` per dimension rather than a single row
   value — no highlight at all when every selected country ties (`allSame`).
+- **Mobile side-by-side + per-box country identity (2026-07-24)** — per direct
+  feedback ("it should be a side by side comparison and make it easily
+  recognizable which country this box is about, country pair should be
+  sticky"). Three parts, all `@media(max-width:680px)`-scoped so desktop is
+  untouched:
+  1. **§02 side-by-side** (was a single-column stack) — see the §02 note above.
+  2. **Per-box country tag** — `ccTag(ct, i)` renders a small `flag + name`
+     chip whose name carries a `border-bottom` in the country's series colour
+     (`--cc: COLORS[i]`, the SAME palette as the `.cols-h` dots and the
+     `#mini` pair). It's prepended into every comparison box — `rowTxt` /
+     `rowNum` / `rowBadges` cells and the `.nc` needs-cards — and is
+     `display:none` on desktop (where the aligned `.cols-h` header already
+     labels the columns) and `display:flex` on mobile. This is what makes
+     each box self-identifying once the header scrolls away.
+  3. **Sticky country pair** — the existing `#mini` fixed bar (docks under the
+     header via `translateY(header.offsetHeight)` once `#duelBar` scrolls off)
+     already provides this; its mobile CSS was tightened to a single non-
+     wrapping row (`flex-wrap:nowrap; overflow-x:auto`, smaller font, pinned
+     `#miniSwap`) so 3 long names no longer wrap. Verified: 2- and 3-country
+     minis render on one 40px line; the per-box chips are hidden on desktop
+     (computed `display:none`) so the desktop table is byte-for-byte the same.
 - **Export report** (`#exportBtn`, next to `#secToggleAll` in a shared
   `.main-tools` row): saves the current 2/3-country comparison as its own
   standalone `.html` file — Ray downloads it and sends it straight to a
