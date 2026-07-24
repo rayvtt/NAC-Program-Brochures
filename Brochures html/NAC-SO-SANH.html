@@ -211,6 +211,9 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .cross{color:var(--red);font-weight:700}
 /* de-emphasised inline example — main point stays prominent, the "👉 Ex" note sits under it, small + muted */
 .cell-ex{display:block;font-size:10.5px;line-height:1.45;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px dashed var(--border);font-style:italic;text-align:left}
+/* per-box country tag (ccTag) — desktop hides it (the aligned .cols-h header
+   already labels the columns); mobile shows it on every box (see media query) */
+.cc-tag{display:none}
 
 /* needs cards — one grid ROW per dimension (not per country), so every
    country's card in that row stretches to the row's tallest cell: the
@@ -459,18 +462,38 @@ footer{border-top:1px solid var(--border);background:#fff}
   .sec-h{padding:16px 16px 12px}
   .sec-t{font-size:18px}
   .cols-h{padding:10px 12px;font-size:11px}
-  .row{padding:12px 12px;grid-template-columns:1fr;gap:8px}
+  .row{padding:12px 10px;grid-template-columns:1fr;gap:8px}
   .row .rl{padding:0}
-  .row-cells{display:grid;grid-template-columns:var(--gcols-nolabel);gap:8px}
-  .cell{padding:0 4px}
-  .cell .big{font-size:17px}
+  .row-cells{display:grid;grid-template-columns:var(--gcols-nolabel);gap:6px}
+  .cell{padding:0 3px}
+  .cell .big{font-size:16px}
   .cell.txt{font-size:11.5px}
-  .needs{padding:6px 12px 16px}
-  .needs-row{grid-template-columns:1fr;gap:8px;margin-bottom:16px}
-  .needs-ic{margin:0 auto 6px}
+  /* per-box country tag — flag + colour-underlined name at the top of every
+     comparison box, so each column is identifiable without the header. */
+  .cc-tag{display:flex;align-items:center;gap:3px;justify-content:center;font-size:9px;font-weight:800;color:var(--text2);line-height:1;margin-bottom:6px}
+  .cc-tag .cc-fl{font-size:12px;flex-shrink:0}
+  .cc-tag .cc-nm{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;border-bottom:2px solid var(--cc);padding-bottom:2px;letter-spacing:.2px}
+  .cell.txt .cc-tag,.nc .cc-tag{justify-content:flex-start}
+  .needs{padding:6px 10px 16px}
+  /* §02 side-by-side on mobile: the icon spans a full-width header row, then
+     each country's card sits in its own column beneath it (was stacked). */
+  .needs-row{grid-template-columns:var(--gcols-nolabel);gap:6px;margin-bottom:18px;align-items:start}
+  .needs-ic{grid-column:1/-1;margin:0 auto 4px}
+  .nc{padding:9px 8px}
+  .nc-t{font-size:10px;flex-wrap:wrap;gap:3px 4px}
+  .nc-r{font-size:10px;padding:1px 5px}
+  .nc-x{font-size:10.5px;line-height:1.4}
+  .nc-ex{font-size:9.5px}
   .rt-row{padding:10px 12px}
   main{padding:22px 12px 30px}
-  .mini-i{padding:8px 12px;font-size:12px}
+  /* sticky country-pair bar — keep it a single tidy row (no name wrapping);
+     if 3 long names overflow the width it scrolls horizontally rather than
+     stacking. The swap button stays pinned at the right. */
+  .mini-i{padding:8px 12px;font-size:11.5px;gap:7px;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .mini-c{white-space:nowrap;gap:5px;flex-shrink:0}
+  .mini-c .dot{width:7px;height:7px}
+  .mini-vs{flex-shrink:0}
+  #miniSwap{flex-shrink:0;padding:5px 10px;font-size:10.5px;margin-left:2px}
 }
 /* desktop: cells wrapper is contents */
 @media(min-width:681px){
@@ -1059,6 +1082,14 @@ function headCols(cs){
   }
   return '<div class="cols-h">' + h + '</div>';
 }
+/* mobile-only per-box country tag — a small flag + name chip coloured by
+   the country's series colour, so EVERY comparison box says which country
+   it is even after the .cols-h header and the sticky #mini pair have
+   scrolled away. Hidden on desktop, where the aligned column header does
+   the job. */
+function ccTag(ct, i){
+  return '<span class="cc-tag" style="--cc:' + COLORS[i] + '"><span class="cc-fl">' + ct.flag + '</span><span class="cc-nm">' + esc(ct[lang] || ct.vi) + '</span></span>';
+}
 function rowTxt(lblKey, key, cs, opts){
   opts = opts || {};
   var cellsH = '', i, shown, body;
@@ -1069,7 +1100,7 @@ function rowTxt(lblKey, key, cs, opts){
       var low = shown.toLowerCase();
       if(low.indexOf('có') === 0 || low.indexOf('yes') === 0){ body = '<span class="tick">✓</span> ' + br(shown); }
     }
-    cellsH += '<div class="cell txt">' + freshBadge(cs[i], key) + body + '</div>';
+    cellsH += '<div class="cell txt">' + ccTag(cs[i], i) + freshBadge(cs[i], key) + body + '</div>';
   }
   return '<div class="row"><div class="rl"><span data-i18n="' + lblKey + '">' + t(lblKey) + '</span></div><div class="row-cells">' + cellsH + '</div></div>';
 }
@@ -1093,7 +1124,7 @@ function rowNum(lblKey, key, cs, cfg){
     var disp = (n == null) ? '—'
       : '<span class="big" data-cnt="' + n + '" data-dec="' + (cfg.dec || 0) + '">' + n.toFixed(cfg.dec || 0) + '</span><span class="unit">' + (cfg.unit || '') + '</span>';
     var bar = (n != null && mx > 0) ? '<div class="bar-tr"><div class="bar" data-w="' + Math.min(100, Math.round(n / mx * 100)) + '" style="background:' + COLORS[i] + '"></div></div>' : '';
-    cellsH += '<div class="cell' + (win ? ' win' : '') + '">' + freshBadge(cs[i], key) + disp + (win ? '<span class="win-dot"></span>' : '') + bar + '</div>';
+    cellsH += '<div class="cell' + (win ? ' win' : '') + '">' + ccTag(cs[i], i) + freshBadge(cs[i], key) + disp + (win ? '<span class="win-dot"></span>' : '') + bar + '</div>';
   }
   var sub = cfg.sub ? '<span class="sub">' + esc(cfg.sub) + '</span>' : '';
   return '<div class="row"><div class="rl"><span data-i18n="' + lblKey + '">' + t(lblKey) + '</span>' + sub + '</div><div class="row-cells">' + cellsH + '</div></div>';
@@ -1102,7 +1133,7 @@ function rowBadges(lblKey, cs){
   var cellsH = '', i, bs;
   for(i = 0; i < cs.length; i++){
     bs = cs[i].bloc || [];
-    cellsH += '<div class="cell"><div class="badges">' + (bs.length ? esc(bs.join(' · ')) : '—') + '</div></div>';
+    cellsH += '<div class="cell">' + ccTag(cs[i], i) + '<div class="badges">' + (bs.length ? esc(bs.join(' · ')) : '—') + '</div></div>';
   }
   return '<div class="row"><div class="rl"><span data-i18n="' + lblKey + '">' + t(lblKey) + '</span></div><div class="row-cells">' + cellsH + '</div></div>';
 }
@@ -1152,7 +1183,7 @@ function needsSec(cs){
       var has = !!(main || ex || rt != null);
       if(has){ any = true; }
       var win = (!allSame && i === bi && rt != null);
-      cards += '<div class="nc">' + freshBadge(cs[i], [d.key, d.rt]) +
+      cards += '<div class="nc">' + ccTag(cs[i], i) + freshBadge(cs[i], [d.key, d.rt]) +
         '<div class="nc-t">' + esc(d[lang] || d.vi) +
         (rt != null ? '<span class="nc-r' + (win ? ' win' : '') + '">' + rt + (win ? WIN_ARROW_SVG : '') + '</span>' : '') + '</div>' +
         (has
