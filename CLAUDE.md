@@ -498,13 +498,9 @@ Notion DB, its own payload shape, and its own sync tooling:
   visually unambiguous (linear timing, one direction only — verified by
   sampling the computed transform matrix every 300ms: angle increases by
   exactly 18°/300ms with zero reversal, i.e. a true one-directional spin, not
-  a left-right wobble); leaf (`nQol`) rotates **and scales up to 1.2×**
-  ("expand further" — a bigger amplitude than a plain shake); heart/cross
-  (`nHealth`) pulses continuously — these three loop for as long as the
-  section stays open. Cap (`nEdu`) tosses/spins, plane (`nMove`) "takes off"
-  (translate + rotate), shield (`nSafe`) settles with a bounce, bar chart
-  (`nDiv`) grows its 3 bars staggered, receipt (`nTax`) drops into place —
-  these six are one-shot (`animation-fill-mode:both`, finite duration) and
+  a left-right wobble); heart/cross (`nHealth`) pulses continuously. Cap
+  (`nEdu`) tosses/spins and plane (`nMove`) "takes off" (translate + rotate)
+  as one-shot entrances (`animation-fill-mode:both`, finite duration) that
   hold their end state. The card itself also has its own `ncPop` entrance
   (scale+fade) on the same stagger. Closing and reopening the section replays
   the whole sequence (removing then re-adding `.open` resets every animation
@@ -519,6 +515,74 @@ Notion DB, its own payload shape, and its own sync tooling:
   animationName` under `page.emulateMedia({reducedMotion:'reduce'})` in
   Playwright — every value came back as the live keyframe name instead of
   `'none'` before the fix.
+- **Elevated per-icon animations** (follow-up round, per direct feedback —
+  "elevate the animation for each icon"): four dimensions moved past their
+  original one-shot/simple-loop moves to something more literal to what the
+  dimension represents. All four stay `.sec.open`-gated and `--i`-staggered
+  like every other icon, and all get explicit reduced-motion fallbacks (see
+  below) — the pattern established above still holds, only the per-icon
+  motion got richer:
+  - **Quality of life (`nQol`)** — the single leaf was replaced with a
+    **3-leaf bundle** (`nQol` in `NEED_ICON_SVG` is now 3 `<g>` wrappers, each
+    with a static SVG `transform` fanning it out at -30°/0°/+30° from one
+    base point, wrapping an inner `<g class="ic-leaf ic-leafN">` that carries
+    the *animated* CSS transform). Splitting static positioning (SVG
+    attribute, on the outer `<g>`) from animated positioning (CSS property,
+    on the inner `<g>`) is required, not stylistic — a CSS `transform`
+    animation on an element always wins over that same element's SVG
+    `transform` attribute, so a static rotate and an animated scale can
+    never safely share one element. Keyframes `icLeaf1/2/3` share one 3s
+    cycle: leaf 1 pops in (scale+fade) first, leaf 2 ~1.1s later, leaf 3
+    ~1.1s after that, the full bundle holds for a beat, then all three fade
+    together and the cycle restarts — "3 leaves bundle appear 1 by 1",
+    endless loop (verified via a 9-frame time-lapse: frame 1 shows only leaf
+    1, frames 2-4 show the full 3-leaf bundle, frame 6 is empty, frame 7
+    shows leaf 1 alone again — confirms the loop genuinely restarts, not
+    just holds).
+  - **Investment safety (`nSafe`)** — added a `.ic-halo` `<circle>` (r=8.6)
+    as a sibling *behind* the shield path, pulsing outward and fading
+    (`icHaloPop`, scale .65→1.6 + opacity .85→0) on its own continuous 1.8s
+    loop, independent of the shield's existing one-shot `icSettle` entrance
+    (different CSS property, same element tree — no conflict). "Halo popping
+    out of it." The halo's peak size (r≈13.8 in a 24-unit viewBox) exceeds
+    the nominal viewBox — relies on `.needs-ic svg{overflow:visible}`
+    (already in place) to not get clipped; the 220px label column gives it
+    ~90px of clearance on each side, nowhere near the neighbouring cards.
+  - **Diversification (`nDiv`)** — bars now **light up** left to right
+    instead of just growing: `icBarLight` dims each bar to opacity .28 at
+    rest, then ramps to opacity 1 with a `filter:drop-shadow(...)` glow that
+    peaks mid-animation and fades, staggered 130ms apart per bar (verified
+    by sampling the tallest bar's computed `opacity`/`filter` every 50ms
+    through its active window: 0.28 flat → ramps 0.51→0.72→0.88→0.98→1.0
+    while the glow blur radius grows to ~4.9px then fades to 0 — a real
+    flash, not just a symbolic timing change). Still one-shot (lights up
+    once per section-open, then stays lit) — a chart doesn't have the same
+    "reprint forever" metaphor a receipt does, so it wasn't made to loop.
+  - **Tax (`nTax`)** — the receipt's 3 text lines (`M9 8h6M9 12h6M9 16h3`,
+    previously one combined `<path>`) became 3 separate `<line class="ic-
+    taxln">` elements so each can be independently "drawn" via
+    `stroke-dasharray`/`stroke-dashoffset` (dasharray = the line's own exact
+    length — 6, 6, 3 — so dashoffset can travel that precise distance from
+    hidden to fully-drawn; dashoffset always reveals from the line's start
+    point, i.e. `x1`, so all three draw left→right). `icTaxL1/2/3` share one
+    3.2s cycle: line 1 draws and holds, line 2 draws ~130ms later and holds,
+    line 3 draws ~130ms after that, the complete receipt holds for a beat,
+    then all 3 clear together and the cycle restarts — "left to right one by
+    one, endless loop", like the receipt reprinting itself (verified via a
+    9-frame time-lapse: frames 1-5 show a fully-lined receipt, frame 6 is
+    blank, frame 7 shows a bare fragment of line 1 — confirms genuine
+    re-draw, not a hold-forever). The receipt's original one-shot `icDrop`
+    entrance (translateY+rotate on the whole `<svg>`) is untouched and
+    layers underneath — the icon still drops into place once, and *then*
+    starts reprinting its lines forever.
+  - **Reduced-motion additions**: `.ic-leaf` and `.ic-taxln` were added to
+    the existing `animation:none!important;opacity:1!important;transform:
+    none!important` override (plus `stroke-dashoffset:0!important` for the
+    lines, so they render fully-drawn rather than hidden). `.ic-halo` is
+    handled separately and does NOT default to the same "show it statically"
+    treatment — a frozen halo ring around the shield is visual clutter, not
+    information (its entire purpose is the pulse), so it gets its own rule
+    forcing `opacity:0!important` — hidden outright under reduced motion.
 - **§02 winner highlight** (`needsSec()`): the highest `⑩` rating in each
   dimension row gets a green `.nc-r.win` badge with a small bouncing up-arrow
   (`WIN_ARROW_SVG`, continuous `winArrowUp` animation, same `--i` stagger
