@@ -1,0 +1,62 @@
+name: Apply So Sánh Data Edit
+
+# Receives COUNTRY DATA edits from the So Sánh in-page editor (open the live
+# page with ?edit=1, click a value in any comparison column, Publish).
+#
+# Sibling of apply-sosanh-copy.yml, but the direction of truth is different:
+# the chrome copy (var I18N) is authored in the HTML, whereas the country data
+# (var DB_STATIC) is generated FROM Notion on every fortnightly sync. So this
+# workflow writes to Notion FIRST and only then updates the payload + HTML —
+# otherwise the next pull_sosanh_from_notion.py run would silently revert the
+# edit. See tools/apply_sosanh_data.py for the full ordering rationale.
+#
+# Commit to main → wp-sync.yml → live page updated in ~2 min.
+
+on:
+  workflow_dispatch:
+    inputs:
+      changes:
+        description: 'JSON of data changes, e.g. {"gr":{"vat":{"vi":"24%","en":"24%"},"gdp":2.4}}'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+# Publishes queue one after another — parallel runs would race each other's
+# git push and could drop an edit.
+concurrency:
+  group: sosanh-data-apply
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Write to Notion, then payload + HTML
+        env:
+          CHANGES: ${{ inputs.changes }}
+          NOTION_KEY: ${{ secrets.NOTION_KEY }}
+        run: python tools/apply_sosanh_data.py
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "Brochures html/NAC-SO-SANH.html" data/sosanh_payload.json SOSANH-SYNC-LOG.md
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git commit -m "data: so sanh value edit via in-page editor"
+          for i in 1 2 3 4; do
+            git push && break || { echo "push failed, retrying"; sleep $((2 ** i)); git pull --rebase origin "${GITHUB_REF_NAME}" || true; }
+          done

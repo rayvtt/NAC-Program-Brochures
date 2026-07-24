@@ -824,6 +824,35 @@ Notion DB, its own payload shape, and its own sync tooling:
      `#miniSwap`) so 3 long names no longer wrap. Verified: 2- and 3-country
      minis render on one 40px line; the per-box chips are hidden on desktop
      (computed `display:none`) so the desktop table is byte-for-byte the same.
+- **Editable DATA cells with two-way Notion sync (2026-07-24)** — `?edit=1`
+  used to reach only the *chrome* (`var I18N`: hero, section titles, row
+  labels). Every value in the country columns is now editable too — 122
+  cells per 2-country comparison (32 of them numeric) — and those edits are
+  written **back to Notion**.
+  - **Why a second pipeline, not just more keys**: the chrome is authored in
+    this repo, but the country data is *generated from* Notion by the
+    fortnightly `pull_sosanh_from_notion.py`. Patching only the HTML would
+    look right until the 1st/15th and then get silently reverted. So data
+    edits go through their own workflow with the opposite order of truth.
+  - **Client**: `cellAttr(ct, key, isNum)` stamps `data-cell="<code>|<field>"`
+    on each rendered value (plus `data-cell-num` for the numeric ones).
+    Identity is country code + field key — no DOM position, no content hash
+    — so it survives re-render, language toggle and country swap. It emits
+    **nothing at all** outside edit mode, so the public page is byte-identical
+    (verified: 0 `[data-cell]`, 0 `[contenteditable]`, no edit bar).
+    Text edits are captured per-language into `dirtyCells[code][field][lang]`,
+    so editing the VI column never blanks EN. Numeric cells validate on blur
+    and revert with a message rather than shipping a NaN.
+  - **`tools/apply_sosanh_data.py`** (+ `.github/workflows/apply-sosanh-data.yml`,
+    dispatched alongside the copy workflow by the same Publish button):
+    writes **Notion first** — if that fails it exits non-zero *without*
+    touching the repo, so the page can never disagree with the source of
+    truth — then updates `data/sosanh_payload.json` (including the `_updated`
+    freshness ledger) and re-runs `patch_sosanh_snap.py` so the edit is live
+    in ~2 min instead of waiting for the cron. Field names are validated
+    against `data/sosanh_schema.py`, so a typo'd or injected key (`__proto__`,
+    an unknown field, a string sent to a number property) is rejected before
+    any write. Uses the existing `NOTION_KEY` secret.
 - **§10 display-mode switcher (2026-07-24)** — the nine investor-need ratings
   were only ever drawn as a long stack of horizontal bars (9 rows × N
   countries ≈ 820px tall), which answers "what is each score" but not "who is
