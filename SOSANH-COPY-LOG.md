@@ -37,3 +37,8 @@
 ## 2026-07-24 20:28 UTC · in-page editor
 
 - `secEcon` VI: “Điểm sáng kinh tế” → “Kinh tế mũi nhọn”
+
+## 2026-07-24 20:33 UTC · in-page editor
+
+- `lbl_capEcon` VI: “Kinh tế thủ đô” → “Thủ đô”
+- `lbl_bankSafe` VI: “An toàn ngân hàng” → “Mức độ an toà hệ thống ngân hàng”
