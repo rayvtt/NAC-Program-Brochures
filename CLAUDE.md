@@ -786,6 +786,38 @@ Notion DB, its own payload shape, and its own sync tooling:
      `#miniSwap`) so 3 long names no longer wrap. Verified: 2- and 3-country
      minis render on one 40px line; the per-box chips are hidden on desktop
      (computed `display:none`) so the desktop table is byte-for-byte the same.
+- **§10 display-mode switcher (2026-07-24)** — the nine investor-need ratings
+  were only ever drawn as a long stack of horizontal bars (9 rows × N
+  countries ≈ 820px tall), which answers "what is each score" but not "who is
+  stronger overall" or "where is the margin". A `<select id="rtView">` in the
+  section body now offers **six** readings of the same data, all rendered
+  from one `rtRows(cs)` matrix (dimension + per-country values + resolved
+  leader) so every view highlights the winner identically:
+  `bars` (original, default) · `cols` (vertical columns — the literal flip,
+  237px tall so all 9 dimensions fit one screen) · `radar` (overlaid
+  polygons, fastest read of overall shape) · `heat` (colour-ramped grid,
+  densest) · `dots` (gap plot — dots on a shared 0–100 track with the
+  leader's margin called out, e.g. "◆ Greece +24.7") · `table` (raw numbers
+  plus an **Average** row, the overall-fit line the bars never showed).
+  All inline SVG/CSS — this page has no chart library and must keep zero
+  backslashes. Choice persists in `localStorage` (`nac_rt_view`).
+  **Only `#rtBody` re-renders** on switch (delegated `change` listener on
+  `#cmp`, using a module-level `curCs`), so the section stays open and scroll
+  position is kept — and `rtPaint()` must run after, because the
+  IntersectionObserver that normally fills `.rt-b .fill` / `.rtc-b` has
+  already fired and unobserved this section. Verified all six at 390px and
+  360px for 2- and 3-country sets: no page overflow-x, no JS errors; `cols`
+  scrolls horizontally *inside its own container* by design.
+- **`?edit=1` token can be set without editing first (2026-07-24)** —
+  `publishEdits()` starts with `if(!keys.length){ return; }`, so Publish is a
+  no-op until something is actually edited, and the token prompt (which sits
+  *after* that guard) never fired. Opening `?edit=1` on a fresh device
+  therefore offered no way in at all. The edit bar now carries a **🔑
+  `#editToken`** button (`setTokenPrompt()`) that sets/replaces/clears
+  `nac_gh_token` any time; a green dot (`.has-token`) shows one is stored.
+  The stored value is never pre-filled back into the prompt (that would put
+  the credential in the DOM and the browser's prompt history), and the 401
+  auto-clear path calls `markTokenBtn()` so the dot clears with it.
 - **Export report** (`#exportBtn`, next to `#secToggleAll` in a shared
   `.main-tools` row): saves the current 2/3-country comparison as its own
   standalone `.html` file — Ray downloads it and sends it straight to a
