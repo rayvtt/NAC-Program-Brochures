@@ -60,3 +60,11 @@
 ## 2026-07-24 20:55 UTC · in-page editor
 
 - `heroS` VI: “Kinh tế vĩ mô, chính sách chương trình, điều kiện hồ sơ, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu…” → “Kinh tế vĩ mô, chính sách chương trình, điều kiện hồ sơ, quyền lợi và chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu với …”
+
+## 2026-07-24 20:58 UTC · in-page editor
+
+- `heroT` EN: “Compare residency &amp; investment programs <em>on real data</em>” → “Compare residency &amp; investment programs <span style="font-size: clamp(30px, 5vw, 50px);"> <font color="#1800ad"><i>real-time data</i></f…”
+- `bc` EN: “Nomad Asset Collective — Comparison Intelligence 2026” → “nac — Comparison Intelligence 2026”
+- `stamp1` EN: “Data refreshed every 2 weeks ·” → “Last update:”
+- `heroS` EN: “Macro economics, policy, requirements, benefits and all-in costs — continuously updated by the NAC research team, cross-checked against auth…” → “Macro economics, policy, requirements, benefits and all-in costs — continuously updated by the NAC research team, cross-checked against gov.…”
+- `secFit` EN: “Rating by investor need” → “NAC Index”
