@@ -42,3 +42,7 @@
 
 - `lbl_capEcon` VI: “Kinh tế thủ đô” → “Thủ đô”
 - `lbl_bankSafe` VI: “An toàn ngân hàng” → “Mức độ an toà hệ thống ngân hàng”
+
+## 2026-07-24 20:37 UTC · in-page editor
+
+- `secFees` VI: “Bạ phí — tổng chi phí thật” → “Bạ phí - Dự kiến tổng chi phí”
