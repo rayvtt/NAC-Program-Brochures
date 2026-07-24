@@ -20,3 +20,7 @@
 ## 2026-07-24 20:09 UTC · in-page editor
 
 - `stamp1` VI: “Số liệu làm mới 2 tuần/lần ·” → “Cập nhật:”
+
+## 2026-07-24 20:13 UTC · in-page editor
+
+- `stamp1` VI: “Cập nhật:” → “Cập nhât:”
