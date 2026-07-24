@@ -435,7 +435,7 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .rt-l .wl{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:.5px}
 .rt-bars{display:flex;flex-direction:column;gap:5px}
 .rt-b{display:flex;align-items:center;gap:9px}
-.rt-b .nm{width:70px;font-size:10px;color:var(--text3);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rt-b .nm{width:86px;font-size:10px;color:var(--text3);text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .rt-b .tr{flex:1;height:9px;background:var(--blue-lt);border-radius:5px;overflow:hidden}
 .rt-b .fill{height:100%;width:0;border-radius:5px;transition:width 1.2s cubic-bezier(.2,.8,.2,1)}
 .rt-b .vv{width:38px;font-size:11.5px;font-weight:800;text-align:right}
@@ -1433,7 +1433,7 @@ function hex2rgb(h){
 function rtLegend(cs){
   var h = '<div class="rt-leg">', i;
   for(i = 0; i < cs.length; i++){
-    h += '<span><i style="background:' + COLORS[i] + '"></i>' + esc(cs[i][lang] || cs[i].vi) + '</span>';
+    h += '<span><i style="background:' + COLORS[i] + '"></i>' + cs[i].flag + ' ' + esc(cs[i][lang] || cs[i].vi) + '</span>';
   }
   return h + '</div>';
 }
@@ -1442,7 +1442,7 @@ function rtvBars(cs, rows){
   for(j = 0; j < rows.length; j++){
     var r = rows[j], bars = '';
     for(i = 0; i < cs.length; i++){
-      bars += '<div class="rt-b"><span class="nm">' + esc(cs[i][lang] || cs[i].vi) + '</span><div class="tr"><div class="fill" data-w="' + (r.vals[i] || 0) + '" style="background:' + COLORS[i] + '"></div></div><span class="vv" ' + cellAttr(cs[i], r.d.key, 1) + ' style="color:' + COLORS[i] + '">' + (r.vals[i] == null ? '—' : r.vals[i]) + '</span>' + freshBadge(cs[i], r.d.key) + '</div>';
+      bars += '<div class="rt-b"><span class="nm">' + cs[i].flag + ' ' + esc(cs[i][lang] || cs[i].vi) + '</span><div class="tr"><div class="fill" data-w="' + (r.vals[i] || 0) + '" style="background:' + COLORS[i] + '"></div></div><span class="vv" ' + cellAttr(cs[i], r.d.key, 1) + ' style="color:' + COLORS[i] + '">' + (r.vals[i] == null ? '—' : r.vals[i]) + '</span>' + freshBadge(cs[i], r.d.key) + '</div>';
     }
     var wm = r.bi >= 0 ? cs[r.bi] : null;
     h += '<div class="rt-row"><div class="rt-l"><span>' + esc(r.d[lang] || r.d.vi) + '</span>' +
@@ -1535,7 +1535,7 @@ function rtvDots(cs, rows){
     for(i = 0; i < cs.length; i++){
       var v = r.vals[i];
       if(v == null){ continue; }
-      h += '<div class="rtd-dot" style="left:' + v + '%;background:' + COLORS[i] + '" title="' + esc(cs[i][lang] || cs[i].vi) + ': ' + v + '"></div>';
+      h += '<div class="rtd-dot" style="left:' + v + '%;background:' + COLORS[i] + '" title="' + cs[i].flag + ' ' + esc(cs[i][lang] || cs[i].vi) + ': ' + v + '"></div>';
     }
     h += '</div></div>';
   }
