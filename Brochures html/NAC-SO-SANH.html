@@ -610,6 +610,12 @@ footer{border-top:1px solid var(--border);background:#fff}
 body.nac-edit [data-edit-key]{outline:1px dashed var(--border);outline-offset:3px;border-radius:4px;cursor:text;transition:outline-color .15s}
 body.nac-edit [data-edit-key]:hover{outline-color:var(--teal)}
 body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:solid}
+/* data cells (country values) get a distinct colour from the chrome-copy
+   outline above, because they publish through a different pipeline: these
+   write back to Notion, the dashed ones patch the I18N literal. */
+body.nac-edit [data-cell]{outline:1px dotted var(--blue-lt);outline-offset:2px;border-radius:4px;cursor:text;transition:outline-color .15s}
+body.nac-edit [data-cell]:hover{outline-color:var(--blue)}
+body.nac-edit [data-cell]:focus{outline:2px solid var(--blue);outline-style:solid;background:rgba(24,0,173,.04)}
 #editBar{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:500;background:#0a0a1a;color:#fff;border-radius:30px;padding:8px 8px 8px 18px;display:flex;align-items:center;gap:10px;font-size:12.5px;font-family:'Be Vietnam Pro',sans-serif;box-shadow:0 10px 30px rgba(0,0,0,.35);opacity:.6;transition:opacity .2s}
 #editBar.has-changes{opacity:1}
 #editPublish{background:var(--teal);color:#fff;border:none;border-radius:20px;padding:8px 18px;font-weight:700;font-size:12.5px;cursor:pointer;font-family:inherit}
@@ -1132,6 +1138,7 @@ var I18N = {
   editDiscard:{vi:'Hủy',en:'Discard'},
   editTokenPrompt:{vi:'Dán GitHub Personal Access Token — cần quyền Actions Read/Write trên repo NAC-Program-Brochures',en:'Paste a GitHub Personal Access Token — needs Actions Read/Write on the NAC-Program-Brochures repo'},
   editTokenBtn:{vi:'Đặt / thay GitHub token',en:'Set or replace GitHub token'},
+  editNumOnly:{vi:'Ô này chỉ nhận số (ví dụ 24 hoặc 2.4)',en:'This cell only accepts a number (e.g. 24 or 2.4)'},
   editTokenHas:{vi:'Đã có token trên thiết bị này. Dán token mới để thay, hoặc để trống rồi OK để xoá',en:'A token is already stored on this device. Paste a new one to replace it, or leave blank and press OK to clear it'},
   editSent:{vi:'✓ Đã gửi — có hiệu lực sau khoảng 2 phút',en:'✓ Sent — live in about 2 minutes'},
   editFailed:{vi:'Xuất bản thất bại',en:'Publish failed'},
@@ -1278,6 +1285,16 @@ function headCols(cs){
   }
   return '<div class="cols-h">' + h + '</div>';
 }
+/* Marks a rendered value as an editable DATA cell (?edit=1). The identity is
+   country code + field key, which is all apply_sosanh_data.py needs to find
+   the right Notion row+property — no DOM position, no content hash, so it
+   survives re-render, language toggle and country swap. isNum flags the
+   numeric fields so the editor can validate before publishing. Emits nothing
+   at all outside edit mode, keeping the public page byte-identical. */
+function cellAttr(ct, key, isNum){
+  if(!EDIT_MODE){ return ''; }
+  return 'data-cell="' + ct.code + '|' + key + '"' + (isNum ? ' data-cell-num="1"' : '');
+}
 function rowTxt(lblKey, key, cs, opts){
   opts = opts || {};
   var cellsH = '', i, shown, body;
@@ -1288,7 +1305,7 @@ function rowTxt(lblKey, key, cs, opts){
       var low = shown.toLowerCase();
       if(low.indexOf('có') === 0 || low.indexOf('yes') === 0){ body = '<span class="tick">✓</span> ' + br(shown); }
     }
-    cellsH += '<div class="cell txt">' + freshBadge(cs[i], key) + body + '</div>';
+    cellsH += '<div class="cell txt">' + freshBadge(cs[i], key) + '<span ' + cellAttr(cs[i], key) + '>' + body + '</span></div>';
   }
   return '<div class="row"><div class="rl"><span data-i18n="' + lblKey + '">' + t(lblKey) + '</span></div><div class="row-cells">' + cellsH + '</div></div>';
 }
@@ -1309,8 +1326,8 @@ function rowNum(lblKey, key, cs, cfg){
   for(i = 0; i < cs.length; i++){
     var n = vals[i];
     var win = (!allSame && i === bi);
-    var disp = (n == null) ? '—'
-      : '<span class="big" data-cnt="' + n + '" data-dec="' + (cfg.dec || 0) + '">' + n.toFixed(cfg.dec || 0) + '</span><span class="unit">' + (cfg.unit || '') + '</span>';
+    var disp = (n == null) ? '<span ' + cellAttr(cs[i], key, 1) + '>—</span>'
+      : '<span class="big" ' + cellAttr(cs[i], key, 1) + ' data-cnt="' + n + '" data-dec="' + (cfg.dec || 0) + '">' + n.toFixed(cfg.dec || 0) + '</span><span class="unit">' + (cfg.unit || '') + '</span>';
     var bar = (n != null && mx > 0) ? '<div class="bar-tr"><div class="bar" data-w="' + Math.min(100, Math.round(n / mx * 100)) + '" style="background:' + COLORS[i] + '"></div></div>' : '';
     cellsH += '<div class="cell' + (win ? ' win' : '') + '">' + freshBadge(cs[i], key) + disp + (win ? '<span class="win-dot"></span>' : '') + bar + '</div>';
   }
@@ -1375,7 +1392,7 @@ function needsSec(cs){
         '<div class="nc-t">' + esc(d[lang] || d.vi) +
         (rt != null ? '<span class="nc-r' + (win ? ' win' : '') + '">' + rt + (win ? WIN_ARROW_SVG : '') + '</span>' : '') + '</div>' +
         (has
-          ? (main ? '<div class="nc-x">' + br(main) + '</div>' : '') + (ex ? '<div class="nc-ex">' + br(ex) + '</div>' : '')
+          ? (main ? '<div class="nc-x" ' + cellAttr(cs[i], d.key) + '>' + br(main) + '</div>' : '') + (ex ? '<div class="nc-ex">' + br(ex) + '</div>' : '')
           : '<div class="nc-x" style="color:var(--text3)">—</div>') +
         '</div>';
     }
@@ -1425,7 +1442,7 @@ function rtvBars(cs, rows){
   for(j = 0; j < rows.length; j++){
     var r = rows[j], bars = '';
     for(i = 0; i < cs.length; i++){
-      bars += '<div class="rt-b"><span class="nm">' + esc(cs[i][lang] || cs[i].vi) + '</span><div class="tr"><div class="fill" data-w="' + (r.vals[i] || 0) + '" style="background:' + COLORS[i] + '"></div></div><span class="vv" style="color:' + COLORS[i] + '">' + (r.vals[i] == null ? '—' : r.vals[i]) + '</span>' + freshBadge(cs[i], r.d.key) + '</div>';
+      bars += '<div class="rt-b"><span class="nm">' + esc(cs[i][lang] || cs[i].vi) + '</span><div class="tr"><div class="fill" data-w="' + (r.vals[i] || 0) + '" style="background:' + COLORS[i] + '"></div></div><span class="vv" ' + cellAttr(cs[i], r.d.key, 1) + ' style="color:' + COLORS[i] + '">' + (r.vals[i] == null ? '—' : r.vals[i]) + '</span>' + freshBadge(cs[i], r.d.key) + '</div>';
     }
     var wm = r.bi >= 0 ? cs[r.bi] : null;
     h += '<div class="rt-row"><div class="rt-l"><span>' + esc(r.d[lang] || r.d.vi) + '</span>' +
@@ -1732,7 +1749,7 @@ function render(){
   applyI18nChrome();
   observeAll();
   if(window.twemoji){ try{ twemoji.parse(document.body, { folder:'svg', ext:'.svg' }); }catch(e){} }
-  if(EDIT_MODE){ wireEditableEls(); } /* #cmp was just rebuilt — re-wire its editable spans (ctaT/ctaS/ctaCal/ctaWa) */
+  if(EDIT_MODE){ wireEditableEls(); wireEditableCells(); } /* #cmp was just rebuilt — re-wire its editable spans (ctaT/ctaS/…) and every data cell */
 }
 
 /* ---------------- ANIMATIONS ---------------- */
@@ -2100,13 +2117,74 @@ var EDIT_EXCLUDE = { editPublish:1, editDiscard:1, editTokenPrompt:1, editTokenB
 var EDITABLE_KEYS = Object.keys(I18N).filter(function(k){ return !EDIT_EXCLUDE[k]; });
 var GH_OWNER = 'rayvtt', GH_REPO = 'NAC-Program-Brochures', GH_WORKFLOW = 'apply-sosanh-copy.yml';
 var dirtyKeys = {};
+var dirtyCells = {}; /* country data edits — published to Notion, not the I18N literal */
 var publishing = false; /* guards against a double-submit while a dispatch is in flight */
+var GH_WORKFLOW_DATA = 'apply-sosanh-data.yml';
 
 function initEditor(){
   if(!EDIT_MODE){ return; }
   document.body.classList.add('nac-edit');
   if(!Q('#editBar')){ injectPublishBar(); }
   wireEditableEls();
+  wireEditableCells();
+}
+/* DATA cells (the country columns) — a different beast from the chrome copy
+   above. Chrome lives in var I18N and this repo owns it; these values come
+   from Notion and are regenerated there every fortnight, so an edit here has
+   to be written BACK to Notion or the next sync silently reverts it. They
+   therefore collect into their own dirty map and publish through their own
+   workflow (apply-sosanh-data.yml). */
+function wireEditableCells(){
+  QA('[data-cell]').forEach(function(el){
+    if(el.hasAttribute('data-cell-wired')){ return; }
+    el.setAttribute('data-cell-wired', '1');
+    el.setAttribute('contenteditable', 'plaintext-only');
+    el.addEventListener('focus', function(){
+      /* an em-dash placeholder is "no value", not content to edit around */
+      if(collapseWs(el.textContent) === '—'){ el.textContent = ''; }
+    });
+    el.addEventListener('blur', function(){ captureCellEdit(el); });
+    el.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); el.blur(); } });
+  });
+}
+function captureCellEdit(el){
+  var id = (el.getAttribute('data-cell') || '').split('|');
+  if(id.length !== 2){ return; }
+  var code = id[0], field = id[1];
+  var raw = collapseWs(el.textContent);
+  var isNum = el.hasAttribute('data-cell-num');
+  var ct = findCountry(DB, code);
+  if(!ct){ return; }
+  if(isNum){
+    if(raw === '' || raw === '—'){ return; } /* clearing a score is a Notion-side decision, not a stray blur */
+    var n = parseFloat(raw.split(',').join('.'));
+    if(isNaN(n)){
+      window.alert(t('editNumOnly'));
+      el.textContent = (ct[field] == null ? '—' : ct[field]);
+      return;
+    }
+    if(ct[field] === n){ return; }
+    ct[field] = n;
+    dirtyCells[code] = dirtyCells[code] || {};
+    dirtyCells[code][field] = n;
+  } else {
+    var cur = ct[field];
+    var was = cur ? (cur[lang] || '') : '';
+    if(was === raw){ return; }
+    if(!cur || typeof cur !== 'object'){ cur = {}; ct[field] = cur; }
+    cur[lang] = raw;
+    dirtyCells[code] = dirtyCells[code] || {};
+    dirtyCells[code][field] = dirtyCells[code][field] || {};
+    dirtyCells[code][field][lang] = raw;
+  }
+  updatePublishBar();
+}
+function dirtyCellCount(){
+  var n = 0, code, field;
+  for(code in dirtyCells){
+    for(field in dirtyCells[code]){ n++; }
+  }
+  return n;
 }
 function wireEditableEls(){
   QA('[data-i18n],[data-i18n-html]').forEach(function(el){
@@ -2192,7 +2270,7 @@ function resetPublishBtn(){
   btn.textContent = t('editPublish');
 }
 function updatePublishBar(){
-  var n = Object.keys(dirtyKeys).length;
+  var n = Object.keys(dirtyKeys).length + dirtyCellCount();
   Q('#editCount').textContent = n + ' ' + (lang === 'vi' ? 'thay đổi' : (n === 1 ? 'change' : 'changes'));
   Q('#editBar').classList.toggle('has-changes', n > 0);
   /* a fresh edit arriving while the "sent" confirmation is still showing
@@ -2200,26 +2278,43 @@ function updatePublishBar(){
      frozen for the remainder of the confirmation timer */
   if(n > 0 && !publishing){ resetPublishBtn(); }
 }
+function ghDispatch(workflow, changes, token){
+  return fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/actions/workflows/' + workflow + '/dispatches', {
+    method: 'POST',
+    headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify({ ref: 'main', inputs: { changes: JSON.stringify(changes) } })
+  }).then(function(r){
+    if(r.status === 204){ return; }
+    return r.text().then(function(body){ throw new Error(r.status + ': ' + body.slice(0, 200)); });
+  });
+}
 function publishEdits(){
   if(publishing){ return; }
   var keys = Object.keys(dirtyKeys);
-  if(!keys.length){ return; }
+  var cellCount = dirtyCellCount();
+  if(!keys.length && !cellCount){ return; }
   var token = localStorage.getItem('nac_gh_token');
   if(!token){
     token = window.prompt(t('editTokenPrompt'));
     if(!token){ return; }
     localStorage.setItem('nac_gh_token', token);
+    markTokenBtn();
   }
   var payload = {};
   keys.forEach(function(k){ payload[k] = { vi: I18N[k].vi, en: I18N[k].en }; });
+  var cells = dirtyCells;
   var btn = Q('#editPublish');
   publishing = true;
   btn.disabled = true;
   btn.textContent = '…';
-  fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/actions/workflows/' + GH_WORKFLOW + '/dispatches', {
-    method: 'POST',
-    headers: { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json' },
-    body: JSON.stringify({ ref: 'main', inputs: { changes: JSON.stringify(payload) } })
+  /* chrome copy and country data are two different pipelines (the latter
+     writes to Notion first, since Notion regenerates that data), so they
+     dispatch separately and only both-succeeding counts as published. */
+  var jobs = [];
+  if(keys.length){ jobs.push(ghDispatch(GH_WORKFLOW, payload, token)); }
+  if(cellCount){ jobs.push(ghDispatch(GH_WORKFLOW_DATA, cells, token)); }
+  Promise.all(jobs).then(function(){
+    return { status: 204 };
   }).then(function(r){
     if(r.status === 204){
       /* show the confirmation for a beat, then hand the button BACK. Without
@@ -2230,10 +2325,9 @@ function publishEdits(){
          (see updatePublishBar) so you never wait on this timer. */
       btn.textContent = t('editSent');
       dirtyKeys = {};
+      dirtyCells = {};
       publishing = false;
       setTimeout(function(){ resetPublishBtn(); updatePublishBar(); }, 2500);
-    } else {
-      return r.text().then(function(body){ throw new Error(r.status + ': ' + body.slice(0, 200)); });
     }
   }).catch(function(e){
     /* a stored token only ever gets used, never re-validated — without
