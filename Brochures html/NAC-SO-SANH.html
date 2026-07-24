@@ -256,21 +256,39 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 
 /* plane flies left to right with one full loop-the-loop ("1 swirl") along
    the way — translate carries it left->right, rotate passes through a
-   full 360° during the loop segment (42%-78%) so the spin genuinely reads
-   as a swirl, not just a wobble. .ic-trail reuses this exact keyframe
-   (a circle looks the same at any rotation) so the dot traces the same
-   path — just starting later and faded, so it visibly lags behind. */
+   full 360° during the loop segment so the spin genuinely reads as a
+   swirl, not just a wobble — then fades out at the right edge, teleports
+   back to the left WHILE invisible (both the 0% and the 62%-100% hold sit
+   at opacity 0, so the reposition never happens on-screen), and flies
+   again: an endless repeating flight, not a one-shot that already fired
+   before you scrolled to it. .ic-trail is a SEPARATE keyframe — same
+   transform shape, lower opacity peak (.4 not 1) — because a shared
+   keyframe would force the trail to the plane's own opacity at every
+   frame, killing the "faded, lagging dot" look. */
 @keyframes icPlaneSwirl{
-  0%{transform:translate(-8px,2px) rotate(0deg)}
-  28%{transform:translate(-3px,-3px) rotate(-10deg)}
-  42%{transform:translate(1px,-7px) rotate(90deg)}
-  54%{transform:translate(4px,-9px) rotate(180deg)}
-  66%{transform:translate(3px,-6px) rotate(270deg)}
-  78%{transform:translate(2px,-3px) rotate(360deg)}
-  100%{transform:translate(9px,-4px) rotate(360deg)}
+  0%{opacity:0;transform:translate(-8px,2px) rotate(0deg)}
+  6%{opacity:1;transform:translate(-8px,2px) rotate(0deg)}
+  20%{transform:translate(-3px,-3px) rotate(-10deg)}
+  30%{transform:translate(1px,-7px) rotate(90deg)}
+  39%{transform:translate(4px,-9px) rotate(180deg)}
+  47%{transform:translate(3px,-6px) rotate(270deg)}
+  55%{transform:translate(2px,-3px) rotate(360deg)}
+  65%{opacity:1;transform:translate(9px,-4px) rotate(360deg)}
+  72%,100%{opacity:0;transform:translate(9px,-4px) rotate(360deg)}
 }
-.sec.open .ic-nMove .ic-plane{animation:icPlaneSwirl 1.1s cubic-bezier(.4,0,.2,1) both;animation-delay:calc(var(--i,0) * 110ms + 130ms)}
-.sec.open .ic-nMove .ic-trail{animation:icPlaneSwirl 1.1s cubic-bezier(.4,0,.2,1) both;opacity:.4;animation-delay:calc(var(--i,0) * 110ms + 210ms)}
+@keyframes icTrailSwirl{
+  0%{opacity:0;transform:translate(-8px,2px) rotate(0deg)}
+  6%{opacity:.4;transform:translate(-8px,2px) rotate(0deg)}
+  20%{transform:translate(-3px,-3px) rotate(-10deg)}
+  30%{transform:translate(1px,-7px) rotate(90deg)}
+  39%{transform:translate(4px,-9px) rotate(180deg)}
+  47%{transform:translate(3px,-6px) rotate(270deg)}
+  55%{transform:translate(2px,-3px) rotate(360deg)}
+  65%{opacity:.4;transform:translate(9px,-4px) rotate(360deg)}
+  72%,100%{opacity:0;transform:translate(9px,-4px) rotate(360deg)}
+}
+.sec.open .ic-nMove .ic-plane{animation:icPlaneSwirl 2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-nMove .ic-trail{animation:icTrailSwirl 2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 80ms)}
 
 /* 3-leaf bundle: each leaf pops in (scale+fade) in turn, the whole trio
    holds together for a beat, then all three fade out and the bundle
@@ -285,41 +303,63 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .sec.open .ic-leaf2{animation:icLeaf2 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 .sec.open .ic-leaf3{animation:icLeaf3 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
-@keyframes icToss{0%{transform:rotate(0deg) translateY(0)}45%{transform:rotate(220deg) translateY(-6px)}75%{transform:rotate(380deg) translateY(1px)}100%{transform:rotate(360deg) translateY(0)}}
-.sec.open .ic-nEdu svg{animation:icToss .75s cubic-bezier(.3,.4,.25,1) both;animation-delay:calc(var(--i,0) * 110ms)}
-/* firework burst behind the cap — 6 sparks radiate outward from centre
-   and fade, timed to pop right as the toss above settles (icToss is .75s;
-   the burst starts at +350ms, ~47% through the toss). One-shot, like the
-   toss itself — a firework is a single "boom", not a perpetual sparkler. */
-@keyframes icSpark{0%{transform:translateY(0) scale(.5);opacity:1}70%{opacity:.75}100%{transform:translateY(-7px) scale(.2);opacity:0}}
-.sec.open .ic-spark{stroke:var(--orange);stroke-width:1.3;animation:icSpark .6s ease-out both;animation-delay:calc(var(--i,0) * 110ms + 350ms)}
+/* toss + firework now both loop on a shared 2.4s cycle instead of firing
+   once — a one-shot fires the instant the row opens, so if you scroll to
+   §02 even a moment later you'd only ever see the icon sitting static
+   ("not animating"). Percentages below are the original .75s toss /
+   .6s burst (starting 350ms in) rescaled onto the 2.4s cycle, followed by
+   a hold, so the shape of each motion is unchanged — it just repeats. */
+@keyframes icToss{0%{transform:rotate(0deg) translateY(0)}14%{transform:rotate(220deg) translateY(-6px)}23%{transform:rotate(380deg) translateY(1px)}31%,100%{transform:rotate(360deg) translateY(0)}}
+.sec.open .ic-nEdu svg{animation:icToss 2.4s cubic-bezier(.3,.4,.25,1) infinite;animation-delay:calc(var(--i,0) * 110ms)}
+@keyframes icSpark{0%,15%{transform:translateY(0) scale(.5);opacity:1}32%{opacity:.75}40%,100%{transform:translateY(-7px) scale(.2);opacity:0}}
+.sec.open .ic-spark{stroke:var(--orange);stroke-width:1.3;animation:icSpark 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
 /* the "+" draws itself in stroke by stroke — vertical first, then
-   horizontal — like actually drawing a plus sign, instead of the old
-   instant pulse. One-shot: it appears once and holds, it doesn't loop. */
-@keyframes icDraw{to{stroke-dashoffset:0}}
-.sec.open .ic-plusln{stroke-dasharray:8;stroke-dashoffset:8;animation:icDraw .7s ease-in-out both}
-.sec.open .ic-plusln:nth-of-type(1){animation-delay:calc(var(--i,0) * 110ms + 150ms)}
-.sec.open .ic-plusln:nth-of-type(2){animation-delay:calc(var(--i,0) * 110ms + 950ms)}
+   horizontal, like actually drawing a plus sign — holds complete, clears,
+   and redraws: an endless loop instead of a one-shot (same reasoning as
+   the toss/spark above — a one-shot may already be finished by the time
+   anyone scrolls to it). Same technique as the tax receipt's lines. */
+@keyframes icPlusV{0%{stroke-dashoffset:8}22%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:8}}
+@keyframes icPlusH{0%,28%{stroke-dashoffset:8}48%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:8}}
+.sec.open .ic-plusln{stroke-dasharray:8}
+.sec.open .ic-plusln:nth-of-type(1){animation:icPlusV 3s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-plusln:nth-of-type(2){animation:icPlusH 3s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
-@keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
-.sec.open .ic-nSafe svg{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
+/* settle in, hold, fade out, settle in again — an endless loop instead of
+   a one-shot. Targets .ic-shield (not the whole svg) so its fade-to-0
+   never blanks the independently-looping halo underneath (see the SVG
+   comment above). */
+@keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}13%{transform:scale(1.14) rotate(4deg);opacity:1}21%,75%{transform:scale(1) rotate(0);opacity:1}88%,100%{transform:scale(1) rotate(0);opacity:0}}
+.sec.open .ic-nSafe .ic-shield{animation:icSettle 2.6s cubic-bezier(.3,.7,.3,1.3) infinite;animation-delay:calc(var(--i,0) * 110ms)}
 /* halo — a protective ring that pops outward from the shield and fades,
-   on a continuous loop (independent of the shield's own one-shot settle
-   above: different property, same element tree, no conflict). */
+   on a continuous loop (independent of the shield's own loop above:
+   different element, no conflict). */
 @keyframes icHaloPop{0%{transform:scale(.65);opacity:.85}70%{opacity:0}100%{transform:scale(1.6);opacity:0}}
 .sec.open .ic-halo{transform-box:fill-box;transform-origin:center;opacity:0;animation:icHaloPop 1.8s cubic-bezier(.2,.6,.35,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 200ms)}
 
-/* bars "light up" left to right — dim → bright flash (glow) → settle lit,
-   instead of a plain height-grow, so each bar reads as switching on. */
-@keyframes icBarLight{0%{opacity:.28;transform:scaleY(.72);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}45%{opacity:1;transform:scaleY(1.1);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}100%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}}
-.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom;opacity:.28;animation:icBarLight .5s ease-out both}
-.sec.open .ic-nDiv svg rect:nth-child(1){animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-nDiv svg rect:nth-child(2){animation-delay:calc(var(--i,0) * 110ms + 130ms)}
-.sec.open .ic-nDiv svg rect:nth-child(3){animation-delay:calc(var(--i,0) * 110ms + 260ms)}
+/* bars APPEAR one by one, left to right (grow from nothing + a bright
+   glow flash as each lands), hold together, then all three shrink back
+   to nothing and the sequence replays — endless loop instead of a
+   one-shot. A one-shot fires the instant the row opens regardless of
+   whether anyone's looking yet, so scrolling down after it already fired
+   just shows static bars sitting there — indistinguishable from "not
+   animating". Per-bar keyframes (not shared + nth-child delay) because
+   each bar needs its own "hidden until my turn" window baked in. */
+@keyframes icBar1{0%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}18%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}24%,70%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}83%,100%{opacity:.15;transform:scaleY(0)}}
+@keyframes icBar2{0%,8%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}26%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}32%,70%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}83%,100%{opacity:.15;transform:scaleY(0)}}
+@keyframes icBar3{0%,16%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}34%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}40%,70%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}83%,100%{opacity:.15;transform:scaleY(0)}}
+.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom}
+.sec.open .ic-nDiv svg rect:nth-child(1){animation:icBar1 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-nDiv svg rect:nth-child(2){animation:icBar2 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-nDiv svg rect:nth-child(3){animation:icBar3 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
-@keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}70%{transform:translateY(2px) rotate(3deg);opacity:1}100%{transform:translateY(0) rotate(0)}}
-.sec.open .ic-nTax svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
+/* the receipt shell now drops in, holds, lifts away, and drops in again —
+   on the SAME 3.2s cycle as its own text lines below, so the whole
+   receipt (shell + lines) resets together: shell lifts away right as the
+   lines finish clearing (88%-100%), then drops back in fresh as the next
+   cycle's lines start reprinting from blank. */
+@keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}22%{transform:translateY(2px) rotate(3deg);opacity:1}31%,86%{transform:translateY(0) rotate(0);opacity:1}97%,100%{transform:translateY(-4px) rotate(-3deg);opacity:0}}
+.sec.open .ic-nTax svg{animation:icDrop 3.2s cubic-bezier(.3,.6,.3,1.2) infinite;animation-delay:calc(var(--i,0) * 110ms)}
 /* Receipt text lines "print" themselves left-to-right, one line after
    another, then the whole trio clears and reprints — an endless loop.
    Each <line>'s dasharray equals its own length (6, 6, 3) so dashoffset
@@ -405,7 +445,7 @@ footer{border-top:1px solid var(--border);background:#fff}
      a plain `.needs-ic svg` selector (1 class + type) on specificity alone;
      without !important the media query loses despite coming later in the
      stylesheet, and the "spin/grow/bounce" animations still fire. */
-  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-plusln,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
+  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-plusln,.ic-shield,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
   /* the halo/spark/trail's entire purpose IS the motion — a frozen ring,
      a frozen burst, or a frozen trailing dot is clutter, not information,
      so these hide outright instead of defaulting to the opacity:1
@@ -818,11 +858,17 @@ var NEED_ICON_SVG = {
     '<g transform="translate(12,19) rotate(30) scale(.94)"><g class="ic-leaf ic-leaf3"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
     '</svg>',
   /* Halo ring (.ic-halo) is a SEPARATE circle behind the shield, pulsing
-     outward on a continuous loop — the shield itself keeps its one-shot
-     `icSettle` entrance untouched. */
+     outward on its own loop. The shield's own paths live inside their own
+     <g class="ic-shield"> rather than being animated on the <svg> itself —
+     required, not stylistic: `.ic-shield`'s loop now fades to opacity 0
+     at the reset point (see icSettle below), and CSS opacity on a PARENT
+     composites into every descendant's rendering, so animating the whole
+     <svg> would periodically blank out the halo too, interrupting its
+     independent pulse. Animating a sibling <g> instead of the <svg> keeps
+     the two loops fully decoupled. */
   nSafe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
     '<circle class="ic-halo" cx="12" cy="11.4" r="8.6" stroke-width="1.3"/>' +
-    '<path d="M12 3.2 20 6v6c0 5-3.5 8.3-8 9.1-4.5-.8-8-4.1-8-9.1V6l8-2.8Z"/><path d="m8.6 12 2.2 2.2 4.6-4.6"/>' +
+    '<g class="ic-shield"><path d="M12 3.2 20 6v6c0 5-3.5 8.3-8 9.1-4.5-.8-8-4.1-8-9.1V6l8-2.8Z"/><path d="m8.6 12 2.2 2.2 4.6-4.6"/></g>' +
     '</svg>',
   nDiv:    '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="3.5" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="7" width="3.6" height="13" rx="1"/><rect x="16.9" y="3" width="3.6" height="17" rx="1"/></svg>',
   /* 3 separate <line>s (not one combined path) so each text line can be

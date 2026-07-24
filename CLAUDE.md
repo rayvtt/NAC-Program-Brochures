@@ -644,6 +644,50 @@ Notion DB, its own payload shape, and its own sync tooling:
     above: `.ic-plane`/`.ic-plusln` fall back to static-and-visible (a
     plane at rest, a fully-drawn "+"); `.ic-spark`/`.ic-trail` hide outright
     like `.ic-halo` (their entire purpose is motion that isn't there).
+- **Every icon animation loops endlessly** (direct feedback — "all
+  animations should be in endless loop", plus "diversification icon is
+  not animating"). The root problem behind both: a one-shot animation
+  fires the instant `.sec.open` is added, regardless of whether the
+  section is even in the viewport yet — scroll down a moment later and a
+  one-shot has *already finished*, which is indistinguishable from "no
+  animation at all". Every icon that was still one-shot (cap toss,
+  firework, plane swirl, plus-draw, shield settle, receipt drop-in) got
+  rescaled onto a longer cycle with its original motion compressed into
+  the first slice, a hold, then a fade/reset back to the start — same
+  shape, now repeating. `animation-iteration-count: infinite` is verified
+  computed on all 13 animated elements across the 8 icons.
+  - **Diversification (`nDiv`) redesigned**: "the bar should 1x1 appear
+    left to right" — reverted from "grow in place" back to true
+    scaleY(0)→1 appearance (kept the glow-flash from the elevation round),
+    now per-bar keyframes (`icBar1/2/3`, not a shared keyframe + nth-child
+    delay, since each bar needs its own "stay hidden until my turn" window
+    baked in) on a 2.4s cycle: bar 1 pops in with a flash, then bar 2, then
+    bar 3, all three hold together, then shrink back to nothing together
+    and the sequence replays. Verified via a 9-frame time-lapse: frame 2
+    shows only bar 1, frame 4 catches bar 3 mid-flash (brightest frame),
+    frames 5-7 show all three solid and holding, frames 8-9 show them
+    shrunk back down near the loop point.
+  - **Shield/halo decoupling required an SVG restructure**: looping the
+    shield's fade-out (`icSettle` now includes an 88%-100% opacity-0
+    reset) directly on `.ic-nSafe svg` would have blanked the halo too —
+    CSS opacity on a parent composites into every descendant's render, and
+    the halo is a child of that same `<svg>`. Fix: the shield's paths
+    moved into their own `<g class="ic-shield">` sibling to the halo
+    `<circle>`, and the loop now targets `.ic-shield` specifically. Verified
+    by independently scrubbing both animations' `Animation.currentTime` to
+    chosen points on each one's OWN timeline (not relying on real-time
+    progression, which barely advances during a synchronous scrub loop) —
+    shield scrubbed to its hidden window reads `opacity:0` while the halo,
+    scrubbed to its own visible window at the same instant, reads a
+    genuine nonzero opacity — confirms the two are fully independent.
+  - **Receipt shell now loops on the SAME 3.2s cycle as its own text
+    lines** (`icDrop`, was a one-shot entrance): drops in, holds, lifts
+    away right as the lines finish clearing, then drops back in fresh as
+    the next cycle's lines start reprinting — the whole receipt resets as
+    one cohesive unit instead of the shell staying put forever while only
+    the lines cycled.
+  - `.ic-shield` added to the general reduced-motion override (falls back
+    to static-and-visible, same treatment as `.ic-plane`/`.ic-plusln`).
 - **§02 winner highlight** (`needsSec()`): the highest `⑩` rating in each
   dimension row gets a green `.nc-r.win` badge with a small bouncing up-arrow
   (`WIN_ARROW_SVG`, continuous `winArrowUp` animation, same `--i` stagger
