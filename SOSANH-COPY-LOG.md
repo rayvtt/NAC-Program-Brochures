@@ -56,3 +56,7 @@
 ## 2026-07-24 20:39 UTC · in-page editor
 
 - `ctaS` VI: “Đặt lịch 30 phút với NAC — chúng tôi đối chiếu hồ sơ gia đình, mục tiêu thuế và lộ trình quốc tịch của bạn ngay trên bảng so sánh này.” → “Đặt lịch 30 phút với NAC — chúng tôi đối chiếu hồ sơ gia đình, mục tiêu thuế và lộ trình quốc tịch của gia đình bạn.”
+
+## 2026-07-24 20:55 UTC · in-page editor
+
+- `heroS` VI: “Kinh tế vĩ mô, chính sách chương trình, điều kiện hồ sơ, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu…” → “Kinh tế vĩ mô, chính sách chương trình, điều kiện hồ sơ, quyền lợi và chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu với …”
