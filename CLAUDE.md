@@ -583,6 +583,67 @@ Notion DB, its own payload shape, and its own sync tooling:
     treatment — a frozen halo ring around the shield is visual clutter, not
     information (its entire purpose is the pulse), so it gets its own rule
     forcing `opacity:0!important` — hidden outright under reduced motion.
+- **Second elevation round** (further direct feedback on the same 8 icons —
+  "firework blew up behind the cap", "leaves slightly bigger", "plane fly
+  left to right - 1 swirl - with trailing dot", "the plus slowly appear"):
+  - **Education (`nEdu`)** — 6 `.ic-spark` lines fanned around the cap's
+    centre, placed EARLIER in the SVG than the cap's own `<path>`s so they
+    paint behind it (SVG paint order follows document order — no z-index
+    needed). One-shot burst-outward + fade (`icSpark`, .6s, starts 350ms
+    into the cap's own .75s `icToss` so the "boom" lands as the toss
+    settles) — verified via computed-style sampling: opacity 1 (held
+    through the pre-burst delay via `both` fill-mode) → interpolates down
+    to 0 while `translateY` grows from 0 to -7px and `scale` shrinks from
+    .5 to .2, landing exactly on the keyframe's own end values. Colour is
+    `var(--orange)`, not the icon's usual blue — a monochrome "explosion"
+    reads flat; the brand's existing celebratory accent (same colour as
+    the gate's spinning bezel ring) makes it pop.
+  - **Quality of life (`nQol`)** — leaf scale bumped again per "make the
+    leaves slightly bigger": side leaves `.82→.94`, centre leaf `1→1.15`
+    (same static-vs-animated-transform split as before, just larger
+    multipliers) — no other change to the appear-one-by-one/loop behaviour.
+  - **Mobility (`nMove`)** — full redesign: the plane's paths moved into a
+    `.ic-plane` group and a `.ic-trail` dot was added ahead of it in the
+    SVG (`fill:currentColor`, small circle). Both share ONE keyframe,
+    `icPlaneSwirl` — translate carries the plane from off-icon-left
+    (`translate(-8px,2px)`) to off-icon-right (`translate(9px,-4px)`)
+    while rotate sweeps a full 0°→-10°→90°→180°→270°→360° across the 42%-
+    78% keyframe range, i.e. one genuine loop-the-loop, not a wobble.
+    `.ic-trail` reuses the identical keyframe (a circle looks the same at
+    any rotation, so no separate definition needed) but starts 80ms later
+    and sits at `opacity:.4`, so it visibly lags behind like a contrail.
+    **Verified by scrubbing `Animation.currentTime` directly** (pausing the
+    Web-Animations-API object and setting exact timeline positions) rather
+    than polling via `waitForTimeout` — wall-clock polling across many
+    sequential `page.evaluate()` calls accumulates enough round-trip
+    latency in this environment to make an animation LOOK like it has a
+    hesitant start when it doesn't; scrubbing reads the browser's own
+    animation clock directly and is immune to that. Exact keyframe matches
+    confirmed at every checkpoint (180° at the 54% mark, 270° at 66%, back
+    to 0°/360° and holding at 100%). **Also caught and fixed a real bug**
+    this way: the first version used `cubic-bezier(.4,.2,.2,1)` — control
+    points with a DECREASING x (.4 then .2) — a typo for the standard
+    Material easing `cubic-bezier(.4,0,.2,1)`; decreasing-x control points
+    still produce a valid function but an unusually hesitant one. Fixed
+    before shipping.
+  - **Healthcare (`nHealth`)** — the "+" was one combined `<path>` with two
+    subpaths; split into two separate `<line class="ic-plusln">`s (same
+    stroke-dasharray/dashoffset draw technique as the tax receipt) so the
+    vertical stroke draws fully (`icDraw`, .7s) BEFORE the horizontal
+    stroke starts — drawn like an actual plus sign, one stroke then the
+    crossing stroke, not the old instant `icPulse` scale-bounce. One-shot:
+    draws in once and holds — moved out of the continuous-loop family
+    (globe/leaf/heart) since "the plus slowly appears" describes a single
+    entrance, not a repeating motion. Verified by scrubbing both lines'
+    `Animation.currentTime` in lockstep: horizontal's `stroke-dashoffset`
+    stays pinned at 8 (fully hidden) for the ENTIRE time the vertical line
+    is drawing, only starting once vertical has been fully drawn (0) for
+    ~100ms — confirms true sequential draw, not an overlapping/simultaneous
+    one that happened to look sequential from timing alone.
+  - All new elements get the same reduced-motion treatment established
+    above: `.ic-plane`/`.ic-plusln` fall back to static-and-visible (a
+    plane at rest, a fully-drawn "+"); `.ic-spark`/`.ic-trail` hide outright
+    like `.ic-halo` (their entire purpose is motion that isn't there).
 - **§02 winner highlight** (`needsSec()`): the highest `⑩` rating in each
   dimension row gets a green `.nc-r.win` badge with a small bouncing up-arrow
   (`WIN_ARROW_SVG`, continuous `winArrowUp` animation, same `--i` stagger
