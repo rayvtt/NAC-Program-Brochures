@@ -247,8 +247,18 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 @keyframes icPlaneGo{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(5px,-6px) rotate(-18deg)}}
 .sec.open .ic-nMove svg{animation:icPlaneGo .6s cubic-bezier(.3,.6,.3,1) both;animation-delay:calc(var(--i,0) * 110ms + 130ms)}
 
-@keyframes icLeafGrow{0%,100%{transform:rotate(0deg) scale(1)}30%{transform:rotate(-17deg) scale(1.14)}70%{transform:rotate(15deg) scale(1.2)}}
-.sec.open .ic-nQol svg{animation:icLeafGrow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+/* 3-leaf bundle: each leaf pops in (scale+fade) in turn, the whole trio
+   holds together for a beat, then all three fade out and the bundle
+   re-grows from nothing — "appear one by one", on an endless loop. All
+   three share one 3s cycle so their appear/hold/fade phases stay locked
+   together; only the START of each leaf's pop-in is offset. */
+@keyframes icLeaf1{0%{opacity:0;transform:scale(.3)}10%{opacity:1;transform:scale(1.15)}16%{transform:scale(1)}75%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(.5)}}
+@keyframes icLeaf2{0%,12%{opacity:0;transform:scale(.3)}22%{opacity:1;transform:scale(1.15)}28%{transform:scale(1)}75%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(.5)}}
+@keyframes icLeaf3{0%,24%{opacity:0;transform:scale(.3)}34%{opacity:1;transform:scale(1.15)}40%{transform:scale(1)}75%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(.5)}}
+.sec.open .ic-leaf{transform-box:fill-box;transform-origin:bottom center;opacity:0}
+.sec.open .ic-leaf1{animation:icLeaf1 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-leaf2{animation:icLeaf2 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-leaf3{animation:icLeaf3 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
 @keyframes icToss{0%{transform:rotate(0deg) translateY(0)}45%{transform:rotate(220deg) translateY(-6px)}75%{transform:rotate(380deg) translateY(1px)}100%{transform:rotate(360deg) translateY(0)}}
 .sec.open .ic-nEdu svg{animation:icToss .75s cubic-bezier(.3,.4,.25,1) both;animation-delay:calc(var(--i,0) * 110ms)}
@@ -258,15 +268,35 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 
 @keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 .sec.open .ic-nSafe svg{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
+/* halo — a protective ring that pops outward from the shield and fades,
+   on a continuous loop (independent of the shield's own one-shot settle
+   above: different property, same element tree, no conflict). */
+@keyframes icHaloPop{0%{transform:scale(.65);opacity:.85}70%{opacity:0}100%{transform:scale(1.6);opacity:0}}
+.sec.open .ic-halo{transform-box:fill-box;transform-origin:center;opacity:0;animation:icHaloPop 1.8s cubic-bezier(.2,.6,.35,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 200ms)}
 
-@keyframes icBarGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom;animation:icBarGrow .4s ease-out both}
+/* bars "light up" left to right — dim → bright flash (glow) → settle lit,
+   instead of a plain height-grow, so each bar reads as switching on. */
+@keyframes icBarLight{0%{opacity:.28;transform:scaleY(.72);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}45%{opacity:1;transform:scaleY(1.1);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}100%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}}
+.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom;opacity:.28;animation:icBarLight .5s ease-out both}
 .sec.open .ic-nDiv svg rect:nth-child(1){animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-nDiv svg rect:nth-child(2){animation-delay:calc(var(--i,0) * 110ms + 90ms)}
-.sec.open .ic-nDiv svg rect:nth-child(3){animation-delay:calc(var(--i,0) * 110ms + 180ms)}
+.sec.open .ic-nDiv svg rect:nth-child(2){animation-delay:calc(var(--i,0) * 110ms + 130ms)}
+.sec.open .ic-nDiv svg rect:nth-child(3){animation-delay:calc(var(--i,0) * 110ms + 260ms)}
 
 @keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}70%{transform:translateY(2px) rotate(3deg);opacity:1}100%{transform:translateY(0) rotate(0)}}
 .sec.open .ic-nTax svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
+/* Receipt text lines "print" themselves left-to-right, one line after
+   another, then the whole trio clears and reprints — an endless loop.
+   Each <line>'s dasharray equals its own length (6, 6, 3) so dashoffset
+   can travel that exact distance from hidden to fully-drawn; because
+   dashoffset counts down FROM the line's start point (x1,y1), the reveal
+   direction is left→right for all three. One shared 3.2s cycle keeps the
+   three lines' draw/hold/clear phases in lockstep. */
+@keyframes icTaxL1{0%{stroke-dashoffset:6}10%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:6}}
+@keyframes icTaxL2{0%,12%{stroke-dashoffset:6}22%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:6}}
+@keyframes icTaxL3{0%,24%{stroke-dashoffset:3}34%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:3}}
+.sec.open .ic-taxln:nth-of-type(1){stroke-dasharray:6;animation:icTaxL1 3.2s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-taxln:nth-of-type(2){stroke-dasharray:6;animation:icTaxL2 3.2s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-taxln:nth-of-type(3){stroke-dasharray:3;animation:icTaxL3 3.2s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
 @keyframes winArrowUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 .sec.open .nc-r.win svg{animation:winArrowUp 1.3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
@@ -339,7 +369,11 @@ footer{border-top:1px solid var(--border);background:#fff}
      a plain `.needs-ic svg` selector (1 class + type) on specificity alone;
      without !important the media query loses despite coming later in the
      stylesheet, and the "spin/grow/bounce" animations still fire. */
-  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important}
+  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
+  /* the halo's entire purpose is the pulse — a frozen ring around the
+     shield is clutter, not information, so hide it outright instead of
+     defaulting to the opacity:1 fallback above. */
+  .ic-halo{animation:none!important;opacity:0!important}
 }
 
 /* mobile table adjustments */
@@ -702,10 +736,38 @@ var NEED_ICON_SVG = {
   nGlobal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/><circle cx="7.4" cy="7.8" r="1" fill="currentColor" stroke="none"/><circle cx="16.2" cy="15.6" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.8" cy="16.8" r=".8" fill="currentColor" stroke="none"/></svg>',
   nMove:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 10.2l6.3 2.4"/><path d="M21 3 13.6 20l-2.3-6.6"/><path d="M21 3 9.3 13.6"/></svg>',
   nHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg>',
-  nQol:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 4C10 4 4 10.5 4 18.3c0 .7.1 1.4.3 2 .7.2 1.4.3 2.1.3C15 20.6 20 14.4 20 5.2c0-.4 0-.8 0-1.2Z"/><path d="M6.2 19.8C10 14 14 10 19.4 6.3"/></svg>',
-  nSafe:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2 20 6v6c0 5-3.5 8.3-8 9.1-4.5-.8-8-4.1-8-9.1V6l8-2.8Z"/><path d="m8.6 12 2.2 2.2 4.6-4.6"/></svg>',
+  /* 3 small leaves fanned from one base point — a "bundle", not the old
+     single big leaf — so they can pop in one-by-one (see .ic-leaf1/2/3
+     below). Each leaf's static fan-out rotation lives on the OUTER <g>;
+     the INNER <g class="ic-leafN"> carries only the animated CSS transform
+     (opacity/scale) — keeping them on separate elements avoids the CSS
+     animation's `transform` clobbering the SVG attribute `transform` that
+     positions the leaf (a CSS transform on an element always wins over
+     its own presentation-attribute transform, so a static rotate + an
+     animated scale can never safely share one element). */
+  nQol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+    '<g transform="translate(12,19) rotate(-30) scale(.82)"><g class="ic-leaf ic-leaf1"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
+    '<g transform="translate(12,19)"><g class="ic-leaf ic-leaf2"><path d="M0,0 C-3.4,-2.8 -3.4,-7.8 0,-11.2 C3.4,-7.8 3.4,-2.8 0,0 Z"/><path d="M0,-1 L0,-9.7"/></g></g>' +
+    '<g transform="translate(12,19) rotate(30) scale(.82)"><g class="ic-leaf ic-leaf3"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
+    '</svg>',
+  /* Halo ring (.ic-halo) is a SEPARATE circle behind the shield, pulsing
+     outward on a continuous loop — the shield itself keeps its one-shot
+     `icSettle` entrance untouched. */
+  nSafe: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+    '<circle class="ic-halo" cx="12" cy="11.4" r="8.6" stroke-width="1.3"/>' +
+    '<path d="M12 3.2 20 6v6c0 5-3.5 8.3-8 9.1-4.5-.8-8-4.1-8-9.1V6l8-2.8Z"/><path d="m8.6 12 2.2 2.2 4.6-4.6"/>' +
+    '</svg>',
   nDiv:    '<svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><rect x="3.5" y="12" width="3.6" height="8" rx="1"/><rect x="10.2" y="7" width="3.6" height="13" rx="1"/><rect x="16.9" y="3" width="3.6" height="17" rx="1"/></svg>',
-  nTax:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2.3h9l3 3v16.4l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V2.3Z"/><path d="M9 8h6M9 12h6M9 16h3"/></svg>'
+  /* 3 separate <line>s (not one combined path) so each text line can be
+     independently "drawn" left-to-right via stroke-dasharray/dashoffset —
+     dasharray equals each line's own length (6, 6, 3) so dashoffset can
+     travel that exact distance from fully-hidden to fully-drawn. */
+  nTax: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+    '<path d="M6 2.3h9l3 3v16.4l-2-1.3-2 1.3-2-1.3-2 1.3-2-1.3-2 1.3V2.3Z"/>' +
+    '<line class="ic-taxln" x1="9" y1="8" x2="15" y2="8"/>' +
+    '<line class="ic-taxln" x1="9" y1="12" x2="15" y2="12"/>' +
+    '<line class="ic-taxln" x1="9" y1="16" x2="12" y2="16"/>' +
+    '</svg>'
 };
 /* Small up-arrow appended to whichever country has the best rating in a
    §02 dimension row (needsSec()) — mirrors the .win/.win-dot "highlight the
