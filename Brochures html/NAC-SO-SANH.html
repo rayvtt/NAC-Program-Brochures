@@ -1999,6 +1999,7 @@ var EDIT_EXCLUDE = { editPublish:1, editDiscard:1, editTokenPrompt:1, editTokenB
 var EDITABLE_KEYS = Object.keys(I18N).filter(function(k){ return !EDIT_EXCLUDE[k]; });
 var GH_OWNER = 'rayvtt', GH_REPO = 'NAC-Program-Brochures', GH_WORKFLOW = 'apply-sosanh-copy.yml';
 var dirtyKeys = {};
+var publishing = false; /* guards against a double-submit while a dispatch is in flight */
 
 function initEditor(){
   if(!EDIT_MODE){ return; }
@@ -2083,12 +2084,23 @@ function markTokenBtn(){
   try{ has = !!localStorage.getItem('nac_gh_token'); }catch(e){}
   b.classList.toggle('has-token', has);
 }
+function resetPublishBtn(){
+  var btn = Q('#editPublish');
+  if(!btn){ return; }
+  btn.disabled = false;
+  btn.textContent = t('editPublish');
+}
 function updatePublishBar(){
   var n = Object.keys(dirtyKeys).length;
   Q('#editCount').textContent = n + ' ' + (lang === 'vi' ? 'thay đổi' : (n === 1 ? 'change' : 'changes'));
   Q('#editBar').classList.toggle('has-changes', n > 0);
+  /* a fresh edit arriving while the "sent" confirmation is still showing
+     takes the button straight back to publishable — otherwise it reads as
+     frozen for the remainder of the confirmation timer */
+  if(n > 0 && !publishing){ resetPublishBtn(); }
 }
 function publishEdits(){
+  if(publishing){ return; }
   var keys = Object.keys(dirtyKeys);
   if(!keys.length){ return; }
   var token = localStorage.getItem('nac_gh_token');
@@ -2100,6 +2112,7 @@ function publishEdits(){
   var payload = {};
   keys.forEach(function(k){ payload[k] = { vi: I18N[k].vi, en: I18N[k].en }; });
   var btn = Q('#editPublish');
+  publishing = true;
   btn.disabled = true;
   btn.textContent = '…';
   fetch('https://api.github.com/repos/' + GH_OWNER + '/' + GH_REPO + '/actions/workflows/' + GH_WORKFLOW + '/dispatches', {
@@ -2108,9 +2121,16 @@ function publishEdits(){
     body: JSON.stringify({ ref: 'main', inputs: { changes: JSON.stringify(payload) } })
   }).then(function(r){
     if(r.status === 204){
+      /* show the confirmation for a beat, then hand the button BACK. Without
+         this the button stays disabled on "sent" forever and the 2nd, 3rd,
+         4th... edit can never be published — the success path used to only
+         re-run updatePublishBar(), which touches the count label and nothing
+         else. resetPublishBtn() is also called the moment a new edit lands
+         (see updatePublishBar) so you never wait on this timer. */
       btn.textContent = t('editSent');
       dirtyKeys = {};
-      setTimeout(updatePublishBar, 3000);
+      publishing = false;
+      setTimeout(function(){ resetPublishBtn(); updatePublishBar(); }, 2500);
     } else {
       return r.text().then(function(body){ throw new Error(r.status + ': ' + body.slice(0, 200)); });
     }
@@ -2127,8 +2147,8 @@ function publishEdits(){
     } else {
       window.alert(t('editFailed') + ' — ' + e.message);
     }
-    btn.disabled = false;
-    btn.textContent = t('editPublish');
+    publishing = false;
+    resetPublishBtn();
   });
 }
 if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', boot); } else { boot(); }
