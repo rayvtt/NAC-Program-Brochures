@@ -254,8 +254,23 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 @keyframes icGlobeSpin{to{transform:rotate(360deg)}}
 .sec.open .ic-nGlobal svg{animation:icGlobeSpin 6s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
-@keyframes icPlaneGo{0%{transform:translate(0,0) rotate(0deg)}100%{transform:translate(5px,-6px) rotate(-18deg)}}
-.sec.open .ic-nMove svg{animation:icPlaneGo .6s cubic-bezier(.3,.6,.3,1) both;animation-delay:calc(var(--i,0) * 110ms + 130ms)}
+/* plane flies left to right with one full loop-the-loop ("1 swirl") along
+   the way — translate carries it left->right, rotate passes through a
+   full 360° during the loop segment (42%-78%) so the spin genuinely reads
+   as a swirl, not just a wobble. .ic-trail reuses this exact keyframe
+   (a circle looks the same at any rotation) so the dot traces the same
+   path — just starting later and faded, so it visibly lags behind. */
+@keyframes icPlaneSwirl{
+  0%{transform:translate(-8px,2px) rotate(0deg)}
+  28%{transform:translate(-3px,-3px) rotate(-10deg)}
+  42%{transform:translate(1px,-7px) rotate(90deg)}
+  54%{transform:translate(4px,-9px) rotate(180deg)}
+  66%{transform:translate(3px,-6px) rotate(270deg)}
+  78%{transform:translate(2px,-3px) rotate(360deg)}
+  100%{transform:translate(9px,-4px) rotate(360deg)}
+}
+.sec.open .ic-nMove .ic-plane{animation:icPlaneSwirl 1.1s cubic-bezier(.4,0,.2,1) both;animation-delay:calc(var(--i,0) * 110ms + 130ms)}
+.sec.open .ic-nMove .ic-trail{animation:icPlaneSwirl 1.1s cubic-bezier(.4,0,.2,1) both;opacity:.4;animation-delay:calc(var(--i,0) * 110ms + 210ms)}
 
 /* 3-leaf bundle: each leaf pops in (scale+fade) in turn, the whole trio
    holds together for a beat, then all three fade out and the bundle
@@ -272,9 +287,20 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 
 @keyframes icToss{0%{transform:rotate(0deg) translateY(0)}45%{transform:rotate(220deg) translateY(-6px)}75%{transform:rotate(380deg) translateY(1px)}100%{transform:rotate(360deg) translateY(0)}}
 .sec.open .ic-nEdu svg{animation:icToss .75s cubic-bezier(.3,.4,.25,1) both;animation-delay:calc(var(--i,0) * 110ms)}
+/* firework burst behind the cap — 6 sparks radiate outward from centre
+   and fade, timed to pop right as the toss above settles (icToss is .75s;
+   the burst starts at +350ms, ~47% through the toss). One-shot, like the
+   toss itself — a firework is a single "boom", not a perpetual sparkler. */
+@keyframes icSpark{0%{transform:translateY(0) scale(.5);opacity:1}70%{opacity:.75}100%{transform:translateY(-7px) scale(.2);opacity:0}}
+.sec.open .ic-spark{stroke:var(--orange);stroke-width:1.3;animation:icSpark .6s ease-out both;animation-delay:calc(var(--i,0) * 110ms + 350ms)}
 
-@keyframes icPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.22)}}
-.sec.open .ic-nHealth svg{animation:icPulse 1.5s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+/* the "+" draws itself in stroke by stroke — vertical first, then
+   horizontal — like actually drawing a plus sign, instead of the old
+   instant pulse. One-shot: it appears once and holds, it doesn't loop. */
+@keyframes icDraw{to{stroke-dashoffset:0}}
+.sec.open .ic-plusln{stroke-dasharray:8;stroke-dashoffset:8;animation:icDraw .7s ease-in-out both}
+.sec.open .ic-plusln:nth-of-type(1){animation-delay:calc(var(--i,0) * 110ms + 150ms)}
+.sec.open .ic-plusln:nth-of-type(2){animation-delay:calc(var(--i,0) * 110ms + 950ms)}
 
 @keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
 .sec.open .ic-nSafe svg{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
@@ -379,11 +405,13 @@ footer{border-top:1px solid var(--border);background:#fff}
      a plain `.needs-ic svg` selector (1 class + type) on specificity alone;
      without !important the media query loses despite coming later in the
      stylesheet, and the "spin/grow/bounce" animations still fire. */
-  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
-  /* the halo's entire purpose is the pulse — a frozen ring around the
-     shield is clutter, not information, so hide it outright instead of
-     defaulting to the opacity:1 fallback above. */
-  .ic-halo{animation:none!important;opacity:0!important}
+  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-plusln,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
+  /* the halo/spark/trail's entire purpose IS the motion — a frozen ring,
+     a frozen burst, or a frozen trailing dot is clutter, not information,
+     so these hide outright instead of defaulting to the opacity:1
+     fallback above (which is right for elements that still mean something
+     held static, like a fully-drawn "+" or a plane at rest). */
+  .ic-halo,.ic-spark,.ic-trail{animation:none!important;opacity:0!important}
 }
 
 /* mobile table adjustments */
@@ -741,14 +769,39 @@ var NEED_DIMS = [
    platforms, and can't take the per-dimension animation hooks in the CSS
    above: .ic-<key> targets each one's signature motion when §02 opens). */
 var NEED_ICON_SVG = {
-  nEdu:    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 1 9l11 6 11-6-11-6Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v7"/><circle cx="22" cy="17.4" r="1.1" fill="currentColor" stroke="none"/></svg>',
+  /* 6 spark lines fanned around the cap's centre, EARLIER in DOM order so
+     they paint behind the cap (SVG paint order follows document order).
+     Static fan-out rotation on the outer <g>, animated burst-outward on
+     the <line> itself — no inner-<g> indirection needed here (unlike the
+     leaf bundle below) because the <line> has no static transform of its
+     own to conflict with. */
+  nEdu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+    '<g transform="translate(12,9) rotate(0)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
+    '<g transform="translate(12,9) rotate(60)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
+    '<g transform="translate(12,9) rotate(120)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
+    '<g transform="translate(12,9) rotate(180)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
+    '<g transform="translate(12,9) rotate(240)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
+    '<g transform="translate(12,9) rotate(300)"><line class="ic-spark" x1="0" y1="-1" x2="0" y2="-1.8"/></g>' +
+    '<path d="M12 3 1 9l11 6 11-6-11-6Z"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v7"/><circle cx="22" cy="17.4" r="1.1" fill="currentColor" stroke="none"/>' +
+    '</svg>',
   /* 3 filled "landmass" dots at asymmetric positions — a plain circle +
      symmetric meridian lines looks static/wobbly under rotation (nothing
      visually distinguishes one angle from another); the dots make a full
      360° turn unambiguous to the eye. */
   nGlobal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18"/><path d="M12 3c3.2 3 3.2 15 0 18M12 3c-3.2 3-3.2 15 0 18"/><circle cx="7.4" cy="7.8" r="1" fill="currentColor" stroke="none"/><circle cx="16.2" cy="15.6" r="1.3" fill="currentColor" stroke="none"/><circle cx="8.8" cy="16.8" r=".8" fill="currentColor" stroke="none"/></svg>',
-  nMove:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 3 3 10.2l6.3 2.4"/><path d="M21 3 13.6 20l-2.3-6.6"/><path d="M21 3 9.3 13.6"/></svg>',
-  nHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M12 8v8M8 12h8"/></svg>',
+  /* trailing dot (.ic-trail) shares the SAME translate+rotate keyframe as
+     the plane itself (.ic-plane) — a circle looks identical at any
+     rotation, so reusing one keyframe for both is safe — just started
+     later and faded, so it visibly lags behind like a contrail. */
+  nMove: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
+    '<circle class="ic-trail" cx="12" cy="11" r="1" fill="currentColor" stroke="none"/>' +
+    '<g class="ic-plane"><path d="M21 3 3 10.2l6.3 2.4"/><path d="M21 3 13.6 20l-2.3-6.6"/><path d="M21 3 9.3 13.6"/></g>' +
+    '</svg>',
+  /* the "+" is now 2 separate <line>s (was one combined <path>) so each
+     stroke can be independently drawn via stroke-dasharray/dashoffset —
+     vertical first, then horizontal, like actually drawing a plus sign by
+     hand rather than the old instant pulse. */
+  nHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><line class="ic-plusln" x1="12" y1="8" x2="12" y2="16"/><line class="ic-plusln" x1="8" y1="12" x2="16" y2="12"/></svg>',
   /* 3 small leaves fanned from one base point — a "bundle", not the old
      single big leaf — so they can pop in one-by-one (see .ic-leaf1/2/3
      below). Each leaf's static fan-out rotation lives on the OUTER <g>;
@@ -757,11 +810,12 @@ var NEED_ICON_SVG = {
      animation's `transform` clobbering the SVG attribute `transform` that
      positions the leaf (a CSS transform on an element always wins over
      its own presentation-attribute transform, so a static rotate + an
-     animated scale can never safely share one element). */
+     animated scale can never safely share one element). Scale bumped up
+     (.82->.94, 1->1.15) per feedback — "make the leaves slightly bigger". */
   nQol: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
-    '<g transform="translate(12,19) rotate(-30) scale(.82)"><g class="ic-leaf ic-leaf1"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
-    '<g transform="translate(12,19)"><g class="ic-leaf ic-leaf2"><path d="M0,0 C-3.4,-2.8 -3.4,-7.8 0,-11.2 C3.4,-7.8 3.4,-2.8 0,0 Z"/><path d="M0,-1 L0,-9.7"/></g></g>' +
-    '<g transform="translate(12,19) rotate(30) scale(.82)"><g class="ic-leaf ic-leaf3"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
+    '<g transform="translate(12,19) rotate(-30) scale(.94)"><g class="ic-leaf ic-leaf1"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
+    '<g transform="translate(12,19) scale(1.15)"><g class="ic-leaf ic-leaf2"><path d="M0,0 C-3.4,-2.8 -3.4,-7.8 0,-11.2 C3.4,-7.8 3.4,-2.8 0,0 Z"/><path d="M0,-1 L0,-9.7"/></g></g>' +
+    '<g transform="translate(12,19) rotate(30) scale(.94)"><g class="ic-leaf ic-leaf3"><path d="M0,0 C-3.2,-2.6 -3.2,-7.2 0,-10.4 C3.2,-7.2 3.2,-2.6 0,0 Z"/><path d="M0,-0.9 L0,-9"/></g></g>' +
     '</svg>',
   /* Halo ring (.ic-halo) is a SEPARATE circle behind the shield, pulsing
      outward on a continuous loop — the shield itself keeps its one-shot
