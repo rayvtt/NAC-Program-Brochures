@@ -28,3 +28,8 @@
 ## 2026-07-24 20:23 UTC · in-page editor
 
 - `heroS` VI: “Kinh tế vĩ mô, chính sách, điều kiện, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu nguồn chính thống.” → “Kinh tế vĩ mô, chính sách chương trình, điều kiện hồ sơ, quyền lợi và tổng chi phí — cập nhật liên tục bởi đội ngũ nghiên cứu NAC, đối chiếu…”
+
+## 2026-07-24 20:26 UTC · in-page editor
+
+- `pickNote` VI: “Chạm vào từng thẻ để đổi quốc gia · thêm thẻ thứ 3 để so sánh 3 chương trình cùng lúc — các chương trình còn lại đang được NAC thẩm định lại…” → “∅ (đã xoá)”
+- `secOverview` VI: “Tổng quan vĩ mô” → “Kinh tế vĩ mô”
