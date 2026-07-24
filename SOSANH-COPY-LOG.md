@@ -33,3 +33,7 @@
 
 - `pickNote` VI: “Chạm vào từng thẻ để đổi quốc gia · thêm thẻ thứ 3 để so sánh 3 chương trình cùng lúc — các chương trình còn lại đang được NAC thẩm định lại…” → “∅ (đã xoá)”
 - `secOverview` VI: “Tổng quan vĩ mô” → “Kinh tế vĩ mô”
+
+## 2026-07-24 20:28 UTC · in-page editor
+
+- `secEcon` VI: “Điểm sáng kinh tế” → “Kinh tế mũi nhọn”
