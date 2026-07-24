@@ -221,11 +221,13 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 /* dimension icon — ONE per row (not per country), sitting in the same
    220px label column every other section's rows use (`--gcols`), so every
    row in the page — needs cards included — lines up along the same left
-   edge. A round, floating, shadowed badge with bespoke inline SVG (never
+   edge. No roundel/badge chrome — the bespoke SVG floats bare (never
    emoji — cross-platform rendering is inconsistent, and only real DOM
-   elements can take the per-dimension animation hooks below). */
-.needs-ic{align-self:center;justify-self:center;width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--border);box-shadow:0 4px 13px rgba(24,0,173,.18);display:flex;align-items:center;justify-content:center;color:var(--blue)}
-.needs-ic svg{width:25px;height:25px;display:block;overflow:visible}
+   elements can take the per-dimension animation hooks below), just a soft
+   drop-shadow for a touch of depth. The container stays a fixed 46px box
+   purely for grid centering; it isn't drawn. */
+.needs-ic{align-self:center;justify-self:center;width:46px;height:46px;display:flex;align-items:center;justify-content:center;color:var(--blue)}
+.needs-ic svg{width:36px;height:36px;display:block;overflow:visible;filter:drop-shadow(0 3px 6px rgba(24,0,173,.28))}
 
 /* Card + icon entrance, both gated behind `.sec.open` so nothing fires
    until §02 is actually expanded, staggered dimension-by-dimension via the
@@ -233,11 +235,11 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
    Education's row pops in, then 110ms later Globalization's, and so on. */
 @keyframes ncPop{0%{opacity:0;transform:scale(.72) translateY(12px)}55%{opacity:1;transform:scale(1.04) translateY(-2px)}100%{opacity:1;transform:scale(1) translateY(0)}}
 .sec.open .needs-row .nc{animation:ncPop .5s cubic-bezier(.25,.9,.35,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
-@keyframes icBadgeIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.1)}100%{transform:scale(1)}}
-.sec.open .needs-ic{animation:icBadgeIn .4s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
+@keyframes icPopIn{0%{opacity:0;transform:scale(.5)}60%{opacity:1;transform:scale(1.1)}100%{transform:scale(1)}}
+.sec.open .needs-ic{animation:icPopIn .4s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
 
 /* Each dimension's signature move, played by the icon's own <svg> (the
-   badge itself just pops in above) — globe/leaf/heart loop for as long as
+   icon itself just pops in above) — globe/leaf/heart loop for as long as
    the section stays open; the rest are one-shot and hold their end state. */
 @keyframes icGlobeSpin{to{transform:rotate(360deg)}}
 .sec.open .ic-nGlobal svg{animation:icGlobeSpin 6s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}

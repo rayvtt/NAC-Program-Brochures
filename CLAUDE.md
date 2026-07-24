@@ -476,13 +476,19 @@ Notion DB, its own payload shape, and its own sync tooling:
   animation hooks below. **One shared icon per ROW, not one per country
   card** (a per-card icon read as three duplicate spinners side by side when
   comparing 3 countries — confusing, and not what "make the icon pop out"
-  meant). The icon (`.needs-ic`, a 46px round badge, bigger than the old
-  per-card `.nc-ic`) sits as the row's first grid child, landing in the same
-  220px label column every other section's rows use — so all 8 icons line up
-  in one clean vertical column on the far left, flush with the rest of the
-  page's left-label edge (this is what fixed the "icons should sit on this
-  vertical line" screenshot feedback — annotated with hand-drawn marks in one
-  column, one per row). Every dimension has a signature animation, all gated
+  meant). The icon (`.needs-ic`) sits as the row's first grid child, landing
+  in the same 220px label column every other section's rows use — so all 8
+  icons line up in one clean vertical column on the far left, flush with the
+  rest of the page's left-label edge (this is what fixed the "icons should
+  sit on this vertical line" screenshot feedback — annotated with hand-drawn
+  marks in one column, one per row). **No roundel** — an earlier pass wrapped
+  each icon in a 46px white circle badge (border + box-shadow), but per
+  direct feedback ("switch up the icon too, i dont think it needs the
+  roundel") that chrome was dropped: `.needs-ic` is now just a 46px
+  flex-centering box (invisible — no background/border/border-radius), and
+  the bespoke SVG itself was bumped 25px → 36px with a `filter:drop-shadow(...)`
+  for depth instead of a `box-shadow` on a container that no longer has a
+  fill to shadow. Every dimension has a signature animation, all gated
   behind `.sec.open .ic-<key> svg` so they only fire once §02 is actually
   expanded, staggered row-by-row via the `--i` custom property set on each
   `.needs-row` (dimension N+1 starts 110ms after dimension N — "one after
