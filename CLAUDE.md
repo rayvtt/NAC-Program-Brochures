@@ -719,6 +719,42 @@ Notion DB, its own payload shape, and its own sync tooling:
     decoupled through the redesign.
   - `.ic-cross` added to the general reduced-motion override alongside
     `.ic-shield`/`.ic-plane`/`.ic-plusln` (falls back to static-and-visible).
+- **Reveal trigger moved to per-icon scroll-into-view (2026-07-24)** — the
+  single most important change to how these read. The signature reveals were
+  gated on `.sec.open`, so they fired the instant the section expanded. If
+  the user opened §02 via **Mở tất cả** (expand-all) while it was still below
+  the fold — or scrolled down to a §02 that was already open — the one-shot
+  reveal had already played off-screen and they saw only the static
+  end-state ("the plus is not appearing", "bars lost their 1-by-1", "tax
+  lines not running"). Fix: an IntersectionObserver in `observeAll()` now
+  observes every `.needs-ic` and adds a `.seen` class when that icon
+  actually enters the viewport; the reveal rules gate on `.<ic-key>.seen`
+  (e.g. `.ic-nDiv.seen svg rect`), NOT `.sec.open`. Each icon is hidden
+  (`opacity:0` / dashoffset base) until its own `.seen`, so every reveal is
+  reliably SEEN the moment it scrolls into view — bars grow 1-by-1, leaves
+  bloom 1-by-1, "+" draws, receipt lines print, plane flies. The per-row
+  `--i` stagger was dropped from the reveals (each icon now self-triggers on
+  its own scroll position; only the *within-icon* stagger remains). Section
+  collapsed = icon clipped by `.sec-body{max-height:0;overflow:hidden}` = zero
+  intersection area = never `.seen`, so nothing fires prematurely (verified:
+  0 seen while collapsed / expand-all-at-top; all 8 seen after scrolling
+  through). Reduced-motion + no-IntersectionObserver branches add `.seen` to
+  every `.needs-ic` up front so the icons show static-and-visible.
+- **Plane redesign — no spin (2026-07-24)** — per "the plane doesn't need to
+  spin; it just goes from bottom left to top right with a dotted draw", the
+  `icPlaneSwirl` loop-the-loop (and the single `.ic-trail` dot) were removed.
+  The plane (`.ic-plane`) now translates ONCE along the diagonal from
+  bottom-left up to its natural top-right resting spot with **no rotation**
+  (`icPlaneFly`), and holds. Behind it, five `.ic-tdot1..5` circles laid
+  along the same diagonal fade in one after another (`icDotIn`, staggered
+  .35s→1.35s) so the dotted trail "draws" itself bottom-to-top as the plane
+  ascends over it. Both hold their end state; replays when the icon
+  re-enters view. `.ic-tdot` joins the reduced-motion static-visible list
+  (was `.ic-trail`); `.ic-halo` is still the only member hidden outright.
+- **Leaves enlarged again (2026-07-24)** — per "the leaves still look small",
+  the `nQol` fan-out scales were bumped .94→1.2 (side) and 1.15→1.5 (centre)
+  and the base moved to `translate(12,20)` so the taller centre leaf has room
+  in the viewBox. Reads as a clear 3-leaf bundle now, not a sliver.
 - **§02 winner highlight** (`needsSec()`): the highest `⑩` rating in each
   dimension row gets a green `.nc-r.win` badge with a small bouncing up-arrow
   (`WIN_ARROW_SVG`, continuous `winArrowUp` animation, same `--i` stagger
