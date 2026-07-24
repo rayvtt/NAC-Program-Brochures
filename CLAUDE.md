@@ -644,50 +644,77 @@ Notion DB, its own payload shape, and its own sync tooling:
     above: `.ic-plane`/`.ic-plusln` fall back to static-and-visible (a
     plane at rest, a fully-drawn "+"); `.ic-spark`/`.ic-trail` hide outright
     like `.ic-halo` (their entire purpose is motion that isn't there).
-- **Every icon animation loops endlessly** (direct feedback — "all
-  animations should be in endless loop", plus "diversification icon is
-  not animating"). The root problem behind both: a one-shot animation
-  fires the instant `.sec.open` is added, regardless of whether the
-  section is even in the viewport yet — scroll down a moment later and a
-  one-shot has *already finished*, which is indistinguishable from "no
-  animation at all". Every icon that was still one-shot (cap toss,
-  firework, plane swirl, plus-draw, shield settle, receipt drop-in) got
-  rescaled onto a longer cycle with its original motion compressed into
-  the first slice, a hold, then a fade/reset back to the start — same
-  shape, now repeating. `animation-iteration-count: infinite` is verified
-  computed on all 13 animated elements across the 8 icons.
-  - **Diversification (`nDiv`) redesigned**: "the bar should 1x1 appear
-    left to right" — reverted from "grow in place" back to true
-    scaleY(0)→1 appearance (kept the glow-flash from the elevation round),
-    now per-bar keyframes (`icBar1/2/3`, not a shared keyframe + nth-child
-    delay, since each bar needs its own "stay hidden until my turn" window
-    baked in) on a 2.4s cycle: bar 1 pops in with a flash, then bar 2, then
-    bar 3, all three hold together, then shrink back to nothing together
-    and the sequence replays. Verified via a 9-frame time-lapse: frame 2
-    shows only bar 1, frame 4 catches bar 3 mid-flash (brightest frame),
-    frames 5-7 show all three solid and holding, frames 8-9 show them
-    shrunk back down near the loop point.
-  - **Shield/halo decoupling required an SVG restructure**: looping the
-    shield's fade-out (`icSettle` now includes an 88%-100% opacity-0
-    reset) directly on `.ic-nSafe svg` would have blanked the halo too —
-    CSS opacity on a parent composites into every descendant's render, and
-    the halo is a child of that same `<svg>`. Fix: the shield's paths
-    moved into their own `<g class="ic-shield">` sibling to the halo
-    `<circle>`, and the loop now targets `.ic-shield` specifically. Verified
-    by independently scrubbing both animations' `Animation.currentTime` to
-    chosen points on each one's OWN timeline (not relying on real-time
-    progression, which barely advances during a synchronous scrub loop) —
-    shield scrubbed to its hidden window reads `opacity:0` while the halo,
-    scrubbed to its own visible window at the same instant, reads a
-    genuine nonzero opacity — confirms the two are fully independent.
-  - **Receipt shell now loops on the SAME 3.2s cycle as its own text
-    lines** (`icDrop`, was a one-shot entrance): drops in, holds, lifts
-    away right as the lines finish clearing, then drops back in fresh as
-    the next cycle's lines start reprinting — the whole receipt resets as
-    one cohesive unit instead of the shell staying put forever while only
-    the lines cycled.
-  - `.ic-shield` added to the general reduced-motion override (falls back
-    to static-and-visible, same treatment as `.ic-plane`/`.ic-plusln`).
+- **Every icon keeps a small element animating forever, but the icon
+  itself never disappears** (this went through two rounds). Round one, per
+  "all animations should be in endless loop / diversification icon is not
+  animating": a one-shot fires the instant `.sec.open` is added regardless
+  of viewport visibility, so scrolling to §02 even a moment later shows an
+  already-finished, static icon — indistinguishable from "not animating".
+  The first fix made every remaining one-shot (cap toss, firework, plane
+  swirl, plus-draw, shield settle, bar grow, receipt drop-in/lines) loop
+  by fading/shrinking away and reappearing. Round two, per direct
+  follow-up — **"icons doesn't have to disappear and reappear - it'll stay
+  as is - just element of the icon will be animated on a loop to make it
+  less distracting"** — walked that back: the fade/shrink-away cycles were
+  themselves too noisy across 8 rows. The pattern that actually ships:
+  - **One-shot reveal, permanent hold**: each icon's core shape (cap,
+    plane silhouette, leaves, shield, bars, receipt shell + lines, cross)
+    plays its entrance ONCE and then simply stays — `both` fill-mode,
+    finite duration, no `infinite`. Verified via an in-browser
+    `requestAnimationFrame` sampling loop (immune to Node round-trip
+    overhead) that waits until every icon's reveal must be finished
+    (3.2s), then samples opacity/scaleY/stroke-dashoffset for a further
+    4.2s: every core-shape metric came back pinned exactly at its "fully
+    revealed" value (opacity/scaleY `min===max===1`, dashoffset
+    `min===max===0`) — zero variance, i.e. genuinely never dips again.
+  - **A second, independent, continuous animation supplies the ongoing
+    motion** — two comma-separated animations on the same element/rule
+    (e.g. `animation: icBarGrow .5s ease-out both, icBarGlow 2.2s
+    ease-in-out infinite;` with matching comma-separated delays), the
+    infinite one delayed to start right as the one-shot finishes. Per
+    icon: bars (`nDiv`) get a gentle brightness `drop-shadow` breathe per
+    bar; tax lines (`nTax`) get the same glow breathe; leaves (`nQol`) get
+    a gentle rotate sway (like a breeze), each leaf a slightly different
+    duration (2.4-2.8s) so they drift out of phase rather than swaying in
+    robotic unison; the healthcare cross (`nHealth`) gets a heartbeat-like
+    scale pulse on a `<g class="ic-cross">` wrapper around both `<line>`s
+    (thematically apt, and cleanly separable from the lines' own
+    dash-draw); the shield (`nSafe`) needs no new detail at all — the
+    halo ring next to it was ALREADY an independent continuous pulse that
+    never touched the shield's visibility, so simply reverting the shield
+    to a one-shot settle (no more disappearing) was the entire fix.
+    Verified the "still alive" half with the same rAF technique: bar glow,
+    tax glow, leaf sway, cross pulse, and halo scale all showed a real
+    min≠max range over the sampling window (confirmed animating), while
+    plane X-position showed the full -8px→9px travel range (still
+    continuously flying, see below) — so every icon has *something*
+    genuinely moving at all times, just never the icon's own presence.
+  - **Mobility (`nMove`) is the one icon whose "small element" IS the
+    whole shape** — a plane's entire concept is motion, so unlike a
+    static cap or shield, making it "stay as is" would defeat the icon.
+    Redesigned as a continuous there-and-back flight that's never
+    invisible: flies right with the loop-the-loop swirl (rotate genuinely
+    sweeps 0°→360°), holds, banks around with a further 180° turn — continuing
+    the SAME rotation direction (360°→540°→720°, not reversing — 720deg is
+    visually identical to 0deg since rotation is periodic mod 360°, so the
+    loop wraps with zero jump) — and glides back left to repeat. `.ic-trail`
+    shares the exact same transform keyframe (a circle looks identical at
+    any rotation) with a plain static `opacity:.4` instead of an animated
+    one, since nothing in the keyframe touches opacity anymore.
+  - **Shield/halo decoupling required an SVG restructure** (kept from
+    round one, still required): the shield's paths live in their own
+    `<g class="ic-shield">` sibling to the halo `<circle>`, not directly
+    animated on the shared `<svg>` — otherwise the shield's own opacity
+    animation would composite into the halo's rendering too (CSS opacity
+    on a parent affects every descendant), interrupting the halo's
+    independent pulse. Verified by independently scrubbing both
+    animations' `Animation.currentTime` to chosen points on each one's own
+    timeline: shield at its (now one-shot, held) end state reads
+    `opacity:1` while the halo, scrubbed through its own cycle at the same
+    instant, still shows its full pulse range — confirms the two stayed
+    decoupled through the redesign.
+  - `.ic-cross` added to the general reduced-motion override alongside
+    `.ic-shield`/`.ic-plane`/`.ic-plusln` (falls back to static-and-visible).
 - **§02 winner highlight** (`needsSec()`): the highest `⑩` rating in each
   dimension row gets a green `.nc-r.win` badge with a small bouncing up-arrow
   (`WIN_ARROW_SVG`, continuous `winArrowUp` animation, same `--i` stagger
@@ -724,6 +751,26 @@ Notion DB, its own payload shape, and its own sync tooling:
   and drops combining marks by charcode range 768-879 — not a `\u`-escaped
   regex, since this file must stay at zero literal backslashes) so e.g.
   `Türkiye` slugifies to `turkiye`, not a broken `t-rkiye`.
+  **It's a one-pager — the exported copy blocks swapping to a different
+  country** ("the export should only show the countries selected — block
+  option to select/change for other countries — it's a one-pager"). A
+  `<style>` block appended to the clone's `<head>` (not a clone-time
+  attribute on the trigger elements) sets `#duelBar,#miniSwap{pointer-
+  events:none!important}` and force-hides `#sheet,#sheetBg,.duel-note`.
+  The `<style>`-block approach is required, not a stylistic choice:
+  `#miniSwap` is torn down and rebuilt fresh by every `render()` call (its
+  markup is generated inline as part of `Q('#miniIn').innerHTML = ...`),
+  so any clone-time style/attribute on that specific element instance
+  would vanish the instant `boot()` re-renders on load — a `<style>`
+  block's selectors re-match whatever's actually in the DOM at any given
+  moment, so the lock survives regardless of how many times `render()`
+  recreates it. `#sheet`/`#sheetBg` are force-hidden as a structural
+  backstop even though their trigger is already inert. Verified with a
+  REAL mouse click (`page.mouse.click()` at the element's actual
+  coordinates, not a synthetic `.click()` — a real click correctly
+  respects `pointer-events:none` and passes through to whatever's
+  underneath) on `#slot1` in a freshly-opened exported file: the sheet's
+  `className` and computed `display` were both unchanged afterward.
 - **Gate seal is the real NAC mark, not text** (`.gate-logo`, the same
   `OTG-Passport-Icons-1.png` used in the page header) — replaced the old
   `N·A·C` text. Spins continuously **counter-clockwise** (`rotate(-360deg)`,

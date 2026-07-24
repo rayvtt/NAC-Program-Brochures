@@ -254,54 +254,52 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 @keyframes icGlobeSpin{to{transform:rotate(360deg)}}
 .sec.open .ic-nGlobal svg{animation:icGlobeSpin 6s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
-/* plane flies left to right with one full loop-the-loop ("1 swirl") along
-   the way — translate carries it left->right, rotate passes through a
-   full 360° during the loop segment so the spin genuinely reads as a
-   swirl, not just a wobble — then fades out at the right edge, teleports
-   back to the left WHILE invisible (both the 0% and the 62%-100% hold sit
-   at opacity 0, so the reposition never happens on-screen), and flies
-   again: an endless repeating flight, not a one-shot that already fired
-   before you scrolled to it. .ic-trail is a SEPARATE keyframe — same
-   transform shape, lower opacity peak (.4 not 1) — because a shared
-   keyframe would force the trail to the plane's own opacity at every
-   frame, killing the "faded, lagging dot" look. */
+/* plane never disappears — it stays on screen the whole time and just
+   keeps flying: right with one loop-the-loop swirl (rotate genuinely
+   sweeps a full 360°, not a wobble), a brief hold, then banks around
+   (another 180°, continuing the SAME rotation direction rather than
+   reversing — 360deg to 720deg is a further smooth turn, not a snap) and
+   glides back left to repeat. Ending at rotate(720deg) — visually
+   identical to 0deg, since rotation is periodic mod 360 — means the loop
+   wraps with zero jump. .ic-trail reuses this exact keyframe (a circle
+   looks the same at any rotation) with a plain static opacity instead of
+   animated — nothing here ever touches opacity, so the trail's dimness
+   holds constant throughout while it lags 100ms behind the plane. */
 @keyframes icPlaneSwirl{
-  0%{opacity:0;transform:translate(-8px,2px) rotate(0deg)}
-  6%{opacity:1;transform:translate(-8px,2px) rotate(0deg)}
-  20%{transform:translate(-3px,-3px) rotate(-10deg)}
-  30%{transform:translate(1px,-7px) rotate(90deg)}
-  39%{transform:translate(4px,-9px) rotate(180deg)}
-  47%{transform:translate(3px,-6px) rotate(270deg)}
-  55%{transform:translate(2px,-3px) rotate(360deg)}
-  65%{opacity:1;transform:translate(9px,-4px) rotate(360deg)}
-  72%,100%{opacity:0;transform:translate(9px,-4px) rotate(360deg)}
+  0%{transform:translate(-8px,2px) rotate(0deg)}
+  9%{transform:translate(-3px,-3px) rotate(-10deg)}
+  14%{transform:translate(1px,-7px) rotate(90deg)}
+  18%{transform:translate(4px,-9px) rotate(180deg)}
+  22%{transform:translate(3px,-6px) rotate(270deg)}
+  26%{transform:translate(2px,-3px) rotate(360deg)}
+  30%,45%{transform:translate(9px,-4px) rotate(360deg)}
+  60%{transform:translate(2px,-6px) rotate(540deg)}
+  75%,100%{transform:translate(-8px,2px) rotate(720deg)}
 }
-@keyframes icTrailSwirl{
-  0%{opacity:0;transform:translate(-8px,2px) rotate(0deg)}
-  6%{opacity:.4;transform:translate(-8px,2px) rotate(0deg)}
-  20%{transform:translate(-3px,-3px) rotate(-10deg)}
-  30%{transform:translate(1px,-7px) rotate(90deg)}
-  39%{transform:translate(4px,-9px) rotate(180deg)}
-  47%{transform:translate(3px,-6px) rotate(270deg)}
-  55%{transform:translate(2px,-3px) rotate(360deg)}
-  65%{opacity:.4;transform:translate(9px,-4px) rotate(360deg)}
-  72%,100%{opacity:0;transform:translate(9px,-4px) rotate(360deg)}
-}
-.sec.open .ic-nMove .ic-plane{animation:icPlaneSwirl 2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-nMove .ic-trail{animation:icTrailSwirl 2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 80ms)}
+.sec.open .ic-nMove .ic-plane{animation:icPlaneSwirl 3.2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-nMove .ic-trail{opacity:.4;animation:icPlaneSwirl 3.2s cubic-bezier(.4,0,.2,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 100ms)}
 
 /* 3-leaf bundle: each leaf pops in (scale+fade) in turn, the whole trio
    holds together for a beat, then all three fade out and the bundle
    re-grows from nothing — "appear one by one", on an endless loop. All
    three share one 3s cycle so their appear/hold/fade phases stay locked
    together; only the START of each leaf's pop-in is offset. */
-@keyframes icLeaf1{0%{opacity:0;transform:scale(.3)}10%{opacity:1;transform:scale(1.15)}16%{transform:scale(1)}75%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(.5)}}
-@keyframes icLeaf2{0%,12%{opacity:0;transform:scale(.3)}22%{opacity:1;transform:scale(1.15)}28%{transform:scale(1)}75%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(.5)}}
-@keyframes icLeaf3{0%,24%{opacity:0;transform:scale(.3)}34%{opacity:1;transform:scale(1.15)}40%{transform:scale(1)}75%{opacity:1;transform:scale(1)}88%,100%{opacity:0;transform:scale(.5)}}
+/* leaves bloom in once, one after another, and then STAY — the bundle
+   doesn't fade away and regrow. Each leaf's own bloom is a one-shot
+   (`icLeafBloom`); once it's done, a second, independent, continuous
+   animation (`icLeafSway`, a gentle rotate — like a light breeze) takes
+   over, so there's always some small motion without the leaf ever
+   disappearing. Two comma-separated animations on one element, so the
+   bloom finishes and holds (its own `both` fill-mode) while the sway
+   keeps going forever underneath. Durations vary slightly per leaf
+   (2.6s/2.8s/2.4s) so the three sway slightly out of phase, not in
+   robotic unison. */
+@keyframes icLeafBloom{0%{opacity:0;transform:scale(.3) rotate(0deg)}70%{opacity:1;transform:scale(1.15) rotate(0deg)}100%{opacity:1;transform:scale(1) rotate(0deg)}}
+@keyframes icLeafSway{0%,100%{transform:scale(1) rotate(0deg)}50%{transform:scale(1) rotate(7deg)}}
 .sec.open .ic-leaf{transform-box:fill-box;transform-origin:bottom center;opacity:0}
-.sec.open .ic-leaf1{animation:icLeaf1 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-leaf2{animation:icLeaf2 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-leaf3{animation:icLeaf3 3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-leaf1{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.6s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms), calc(var(--i,0) * 110ms + 500ms)}
+.sec.open .ic-leaf2{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.8s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 150ms), calc(var(--i,0) * 110ms + 650ms)}
+.sec.open .ic-leaf3{animation:icLeafBloom .5s cubic-bezier(.3,.7,.3,1.3) both, icLeafSway 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 300ms), calc(var(--i,0) * 110ms + 800ms)}
 
 /* toss + firework now both loop on a shared 2.4s cycle instead of firing
    once — a one-shot fires the instant the row opens, so if you scroll to
@@ -314,23 +312,28 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 @keyframes icSpark{0%,15%{transform:translateY(0) scale(.5);opacity:1}32%{opacity:.75}40%,100%{transform:translateY(-7px) scale(.2);opacity:0}}
 .sec.open .ic-spark{stroke:var(--orange);stroke-width:1.3;animation:icSpark 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
 
-/* the "+" draws itself in stroke by stroke — vertical first, then
-   horizontal, like actually drawing a plus sign — holds complete, clears,
-   and redraws: an endless loop instead of a one-shot (same reasoning as
-   the toss/spark above — a one-shot may already be finished by the time
-   anyone scrolls to it). Same technique as the tax receipt's lines. */
-@keyframes icPlusV{0%{stroke-dashoffset:8}22%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:8}}
-@keyframes icPlusH{0%,28%{stroke-dashoffset:8}48%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:8}}
+/* the "+" draws itself in stroke by stroke ONCE — vertical first, then
+   horizontal, like actually drawing a plus sign — and then STAYS drawn:
+   it doesn't erase and redraw. Once both strokes finish, a separate,
+   independent, continuous animation (`icCrossPulse`, a gentle heartbeat
+   scale-breathe on the .ic-cross group both lines live in) takes over —
+   fitting for a healthcare icon, and "an element animated on a loop"
+   without the cross itself ever disappearing. */
+@keyframes icPlusV{to{stroke-dashoffset:0}}
+@keyframes icPlusH{to{stroke-dashoffset:0}}
+@keyframes icCrossPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.12)}}
 .sec.open .ic-plusln{stroke-dasharray:8}
-.sec.open .ic-plusln:nth-of-type(1){animation:icPlusV 3s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-plusln:nth-of-type(2){animation:icPlusH 3s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+.sec.open .ic-plusln:nth-of-type(1){animation:icPlusV .7s ease-in-out both;animation-delay:calc(var(--i,0) * 110ms + 150ms)}
+.sec.open .ic-plusln:nth-of-type(2){animation:icPlusH .7s ease-in-out both;animation-delay:calc(var(--i,0) * 110ms + 850ms)}
+.sec.open .ic-cross{transform-box:fill-box;transform-origin:center;animation:icCrossPulse 1.6s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 1550ms)}
 
-/* settle in, hold, fade out, settle in again — an endless loop instead of
-   a one-shot. Targets .ic-shield (not the whole svg) so its fade-to-0
-   never blanks the independently-looping halo underneath (see the SVG
-   comment above). */
-@keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}13%{transform:scale(1.14) rotate(4deg);opacity:1}21%,75%{transform:scale(1) rotate(0);opacity:1}88%,100%{transform:scale(1) rotate(0);opacity:0}}
-.sec.open .ic-nSafe .ic-shield{animation:icSettle 2.6s cubic-bezier(.3,.7,.3,1.3) infinite;animation-delay:calc(var(--i,0) * 110ms)}
+/* shield settles in ONCE and stays — it doesn't fade away and re-settle.
+   The halo below is the icon's "continuously looping element"; the
+   shield itself never needs to disappear for the icon to keep animating.
+   Targets .ic-shield (not the whole svg) so it stays independent of the
+   halo living in the same <svg> (see the SVG comment above). */
+@keyframes icSettle{0%{transform:scale(.4) rotate(-16deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+.sec.open .ic-nSafe .ic-shield{animation:icSettle .55s cubic-bezier(.3,.7,.3,1.3) both;animation-delay:calc(var(--i,0) * 110ms)}
 /* halo — a protective ring that pops outward from the shield and fades,
    on a continuous loop (independent of the shield's own loop above:
    different element, no conflict). */
@@ -338,41 +341,40 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 .sec.open .ic-halo{transform-box:fill-box;transform-origin:center;opacity:0;animation:icHaloPop 1.8s cubic-bezier(.2,.6,.35,1) infinite;animation-delay:calc(var(--i,0) * 110ms + 200ms)}
 
 /* bars APPEAR one by one, left to right (grow from nothing + a bright
-   glow flash as each lands), hold together, then all three shrink back
-   to nothing and the sequence replays — endless loop instead of a
-   one-shot. A one-shot fires the instant the row opens regardless of
-   whether anyone's looking yet, so scrolling down after it already fired
-   just shows static bars sitting there — indistinguishable from "not
-   animating". Per-bar keyframes (not shared + nth-child delay) because
-   each bar needs its own "hidden until my turn" window baked in. */
-@keyframes icBar1{0%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}18%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}24%,70%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}83%,100%{opacity:.15;transform:scaleY(0)}}
-@keyframes icBar2{0%,8%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}26%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}32%,70%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}83%,100%{opacity:.15;transform:scaleY(0)}}
-@keyframes icBar3{0%,16%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}34%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}40%,70%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}83%,100%{opacity:.15;transform:scaleY(0)}}
-.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom}
-.sec.open .ic-nDiv svg rect:nth-child(1){animation:icBar1 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-nDiv svg rect:nth-child(2){animation:icBar2 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-nDiv svg rect:nth-child(3){animation:icBar3 2.4s ease-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
+   glow flash as each lands), then STAY — they don't shrink back down and
+   regrow. Once a bar has finished growing, a second, independent,
+   continuous animation (`icBarGlow`) takes over on that same bar: a
+   gentle brightness breathe, so there's always some small motion without
+   the chart ever losing its bars. Two comma-separated animations per
+   rect — the one-shot grow (own `both` fill-mode holds its end state)
+   plus the infinite glow starting right as the grow finishes. */
+@keyframes icBarGrow{0%{opacity:.15;transform:scaleY(0);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}70%{opacity:1;transform:scaleY(1.12);filter:drop-shadow(0 0 5px rgba(24,0,173,.9))}100%{opacity:1;transform:scaleY(1);filter:drop-shadow(0 0 0 rgba(24,0,173,0))}}
+@keyframes icBarGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(24,0,173,0))}50%{filter:drop-shadow(0 0 4px rgba(24,0,173,.55))}}
+.sec.open .ic-nDiv svg rect{transform-box:fill-box;transform-origin:bottom;opacity:.15}
+.sec.open .ic-nDiv svg rect:nth-child(1){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms), calc(var(--i,0) * 110ms + 500ms)}
+.sec.open .ic-nDiv svg rect:nth-child(2){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 150ms), calc(var(--i,0) * 110ms + 650ms)}
+.sec.open .ic-nDiv svg rect:nth-child(3){animation:icBarGrow .5s ease-out both, icBarGlow 2.2s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 300ms), calc(var(--i,0) * 110ms + 800ms)}
 
-/* the receipt shell now drops in, holds, lifts away, and drops in again —
-   on the SAME 3.2s cycle as its own text lines below, so the whole
-   receipt (shell + lines) resets together: shell lifts away right as the
-   lines finish clearing (88%-100%), then drops back in fresh as the next
-   cycle's lines start reprinting from blank. */
-@keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}22%{transform:translateY(2px) rotate(3deg);opacity:1}31%,86%{transform:translateY(0) rotate(0);opacity:1}97%,100%{transform:translateY(-4px) rotate(-3deg);opacity:0}}
-.sec.open .ic-nTax svg{animation:icDrop 3.2s cubic-bezier(.3,.6,.3,1.2) infinite;animation-delay:calc(var(--i,0) * 110ms)}
+/* the receipt shell drops in ONCE and stays — it doesn't lift away and
+   drop in again. */
+@keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}70%{transform:translateY(2px) rotate(3deg);opacity:1}100%{transform:translateY(0) rotate(0);opacity:1}}
+.sec.open .ic-nTax svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:calc(var(--i,0) * 110ms)}
 /* Receipt text lines "print" themselves left-to-right, one line after
-   another, then the whole trio clears and reprints — an endless loop.
-   Each <line>'s dasharray equals its own length (6, 6, 3) so dashoffset
-   can travel that exact distance from hidden to fully-drawn; because
-   dashoffset counts down FROM the line's start point (x1,y1), the reveal
-   direction is left→right for all three. One shared 3.2s cycle keeps the
-   three lines' draw/hold/clear phases in lockstep. */
-@keyframes icTaxL1{0%{stroke-dashoffset:6}10%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:6}}
-@keyframes icTaxL2{0%,12%{stroke-dashoffset:6}22%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:6}}
-@keyframes icTaxL3{0%,24%{stroke-dashoffset:3}34%,78%{stroke-dashoffset:0}88%,100%{stroke-dashoffset:3}}
-.sec.open .ic-taxln:nth-of-type(1){stroke-dasharray:6;animation:icTaxL1 3.2s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-taxln:nth-of-type(2){stroke-dasharray:6;animation:icTaxL2 3.2s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
-.sec.open .ic-taxln:nth-of-type(3){stroke-dasharray:3;animation:icTaxL3 3.2s linear infinite;animation-delay:calc(var(--i,0) * 110ms)}
+   another — a real dash-draw, not a fade — and then STAY printed; they
+   don't clear and reprint. Each <line>'s dasharray equals its own length
+   (6, 6, 3) so dashoffset can travel that exact distance from hidden to
+   fully-drawn; dashoffset counts down FROM the line's start point
+   (x1,y1), so the reveal direction is left→right for all three. Once a
+   line finishes drawing, a second, independent, continuous animation
+   (`icTaxGlow`) takes over — a gentle brightness breathe — so the
+   receipt keeps a small bit of life without ever going blank again. */
+@keyframes icTaxL1{to{stroke-dashoffset:0}}
+@keyframes icTaxL2{to{stroke-dashoffset:0}}
+@keyframes icTaxL3{to{stroke-dashoffset:0}}
+@keyframes icTaxGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(24,0,173,0))}50%{filter:drop-shadow(0 0 3px rgba(24,0,173,.5))}}
+.sec.open .ic-taxln:nth-of-type(1){stroke-dasharray:6;animation:icTaxL1 .5s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 150ms), calc(var(--i,0) * 110ms + 650ms)}
+.sec.open .ic-taxln:nth-of-type(2){stroke-dasharray:6;animation:icTaxL2 .5s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 650ms), calc(var(--i,0) * 110ms + 1150ms)}
+.sec.open .ic-taxln:nth-of-type(3){stroke-dasharray:3;animation:icTaxL3 .5s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms + 1150ms), calc(var(--i,0) * 110ms + 1650ms)}
 
 @keyframes winArrowUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 .sec.open .nc-r.win svg{animation:winArrowUp 1.3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
@@ -445,7 +447,7 @@ footer{border-top:1px solid var(--border);background:#fff}
      a plain `.needs-ic svg` selector (1 class + type) on specificity alone;
      without !important the media query loses despite coming later in the
      stylesheet, and the "spin/grow/bounce" animations still fire. */
-  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-plusln,.ic-shield,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
+  .needs-row .nc,.needs-ic,.needs-ic svg,.needs-ic svg rect,.ic-leaf,.ic-taxln,.ic-plane,.ic-plusln,.ic-shield,.ic-cross,.nc-r.win svg{animation:none!important;opacity:1!important;transform:none!important;stroke-dashoffset:0!important}
   /* the halo/spark/trail's entire purpose IS the motion — a frozen ring,
      a frozen burst, or a frozen trailing dot is clutter, not information,
      so these hide outright instead of defaulting to the opacity:1
@@ -840,8 +842,12 @@ var NEED_ICON_SVG = {
   /* the "+" is now 2 separate <line>s (was one combined <path>) so each
      stroke can be independently drawn via stroke-dasharray/dashoffset —
      vertical first, then horizontal, like actually drawing a plus sign by
-     hand rather than the old instant pulse. */
-  nHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><line class="ic-plusln" x1="12" y1="8" x2="12" y2="16"/><line class="ic-plusln" x1="8" y1="12" x2="16" y2="12"/></svg>',
+     hand rather than the old instant pulse. Both lines sit inside their
+     own <g class="ic-cross"> so the post-draw continuous pulse (a gentle
+     heartbeat-like scale breathe) can animate the WHOLE cross as one
+     unit without disturbing the rect, and without needing a transform on
+     the individual <line>s that would fight their own dash-draw. */
+  nHealth: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><g class="ic-cross"><line class="ic-plusln" x1="12" y1="8" x2="12" y2="16"/><line class="ic-plusln" x1="8" y1="12" x2="16" y2="12"/></g></svg>',
   /* 3 small leaves fanned from one base point — a "bundle", not the old
      single big leaf — so they can pop in one-by-one (see .ic-leaf1/2/3
      below). Each leaf's static fan-out rotation lives on the OUTER <g>;
@@ -1513,6 +1519,21 @@ function exportReport(){
      clean, tool-free report visually. */
   var tools = clone.querySelector('.main-tools');
   if(tools){ tools.style.display = 'none'; }
+  /* It's a one-pager: block the option to swap to a different country.
+     A plain CSS override (not removing the trigger elements) because
+     #miniSwap is torn down and rebuilt fresh on every render() call — a
+     clone-time style/attribute on that specific element would vanish the
+     instant boot() re-renders. A <style> block's selectors re-match
+     whatever's in the DOM at any given moment, so this holds regardless
+     of how many times render() recreates #miniSwap. #sheet/#sheetBg are
+     force-hidden outright as a backstop — even if openSheet() were ever
+     called some other way, the picker itself structurally cannot appear.
+     .duel-note ("tap each card to swap country") is hidden too — leaving
+     it visible would instruct the reader to do something that no longer
+     does anything. */
+  var lockStyle = document.createElement('style');
+  lockStyle.textContent = '#duelBar,#miniSwap{pointer-events:none!important;cursor:default!important}#sheet,#sheetBg,.duel-note{display:none!important}';
+  clone.querySelector('head').appendChild(lockStyle);
   /* The exported file carries the SAME live script, and that script
      re-runs boot() -> render() the moment it's opened — which rebuilds
      #cmp from DB_STATIC from scratch, wiping the .open classes set above,
