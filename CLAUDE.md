@@ -591,6 +591,43 @@ Notion DB, its own payload shape, and its own sync tooling:
   pattern (§01/§10 gold `.win-dot`) but reimplemented locally in `needsSec()`
   since it operates on `cs[i][d.rt]` per dimension rather than a single row
   value — no highlight at all when every selected country ties (`allSame`).
+- **Export report** (`#exportBtn`, next to `#secToggleAll` in a shared
+  `.main-tools` row): saves the current 2/3-country comparison as its own
+  standalone `.html` file — Ray downloads it and sends it straight to a
+  client — built client-side (`exportReport()`), no server round-trip.
+  Clones `document.documentElement` (never mutates the live page itself),
+  force-opens every `.sec`, marks `#gate` `.off`, and hides (not removes)
+  `.main-tools`. **The clone is not a static snapshot** — it carries the
+  same live `<script>`, which re-runs `boot()` → `render()` the instant the
+  file is opened, rebuilding `#cmp` from `DB_STATIC` from scratch. That
+  re-render would otherwise silently discard the export: (1) it re-derives
+  the country selection from `location.search`, empty for a downloaded
+  file, so it'd fall back to the Greece+Malta default instead of showing
+  the exported comparison — fixed by string-patching the embedded script's
+  own `var sel = [null, null, null];` source line with the real codes
+  before serializing; (2) it re-collapses every section except §01 (each
+  `secShell()` call's own hardcoded `openByDefault`) — fixed by appending a
+  small trailing `<script>` that clicks the (hidden) `#secToggleAll` once
+  `boot()` has run, reusing the tool's real expand-all logic rather than
+  duplicating it. That trigger has to mirror `boot()`'s own `if(document.
+  readyState==='loading'){addEventListener('DOMContentLoaded',...)}else{...}`
+  guard exactly — `boot()` itself only runs on `DOMContentLoaded` (the
+  script executes mid-parse), so a naive immediate `.click()` fires before
+  the button's listener even exists and silently does nothing. Filename:
+  `so-sanh-<country>-vs-<country>[-vs-<country>]-YYYY-MM-DD.html`, built
+  from each country's **English** name (`stripDiacritics()` NFD-normalizes
+  and drops combining marks by charcode range 768-879 — not a `\u`-escaped
+  regex, since this file must stay at zero literal backslashes) so e.g.
+  `Türkiye` slugifies to `turkiye`, not a broken `t-rkiye`.
+- **Gate seal is the real NAC mark, not text** (`.gate-logo`, the same
+  `OTG-Passport-Icons-1.png` used in the page header) — replaced the old
+  `N·A·C` text. Spins continuously **counter-clockwise** (`rotate(-360deg)`,
+  "right to left", verified by sampling the computed transform matrix: the
+  angle decreases ~16°/400ms, opposite sign from the bezel/orbit rings
+  around it, which all sweep clockwise) — deliberately the other direction
+  from its surrounding rings so it reads as a distinct element, not part of
+  the ring system. `alt=""` (the parent `.gate-mono` is already
+  `aria-hidden`, so the image doesn't need its own announcement).
 - **Workflow**: `.github/workflows/pull-sosanh-notion.yml` — cron `0 3 1,15 * *`
   (fortnightly: 1st + 15th of every month, 03:00 UTC) + `workflow_dispatch` with
   a `dry_run` input. Chains pull → **changelog (bumps the freshness ledger)** →

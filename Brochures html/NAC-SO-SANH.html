@@ -44,7 +44,13 @@ img.emoji{height:1em;width:1em;vertical-align:-.12em;margin:0 .05em}
 @keyframes gateBreathe{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.06)}}
 .gate-card{position:relative;max-width:420px;width:100%;text-align:center;color:#fff;animation:gateIn .7s ease both}
 @keyframes gateIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
-.gate-mono{position:relative;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.14),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:'Playfair Display',serif;font-size:19px;font-weight:700;letter-spacing:1.5px;box-shadow:0 0 44px rgba(244,98,42,.16),inset 0 0 22px rgba(255,255,255,.06)}
+.gate-mono{position:relative;width:88px;height:88px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.14),rgba(255,255,255,.03));border:1px solid rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;box-shadow:0 0 44px rgba(244,98,42,.16),inset 0 0 22px rgba(255,255,255,.06)}
+/* the real NAC mark, not text — spins continuously right-to-left (i.e.
+   counter-clockwise: rotate(-360deg), not the plain +360deg the rest of
+   this seal's rings use) so it reads distinctly from the surrounding
+   bezel/orbit rings, which all sweep the other way. */
+.gate-logo{width:52px;height:52px;object-fit:contain;animation:gateLogoSpin 9s linear infinite}
+@keyframes gateLogoSpin{to{transform:rotate(-360deg)}}
 /* spinning bezel — a thin conic ring (orange + lilac arcs) masked down to a hairline, like a compass rose sweeping */
 .gate-mono::before{content:'';position:absolute;inset:-9px;border-radius:50%;background:conic-gradient(from 0deg,transparent 0%,rgba(244,98,42,.85) 7%,transparent 18%,transparent 48%,rgba(197,188,245,.65) 56%,transparent 68%,transparent 100%);animation:gateSpin 7s linear infinite;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#fff calc(100% - 2.5px));mask:radial-gradient(farthest-side,transparent calc(100% - 2.5px),#fff calc(100% - 2.5px))}
 /* outer dashed ring, slower + reverse, for depth */
@@ -165,7 +171,11 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.86);backdro
 
 /* ============ SECTIONS (collapsible dossiers) ============ */
 main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
-#secToggleAll{display:block;margin:0 0 14px auto;border:1px solid var(--border);background:#fff;border-radius:20px;padding:7px 14px;font-size:11.5px;font-weight:700;color:var(--text2);cursor:pointer;font-family:inherit}
+.main-tools{display:flex;justify-content:flex-end;align-items:center;gap:8px;margin:0 0 14px}
+.tool-btn{border:1px solid var(--border);background:#fff;border-radius:20px;padding:7px 14px;font-size:11.5px;font-weight:700;color:var(--text2);cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:6px}
+.tool-btn svg{width:13px;height:13px;flex-shrink:0}
+#exportBtn{color:var(--blue);border-color:var(--blue-lt)}
+#exportBtn:hover{background:var(--blue-lt)}
 .sec{background:var(--card);border:1px solid var(--border);border-radius:16px;box-shadow:var(--sh);margin-bottom:14px;overflow:hidden}
 .sec-h{width:100%;padding:18px 22px;display:flex;align-items:center;gap:14px;border:none;background:none;text-align:left;cursor:pointer;font-family:inherit;color:inherit}
 .sec-h:hover{background:#fbfbff}
@@ -362,7 +372,7 @@ footer{border-top:1px solid var(--border);background:#fff}
   .rev{opacity:1;transform:none;transition:none}
   .bar,.rt-b .fill{transition:none}
   .upd-dot{animation:none}
-  #gate::before,#gate::after,.gate-mono::before,.gate-mono::after,.gate-orbit{animation:none}
+  #gate::before,#gate::after,.gate-mono::before,.gate-mono::after,.gate-orbit,.gate-logo{animation:none}
   .gate-card{animation:none}
   /* !important required — these override per-dimension rules like
      `.sec.open .ic-nGlobal svg{animation:...}` (3+ classes) which outrank
@@ -607,7 +617,7 @@ body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:
     <div class="gate-mono" aria-hidden="true">
       <span class="gate-orbit"><i></i></span>
       <span class="gate-orbit rev"><i></i></span>
-      N·A·C
+      <img class="gate-logo" src="https://nomadassetcollective.com/wp-content/uploads/2026/04/OTG-Passport-Icons-1.png" alt="">
     </div>
     <div class="gate-t" data-i18n="gateT">Khu Vực Tư Vấn Riêng</div>
     <div class="gate-s" data-i18n="gateS">Nhập mã truy cập được NAC cung cấp để mở công cụ so sánh.</div>
@@ -676,7 +686,10 @@ body.nac-edit [data-edit-key]:focus{outline:2px solid var(--teal);outline-style:
 
 <!-- ================= MAIN ================= -->
 <main>
-  <button id="secToggleAll" type="button">Mở tất cả</button>
+  <div class="main-tools">
+    <button id="exportBtn" class="tool-btn" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13"/><path d="m7 12 5 5 5-5"/><path d="M5 21h14"/></svg><span id="exportBtnT">Xuất báo cáo</span></button>
+    <button id="secToggleAll" class="tool-btn" type="button">Mở tất cả</button>
+  </div>
   <div id="cmp"></div>
 </main>
 
@@ -782,6 +795,7 @@ var DB_STATIC = {"asOf":"23/07/2026","countries":{"gr":{"code":"gr","vi":"Hy L�
 var I18N = {
   expandAll:{vi:'Mở tất cả',en:'Expand all'},
   collapseAll:{vi:'Thu gọn tất cả',en:'Collapse all'},
+  exportReport:{vi:'Xuất báo cáo',en:'Export report'},
   gateT:{vi:'Khu Vực Tư Vấn Riêng',en:'Private Advisory Access'},
   gateS:{vi:'Nhập mã truy cập được NAC cung cấp để mở công cụ so sánh.',en:'Enter the access code provided by NAC to open the comparison tool.'},
   gateB:{vi:'Mở khóa',en:'Unlock'},
@@ -1331,6 +1345,110 @@ function applyI18nChrome(){
   var secs = QA('.sec', Q('#cmp'));
   var anyClosed = secs.length ? secs.some(function(s){ return !s.classList.contains('open'); }) : true;
   Q('#secToggleAll').textContent = anyClosed ? t('expandAll') : t('collapseAll');
+  Q('#exportBtnT').textContent = t('exportReport');
+}
+
+/* ---------------- EXPORT REPORT (client-side, no server round-trip) ----------------
+   Saves a standalone snapshot of the current 2/3-country comparison as its
+   own .html file — Ray downloads it and emails/WhatsApps it straight to a
+   client. Built from a CLONE of the live DOM (never the live page itself,
+   so clicking Export never changes what Ray is currently looking at):
+   every .sec gets force-opened (a report should show everything, not need
+   another click), the access gate is marked .off (the file is already in
+   the client's hands — re-gating it serves no purpose), and the export
+   button itself is dropped from the copy. Everything else — including the
+   footer — is left exactly as on the live site, so the exported file reads
+   as a real NAC page, not a stripped export. */
+function stripDiacritics(s){
+  /* NFD splits e.g. 'ü' into 'u' + a combining-mark code point (U+0300..
+     U+036F, decimal 768-879) — drop those marks, keep the base letter.
+     Charcode range check instead of a unicode-escaped regex literal: this
+     file must stay at zero literal backslashes (WP wp_unslash safety). */
+  var norm = s.normalize ? s.normalize('NFD') : s;
+  var out = '', i, code;
+  for(i = 0; i < norm.length; i++){
+    code = norm.charCodeAt(i);
+    if(code >= 768 && code <= 879){ continue; }
+    out += norm.charAt(i);
+  }
+  return out;
+}
+function slugify(s){
+  var norm = stripDiacritics(s), out = '', i, c;
+  for(i = 0; i < norm.length; i++){
+    c = norm.charAt(i).toLowerCase();
+    if((c >= 'a' && c <= 'z') || (c >= '0' && c <= '9')){ out += c; }
+    else if(out.charAt(out.length - 1) !== '-'){ out += '-'; }
+  }
+  while(out.charAt(0) === '-'){ out = out.slice(1); }
+  while(out.charAt(out.length - 1) === '-'){ out = out.slice(0, -1); }
+  return out;
+}
+function buildReportFilename(cs){
+  var i, parts = [], d = new Date();
+  var pad = function(n){ return (n < 10 ? '0' : '') + n; };
+  for(i = 0; i < cs.length; i++){ parts.push(slugify(cs[i].en || cs[i].vi || cs[i].code)); }
+  return 'so-sanh-' + parts.join('-vs-') + '-' + d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()) + '.html';
+}
+function exportReport(){
+  var i, cs = [];
+  for(i = 0; i < sel.length; i++){
+    if(sel[i]){ var ct = findCountry(DB, sel[i]); if(ct){ cs.push(ct); } }
+  }
+  if(cs.length < 2){ return; }
+  var clone = document.documentElement.cloneNode(true);
+  var secs = clone.querySelectorAll('.sec');
+  for(i = 0; i < secs.length; i++){
+    secs[i].classList.add('open');
+    var hbtn = secs[i].querySelector('.sec-h');
+    if(hbtn){ hbtn.setAttribute('aria-expanded', 'true'); }
+  }
+  var gate = clone.querySelector('#gate');
+  if(gate){ gate.classList.add('off'); }
+  /* hide, don't remove — the exported file's own copy of this script
+     re-runs boot() when opened, and boot() unconditionally wires up
+     #exportBtn/#secToggleAll; deleting them from the clone would leave
+     those querySelectors returning null and throw on load. Hiding keeps
+     every element the script expects in place while still producing a
+     clean, tool-free report visually. */
+  var tools = clone.querySelector('.main-tools');
+  if(tools){ tools.style.display = 'none'; }
+  /* The exported file carries the SAME live script, and that script
+     re-runs boot() -> render() the moment it's opened — which rebuilds
+     #cmp from DB_STATIC from scratch, wiping the .open classes set above,
+     AND re-derives the country selection from location.search (empty for
+     a downloaded file, so it would silently fall back to the Greece+Malta
+     default instead of showing the comparison Ray actually exported).
+     Patch the exact codes into the embedded script's own source text so
+     the re-render reproduces this comparison, not the default one. */
+  var appScript = clone.querySelector('#nacss-app');
+  if(appScript){
+    var jsStr = function(v){ return v ? ("'" + v + "'") : 'null'; };
+    var selLiteral = 'var sel = [' + jsStr(sel[0]) + ', ' + jsStr(sel[1]) + ', ' + jsStr(sel[2]) + '];';
+    appScript.textContent = appScript.textContent.replace('var sel = [null, null, null];', selLiteral);
+  }
+  /* Click the (hidden) expand-all button once boot() has run, reusing the
+     tool's own real expand-all logic instead of duplicating it — the
+     render() re-derivation above only reopens §01 (its hardcoded default),
+     so every other section needs this to end up expanded in the report.
+     boot() itself only runs on DOMContentLoaded (this script executes
+     mid-parse, while readyState is still 'loading', so it can't call
+     boot() immediately) — this trigger mirrors that exact same guard so
+     it fires strictly after boot() has attached the button's listener,
+     never before. */
+  var trigger = document.createElement('script');
+  trigger.textContent = 'function xR(){var b=document.getElementById("secToggleAll");if(b){b.click();}}if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",xR);}else{xR();}';
+  clone.querySelector('body').appendChild(trigger);
+  var html = '<!doctype html>' + clone.outerHTML;
+  var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = buildReportFilename(cs);
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 4000);
 }
 
 /* ---------------- BOOT ---------------- */
@@ -1403,6 +1521,7 @@ function boot(){
     });
     Q('#secToggleAll').textContent = anyClosed ? t('collapseAll') : t('expandAll');
   });
+  Q('#exportBtn').addEventListener('click', exportReport);
 
   /* default selection via ?c=greece,malta or fallback */
   var KEY_BY_SLUG = { greece:'gr', malta:'mt', cyprus:'cy', portugal:'pt', turkey:'tr',
