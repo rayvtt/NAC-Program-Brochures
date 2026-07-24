@@ -1659,7 +1659,17 @@ function publishEdits(){
       return r.text().then(function(body){ throw new Error(r.status + ': ' + body.slice(0, 200)); });
     }
   }).catch(function(e){
-    window.alert(t('editFailed') + ' — ' + e.message);
+    /* a stored token only ever gets used, never re-validated — without
+       this, an expired/revoked PAT (401 Bad credentials) fails silently
+       forever, since publishEdits() only prompts for a token when
+       localStorage has none at all. Clearing it on 401 makes the NEXT
+       publish attempt re-prompt instead of repeating the same dead token. */
+    if(e.message.indexOf('401') === 0){
+      localStorage.removeItem('nac_gh_token');
+      window.alert(t('editFailed') + ' — ' + e.message + ' — ' + t('editTokenPrompt'));
+    } else {
+      window.alert(t('editFailed') + ' — ' + e.message);
+    }
     btn.disabled = false;
     btn.textContent = t('editPublish');
   });
