@@ -753,6 +753,44 @@ Notion DB, its own payload shape, and its own sync tooling:
   ascends over it. Both hold their end state; replays when the icon
   re-enters view. `.ic-tdot` joins the reduced-motion static-visible list
   (was `.ic-trail`); `.ic-halo` is still the only member hidden outright.
+- **Per-icon rework round 3 (2026-07-24)** — point-by-point feedback on all
+  eight. The reveals also now **replay**: `.needs-ic` is never unobserved and
+  `.seen` is *toggled* with `en.isIntersecting`, so scrolling away and back
+  replays the animation instead of it being a once-per-page-load event you
+  can scroll straight past and never see again. Most reveals were also
+  roughly doubled in duration — "not animating" mostly meant "finished
+  before I looked".
+  - **Globe** — "should spin left to right, not around". Was `rotate(360deg)`
+    on the whole `<svg>`, i.e. the icon tumbling like a wheel. Now the rim
+    and equator sit OUTSIDE a circular `clipPath` and never move, while the
+    clipped contents (meridian ellipse + landmass dots) translate one full
+    globe width; the group is duplicated at `translate(24,0)` so the second
+    copy lands exactly where the first began — a seamless axis rotation.
+  - **Education** — firework restored behind a still cap. The earlier
+    attempt failed because 6 hairline rays starting at r=1.8 were simply
+    hidden behind the cap; now 8 tapered rays start at r=3.4 (clear of the
+    cap silhouette), travel much further, and are brand-orange against the
+    blue cap, plus 4 outer sparks on a later beat. Painted first so SVG
+    paint order keeps them behind. **Animated on the `<line>`/`<circle>`
+    themselves, never the wrapping `<g>`** — a CSS transform on the `<g>`
+    would override its SVG `rotate()` attribute and collapse the whole
+    burst onto one un-rotated spoke.
+  - **Mobility** — "from left to bottom left to top right": a real
+    three-stage path (`translate(-22px,-2px)` → `(-16px,15px)` → `(0,0)`)
+    over 2.6s, roughly triple the old travel.
+  - **Healthcare / Diversification / Tax** — "appear slowly", "left, center
+    to right", "write itself line by line": each stroke/bar/line ~doubled
+    in duration and each now waits for the previous to *finish*, so they
+    read as discrete steps rather than one blur.
+  - **Quality of life** — leaves were overlapping; fan widened
+    -30/0/+30 → -52/0/+52 with narrower silhouettes, and the reveal order
+    is left → right → centre.
+  - Verified by rAF-sampling computed values through the reveal: first-
+    visible timestamps strictly increase in the intended order for leaves
+    (686/1179/1716ms), bars (686/1492/2372) and tax lines (1492/2459/3294);
+    plane travels 22px X with a real 17px Y dip; firework ray+spark opacity
+    both span a full 0→1; and the globe `<svg>` / cap `<svg>` transforms
+    stay `none` for the entire window, proving neither ever moves.
 - **Leaves enlarged again (2026-07-24)** — per "the leaves still look small",
   the `nQol` fan-out scales were bumped .94→1.2 (side) and 1.15→1.5 (centre)
   and the base moved to `translate(12,20)` so the taller centre leaf has room
