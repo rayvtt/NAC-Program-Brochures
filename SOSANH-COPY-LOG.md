@@ -52,3 +52,7 @@
 - `secWhy` VI: “Vì sao NAC chốt được deal này” → “Đánh giá từ NAC”
 - `reasons` VI: “Lý do chốt deal” → “Lý do xứng đáng”
 - `secFit` VI: “Chấm điểm theo nhu cầu đầu tư” → “NAC Index”
+
+## 2026-07-24 20:39 UTC · in-page editor
+
+- `ctaS` VI: “Đặt lịch 30 phút với NAC — chúng tôi đối chiếu hồ sơ gia đình, mục tiêu thuế và lộ trình quốc tịch của bạn ngay trên bảng so sánh này.” → “Đặt lịch 30 phút với NAC — chúng tôi đối chiếu hồ sơ gia đình, mục tiêu thuế và lộ trình quốc tịch của gia đình bạn.”
