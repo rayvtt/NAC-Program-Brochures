@@ -963,6 +963,50 @@ Notion DB, its own payload shape, and its own sync tooling:
   (spinning conic-gradient ring + a slower counter-rotating dashed ring), and a
   breathing brand-orange radial glow — all `prefers-reduced-motion`-aware
   (animations disabled, falls back to a static seal).
+- **Mobile caps comparison at 2 countries (2026-07-25)** — per "only allow 2
+  pair comparison on mobile - if 3, ask to use desktop view". `isMobile()`
+  (`window.matchMedia('(max-width:680px)')`, the same breakpoint every other
+  mobile rule in this file uses) is checked live on every `render()`, not
+  cached, so a resize/rotation across the boundary updates this without a
+  reload — but the resize listener only calls `render()` when the boundary is
+  actually crossed, not on every pixel of a window drag, so an unrelated
+  resize never resets every section's open/closed state via a full rebuild.
+  - **The picker (`#duelBar`, `#slot1/2/3`) always shows the TRUE selection**
+    (up to 3), even when the sections below are capped — so a 3rd country
+    picked on desktop (or via a shared `?c=a,b,c` URL) is still visible and
+    removable on mobile, just not compared. This is a deliberate split:
+    `render()` builds `cs` from `sel` in full first (feeds the picker slots,
+    `hasThird`, the `+`/`✕` toggle), THEN — only after that — clamps
+    `cs = cs.slice(0,2)` when `mob3 = hasThird && isMobile()`, so every line
+    of section-building code below (column count, the mini bar, `curCs` for
+    the §10 view switcher, all nine `secShell()` calls) automatically uses
+    the clamped list with zero changes to each call site.
+  - **`.mob3-notice`** — an amber banner injected at the top of `#cmp` when
+    `mob3` is true, explaining the cap and offering a one-tap **Remove 3rd
+    country** button (`#mob3RemoveBtn`, wired into the existing delegated
+    `#cmp` click listener: `sel[2] = null; render();` — same action as the
+    picker's own `#slot3x`, just reachable without scrolling back up).
+  - **Adding a 3rd on mobile is blocked at the source**: `#slot3`'s click
+    handler checks `isMobile()` first and shows an alert (`mob3AddBlocked`)
+    instead of calling `openSheet(3)`, so the country-picker sheet never
+    opens for a NEW 3rd pick on a phone. Removing an already-picked 3rd
+    still works either way (`#slot3x` / the notice button) — only adding is
+    gated.
+  - **Export report is unaffected** — it patches the exported file's own
+    `sel` literal to the FULL original selection (unchanged code); the
+    clamp is evaluated by `isMobile()` inside the exported file's own
+    `render()` when THAT file is opened, so a 3-country export opened on a
+    phone correctly shows the same notice+cap, and opened on desktop shows
+    all 3 — consistent with the live tool, no special-casing needed.
+  - Verified: desktop with 3 selected renders all 3 columns, no notice;
+    mobile with 3 selected (via URL) shows the notice, exactly 2 columns
+    (`.cols-h` children count), and the picker still lists all 3; tapping
+    Remove 3rd collapses cleanly (notice gone, slot 3 back to the ghost `+`
+    state); tapping the ghost `+` on mobile shows the alert and leaves
+    `#sheet` closed; live-resizing a desktop-with-3 page down across 680px
+    makes the notice appear without a reload; §10's ratings section
+    (bars-view name-span count) confirms only 2 countries are compared, not
+    3, after the clamp.
 
 ## 9. Linked docs
 
