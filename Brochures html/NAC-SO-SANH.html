@@ -129,6 +129,15 @@ header{position:sticky;top:0;z-index:90;background:rgba(255,255,255,.86);backdro
 .slot-x::before{content:'✕'}
 .slot-wrap.filled .slot-x{display:flex}
 .duel-note{max-width:1180px;margin:12px auto 0;padding:0 20px;text-align:center;font-size:11.5px;color:var(--text3)}
+/* mobile-only notice when a 3rd country is selected (e.g. arrived via a
+   desktop-shared URL) — the comparison sections render only the first 2
+   on a phone; this explains why and offers the one-tap way out. Sits at
+   the top of #cmp, ahead of §01, so it's the first thing seen. */
+.mob3-notice{display:flex;align-items:center;gap:10px;background:var(--amber-lt);border:1px solid var(--amber);border-radius:14px;padding:12px 16px;margin-bottom:16px;font-size:12.5px;color:var(--text2);line-height:1.4}
+.mob3-notice svg{width:18px;height:18px;flex-shrink:0;color:var(--amber)}
+.mob3-notice span{flex:1}
+.mob3-notice button{flex-shrink:0;border:1px solid var(--amber);background:#fff;color:var(--amber);border-radius:16px;padding:6px 12px;font-size:11px;font-weight:700;font-family:inherit;cursor:pointer;white-space:nowrap}
+.mob3-notice button:hover{background:var(--amber);color:#fff}
 @media(max-width:680px){
   .duel{grid-template-columns:1fr;gap:10px}
   .vs{justify-self:center;width:38px;height:38px;font-size:11px;margin:-4px 0}
@@ -1150,6 +1159,9 @@ var I18N = {
   avail:{vi:'Sẵn sàng',en:'Ready'},
   soon:{vi:'Sắp mở',en:'Soon'},
   addThird:{vi:'Thêm chương trình thứ 3',en:'Add a 3rd program'},
+  mob3Notice:{vi:'So sánh 3 quốc gia cùng lúc chỉ khả dụng trên desktop — đang hiển thị 2 quốc gia đầu tiên trên điện thoại.',en:'Comparing 3 countries at once is desktop-only — showing the first 2 here on mobile.'},
+  mob3Remove:{vi:'Bỏ quốc gia thứ 3',en:'Remove 3rd country'},
+  mob3AddBlocked:{vi:'So sánh 3 quốc gia cùng lúc chỉ khả dụng trên desktop. Mở trang này trên máy tính để thêm quốc gia thứ 3.',en:'Comparing 3 countries at once is desktop-only. Open this page on a desktop to add a 3rd country.'},
   editPublish:{vi:'Xuất bản',en:'Publish'},
   editDiscard:{vi:'Hủy',en:'Discard'},
   editTokenPrompt:{vi:'Dán GitHub Personal Access Token — cần quyền Actions Read/Write trên repo NAC-Program-Brochures',en:'Paste a GitHub Personal Access Token — needs Actions Read/Write on the NAC-Program-Brochures repo'},
@@ -1239,6 +1251,11 @@ function t(k){ var e = I18N[k]; return e ? (e[lang] || e.vi) : k; }
 /* ---------------- STATE ---------------- */
 var DB = null;          /* {countries:[<country object from DB_STATIC>, ...], asOf} */
 var sel = [null, null, null]; /* selected country codes — slot 3 is optional */
+/* same breakpoint the mobile CSS uses throughout this file (@media(max-width:680px)) —
+   kept as a live check (not cached) so render() re-evaluates it on every call. */
+function isMobile(){
+  try{ return window.matchMedia('(max-width:680px)').matches; }catch(e){ return false; }
+}
 var pickTarget = 1;
 
 /* ---------------- HELPERS ---------------- */
@@ -1663,10 +1680,11 @@ function render(){
     }
   }
   if(cs.length < 2){ return; }
-  curCs = cs; /* kept so the §10 view switcher can re-render without a full render() */
-  colVars(cs.length);
 
-  /* slots — 2 required, 3rd optional (ghost "add" card when empty) */
+  /* slots — 2 required, 3rd optional (ghost "add" card when empty). Always
+     reflects the TRUE selection (up to 3) regardless of the mobile cap
+     below, so tapping the x on slot 3 still works and the user can see
+     what they actually picked. */
   for(i = 0; i < cs.length; i++){
     var ci = cs[i], fit = fitOf(ci);
     var progLbl = fieldOf(ci, 'prog');
@@ -1683,6 +1701,19 @@ function render(){
   Q('#slot3x').title = t('removeThird');
   Q('#vs2').classList.toggle('vs-filled', hasThird);
   Q('#vs2').textContent = hasThird ? 'VS' : '+';
+
+  /* Mobile caps the actual comparison at 2 countries ("only allow 2 pair
+     comparison on mobile - if 3, ask to use desktop view"). The picker
+     above still shows all 3 slots; everything from here on — column
+     count, the mini bar, the ratings-switcher state, and every comparison
+     section — uses only the first 2 selected countries on a phone.
+     isMobile() is re-checked on every render (not cached), so rotating a
+     tablet or resizing the window updates this live. */
+  var mob3 = hasThird && isMobile();
+  if(mob3){ cs = cs.slice(0, 2); }
+  curCs = cs; /* kept so the §10 view switcher can re-render without a full render() */
+  colVars(cs.length);
+
   /* mini */
   var mh = '', vsTxt = '<span class="mini-vs">vs</span>';
   for(i = 0; i < cs.length; i++){
@@ -1695,6 +1726,11 @@ function render(){
   /* sections — no more VI-only fallback notice: every field is now authored
      directly in Notion as a real VI/EN pair, not a machine-guessed overlay */
   var h = '';
+  if(mob3){
+    h += '<div class="mob3-notice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z"/><path d="M12 9v4M12 17h.01"/></svg>' +
+      '<span data-i18n="mob3Notice">' + t('mob3Notice') + '</span>' +
+      '<button type="button" id="mob3RemoveBtn" data-i18n="mob3Remove">' + t('mob3Remove') + '</button></div>';
+  }
 
   h += secShell('§01', 'secOverview', headCols(cs) + '<div class="rows">' +
     rowBadges('lbl_bloc', cs) +
@@ -2039,8 +2075,23 @@ function boot(){
   Q('#printBtn').addEventListener('click', function(){ window.print(); });
   Q('#slot1').addEventListener('click', function(){ openSheet(1); });
   Q('#slot2').addEventListener('click', function(){ openSheet(2); });
-  Q('#slot3').addEventListener('click', function(){ openSheet(3); });
+  Q('#slot3').addEventListener('click', function(){
+    /* mobile never opens the 3rd-country picker — comparing 3 at once is
+       desktop-only there (see the mob3-notice in render()). Removing an
+       already-picked 3rd still works via #slot3x, untouched by this. */
+    if(isMobile()){ window.alert(t('mob3AddBlocked')); return; }
+    openSheet(3);
+  });
   Q('#slot3x').addEventListener('click', function(e){ e.stopPropagation(); sel[2] = null; render(); });
+  /* re-render ONLY when actually crossing the mobile/desktop breakpoint —
+     resizing a browser window a few pixels shouldn't reset every section's
+     open/closed state via a full render(); rotating a tablet, or resizing
+     past 680px, should immediately apply/lift the mob3 cap. */
+  var mob3Boundary = isMobile();
+  window.addEventListener('resize', function(){
+    var now = isMobile();
+    if(now !== mob3Boundary){ mob3Boundary = now; render(); }
+  }, { passive:true });
   Q('#sheetX').addEventListener('click', closeSheet);
   Q('#sheetBg').addEventListener('click', closeSheet);
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeSheet(); } });
@@ -2071,6 +2122,7 @@ function boot(){
 
   /* collapsible dossier sections — one delegated listener survives re-render */
   Q('#cmp').addEventListener('click', function(e){
+    if(e.target.closest('#mob3RemoveBtn')){ sel[2] = null; render(); return; }
     if(EDIT_MODE && e.target.closest('[data-edit-key]')){ return; } /* clicking a title/label to edit it must not collapse the section */
     var h = e.target.closest('.sec-h');
     if(!h){ return; }
