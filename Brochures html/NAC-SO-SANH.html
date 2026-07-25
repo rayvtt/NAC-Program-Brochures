@@ -288,14 +288,21 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
   100%{transform:translate(0,0);opacity:1}
 }
 @keyframes icDotIn{0%{opacity:0;transform:scale(.2)}100%{opacity:.55;transform:scale(1)}}
+/* dots keep pulsing forever once drawn in — a travelling twinkle that
+   "chases" along the trail, endlessly ("plane trail dotted... endless
+   loop too"). Same comma-separated one-shot+infinite pattern as bars/tax
+   glow: icDotIn draws each dot in once (both, holds), icTrailPulse takes
+   over immediately after with a 150ms stagger per dot so the brightening
+   wave visibly travels bottom-left -> top-right on every cycle. */
+@keyframes icTrailPulse{0%,100%{opacity:.18}50%{opacity:.62}}
 .ic-nMove .ic-plane{opacity:0}
 .ic-nMove.seen .ic-plane{animation:icPlaneFly 2.6s cubic-bezier(.35,.05,.25,1) both;animation-delay:.05s}
 .ic-nMove .ic-tdot{opacity:0;transform-box:fill-box;transform-origin:center}
-.ic-nMove.seen .ic-tdot1{animation:icDotIn .34s ease-out both;animation-delay:1.05s}
-.ic-nMove.seen .ic-tdot2{animation:icDotIn .34s ease-out both;animation-delay:1.35s}
-.ic-nMove.seen .ic-tdot3{animation:icDotIn .34s ease-out both;animation-delay:1.65s}
-.ic-nMove.seen .ic-tdot4{animation:icDotIn .34s ease-out both;animation-delay:1.95s}
-.ic-nMove.seen .ic-tdot5{animation:icDotIn .34s ease-out both;animation-delay:2.25s}
+.ic-nMove.seen .ic-tdot1{animation:icDotIn .34s ease-out both, icTrailPulse 1.6s ease-in-out infinite;animation-delay:1.05s, 1.4s}
+.ic-nMove.seen .ic-tdot2{animation:icDotIn .34s ease-out both, icTrailPulse 1.6s ease-in-out infinite;animation-delay:1.35s, 1.55s}
+.ic-nMove.seen .ic-tdot3{animation:icDotIn .34s ease-out both, icTrailPulse 1.6s ease-in-out infinite;animation-delay:1.65s, 1.7s}
+.ic-nMove.seen .ic-tdot4{animation:icDotIn .34s ease-out both, icTrailPulse 1.6s ease-in-out infinite;animation-delay:1.95s, 1.85s}
+.ic-nMove.seen .ic-tdot5{animation:icDotIn .34s ease-out both, icTrailPulse 1.6s ease-in-out infinite;animation-delay:2.25s, 2s}
 
 /* leaves bloom in once, one after another (when nQol scrolls into view),
    and then STAY — the bundle
@@ -329,8 +336,12 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
    element's SVG transform attribute — animating the <g> would collapse the
    whole burst to one un-rotated spoke. A plain translateY on the child
    moves it along its parent's already-rotated axis, i.e. straight outward. */
-@keyframes icFwRay{0%{transform:translateY(3.2px);opacity:0}18%{opacity:1}60%{transform:translateY(-.6px);opacity:.9}100%{transform:translateY(-2.6px);opacity:0}}
-@keyframes icFwSpark{0%,14%{transform:translateY(3.4px);opacity:0}34%{opacity:1}72%{transform:translateY(-1.2px);opacity:.95}100%{transform:translateY(-3.8px);opacity:0}}
+/* burst diameter scaled up ~1.45x ("fire behind cap diameter bigger") —
+   both the rays' base line length (see the <line> coordinates in
+   NEED_ICON_SVG.nEdu) and their outward travel here grew together so the
+   burst still reads as one continuous explosion, just larger. */
+@keyframes icFwRay{0%{transform:translateY(4.6px);opacity:0}18%{opacity:1}60%{transform:translateY(-.9px);opacity:.9}100%{transform:translateY(-3.8px);opacity:0}}
+@keyframes icFwSpark{0%,14%{transform:translateY(4.9px);opacity:0}34%{opacity:1}72%{transform:translateY(-1.7px);opacity:.95}100%{transform:translateY(-5.5px);opacity:0}}
 .ic-fwr{stroke:var(--orange);stroke-width:1.7;stroke-linecap:round;opacity:0}
 .ic-fws{fill:var(--orange);opacity:0}
 .ic-nEdu.seen .ic-fwr{animation:icFwRay 2.6s cubic-bezier(.15,.7,.3,1) infinite;animation-delay:.35s}
@@ -394,29 +405,25 @@ main{max-width:1180px;margin:0 auto;padding:34px 20px 40px}
 @keyframes icDrop{0%{transform:translateY(-11px) rotate(-9deg);opacity:0}70%{transform:translateY(2px) rotate(3deg);opacity:1}100%{transform:translateY(0) rotate(0);opacity:1}}
 .ic-nTax svg{opacity:0}
 .ic-nTax.seen svg{animation:icDrop .5s cubic-bezier(.3,.6,.3,1.2) both;animation-delay:.05s}
-/* Receipt text lines "print" themselves left-to-right, one line after
-   another — a real dash-draw, not a fade — and then STAY printed; they
-   don't clear and reprint. Each <line>'s dasharray equals its own length
-   (6, 6, 3) so dashoffset can travel that exact distance from hidden to
-   fully-drawn; dashoffset counts down FROM the line's start point
-   (x1,y1), so the reveal direction is left→right for all three. Once a
-   line finishes drawing, a second, independent, continuous animation
-   (`icTaxGlow`) takes over — a gentle brightness breathe — so the
-   receipt keeps a small bit of life without ever going blank again. */
-@keyframes icTaxL1{to{stroke-dashoffset:0}}
-@keyframes icTaxL2{to{stroke-dashoffset:0}}
-@keyframes icTaxL3{to{stroke-dashoffset:0}}
-@keyframes icTaxGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(24,0,173,0))}50%{filter:drop-shadow(0 0 3px rgba(24,0,173,.5))}}
+/* Receipt text lines print themselves left-to-right, one line after
+   another, then the whole receipt clears and reprints — an endless loop
+   ("tax animation in an endless loop"), like the receipt is continuously
+   reprinting itself. All three lines share ONE 4.6s cycle with the timing
+   baked into each line's own keyframe percentages (not separate delays),
+   so they can never drift out of sync no matter how long the icon stays
+   in view: line 1 draws, then line 2, then line 3 (dasharray equals each
+   line's own length — 6, 6, 3 — so dashoffset travels that exact distance
+   left→right), all three hold fully drawn for a beat, then clear together
+   and the cycle restarts. */
+@keyframes icTaxL1Loop{0%,6%{stroke-dashoffset:6}26%{stroke-dashoffset:0}78%{stroke-dashoffset:0}89%,100%{stroke-dashoffset:6}}
+@keyframes icTaxL2Loop{0%,26%{stroke-dashoffset:6}46%{stroke-dashoffset:0}78%{stroke-dashoffset:0}89%,100%{stroke-dashoffset:6}}
+@keyframes icTaxL3Loop{0%,46%{stroke-dashoffset:3}61%{stroke-dashoffset:0}78%{stroke-dashoffset:0}89%,100%{stroke-dashoffset:3}}
 .ic-taxln:nth-of-type(1){stroke-dasharray:6;stroke-dashoffset:6}
 .ic-taxln:nth-of-type(2){stroke-dasharray:6;stroke-dashoffset:6}
 .ic-taxln:nth-of-type(3){stroke-dasharray:3;stroke-dashoffset:3}
-/* "the text on the paper should write itself line by line" — each line is
-   drawn left-to-right over .9s and the next starts only after the previous
-   finishes (.95s apart), so the receipt visibly types itself out one line
-   at a time instead of all three appearing at once. */
-.ic-nTax.seen .ic-taxln:nth-of-type(1){animation:icTaxL1 .9s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:.5s, 3.4s}
-.ic-nTax.seen .ic-taxln:nth-of-type(2){animation:icTaxL2 .9s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:1.45s, 3.6s}
-.ic-nTax.seen .ic-taxln:nth-of-type(3){animation:icTaxL3 .9s ease-in-out both, icTaxGlow 2.4s ease-in-out infinite;animation-delay:2.4s, 3.8s}
+.ic-nTax.seen .ic-taxln:nth-of-type(1){animation:icTaxL1Loop 4.6s ease-in-out infinite;animation-delay:.5s}
+.ic-nTax.seen .ic-taxln:nth-of-type(2){animation:icTaxL2Loop 4.6s ease-in-out infinite;animation-delay:.5s}
+.ic-nTax.seen .ic-taxln:nth-of-type(3){animation:icTaxL3Loop 4.6s ease-in-out infinite;animation-delay:.5s}
 
 @keyframes winArrowUp{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
 .sec.open .nc-r.win svg{animation:winArrowUp 1.3s ease-in-out infinite;animation-delay:calc(var(--i,0) * 110ms)}
@@ -996,18 +1003,18 @@ var NEED_ICON_SVG = {
      extend past its edges — actually behind it, not overlapping it. */
   nEdu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">' +
     '<g class="ic-fw">' +
-      '<g transform="translate(12,11) rotate(0)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(45)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(90)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(135)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(180)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(225)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(270)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(315)"><line class="ic-fwr" x1="0" y1="-3.4" x2="0" y2="-7.6"/></g>' +
-      '<g transform="translate(12,11) rotate(22)"><circle class="ic-fws" cx="0" cy="-8.6" r=".85" stroke="none"/></g>' +
-      '<g transform="translate(12,11) rotate(112)"><circle class="ic-fws" cx="0" cy="-8.6" r=".85" stroke="none"/></g>' +
-      '<g transform="translate(12,11) rotate(202)"><circle class="ic-fws" cx="0" cy="-8.6" r=".85" stroke="none"/></g>' +
-      '<g transform="translate(12,11) rotate(292)"><circle class="ic-fws" cx="0" cy="-8.6" r=".85" stroke="none"/></g>' +
+      '<g transform="translate(12,11) rotate(0)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(45)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(90)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(135)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(180)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(225)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(270)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(315)"><line class="ic-fwr" x1="0" y1="-4.9" x2="0" y2="-11"/></g>' +
+      '<g transform="translate(12,11) rotate(22)"><circle class="ic-fws" cx="0" cy="-12.5" r=".85" stroke="none"/></g>' +
+      '<g transform="translate(12,11) rotate(112)"><circle class="ic-fws" cx="0" cy="-12.5" r=".85" stroke="none"/></g>' +
+      '<g transform="translate(12,11) rotate(202)"><circle class="ic-fws" cx="0" cy="-12.5" r=".85" stroke="none"/></g>' +
+      '<g transform="translate(12,11) rotate(292)"><circle class="ic-fws" cx="0" cy="-12.5" r=".85" stroke="none"/></g>' +
     '</g>' +
     '<path d="M12 3 1 9l11 6 11-6-11-6Z" fill="var(--card)"/><path d="M6 11v5c0 1.5 2.7 3 6 3s6-1.5 6-3v-5" fill="var(--card)"/><path d="M22 9v7"/><circle cx="22" cy="17.4" r="1.1" fill="currentColor" stroke="none"/>' +
     '</svg>',
