@@ -451,7 +451,8 @@ var QS = [
   ]},
   {id:'longterm',q:'Mục tiêu dài hạn?',qe:'Your long-term objective?',opts:[
     {v:1,icon:'🌍',t:'Tự do đi lại toàn cầu',te:'Global travel freedom'},{v:2,icon:'🏛️',t:'Tối ưu thuế',te:'Tax optimization'},
-    {v:3,icon:'🎓',t:'Giáo dục con cái',te:'Children’s education'},{v:4,icon:'🏢',t:'Mở rộng kinh doanh',te:'Business expansion'}
+    {v:3,icon:'🎓',t:'Giáo dục con cái',te:'Children’s education'},{v:4,icon:'🏢',t:'Mở rộng kinh doanh',te:'Business expansion'},
+    {v:5,icon:'🌱',t:'An toàn khí hậu & môi trường',te:'Climate & environmental safety'}
   ]}
 ];
 
@@ -593,6 +594,7 @@ function scorePrograms(a){
     else if(a.longterm===2)s+=(p.tax/100)*14;
     else if(a.longterm===3)s+=(p.edu/100)*14;
     else if(a.longterm===4)s+=((p.global+p.diverse)/200)*14;
+    else if(a.longterm===5)s+=((p.safe+p.health+p.life)/300)*16;
     return{program:p,score:s};
   });
   scores.sort(function(a,b){return b.score-a.score});
@@ -795,7 +797,7 @@ function sendToNotion(formData,cb){
     property:{1:'Có',2:'Không',3:'Xem xét'},
     family:{1:'Bản thân',2:'Vợ/chồng',3:'Gia đình'},
     stay:{1:'Ít nhất',2:'Sẵn sàng',3:'Không quan trọng'},
-    longterm:{1:'Đi lại',2:'Thuế',3:'Giáo dục',4:'Kinh doanh'}
+    longterm:{1:'Đi lại',2:'Thuế',3:'Giáo dục',4:'Kinh doanh',5:'Khí hậu & môi trường'}
   };
 
   var r1=quizResults[0]?quizResults[0].program.name:'';
