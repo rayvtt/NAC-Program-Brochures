@@ -81,21 +81,7 @@
      [90m· Fortress Gardens (Q3) is the final phase of the Tigné Point regeneration — a 380[0m
      [33mNotion has EN for 1 gaps (sample):[0m
        [process] MPRP phải nộp qua Licensed Agent của Residency Malta Agency. Quy trình tiêu chuẩ
-
-[1mstkitts[0m  [31m✗[0m
-  1. Toggle:        [32m✓[0m 
-  2. Charts EN:     [32m✓[0m [90mtranslator helper[0m
-  3. §01 Overview:  [32m✓[0m 
-  4-5. Globe size:  [32m✓[0m [90mmobile + desktop OK[0m
-  6. Article URLs:  [32m✓[0m [90m2/2 → PDP[0m
-  7. Chart render:  [32m✓[0m [90mall canvases + mobile aspectRatio[0m
-  8. EN displays:   [31m✗[0m [31m1 VN remnants[0m
-     [90m· Gia đình · Tax · Path to Citizenship · So sánh · Ưu & nhược · Nhận định NAC — gử[0m
-     [33mlow sections: tax, citizenship, compare[0m
-     [33mNotion has EN for 9 gaps (sample):[0m
-       [overview] St Kitts & Nevis CBI — ra mắt năm 1984, là chương trình quốc tịch đầu tư lâu đời
-       [investment] St Kitts & Nevis cung cấp hai con đường chính: Đóng góp vào Quỹ Tăng Trưởng Bền 
-       [process] St Kitts & Nevis CBI có hai quy trình: Standard (3–6 tháng) và Accelerated Light
+  ✗ stkitts: fetch failed — The read operation timed out
 
 [1mthailand[0m  [31m✗[0m
   1. Toggle:        [32m✓[0m 
@@ -189,7 +175,7 @@
        [overview] Montenegro Cư Trú Qua Bất Động Sản — dựa trên Luật về Người Nước Ngoài (Zakon o 
 
 [90m──────────────────────────────────────────────────────────────────────[0m
-[1mSummary:[0m  [32m4/16 brochures fully passing[0m
+[1mSummary:[0m  [32m4/15 brochures fully passing[0m
   [31mToggle issues:[0m    spain
-  [33mSection gaps:[0m    stkitts, malaysia, antigua
+  [33mSection gaps:[0m    malaysia, antigua
   → JSON report: .diagnostics/daily-en-audit.json
