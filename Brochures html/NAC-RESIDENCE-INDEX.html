@@ -428,7 +428,26 @@
 .tk-item .hot{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:10px;color:var(--tkc-faint);border:1px solid rgba(255,255,255,.15);border-radius:5px;padding:2px 6px}
 .tk-nav .nm{font-weight:500}
 .tk-empty{padding:20px;text-align:center;color:var(--tkc-faint);font-size:12.5px;display:none}
-@media(max-width:640px){.tkbar-bar{padding:13px 16px}.tkbar-wm{display:none}.tk-trigger>span.lbl{display:none}}
+@media(max-width:640px){.tkbar-bar{padding:13px 16px}.tkbar-wm{display:none}.tk-trigger>span.lbl{display:none}
+  /* The popover is anchored to the (narrow, right-aligned) trigger, so on a
+     phone its 92vw width overflowed the LEFT edge by ~70px and clipped every
+     tool name ("NAC Property Hub" read as "C Property Hub"). On mobile it is
+     pinned to the VIEWPORT instead (position:fixed + left/right insets), so it
+     can never clip whatever the trigger's position. --tkbar-h is written by JS
+     because the bar changes height when it gains .scrolled. */
+  .tkbar-pop{position:fixed;top:calc(var(--tkbar-h,64px) + 8px);left:10px;right:10px;width:auto;max-width:none}
+  .tk-list{max-height:calc(100vh - var(--tkbar-h,64px) - 92px)}
+  /* no Cmd key on a phone — the ⌘1..⌘8 badges are dead weight on a cramped row */
+  .tk-item .hot{display:none}
+  /* 16px is the iOS Safari threshold below which focusing an input auto-zooms
+     the whole page (and leaves it zoomed) */
+  .tk-search input{font-size:16px}
+  .tk-search{padding:13px 14px}
+  /* thumb-sized tap targets (was 42px) */
+  .tk-item{padding:12px 11px;min-height:46px}
+  .tk-item .nm{font-size:13.5px}
+  .tk-trigger{padding:9px 12px}
+}
 @media(prefers-reduced-motion:reduce){.tkbar,.tkbar-bar,.tkbar-bar::before,.tk-trigger,.grid4 i,.tkbar-pop{transition:none}}
 </style>
 <header class="tkbar" id="tkbar">
@@ -487,7 +506,11 @@
   function setActive(i){var v=vis();if(!v.length)return;active=(i+v.length)%v.length;
     items.forEach(function(it){it.classList.remove("on");});v[active].classList.add("on");
     v[active].scrollIntoView({block:"nearest"});}
-  function openPop(){pop.classList.add("open");btn.setAttribute("aria-expanded","true");
+  /* mobile popover is viewport-pinned (position:fixed) and needs to sit just
+     under the bar — the bar's height changes when it gains .scrolled, so
+     publish it as a custom property rather than hardcoding a value in CSS. */
+  function syncBarH(){bar.style.setProperty("--tkbar-h",Math.round(bar.getBoundingClientRect().height)+"px");}
+  function openPop(){syncBarH();pop.classList.add("open");btn.setAttribute("aria-expanded","true");
     if(search){search.value="";filter("");setTimeout(function(){search.focus();},30);}clearActive();}
   function closePop(){pop.classList.remove("open");btn.setAttribute("aria-expanded","false");clearActive();}
   function filter(q){q=(q||"").trim().toLowerCase();var any=false;
