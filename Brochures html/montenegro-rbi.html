@@ -44,7 +44,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; line-height: 1.65; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; font-size: 15px; line-height: 1.65; }
 
 /* ── PRINT / PDF ── */
 @media print {
@@ -198,7 +198,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
     0 10px 30px rgba(15,26,54,.08),
     0 0 0 1px rgba(15,26,54,.03),
     inset 0 1px 0 rgba(255,250,240,.95);
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 .toc-cta-mini a {
   display: flex;
@@ -642,7 +642,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
     color: #fff;
     font-size: 11px;
     font-weight: 600;
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
     white-space: nowrap;
     padding: 5px 10px;
     border-radius: 6px;
@@ -1221,7 +1221,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       0 10px 30px rgba(15,26,54,.10),
       0 0 0 1px rgba(15,26,54,.03),
       inset 0 1px 0 rgba(255,250,240,.95);
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   .nac-tool {
     display:inline-flex; align-items:center; gap:0;
@@ -2267,7 +2267,7 @@ const CHART_LBLS = {
   }
 };
 
-const chartFontFamily = "'Be Vietnam Pro'";
+const chartFontFamily = "-apple-system, system-ui, sans-serif";
 let chartInstances = { radar: null, citizenship: null, compare: null, matrix: null };
 
 function buildCharts(lang) {

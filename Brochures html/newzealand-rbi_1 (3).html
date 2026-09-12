@@ -174,7 +174,7 @@
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 68px; }
-body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro', sans-serif; font-size: 15px; line-height: 1.65; }
+body { background: var(--bg); color: var(--text); font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif; font-size: 15px; line-height: 1.65; }
 
 /* ── PRINT / PDF ── */
 @media print {
@@ -293,7 +293,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Be Vietnam Pro',
   border: 1px solid rgba(125,90,30,.10);
   border-radius: 14px;
   box-shadow: 0 10px 30px rgba(15,26,54,.08), 0 0 0 1px rgba(15,26,54,.03), inset 0 1px 0 rgba(255,250,240,.95);
-  font-family: 'Be Vietnam Pro', sans-serif;
+  font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 .toc-cta-mini a {
   display: flex; align-items: center; gap: 9px;
@@ -998,7 +998,7 @@ body.nac-paywall-unlocked .toc-item.is-locked .toc-link { color: var(--text3); f
       0 10px 30px rgba(15,26,54,.10),
       0 0 0 1px rgba(15,26,54,.03),
       inset 0 1px 0 rgba(255,250,240,.95);
-    font-family: 'Be Vietnam Pro', sans-serif;
+    font-family: -apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
   }
   .nac-tool {
     display:inline-flex; align-items:center; gap:0;
@@ -2305,8 +2305,8 @@ const radarChart = new Chart(document.getElementById('radarChart'), {
   },
   options: {
     responsive: true,
-    scales: { r: { min: 0, max: 10, ticks: { stepSize: 2, font: { size: 10 }, backdropColor: 'transparent' }, pointLabels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" }, color: '#374151' }, grid: { color: 'rgba(0,0,0,0.08)' }, angleLines: { color: 'rgba(0,0,0,0.08)' }, } },
-    plugins: { legend: { display: true, position: 'bottom', labels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" }, boxWidth: 14, padding: 14 } } }
+    scales: { r: { min: 0, max: 10, ticks: { stepSize: 2, font: { size: 10 }, backdropColor: 'transparent' }, pointLabels: { font: { size: 11, family: "-apple-system, system-ui, sans-serif" }, color: '#374151' }, grid: { color: 'rgba(0,0,0,0.08)' }, angleLines: { color: 'rgba(0,0,0,0.08)' }, } },
+    plugins: { legend: { display: true, position: 'bottom', labels: { font: { size: 11, family: "-apple-system, system-ui, sans-serif" }, boxWidth: 14, padding: 14 } } }
   }
 });
 
@@ -2353,7 +2353,7 @@ new Chart(document.getElementById('timelineChart'), {
     labels: ['UAE GV', 'NZ Active Investor+', 'UK Innovator', 'Hy Lạp GV', 'Bồ Đào Nha GV', 'Úc SIV'],
     datasets: [{ label: 'Tháng đến cư trú', data: [2, 2.5, 4.5, 9, 15, 9], backgroundColor: ['rgba(138,105,20,0.7)', kiwi, 'rgba(1,101,187,0.7)', 'rgba(29,79,138,0.7)', 'rgba(100,50,100,0.7)', 'rgba(30,60,140,0.7)'], borderRadius: 6, }]
   },
-  options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } } }
+  options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "-apple-system, system-ui, sans-serif" } } } } }
 });
 
 // Tax chart
@@ -2363,7 +2363,7 @@ new Chart(document.getElementById('taxChart'), {
     labels: ['UAE', 'Singapore', 'Hồng Kông', 'Việt Nam', 'NZ', 'Úc', 'UK'],
     datasets: [{ label: 'Thuế thu nhập cá nhân tối đa (%)', data: [0, 22, 17, 35, 39, 47, 45], backgroundColor: ['rgba(138,105,20,0.6)', 'rgba(29,79,138,0.5)', 'rgba(29,79,138,0.4)', 'rgba(200,60,60,0.6)', kiwi, 'rgba(30,60,140,0.6)', 'rgba(1,101,187,0.6)'], borderRadius: 6, }]
   },
-  options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 55, ticks: { callback: v => v + '%', font: { size: 11 } } }, x: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } } }
+  options: { responsive: true, plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, max: 55, ticks: { callback: v => v + '%', font: { size: 11 } } }, x: { ticks: { font: { size: 11, family: "-apple-system, system-ui, sans-serif" } } } } }
 });
 
 // Compare chart
@@ -2373,7 +2373,7 @@ new Chart(document.getElementById('compareChart'), {
     labels: ['Bồ Đào Nha GV', 'UAE GV', 'Hy Lạp GV', 'NZ Active Investor+', 'Úc SIV', 'UK Innovator'],
     datasets: [{ label: 'Điểm NAC /100', data: [88, 79, 78, 76, 74, 72], backgroundColor: ['rgba(26,122,74,0.8)', 'rgba(138,105,20,0.6)', 'rgba(29,79,138,0.55)', kiwi, 'rgba(30,60,140,0.6)', 'rgba(1,101,187,0.55)'], borderRadius: 6, }]
   },
-  options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, max: 100, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } } }
+  options: { indexAxis: 'y', responsive: true, plugins: { legend: { display: false } }, scales: { x: { beginAtZero: true, max: 100, ticks: { font: { size: 11 } } }, y: { ticks: { font: { size: 11, family: "-apple-system, system-ui, sans-serif" } } } } }
 });
 
 // Strength chart
@@ -2387,7 +2387,7 @@ new Chart(document.getElementById('strengthChart'), {
       { label: 'UAE GV', data: [8.8, 9.7, 8.2, 7.2, 4.5, 3.0], backgroundColor: 'rgba(138,105,20,0.7)', borderRadius: 4 },
     ]
   },
-  options: { responsive: true, plugins: { legend: { position: 'top', labels: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } }, scales: { y: { beginAtZero: true, max: 10, ticks: { font: { size: 10 } } }, x: { ticks: { font: { size: 11, family: "'Be Vietnam Pro', sans-serif" } } } } }
+  options: { responsive: true, plugins: { legend: { position: 'top', labels: { font: { size: 11, family: "-apple-system, system-ui, sans-serif" } } } }, scales: { y: { beginAtZero: true, max: 10, ticks: { font: { size: 10 } } }, x: { ticks: { font: { size: 11, family: "-apple-system, system-ui, sans-serif" } } } } }
 });
 
 // ── LANGUAGE TOGGLE ──
