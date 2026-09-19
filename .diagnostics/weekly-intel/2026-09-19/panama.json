@@ -1,0 +1,56 @@
+{
+  "alias": "panama",
+  "gathered_at": "2026-09-19T07:55:46.423036+00:00",
+  "days_window": 1,
+  "signal_count": 6,
+  "signals": [
+    {
+      "kind": "money",
+      "matched": "$655,000",
+      "excerpt": "…000 it is the only entry here still being built. Location: Playa Venao, Los Santos, Panama Size: 131 m², two bedrooms, two bathrooms Price: $655,000 Pool: Shared, in the complex Completion: 2028 Comes with: Permanent residency Program: Panama Qualified Investor Visa 4. A Hillside Villa Ab…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2028",
+      "excerpt": "…ocation: Playa Venao, Los Santos, Panama Size: 131 m², two bedrooms, two bathrooms Price: $655,000 Pool: Shared, in the complex Completion: 2028 Comes with: Permanent residency Program: Panama Qualified Investor Visa 4. A Hillside Villa Above Dominical, Costa Rica Escaleras is the hi…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2020",
+      "excerpt": "…d any cancellation action pauses in the meantime. Missing that window leads to “ ex officio cancellation” of the residence permit. Panama’s 2020 text had ordered cancellation where an investment lapsed without reinvestment, with no deadline to reinvest. Ask an expert about the Panama…",
+      "source": "IMI Daily (feed)",
+      "url": "https://www.imidaily.com/feed/",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2023",
+      "excerpt": "…333 Email: info@investmentmigration.org Search IMC Website Search for: Search Search Results for panama friendly nations Posted on July 13, 2023 July 13, 2023 darioa Articles Six Thoughts on Investment Migration in a Changing Landscape An article written by the Investment Migration C…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=panama+friendly+nations",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2023",
+      "excerpt": "…o@investmentmigration.org Search IMC Website Search for: Search Search Results for panama friendly nations Posted on July 13, 2023 July 13, 2023 darioa Articles Six Thoughts on Investment Migration in a Changing Landscape An article written by the Investment Migration Council Editori…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=panama+friendly+nations",
+      "authority": 2
+    },
+    {
+      "kind": "date",
+      "matched": "2023",
+      "excerpt": "…s on Investment Migration in a Changing Landscape An article written by the Investment Migration Council Editorial Team for the IM Yearbook 2023 While it is impossible to predict the future, it is possible to consider how current megatrends and potential future disruptions might affe…",
+      "source": "Investment Migration Council",
+      "url": "https://investmentmigration.org/?s=panama+friendly+nations",
+      "authority": 2
+    }
+  ]
+}
