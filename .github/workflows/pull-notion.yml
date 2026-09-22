@@ -59,6 +59,14 @@ jobs:
         if: inputs.dry_run == 'true'
         run: python tools/inject_notion_en_to_html.py --dry-run
 
+      - name: Inject schema.org JSON-LD (structured data for SEO/GEO/bots)
+        if: inputs.dry_run != 'true'
+        run: python tools/inject_schema_jsonld.py
+
+      - name: Inject schema.org JSON-LD (dry-run preview)
+        if: inputs.dry_run == 'true'
+        run: python tools/inject_schema_jsonld.py --dry-run
+
       - name: Refresh Live Listings spotlight from Property Hub
         # Picks up any listing add/edit/delete on the PH Notion DB
         # within ~10min — same cadence as the brochure-content sync above.
