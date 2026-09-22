@@ -133,6 +133,7 @@ tools/
 ├── build_preview_index.py              ← regenerate index.html for GitHub Pages preview
 ├── pull_overview_from_notion.py        ← 🎴 NAC - Overview Deck DB → regenerate overview card deck
 ├── scan_qa_tracker.py                  ← ✅ NAC - QA Tracker DB → .diagnostics/qa-status.md
+├── inject_schema_jsonld.py             ← schema.org JSON-LD per brochure (WebPage+Organization+Service/Offer+BreadcrumbList+FAQPage) from data/<alias>_payload.json; idempotent, WP-safe (zero backslashes), runs in pull-notion.yml before the WP push
 ├── inject_data_attr_walker.py          ← add Pass-0 data-vi/data-en walker to all legacy setLang
 ├── inject_twemoji.py                   ← inject Twemoji flag-image fallback (Windows/Android show codes)
 ├── repoint_listings_to_clp.py          ← repoint "All RBI properties →" link to /property-hub-bat-dong-san/<slug>/ CLP
