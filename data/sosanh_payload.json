@@ -3175,8 +3175,247 @@
     "infl": "23/07/2026",
     "fx": "23/07/2026",
     "gdp": "23/07/2026",
-    "debt": "23/07/2026"
-   }
+    "debt": "23/07/2026",
+    "econChar": "30/09/2026",
+    "econ": "30/09/2026",
+    "r3": "30/09/2026",
+    "polstab": "30/09/2026",
+    "feeInit": "30/09/2026",
+    "rtMove": "30/09/2026",
+    "liquid": "30/09/2026",
+    "feeAnnual": "30/09/2026",
+    "nDiv": "30/09/2026",
+    "nTax": "30/09/2026",
+    "r4": "30/09/2026",
+    "nGlobal": "30/09/2026",
+    "cit": "30/09/2026",
+    "feeDD": "30/09/2026",
+    "addMem": "30/09/2026",
+    "curr": "30/09/2026",
+    "growth": "30/09/2026",
+    "r5": "30/09/2026",
+    "infra": "30/09/2026",
+    "nEdu": "30/09/2026",
+    "dual": "30/09/2026",
+    "mobility": "30/09/2026",
+    "nMove": "30/09/2026",
+    "feeNote": "30/09/2026",
+    "rtCost": "30/09/2026",
+    "rtQol": "30/09/2026",
+    "sof": "30/09/2026",
+    "rtGlobal": "30/09/2026",
+    "vat": "30/09/2026",
+    "r2": "30/09/2026",
+    "capEcon": "30/09/2026",
+    "rtSafe": "30/09/2026",
+    "heir": "30/09/2026",
+    "r1": "30/09/2026",
+    "rtHealth": "30/09/2026",
+    "rtTax": "30/09/2026",
+    "feeTotal1": "30/09/2026",
+    "rtEdu": "30/09/2026",
+    "sponsor": "30/09/2026",
+    "rtDiv": "30/09/2026",
+    "rank": "30/09/2026",
+    "pit": "30/09/2026",
+    "nHealth": "30/09/2026",
+    "bankSafe": "30/09/2026",
+    "maintain": "30/09/2026",
+    "renew": "30/09/2026",
+    "deps": "30/09/2026",
+    "feeTotal2": "30/09/2026",
+    "prog": "30/09/2026",
+    "corrupt": "30/09/2026",
+    "nQol": "30/09/2026",
+    "progInv": "30/09/2026",
+    "tourism": "30/09/2026",
+    "nSafe": "30/09/2026",
+    "inherit": "30/09/2026"
+   },
+   "econ": {
+    "vi": "Logistics, Ngân hàng, Kênh đào",
+    "en": "Logistics, Banking, Canal Trade"
+   },
+   "rank": {
+    "vi": "86th",
+    "en": "86th"
+   },
+   "nDiv": {
+    "vi": "5 kênh đầu tư đủ điều kiện — bất động sản, chứng khoán, tiền gửi ngân hàng, hoặc trồng rừng.<br>Ví dụ: Căn hộ cho thuê tại Punta Pacífica, hoặc dự án trồng rừng tái tạo chỉ từ $100K.",
+    "en": "Five qualifying investment routes — real estate, securities, bank deposits, or reforestation.<br>Example: A rental condo in Punta Pacífica, or a reforestation project starting from just $100K."
+   },
+   "nEdu": {
+    "vi": "Tiếp cận cả hệ thống trường công lẫn quốc tế cho con cái đương đơn.<br>Ví dụ: International School of Panama giảng dạy chương trình IB tại Panama City.",
+    "en": "Access to both public and international schooling for the applicant's children.<br>Example: The International School of Panama offers a full IB curriculum in Panama City."
+   },
+   "nGlobal": {
+    "vi": "Kinh tế đô-la hóa, cửa ngõ hàng không và tài chính của Mỹ Latin.<br>Ví dụ: Sân bay Tocumen là trung tâm trung chuyển của Copa Airlines, kết nối hơn 80 điểm đến châu Mỹ.",
+    "en": "A dollarised economy positioned as Latin America's financial and aviation gateway.<br>Example: Tocumen International Airport is Copa Airlines' hub, connecting more than 80 destinations across the Americas."
+   },
+   "nHealth": {
+    "vi": "Y tế tư nhân chất lượng cao, là điểm đến du lịch y tế của khu vực.<br>Ví dụ: Bệnh viện Punta Pacífica có liên kết học thuật với Johns Hopkins Medicine.",
+    "en": "High-quality private healthcare and a regional medical-tourism destination.<br>Example: Hospital Punta Pacífica holds an academic affiliation with Johns Hopkins Medicine."
+   },
+   "nMove": {
+    "vi": "Thẻ thường trú cho phép sống và làm việc tại Panama vô thời hạn; miễn visa toàn cầu chỉ đến khi nhập tịch.<br>Ví dụ: Sau khi nhập quốc tịch, hộ chiếu Panama miễn visa 148 quốc gia gồm khối Schengen, Anh, Singapore.",
+    "en": "The permanent-residence card grants indefinite rights to live and work in Panama; global visa-free travel only follows naturalization.<br>Example: Once naturalized, a Panama passport travels visa-free to 148 countries including the Schengen Area, the UK, and Singapore."
+   },
+   "nQol": {
+    "vi": "Khí hậu nhiệt đới quanh năm, chi phí sinh hoạt thấp hơn Mỹ, cộng đồng expat lớn.<br>Ví dụ: Chi phí sinh hoạt tại Panama City thấp hơn khoảng 30–40% so với Miami.",
+    "en": "A year-round tropical climate, a lower cost of living than the US, and a large expat community.<br>Example: Living costs in Panama City run roughly 30–40% below Miami."
+   },
+   "nSafe": {
+    "vi": "Định giá bất động sản bằng USD, không rủi ro tỷ giá, thị trường tăng trưởng ổn định.<br>Ví dụ: Bất động sản khu Punta Pacífica, Costa del Este tăng trưởng ổn định 5–8%/năm.",
+    "en": "Real estate is USD-denominated with no currency risk, in a steadily growing market.<br>Example: Property in Punta Pacífica and Costa del Este has posted steady 5–8% annual growth."
+   },
+   "nTax": {
+    "vi": "Ví dụ: Thu nhập cho thuê bất động sản phát sinh ngoài Panama được miễn thuế hoàn toàn theo nguyên tắc thuế lãnh thổ.",
+    "en": "Example: Rental income earned outside Panama is fully exempt from tax under the territorial system."
+   },
+   "curr": {
+    "vi": "Đô la Mỹ (USD)",
+    "en": "US Dollar (USD)"
+   },
+   "capEcon": {
+    "vi": "Panama City chiếm khoảng 70–75% GDP quốc gia, tập trung phần lớn hoạt động tài chính, logistics và dịch vụ.",
+    "en": "Panama City accounts for roughly 70–75% of national GDP, concentrating most of the country's financial, logistics, and services activity."
+   },
+   "econChar": {
+    "vi": "Kênh đào Panama đóng góp trực tiếp khoảng 4–5 tỷ USD phí quá cảnh mỗi năm (~3–4% GDP); toàn chuỗi logistics-cảng biển liên quan chiếm tỉ trọng lớn hơn nhiều.",
+    "en": "The Panama Canal directly generates roughly USD 4–5 billion in annual toll revenue (about 3–4% of GDP); the wider canal-linked logistics and port economy accounts for a far larger share."
+   },
+   "infra": {
+    "vi": "Tuyến Metro số 3 (tài trợ một phần bởi JICA Nhật Bản) đang mở rộng mạng lưới tàu điện Panama City sang khu vực Tây Panama qua Cầu Centennial.",
+    "en": "Metro Line 3 (partly financed by Japan's JICA) is extending Panama City's rail network across the Centennial Bridge into West Panama."
+   },
+   "tourism": {
+    "vi": "Khoảng 2,5 triệu lượt khách quốc tế năm 2023 (Cơ quan Du lịch Panama — ATP), phục hồi ổn định hậu đại dịch.",
+    "en": "Roughly 2.5 million international visitors in 2023 (Panama Tourism Authority — ATP), a steady post-pandemic recovery."
+   },
+   "pit": {
+    "vi": "0–25% lũy tiến (chỉ thu nhập nguồn Panama)",
+    "en": "0–25% progressive (Panama-source income only)"
+   },
+   "cit": {
+    "vi": "25% (19% cho DN nhỏ dưới $50K lợi nhuận; chỉ trên lợi nhuận nguồn Panama)",
+    "en": "25% (19% for small businesses under $50K profit; Panama-source profits only)"
+   },
+   "inherit": {
+    "vi": "Không có — 0% thuế thừa kế, quà tặng, và tài sản ròng",
+    "en": "None — 0% inheritance, gift, and net-wealth tax"
+   },
+   "bankSafe": {
+    "vi": "Trung tâm ngân hàng quốc tế lớn của Mỹ Latin; đã rời danh sách xám FATF (2023) và danh sách rủi ro cao EU (2024), dù một số ngân hàng vẫn áp dụng thẩm định nâng cao.",
+    "en": "A major international banking hub in Latin America; removed from the FATF grey list (2023) and the EU high-risk list (2024), though some banks still apply enhanced due diligence."
+   },
+   "prog": {
+    "vi": "Thường Trú Nhân",
+    "en": "Permanent Residence"
+   },
+   "progInv": {
+    "vi": "Bất động sản, Chứng khoán, Tiền gửi ngân hàng, hoặc Trồng rừng",
+    "en": "Real Estate, Securities, Bank Deposit, or Reforestation"
+   },
+   "renew": {
+    "vi": "Vô thời hạn — không cần gia hạn, chỉ cần nhập cảnh Panama 1 lần mỗi 2 năm để duy trì hiệu lực",
+    "en": "Indefinite — no renewal required; only one entry into Panama every 2 years is needed to keep it valid"
+   },
+   "sof": {
+    "vi": "Có — bắt buộc chứng minh nguồn vốn từ nước ngoài bằng sao kê ngân hàng và tờ khai thuế",
+    "en": "Yes — proof that funds originate from abroad is required via bank statements and tax returns"
+   },
+   "sponsor": {
+    "vi": "3 thế hệ",
+    "en": "Up to 3 generations"
+   },
+   "deps": {
+    "vi": "Dưới 18 tuổi (phụ thuộc tài chính); đến 25 tuổi nếu đang học toàn thời gian tại Panama (diện FNV)",
+    "en": "Under 18 (financially dependent); up to 25 if enrolled in full-time study in Panama (FNV route)"
+   },
+   "addMem": {
+    "vi": "Vợ/chồng, con cái phụ thuộc, và cả bố mẹ phụ thuộc — không giới hạn tuổi bố mẹ",
+    "en": "Spouse, dependent children, and even dependent parents — with no age limit on parents"
+   },
+   "heir": {
+    "vi": "Có — con cái trong hồ sơ nhận thường trú đồng thời với đương đơn chính và có thể nhập tịch cùng lộ trình",
+    "en": "Yes — children included in the application receive permanent residency alongside the main applicant and can naturalize along the same path"
+   },
+   "dual": {
+    "vi": "Về hiến định yêu cầu tuyên thệ từ bỏ quốc tịch cũ khi nhập tịch, nhưng thực tế không bị thực thi nghiêm ngặt — cần tư vấn pháp lý riêng cho từng trường hợp",
+    "en": "Constitutionally requires an oath renouncing prior citizenship upon naturalization, though this is not strictly enforced in practice — case-specific legal advice is required"
+   },
+   "mobility": {
+    "vi": "Không thuộc khối di chuyển tự do lớn (ngoài Schengen, CA-4); lợi ích miễn visa đến từ hộ chiếu Panama sau khi nhập tịch (148 quốc gia)",
+    "en": "Not part of a major free-movement bloc (outside Schengen, CA-4); visa-free benefits come from the Panama passport only after naturalization (148 countries)"
+   },
+   "growth": {
+    "vi": "5–8%/năm (cho thuê bất động sản trung tâm Panama City)",
+    "en": "5–8% per year (central Panama City rental real estate)"
+   },
+   "liquid": {
+    "vi": "Bắt buộc giữ tối thiểu 5 năm; bất động sản trung tâm Panama City thanh khoản tốt, kênh trồng rừng kém thanh khoản hơn",
+    "en": "A minimum 5-year hold is mandatory; central Panama City real estate is solidly liquid, while the reforestation route is less liquid"
+   },
+   "maintain": {
+    "vi": "Thường Trú (QIV/FNV) → Quốc tịch",
+    "en": "Permanent Residency (QIV/FNV) → Citizenship"
+   },
+   "feeInit": {
+    "vi": "Từ $300K bất động sản (QIV, đến 15/10/2026) — hoặc $500K chứng khoán, $750K tiền gửi, $100K trồng rừng",
+    "en": "From $300K real estate (QIV, until 15 Oct 2026) — or $500K securities, $750K bank deposit, $100K reforestation"
+   },
+   "feeDD": {
+    "vi": "Không tách riêng — gồm trong phí chính phủ ($10K cho đương đơn chính)",
+    "en": "Not itemized separately — included within the $10K government fee for the main applicant"
+   },
+   "feeAnnual": {
+    "vi": "Không yêu cầu",
+    "en": "Not required"
+   },
+   "feeTotal1": {
+    "vi": "USD 110,000",
+    "en": "USD 110,000"
+   },
+   "feeTotal2": {
+    "vi": "USD 113,000",
+    "en": "USD 113,000"
+   },
+   "feeNote": {
+    "vi": "Golden Visa/QIV; cư trú vĩnh viễn tức thì, xử lý 30–90 ngày; không có phí thẩm định riêng ngoài phí chính phủ",
+    "en": "Golden Visa/QIV; instant permanent residency, 30–90 day processing; no separate due-diligence fee beyond the government fee"
+   },
+   "r1": {
+    "vi": "Thuế lãnh thổ — 0% thuế thu nhập nước ngoài (đầu tư, cổ tức, lương hưu)",
+    "en": "Territorial tax system — 0% tax on foreign-sourced income (investments, dividends, pensions)"
+   },
+   "r2": {
+    "vi": "Kinh tế đô-la hóa hoàn toàn — không rủi ro tỷ giá cho nhà đầu tư",
+    "en": "A fully dollarised economy — zero currency-exchange risk for investors"
+   },
+   "r3": {
+    "vi": "Không yêu cầu cư trú tối thiểu — chỉ cần nhập cảnh 1 lần mỗi 2 năm",
+    "en": "No minimum stay requirement — only one entry into Panama every 2 years"
+   },
+   "r4": {
+    "vi": "Cư trú vĩnh viễn tức thì, không qua giai đoạn tạm trú — xử lý 30–90 ngày",
+    "en": "Instant permanent residency with no provisional phase — 30–90 day processing"
+   },
+   "r5": {
+    "vi": "Bảo lãnh cả bố mẹ phụ thuộc không giới hạn tuổi — lợi thế hiếm có so với UK, UAE, Thổ Nhĩ Kỳ",
+    "en": "Sponsorship of dependent parents with no age limit — a rare advantage compared with the UK, UAE, or Turkey"
+   },
+   "polstab": 5.8,
+   "corrupt": 34,
+   "vat": 7,
+   "rtCost": 90,
+   "rtEdu": 37,
+   "rtGlobal": 33,
+   "rtMove": 26,
+   "rtHealth": 47,
+   "rtQol": 51,
+   "rtSafe": 52,
+   "rtDiv": 36,
+   "rtTax": 78
   },
   "kn": {
    "code": "kn",
@@ -3229,8 +3468,247 @@
     "infl": "23/07/2026",
     "fx": "23/07/2026",
     "gdp": "23/07/2026",
-    "debt": "23/07/2026"
-   }
+    "debt": "23/07/2026",
+    "econChar": "30/09/2026",
+    "econ": "30/09/2026",
+    "r3": "30/09/2026",
+    "polstab": "30/09/2026",
+    "feeInit": "30/09/2026",
+    "rtMove": "30/09/2026",
+    "liquid": "30/09/2026",
+    "feeAnnual": "30/09/2026",
+    "nDiv": "30/09/2026",
+    "nTax": "30/09/2026",
+    "r4": "30/09/2026",
+    "nGlobal": "30/09/2026",
+    "cit": "30/09/2026",
+    "feeDD": "30/09/2026",
+    "addMem": "30/09/2026",
+    "curr": "30/09/2026",
+    "growth": "30/09/2026",
+    "r5": "30/09/2026",
+    "infra": "30/09/2026",
+    "nEdu": "30/09/2026",
+    "dual": "30/09/2026",
+    "mobility": "30/09/2026",
+    "nMove": "30/09/2026",
+    "feeNote": "30/09/2026",
+    "rtCost": "30/09/2026",
+    "rtQol": "30/09/2026",
+    "sof": "30/09/2026",
+    "rtGlobal": "30/09/2026",
+    "vat": "30/09/2026",
+    "r2": "30/09/2026",
+    "capEcon": "30/09/2026",
+    "rtSafe": "30/09/2026",
+    "heir": "30/09/2026",
+    "r1": "30/09/2026",
+    "rtHealth": "30/09/2026",
+    "rtTax": "30/09/2026",
+    "feeTotal1": "30/09/2026",
+    "rtEdu": "30/09/2026",
+    "sponsor": "30/09/2026",
+    "rtDiv": "30/09/2026",
+    "rank": "30/09/2026",
+    "pit": "30/09/2026",
+    "nHealth": "30/09/2026",
+    "bankSafe": "30/09/2026",
+    "maintain": "30/09/2026",
+    "renew": "30/09/2026",
+    "deps": "30/09/2026",
+    "feeTotal2": "30/09/2026",
+    "prog": "30/09/2026",
+    "corrupt": "30/09/2026",
+    "nQol": "30/09/2026",
+    "progInv": "30/09/2026",
+    "tourism": "30/09/2026",
+    "nSafe": "30/09/2026",
+    "inherit": "30/09/2026"
+   },
+   "econ": {
+    "vi": "Du lịch, Tài chính offshore",
+    "en": "Tourism, Offshore Finance"
+   },
+   "rank": {
+    "vi": "189th",
+    "en": "189th"
+   },
+   "nDiv": {
+    "vi": "Với con đường bất động sản, nhà đầu tư không chỉ nhận hộ chiếu thứ hai mà còn sở hữu một tài sản sinh lời thật.<br>Ví dụ: Căn hộ thương hiệu Park Hyatt tại Christophe Harbour đạt gross yield 6,8%/năm.",
+    "en": "On the real-estate route, an investor gains not just a second passport but a real income-producing asset alongside it.<br>Example: The Park Hyatt-branded residences at Christophe Harbour post a 6.8% annual gross yield."
+   },
+   "nEdu": {
+    "vi": "Giáo dục nội địa còn hạn chế, nhưng St Kitts lại là điểm đến quốc tế cho đào tạo chuyên ngành.<br>Ví dụ: Ross University School of Veterinary Medicine tại Basseterre đào tạo bác sĩ thú y cho sinh viên khắp thế giới.",
+    "en": "Local education is limited, but St Kitts is an international hub for specialist training.<br>Example: Ross University School of Veterinary Medicine in Basseterre trains veterinary students from around the world."
+   },
+   "nGlobal": {
+    "vi": "Là thành viên Thịnh vượng chung, CARICOM và OECS, St Kitts & Nevis có mạng lưới ngoại giao và thương mại vượt xa quy mô một quốc đảo nhỏ.<br>Ví dụ: Công dân SKN được tự do cư trú và làm việc trong khối kinh tế chung OECS gồm 6 đảo Đông Caribbean khác.",
+    "en": "As a member of the Commonwealth, CARICOM, and the OECS, St Kitts & Nevis carries a diplomatic and trade network far beyond the size of a small island state.<br>Example: SKN citizens can live and work freely across the other six Eastern Caribbean islands in the OECS Economic Union."
+   },
+   "nHealth": {
+    "vi": "Y tế công lập ở mức cơ bản, tập trung tại bệnh viện chính của thủ đô.<br>Ví dụ: Bệnh viện Joseph N. France tại Basseterre là cơ sở y tế công lớn nhất liên bang.",
+    "en": "Public healthcare is basic, centred on the capital's main hospital.<br>Example: Joseph N. France General Hospital in Basseterre is the federation's largest public medical facility."
+   },
+   "nMove": {
+    "vi": "Đây là thế mạnh lớn nhất của hộ chiếu SKN — miễn thị thực Anh, độc quyền trong nhóm Caribbean Big 5.<br>Ví dụ: Cùng khối Schengen 26 nước, Singapore, Hong Kong và UAE, hộ chiếu SKN mở cửa hơn 157 quốc gia.",
+    "en": "This is the SKN passport's single greatest strength — visa-free UK access, unique among the Caribbean Big 5.<br>Example: Together with the 26-country Schengen Area, Singapore, Hong Kong, and the UAE, the SKN passport opens more than 157 countries visa-free."
+   },
+   "nQol": {
+    "vi": "Nhịp sống đảo nhỏ, an toàn, nói tiếng Anh, khí hậu nhiệt đới quanh năm.<br>Ví dụ: Khu phức hợp Christophe Harbour ở bán đảo Đông Nam có marina du thuyền, resort 5 sao và bãi biển riêng.",
+    "en": "A small-island pace of life — safe, English-speaking, tropical year-round.<br>Example: The Christophe Harbour complex on the Southeast Peninsula offers a yacht marina, five-star resorts, and private beaches."
+   },
+   "nSafe": {
+    "vi": "Mọi dự án bất động sản phải qua vòng thẩm định của CIU trước khi đủ điều kiện CBI, nên rủi ro mua nhầm dự án không hợp lệ gần như bằng không.<br>Ví dụ: Park Hyatt St Kitts tại Christophe Harbour là một trong số ít dự án đã được CIU phê duyệt.",
+    "en": "Every real-estate project must clear CIU vetting before it qualifies for CBI, so the risk of buying into an ineligible development is close to zero.<br>Example: Park Hyatt St Kitts at Christophe Harbour is one of the developments the CIU has approved."
+   },
+   "nTax": {
+    "vi": "Ví dụ: Thu nhập, lãi vốn và thừa kế đều 0% tại SKN — một trong số ít nơi trên thế giới miễn cả ba loại thuế này cùng lúc.",
+    "en": "Example: Income, capital gains, and inheritance are all taxed at 0% in SKN — one of the few jurisdictions in the world exempting all three at once."
+   },
+   "curr": {
+    "vi": "Đông Ca-ri-bê Dollar (XCD), do Ngân hàng Trung ương Đông Caribbean (ECCB) phát hành trong liên minh tiền tệ 8 nước — ổn định cao nhờ neo tỷ giá với USD từ năm 1976.",
+    "en": "East Caribbean Dollar (XCD), issued by the Eastern Caribbean Central Bank (ECCB) across an 8-country currency union — highly stable, pegged to the USD since 1976."
+   },
+   "capEcon": {
+    "vi": "Basseterre, thủ đô trên đảo St Kitts, là nơi tập trung phần lớn hoạt động thương mại, chính quyền liên bang và du lịch tàu biển qua cảng Port Zante.",
+    "en": "Basseterre, the capital on St Kitts island, concentrates most of the federation's commerce, government activity, and cruise tourism through Port Zante."
+   },
+   "econChar": {
+    "vi": "Từ khi ngành mía đường quốc doanh đóng cửa năm 2005, du lịch và dịch vụ tài chính offshore trở thành hai trụ cột chính của nền kinh tế; dòng vốn CBI những năm gần đây còn kéo theo tăng trưởng mạnh ở ngành xây dựng và bất động sản.",
+    "en": "Since the state sugar industry closed in 2005, tourism and offshore financial services have become the economy's two main pillars — and CBI capital inflows in recent years have driven strong growth in construction and real estate on top of that."
+   },
+   "infra": {
+    "vi": "Nevis đang phát triển dự án năng lượng địa nhiệt để giảm phụ thuộc nhiên liệu nhập khẩu, hướng tới nguồn điện sạch và ổn định hơn cho cả liên bang.",
+    "en": "Nevis is developing a geothermal energy project to cut reliance on imported fuel, aiming for a cleaner and more stable power supply for the whole federation."
+   },
+   "tourism": {
+    "vi": "Du lịch phục hồi mạnh sau đại dịch, với dòng khách tàu biển và lưu trú tăng đều mỗi năm — được tiếp sức bởi các dự án thương hiệu quốc tế như Park Hyatt St Kitts và Four Seasons Nevis.",
+    "en": "Tourism has rebounded strongly post-pandemic, with cruise and stay-over arrivals climbing steadily each year — reinforced by international branded developments such as Park Hyatt St Kitts and Four Seasons Nevis."
+   },
+   "pit": {
+    "vi": "0% — SKN không đánh thuế thu nhập cá nhân, dù là thu nhập trong nước hay phát sinh ở nước ngoài.",
+    "en": "0% — SKN levies no personal income tax, whether the income is earned locally or abroad."
+   },
+   "cit": {
+    "vi": "33% — mức thuế doanh nghiệp nội địa, chỉ áp dụng khi thực sự có hoạt động kinh doanh tại SKN.",
+    "en": "33% — the local corporate tax rate, which only applies to businesses actually operating within SKN."
+   },
+   "inherit": {
+    "vi": "0% — không có thuế thừa kế hay thuế di sản tại SKN.",
+    "en": "0% — no inheritance or estate tax in SKN."
+   },
+   "bankSafe": {
+    "vi": "Hệ thống ngân hàng chịu giám sát của Ngân hàng Trung ương Đông Caribbean (ECCB) trong khối tiền tệ chung 8 nước, và SKN đã cải thiện đáng kể mức tuân thủ FATF/OECD sau các đợt rà soát trước đây.",
+    "en": "The banking system is supervised by the Eastern Caribbean Central Bank (ECCB) across an 8-country currency union, and SKN has meaningfully improved its FATF/OECD compliance since earlier reviews."
+   },
+   "prog": {
+    "vi": "Quốc Tịch",
+    "en": "Citizenship"
+   },
+   "progInv": {
+    "vi": "Đóng góp SISC hoặc Bất động sản được phê duyệt (ARE)",
+    "en": "SISC contribution or Approved Real Estate (ARE)"
+   },
+   "renew": {
+    "vi": "Không cần gia hạn — vĩnh viễn",
+    "en": "Lifetime — no renewal required"
+   },
+   "sof": {
+    "vi": "Chứng minh nguồn gốc tài sản hợp pháp, cùng vòng kiểm tra INTERPOL, PEP và danh sách trừng phạt do CIU thực hiện.",
+    "en": "Proof of a legitimate source of funds, plus INTERPOL, PEP, and sanctions-list screening carried out by the CIU."
+   },
+   "sponsor": {
+    "vi": "Vợ/chồng, con đến 25 tuổi, cha mẹ/ông bà từ 55 tuổi, và anh chị em phụ thuộc — phạm vi bảo lãnh rộng nhất nhóm Caribbean CBI.",
+    "en": "Spouse, children up to 25, parents or grandparents aged 55 and over, and dependent siblings — the widest sponsorship scope among Caribbean CBI programs."
+   },
+   "deps": {
+    "vi": "Con chưa kết hôn đến 25 tuổi nếu đang học đại học toàn thời gian; không giới hạn tuổi nếu con bị khuyết tật.",
+    "en": "Unmarried children up to 25 if enrolled full-time at university; no age limit for children with a disability."
+   },
+   "addMem": {
+    "vi": "Vợ/chồng hợp pháp (không cần sống chung), con phụ thuộc, cha mẹ/ông bà từ 55 tuổi, và — trường hợp hiếm gặp ở CBI khác — cả anh chị em phụ thuộc chưa kết hôn dưới 30 tuổi.",
+    "en": "A legal spouse (no cohabitation required), dependent children, parents or grandparents aged 55+, and — unusual among CBI programs — dependent unmarried siblings under 30."
+   },
+   "heir": {
+    "vi": "Có — con sinh sau khi nhập tịch được thừa hưởng quốc tịch SKN theo huyết thống.",
+    "en": "Yes — children born after naturalization inherit SKN citizenship by descent."
+   },
+   "dual": {
+    "vi": "Có — SKN cho phép quốc tịch kép hoàn toàn, không yêu cầu từ bỏ quốc tịch gốc.",
+    "en": "Yes — SKN fully permits dual citizenship, with no requirement to renounce your original nationality."
+   },
+   "mobility": {
+    "vi": "Miễn thị thực Anh — độc quyền trong nhóm Caribbean Big 5 — cùng khối Schengen 26 nước, Singapore, Hong Kong, UAE và hơn 157 quốc gia khác.",
+    "en": "Visa-free UK access — unique among the Caribbean Big 5 — plus the 26-country Schengen Area, Singapore, Hong Kong, the UAE, and 157+ countries in total."
+   },
+   "growth": {
+    "vi": "6–14%/năm tùy dự án. Ví dụ, căn hộ thương hiệu Park Hyatt St Kitts trong danh mục NAC đạt gross yield 6,8% và IRR 5 năm 14,0%.",
+    "en": "6–14% per year depending on the project. For example, the Park Hyatt St Kitts branded residences in NAC's own portfolio post a 6.8% gross yield and a 14.0% 5-year IRR."
+   },
+   "liquid": {
+    "vi": "Thanh khoản thấp — bất động sản phải giữ tối thiểu 7 năm mới được bán, và chỉ bán lại được cho công dân SKN khác.",
+    "en": "Low liquidity — real estate must be held for a minimum of 7 years before resale, and can then only be resold to another SKN citizen."
+   },
+   "maintain": {
+    "vi": "Quốc tịch (vĩnh viễn theo luật hiện hành, không yêu cầu duy trì cư trú)",
+    "en": "Citizenship (permanent under current law — no residency upkeep required)"
+   },
+   "feeInit": {
+    "vi": "USD 250,000 (SISC, cá nhân) hoặc USD 325,000 (Bất động sản được phê duyệt — ARE)",
+    "en": "USD 250,000 (SISC, single applicant) or USD 325,000 (Approved Real Estate — ARE)"
+   },
+   "feeDD": {
+    "vi": "USD 25,000 — phụ phí Accelerated Lightning Process (ALP), đóng kèm hồ sơ để rút ngắn thời gian xử lý.",
+    "en": "USD 25,000 — the Accelerated Lightning Process (ALP) surcharge, paid with the application to shorten processing time."
+   },
+   "feeAnnual": {
+    "vi": "Không yêu cầu",
+    "en": "Not required"
+   },
+   "feeTotal1": {
+    "vi": "USD 285,000 (1 người: SISC USD 250,000 + phí thẩm định chính phủ USD 10,000 + phụ phí ALP USD 25,000)",
+    "en": "USD 285,000 (1 applicant: USD 250,000 SISC + USD 10,000 government due-diligence fee + USD 25,000 ALP surcharge)"
+   },
+   "feeTotal2": {
+    "vi": "USD 317,500 (gia đình 3 người — NĐT chính, vợ/chồng, 1 con dưới 18 tuổi: SISC USD 275,000 + phí thẩm định USD 17,500 + phụ phí ALP USD 25,000)",
+    "en": "USD 317,500 (family of 3 — main applicant, spouse, one child under 18: USD 275,000 SISC + USD 17,500 in due-diligence fees + USD 25,000 ALP surcharge)"
+   },
+   "feeNote": {
+    "vi": "Quốc tịch đầu tư (CBI) — xử lý 45–90 ngày qua ALP (tiêu chuẩn 3–6 tháng); không yêu cầu cư trú.",
+    "en": "Citizenship by Investment (CBI) — 45–90 days via ALP (3–6 months standard); no residency requirement."
+   },
+   "r1": {
+    "vi": "Chương trình CBI lâu đời nhất thế giới, vận hành liên tục từ 1984",
+    "en": "The world's oldest continuously running CBI program, since 1984"
+   },
+   "r2": {
+    "vi": "Hộ chiếu SKN duy nhất trong Caribbean Big 5 được miễn thị thực Anh",
+    "en": "The only Caribbean Big 5 passport with visa-free UK access"
+   },
+   "r3": {
+    "vi": "Thuế 0% cho thu nhập, lãi vốn và thừa kế trên toàn cầu",
+    "en": "0% tax on worldwide income, capital gains, and inheritance"
+   },
+   "r4": {
+    "vi": "ALP xử lý 45–90 ngày — nhanh nhất trong nhóm Caribbean CBI",
+    "en": "45–90 day ALP processing — the fastest in the Caribbean CBI group"
+   },
+   "r5": {
+    "vi": "Không yêu cầu cư trú, bảo lãnh gia đình rộng nhất Caribbean (cả cha mẹ và anh chị em phụ thuộc)",
+    "en": "No residency requirement, with the Caribbean's widest family inclusion (parents and dependent siblings included)"
+   },
+   "polstab": 6.8,
+   "corrupt": 56,
+   "vat": 17,
+   "rtCost": 75,
+   "rtEdu": 14,
+   "rtGlobal": 24,
+   "rtMove": 74,
+   "rtHealth": 15,
+   "rtQol": 13,
+   "rtSafe": 20,
+   "rtDiv": 8,
+   "rtTax": 99
   }
  }
 }

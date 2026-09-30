@@ -1,5 +1,23 @@
 # So Sánh Notion sync log
 
+## 2026-09-30 16:23 UTC — So Sánh Notion sync
+**kn** — 98 field(s) changed (incl. VAT, corporate tax, total cost (1 applicant), total cost (2+ applicants))
+  - `addMem.en`: (empty) → A legal spouse (no cohabitation required), dependent childre
+  - `addMem.vi`: (empty) → Vợ/chồng hợp pháp (không cần sống chung), con phụ thuộc, cha
+  - `bankSafe.en`: (empty) → The banking system is supervised by the Eastern Caribbean Ce
+  - `bankSafe.vi`: (empty) → Hệ thống ngân hàng chịu giám sát của Ngân hàng Trung ương Đô
+  - `capEcon.en`: (empty) → Basseterre, the capital on St Kitts island, concentrates mos
+  - `capEcon.vi`: (empty) → Basseterre, thủ đô trên đảo St Kitts, là nơi tập trung phần 
+  - …and 92 more field(s)
+**pa** — 98 field(s) changed (incl. VAT, corporate tax, total cost (1 applicant), total cost (2+ applicants))
+  - `addMem.en`: (empty) → Spouse, dependent children, and even dependent parents — wit
+  - `addMem.vi`: (empty) → Vợ/chồng, con cái phụ thuộc, và cả bố mẹ phụ thuộc — không g
+  - `bankSafe.en`: (empty) → A major international banking hub in Latin America; removed 
+  - `bankSafe.vi`: (empty) → Trung tâm ngân hàng quốc tế lớn của Mỹ Latin; đã rời danh sá
+  - `capEcon.en`: (empty) → Panama City accounts for roughly 70–75% of national GDP, con
+  - `capEcon.vi`: (empty) → Panama City chiếm khoảng 70–75% GDP quốc gia, tập trung phần
+  - …and 92 more field(s)
+
 ## 2026-07-20 19:16 UTC — So Sánh Notion sync
 **cb** — 1 field(s) changed
   - `deps.vi`: <25 tuổi → < 25 tuổi
