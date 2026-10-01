@@ -3132,106 +3132,6 @@
    "liveInPicker": true,
    "sortOrder": 11,
    "bloc": [],
-   "othNews": {
-    "vi": "QUAN TRỌNG: ngưỡng BĐS Nhà đầu tư Đủ điều kiện tăng từ USD 300,000 lên USD 500,000 từ 15/10/2026",
-    "en": "IMPORTANT: the Qualified Investor real-estate threshold rises from USD 300,000 to USD 500,000 on 15 October 2026"
-   },
-   "fx": {
-    "vi": "1 USD = 1 Balboa (PAB) — cố định tuyệt đối, USD lưu hành trực tiếp",
-    "en": "1 USD = 1 Balboa (PAB) — an absolute peg; the USD circulates directly as legal tender"
-   },
-   "minCost": {
-    "vi": "Rừng tái sinh: từ USD 80,000 (≥5ha rừng chứng nhận) · Nhà đầu tư Đủ điều kiện: BĐS từ USD 500,000 (tăng từ USD 300,000 từ 15/10/2026)",
-    "en": "Reforestation route: from USD 80,000 (≥5 ha of certified forest) · Qualified Investor route: real estate from USD 500,000 (up from USD 300,000 effective 15 October 2026)"
-   },
-   "stay": {
-    "vi": "Không quy định số ngày cư trú cụ thể để giữ thẻ thường trú",
-    "en": "No specific number of residency days is required to keep the permanent-residence card"
-   },
-   "citiz": {
-    "vi": "Thường trú: vài tuần đến vài tháng tùy diện · nhập tịch sau đó theo luật chung",
-    "en": "Permanent residence: a few weeks to a few months depending on the route · naturalization afterward follows general law"
-   },
-   "e2": {
-    "vi": "Có — Hiệp ước Đầu tư Song phương Mỹ-Panama (1982, hiệu lực 1991)",
-    "en": "Yes — the US–Panama Bilateral Investment Treaty (signed 1982, in force since 1991)"
-   },
-   "feeGov": {
-    "vi": "Rừng tái sinh: ~USD 1,500-2,900 (giai đoạn 1) · Nhà đầu tư Đủ điều kiện: phí luật sư + nhà nước riêng",
-    "en": "Reforestation route: ~USD 1,500–2,900 (stage 1) · Qualified Investor route: attorney and government fees quoted separately"
-   },
-   "gdp": 4.5,
-   "infl": -0.7,
-   "debt": 55.8,
-   "vfree": 139,
-   "_updated": {
-    "othNews": "23/07/2026",
-    "e2": "23/07/2026",
-    "minCost": "23/07/2026",
-    "vfree": "23/07/2026",
-    "stay": "23/07/2026",
-    "feeGov": "23/07/2026",
-    "citiz": "23/07/2026",
-    "infl": "23/07/2026",
-    "fx": "23/07/2026",
-    "gdp": "23/07/2026",
-    "debt": "23/07/2026",
-    "econChar": "30/09/2026",
-    "econ": "30/09/2026",
-    "r3": "30/09/2026",
-    "polstab": "30/09/2026",
-    "feeInit": "30/09/2026",
-    "rtMove": "30/09/2026",
-    "liquid": "30/09/2026",
-    "feeAnnual": "30/09/2026",
-    "nDiv": "30/09/2026",
-    "nTax": "30/09/2026",
-    "r4": "30/09/2026",
-    "nGlobal": "30/09/2026",
-    "cit": "30/09/2026",
-    "feeDD": "30/09/2026",
-    "addMem": "30/09/2026",
-    "curr": "30/09/2026",
-    "growth": "30/09/2026",
-    "r5": "30/09/2026",
-    "infra": "30/09/2026",
-    "nEdu": "30/09/2026",
-    "dual": "30/09/2026",
-    "mobility": "30/09/2026",
-    "nMove": "30/09/2026",
-    "feeNote": "30/09/2026",
-    "rtCost": "30/09/2026",
-    "rtQol": "30/09/2026",
-    "sof": "30/09/2026",
-    "rtGlobal": "30/09/2026",
-    "vat": "30/09/2026",
-    "r2": "30/09/2026",
-    "capEcon": "30/09/2026",
-    "rtSafe": "30/09/2026",
-    "heir": "30/09/2026",
-    "r1": "30/09/2026",
-    "rtHealth": "30/09/2026",
-    "rtTax": "30/09/2026",
-    "feeTotal1": "30/09/2026",
-    "rtEdu": "30/09/2026",
-    "sponsor": "30/09/2026",
-    "rtDiv": "30/09/2026",
-    "rank": "30/09/2026",
-    "pit": "30/09/2026",
-    "nHealth": "30/09/2026",
-    "bankSafe": "30/09/2026",
-    "maintain": "30/09/2026",
-    "renew": "30/09/2026",
-    "deps": "30/09/2026",
-    "feeTotal2": "30/09/2026",
-    "prog": "30/09/2026",
-    "corrupt": "30/09/2026",
-    "nQol": "30/09/2026",
-    "progInv": "30/09/2026",
-    "tourism": "30/09/2026",
-    "nSafe": "30/09/2026",
-    "inherit": "30/09/2026"
-   },
    "econ": {
     "vi": "Logistics, Ngân hàng, Kênh đào",
     "en": "Logistics, Banking, Canal Trade"
@@ -3292,6 +3192,10 @@
     "vi": "Khoảng 2,5 triệu lượt khách quốc tế năm 2023 (Cơ quan Du lịch Panama — ATP), phục hồi ổn định hậu đại dịch.",
     "en": "Roughly 2.5 million international visitors in 2023 (Panama Tourism Authority — ATP), a steady post-pandemic recovery."
    },
+   "othNews": {
+    "vi": "QUAN TRỌNG: ngưỡng BĐS Nhà đầu tư Đủ điều kiện tăng từ USD 300,000 lên USD 500,000 từ 15/10/2026",
+    "en": "IMPORTANT: the Qualified Investor real-estate threshold rises from USD 300,000 to USD 500,000 on 15 October 2026"
+   },
    "pit": {
     "vi": "0–25% lũy tiến (chỉ thu nhập nguồn Panama)",
     "en": "0–25% progressive (Panama-source income only)"
@@ -3308,6 +3212,10 @@
     "vi": "Trung tâm ngân hàng quốc tế lớn của Mỹ Latin; đã rời danh sách xám FATF (2023) và danh sách rủi ro cao EU (2024), dù một số ngân hàng vẫn áp dụng thẩm định nâng cao.",
     "en": "A major international banking hub in Latin America; removed from the FATF grey list (2023) and the EU high-risk list (2024), though some banks still apply enhanced due diligence."
    },
+   "fx": {
+    "vi": "1 USD = 1 Balboa (PAB) — cố định tuyệt đối, USD lưu hành trực tiếp",
+    "en": "1 USD = 1 Balboa (PAB) — an absolute peg; the USD circulates directly as legal tender"
+   },
    "prog": {
     "vi": "Thường Trú Nhân",
     "en": "Permanent Residence"
@@ -3316,9 +3224,21 @@
     "vi": "Bất động sản, Chứng khoán, Tiền gửi ngân hàng, hoặc Trồng rừng",
     "en": "Real Estate, Securities, Bank Deposit, or Reforestation"
    },
+   "minCost": {
+    "vi": "Rừng tái sinh: từ USD 80,000 (≥5ha rừng chứng nhận) · Nhà đầu tư Đủ điều kiện: BĐS từ USD 500,000 (tăng từ USD 300,000 từ 15/10/2026)",
+    "en": "Reforestation route: from USD 80,000 (≥5 ha of certified forest) · Qualified Investor route: real estate from USD 500,000 (up from USD 300,000 effective 15 October 2026)"
+   },
    "renew": {
     "vi": "Vô thời hạn — không cần gia hạn, chỉ cần nhập cảnh Panama 1 lần mỗi 2 năm để duy trì hiệu lực",
     "en": "Indefinite — no renewal required; only one entry into Panama every 2 years is needed to keep it valid"
+   },
+   "stay": {
+    "vi": "Không quy định số ngày cư trú cụ thể để giữ thẻ thường trú",
+    "en": "No specific number of residency days is required to keep the permanent-residence card"
+   },
+   "citiz": {
+    "vi": "Thường trú: vài tuần đến vài tháng tùy diện · nhập tịch sau đó theo luật chung",
+    "en": "Permanent residence: a few weeks to a few months depending on the route · naturalization afterward follows general law"
    },
    "sof": {
     "vi": "Có — bắt buộc chứng minh nguồn vốn từ nước ngoài bằng sao kê ngân hàng và tờ khai thuế",
@@ -3348,6 +3268,10 @@
     "vi": "Không thuộc khối di chuyển tự do lớn (ngoài Schengen, CA-4); lợi ích miễn visa đến từ hộ chiếu Panama sau khi nhập tịch (148 quốc gia)",
     "en": "Not part of a major free-movement bloc (outside Schengen, CA-4); visa-free benefits come from the Panama passport only after naturalization (148 countries)"
    },
+   "e2": {
+    "vi": "Có — Hiệp ước Đầu tư Song phương Mỹ-Panama (1982, hiệu lực 1991)",
+    "en": "Yes — the US–Panama Bilateral Investment Treaty (signed 1982, in force since 1991)"
+   },
    "growth": {
     "vi": "5–8%/năm (cho thuê bất động sản trung tâm Panama City)",
     "en": "5–8% per year (central Panama City rental real estate)"
@@ -3363,6 +3287,10 @@
    "feeInit": {
     "vi": "Từ $300K bất động sản (QIV, đến 15/10/2026) — hoặc $500K chứng khoán, $750K tiền gửi, $100K trồng rừng",
     "en": "From $300K real estate (QIV, until 15 Oct 2026) — or $500K securities, $750K bank deposit, $100K reforestation"
+   },
+   "feeGov": {
+    "vi": "Rừng tái sinh: ~USD 1,500-2,900 (giai đoạn 1) · Nhà đầu tư Đủ điều kiện: phí luật sư + nhà nước riêng",
+    "en": "Reforestation route: ~USD 1,500–2,900 (stage 1) · Qualified Investor route: attorney and government fees quoted separately"
    },
    "feeDD": {
     "vi": "Không tách riêng — gồm trong phí chính phủ ($10K cho đương đơn chính)",
@@ -3404,9 +3332,13 @@
     "vi": "Bảo lãnh cả bố mẹ phụ thuộc không giới hạn tuổi — lợi thế hiếm có so với UK, UAE, Thổ Nhĩ Kỳ",
     "en": "Sponsorship of dependent parents with no age limit — a rare advantage compared with the UK, UAE, or Turkey"
    },
+   "gdp": 4.5,
+   "infl": -0.7,
+   "debt": 55.8,
    "polstab": 5.8,
    "corrupt": 34,
    "vat": 7,
+   "vfree": 139,
    "rtCost": 90,
    "rtEdu": 37,
    "rtGlobal": 33,
@@ -3415,48 +3347,7 @@
    "rtQol": 51,
    "rtSafe": 52,
    "rtDiv": 36,
-   "rtTax": 78
-  },
-  "kn": {
-   "code": "kn",
-   "vi": "St. Nevis",
-   "en": "St. Kitts & Nevis",
-   "flag": "🇰🇳",
-   "liveInPicker": true,
-   "sortOrder": 12,
-   "bloc": [],
-   "othNews": {
-    "vi": "Từ 14/04/2026: bắt buộc thu sinh trắc học (vân tay + nhận diện khuôn mặt) cho người nộp đơn",
-    "en": "From 14 April 2026: biometric collection (fingerprints + facial recognition) becomes mandatory for applicants"
-   },
-   "fx": {
-    "vi": "1 USD = 2.70 XCD (cố định từ 1976)",
-    "en": "1 USD = 2.70 XCD (pegged since 1976)"
-   },
-   "minCost": {
-    "vi": "Đóng góp SISC từ USD 250,000 (cá nhân hoặc gia đình tới 4 người) hoặc mua BĐS căn hộ/dự án được duyệt",
-    "en": "SISC contribution from USD 250,000 (single applicant or family of up to 4) or purchase of an approved real-estate unit/project"
-   },
-   "stay": {
-    "vi": "Không yêu cầu lưu trú",
-    "en": "No residency requirement"
-   },
-   "citiz": {
-    "vi": "Quốc tịch trực tiếp (không qua thường trú) — xử lý 120-180 ngày",
-    "en": "Direct citizenship (no residency stage) — processing takes 120–180 days"
-   },
-   "e2": {
-    "vi": "Không có hiệp ước E-2 với Mỹ",
-    "en": "No E-2 treaty with the US"
-   },
-   "feeGov": {
-    "vi": "Phí thẩm định USD 10,000 (chính) + USD 7,500/người phụ thuộc từ 16 tuổi",
-    "en": "Due-diligence fee: USD 10,000 (main applicant) + USD 7,500 per dependent aged 16 and over"
-   },
-   "gdp": 2,
-   "infl": 2,
-   "debt": 61,
-   "vfree": 147,
+   "rtTax": 78,
    "_updated": {
     "othNews": "23/07/2026",
     "e2": "23/07/2026",
@@ -3524,7 +3415,16 @@
     "tourism": "30/09/2026",
     "nSafe": "30/09/2026",
     "inherit": "30/09/2026"
-   },
+   }
+  },
+  "kn": {
+   "code": "kn",
+   "vi": "St. Nevis",
+   "en": "St. Kitts & Nevis",
+   "flag": "🇰🇳",
+   "liveInPicker": true,
+   "sortOrder": 12,
+   "bloc": [],
    "econ": {
     "vi": "Du lịch, Tài chính offshore",
     "en": "Tourism, Offshore Finance"
@@ -3585,6 +3485,10 @@
     "vi": "Du lịch phục hồi mạnh sau đại dịch, với dòng khách tàu biển và lưu trú tăng đều mỗi năm — được tiếp sức bởi các dự án thương hiệu quốc tế như Park Hyatt St Kitts và Four Seasons Nevis.",
     "en": "Tourism has rebounded strongly post-pandemic, with cruise and stay-over arrivals climbing steadily each year — reinforced by international branded developments such as Park Hyatt St Kitts and Four Seasons Nevis."
    },
+   "othNews": {
+    "vi": "Từ 14/04/2026: bắt buộc thu sinh trắc học (vân tay + nhận diện khuôn mặt) cho người nộp đơn",
+    "en": "From 14 April 2026: biometric collection (fingerprints + facial recognition) becomes mandatory for applicants"
+   },
    "pit": {
     "vi": "0% — SKN không đánh thuế thu nhập cá nhân, dù là thu nhập trong nước hay phát sinh ở nước ngoài.",
     "en": "0% — SKN levies no personal income tax, whether the income is earned locally or abroad."
@@ -3601,6 +3505,10 @@
     "vi": "Hệ thống ngân hàng chịu giám sát của Ngân hàng Trung ương Đông Caribbean (ECCB) trong khối tiền tệ chung 8 nước, và SKN đã cải thiện đáng kể mức tuân thủ FATF/OECD sau các đợt rà soát trước đây.",
     "en": "The banking system is supervised by the Eastern Caribbean Central Bank (ECCB) across an 8-country currency union, and SKN has meaningfully improved its FATF/OECD compliance since earlier reviews."
    },
+   "fx": {
+    "vi": "1 USD = 2.70 XCD (cố định từ 1976)",
+    "en": "1 USD = 2.70 XCD (pegged since 1976)"
+   },
    "prog": {
     "vi": "Quốc Tịch",
     "en": "Citizenship"
@@ -3609,9 +3517,21 @@
     "vi": "Đóng góp SISC hoặc Bất động sản được phê duyệt (ARE)",
     "en": "SISC contribution or Approved Real Estate (ARE)"
    },
+   "minCost": {
+    "vi": "Đóng góp SISC từ USD 250,000 (cá nhân hoặc gia đình tới 4 người) hoặc mua BĐS căn hộ/dự án được duyệt",
+    "en": "SISC contribution from USD 250,000 (single applicant or family of up to 4) or purchase of an approved real-estate unit/project"
+   },
    "renew": {
     "vi": "Không cần gia hạn — vĩnh viễn",
     "en": "Lifetime — no renewal required"
+   },
+   "stay": {
+    "vi": "Không yêu cầu lưu trú",
+    "en": "No residency requirement"
+   },
+   "citiz": {
+    "vi": "Quốc tịch trực tiếp (không qua thường trú) — xử lý 120-180 ngày",
+    "en": "Direct citizenship (no residency stage) — processing takes 120–180 days"
    },
    "sof": {
     "vi": "Chứng minh nguồn gốc tài sản hợp pháp, cùng vòng kiểm tra INTERPOL, PEP và danh sách trừng phạt do CIU thực hiện.",
@@ -3641,6 +3561,10 @@
     "vi": "Miễn thị thực Anh — độc quyền trong nhóm Caribbean Big 5 — cùng khối Schengen 26 nước, Singapore, Hong Kong, UAE và hơn 157 quốc gia khác.",
     "en": "Visa-free UK access — unique among the Caribbean Big 5 — plus the 26-country Schengen Area, Singapore, Hong Kong, the UAE, and 157+ countries in total."
    },
+   "e2": {
+    "vi": "Không có hiệp ước E-2 với Mỹ",
+    "en": "No E-2 treaty with the US"
+   },
    "growth": {
     "vi": "6–14%/năm tùy dự án. Ví dụ, căn hộ thương hiệu Park Hyatt St Kitts trong danh mục NAC đạt gross yield 6,8% và IRR 5 năm 14,0%.",
     "en": "6–14% per year depending on the project. For example, the Park Hyatt St Kitts branded residences in NAC's own portfolio post a 6.8% gross yield and a 14.0% 5-year IRR."
@@ -3656,6 +3580,10 @@
    "feeInit": {
     "vi": "USD 250,000 (SISC, cá nhân) hoặc USD 325,000 (Bất động sản được phê duyệt — ARE)",
     "en": "USD 250,000 (SISC, single applicant) or USD 325,000 (Approved Real Estate — ARE)"
+   },
+   "feeGov": {
+    "vi": "Phí thẩm định USD 10,000 (chính) + USD 7,500/người phụ thuộc từ 16 tuổi",
+    "en": "Due-diligence fee: USD 10,000 (main applicant) + USD 7,500 per dependent aged 16 and over"
    },
    "feeDD": {
     "vi": "USD 25,000 — phụ phí Accelerated Lightning Process (ALP), đóng kèm hồ sơ để rút ngắn thời gian xử lý.",
@@ -3697,9 +3625,13 @@
     "vi": "Không yêu cầu cư trú, bảo lãnh gia đình rộng nhất Caribbean (cả cha mẹ và anh chị em phụ thuộc)",
     "en": "No residency requirement, with the Caribbean's widest family inclusion (parents and dependent siblings included)"
    },
+   "gdp": 2,
+   "infl": 2,
+   "debt": 61,
    "polstab": 6.8,
    "corrupt": 56,
    "vat": 17,
+   "vfree": 147,
    "rtCost": 75,
    "rtEdu": 14,
    "rtGlobal": 24,
@@ -3708,7 +3640,75 @@
    "rtQol": 13,
    "rtSafe": 20,
    "rtDiv": 8,
-   "rtTax": 99
+   "rtTax": 99,
+   "_updated": {
+    "othNews": "23/07/2026",
+    "e2": "23/07/2026",
+    "minCost": "23/07/2026",
+    "vfree": "23/07/2026",
+    "stay": "23/07/2026",
+    "feeGov": "23/07/2026",
+    "citiz": "23/07/2026",
+    "infl": "23/07/2026",
+    "fx": "23/07/2026",
+    "gdp": "23/07/2026",
+    "debt": "23/07/2026",
+    "econChar": "30/09/2026",
+    "econ": "30/09/2026",
+    "r3": "30/09/2026",
+    "polstab": "30/09/2026",
+    "feeInit": "30/09/2026",
+    "rtMove": "30/09/2026",
+    "liquid": "30/09/2026",
+    "feeAnnual": "30/09/2026",
+    "nDiv": "30/09/2026",
+    "nTax": "30/09/2026",
+    "r4": "30/09/2026",
+    "nGlobal": "30/09/2026",
+    "cit": "30/09/2026",
+    "feeDD": "30/09/2026",
+    "addMem": "30/09/2026",
+    "curr": "30/09/2026",
+    "growth": "30/09/2026",
+    "r5": "30/09/2026",
+    "infra": "30/09/2026",
+    "nEdu": "30/09/2026",
+    "dual": "30/09/2026",
+    "mobility": "30/09/2026",
+    "nMove": "30/09/2026",
+    "feeNote": "30/09/2026",
+    "rtCost": "30/09/2026",
+    "rtQol": "30/09/2026",
+    "sof": "30/09/2026",
+    "rtGlobal": "30/09/2026",
+    "vat": "30/09/2026",
+    "r2": "30/09/2026",
+    "capEcon": "30/09/2026",
+    "rtSafe": "30/09/2026",
+    "heir": "30/09/2026",
+    "r1": "30/09/2026",
+    "rtHealth": "30/09/2026",
+    "rtTax": "30/09/2026",
+    "feeTotal1": "30/09/2026",
+    "rtEdu": "30/09/2026",
+    "sponsor": "30/09/2026",
+    "rtDiv": "30/09/2026",
+    "rank": "30/09/2026",
+    "pit": "30/09/2026",
+    "nHealth": "30/09/2026",
+    "bankSafe": "30/09/2026",
+    "maintain": "30/09/2026",
+    "renew": "30/09/2026",
+    "deps": "30/09/2026",
+    "feeTotal2": "30/09/2026",
+    "prog": "30/09/2026",
+    "corrupt": "30/09/2026",
+    "nQol": "30/09/2026",
+    "progInv": "30/09/2026",
+    "tourism": "30/09/2026",
+    "nSafe": "30/09/2026",
+    "inherit": "30/09/2026"
+   }
   }
  }
 }
