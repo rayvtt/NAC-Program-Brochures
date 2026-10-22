@@ -1,8 +1,8 @@
-# WP Sync run — 2026-10-22T05:15:11Z
+# WP Sync run — 2026-10-22T05:27:45Z
 
 - Trigger: `push` on `refs/heads/main`
-- Commit: `d4fcf4b9c4ca9414c0d92be68214970e1c0917bc`
-- Run: <https://github.com/rayvtt/NAC-Program-Brochures/actions/runs/39726944813>
+- Commit: `7a7a3e600ac500b42dab3e590288812613eaea7f`
+- Run: <https://github.com/rayvtt/NAC-Program-Brochures/actions/runs/39728145652>
 
 ## Refresh listings spotlight
 ```
@@ -38,51 +38,51 @@ Running: python sync_brochures.py --all
 NAC Brochure Sync — pushing all brochures
 ──────────────────────────────────────────────────────────────────────
   portugal  page 1848  ←  portugal-gv.html  (243KB)
-    ✓ pushed · modified: 2026-10-22T12:16:09
+    ✓ pushed · modified: 2026-10-22T12:28:40
   greece  page 1827  ←  greece-rbi_1_2.html  (257KB)
-    ✓ pushed · modified: 2026-10-22T12:16:13
+    ✓ pushed · modified: 2026-10-22T12:28:43
   cyprus  page 1844  ←  cyprus-rbi_3_3.html  (234KB)
-    ✓ pushed · modified: 2026-10-22T12:16:17
+    ✓ pushed · modified: 2026-10-22T12:28:48
   turkey  page 1836  ←  turkey-cbi_8.html  (260KB)
-    ✓ pushed · modified: 2026-10-22T12:16:21
+    ✓ pushed · modified: 2026-10-22T12:28:52
   uae  page 1901  ←  uae-rbi_1_7.html  (1463KB)
-    ✓ pushed · modified: 2026-10-22T12:16:26
+    ✓ pushed · modified: 2026-10-22T12:28:57
   uk  page 1932  ←  uk-rbi_1 (2).html  (217KB)
-    ✓ pushed · modified: 2026-10-22T12:16:30
+    ✓ pushed · modified: 2026-10-22T12:29:05
   malta  page 1924  ←  malta-rbi_1_3.html  (1540KB)
-    ✓ pushed · modified: 2026-10-22T12:16:35
+    ✓ pushed · modified: 2026-10-22T12:29:09
   stkitts  page 1921  ←  stkitts-nevis.html  (243KB)
-    ✓ pushed · modified: 2026-10-22T12:16:40
+    ✓ pushed · modified: 2026-10-22T12:29:16
   thailand  page 1926  ←  thailand-rbi_1 (2).html  (228KB)
-    ✓ pushed · modified: 2026-10-22T12:16:44
+    ✓ pushed · modified: 2026-10-22T12:29:20
   overview  page 1914  ←  NAC-BROCHURES-OVERVIEW.html  (199KB)
-    ✓ pushed · modified: 2026-10-22T12:16:48
+    ✓ pushed · modified: 2026-10-22T12:29:24
   newzealand  page 1944  ←  newzealand-rbi_1 (3).html  (216KB)
-    ✓ pushed · modified: 2026-10-22T12:16:52
+    ✓ pushed · modified: 2026-10-22T12:29:28
   panama  page 1996  ←  panama-rbi_.html  (1380KB)
-    ✓ pushed · modified: 2026-10-22T12:16:57
+    ✓ pushed · modified: 2026-10-22T12:29:32
   malaysia  page 2024  ←  malaysia-mm2h.html  (197KB)
-    ✓ pushed · modified: 2026-10-22T12:17:02
+    ✓ pushed · modified: 2026-10-22T12:29:39
   antigua  page 2158  ←  antigua-cbi.html  (272KB)
-    ✓ pushed · modified: 2026-10-22T12:17:06
+    ✓ pushed · modified: 2026-10-22T12:29:42
   italy  page 2165  ←  italy-investor.html  (270KB)
-    ✓ pushed · modified: 2026-10-22T12:17:10
+    ✓ pushed · modified: 2026-10-22T12:29:46
   spain  page 2170  ←  spain-gv.html  (218KB)
-    ✓ pushed · modified: 2026-10-22T12:17:14
+    ✓ pushed · modified: 2026-10-22T12:29:50
   montenegro  page 2167  ←  montenegro-rbi.html  (263KB)
-    ✓ pushed · modified: 2026-10-22T12:17:18
+    ✓ pushed · modified: 2026-10-22T12:29:54
   australia  page 2213  ←  australia-rbi.html  (214KB)
-    ✓ pushed · modified: 2026-10-22T12:17:22
+    ✓ pushed · modified: 2026-10-22T12:29:58
   nauru  page 2215  ←  nauru-cbi.html  (273KB)
-    ✓ pushed · modified: 2026-10-22T12:17:26
+    ✓ pushed · modified: 2026-10-22T12:30:02
   index  page 1800  ←  NAC-RESIDENCE-INDEX.html  (210KB)
-    ✓ pushed · modified: 2026-10-22T12:17:29
-  partners  page 2493  ←  NAC-PARTNERS.html  (266KB)
-    ✓ pushed · modified: 2026-10-22T12:17:33
+    ✓ pushed · modified: 2026-10-22T12:30:06
+  partners  page 2493  ←  NAC-PARTNERS.html  (261KB)
+    ✓ pushed · modified: 2026-10-22T12:30:10
   quiz  page 1115  ←  nac-quiz-tu-van.html  (63KB)
-    ✓ pushed · modified: 2026-10-22T12:17:37
+    ✓ pushed · modified: 2026-10-22T12:30:13
   sosanh  page 145  ←  NAC-SO-SANH.html  (266KB)
-    ✓ pushed · modified: 2026-10-22T12:17:41
+    ✓ pushed · modified: 2026-10-22T12:30:16
 ──────────────────────────────────────────────────────────────────────
   done — 23 ok, 0 failed
 
