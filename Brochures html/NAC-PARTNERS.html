@@ -403,13 +403,6 @@ html[lang="en"] .pg-vi-only{display:none}
 .rf-credit p{font-size:13.5px;color:var(--text2);line-height:1.6}
 .rf-credit b{color:var(--text)}
 .kit-lab{font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--text3);text-align:center;margin:44px 0 4px}
-.kit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
-.kit-card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px}
-.kit-card h4{font-size:13px;font-weight:700;color:var(--text);margin-bottom:9px;display:flex;align-items:center;gap:7px}
-.kit-card h4 svg{width:16px;height:16px;color:var(--blue);flex-shrink:0}
-.kit-snip{flex:1;font-size:11.5px;line-height:1.6;color:var(--text3);background:var(--bg2);border:1px solid var(--border);border-radius:9px;padding:11px 12px;white-space:pre-wrap;word-break:break-word;margin-bottom:11px;max-height:150px;overflow:auto}
-.kit-copy{align-self:flex-start;display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:9px;padding:8px 15px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s}
-.kit-copy:hover{background:var(--orange)}
 .kit-foot{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin-top:20px}
 .kit-logo-btn{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--border);border-radius:10px;padding:9px 15px;font-size:12.5px;font-weight:600;color:var(--text2);text-decoration:none;transition:border-color .15s,color .15s}
 .kit-logo-btn:hover{border-color:var(--orange);color:var(--text)}
@@ -420,7 +413,7 @@ html[lang="en"] .pg-vi-only{display:none}
 .cred-item svg{width:26px;height:26px;color:#fff;opacity:.92;flex-shrink:0}
 .cred-item h4{font-size:14.5px;font-weight:700;margin-bottom:4px}
 .cred-item p{font-size:12.5px;color:rgba(255,255,255,.72);line-height:1.55}
-@media(max-width:760px){.rf-steps{grid-template-columns:1fr 1fr}.kit-grid{grid-template-columns:1fr}.cred-in{grid-template-columns:1fr;gap:18px;padding:28px 20px}}
+@media(max-width:760px){.rf-steps{grid-template-columns:1fr 1fr}.cred-in{grid-template-columns:1fr;gap:18px;padding:28px 20px}}
 @media(max-width:460px){.rf-steps{grid-template-columns:1fr}}
 .pg-btn2.alt:hover{background:var(--border)}
 .pg-btn2.orange{background:var(--orange)}
@@ -808,24 +801,7 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
         <p data-copy="pg-rf-credit" data-vi="&lt;b&gt;Ghi nhận minh bạch.&lt;/b&gt; Mã truy cập chính là mã giới thiệu của bạn — NAC thấy chính xác khách nào đến từ bạn, và quyền lợi hợp tác được xác nhận trong thỏa thuận." data-en="&lt;b&gt;Transparent attribution.&lt;/b&gt; Your access code is your referral code — NAC sees exactly which clients came from you, and partnership benefits are confirmed in your agreement."><b>Ghi nhận minh bạch.</b> Mã truy cập chính là mã giới thiệu của bạn — NAC thấy chính xác khách nào đến từ bạn, và quyền lợi hợp tác được xác nhận trong thỏa thuận.</p>
       </div>
 
-      <div class="kit-lab" data-copy="pg-kit-lab" data-vi="Bộ Công Cụ Sẵn Dùng" data-en="Your Ready-To-Use Kit">Bộ Công Cụ Sẵn Dùng</div>
-      <div class="kit-grid">
-        <div class="kit-card">
-          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x='3' y='5' width='18' height='14' rx='2'/><path d='M3 7l9 6 9-6'/></svg><span data-copy="pg-kit-1h" data-vi="Email giới thiệu" data-en="Intro email">Email giới thiệu</span></h4>
-          <div class="kit-snip" id="kitEmail"></div>
-          <button class="kit-copy" type="button" data-kit="email" data-copy="pg-kit-1c" data-vi="Sao chép email" data-en="Copy email">Sao chép email</button>
-        </div>
-        <div class="kit-card">
-          <h4><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M4 6h16M4 12h16M4 18h10'/></svg><span data-copy="pg-kit-2h" data-vi="Câu giới thiệu 1 dòng" data-en="One-line pitch">Câu giới thiệu 1 dòng</span></h4>
-          <div class="kit-snip" id="kitOne"></div>
-          <button class="kit-copy" type="button" data-kit="one" data-copy="pg-kit-2c" data-vi="Sao chép câu" data-en="Copy line">Sao chép câu</button>
-        </div>
-        <div class="kit-card">
-          <h4><svg viewBox="0 0 24 24" fill="#0f9d6b" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347"/></svg><span data-copy="pg-kit-3h" data-vi="Tin nhắn WhatsApp" data-en="WhatsApp message">Tin nhắn WhatsApp</span></h4>
-          <div class="kit-snip" id="kitWa"></div>
-          <button class="kit-copy" type="button" data-kit="wa" data-copy="pg-kit-3c" data-vi="Sao chép tin nhắn" data-en="Copy message">Sao chép tin nhắn</button>
-        </div>
-      </div>
+      <div class="kit-lab" data-copy="pg-kit-lab" data-vi="Tài Nguyên Thương Hiệu" data-en="Brand Resources">Tài Nguyên Thương Hiệu</div>
       <div class="kit-foot">
         <a class="kit-logo-btn" href="https://nomadassetcollective.com/wp-content/uploads/2026/05/OTG-Passport-Icons.png" target="_blank" rel="noopener" download><img src="https://nomadassetcollective.com/wp-content/uploads/2026/04/cropped-OTG-Passport-Icons.png" alt="NAC"><span data-copy="pg-kit-logo" data-vi="Tải logo NAC (PNG)" data-en="Download NAC logo (PNG)">Tải logo NAC (PNG)</span></a>
         <a class="kit-logo-btn" href="https://nomadassetcollective.com/brochures/" target="_blank" rel="noopener"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d='M4 5.5A2.5 2.5 0 016.5 3H20v15H6.5A2.5 2.5 0 004 20.5z'/><path d='M4 18a2.5 2.5 0 012.5-2.5H20'/></svg><span data-copy="pg-kit-broch" data-vi="Bộ 16 brochure chương trình" data-en="All 16 program brochures">Bộ 16 brochure chương trình</span></a>
@@ -927,6 +903,7 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
             <li><svg class="nf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-7.5 7-13a7 7 0 1 0-14 0c0 5.5 7 13 7 13z"/><circle cx="12" cy="9" r="2.5"/></svg><address style="font-style:normal" data-copy="pg-faddr" data-vi="Tòa Nhà Sonatus, Sentry, 15B Lê Thánh Tôn, TP.HCM" data-en="Sonatus Building, Sentry, 15B Le Thanh Ton, District 1, HCMC">Tòa Nhà Sonatus, Sentry, 15B Lê Thánh Tôn, TP.HCM</address></li>
             <li><svg class="nf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><a href="mailto:hello@nomadassetcollective.com">hello@nomadassetcollective.com</a></li>
             <li><svg class="nf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.8.3 1.6.5 2.5.6a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+447388646000">+44 7388 646000</a></li>
+            <li><svg class="nf-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.3 1.7.6 2.5a2 2 0 0 1-.5 2.1L8 9.6a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.8.3 1.6.5 2.5.6a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+84919199330">+84 919 199 330</a></li>
           </ul>
         </div>
       </div>
@@ -1362,35 +1339,6 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
     document.getElementById('pgsCopyEn').addEventListener('click', function(){ copyText(snippet(byKey(sProg.value), 'en'), this); ev('share-copy'); });
   }
 
-  /* ---- partner marketing kit: copy-paste intro email / one-liner / WhatsApp (bilingual) ---- */
-  var KIT = {
-    email: {
-      vi: 'Chào [Tên khách hàng],\n\nNhư đã trao đổi, tôi xin giới thiệu anh/chị với Nomad Asset Collective (NAC) — đơn vị tư vấn định cư & đầu tư quốc tế mà chúng tôi hợp tác. Họ tư vấn các chương trình cư trú/quốc tịch (Golden Visa, CBI, LTR) cùng bất động sản gắn kèm, phù hợp với mục tiêu của anh/chị.\n\nĐội ngũ NAC sẽ liên hệ để sắp xếp buổi tư vấn miễn phí 30 phút.\n\nTrân trọng,\n[Tên bạn]',
-      en: 'Hi [Client name],\n\nAs discussed, I’d like to introduce you to Nomad Asset Collective (NAC) — the global residency & investment advisory we partner with. They advise on residency/citizenship programs (Golden Visa, CBI, LTR) and the real estate attached to them, matched to your goals.\n\nThe NAC team will reach out to arrange a free 30-minute consultation.\n\nBest,\n[Your name]'
-    },
-    one: {
-      vi: 'Nomad Asset Collective — tư vấn định cư & đầu tư quốc tế: cư trú/hộ chiếu thứ hai qua Golden Visa, CBI và bất động sản branded, với dữ liệu lợi suất minh bạch.',
-      en: 'Nomad Asset Collective — global residency & investment advisory: a second residency or passport via Golden Visa, CBI and branded real estate, backed by transparent yield data.'
-    },
-    wa: {
-      vi: 'Xin chào! Tôi được [Tên bạn] giới thiệu đến NAC để tìm hiểu chương trình cư trú/đầu tư quốc tế. Anh/chị tư vấn giúp tôi nhé?',
-      en: 'Hi! I was referred to NAC by [Your name] to learn about international residency/investment programs. Could you help me?'
-    }
-  };
-  function renderKit(){
-    var l = lang();
-    var e = document.getElementById('kitEmail'), o = document.getElementById('kitOne'), w = document.getElementById('kitWa');
-    if (e) e.textContent = KIT.email[l];
-    if (o) o.textContent = KIT.one[l];
-    if (w) w.textContent = KIT.wa[l];
-  }
-  document.querySelectorAll('.kit-copy').forEach(function(b){
-    b.addEventListener('click', function(){
-      var k = b.getAttribute('data-kit');
-      if (KIT[k]) { copyText(KIT[k][lang()], b); ev('share-copy'); }
-    });
-  });
-
   /* ---- co-branded client pack ---- */
   var STEPS = {
     vi: ['<b>Tư vấn định hướng</b> — xác định mục tiêu cư trú, thuế và gia đình', '<b>Chọn chương trình & tài sản</b> — đối chiếu NAC Index và danh mục BĐS tuyển chọn', '<b>Chuẩn bị hồ sơ</b> — cùng luật sư di trú được NAC thẩm định', '<b>Nộp & theo dõi</b> — NAC cập nhật tiến độ từng bước cho bạn và khách hàng', '<b>Nhận kết quả & đồng hành</b> — hỗ trợ sau khi có thẻ cư trú / quốc tịch'],
@@ -1458,7 +1406,7 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
 
   function twemojiPass(){ if (typeof nacTwemoji === 'function') nacTwemoji(); }
   /* ---- language re-render (selects + snippet are built in JS, outside the data-attr walker) ---- */
-  new MutationObserver(function(){ fillSelects(); renderShare(); renderKit(); twemojiPass(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+  new MutationObserver(function(){ fillSelects(); renderShare(); twemojiPass(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
 
   /* ---- boot: everything meaningful starts when the gate opens #nacMain ---- */
   var booted = false;
@@ -1470,7 +1418,6 @@ click to open full-screen.">Xem trực tiếp từ website đang vận hành —
     video();
     fillSelects();
     renderShare();
-    renderKit();
     observe();
     twemojiPass();
   }
