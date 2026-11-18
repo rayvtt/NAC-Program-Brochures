@@ -148,6 +148,14 @@ def render_stars(score, idx):
     return ''.join(parts)
 
 
+def cta_href(c):
+    """Real brochure URL on the card CTA, so the deck carries a crawlable
+    <a href> to every brochure. The click still opens the lead modal (the
+    onclick returns false); without this the index links to its brochures
+    only through data-url + JS, which search engines do not follow."""
+    return escape_attr(c['wp_url']) if c['wp_url'] else '#'
+
+
 # ── Card rendering ─────────────────────────────────────────────────────
 def render_card(idx, c):
     photo = c['photo'] or ''
@@ -190,7 +198,7 @@ def render_card(idx, c):
         # Closed = legacy reference (Spain). Show CTA but no score section.
         modal = c['modal'] or f'{badge_vi}'
         parts.append(
-            f'        <div class="card-cta-wrap"><a class="card-cta" href="#" '
+            f'        <div class="card-cta-wrap"><a class="card-cta" href="{cta_href(c)}" '
             f"onclick=\"event.stopPropagation();openModal('{escape_js(modal)}','{c['wp_url']}');return false;\">"
             f'{EYE_SVG}<span data-vi="Đọc Tài Liệu" data-en="Read Reference">Đọc Tài Liệu</span></a></div>'
         )
@@ -205,7 +213,7 @@ def render_card(idx, c):
             )
         modal = c['modal'] or f'{badge_vi}'
         parts.append(
-            f'        <div class="card-cta-wrap"><a class="card-cta" href="#" '
+            f'        <div class="card-cta-wrap"><a class="card-cta" href="{cta_href(c)}" '
             f"onclick=\"event.stopPropagation();openModal('{escape_js(modal)}','{c['wp_url']}');return false;\">"
             f'{EYE_SVG}<span data-vi="Đọc Brochure" data-en="Read Brochure">Đọc Brochure</span></a></div>'
         )
