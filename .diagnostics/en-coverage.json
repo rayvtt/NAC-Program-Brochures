@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T00:37:41.439951Z",
+  "generated_at": "2026-11-19T07:53:25.111075Z",
   "reports": [
     {
       "alias": "portugal",
@@ -267,8 +267,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 2335,
-      "en_array_size": 2335,
+      "vi_array_size": 2336,
+      "en_array_size": 2336,
       "data_attr_pairs": 25,
       "notion_en_fields": 30
     },
@@ -373,12 +373,12 @@
           "reason": "no_en_available"
         },
         {
-          "text": "{ \"@context\": \"https://schema.org\", \"@graph\": [ { \"@type\": \"Article\", \"@id\": \"https://blog.nomadassetcollective.com/malt",
+          "text": "{ \"@context\": \"https://schema.org\", \"@graph\": [ { \"@type\": \"Article\", \"@id\": \"https://nomadassetcollective.com/brochures",
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 2361,
-      "en_array_size": 2361,
+      "vi_array_size": 2362,
+      "en_array_size": 2362,
       "data_attr_pairs": 30,
       "notion_en_fields": 30
     },
@@ -597,8 +597,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 2353,
-      "en_array_size": 2353,
+      "vi_array_size": 2354,
+      "en_array_size": 2354,
       "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
