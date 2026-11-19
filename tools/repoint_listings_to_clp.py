@@ -64,7 +64,7 @@ FILE_TO_ALIAS = {
 
 OLD_PATTERN = re.compile(
     r'(class="(?:listings-fn-link|listing-placeholder-link)"\s+href=")'
-    r'https://nomadassetcollective\.com/property-hub/\?program=[a-z]+&country=[a-z]+'
+    r'https://nomadassetcollective\.com/property-hub(?:-bat-dong-san)?/\?program=[a-z]+&country=[a-z]+'
     r'(")'
 )
 
