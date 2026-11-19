@@ -162,11 +162,32 @@ def strip_country_flag(prop_country):
     return prop_country.strip()
 
 
+# Countries with a Live Country Listing Page (CLP). The "all eligible
+# properties" link goes straight to that page. Keep in step with
+# tools/repoint_listings_to_clp.py::CLP_SLUG. (Before 2026-11-19 this
+# function always returned the old /property-hub/?program=… address, which
+# 301s, so every listings refresh undid the CLP repoint.)
+CLP_SLUG = {
+    'cyprus': 'cyprus', 'turkey': 'turkey', 'uk': 'uk', 'greece': 'greece',
+    'panama': 'panama', 'uae': 'uae', 'malaysia': 'malaysia',
+    'thailand': 'thailand', 'australia': 'australia',
+}
+HUB_URL = 'https://nomadassetcollective.com/property-hub-bat-dong-san/'
+
+
 def ph_catalog_url(program_code, country_alias):
-    return (
-        'https://nomadassetcollective.com/property-hub/'
-        f'?program={program_code.lower()}&country={country_alias}'
-    )
+    """CLP when the country has one, else the canonical Property Hub URL."""
+    if country_alias in CLP_SLUG:
+        return f'{HUB_URL}{CLP_SLUG[country_alias]}/'
+    return f'{HUB_URL}?program={program_code.lower()}&country={country_alias}'
+
+
+def canonical_listing_url(url):
+    """Listing pages are canonical WITH a trailing slash; without it they 301."""
+    url = (url or '').strip()
+    if url.startswith('https://nomadassetcollective.com/') and '?' not in url and '#' not in url and not url.endswith('/'):
+        return url + '/'
+    return url
 
 
 # ── Selection (Rule 1 + Rule 2) ─────────────────────────────────────────
@@ -257,7 +278,7 @@ def render_card(prop, pdp, country_cfg):
     irr = pdp.get('irr_pct_unit') or (f"{prop['irr']:.1f}%" if prop.get('irr') else '—')
     handover = pdp.get('handover') or '—'
 
-    src_url = prop.get('listingUrl', '')
+    src_url = canonical_listing_url(prop.get('listingUrl', ''))
     ref = pdp.get('property_id') or (f'NAC-{prop["id"]}' if prop.get('id') else '')
     hero = pdp.get('hero_img') or prop.get('img', '')
     badge_loc = district_short or country_clean

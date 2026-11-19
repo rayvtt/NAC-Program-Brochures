@@ -54,7 +54,7 @@ URLS = {
  "newzealand":"https://nomadassetcollective.com/brochures/chuong-trinh-new-zealand-rbi-dau-tu-di-tru/",
  "panama":"https://nomadassetcollective.com/brochures/chuong-trinh-panama-rbi-quyen-cu-tru-vinh-vien/",
  "malaysia":"https://nomadassetcollective.com/brochures/chuong-trinh-malaysia-rbi-mm2h-dau-tu-quyen-cu-tru/",
- "antigua":"https://nomadassetcollective.com/brochures/chuong-trinh-antigua-barbuda-cbi/",
+ "antigua":"https://nomadassetcollective.com/brochures/chuong-trinh-antigua-barbuda-cbi-dau-tu-quoc-tich/",
  "italy":"https://nomadassetcollective.com/brochures/chuong-trinh-y-italy-rbi-qua-dau-tu-bds/",
  "montenegro":"https://nomadassetcollective.com/brochures/chuong-trinh-montenengro-rbi-qua-dau-tu-bds/",
 }
