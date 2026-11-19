@@ -168,7 +168,7 @@ def strip_country_flag(prop_country):
 # function always returned the old /property-hub/?program=… address, which
 # 301s, so every listings refresh undid the CLP repoint.)
 CLP_SLUG = {
-    'cyprus': 'cyprus', 'turkey': 'turkey', 'uk': 'uk', 'greece': 'greece',
+    'cyprus': 'cyprus', 'turkey': 'turkey', 'uk': 'united-kingdom', 'greece': 'greece',
     'panama': 'panama', 'uae': 'uae', 'malaysia': 'malaysia',
     'thailand': 'thailand', 'australia': 'australia',
 }

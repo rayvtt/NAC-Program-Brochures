@@ -30,7 +30,7 @@ HTML_DIR = ROOT / "Brochures html"
 CLP_SLUG = {
     "cyprus":     "cyprus",
     "turkey":     "turkey",
-    "uk":         "uk",
+    "uk":         "united-kingdom",  # /uk/ is an older duplicate page
     "greece":     "greece",
     "panama":     "panama",
     "uae":        "uae",
