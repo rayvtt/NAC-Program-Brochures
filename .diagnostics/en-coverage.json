@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-20T04:07:42.441546Z",
+  "generated_at": "2026-11-20T12:46:45.947039Z",
   "reports": [
     {
       "alias": "portugal",
@@ -106,8 +106,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 317,
-      "en_array_size": 317,
+      "vi_array_size": 318,
+      "en_array_size": 318,
       "data_attr_pairs": 24,
       "notion_en_fields": 30
     },
@@ -161,8 +161,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 288,
-      "en_array_size": 288,
+      "vi_array_size": 290,
+      "en_array_size": 290,
       "data_attr_pairs": 25,
       "notion_en_fields": 28
     },
@@ -267,8 +267,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 2339,
-      "en_array_size": 2339,
+      "vi_array_size": 2341,
+      "en_array_size": 2341,
       "data_attr_pairs": 27,
       "notion_en_fields": 30
     },
@@ -377,8 +377,8 @@
           "reason": "text_drift_vs_notion"
         }
       ],
-      "vi_array_size": 2365,
-      "en_array_size": 2365,
+      "vi_array_size": 2367,
+      "en_array_size": 2367,
       "data_attr_pairs": 32,
       "notion_en_fields": 30
     },
@@ -542,8 +542,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 355,
-      "en_array_size": 355,
+      "vi_array_size": 356,
+      "en_array_size": 356,
       "data_attr_pairs": 22,
       "notion_en_fields": 28
     },
@@ -597,8 +597,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 2357,
-      "en_array_size": 2357,
+      "vi_array_size": 2358,
+      "en_array_size": 2358,
       "data_attr_pairs": 23,
       "notion_en_fields": 30
     },
@@ -652,8 +652,8 @@
           "reason": "no_en_available"
         }
       ],
-      "vi_array_size": 351,
-      "en_array_size": 351,
+      "vi_array_size": 352,
+      "en_array_size": 352,
       "data_attr_pairs": 24,
       "notion_en_fields": 28
     },
